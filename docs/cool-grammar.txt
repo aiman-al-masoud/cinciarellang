@@ -122,7 +122,7 @@ dict_comprehension ::= '{' expression ':' expression 'for' expression  ['where' 
 // semantic note: 'final': var not reassignable, 'immutable': obj internally not modifiable
 
 modifier ::= 'private' | 'static' | 'final' | 'get' | 'set' | 'singleton' | 'pooled' | 'immutable'   
-type ::=  'Int' | 'Float' | 'Bool' | 'String' | identifier
+type ::=  'int' | 'float' | 'bool' | identifier
 comparision_op ::= '==' | '!=' | '<' | '>' | '<=' | '>=' | 'is' | 'in'
 add_op ::= '+' | '-'
 mul_op ::= '*' | '/' | '%' | '**'

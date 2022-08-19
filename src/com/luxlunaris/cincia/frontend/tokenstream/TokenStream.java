@@ -3,18 +3,20 @@ package com.luxlunaris.cincia.frontend.tokenstream;
 import java.util.function.Predicate;
 
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
-import com.luxlunaris.cincia.frontend.token.Float;
-import com.luxlunaris.cincia.frontend.token.Identifier;
-import com.luxlunaris.cincia.frontend.token.Int;
-import com.luxlunaris.cincia.frontend.token.Keyword;
-import com.luxlunaris.cincia.frontend.token.Keywords;
-import com.luxlunaris.cincia.frontend.token.Operator;
-import com.luxlunaris.cincia.frontend.token.Operators;
-import com.luxlunaris.cincia.frontend.token.Punctuation;
-import com.luxlunaris.cincia.frontend.token.Punctuations;
-import com.luxlunaris.cincia.frontend.token.Str;
-import com.luxlunaris.cincia.frontend.token.Token;
-import com.luxlunaris.cincia.frontend.token.Bool;
+import com.luxlunaris.cincia.frontend.tokens.Bool;
+import com.luxlunaris.cincia.frontend.tokens.Float;
+import com.luxlunaris.cincia.frontend.tokens.Identifier;
+import com.luxlunaris.cincia.frontend.tokens.Int;
+import com.luxlunaris.cincia.frontend.tokens.Keyword;
+import com.luxlunaris.cincia.frontend.tokens.Keywords;
+import com.luxlunaris.cincia.frontend.tokens.Modifier;
+import com.luxlunaris.cincia.frontend.tokens.Modifiers;
+import com.luxlunaris.cincia.frontend.tokens.Operator;
+import com.luxlunaris.cincia.frontend.tokens.Operators;
+import com.luxlunaris.cincia.frontend.tokens.Punctuation;
+import com.luxlunaris.cincia.frontend.tokens.Punctuations;
+import com.luxlunaris.cincia.frontend.tokens.Str;
+import com.luxlunaris.cincia.frontend.tokens.Token;
 
 public class TokenStream {
 
@@ -42,22 +44,30 @@ public class TokenStream {
 
 
 		if(isIdStart(curr)) {
-
+			
 			String val = readWhile(this::isId);
 			Keywords kw = Keywords.fromString(val);
 			Boolean b = Bool.stringToBool(val);
+			Modifiers mod = Modifiers.fromString(val);
 
-			if(kw == null) {
+			
+			if(kw==null) {
 				currTok = new Identifier(val);
 				return;
-			}
-
-			if(b == null) {
-				currTok = new Keyword(kw);
+			} 
+			
+			
+			if(b!=null) {
+				currTok = new Bool(b);
 				return;
 			}
-
-			currTok = new Bool(b);
+			
+			if(mod!=null) {
+				currTok = new Modifier(mod);
+				return;
+			}
+			
+			currTok = new Keyword(kw);
 			return;
 		}
 		
