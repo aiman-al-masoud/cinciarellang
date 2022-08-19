@@ -71,6 +71,7 @@ public class TokenStream {
 			return;
 		}
 		
+		//TODO: consider changing f-string syntax to something more like js
 		if(curr=='"' || curr == '\'' || curr == 'f') {
 			currTok = readString();
 			return;

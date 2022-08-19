@@ -14,6 +14,8 @@ public class Test {
 		source = "x = 'ciao mondo'";
 		source = "final x = 'ciao mondo'";
 		source = "private x: int = 1 ";
+		source = "f = f\"df\";";
+
 
 		
 		CharStream cStream = new CharStream(source);
