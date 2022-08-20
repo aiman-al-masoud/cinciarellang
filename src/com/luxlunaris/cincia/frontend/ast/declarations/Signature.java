@@ -7,11 +7,15 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 
-//signature ::= modifier* '\' [multi_declaration] [':' type]  
+/**
+ * The abstract signature of a lambda function.
+ * 
+ * signature ::= modifier* '\' [multi_declaration] [':' type]  
+ */
 public class Signature implements Declaration{
 	
 	public List<Modifier> modifiers; // can be empty
-	public MultiDeclaration params;// can be null
+	public Declaration params;// can be null if func takes no args
 	public Identifier returnType;
 	
 	public Signature() {

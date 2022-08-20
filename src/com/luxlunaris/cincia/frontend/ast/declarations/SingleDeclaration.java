@@ -8,6 +8,11 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 
+/**
+ * 
+ * Name type and modifers of a (possibly yet to be initialized) variable.
+ *
+ */
 public class SingleDeclaration implements Declaration{
 	
 	public List<Modifier> modifiersList;
