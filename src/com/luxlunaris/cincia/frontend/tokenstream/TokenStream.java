@@ -2,6 +2,8 @@ package com.luxlunaris.cincia.frontend.tokenstream;
 
 import java.util.function.Predicate;
 
+import javax.management.RuntimeErrorException;
+
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
 import com.luxlunaris.cincia.frontend.ast.tokens.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.Float;
@@ -79,9 +81,15 @@ public class TokenStream {
 			return;
 		}
 		
-		if(Operators.isOperator(curr+"")) {
-			String val = readWhile(c->Operators.isOperator(c+""));
-			currTok = new Operator(Operators.fromString(val));
+		if(Operators.isOperator(curr)) {
+			String val = readWhile(c->Operators.isOperator(c));
+			Operators op = Operators.fromString(val);
+			
+			if(op==null) {
+				croak("'"+val+"' is not a valid operator");
+			}
+			
+			currTok = new Operator(op);
 			return;
 		}
 		

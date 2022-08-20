@@ -1,5 +1,8 @@
 package com.luxlunaris.cincia.frontend.ast.tokens.operator;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 public enum Operators {
 	
 	PLUS,
@@ -86,9 +89,8 @@ public enum Operators {
 		}
 	}
 	
-	
-	public static boolean isOperator(String string) {
-		return fromString(string) != null;
+	public static boolean isOperator(char c) {
+		return "+-*/%=!?<>&|".contains(c+"");
 	}
 	
 	
