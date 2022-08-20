@@ -8,6 +8,14 @@ public class Identifier extends AbstractToken{
 		this.value = value;
 	}
 	
+	public static boolean isIdStart(char c){
+		return  Character.isLetter(c) || c == '_';
+	}
+
+	public static boolean isId(char c){
+		return isIdStart(c) || Character.isDigit(c);
+	}
+	
 	
 	
 }

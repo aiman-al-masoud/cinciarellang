@@ -32,9 +32,7 @@ public class TokenStream {
 		// skip whitespace
 		readWhile( c -> { return c == ' ' || c == '\t'; });
 
-
 		char curr  = cStream.peek();
-//		System.out.println("next() "+curr);
 
 		if(curr == '/') {
 			skipComment();
@@ -43,14 +41,13 @@ public class TokenStream {
 		}
 
 
-		if(isIdStart(curr)) {
+		if(Identifier.isIdStart(curr)) {
 			
-			String val = readWhile(this::isId);
+			String val = readWhile(Identifier::isId);
 			Keywords kw = Keywords.fromString(val);
 			Boolean b = Bool.stringToBool(val);
 			Modifiers mod = Modifiers.fromString(val);
 
-			
 			if(kw==null) {
 				currTok = new Identifier(val);
 				return;
@@ -79,8 +76,6 @@ public class TokenStream {
 		
 		if(Character.isDigit(curr)) {
 			currTok = readNumeric();
-//			System.out.println(curr);
-//			cStream.next();
 			return;
 		}
 		
@@ -256,13 +251,7 @@ public class TokenStream {
 
 
 
-	boolean isIdStart(char c){
-		return  Character.isLetter(c) || c == '_';
-	}
-
-	boolean isId(char c){
-		return isIdStart(c) || Character.isDigit(c);
-	}
+	
 	
 
 
