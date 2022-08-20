@@ -1,7 +1,7 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.binary;
 
-import com.luxlunaris.cincia.frontend.ast.expressions.unary.UnaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.UnaryExpression;
 
 public class MulExpression implements Expression{
 	

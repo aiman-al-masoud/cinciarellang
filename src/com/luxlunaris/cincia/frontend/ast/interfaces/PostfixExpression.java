@@ -1,5 +1,5 @@
 package com.luxlunaris.cincia.frontend.ast.interfaces;
 
-public interface PostfixExpression extends Expression{
+public interface PostfixExpression extends UnaryExpression{
 
 }
