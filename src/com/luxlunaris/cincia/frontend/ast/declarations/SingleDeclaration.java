@@ -17,7 +17,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 public class SingleDeclaration implements Declaration{
 	
 	public List<Modifier> modifiers;
-	public Identifier identifier;
+	public Identifier name;
 	public Identifier type; //TODO: turn primitive types into identifiers or better yet make Type class so as to include also symbols and "generics"
 	
 	public SingleDeclaration() {
