@@ -7,10 +7,10 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
 public class MultiExpression implements Expression{
 	
-	public List<Expression> expressionsList;
+	public List<Expression> expressions;
 	
 	public MultiExpression() {
-		expressionsList = new ArrayList<Expression>();
+		expressions = new ArrayList<Expression>();
 	}
 	
 }
