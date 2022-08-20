@@ -11,6 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 /**
  * 
  * Name, type, and modifers of a (possibly uninitialized) variable.
+ * Modifiers can be empty, type can be null if inferred.
  *
  */
 public class SingleDeclaration implements Declaration{
