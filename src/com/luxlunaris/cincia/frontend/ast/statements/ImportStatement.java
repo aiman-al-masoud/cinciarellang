@@ -10,8 +10,6 @@ public class ImportStatement implements Statement{
 	public Str fromPath;
 	public Identifier alias;
 	
-	public ImportStatement() {
-		
-	}
+	
 	
 }
