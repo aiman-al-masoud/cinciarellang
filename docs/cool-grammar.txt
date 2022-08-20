@@ -104,11 +104,13 @@ primary_expression ::= identifier
 
 
 
-lambda ::= modifier* '\' [multi_declaration] '->' (comp_statement | expression)
+signature ::= modifier* '\' [multi_declaration] [':' type]  
 
-class ::= modifier* 'class' ['listensto' identifier (',' identifier)*]  ['implements' identifier (',' identifier)*]  ['extends' identifier (',' identifier)*] comp_statement
+lambda ::= signature '->' (comp_statement | expression)
 
-interface ::= modifier* 'interface' comp_statement
+class ::= modifier* 'class' ['listensto' identifier (',' identifier)*]  ['implements' identifier (',' identifier)*]  ['extends' identifier]   '{'  (multi_declaration)* (lambda)*  '}'                                 
+
+interface ::= modifier* 'interface' '{'  (multi_declaration)*  (signature)*   '}'
 
 
 // semantic note: '*' destructuring operator
