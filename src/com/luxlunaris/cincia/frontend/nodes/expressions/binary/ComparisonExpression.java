@@ -1,5 +1,10 @@
 package com.luxlunaris.cincia.frontend.nodes.expressions.binary;
 
-public class ComparisonExpression {
+import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
 
+public class ComparisonExpression implements Expression{
+	
+	public Expression left;
+	public AddExpression right;
+	
 }

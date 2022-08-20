@@ -1,5 +1,7 @@
 package com.luxlunaris.cincia.frontend.nodes.expressions.postfix;
 
-public interface PostfixExpression {
+import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
+
+public interface PostfixExpression extends Expression{
 
 }

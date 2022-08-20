@@ -1,5 +1,11 @@
 package com.luxlunaris.cincia.frontend.nodes.expressions.binary;
 
-public class AddExpression {
+import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
 
+public class AddExpression implements Expression{
+	
+	public Expression left;
+	public MulExpression right;
+	
+	
 }

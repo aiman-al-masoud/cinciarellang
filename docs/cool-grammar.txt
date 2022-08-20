@@ -58,7 +58,7 @@ multi_expression ::= expression (',' expression)*
 
 expression ::= assignment_expression | conditional_expression | lambda | class | interface
 
-assignment_expression ::= multi_declaration assign_op multi_expression
+assignment_expression ::= (multi_expression | multi_declaration) assign_op multi_expression
 
 conditional_expression :: = or_expression 
 			    | or_expression '?' expression ':' conditional_expression

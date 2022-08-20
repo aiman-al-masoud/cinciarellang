@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.frontend.nodes.declarations;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.luxlunaris.cincia.frontend.nodes.interfaces.LeftValue;
 import com.luxlunaris.cincia.frontend.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.tokens.Modifier;
 
