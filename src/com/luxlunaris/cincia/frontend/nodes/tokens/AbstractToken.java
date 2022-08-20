@@ -1,4 +1,6 @@
-package com.luxlunaris.cincia.frontend.tokens;
+package com.luxlunaris.cincia.frontend.nodes.tokens;
+
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Token;
 
 public class AbstractToken implements Token{
 	

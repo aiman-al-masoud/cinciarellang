@@ -1,7 +1,7 @@
 package com.luxlunaris.cincia.frontend.nodes.statements.exception;
 
-import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
-import com.luxlunaris.cincia.frontend.nodes.statements.Statement;
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Expression;
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Statement;
 
 public class ThrowStatement implements Statement{
 	

@@ -3,8 +3,8 @@ package com.luxlunaris.cincia.frontend.nodes.statements.exception;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.nodes.statements.CompoundStatement;
-import com.luxlunaris.cincia.frontend.nodes.statements.Statement;
 
 public class TryStatement implements Statement{
 	

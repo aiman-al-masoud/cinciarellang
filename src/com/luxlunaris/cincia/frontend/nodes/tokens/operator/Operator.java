@@ -1,4 +1,6 @@
-package com.luxlunaris.cincia.frontend.tokens;
+package com.luxlunaris.cincia.frontend.nodes.tokens.operator;
+
+import com.luxlunaris.cincia.frontend.nodes.tokens.AbstractToken;
 
 public class Operator extends AbstractToken{
 	

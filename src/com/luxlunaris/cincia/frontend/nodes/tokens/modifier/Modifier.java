@@ -1,4 +1,6 @@
-package com.luxlunaris.cincia.frontend.tokens;
+package com.luxlunaris.cincia.frontend.nodes.tokens.modifier;
+
+import com.luxlunaris.cincia.frontend.nodes.tokens.AbstractToken;
 
 public class Modifier extends AbstractToken{
 

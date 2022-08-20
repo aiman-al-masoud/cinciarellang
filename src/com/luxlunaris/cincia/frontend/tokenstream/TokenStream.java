@@ -3,20 +3,20 @@ package com.luxlunaris.cincia.frontend.tokenstream;
 import java.util.function.Predicate;
 
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
-import com.luxlunaris.cincia.frontend.tokens.Bool;
-import com.luxlunaris.cincia.frontend.tokens.Float;
-import com.luxlunaris.cincia.frontend.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.tokens.Int;
-import com.luxlunaris.cincia.frontend.tokens.Keyword;
-import com.luxlunaris.cincia.frontend.tokens.Keywords;
-import com.luxlunaris.cincia.frontend.tokens.Modifier;
-import com.luxlunaris.cincia.frontend.tokens.Modifiers;
-import com.luxlunaris.cincia.frontend.tokens.Operator;
-import com.luxlunaris.cincia.frontend.tokens.Operators;
-import com.luxlunaris.cincia.frontend.tokens.Punctuation;
-import com.luxlunaris.cincia.frontend.tokens.Punctuations;
-import com.luxlunaris.cincia.frontend.tokens.Str;
-import com.luxlunaris.cincia.frontend.tokens.Token;
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Token;
+import com.luxlunaris.cincia.frontend.nodes.tokens.Bool;
+import com.luxlunaris.cincia.frontend.nodes.tokens.Float;
+import com.luxlunaris.cincia.frontend.nodes.tokens.Identifier;
+import com.luxlunaris.cincia.frontend.nodes.tokens.Int;
+import com.luxlunaris.cincia.frontend.nodes.tokens.Str;
+import com.luxlunaris.cincia.frontend.nodes.tokens.keyword.Keyword;
+import com.luxlunaris.cincia.frontend.nodes.tokens.keyword.Keywords;
+import com.luxlunaris.cincia.frontend.nodes.tokens.modifier.Modifier;
+import com.luxlunaris.cincia.frontend.nodes.tokens.modifier.Modifiers;
+import com.luxlunaris.cincia.frontend.nodes.tokens.operator.Operator;
+import com.luxlunaris.cincia.frontend.nodes.tokens.operator.Operators;
+import com.luxlunaris.cincia.frontend.nodes.tokens.punctuation.Punctuation;
+import com.luxlunaris.cincia.frontend.nodes.tokens.punctuation.Punctuations;
 
 public class TokenStream {
 

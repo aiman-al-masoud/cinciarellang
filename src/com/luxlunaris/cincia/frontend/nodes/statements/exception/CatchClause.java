@@ -1,6 +1,6 @@
 package com.luxlunaris.cincia.frontend.nodes.statements.exception;
 
-import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.nodes.statements.CompoundStatement;
 
 public class CatchClause {

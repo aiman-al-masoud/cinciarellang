@@ -1,7 +1,7 @@
 package com.luxlunaris.cincia.frontend.tokenstream;
 
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
-import com.luxlunaris.cincia.frontend.tokens.Token;
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Token;
 
 public class Test {
 	

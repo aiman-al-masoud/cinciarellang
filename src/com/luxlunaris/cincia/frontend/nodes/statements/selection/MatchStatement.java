@@ -2,8 +2,8 @@ package com.luxlunaris.cincia.frontend.nodes.statements.selection;
 
 import java.util.List;
 
-import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
-import com.luxlunaris.cincia.frontend.nodes.statements.Statement;
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Expression;
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.nodes.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.nodes.statements.labelled.DefaultStatement;
 

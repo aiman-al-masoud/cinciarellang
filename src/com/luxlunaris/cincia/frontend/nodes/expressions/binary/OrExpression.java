@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.frontend.nodes.expressions.binary;
 
 import java.util.List;
 
-import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Expression;
 
 public class OrExpression implements Expression{
 

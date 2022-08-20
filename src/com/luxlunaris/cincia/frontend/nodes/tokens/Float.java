@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.tokens;
+package com.luxlunaris.cincia.frontend.nodes.tokens;
 
 public class Float extends AbstractToken{
 	

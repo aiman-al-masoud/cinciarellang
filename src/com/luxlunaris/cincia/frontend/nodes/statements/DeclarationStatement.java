@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.frontend.nodes.statements;
 
 import com.luxlunaris.cincia.frontend.nodes.declarations.MultiDeclaration;
+import com.luxlunaris.cincia.frontend.nodes.interfaces.Statement;
 
 public class DeclarationStatement implements Statement{
 	
