@@ -1,0 +1,29 @@
+package com.luxlunaris.cincia.frontend.ast.statements.iteration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
+import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
+
+public class ForStatement implements Statement{
+	
+	
+	public List<Identifier> loopVarsList;
+	public Expression iterable;
+	public CompoundStatement block;
+	
+	public ForStatement() {
+		loopVarsList  = new ArrayList<Identifier>();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}

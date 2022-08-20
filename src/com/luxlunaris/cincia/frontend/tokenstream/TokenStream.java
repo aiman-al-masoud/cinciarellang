@@ -2,21 +2,21 @@ package com.luxlunaris.cincia.frontend.tokenstream;
 
 import java.util.function.Predicate;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
+import com.luxlunaris.cincia.frontend.ast.tokens.Bool;
+import com.luxlunaris.cincia.frontend.ast.tokens.Float;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
+import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operator;
+import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
+import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuation;
+import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
-import com.luxlunaris.cincia.frontend.nodes.interfaces.Token;
-import com.luxlunaris.cincia.frontend.nodes.tokens.Bool;
-import com.luxlunaris.cincia.frontend.nodes.tokens.Float;
-import com.luxlunaris.cincia.frontend.nodes.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.nodes.tokens.Int;
-import com.luxlunaris.cincia.frontend.nodes.tokens.Str;
-import com.luxlunaris.cincia.frontend.nodes.tokens.keyword.Keyword;
-import com.luxlunaris.cincia.frontend.nodes.tokens.keyword.Keywords;
-import com.luxlunaris.cincia.frontend.nodes.tokens.modifier.Modifier;
-import com.luxlunaris.cincia.frontend.nodes.tokens.modifier.Modifiers;
-import com.luxlunaris.cincia.frontend.nodes.tokens.operator.Operator;
-import com.luxlunaris.cincia.frontend.nodes.tokens.operator.Operators;
-import com.luxlunaris.cincia.frontend.nodes.tokens.punctuation.Punctuation;
-import com.luxlunaris.cincia.frontend.nodes.tokens.punctuation.Punctuations;
 
 public class TokenStream {
 
