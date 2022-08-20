@@ -11,4 +11,9 @@ public class AssignmentExpression implements Expression{
 	public LeftValue left;
 	public Expression right;
 	
+	@Override
+	public String toString() {
+		return "("+left+" = "+right+")";
+	}
+	
 }

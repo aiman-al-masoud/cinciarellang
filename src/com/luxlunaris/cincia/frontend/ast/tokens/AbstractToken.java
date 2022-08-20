@@ -9,7 +9,8 @@ public class AbstractToken implements Token{
 				
 		try {
 			String value = this.getClass().getDeclaredField("value").get(this)+"";
-			return "Token(type="+this.getClass().getSimpleName()+", "+"value="+value+")";
+//			this.getClass().getSimpleName()
+			return "<"+value+">";
 			
 		} catch (NoSuchFieldException |SecurityException  |IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();

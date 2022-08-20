@@ -1,6 +1,8 @@
 package com.luxlunaris.cincia.frontend.ast.tokens;
 
-public class Identifier extends AbstractToken{
+import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
+
+public class Identifier extends AbstractToken implements LeftValue{
 	
 	public final String value;
 	
