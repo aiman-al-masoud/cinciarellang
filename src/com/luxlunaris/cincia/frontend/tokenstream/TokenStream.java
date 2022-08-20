@@ -2,8 +2,6 @@ package com.luxlunaris.cincia.frontend.tokenstream;
 
 import java.util.function.Predicate;
 
-import javax.management.RuntimeErrorException;
-
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
 import com.luxlunaris.cincia.frontend.ast.tokens.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.Float;
