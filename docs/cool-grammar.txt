@@ -56,7 +56,11 @@ declaration ::= [modifier*] identifier [':' type]
 multi_expression ::= expression (',' expression)* 
 
 
-expression ::= assignment_expression | conditional_expression | lambda | class | interface
+expression ::= assignment_expression | conditional_expression | object
+
+
+object = lambda | class | interface | list | dict |comprehension
+
 
 assignment_expression ::= (multi_expression | multi_declaration) assign_op multi_expression
 
@@ -97,9 +101,6 @@ postfix_expression ::= primary_expression
 
 primary_expression ::= identifier
                        |constant
-                       |list
-                       |dict
-                       |comprehension
                        | '(' expression ')'
 
 
