@@ -1,5 +1,5 @@
 package com.luxlunaris.cincia.frontend.nodes.expressions.primary;
 
-public class ListExpression {
+public class ListExpression implements PrimaryExpression{
 
 }

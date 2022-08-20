@@ -1,5 +1,5 @@
 package com.luxlunaris.cincia.frontend.nodes.expressions.primary;
 
-public class DictComprehension {
+public class DictComprehension implements PrimaryExpression{
 
 }
