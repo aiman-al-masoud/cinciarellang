@@ -55,7 +55,6 @@ public class TokenStream {
 				return;
 			} 
 			
-			
 			if(b!=null) {
 				currTok = new Bool(b);
 				return;
