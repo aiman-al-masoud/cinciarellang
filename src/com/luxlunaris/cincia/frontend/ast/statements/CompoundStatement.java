@@ -9,14 +9,14 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 public class CompoundStatement implements Statement{
 	
 	
-	public List<Statement> statementsList;
+	public List<Statement> statements;
 	
 	public CompoundStatement() {
-		statementsList = new ArrayList<Statement>();
+		statements = new ArrayList<Statement>();
 	}
 	
 	public void add(Statement statement) {
-		statementsList.add(statement);
+		statements.add(statement);
 	}
 	
 	

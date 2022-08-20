@@ -1,14 +1,15 @@
 package com.luxlunaris.cincia.frontend.ast.statements;
 
-import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
+//import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 
 public class DeclarationStatement implements Statement{
 	
-	public MultiDeclaration multiDeclaration;
+	public Declaration declaration;
 	
-	public DeclarationStatement(MultiDeclaration multiDeclaration) {
-		this.multiDeclaration = multiDeclaration;
+	public DeclarationStatement(Declaration declaration) {
+		this.declaration = declaration;
 	}
 	
 }
