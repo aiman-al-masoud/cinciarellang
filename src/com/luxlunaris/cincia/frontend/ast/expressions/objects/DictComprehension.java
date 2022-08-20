@@ -6,4 +6,8 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 
 public class DictComprehension implements ObjectExpression{
 
+	public Expression key;
+	public Expression val;
+	public Expression iterable;
+	public Expression where; //optional
 }
