@@ -15,7 +15,7 @@ public class Test {
 		source = "final x = 'ciao mondo'";
 		source = "private x: int = 1 ";
 		source = "f = f\"df\";";
-		source = "x = true || false";
+		source = "x = true && false";
 
 
 
