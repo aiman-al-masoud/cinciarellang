@@ -1,7 +1,5 @@
 package com.luxlunaris.cincia.frontend.ast.tokens.operator;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
 
 public enum Operators {
 	
