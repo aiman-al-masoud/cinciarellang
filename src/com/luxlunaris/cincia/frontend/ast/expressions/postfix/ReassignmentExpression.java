@@ -12,7 +12,8 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 public class ReassignmentExpression implements PostfixExpression{
 	
 	public Operators operator;
-	public Expression right;
-	public PostfixExpression arg;
+	public PostfixExpression left;
+	public Expression right; //could be null
+	
 	
 }
