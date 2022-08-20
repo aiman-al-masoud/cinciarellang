@@ -5,10 +5,11 @@ import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 
-public class Class implements Expression{
+public class Class implements ObjectExpression{
 
 	public List<Modifier> modifiersList; // can be empty
 	public Identifier superclass;
