@@ -1,5 +1,19 @@
 package com.luxlunaris.cincia.frontend.nodes.statements.selection;
 
-public class MatchStatement {
+import java.util.List;
 
+import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
+import com.luxlunaris.cincia.frontend.nodes.statements.Statement;
+import com.luxlunaris.cincia.frontend.nodes.statements.labelled.CaseStatement;
+import com.luxlunaris.cincia.frontend.nodes.statements.labelled.DefaultStatement;
+
+public class MatchStatement implements Statement{
+	
+	public Expression cond;
+	public List<CaseStatement> casesList;
+	public DefaultStatement defaultStatement;
+	
+	
+	
+	
 }

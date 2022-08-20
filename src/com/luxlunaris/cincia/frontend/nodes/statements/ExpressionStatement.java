@@ -1,5 +1,13 @@
 package com.luxlunaris.cincia.frontend.nodes.statements;
 
-public class ExpressionStatement {
+import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
 
+public class ExpressionStatement implements Statement{
+	
+	public Expression expression;
+	
+	public ExpressionStatement(Expression expression) {
+		this.expression = expression;
+	}
+	
 }

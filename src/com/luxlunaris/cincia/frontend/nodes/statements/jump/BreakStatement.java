@@ -1,5 +1,8 @@
 package com.luxlunaris.cincia.frontend.nodes.statements.jump;
 
-public class BreakStatement {
+import com.luxlunaris.cincia.frontend.nodes.statements.Statement;
 
+public class BreakStatement implements Statement{
+	
+	
 }

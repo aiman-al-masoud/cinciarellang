@@ -1,5 +1,17 @@
 package com.luxlunaris.cincia.frontend.nodes.statements.exception;
 
-public class CatchClause {
+import com.luxlunaris.cincia.frontend.nodes.expressions.Expression;
+import com.luxlunaris.cincia.frontend.nodes.statements.CompoundStatement;
 
+public class CatchClause {
+	
+	public Expression throwable;
+	public CompoundStatement block;
+	
+	
+	public CatchClause(Expression throwable, CompoundStatement block) {
+		this.throwable = throwable;
+		this.block = block;
+	}
+	
 }

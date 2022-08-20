@@ -1,5 +1,10 @@
 package com.luxlunaris.cincia.frontend.nodes.statements.labelled;
 
-public class DefaultStatement {
+import com.luxlunaris.cincia.frontend.nodes.statements.CompoundStatement;
+import com.luxlunaris.cincia.frontend.nodes.statements.Statement;
 
+public class DefaultStatement implements Statement{
+	
+	public CompoundStatement block;
+	
 }

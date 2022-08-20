@@ -17,8 +17,10 @@ excep_statement ::= 'throw' expression termin
                     | 'try' comp_stament ('catch' expression comp_stament)+ ['finally' comp_stament]
 
 
-labelled_statement ::= 'case' ':' expression termin
-                       |'default' ':' termin
+labelled_statement ::= case_statement | default_statement
+
+case_statement = 'case' expression ':' comp_statement
+default_statement= 'default' ':' comp_statement
 
 
 import_statement ::= 'import' identifier('.' identifier)* 'from' string [ 'as' identifier ]
@@ -36,7 +38,7 @@ sel_statement ::= if_statement
 		  | match_statement 
 		  
 if_statement = 'if' expression comp_stament ['else' comp_stament]		  
-match_statement = 'match' expression comp_stament
+match_statement = 'match' expression (case_statement)+ [default_statement]
 
 iter_statement = for_loop
 	         | while_loop
@@ -52,6 +54,8 @@ declaration ::= [modifier*] identifier [':' type]
 
 
 multi_expression ::= expression (',' expression)* 
+
+
 expression ::= assignment_expression | conditional_expression | lambda | class | interface
 
 assignment_expression ::= multi_declaration assign_op multi_expression

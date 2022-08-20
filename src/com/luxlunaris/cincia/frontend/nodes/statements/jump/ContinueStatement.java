@@ -1,5 +1,7 @@
 package com.luxlunaris.cincia.frontend.nodes.statements.jump;
 
-public class ContinueStatement {
+import com.luxlunaris.cincia.frontend.nodes.statements.Statement;
+
+public class ContinueStatement implements Statement{
 
 }
