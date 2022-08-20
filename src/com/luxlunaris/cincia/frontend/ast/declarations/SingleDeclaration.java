@@ -11,12 +11,12 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 /**
  * 
  * Name, type, and modifers of a (possibly uninitialized) variable.
- * Modifiers can be empty, type can be null if inferred.
+ * modifiers can be empty, type can be null if inferred.
  *
  */
 public class SingleDeclaration implements Declaration{
 	
-	public List<Modifier> modifiersList;
+	public List<Modifier> modifiers;
 	public Identifier identifier;
 	public Identifier type; //TODO: turn primitive types into identifiers or better yet make Type class so as to include also symbols and "generics"
 	
