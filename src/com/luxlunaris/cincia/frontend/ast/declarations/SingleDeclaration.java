@@ -10,7 +10,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 
 /**
  * 
- * Name type and modifers of a (possibly uninitialized) variable.
+ * Name, type, and modifers of a (possibly uninitialized) variable.
  *
  */
 public class SingleDeclaration implements Declaration{
