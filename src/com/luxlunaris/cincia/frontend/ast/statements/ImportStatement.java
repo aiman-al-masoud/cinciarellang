@@ -6,7 +6,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Str;
 
 public class ImportStatement implements Statement{
 	
-	public Identifier identifier;
+	public Identifier imported;
 	public Str fromPath;
 	public Identifier alias;
 	
