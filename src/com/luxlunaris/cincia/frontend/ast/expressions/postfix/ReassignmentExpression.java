@@ -13,7 +13,7 @@ public class ReassignmentExpression implements PostfixExpression{
 	
 	public Operators operator;
 	public PostfixExpression left;
-	public Expression right; //could be null
+	public Expression right; //could be null (x++, x--)
 	
 	
 }
