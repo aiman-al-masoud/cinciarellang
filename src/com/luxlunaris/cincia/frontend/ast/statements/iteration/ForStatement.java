@@ -11,12 +11,12 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 public class ForStatement implements Statement{
 	
 	
-	public List<Identifier> loopVarsList;
+	public List<Identifier> loopVars;
 	public Expression iterable;
 	public CompoundStatement block;
 	
 	public ForStatement() {
-		loopVarsList  = new ArrayList<Identifier>();
+		loopVars  = new ArrayList<Identifier>();
 	}
 	
 	
