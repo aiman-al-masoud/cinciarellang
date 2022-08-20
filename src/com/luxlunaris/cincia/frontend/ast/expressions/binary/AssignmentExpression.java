@@ -13,7 +13,7 @@ public class AssignmentExpression implements Expression{
 	
 	
 	public LeftValue left;
-	public Expression right;
+	public Expression right; //other assignment expression or conditional expression or object
 	
 	@Override
 	public String toString() {
