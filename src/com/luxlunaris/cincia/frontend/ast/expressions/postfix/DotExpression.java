@@ -16,4 +16,9 @@ public class DotExpression implements PostfixExpression , LeftValue {
 	public PostfixExpression left; //dottable
 	public DotExpression right;
 	
+	@Override
+	public String toString() {
+		return "("+left+"."+right+")";
+	}
+	
 }
