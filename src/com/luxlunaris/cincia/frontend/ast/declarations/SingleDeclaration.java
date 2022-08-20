@@ -21,7 +21,7 @@ public class SingleDeclaration implements Declaration{
 	public Identifier type; //TODO: turn primitive types into identifiers or better yet make Type class so as to include also symbols and "generics"
 	
 	public SingleDeclaration() {
-		modifiersList = new ArrayList<Modifier>();
+		modifiers = new ArrayList<Modifier>();
 	}
 	
 }
