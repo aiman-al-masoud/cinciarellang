@@ -5,6 +5,10 @@ package com.luxlunaris.cincia.frontend.ast.expressions.binary;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
 
+/**
+ * Right associative
+ *
+ */
 public class AssignmentExpression implements Expression{
 	
 	
