@@ -9,6 +9,6 @@ public class AssignmentExpression implements Expression{
 	
 	
 	public LeftValue left;
-	public MultiExpression right;
+	public Expression right;
 	
 }
