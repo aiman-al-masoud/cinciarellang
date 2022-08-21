@@ -545,38 +545,6 @@ public class Parser {
 	public Expression parseCondExpression() {
 
 	}
-
-
-	public LambdaExpression parseLambdaExpression() {
-
-	}
-
-	public ClassExpression parseClassExpression() {
-
-	}
-
-	public InterfaceExpression parseInterfaceExpression() {
-
-	}
-
-	public ListExpression parseListExpression() {
-
-	}
-
-	public DictExpression parseDictExpression() {
-
-	}
-
-
-
-	public ListComprehension parseListComprehension() {
-
-	}
-
-	public DictComprehension parseDictComprehension() {
-
-	}
-
 	
 	public OrExpression parseOrExpression() {
 
@@ -659,6 +627,36 @@ public class Parser {
 	
 	
 	public ObjectExpression parseObjectExpression() {
+
+	}
+	
+	public LambdaExpression parseLambdaExpression() {
+
+	}
+
+	public ClassExpression parseClassExpression() {
+
+	}
+
+	public InterfaceExpression parseInterfaceExpression() {
+
+	}
+
+	public ListExpression parseListExpression() {
+
+	}
+
+	public DictExpression parseDictExpression() {
+
+	}
+
+
+
+	public ListComprehension parseListComprehension() {
+
+	}
+
+	public DictComprehension parseDictComprehension() {
 
 	}
 
