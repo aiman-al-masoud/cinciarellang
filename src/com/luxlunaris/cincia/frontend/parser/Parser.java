@@ -475,6 +475,10 @@ public class Parser {
 
 	public Expression parseExpression() {
 		//assignment, conditional, or object
+		
+		// if it starts with modifer, '{' or '[' it's an object
+		
+		
 	}
 
 	public MultiExpression parseMultiExpression() {
@@ -482,8 +486,13 @@ public class Parser {
 	}
 
 	public AssignmentExpression parseAsgnExpression() {
+		
+	}
+	
+	public Expression parseCondExpression() {
 
 	}
+
 
 	public ObjectExpression parseObjectExpression() {
 
@@ -519,10 +528,7 @@ public class Parser {
 
 	}
 
-	public Expression parseCondExpression() {
-
-	}
-
+	
 	public OrExpression parseOrExpression() {
 
 	}
