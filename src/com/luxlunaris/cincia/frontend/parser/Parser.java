@@ -579,7 +579,23 @@ public class Parser {
 	}
 
 	public AndExpression parseAndExpression() {
-
+		
+		AndExpression one = new AndExpression();
+		one.left = parseComparisonExpression();
+		
+		while(!tStream.isEnd()) {
+			if(tStream.peek().getValue().equals(Operators.AND)) {
+				eat(Operators.AND);
+				one.right = parseComparisonExpression();
+				AndExpression two = new AndExpression();
+				two.left = one;
+				one = two;
+			}else {
+				break;
+			}
+		}
+		
+		return one;
 	}
 
 	public ComparisonExpression parseComparisonExpression() {
