@@ -6,7 +6,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 
 //example: // public \ x:int:int -> 2*x
-public class Lambda implements ObjectExpression{
+public class LambdaExpression implements ObjectExpression{
 	
 	public Signature signature;
 	

@@ -8,7 +8,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 
-public class Interface implements ObjectExpression{
+public class InterfaceExpression implements ObjectExpression{
 	
 //	public List<MultiDeclaration> attributeDeclarations;
 //	public List<Signature> methodDeclaration;
