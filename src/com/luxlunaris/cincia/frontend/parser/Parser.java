@@ -60,6 +60,8 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
+import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operator;
+import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
@@ -497,9 +499,34 @@ public class Parser {
 	}
 
 
-	public AssignmentExpression parseAsgnExpression() {
+	public Expression parseAsgnExpression() {
+		
+		ArrayList<Expression> chain = new ArrayList<Expression>(); 
+		chain.add(parseCondExpression());
+		
+		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
+			return chain.get(0);
+		}
+	
+		while(!tStream.isEnd()) {
+			
+			if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
+				break;
+			}
+			
+			eat(Operators.ASSIGN);
+			chain.add(parseCondExpression());
+			
+		}
+		
+		// traverse chain from right to left
+		
+		
+		
 		
 	}
+	
+	
 	
 	public Expression parseCondExpression() {
 
