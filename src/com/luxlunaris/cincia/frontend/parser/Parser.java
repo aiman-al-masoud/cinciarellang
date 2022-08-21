@@ -492,6 +492,10 @@ public class Parser {
 	}
 
 
+	public ObjectExpression parseObjectExpression() {
+
+	}
+
 
 	public AssignmentExpression parseAsgnExpression() {
 		
@@ -501,10 +505,6 @@ public class Parser {
 
 	}
 
-
-	public ObjectExpression parseObjectExpression() {
-
-	}
 
 	public LambdaExpression parseLambdaExpression() {
 
