@@ -521,26 +521,25 @@ public class Parser {
 			
 		}
 		
+		// z = y = x = 1  ---->  1, x, y, z
 		// to traverse chain from right to left
 		Collections.reverse(chain);
-		AssignmentExpression asgnR = new AssignmentExpression();
-		AssignmentExpression asgn = new AssignmentExpression();
 		
 		
-		// z = y = x = 1
-		// 1, x, y, z
+		AssignmentExpression asgn1 = new AssignmentExpression();
 		
-		asgnR.right = chain.get(0);
-		asgnR.left = (LeftValue) chain.get(1);
+		asgn1.right = chain.get(0); //  preamble
+		asgn1.left = (LeftValue) chain.get(1);
 		
-		asgn.left = (LeftValue) chain.get(2);
-		asgn.right = asgnR;
+		AssignmentExpression asgn2 = new AssignmentExpression();
+
+		asgn2.left = (LeftValue) chain.get(2);
+		asgn2.right = asgn1;
 		
-		
-		for() {
-			asgn.left = (LeftValue) chain.get(i);
-			asgn.right = asgnR;
-		}
+		AssignmentExpression asgn3 = new AssignmentExpression();
+
+		asgn3.left = (LeftValue) chain.get(3);
+		asgn3.right = asgn2;
 		
 		
 //		for(Expression exp : chain) {
