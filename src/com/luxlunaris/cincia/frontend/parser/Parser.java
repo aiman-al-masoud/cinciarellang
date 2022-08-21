@@ -529,6 +529,8 @@ public class Parser {
 		AssignmentExpression asgn1 = new AssignmentExpression();
 		
 		asgn1.right = chain.get(0); //  preamble
+		
+		
 		asgn1.left = (LeftValue) chain.get(1);
 		
 		AssignmentExpression asgn2 = new AssignmentExpression();
