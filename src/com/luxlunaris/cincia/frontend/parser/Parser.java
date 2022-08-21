@@ -517,7 +517,13 @@ public class Parser {
 		asgn1.right = chain.get(0); //  preamble
 		
 		for(int i = 1; i < chain.size(); i++) {
-			asgn1.left = (LeftValue) chain.get(i);
+			
+			try {
+				asgn1.left = (LeftValue) chain.get(i);
+			}catch (ClassCastException e) {
+				tStream.croak("Expected left-value, got "+chain.get(i));
+			}
+			
 			AssignmentExpression asgn2 = new AssignmentExpression();
 			asgn2.right = asgn1;
 			asgn1 = asgn2;
