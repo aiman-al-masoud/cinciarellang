@@ -8,6 +8,7 @@ public enum Keywords {
 	 FALSE,
 	 THROW,
 	 TRY,
+	 CATCH,
 	 FINALLY,
 	 CASE,
 	 DEFAULT,

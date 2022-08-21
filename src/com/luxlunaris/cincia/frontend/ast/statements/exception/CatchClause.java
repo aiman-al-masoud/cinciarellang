@@ -8,10 +8,4 @@ public class CatchClause {
 	public Expression throwable;
 	public CompoundStatement block;
 	
-	
-	public CatchClause(Expression throwable, CompoundStatement block) {
-		this.throwable = throwable;
-		this.block = block;
-	}
-	
 }

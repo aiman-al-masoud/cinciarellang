@@ -41,6 +41,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.exception.CatchClause;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.iteration.ForStatement;
@@ -221,38 +222,106 @@ public class Parser {
 	}
 
 	public WhileStatement parseWhileStatement() {
+		eat(Keywords.WHILE);
 		
+		WhileStatement wS = new WhileStatement();
+		wS.cond = parseExpression();
+		wS.block = parseCompStatement();
+		
+		return wS;
 	}
 
 	public TryStatement parseTryStatement() {
-
+		
+		eat(Keywords.TRY);
+		
+		TryStatement tS = new TryStatement();
+		tS.tryBlock = parseCompStatement();
+		
+		while (!tStream.isEnd()) {
+			
+			if(tStream.peek().getValue().equals(Keywords.CATCH)) {
+				tS.add(parseCatchClause());
+			}else {
+				break;
+			}
+			
+		}
+		
+		if(tStream.peek().getValue().equals(Keywords.FINALLY)) {
+			tS.finallyBlock = parseCompStatement();
+		}
+		
+		return tS;
+	}
+	
+	public CatchClause parseCatchClause() {
+		eat(Keywords.CATCH);
+		
+		CatchClause cc = new CatchClause();
+		cc.throwable = parseExpression();
+		cc.block = parseCompStatement();
+		
+		return cc;
 	}
 
 	public ThrowStatement parseThrowStatement() {
-
+		eat(Keywords.THROW);
+		
+		ThrowStatement tS = new ThrowStatement(parseExpression());		
+		eat(Punctuations.STM_SEP);
+		return tS;
 	}
+	
+	
 
 	public ReturnStatement parseReturnStatement() {
-
+		eat(Keywords.RETURN);
+		ReturnStatement rS  = new ReturnStatement();
+		
+		while(!tStream.isEnd()) {
+			
+			if(tStream.peek().getValue().equals(Punctuations.STM_SEP)) {
+				break;
+			}
+			
+			if(tStream.peek().getValue().equals(Punctuations.COMMA)) { //TODO: also useless, could do with whitespace alone, but maybe this is useful in some sense...
+				eat(Punctuations.COMMA);
+				continue;
+			}
+			
+			rS.addValue(parseExpression());
+		}
+		
+		eat(Punctuations.STM_SEP);
+		return rS;
 	}
 
 	public ContinueStatement parseContinueStatement() {
-
+		eat(Keywords.CONTINUE);
+		return new ContinueStatement();
 	}
 
 	public BreakStatement parseBreakStatement() {
-
+		eat(Keywords.BREAK);
+		return new BreakStatement();
 	}
 
 
 	public CaseStatement parseCaseStatement() {
 		eat(Keywords.CASE);
-
-
+		
+		CaseStatement cS  = new CaseStatement();
+		cS.cond = parseExpression();
+		cS.block = parseCompStatement();
+		return cS;
 	}
 
 	public DefaultStatement parseDefaultStatement() {
 		eat(Keywords.DEFAULT);
+		DefaultStatement dS  = new DefaultStatement();
+		dS.block = parseCompStatement();
+		return dS;
 	}
 
 
