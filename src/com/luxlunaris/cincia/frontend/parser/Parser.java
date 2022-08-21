@@ -474,13 +474,15 @@ public class Parser {
 
 
 	public Expression parseExpression() {
-		//assignment, conditional, or object
+		// object or "anything else"
 		
 		// if it starts with modifer, or 'class' or 'interface' '{' or '[' it's an object
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS)|| tStream.peek().getValue().equals(Keywords.INTERFACE)) {
 			return parseObjectExpression();
 		}
 		
+		// assignment (assignment or conditional)
+		return parseAsgnExpression();
 		
 	}
 
