@@ -62,7 +62,6 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
-import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operator;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
