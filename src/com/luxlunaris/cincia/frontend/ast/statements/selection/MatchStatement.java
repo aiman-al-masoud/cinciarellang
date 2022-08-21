@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.frontend.ast.statements.selection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
@@ -14,6 +15,12 @@ public class MatchStatement implements Statement{
 	public DefaultStatement defaultStatement;
 	
 	
+	public MatchStatement() {
+		casesList = new ArrayList<CaseStatement>();
+	}
 	
+	public void add(CaseStatement cS) {
+		casesList.add(cS);
+	}
 	
 }

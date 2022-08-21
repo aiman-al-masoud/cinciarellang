@@ -4,8 +4,9 @@ import javax.management.RuntimeErrorException;
 
 public enum Punctuations {
 	
-	NEWLINE, 
-	SEMI_COL, 
+//	NEWLINE, 
+//	SEMI_COL,
+	STM_SEP, //statement separator, newline or ;
 	COL, 
 	PAREN_OPN, 
 	PAREN_CLS, 
@@ -22,9 +23,9 @@ public enum Punctuations {
 		switch (value) {
 		
 			case '\n':
-				return NEWLINE;
+				return STM_SEP;
 			case ';':
-				return SEMI_COL;
+				return STM_SEP;
 			case ':':
 				return COL;
 			case '(':

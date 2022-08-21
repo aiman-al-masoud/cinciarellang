@@ -69,22 +69,22 @@ public class Parser {
 	}
 
 	public List<Statement> parse(){
-		
+
 		ArrayList<Statement> res = new ArrayList<Statement>();
-		
+
 		while(!tStream.isEnd()) {
 			res.add(parseStatement());
 		}
-		
+
 		return res;
 	}
-	
-	
+
+
 
 	public Statement parseStatement() {
-		
+
 		Statement res;
-		
+
 		if(tStream.peek().getValue().equals(Keywords.IF)) {
 			res = parseIfStatement();
 		}else if(tStream.peek().getValue().equals(Keywords.MATCH)) {
@@ -116,237 +116,286 @@ public class Parser {
 		}else {
 			res = parseExpressionStatement();
 		}
-		
+
 		return res;		
 	}
-	
+
 	public ExpressionStatement parseExpressionStatement() {
-		
+
+		ExpressionStatement eS = new ExpressionStatement(parseExpression());
+		eat(Punctuations.STM_SEP);
+		return eS;
 	}
-	
+
 	public IfStatement parseIfStatement() {
-		
+
+		eat(Keywords.IF);
+		IfStatement ifS = new IfStatement();
+
+		ifS.cond =  parseExpression();
+		ifS.thenBlock =  parseCompStatement();
+
+		if(tStream.peek().getValue().equals(Keywords.ELSE)) {
+			eat(Keywords.ELSE);
+			ifS.elseBlock = parseCompStatement();
+		}
+
+		return ifS;
 	}
-	
+
 	public MatchStatement parseMatchStatement() {
-		
+
+		eat(Keywords.MATCH);
+		MatchStatement mS = new MatchStatement();
+		mS.cond = parseExpression();
+
+		while(!tStream.isEnd()) {
+			if(tStream.peek().getValue().equals(Keywords.CASE)) {
+				mS.add(parseCaseStatement());
+			}else {
+				break;
+			}
+		}
+
+		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
+			mS.defaultStatement = parseDefaultStatement();
+		}
+
+		return mS;
 	}
-	
-	
+
+
 	public CompoundStatement parseCompStatement() {
-		
+
+		eat(Punctuations.CURLY_OPN);
+		CompoundStatement cS = new CompoundStatement();
+
+		while(!tStream.isEnd()) {
+
+			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+				break;
+			}
+
+			cS.add(parseStatement());
+		}
+
+		eat(Punctuations.CURLY_CLS);
+
+		return cS;
 	}
-	
+
 	public DeclarationStatement parseDeclStatement() {
-		
+
 	}
-	
+
 	public ForStatement parseForStatement() {
-		
+
 	}
-	
+
 	public WhileStatement parseWhileStatement() {
-		
+
 	}
-	
+
 	public TryStatement parseTryStatement() {
-		
+
 	}
-	
+
 	public ThrowStatement parseThrowStatement() {
-		
+
 	}
-	
+
 	public ReturnStatement parseReturnStatement() {
-		
+
 	}
-	
+
 	public ContinueStatement parseContinueStatement() {
-		
+
 	}
-	
+
 	public BreakStatement parseBreakStatement() {
-		
+
 	}
-	
-	
+
+
 	public CaseStatement parseCaseStatement() {
-		
+		eat(Keywords.CASE);
+
+
 	}
-	
+
 	public DefaultStatement parseDefaultStatement() {
-		
+		eat(Keywords.DEFAULT);
 	}
-	
-	
+
+
 	public ImportStatement parseImportStatement() {
-		
+
 	}
-	
+
 
 	public Declaration parseDeclaration() {
-		
+
 	}
-	
+
 	public Signature parseSignature() {
-		
+
 	}
-	
+
 	public MultiDeclaration parseMultiDeclaration() {
-		
+
 	}
-	
-	
+
+
 	public SingleDeclaration parseSingleDeclaration() {
-		
+
 	}
-	
-	
-	
+
+
+
 	public Expression parseExpression() {
-		
+
 	}
-	
+
 	public MultiExpression parseMultiExpression() {
-		
+
 	}
-	
+
 	public AssignmentExpression parseAsgnExpression() {
-		
+
 	}
-	
+
 	public ObjectExpression parseObjectExpression() {
-		
+
 	}
-	
+
 	public LambdaExpression parseLambdaExpression() {
-		
+
 	}
-	
+
 	public ClassExpression parseClassExpression() {
-		
+
 	}
-	
+
 	public InterfaceExpression parseInterfaceExpression() {
-		
+
 	}
-	
+
 	public ListExpression parseListExpression() {
-		
+
 	}
-	
+
 	public DictExpression parseDictExpression() {
-		
+
 	}
-	
-	
-	
+
+
+
 	public ListComprehension parseListComprehension() {
-		
+
 	}
-	
+
 	public DictComprehension parseDictComprehension() {
-		
+
 	}
-	
+
 	public Expression parseCondExpression() {
-		
+
 	}
-	
+
 	public OrExpression parseOrExpression() {
-		
+
 	}
-	
+
 	public TernaryExpression parseTernary() {
-		
+
 	}
-	
-	
+
+
 	public AndExpression parseAndExpression() {
-		
+
 	}
-	
+
 	public ComparisonExpression parseComparisonExpression() {
-		
+
 	}
-	
+
 	public AddExpression parseAddExpression() {
-		
+
 	}
-	
+
 	public MulExpression parseMulExpression() {
-		
+
 	}
-	
+
 	public UnaryExpression parseUnaryExpression() {
-		
+
 	}
-	
+
 	public DestructuringExpression parseDestrExpression() {
-		
+
 	}
-	
+
 	public MinusExpression parseMinusExpression() {
-		
+
 	}
-	
+
 	public NegationExpression parsenNegationExpression() {
-		
+
 	}
-	
+
 	public PostfixExpression parsePostfixExpression() {
-		
+
 	}
-	
-	
+
+
 	public CalledExpression parseCalledExpression() {
-		
+
 	}
-	
-	
+
+
 	public DotExpression parseDotExpression() {
-		
+
 	}
-	
+
 	public IndexedExpression parseIndexedExpression() {
-		
+
 	}
-	
+
 	public ReassignmentExpression parseReasgnExpression() {
-			
+
 	}
-	
+
 	public PrimaryExpression parsePrimaryExpression() {
-		
+
 	}
-	
-	
+
+
 	public BracketedExpression parseBracketedExpression() {
-		
+
 	}
-	
+
 	public Token parseConstant() {
-		
+
 	}
-	
-	
+
+
 	public Identifier parseIdentifier() {
-		
+
 	}
-	
-	
+
+
 	public void eat(Object value) {
-		
+
 		if (!tStream.peek().getValue().equals(value)) {
 			tStream.croak("Expected "+value);
 		}
-		
+
 		tStream.next();
 	}
-	
-	
-	
-	
+
+
+
+
 
 
 
