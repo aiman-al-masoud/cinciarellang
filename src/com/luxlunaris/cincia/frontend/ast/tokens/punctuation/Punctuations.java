@@ -6,7 +6,7 @@ public enum Punctuations {
 	
 //	NEWLINE, 
 //	SEMI_COL,
-	STM_SEP, //statement separator, newline or ;
+	STM_SEP, //statement separator, newline or semicol
 	COL, 
 	PAREN_OPN, 
 	PAREN_CLS, 
