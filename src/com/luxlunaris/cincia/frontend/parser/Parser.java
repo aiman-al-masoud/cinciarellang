@@ -516,18 +516,24 @@ public class Parser {
 		AssignmentExpression asgn1 = new AssignmentExpression();
 		asgn1.right = chain.get(0); //  preamble
 		
+		for(int i = 1; i < chain.size(); i++) {
+			asgn1.left = (LeftValue) chain.get(i);
+			AssignmentExpression asgn2 = new AssignmentExpression();
+			asgn2.right = asgn1;
+			asgn1 = asgn2;
+		}
 		
-		asgn1.left = (LeftValue) chain.get(1);
-		
-		AssignmentExpression asgn2 = new AssignmentExpression();
-
-		asgn2.left = (LeftValue) chain.get(2);
-		asgn2.right = asgn1;
-		
-		AssignmentExpression asgn3 = new AssignmentExpression();
-
-		asgn3.left = (LeftValue) chain.get(3);
-		asgn3.right = asgn2;
+//		asgn1.left = (LeftValue) chain.get(1);
+//		
+//		AssignmentExpression asgn2 = new AssignmentExpression();
+//
+//		asgn2.left = (LeftValue) chain.get(2);
+//		asgn2.right = asgn1;
+//		
+//		AssignmentExpression asgn3 = new AssignmentExpression();
+//
+//		asgn3.left = (LeftValue) chain.get(3);
+//		asgn3.right = asgn2;
 		
 		
 		
