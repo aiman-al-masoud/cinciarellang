@@ -520,13 +520,13 @@ public class Parser {
 			
 			try {
 				asgn1.left = (LeftValue) chain.get(i);
+				AssignmentExpression asgn2 = new AssignmentExpression();
+				asgn2.right = asgn1;
+				asgn1 = asgn2;
 			}catch (ClassCastException e) {
 				tStream.croak("Expected left-value, got "+chain.get(i));
 			}
 			
-			AssignmentExpression asgn2 = new AssignmentExpression();
-			asgn2.right = asgn1;
-			asgn1 = asgn2;
 		}
 		
 		return asgn1;
