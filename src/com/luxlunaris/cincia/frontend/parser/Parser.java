@@ -53,6 +53,8 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
@@ -81,8 +83,41 @@ public class Parser {
 
 	public Statement parseStatement() {
 		
+		Statement res;
 		
+		if(tStream.peek().getValue().equals(Keywords.IF)) {
+			res = parseIfStatement();
+		}else if(tStream.peek().getValue().equals(Keywords.MATCH)) {
+			res = parseMatchStatement();
+		}else if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+			res = parseCompStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.FOR )) {
+			res = parseForStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.WHILE )) {
+			res = parseWhileStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.TRY )) {
+			res = parseTryStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.THROW )) {
+			res = parseThrowStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.RETURN )) {
+			res = parseReturnStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.CONTINUE )) {
+			res = parseContinueStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.BREAK )) {
+			res = parseBreakStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.CASE )) {
+			res = parseCaseStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.DEFAULT )) {
+			res = parseDefaultStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
+			res = parseImportStatement();
+		}else if(Modifiers.isModifier(tStream.peek().getValue().toString())) { //TODO: fix tmp solution requiring at least one modifier before any declaration to identify it as a declaration
+			res = parseDeclStatement();
+		}else {
+			res = parseExpressionStatement();
+		}
 		
+		return res;		
 	}
 	
 	public ExpressionStatement parseExpressionStatement() {
