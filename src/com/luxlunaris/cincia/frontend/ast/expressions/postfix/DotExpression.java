@@ -11,7 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
  * to the attribute I'm seeking).
  *
  */
-public class DotExpression implements PostfixExpression , LeftValue {
+public class DotExpression implements PostfixExpression, LeftValue {
 	
 	public PostfixExpression left; //dottable
 	public DotExpression right;
