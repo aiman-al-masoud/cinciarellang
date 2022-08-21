@@ -517,7 +517,7 @@ public class Parser {
 			}
 			
 			eat(Operators.ASSIGN);
-			chain.add(parseCondExpression());
+			chain.add(parseExpression());
 			
 		}
 		
