@@ -530,12 +530,6 @@ public class Parser {
 		asgn3.right = asgn2;
 		
 		
-//		for(Expression exp : chain) {
-//			asgnR = new AssignmentExpression();
-//			asgnR.right = exp;
-//		}
-		
-		
 		
 	}
 	
