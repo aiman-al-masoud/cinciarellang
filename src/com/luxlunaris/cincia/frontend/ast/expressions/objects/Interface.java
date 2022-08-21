@@ -10,7 +10,8 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 
 public class Interface implements ObjectExpression{
 	
-	public List<MultiDeclaration> attributeDeclarations;
-	public List<Signature> methodDeclaration;
+//	public List<MultiDeclaration> attributeDeclarations;
+//	public List<Signature> methodDeclaration;
+	public List<Declaration> declarations;
 	
 }
