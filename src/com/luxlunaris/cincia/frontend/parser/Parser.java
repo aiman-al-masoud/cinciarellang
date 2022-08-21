@@ -58,6 +58,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
@@ -389,7 +390,35 @@ public class Parser {
 
 
 	public SingleDeclaration parseSingleDeclaration() {
-
+		
+		SingleDeclaration sD = new SingleDeclaration();
+		
+		while (!tStream.isEnd()){
+			
+			try {
+				sD.addModifier((Modifier)tStream.peek());
+				tStream.next();
+			}catch (ClassCastException e) {
+				break;
+			}
+		}
+		
+		
+		try {
+			sD.name = (Identifier)tStream.peek();
+			tStream.next();
+		}catch (ClassCastException e) {
+			tStream.croak("Expected identifier (variable name)");
+		}
+		
+		
+		if(tStream.peek().getValue().equals(Punctuations.COL)) { //TODO: turn int, float, bool into identifiers
+			eat(Punctuations.COL);
+			sD.type = parseIdentifier();
+			tStream.next();
+		}
+		
+		return sD;
 	}
 
 
