@@ -2,6 +2,8 @@ package com.luxlunaris.cincia.frontend.parser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
@@ -54,6 +56,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
@@ -326,8 +329,50 @@ public class Parser {
 
 
 	public ImportStatement parseImportStatement() {
-
+		
+		eat(Keywords.IMPORT);
+		ImportStatement iS = new ImportStatement();
+		
+		while(!tStream.isEnd()) {
+			
+			if(tStream.peek().getValue().equals(Keywords.FROM)) {
+				break;
+			}
+			
+			if(tStream.peek().getValue().equals(Punctuations.COMMA)) { //TODO: saaaaaaaaaaammmmmmmmmeeee 
+				eat(Punctuations.COMMA);
+				continue;
+			}
+			
+			Entry<DotExpression, Identifier> imported = parseImported();
+			iS.addImport(imported.getKey(), imported.getValue());
+		}
+		
+		eat(Keywords.FROM);
+		try {
+			iS.fromPath =  (Str)tStream.peek();
+		}catch (ClassCastException e) {
+			tStream.croak("Expected import path (string constant)");
+		} 
+		
+		eat(Punctuations.STM_SEP);
+		return iS;
 	}
+	
+	
+	public Entry<DotExpression, Identifier> parseImported(){
+		
+		DotExpression dEx = parseDotExpression();
+		Identifier alias = null; // can be null
+		
+		if(tStream.peek().getValue().equals(Keywords.AS)) {
+			 eat(Keywords.AS);
+			 alias = parseIdentifier();
+		}
+		
+		return Map.entry(dEx, alias);
+	}
+	
 
 
 	public Declaration parseDeclaration() {
