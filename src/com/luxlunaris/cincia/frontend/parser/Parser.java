@@ -483,12 +483,7 @@ public class Parser {
 	}
 	
 	public Expression parseExpression() {
-		// object or "anything else"
 		
-		// if it starts with modifer, or 'class' or 'interface' or '{' or '[' it's an object
-		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS)|| tStream.peek().getValue().equals(Keywords.INTERFACE)) {
-			return parseObjectExpression();
-		}
 		
 		// assignment (assignment or conditional)
 		return parseAsgnExpression();
@@ -496,15 +491,13 @@ public class Parser {
 	}
 
 
-	public ObjectExpression parseObjectExpression() {
-
-	}
+	
 
 
 	public Expression parseAsgnExpression() {
 		
 		ArrayList<Expression> chain = new ArrayList<Expression>(); 
-		chain.add(parseExpression()); //TODO: see TODO below
+		chain.add(parseCondExpression()); 
 		
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
@@ -517,8 +510,7 @@ public class Parser {
 			}
 			
 			eat(Operators.ASSIGN);
-			chain.add(parseExpression());//TODO: may be a problem. Demote objects below in the hierarchy?
-			
+			chain.add(parseCondExpression());  			
 		}
 		
 		// z = y = x = 1  ---->  1, x, y, z
@@ -654,6 +646,23 @@ public class Parser {
 	}
 
 	public PrimaryExpression parsePrimaryExpression() {
+	
+		
+		// TODO: change EBNF, objects expressions are now primary expressions (does that make sense?)
+		// if it starts with modifer, or 'class' or 'interface' or '{' or '[' it's an object
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS)|| tStream.peek().getValue().equals(Keywords.INTERFACE)) {
+			return parseObjectExpression();
+		}
+		
+		// bracketed expression
+		
+		
+		// constant values
+		
+	}
+	
+	
+	public ObjectExpression parseObjectExpression() {
 
 	}
 
