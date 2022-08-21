@@ -488,7 +488,8 @@ public class Parser {
 		
 	}
 	
-
+	
+	//right assoc
 	public Expression parseAsgnExpression() {
 		
 		ArrayList<Expression> chain = new ArrayList<Expression>(); 
@@ -555,6 +556,7 @@ public class Parser {
 		return tE;
 	}
 	
+	//left assoc
 	public OrExpression parseOrExpression() {
 		
 		OrExpression oE = new OrExpression(); 
