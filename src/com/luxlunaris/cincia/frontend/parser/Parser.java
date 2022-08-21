@@ -473,6 +473,11 @@ public class Parser {
 
 
 
+	
+	public MultiExpression parseMultiExpression() {
+
+	}
+	
 	public Expression parseExpression() {
 		// object or "anything else"
 		
@@ -486,9 +491,7 @@ public class Parser {
 		
 	}
 
-	public MultiExpression parseMultiExpression() {
 
-	}
 
 	public AssignmentExpression parseAsgnExpression() {
 		
