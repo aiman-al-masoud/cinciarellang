@@ -556,7 +556,24 @@ public class Parser {
 	}
 	
 	public OrExpression parseOrExpression() {
-
+		
+		OrExpression oE = new OrExpression(); 
+		oE.left = parseAndExpression();
+		
+		
+		while(!tStream.isEnd()) {
+			if(tStream.peek().getValue().equals(Operators.OR)) {
+				eat(Operators.OR);
+				oE.right = parseAndExpression();
+				OrExpression oE2 = new OrExpression();
+				oE2.left = oE;
+				oE = oE2;
+			}else {
+				break;
+			}
+		}
+		
+		return oE;
 	}
 
 	public AndExpression parseAndExpression() {
