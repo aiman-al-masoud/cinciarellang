@@ -7,6 +7,8 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Int;
 
 public class Test {
 
+	// z = y = x = 1
+	// (z = (y = (x = 1)))
 	public static void main(String[] args) {
 		
 		

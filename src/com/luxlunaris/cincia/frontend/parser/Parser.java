@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.frontend.parser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -33,6 +34,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
@@ -519,8 +521,32 @@ public class Parser {
 			
 		}
 		
-		// traverse chain from right to left
+		// to traverse chain from right to left
+		Collections.reverse(chain);
+		AssignmentExpression asgnR = new AssignmentExpression();
+		AssignmentExpression asgn = new AssignmentExpression();
 		
+		
+		// z = y = x = 1
+		// 1, x, y, z
+		
+		asgnR.right = chain.get(0);
+		asgnR.left = (LeftValue) chain.get(1);
+		
+		asgn.left = (LeftValue) chain.get(2);
+		asgn.right = asgnR;
+		
+		
+		for() {
+			asgn.left = (LeftValue) chain.get(i);
+			asgn.right = asgnR;
+		}
+		
+		
+//		for(Expression exp : chain) {
+//			asgnR = new AssignmentExpression();
+//			asgnR.right = exp;
+//		}
 		
 		
 		
