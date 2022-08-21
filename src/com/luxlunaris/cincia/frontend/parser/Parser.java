@@ -185,15 +185,43 @@ public class Parser {
 	}
 
 	public DeclarationStatement parseDeclStatement() {
-
+		
+		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
+		eat(Punctuations.STM_SEP);
+		return dS;
 	}
+	
 
 	public ForStatement parseForStatement() {
-
+		
+		eat(Keywords.FOR);
+		ForStatement fS = new ForStatement();
+		
+		while(!tStream.isEnd()) {
+			
+			if (tStream.peek() instanceof Identifier ) {
+				fS.loopVars.add( (Identifier)tStream.peek() );
+				tStream.next(); //eat identifier
+				continue;
+			}
+			
+			if(tStream.peek().getValue().equals(Punctuations.COMMA)) { //TODO comma is really useless here 
+				eat(Punctuations.COMMA);
+				continue;
+			}
+			
+			break;
+		}
+		
+		
+		fS.iterable = parseExpression();
+		fS.block = parseCompStatement();
+		
+		return fS;
 	}
 
 	public WhileStatement parseWhileStatement() {
-
+		
 	}
 
 	public TryStatement parseTryStatement() {
