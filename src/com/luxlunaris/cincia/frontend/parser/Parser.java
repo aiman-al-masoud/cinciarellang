@@ -504,7 +504,7 @@ public class Parser {
 	public Expression parseAsgnExpression() {
 		
 		ArrayList<Expression> chain = new ArrayList<Expression>(); 
-		chain.add(parseCondExpression());
+		chain.add(parseExpression()); //TODO: see TODO below
 		
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
@@ -517,7 +517,7 @@ public class Parser {
 			}
 			
 			eat(Operators.ASSIGN);
-			chain.add(parseExpression());
+			chain.add(parseExpression());//TODO: may be a problem. Demote objects below in the hierarchy?
 			
 		}
 		
