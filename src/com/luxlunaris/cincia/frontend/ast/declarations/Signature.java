@@ -22,4 +22,7 @@ public class Signature implements Declaration{
 		modifiers = new ArrayList<Modifier>();
 	}
 	
+	public void addModifier(Modifier modifier) {
+		modifiers.add(modifier);
+	}
 }

@@ -13,4 +13,8 @@ public class MultiDeclaration implements Declaration{
 		declarations = new ArrayList<SingleDeclaration>();
 	}
 	
+	public void addDeclaration(SingleDeclaration sd) {
+		declarations.add(sd);
+	}
+	
 }

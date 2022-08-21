@@ -375,17 +375,32 @@ public class Parser {
 	}
 	
 
-
+	
+	//TODO: problem, Signature is also a Declaration
 	public Declaration parseDeclaration() {
-
+		
+		MultiDeclaration mD = parseMultiDeclaration();
+		return mD.declarations.size()==1? mD.declarations.get(0) : mD;
 	}
 
-	public Signature parseSignature() {
-
-	}
 
 	public MultiDeclaration parseMultiDeclaration() {
+		
+		MultiDeclaration mD = new MultiDeclaration();
+		mD.addDeclaration(parseSingleDeclaration());
 
+		while(!tStream.isEnd()) {	
+			
+			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
+				eat(Punctuations.COMMA);
+				mD.addDeclaration(parseSingleDeclaration());
+				continue;
+			}
+			
+			break;
+		}
+		
+		return mD;
 	}
 
 
@@ -420,11 +435,46 @@ public class Parser {
 		
 		return sD;
 	}
+	
+	
+
+	public Signature parseSignature() {
+		
+		Signature sg = new Signature();
+		
+		while (!tStream.isEnd()){
+			
+			try {
+				sg.addModifier((Modifier)tStream.peek());
+				tStream.next();
+			}catch (ClassCastException e) {
+				break;
+			}
+		}
+		
+		sg.params = parseDeclaration();
+		
+		
+		if(tStream.peek().getValue().equals(Punctuations.COL)) {
+			eat(Punctuations.COL);
+			
+			try {
+				sg.returnType = (Identifier) tStream.peek();
+				tStream.next();
+			}catch (ClassCastException e) {
+				tStream.croak("Expected identifier (class/type name)");
+			}
+			
+		}
+		
+		
+		return sg;
+	}
 
 
 
 	public Expression parseExpression() {
-
+		
 	}
 
 	public MultiExpression parseMultiExpression() {
