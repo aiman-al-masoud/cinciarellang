@@ -474,7 +474,7 @@ public class Parser {
 
 
 	public Expression parseExpression() {
-		
+		//assignment, conditional, or object
 	}
 
 	public MultiExpression parseMultiExpression() {
