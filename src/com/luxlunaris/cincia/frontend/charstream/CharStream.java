@@ -29,7 +29,7 @@ public class CharStream {
 	}
 	
 	public void croak(String message){
-		throw new RuntimeException(message);
+		throw new RuntimeException(message+" at "+row+":"+col);
 	}
 	
 	public boolean isEnd() {

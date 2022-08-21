@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.frontend.parser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -52,7 +53,9 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
+
 
 public class Parser {
 
@@ -60,14 +63,26 @@ public class Parser {
 
 	public Parser(TokenStream tStream) {
 		this.tStream = tStream;
+		this.tStream.next(); //initialize
 	}
 
 	public List<Statement> parse(){
 		
+		ArrayList<Statement> res = new ArrayList<Statement>();
+		
+		while(!tStream.isEnd()) {
+			res.add(parseStatement());
+		}
+		
+		return res;
 	}
+	
+	
 
 	public Statement parseStatement() {
-
+		
+		
+		
 	}
 	
 	public ExpressionStatement parseExpressionStatement() {
@@ -284,6 +299,15 @@ public class Parser {
 		
 	}
 	
+	
+	public void eat(Object value) {
+		
+		if (!tStream.peek().getValue().equals(value)) {
+			tStream.croak("Expected "+value);
+		}
+		
+		tStream.next();
+	}
 	
 	
 	
