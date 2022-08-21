@@ -16,7 +16,8 @@ public enum Punctuations {
 	CURLY_CLS,
 	COMMA, 
 	DOT, 
-	SLASH_BCK;
+	SLASH_BCK,
+	QUESTION_MARK;
 	
 	public static Punctuations fromChar(char value){
 		
@@ -46,6 +47,8 @@ public enum Punctuations {
 				return DOT;
 			case '\\':
 				return SLASH_BCK;
+			case '?':
+				return QUESTION_MARK;
 		}
 		
 		return null;

@@ -536,16 +536,32 @@ public class Parser {
 	
 	
 	public Expression parseCondExpression() {
-
+		
+		//OrExpression or TernaryExpression
+		
+		Expression oE = parseOrExpression();
+		
+		if(!tStream.peek().getValue().equals(Punctuations.QUESTION_MARK)) {
+			return oE;
+		}
+		
+		TernaryExpression tE = new TernaryExpression();
+		tE.cond = oE;
+		eat(Punctuations.QUESTION_MARK);
+		tE.thenExpression = parseOrExpression();
+		eat(Punctuations.COL);
+		tE.elseExpression = parseOrExpression();
+		
+		return tE;
 	}
 	
 	public OrExpression parseOrExpression() {
 
 	}
 
-	public TernaryExpression parseTernary() {
-
-	}
+//	public TernaryExpression parseTernary() {
+//
+//	}
 
 
 	public AndExpression parseAndExpression() {
