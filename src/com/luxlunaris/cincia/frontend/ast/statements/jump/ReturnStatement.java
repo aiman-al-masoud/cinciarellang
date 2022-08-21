@@ -13,4 +13,8 @@ public class ReturnStatement implements Statement{
 	public ReturnStatement() {
 		values = new ArrayList<Expression>();
 	}
+	
+	public void addValue(Expression value) {
+		this.values.add(value);
+	}
 }
