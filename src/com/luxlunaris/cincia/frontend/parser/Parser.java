@@ -559,11 +559,6 @@ public class Parser {
 
 	}
 
-//	public TernaryExpression parseTernary() {
-//
-//	}
-
-
 	public AndExpression parseAndExpression() {
 
 	}
