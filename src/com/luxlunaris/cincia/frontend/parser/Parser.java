@@ -535,7 +535,7 @@ public class Parser {
 //		asgn3.left = (LeftValue) chain.get(3);
 //		asgn3.right = asgn2;
 		
-		
+		return asgn1;
 		
 	}
 	
