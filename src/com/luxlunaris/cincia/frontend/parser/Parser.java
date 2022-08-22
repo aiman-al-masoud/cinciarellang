@@ -749,7 +749,12 @@ public class Parser {
 	}
 	
 	public DotExpression parseDotExpression(PostfixExpression left) {
-
+		eat(Punctuations.DOT);
+		DotExpression dE = new DotExpression();
+		dE.left = left;  
+		dE.right = (DotExpression)parsePostfixExpression(); //TODO: mhhhhhhhhhhh
+		eat(Punctuations.DOT);
+		return dE;
 	}
 
 	public ReassignmentExpression parseReasgnExpression(PostfixExpression left) {
