@@ -130,7 +130,7 @@ public class Parser {
 
 	public ExpressionStatement parseExpressionStatement() {
 
-		ExpressionStatement eS = new ExpressionStatement(parseExpression());
+		ExpressionStatement eS = new ExpressionStatement(parseSingleExpression());
 		eat(Punctuations.STM_SEP);
 		return eS;
 	}
@@ -140,7 +140,7 @@ public class Parser {
 		eat(Keywords.IF);
 		IfStatement ifS = new IfStatement();
 
-		ifS.cond =  parseExpression();
+		ifS.cond =  parseSingleExpression();
 		ifS.thenBlock =  parseCompStatement();
 
 		if(tStream.peek().getValue().equals(Keywords.ELSE)) {
@@ -155,7 +155,7 @@ public class Parser {
 
 		eat(Keywords.MATCH);
 		MatchStatement mS = new MatchStatement();
-		mS.cond = parseExpression();
+		mS.cond = parseSingleExpression();
 
 		while(!tStream.isEnd()) {
 			if(tStream.peek().getValue().equals(Keywords.CASE)) {
@@ -222,7 +222,7 @@ public class Parser {
 		}
 		
 		
-		fS.iterable = parseExpression();
+		fS.iterable = parseSingleExpression();
 		fS.block = parseCompStatement();
 		
 		return fS;
@@ -232,7 +232,7 @@ public class Parser {
 		eat(Keywords.WHILE);
 		
 		WhileStatement wS = new WhileStatement();
-		wS.cond = parseExpression();
+		wS.cond = parseSingleExpression();
 		wS.block = parseCompStatement();
 		
 		return wS;
@@ -266,7 +266,7 @@ public class Parser {
 		eat(Keywords.CATCH);
 		
 		CatchClause cc = new CatchClause();
-		cc.throwable = parseExpression();
+		cc.throwable = parseSingleExpression();
 		cc.block = parseCompStatement();
 		
 		return cc;
@@ -275,7 +275,7 @@ public class Parser {
 	public ThrowStatement parseThrowStatement() {
 		eat(Keywords.THROW);
 		
-		ThrowStatement tS = new ThrowStatement(parseExpression());		
+		ThrowStatement tS = new ThrowStatement(parseSingleExpression());		
 		eat(Punctuations.STM_SEP);
 		return tS;
 	}
@@ -297,7 +297,7 @@ public class Parser {
 				continue;
 			}
 			
-			rS.addValue(parseExpression());
+			rS.addValue(parseSingleExpression());
 		}
 		
 		eat(Punctuations.STM_SEP);
@@ -319,7 +319,7 @@ public class Parser {
 		eat(Keywords.CASE);
 		
 		CaseStatement cS  = new CaseStatement();
-		cS.cond = parseExpression();
+		cS.cond = parseSingleExpression();
 		cS.block = parseCompStatement();
 		return cS;
 	}
@@ -474,14 +474,35 @@ public class Parser {
 		return sg;
 	}
 
-
-
-	
-	public MultiExpression parseMultiExpression() {
-
-	}
 	
 	public Expression parseExpression() {
+		MultiExpression mE = parseMultiExpression();
+		return mE.expressions.size()==1? mE.expressions.get(0) : mE;
+	}
+	
+	public MultiExpression parseMultiExpression() {
+		//comma separated single expressions		
+		
+		MultiExpression mE = new MultiExpression();
+		mE.addExpression(parseSingleExpression());
+		
+		while(!tStream.isEnd()) {	
+			
+			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
+				eat(Punctuations.COMMA);
+				mE.addExpression(parseSingleExpression());
+
+				continue;
+			}
+			
+			break;
+		}
+		
+		return mE;
+		
+	}
+	
+	public Expression parseSingleExpression() {
 		
 		// assignment (assignment or conditional)
 		return parseAsgnExpression();
@@ -709,19 +730,24 @@ public class Parser {
 	}
 
 
-	public CalledExpression parseCalledExpression(PostfixExpression exp) {
-		
+	public CalledExpression parseCalledExpression(PostfixExpression left) {
+		eat(Punctuations.PAREN_OPN);
+		CalledExpression cE = new CalledExpression();
+		cE.callable = left;
+		cE.args = parseMultiExpression();
+		eat(Punctuations.PAREN_CLS);
+		return cE;
 	}
 	
-	public IndexedExpression parseIndexedExpression(PostfixExpression exp) {
+	public IndexedExpression parseIndexedExpression(PostfixExpression left) {
 
 	}
 	
-	public DotExpression parseDotExpression(PostfixExpression exp) {
+	public DotExpression parseDotExpression(PostfixExpression left) {
 
 	}
 
-	public ReassignmentExpression parseReasgnExpression(PostfixExpression exp) {
+	public ReassignmentExpression parseReasgnExpression(PostfixExpression left) {
 
 	}
 
