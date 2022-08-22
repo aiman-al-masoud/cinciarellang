@@ -141,10 +141,10 @@ termin ::= (';' | '\n')
 
 
 type = union_type
-union_type = atom_type '|' union_type
+union_type = atom_type ('|' union_type)*
 atom_type = collection_type | simple_type
-collection_type = simple_type'['']' | '{' simple_type ':' simple_type '}'
-simple_type = primitive_type | identifier_type | (type)
-
-
+collection_type = list_type | dict_type 
+dict_type = '{' simple_type ':' simple_type '}'
+list_type = simple_type'['']' 
+simple_type = primitive_type | identifier_type | type
 
