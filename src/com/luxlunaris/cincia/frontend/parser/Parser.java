@@ -669,10 +669,9 @@ public class Parser {
 			return parseNegationExpression();
 		}else if(tStream.peek().getValue().equals(Operators.ASTERISK)  ) {
 			return parseDestrExpression();
+		}else {
+			return parsePostfixExpression();
 		}
-		
-		tStream.croak("Expected unary operator");
-		return null;
 	}
 
 	public MinusExpression parseMinusExpression() {
