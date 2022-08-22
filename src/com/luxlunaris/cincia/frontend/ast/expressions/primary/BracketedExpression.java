@@ -12,4 +12,8 @@ public class BracketedExpression implements PrimaryExpression {
 	
 	public Expression expression;
 	
+	public BracketedExpression(Expression expression) {
+		this.expression = expression;
+	}
+	
 }

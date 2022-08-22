@@ -788,16 +788,19 @@ public class Parser {
 		}
 		
 		// constant values
-		if(tStream.peek().getValue() instanceof Int  || tStream.peek().getValue() instanceof Bool || tStream.peek().getValue() instanceof com.luxlunaris.cincia.frontend.ast.tokens.Float || tStream.peek().getValue() instanceof Str) {
+//		if(tStream.peek().getValue() instanceof Int  || tStream.peek().getValue() instanceof Bool || tStream.peek().getValue() instanceof com.luxlunaris.cincia.frontend.ast.tokens.Float || tStream.peek().getValue() instanceof Str) {
 			return tStream.peek();
-		}
+//		}
 		
 		
 	}
 	
 	
 	public BracketedExpression parseBracketedExpression() {
-
+		eat(Punctuations.PAREN_OPN);
+		Expression expression = parseExpression();
+		eat(Punctuations.PAREN_CLS);
+		return new BracketedExpression(expression);
 	}
 	
 	
