@@ -206,7 +206,8 @@ public class Parser {
 
 	public DeclarationStatement parseDeclStatement() {
 		
-		DeclarationStatement dS = new DeclarationStatement(parseMultiOrSingleDeclaration());
+//		DeclarationStatement dS = new DeclarationStatement(parseMultiOrSingleDeclaration(parseModifiers()));
+		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
 		eat(Punctuations.STM_SEP);
 		return dS;
 	}
@@ -389,20 +390,30 @@ public class Parser {
 		return Map.entry(dEx, alias);
 	}
 	
+	
+	public Declaration parseDeclaration() {
+		List<Modifier> modifiers = parseModifiers();
+		
+		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
+			return parseSignature(modifiers);
+		}
+		
+		return parseMultiOrSingleDeclaration(modifiers);
+	}
 
 	
 	//TODO: problem, Signature is also a Declaration
-	public Declaration parseMultiOrSingleDeclaration() {
+	public Declaration parseMultiOrSingleDeclaration(List<Modifier> modifiers) {
 		
-		MultiDeclaration mD = parseMultiDeclaration();
+		MultiDeclaration mD = parseMultiDeclaration(modifiers);
 		return mD.declarations.size()==1? mD.declarations.get(0) : mD;
 	}
 
 
-	public MultiDeclaration parseMultiDeclaration() {
+	public MultiDeclaration parseMultiDeclaration(List<Modifier> modifiers) {
 		
 		MultiDeclaration mD = new MultiDeclaration();
-		mD.addDeclaration(parseSingleDeclaration(parseModifiers()));
+		mD.addDeclaration(parseSingleDeclaration(modifiers));
 
 		while(!tStream.isEnd()) {	
 			
@@ -463,7 +474,7 @@ public class Parser {
 		Signature sg = new Signature();
 		sg.modifiers = modifiers;
 		eat(Punctuations.SLASH_BCK);
-		sg.params = parseMultiOrSingleDeclaration();
+		sg.params = parseMultiOrSingleDeclaration(modifiers);
 		
 		if(tStream.peek().getValue().equals(Punctuations.COL)) {
 			eat(Punctuations.COL);
