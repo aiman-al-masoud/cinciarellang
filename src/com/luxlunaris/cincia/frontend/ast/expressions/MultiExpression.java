@@ -6,6 +6,11 @@ import java.util.List;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
+/**
+ * Sequence of comma-separated single expressions		
+ * 
+ *
+ */
 public class MultiExpression implements Expression{
 	
 	public List<Expression> expressions;

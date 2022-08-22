@@ -489,7 +489,6 @@ public class Parser {
 	}
 	
 	public MultiExpression parseMultiExpression() {
-		//comma separated single expressions		
 		
 		MultiExpression mE = new MultiExpression();
 		mE.addExpression(parseSingleExpression());
