@@ -1015,7 +1015,7 @@ public class Parser {
 
 	
 
-	public Token parseConstant() { //TODO: add constant interface and classcast check
+	public Token parseConstant() { 
 		
 		Token token;
 		try {
