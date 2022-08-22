@@ -843,20 +843,23 @@ public class Parser {
 		// get through the list of modifiers then check if class or interface or \ (lambda)
 		List<Modifier> modifiers = parseModifiers();
 		
+		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
+			return parseLambdaExpression()
+		}
 		
 		
 		
 	}
 	
-	public LambdaExpression parseLambdaExpression() {
+	public LambdaExpression parseLambdaExpression(List<Modifier> modifiers) {
 
 	}
 
-	public ClassExpression parseClassExpression() {
+	public ClassExpression parseClassExpression(List<Modifier> modifiers) {
 
 	}
 
-	public InterfaceExpression parseInterfaceExpression() {
+	public InterfaceExpression parseInterfaceExpression(List<Modifier> modifiers) {
 
 	}
 	
