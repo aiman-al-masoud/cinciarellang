@@ -399,6 +399,23 @@ public class Parser {
 	}
 
 	
+	public List<Modifier> parseModifiers(){
+		
+		ArrayList<Modifier> res = new ArrayList<Modifier>();
+		
+		while (!tStream.isEnd()){
+				
+			try {
+				res.add((Modifier)tStream.peek());
+				tStream.next();
+			}catch (ClassCastException e) {
+				break;
+			}
+		}
+		
+		return res;
+	}
+	
 	public Declaration parseMultiOrSingleDeclaration(List<Modifier> modifiers) {
 		
 		MultiDeclaration mD = parseMultiDeclaration(modifiers);
@@ -425,22 +442,7 @@ public class Parser {
 		return mD;
 	}
 	
-	public List<Modifier> parseModifiers(){
-		
-		ArrayList<Modifier> res = new ArrayList<Modifier>();
-		
-		while (!tStream.isEnd()){
-				
-			try {
-				res.add((Modifier)tStream.peek());
-				tStream.next();
-			}catch (ClassCastException e) {
-				break;
-			}
-		}
-		
-		return res;
-	}
+
 
 
 	public SingleDeclaration parseSingleDeclaration(List<Modifier> modifiers) {
