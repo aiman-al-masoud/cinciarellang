@@ -900,7 +900,7 @@ public class Parser {
 			}
 		}
 		
-		
+		eat(Punctuations.CURLY_OPN);
 		
 		
 		
