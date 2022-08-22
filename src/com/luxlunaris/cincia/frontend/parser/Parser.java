@@ -912,7 +912,6 @@ public class Parser {
 		
 	}
 	
-	
 
 	public InterfaceExpression parseInterfaceExpression(List<Modifier> modifiers) {
 
