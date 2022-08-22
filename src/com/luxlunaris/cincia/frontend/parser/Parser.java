@@ -691,23 +691,37 @@ public class Parser {
 
 	
 	public PostfixExpression parsePostfixExpression() {
-
+		
+		PrimaryExpression exp = parsePrimaryExpression();
+		
+		if(tStream.peek().getValue().equals(Punctuations.PAREN_OPN)) {
+			return parseCalledExpression(exp);
+		}else if(tStream.peek().getValue().equals(Punctuations.SQBR_OPN)) {
+			return parseIndexedExpression(exp);
+		}else if(tStream.peek().getValue().equals(Punctuations.DOT)) {
+			return parseDotExpression(exp);
+		}else if(Operators.isReassignmentOperator(tStream.peek().getValue())) {
+			return parseReasgnExpression(exp);
+		}else {
+			return exp;
+		}
+		
 	}
 
 
-	public CalledExpression parseCalledExpression() {
+	public CalledExpression parseCalledExpression(PostfixExpression exp) {
+		
+	}
+	
+	public IndexedExpression parseIndexedExpression(PostfixExpression exp) {
+
+	}
+	
+	public DotExpression parseDotExpression(PostfixExpression exp) {
 
 	}
 
-	public DotExpression parseDotExpression() {
-
-	}
-
-	public IndexedExpression parseIndexedExpression() {
-
-	}
-
-	public ReassignmentExpression parseReasgnExpression() {
+	public ReassignmentExpression parseReasgnExpression(PostfixExpression exp) {
 
 	}
 

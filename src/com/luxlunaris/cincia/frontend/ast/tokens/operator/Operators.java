@@ -105,5 +105,11 @@ public enum Operators {
 	}
 	
 	
+	public static boolean isReassignmentOperator(Object op) {
+		return Arrays.asList(PLUSPLUS, MINUSMINUS, PLUS_ASSIGN, MINUS_ASSIGN, MUL_ASSIGN, DIV_ASSIGN, MOD_ASSIGN).contains(op);
+	}
+	
+	
+	
 
 }
