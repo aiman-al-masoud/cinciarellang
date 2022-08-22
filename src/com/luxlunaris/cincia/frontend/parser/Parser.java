@@ -784,12 +784,12 @@ public class Parser {
 		
 		// identifiers
 		if(tStream.peek().getValue() instanceof Identifier) {
-			return (Identifier)tStream.peek();
+			return parseIdentifier();
 		}
 		
 		// constant values
 //		if(tStream.peek().getValue() instanceof Int  || tStream.peek().getValue() instanceof Bool || tStream.peek().getValue() instanceof com.luxlunaris.cincia.frontend.ast.tokens.Float || tStream.peek().getValue() instanceof Str) {
-			return tStream.peek();
+			return parseConstant();
 //		}
 		
 		
@@ -841,14 +841,26 @@ public class Parser {
 
 	
 
-//	public Token parseConstant() {
-//
-//	}
+	public Token parseConstant() { //TODO: add constant interface and classcast check
+		Token token = tStream.peek();
+		tStream.next();
+		return token;
+	}
 
 //
-//	public Identifier parseIdentifier() {
-//
-//	}
+	public Identifier parseIdentifier() {
+		
+		Identifier id = null;
+		
+		try {
+			id = (Identifier)tStream.peek();
+			tStream.next();
+		}catch (ClassCastException e) {
+			tStream.croak("Expected id");
+		}
+		
+		return id;
+	}
 
 
 	public void eat(Object value) {
