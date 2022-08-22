@@ -816,7 +816,7 @@ public class Parser {
 		
 		// constant values
 //		if(tStream.peek().getValue() instanceof Int  || tStream.peek().getValue() instanceof Bool || tStream.peek().getValue() instanceof com.luxlunaris.cincia.frontend.ast.tokens.Float || tStream.peek().getValue() instanceof Str) {
-			return parseConstant();
+		return parseConstant();
 //		}
 		
 		
