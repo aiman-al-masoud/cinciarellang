@@ -1020,9 +1020,6 @@ public class Parser {
 		tStream.next();
 		return token;
 	}
-
-
-
 	
 	
 	public Type parseType() {
