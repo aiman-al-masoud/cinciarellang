@@ -525,7 +525,7 @@ public class Parser {
 				asgn2.right = asgn1;
 				asgn1 = asgn2;
 			}catch (ClassCastException e) {
-				tStream.croak("Expected left-value, got "+chain.get(i));
+				tStream.croak("Expected left-value, got: '"+chain.get(i)+"'");
 			}
 			
 		}
