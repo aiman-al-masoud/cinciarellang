@@ -1,16 +1,17 @@
 package com.luxlunaris.cincia.frontend.ast.tokens.type;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
-public class PrimitiveType implements Type{
+public class PrimitiveType extends OneNameType{
 	
-	public static final int INT = 0;
-	public static final int FLOAT = 1;
-	public static  final int BOOL = 2;
+	public static final Keywords INT = Keywords.INT;
+	public static final Keywords FLOAT = Keywords.FLOAT;
+	public static  final Keywords BOOL = Keywords.BOOL;
 	
-	public int value;
+	public Keywords value;
 	
-	public PrimitiveType(int type) {
+	public PrimitiveType(Keywords type) {
 		value = type;
 	}
 	

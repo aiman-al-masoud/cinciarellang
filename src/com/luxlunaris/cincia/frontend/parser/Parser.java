@@ -69,9 +69,12 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
 import com.luxlunaris.cincia.frontend.ast.tokens.type.PrimitiveType;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.SimpleType;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.TypedDict;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.TypedList;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.SingleType;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.IdentifierType;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.CollectionType;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.DictType;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.ListType;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.OneNameType;
 import com.luxlunaris.cincia.frontend.ast.tokens.type.UnionType;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
@@ -436,20 +439,6 @@ public class Parser {
 	public SingleDeclaration parseSingleDeclaration(List<Modifier> modifiers) {
 		
 		SingleDeclaration sD = new SingleDeclaration();
-		
-//		while (!tStream.isEnd()){
-//			
-//			try {
-//				sD.addModifier((Modifier)tStream.peek());
-//				tStream.next();
-//			}catch (ClassCastException e) {
-//				break;
-//			}
-//		}
-//		
-		
-//		sD.modifiers = parseModifiers();
-		
 		sD.modifiers = modifiers;
 		
 		try {
@@ -459,11 +448,9 @@ public class Parser {
 			tStream.croak("Expected identifier (variable name)");
 		}
 		
-		
-		if(tStream.peek().getValue().equals(Punctuations.COL)) { //TODO: turn int, float, bool into identifiers
+		if(tStream.peek().getValue().equals(Punctuations.COL)) { 
 			eat(Punctuations.COL);
-			sD.type = parseIdentifier();
-			tStream.next();
+			sD.type = parseType();
 		}
 		
 		return sD;
@@ -474,38 +461,14 @@ public class Parser {
 	public Signature parseSignature(List<Modifier> modifiers) {
 		
 		Signature sg = new Signature();
-		
-//		while (!tStream.isEnd()){
-//			
-//			try {
-//				sg.addModifier((Modifier)tStream.peek());
-//				tStream.next();
-//			}catch (ClassCastException e) {
-//				break;
-//			}
-//		}
-		
-//		sg.modifiers = parseModifiers();
 		sg.modifiers = modifiers;
-		
-		
 		eat(Punctuations.SLASH_BCK);
-		
 		sg.params = parseDeclaration();
-		
 		
 		if(tStream.peek().getValue().equals(Punctuations.COL)) {
 			eat(Punctuations.COL);
-			
-			try {
-				sg.returnType = (Identifier) tStream.peek();
-				tStream.next();
-			}catch (ClassCastException e) {
-				tStream.croak("Expected identifier (class/type name)");
-			}
-			
+			sg.returnType = parseType();
 		}
-		
 		
 		return sg;
 	}
@@ -962,28 +925,88 @@ public class Parser {
 	
 	public Type parseType() {
 		UnionType type = parseUnionType();
-		
+		return type;
 	}
 	
 	public UnionType parseUnionType() {
 		
+		UnionType uT = new UnionType();
+		uT.addType(parseSingleType());
+		
+		while(!tStream.isEnd()) {
+			
+			if(tStream.peek().getValue().equals(Operators.SINGLE_OR)) {
+				eat(Operators.SINGLE_OR);
+				uT.addType(parseSingleType());
+			}else {
+				break;
+			}
+		}
+		
+		return uT;
 	}
 	
-	public TypedList parseTypedListType() {
+	public SingleType parseSingleType(){
+		
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+			return parseDictType();
+		}
+		
+		OneNameType oT = parseOneNameType();
+		
+		if(tStream.peek().getValue().equals(Punctuations.SQBR_OPN)) {
+			return parseListType(oT);
+		}
+		
+		return oT;
 		
 	}
 	
-	public TypedDict parseTypedDictType() {
+	public ListType parseListType(OneNameType oT) {
+		ListType lT = new ListType();
+		lT.value = oT;
+		eat(Punctuations.SQBR_OPN);
+		eat(Punctuations.SQBR_CLS);
+		return lT;
+ 	}
+	
+	public DictType parseDictType() {
 		
+		DictType dT = new DictType();
+		eat(Punctuations.CURLY_OPN);
+		dT.keyType = parseOneNameType();
+		eat(Punctuations.COL);
+		dT.valType = parseOneNameType();
+		eat(Punctuations.CURLY_CLS);
+		return dT;
 	}
 	
-	public SimpleType parseSimpleType() {
+	public OneNameType parseOneNameType() {
 		
-//		Identifier id = parseIdentifier();
+		Token token = tStream.peek();
+		
+		if(token instanceof Keyword) {
+			return parsePrimitiveType();
+		}
+		
+		if(token instanceof Identifier) {
+			return parseIdentifierType();
+		}
+		
+		tStream.croak("Expected primitive or identifier");
+		return null;
+	}
+	
+	public IdentifierType parseIdentifierType() {
+		IdentifierType iD = new IdentifierType((Identifier)tStream.peek());
+		tStream.next();
+		return iD;
 	}
 	
 	public PrimitiveType parsePrimitiveType() {
-		
+		PrimitiveType pT = new PrimitiveType((Keywords)tStream.peek().getValue());
+		tStream.next();
+		return pT;
 	}
 	
 	

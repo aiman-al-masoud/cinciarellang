@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.frontend.ast.tokens.type;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -8,10 +9,14 @@ import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
 //TODO: add in EBNF
 public class UnionType implements Type{
 	
-	public List<Type> types;
+	public List<SingleType> types;
 	
-	public UnionType(List<Type> types) {
-		this.types = types;
+	public UnionType() {
+		types = new ArrayList<SingleType>();
+	}
+	
+	public void addType(SingleType sT) {
+		types.add(sT);
 	}
 
 	@Override

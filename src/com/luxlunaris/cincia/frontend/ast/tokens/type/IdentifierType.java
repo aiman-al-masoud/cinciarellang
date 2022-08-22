@@ -3,11 +3,11 @@ package com.luxlunaris.cincia.frontend.ast.tokens.type;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
-public class SimpleType implements Type{
+public class IdentifierType extends OneNameType{
 	
 	public Identifier value;
 	
-	public SimpleType(Identifier value) {
+	public IdentifierType(Identifier value) {
 		this.value = value;
 	}
 

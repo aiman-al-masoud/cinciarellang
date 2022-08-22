@@ -4,7 +4,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
 
 //TODO: add in EBNF
-public class TypedDict implements Type{
+public class DictType extends CollectionType{
 	
 	public Type keyType;
 	public Type valType;

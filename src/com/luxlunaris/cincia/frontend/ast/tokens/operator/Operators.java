@@ -28,7 +28,8 @@ public enum Operators {
 	MINUS_ASSIGN,
 	MUL_ASSIGN,
 	DIV_ASSIGN,
-	MOD_ASSIGN;
+	MOD_ASSIGN,
+	SINGLE_OR;
 	
 	
 	public static Operators fromString(String string) {
@@ -83,6 +84,8 @@ public enum Operators {
 				return DIV_ASSIGN;
 			case "%=":
 				return MOD_ASSIGN;
+			case "|":
+				return SINGLE_OR;
 			default:
 				return null;
 		}
