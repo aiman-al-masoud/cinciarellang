@@ -28,7 +28,7 @@ public class CharStream {
 		return isEnd() ? EOF : source.charAt(pos);
 	}
 	
-	public void croak(String message){
+	public void croak(String message) throws RuntimeException{
 		throw new RuntimeException(message+" at "+row+":"+col);
 	}
 	

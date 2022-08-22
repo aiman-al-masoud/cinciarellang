@@ -1016,9 +1016,16 @@ public class Parser {
 	
 
 	public Token parseConstant() { //TODO: add constant interface and classcast check
-		Token token = tStream.peek();
-		tStream.next();
-		return token;
+		
+		Token token;
+		try {
+			token = tStream.peek();
+			tStream.next();
+			return token;
+		}catch (ClassCastException e) {
+			tStream.croak("Expected constant literal");
+			return null;
+		}
 	}
 	
 	

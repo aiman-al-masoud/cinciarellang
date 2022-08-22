@@ -107,7 +107,7 @@ public class TokenStream {
 	}
 
 
-	public void croak(String message) {
+	public void croak(String message) throws RuntimeException{
 		cStream.croak(message);
 	}
 
