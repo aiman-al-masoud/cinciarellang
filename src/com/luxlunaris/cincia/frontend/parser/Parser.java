@@ -884,10 +884,28 @@ public class Parser {
 		cE.modifiersList = modifiers;
 		eat(Keywords.CLASS);
 		
+		if(tStream.peek().getValue().equals(Keywords.LISTENSTO)) {
+			cE.observables = parseIdList();
+		}
+		
+		if(tStream.peek().getValue().equals(Keywords.IMPLEMENTS)) {
+			cE.interfaces = parseIdList();
+		}
+		
+		if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {
+			cE.superclass = parseIdentifier();
+		}
+		
 		
 		
 
 	}
+	
+	public List<Identifier> parseIdList(){ //comma separated
+		
+	}
+	
+	
 
 	public InterfaceExpression parseInterfaceExpression(List<Modifier> modifiers) {
 
