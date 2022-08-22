@@ -922,9 +922,25 @@ public class Parser {
 	
 	public List<Identifier> parseIdList(){ //comma separated
 		
+		ArrayList<Identifier> ids = new ArrayList<Identifier>();
+		ids.add(parseIdentifier());
+		
+		while (!tStream.isEnd()) {
+			
+			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
+				eat(Punctuations.COMMA);
+				ids.add(parseIdentifier());
+			}else {
+				break;
+			}
+			
+		}
+		
+		return ids;
 	}
 	
 	public ObjectExpression parseList() {
+		
 		
 	}
 	

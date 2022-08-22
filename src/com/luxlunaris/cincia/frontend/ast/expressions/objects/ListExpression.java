@@ -8,12 +8,14 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
 
+//could include one or more DestructuringExpression(s)
 public class ListExpression implements ObjectExpression{
 	
-	public List<Expression> elements; // could include DestructuringExpression
+//	public List<Expression> elements; 
+	public Expression elements;
 	
 	public ListExpression() {
-		elements = new ArrayList<Expression>();
+//		elements = new ArrayList<Expression>();
 	}
 	
 }
