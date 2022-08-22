@@ -968,7 +968,13 @@ public class Parser {
 		eat(Keywords.FOR);
 		lC.iterable = parseExpression();
 		
+		if(tStream.peek().getValue().equals(Keywords.WHERE)) {
+			eat(Keywords.WHERE);
+			lC.where = parseExpression();
+		}
 		
+		eat(Punctuations.SQBR_CLS);
+		return lC;
 	}
 	
 	public ObjectExpression parseDict() {
