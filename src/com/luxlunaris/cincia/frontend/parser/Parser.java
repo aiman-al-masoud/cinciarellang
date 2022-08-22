@@ -699,7 +699,6 @@ public class Parser {
 
 	}
 
-
 	public DotExpression parseDotExpression() {
 
 	}
