@@ -399,7 +399,6 @@ public class Parser {
 	}
 
 	
-	//TODO: problem, Signature is also a Declaration
 	public Declaration parseMultiOrSingleDeclaration(List<Modifier> modifiers) {
 		
 		MultiDeclaration mD = parseMultiDeclaration(modifiers);
