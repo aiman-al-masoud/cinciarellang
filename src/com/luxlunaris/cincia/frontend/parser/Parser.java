@@ -879,6 +879,13 @@ public class Parser {
 	}
 
 	public ClassExpression parseClassExpression(List<Modifier> modifiers) {
+		
+		ClassExpression cE = new ClassExpression();
+		cE.modifiersList = modifiers;
+		eat(Keywords.CLASS);
+		
+		
+		
 
 	}
 
