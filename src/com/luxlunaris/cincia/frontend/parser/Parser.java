@@ -803,11 +803,9 @@ public class Parser {
 	
 	public ObjectExpression parseObjectExpression() {
 		
-		// check if { or [   => dict or list
 		if(tStream.peek().getValue().equals(Punctuations.SQBR_OPN)) {
 			return parseList();
-		}
-		
+		}		
 		
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			return parseDict();
