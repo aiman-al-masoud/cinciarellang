@@ -844,11 +844,20 @@ public class Parser {
 		List<Modifier> modifiers = parseModifiers();
 		
 		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
-			return parseLambdaExpression()
+			return parseLambdaExpression(modifiers);
+		}
+		
+		if(tStream.peek().getValue().equals(Keywords.CLASS)) {
+			return parseClassExpression(modifiers);
+		}
+		
+		if(tStream.peek().getValue().equals(Keywords.INTERFACE)) {
+			return parseInterfaceExpression(modifiers);
 		}
 		
 		
-		
+		tStream.croak("Expected object-expression");
+		return null;
 	}
 	
 	public LambdaExpression parseLambdaExpression(List<Modifier> modifiers) {
