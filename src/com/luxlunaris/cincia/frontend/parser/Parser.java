@@ -206,7 +206,7 @@ public class Parser {
 
 	public DeclarationStatement parseDeclStatement() {
 		
-		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
+		DeclarationStatement dS = new DeclarationStatement(parseMultiOrSingleDeclaration());
 		eat(Punctuations.STM_SEP);
 		return dS;
 	}
@@ -392,7 +392,7 @@ public class Parser {
 
 	
 	//TODO: problem, Signature is also a Declaration
-	public Declaration parseDeclaration() {
+	public Declaration parseMultiOrSingleDeclaration() {
 		
 		MultiDeclaration mD = parseMultiDeclaration();
 		return mD.declarations.size()==1? mD.declarations.get(0) : mD;
@@ -463,7 +463,7 @@ public class Parser {
 		Signature sg = new Signature();
 		sg.modifiers = modifiers;
 		eat(Punctuations.SLASH_BCK);
-		sg.params = parseDeclaration();
+		sg.params = parseMultiOrSingleDeclaration();
 		
 		if(tStream.peek().getValue().equals(Punctuations.COL)) {
 			eat(Punctuations.COL);
