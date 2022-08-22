@@ -941,14 +941,27 @@ public class Parser {
 	
 	public ObjectExpression parseList() {
 		
+		eat(Punctuations.SQBR_OPN);
+		Expression exp = parseExpression();
 		
+		if(tStream.peek().getValue().equals(Keywords.FOR)) {
+			return parseListComprehension(exp);
+		}
+		
+		eat(Punctuations.COMMA);
+		MultiExpression mE = new MultiExpression();
+		mE.expressions.add(0, exp);
+		ListExpression lE = new ListExpression();
+		lE.elements = mE;
+		eat(Punctuations.SQBR_CLS);
+		return lE;
 	}
 	
 	public ListExpression parseListExpression() {
 
 	}
 	
-	public ListComprehension parseListComprehension() {
+	public ListComprehension parseListComprehension(Expression exp) {
 
 	}
 	

@@ -12,7 +12,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
 public class ListExpression implements ObjectExpression{
 	
 //	public List<Expression> elements; 
-	public Expression elements;
+	public MultiExpression elements;
 	
 	public ListExpression() {
 //		elements = new ArrayList<Expression>();
