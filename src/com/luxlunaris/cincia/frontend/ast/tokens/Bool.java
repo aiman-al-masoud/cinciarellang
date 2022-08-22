@@ -1,7 +1,8 @@
 package com.luxlunaris.cincia.frontend.ast.tokens;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 
-public class Bool extends AbstractToken{
+public class Bool extends AbstractToken implements Constant{
 
 	public final boolean value;
 	public static final String TRUE = "true";

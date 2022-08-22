@@ -1,6 +1,8 @@
 package com.luxlunaris.cincia.frontend.ast.tokens;
 
-public class Int extends AbstractToken{
+import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
+
+public class Int extends AbstractToken implements Constant{
 	
 	public final int value;
 	

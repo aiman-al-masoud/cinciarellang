@@ -1,6 +1,8 @@
 package com.luxlunaris.cincia.frontend.ast.tokens;
 
-public class Float extends AbstractToken{
+import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
+
+public class Float extends AbstractToken implements Constant{
 	
 	public final double value;
 	
