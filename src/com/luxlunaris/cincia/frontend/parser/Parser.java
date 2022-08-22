@@ -392,13 +392,13 @@ public class Parser {
 	public MultiDeclaration parseMultiDeclaration() {
 		
 		MultiDeclaration mD = new MultiDeclaration();
-		mD.addDeclaration(parseSingleDeclaration());
+		mD.addDeclaration(parseSingleDeclaration(parseModifiers()));
 
 		while(!tStream.isEnd()) {	
 			
 			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
 				eat(Punctuations.COMMA);
-				mD.addDeclaration(parseSingleDeclaration());
+				mD.addDeclaration(parseSingleDeclaration(parseModifiers()));
 				continue;
 			}
 			
@@ -426,7 +426,7 @@ public class Parser {
 	}
 
 
-	public SingleDeclaration parseSingleDeclaration() {
+	public SingleDeclaration parseSingleDeclaration(List<Modifier> modifiers) {
 		
 		SingleDeclaration sD = new SingleDeclaration();
 		
@@ -441,8 +441,9 @@ public class Parser {
 //		}
 //		
 		
-		sD.modifiers = parseModifiers();
+//		sD.modifiers = parseModifiers();
 		
+		sD.modifiers = modifiers;
 		
 		try {
 			sD.name = (Identifier)tStream.peek();
@@ -463,7 +464,7 @@ public class Parser {
 	
 	
 
-	public Signature parseSignature() {
+	public Signature parseSignature(List<Modifier> modifiers) {
 		
 		Signature sg = new Signature();
 		
@@ -477,7 +478,8 @@ public class Parser {
 //			}
 //		}
 		
-		sg.modifiers = parseModifiers();
+//		sg.modifiers = parseModifiers();
+		sg.modifiers = modifiers;
 		
 		sg.params = parseDeclaration();
 		
@@ -839,6 +841,10 @@ public class Parser {
 		}
 		
 		// get through the list of modifiers then check if class or interface or \ (lambda)
+		List<Modifier> modifiers = parseModifiers();
+		
+		
+		
 		
 	}
 	
