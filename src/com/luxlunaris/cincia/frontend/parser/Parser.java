@@ -57,7 +57,9 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
+import com.luxlunaris.cincia.frontend.ast.tokens.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
@@ -776,13 +778,26 @@ public class Parser {
 		}
 		
 		// bracketed expression
+		if(tStream.peek().getValue().equals(Punctuations.PAREN_OPN)) {
+			return parseBracketedExpression();
+		}
 		
 		// identifiers
+		if(tStream.peek().getValue() instanceof Identifier) {
+			return (Identifier)tStream.peek();
+		}
 		
 		// constant values
+		if(tStream.peek().getValue() instanceof Int  || tStream.peek().getValue() instanceof Bool || tStream.peek().getValue() instanceof com.luxlunaris.cincia.frontend.ast.tokens.Float || tStream.peek().getValue() instanceof Str) {
+			return tStream.peek();
+		}
 		
 		
-		
+	}
+	
+	
+	public BracketedExpression parseBracketedExpression() {
+
 	}
 	
 	
@@ -821,18 +836,16 @@ public class Parser {
 	}
 
 
-	public BracketedExpression parseBracketedExpression() {
+	
 
-	}
+//	public Token parseConstant() {
+//
+//	}
 
-	public Token parseConstant() {
-
-	}
-
-
-	public Identifier parseIdentifier() {
-
-	}
+//
+//	public Identifier parseIdentifier() {
+//
+//	}
 
 
 	public void eat(Object value) {
