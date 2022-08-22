@@ -740,7 +740,12 @@ public class Parser {
 	}
 	
 	public IndexedExpression parseIndexedExpression(PostfixExpression left) {
-
+		eat(Punctuations.SQBR_OPN);
+		IndexedExpression iE = new IndexedExpression();
+		iE.indexable = left;  
+		iE.index = parseExpression(); //TODO: add slicing with ':'
+		eat(Punctuations.SQBR_CLS);
+		return iE;
 	}
 	
 	public DotExpression parseDotExpression(PostfixExpression left) {
