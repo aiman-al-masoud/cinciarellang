@@ -957,10 +957,6 @@ public class Parser {
 		return lE;
 	}
 	
-	public ListExpression parseListExpression() {
-
-	}
-	
 	public ListComprehension parseListComprehension(Expression exp) {
 		
 		ListComprehension lC = new ListComprehension();
