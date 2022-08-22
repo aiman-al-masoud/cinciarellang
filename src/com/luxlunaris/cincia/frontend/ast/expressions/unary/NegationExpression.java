@@ -10,4 +10,11 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.UnaryExpression;
 public class NegationExpression implements UnaryExpression{
 	
 	public UnaryExpression arg;
+	
+	
+	public NegationExpression(UnaryExpression arg) {
+		this.arg = arg;
+	}
 }
+
+

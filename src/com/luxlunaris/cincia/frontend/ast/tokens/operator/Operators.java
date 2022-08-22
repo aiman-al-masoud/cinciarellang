@@ -92,15 +92,15 @@ public enum Operators {
 		return "+-*/%=!?<>&|".contains(c+"");
 	}
 	
-	public static boolean isAddOperator(Operators op) {
+	public static boolean isAddOperator(Object op) {
 		return op==PLUS || op==MINUS;
 	}
 	
-	public static boolean isMulOperator(Operators op) {
+	public static boolean isMulOperator(Object op) {
 		return op==ASTERISK || op==DIV || op==MOD; // all left assoc
 	}
 	
-	public static boolean isComparisonOperator(Operators op) {
+	public static boolean isComparisonOperator(Object op) {
 		return Arrays.asList(COMPARE, NE, LT, GT, LTE, GTE).contains(op);
 	}
 	

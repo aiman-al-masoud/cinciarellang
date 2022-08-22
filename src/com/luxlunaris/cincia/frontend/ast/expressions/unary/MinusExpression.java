@@ -10,4 +10,8 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.UnaryExpression;
 public class MinusExpression implements UnaryExpression{
 
 	public UnaryExpression arg;
+	
+	public MinusExpression(UnaryExpression arg) {
+		this.arg = arg;
+	}
 }

@@ -600,32 +600,97 @@ public class Parser {
 
 	public ComparisonExpression parseComparisonExpression() {
 
+		ComparisonExpression one = new ComparisonExpression();
+		one.left = parseAddExpression();
+		
+		while(!tStream.isEnd()) {
+			if(Operators.isComparisonOperator(tStream.peek().getValue())) {
+				one.op = (Operators)tStream.peek().getValue();
+				tStream.next();
+				one.right = parseAddExpression();
+				ComparisonExpression two = new ComparisonExpression();
+				two.left = one;
+				one = two;
+			}else {
+				break;
+			}
+		}
+		
+		return one;
+		
 	}
 
 	public AddExpression parseAddExpression() {
-
+		AddExpression one = new AddExpression();
+		one.left = parseMulExpression();
+		
+		while(!tStream.isEnd()) {
+			if(Operators.isAddOperator(tStream.peek().getValue())) {
+				one.op = (Operators)tStream.peek().getValue();
+				tStream.next();
+				one.right = parseMulExpression();
+				AddExpression two = new AddExpression();
+				two.left = one;
+				one = two;
+			}else {
+				break;
+			}
+		}
+		
+		return one;
 	}
 
 	public MulExpression parseMulExpression() {
-
+		
+		MulExpression one = new MulExpression();
+		one.left = parseUnaryExpression();
+		
+		while(!tStream.isEnd()) {
+			if(Operators.isMulOperator(tStream.peek().getValue())) {
+				one.op = (Operators)tStream.peek().getValue();
+				tStream.next();
+				one.right = parseUnaryExpression();
+				MulExpression two = new MulExpression();
+				two.left = one;
+				one = two;
+			}else {
+				break;
+			}
+		}
+		
+		return one;
 	}
 
 	public UnaryExpression parseUnaryExpression() {
-
-	}
-
-	public DestructuringExpression parseDestrExpression() {
-
+		
+		if(tStream.peek().getValue().equals(Operators.MINUS)) {
+			return parseMinusExpression();
+		}else if(tStream.peek().getValue().equals(Operators.NOT)  ) {
+			return parseNegationExpression();
+		}else if(tStream.peek().getValue().equals(Operators.ASTERISK)  ) {
+			return parseDestrExpression();
+		}
+		
+		tStream.croak("Expected unary operator");
+		return null;
 	}
 
 	public MinusExpression parseMinusExpression() {
-
+		eat(Operators.MINUS);
+		return new MinusExpression(parseUnaryExpression());
 	}
 
-	public NegationExpression parsenNegationExpression() {
+	public NegationExpression parseNegationExpression() {
+		eat(Operators.NOT);
+		return new NegationExpression(parseUnaryExpression());
 
 	}
+	public DestructuringExpression parseDestrExpression() {
+		eat(Operators.ASTERISK);
+		return new DestructuringExpression(parseUnaryExpression());
+	}
 
+	
 	public PostfixExpression parsePostfixExpression() {
 
 	}
