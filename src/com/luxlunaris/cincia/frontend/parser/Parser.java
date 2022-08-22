@@ -882,10 +882,18 @@ public class Parser {
 		// parse attributes and methods
 		// OR parse declaration statements and assignments. 
 		
+		while(!tStream.isEnd()) {
+			
+			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+				break;
+			}
+			
+			cE.addStatement(parseStatement());
+		}
+		
 		eat(Punctuations.CURLY_CLS);
-
+		return cE;
 	}
-	
 	
 	
 
