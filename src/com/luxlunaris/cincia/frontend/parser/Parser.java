@@ -76,6 +76,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.type.UnionType;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 
+
 public class Parser {
 
 	TokenStream tStream;
@@ -974,6 +975,19 @@ public class Parser {
 	}
 	
 	public ObjectExpression parseDict() {
+		eat(Punctuations.CURLY_OPN);
+		
+		Expression key = parseExpression();
+		eat(Punctuations.COL);
+		Expression val = parseExpression();
+		Map.entry(key, val);
+		
+		
+		
+		if() {
+			
+		}
+
 		
 	}
 	
