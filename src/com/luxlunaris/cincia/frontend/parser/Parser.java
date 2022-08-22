@@ -962,7 +962,13 @@ public class Parser {
 	}
 	
 	public ListComprehension parseListComprehension(Expression exp) {
-
+		
+		ListComprehension lC = new ListComprehension();
+		lC.element = exp;
+		eat(Keywords.FOR);
+		lC.iterable = parseExpression();
+		
+		
 	}
 	
 	public ObjectExpression parseDict() {
