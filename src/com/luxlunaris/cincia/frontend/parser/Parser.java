@@ -829,9 +829,16 @@ public class Parser {
 	public ObjectExpression parseObjectExpression() {
 		
 		// check if { or [   => dict or list
+		if(tStream.peek().getValue().equals(Punctuations.SQBR_OPN)) {
+			return parseList();
+		}
 		
 		
-		// get throgh the list of modifiers then check if class or interface or \ (lambda)
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+			return parseDict();
+		}
+		
+		// get through the list of modifiers then check if class or interface or \ (lambda)
 		
 	}
 	
@@ -846,23 +853,30 @@ public class Parser {
 	public InterfaceExpression parseInterfaceExpression() {
 
 	}
-
+	
+	public ObjectExpression parseList() {
+		
+	}
+	
 	public ListExpression parseListExpression() {
 
 	}
-
-	public DictExpression parseDictExpression() {
-
-	}
-
+	
 	public ListComprehension parseListComprehension() {
 
 	}
+	
+	public ObjectExpression parseDict() {
+		
+	}
+	
+	public DictExpression parseDictExpression() {
 
+	}
+	
 	public DictComprehension parseDictComprehension() {
 
 	}
-
 
 	
 
@@ -872,7 +886,7 @@ public class Parser {
 		return token;
 	}
 
-//
+
 	public Identifier parseIdentifier() {
 		
 		Identifier id = null;
