@@ -980,22 +980,19 @@ public class Parser {
 		Expression key = parseExpression();
 		eat(Punctuations.COL);
 		Expression val = parseExpression();
-		Map.entry(key, val);
+		Entry<Expression, Expression> entry = Map.entry(key, val);
 		
 		
-		
-		if() {
-			
+		if(tStream.peek().getValue().equals(Keywords.FOR)) {
+			return parseDictComprehension();
 		}
 
 		
 	}
 	
-	public DictExpression parseDictExpression() {
-
-	}
 	
-	public DictComprehension parseDictComprehension() {
+	
+	public DictComprehension parseDictComprehension(Entry<Expression, Expression> entry) {
 
 	}
 
