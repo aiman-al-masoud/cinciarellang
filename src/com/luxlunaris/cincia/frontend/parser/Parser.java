@@ -758,7 +758,12 @@ public class Parser {
 	}
 
 	public ReassignmentExpression parseReasgnExpression(PostfixExpression left) {
-
+		ReassignmentExpression rE = new ReassignmentExpression();
+		rE.left = left;
+		rE.operator = (Operators)tStream.peek().getValue();
+		tStream.next(); // eat operator
+		rE.right =  parseExpression();
+		return rE;
 	}
 
 	public PrimaryExpression parsePrimaryExpression() {
