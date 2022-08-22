@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 
+/**
+ * Sequence of comma-separated simple expressions
+ *
+ */
 public class MultiDeclaration implements Declaration{
 	
 	public List<SingleDeclaration> declarations;

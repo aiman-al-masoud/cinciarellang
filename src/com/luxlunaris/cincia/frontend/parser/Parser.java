@@ -424,7 +424,6 @@ public class Parser {
 
 
 	public MultiDeclaration parseMultiDeclaration(List<Modifier> modifiers) {
-		//sequence of comma-separated simple expressions
 		
 		MultiDeclaration mD = new MultiDeclaration();
 		mD.addDeclaration(parseSingleDeclaration(modifiers));
