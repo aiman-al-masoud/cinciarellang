@@ -884,17 +884,23 @@ public class Parser {
 		cE.modifiersList = modifiers;
 		eat(Keywords.CLASS);
 		
-		if(tStream.peek().getValue().equals(Keywords.LISTENSTO)) {
-			cE.observables = parseIdList();
+		//listensto, implements, extends could come in any order
+		while( !tStream.isEnd() && !tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {  
+			
+			if(tStream.peek().getValue().equals(Keywords.LISTENSTO)) {
+				cE.observables = parseIdList();
+			}
+			
+			if(tStream.peek().getValue().equals(Keywords.IMPLEMENTS)) {
+				cE.interfaces = parseIdList();
+			}
+			
+			if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {
+				cE.superclass = parseIdentifier();
+			}
 		}
 		
-		if(tStream.peek().getValue().equals(Keywords.IMPLEMENTS)) {
-			cE.interfaces = parseIdList();
-		}
 		
-		if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {
-			cE.superclass = parseIdentifier();
-		}
 		
 		
 		
