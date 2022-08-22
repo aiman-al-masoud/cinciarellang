@@ -902,8 +902,9 @@ public class Parser {
 		
 		eat(Punctuations.CURLY_OPN);
 		
+		// parse attributes and methods
 		
-		
+		eat(Punctuations.CURLY_CLS);
 
 	}
 	
