@@ -368,7 +368,7 @@ public class Parser {
 	
 	public Entry<DotExpression, Identifier> parseImported(){
 		
-		DotExpression dEx = parseDotExpression();
+		DotExpression dEx = parseDotExpression(null);//TODO:: buruf????
 		Identifier alias = null; // can be null
 		
 		if(tStream.peek().getValue().equals(Keywords.AS)) {
