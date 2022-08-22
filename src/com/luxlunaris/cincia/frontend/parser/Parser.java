@@ -407,21 +407,41 @@ public class Parser {
 		
 		return mD;
 	}
+	
+	public List<Modifier> parseModifiers(){
+		
+		ArrayList<Modifier> res = new ArrayList<Modifier>();
+		
+		while (!tStream.isEnd()){
+				
+			try {
+				res.add((Modifier)tStream.peek());
+				tStream.next();
+			}catch (ClassCastException e) {
+				break;
+			}
+		}
+		
+		return res;
+	}
 
 
 	public SingleDeclaration parseSingleDeclaration() {
 		
 		SingleDeclaration sD = new SingleDeclaration();
 		
-		while (!tStream.isEnd()){
-			
-			try {
-				sD.addModifier((Modifier)tStream.peek());
-				tStream.next();
-			}catch (ClassCastException e) {
-				break;
-			}
-		}
+//		while (!tStream.isEnd()){
+//			
+//			try {
+//				sD.addModifier((Modifier)tStream.peek());
+//				tStream.next();
+//			}catch (ClassCastException e) {
+//				break;
+//			}
+//		}
+//		
+		
+		sD.modifiers = parseModifiers();
 		
 		
 		try {
@@ -447,15 +467,17 @@ public class Parser {
 		
 		Signature sg = new Signature();
 		
-		while (!tStream.isEnd()){
-			
-			try {
-				sg.addModifier((Modifier)tStream.peek());
-				tStream.next();
-			}catch (ClassCastException e) {
-				break;
-			}
-		}
+//		while (!tStream.isEnd()){
+//			
+//			try {
+//				sg.addModifier((Modifier)tStream.peek());
+//				tStream.next();
+//			}catch (ClassCastException e) {
+//				break;
+//			}
+//		}
+		
+		sg.modifiers = parseModifiers();
 		
 		sg.params = parseDeclaration();
 		
