@@ -140,5 +140,11 @@ string :: = "example" | 'example' | f"{example}"
 termin ::= (';' | '\n')
 
 
+type = union_type
+union_type = single_type '|' union_type
+atom_type = collection_type | simple_type
+collection_type = simple_type'['']' | '{' simple_type ':' simple_type '}'
+simple_type = primitive_type | identifier_type | (type)
+
 
 

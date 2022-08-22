@@ -40,6 +40,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.interfaces.UnaryExpression;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
@@ -61,11 +62,17 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.SimpleType;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.TypedDict;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.TypedList;
+import com.luxlunaris.cincia.frontend.ast.tokens.type.UnionType;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 
@@ -950,6 +957,37 @@ public class Parser {
 	}
 
 
+
+	
+	
+	public Type parseType() {
+		UnionType type = parseUnionType();
+		
+	}
+	
+	public UnionType parseUnionType() {
+		
+	}
+	
+	public TypedList parseTypedListType() {
+		
+	}
+	
+	public TypedDict parseTypedDictType() {
+		
+	}
+	
+	public SimpleType parseSimpleType() {
+		
+//		Identifier id = parseIdentifier();
+	}
+	
+	public PrimitiveType parsePrimitiveType() {
+		
+	}
+	
+	
+	
 	public Identifier parseIdentifier() {
 		
 		Identifier id = null;
@@ -963,7 +1001,7 @@ public class Parser {
 		
 		return id;
 	}
-
+	
 
 	public void eat(Object value) {
 
