@@ -481,6 +481,9 @@ public class Parser {
 //		sg.modifiers = parseModifiers();
 		sg.modifiers = modifiers;
 		
+		
+		eat(Punctuations.SLASH_BCK);
+		
 		sg.params = parseDeclaration();
 		
 		
@@ -861,7 +864,18 @@ public class Parser {
 	}
 	
 	public LambdaExpression parseLambdaExpression(List<Modifier> modifiers) {
-
+		
+		LambdaExpression lE = new LambdaExpression();
+		lE.signature = parseSignature(modifiers);
+		eat(Operators.ARROW);
+		
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+			lE.block = parseCompStatement();
+		}else {
+			lE.expression = parseExpression();
+		}
+		
+		return lE;
 	}
 
 	public ClassExpression parseClassExpression(List<Modifier> modifiers) {
