@@ -30,6 +30,8 @@ public class ClassExpression implements ObjectExpression{
 		attributes = new ArrayList<Declaration>();
 	}
 	
+	
+	//TODO: cast it to "attribute" or "method"
 	public void addStatement(Statement statement) {
 		statements.add(statement);
 	}
