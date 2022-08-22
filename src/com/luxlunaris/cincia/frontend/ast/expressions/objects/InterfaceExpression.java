@@ -8,18 +8,27 @@ import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 
 public class InterfaceExpression implements ObjectExpression{
 	
-	public List<Modifier> modifiersList; // can be empty	
+	public List<Modifier> modifiers; // can be empty	
 //	public List<MultiDeclaration> attributeDeclarations;
 //	public List<Signature> methodDeclaration;
 	public List<Declaration> declarations;
+	public List<Identifier> superInterfaces;
 	
 	public InterfaceExpression() {
-		modifiersList = new ArrayList<Modifier>();
+		modifiers = new ArrayList<Modifier>();
 		declarations = new ArrayList<Declaration>();
+		superInterfaces = new ArrayList<Identifier>();
 	}
+	
+	
+	public void addDeclaration(Declaration declaration) {
+		declarations.add(declaration);
+	}
+	
 	
 }

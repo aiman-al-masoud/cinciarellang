@@ -885,13 +885,43 @@ public class Parser {
 
 	}
 	
-	public List<Identifier> parseIdList(){ //comma separated
-		
-	}
+	
 	
 
 	public InterfaceExpression parseInterfaceExpression(List<Modifier> modifiers) {
-
+		InterfaceExpression iE = new InterfaceExpression();
+		iE.modifiers = modifiers;
+		eat(Keywords.INTERFACE);
+		
+		while( !tStream.isEnd() && !tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {  
+			
+			if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {				
+				iE.superInterfaces = parseIdList();
+			}
+			
+		}
+		
+		eat(Punctuations.CURLY_OPN);
+		
+		while (!tStream.isEnd()) {
+			
+			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+				break;
+			}
+			
+			iE.addDeclaration(parseDeclStatement().declaration);
+			
+		}
+		
+		eat(Punctuations.CURLY_CLS);
+		
+		return iE;
+		
+	}
+	
+	
+	public List<Identifier> parseIdList(){ //comma separated
+		
 	}
 	
 	public ObjectExpression parseList() {
