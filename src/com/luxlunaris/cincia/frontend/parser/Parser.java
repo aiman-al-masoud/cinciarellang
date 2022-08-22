@@ -1000,10 +1000,8 @@ public class Parser {
 		DictComprehension dC = new DictComprehension();
 		dC.key = entry.getKey();
 		dC.val = entry.getValue();
-		
 		eat(Keywords.FOR);
 		dC.iterable = parseExpression();
-		
 		
 		if(tStream.peek().getValue().equals(Keywords.WHERE)) {
 			eat(Keywords.WHERE);
