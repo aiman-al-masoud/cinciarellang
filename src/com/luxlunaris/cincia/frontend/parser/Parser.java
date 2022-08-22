@@ -984,16 +984,35 @@ public class Parser {
 		
 		
 		if(tStream.peek().getValue().equals(Keywords.FOR)) {
-			return parseDictComprehension();
+			return parseDictComprehension(entry);
 		}
-
 		
+		DictExpression dE = new DictExpression();
+		
+		
+
 	}
 	
 	
 	
 	public DictComprehension parseDictComprehension(Entry<Expression, Expression> entry) {
-
+		
+		DictComprehension dC = new DictComprehension();
+		dC.key = entry.getKey();
+		dC.val = entry.getValue();
+		
+		eat(Keywords.FOR);
+		dC.iterable = parseExpression();
+		
+		
+		if(tStream.peek().getValue().equals(Keywords.WHERE)) {
+			eat(Keywords.WHERE);
+			dC.where = parseExpression();
+		}
+		
+		eat(Punctuations.CURLY_CLS);
+		return dC;
+		
 	}
 
 	
