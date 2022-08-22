@@ -805,7 +805,12 @@ public class Parser {
 	
 	
 	public ObjectExpression parseObjectExpression() {
-
+		
+		// check if { or [   => dict or list
+		
+		
+		// get throgh the list of modifiers then check if class or interface or \ (lambda)
+		
 	}
 	
 	public LambdaExpression parseLambdaExpression() {
