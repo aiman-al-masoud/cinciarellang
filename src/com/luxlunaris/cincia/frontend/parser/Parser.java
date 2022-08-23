@@ -333,7 +333,6 @@ public class Parser {
 
 	public CaseStatement parseCaseStatement() {
 		eat(Keywords.CASE);
-
 		CaseStatement cS  = new CaseStatement();
 		cS.cond = parseSingleExpression();
 		cS.block = parseCompStatement();
