@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
+import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.TernaryExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
@@ -101,7 +103,7 @@ public class Parser {
 
 	public Statement parseStatement() {
 
-		Statement res;
+		Statement res = null;
 
 		if(tStream.peek().getValue().equals(Keywords.IF)) {
 			res = parseIfStatement();
@@ -129,21 +131,39 @@ public class Parser {
 			res = parseDefaultStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
-		}else if(Modifiers.isModifier(tStream.peek().getValue().toString())) { //TODO: fix tmp solution requiring at least one modifier before any declaration to identify it as a declaration
-			res = parseDeclStatement();
-		}else {
-			res = parseExpressionStatement();
 		}
 
-		return res;		
+		return res==null? parseDecOrExpStatement() : res;
+
 	}
 
-	public ExpressionStatement parseExpressionStatement() {
 
-		ExpressionStatement eS = new ExpressionStatement(parseSingleExpression());
+	public Statement parseDecOrExpStatement() {
+
+		if(!(tStream.peek() instanceof Identifier)  &&  !(tStream.peek() instanceof Modifier)) {
+			return parseExpressionStatement(null);
+		}
+
+		Declaration d = parseDeclaration(); //multi declaration, eg: x:int, y:float OR x OR modifiers \x:int, y:int:int
+
+		if (tStream.peek().getValue().equals(Punctuations.STM_SEP)) {
+			DeclarationStatement dS = new DeclarationStatement(d);
+			eat(Punctuations.STM_SEP);
+			return dS;
+		}
+
+		return parseExpressionStatement(d);		
+	}
+
+
+
+	public ExpressionStatement parseExpressionStatement(LeftValue lV) {
+
+		ExpressionStatement eS = new ExpressionStatement(parseSingleExpression(lV));
 		eat(Punctuations.STM_SEP);
 		return eS;
 	}
+
 
 	public IfStatement parseIfStatement() {
 
@@ -388,18 +408,6 @@ public class Parser {
 		return Map.entry(dEx, alias);
 	}
 
-
-	public Declaration parseDeclaration() {
-		List<Modifier> modifiers = parseModifiers();
-
-		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
-			return parseSignature(modifiers);
-		}
-
-		return parseMultiOrSingleDeclaration(modifiers);
-	}
-
-
 	public List<Modifier> parseModifiers(){
 
 		ArrayList<Modifier> res = new ArrayList<Modifier>();
@@ -417,23 +425,23 @@ public class Parser {
 		return res;
 	}
 
-	public Declaration parseMultiOrSingleDeclaration(List<Modifier> modifiers) {
+	public Declaration parseDeclaration() {
 
-		MultiDeclaration mD = parseMultiDeclaration(modifiers);
+		MultiDeclaration mD = parseMultiDeclaration();
 		return mD.declarations.size()==1? mD.declarations.get(0) : mD;
 	}
 
 
-	public MultiDeclaration parseMultiDeclaration(List<Modifier> modifiers) {
+	public MultiDeclaration parseMultiDeclaration() {
 
 		MultiDeclaration mD = new MultiDeclaration();
-		mD.addDeclaration(parseSingleDeclaration(modifiers));
+		mD.addDeclaration(parseSingleDeclaration());
 
 		while(!tStream.isEnd()) {	
 
 			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
 				eat(Punctuations.COMMA);
-				mD.addDeclaration(parseSingleDeclaration(parseModifiers()));
+				mD.addDeclaration(parseSingleDeclaration());
 				continue;
 			}
 
@@ -443,37 +451,40 @@ public class Parser {
 		return mD;
 	}
 
+	public SingleDeclaration parseSingleDeclaration() {
+		
+		List<Modifier> modifiers = parseModifiers();
+		Identifier id = parseIdentifier();
+		
+		if(!tStream.peek().getValue().equals(Punctuations.COL)) {
+			VariableDeclaration vD = new VariableDeclaration();
+			vD.modifiers = modifiers;
+			vD.name = id;
+			return vD; //type is unspecified
+		}
+		
+		eat(Punctuations.COL);
 
-
-
-	public SingleDeclaration parseSingleDeclaration(List<Modifier> modifiers) {
-
-		SingleDeclaration sD = new SingleDeclaration();
+		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
+			FunctionDeclaration fD = new FunctionDeclaration();
+			fD.modifiers = modifiers;
+			fD.name = id;
+			fD.signature = parseSignature();
+			return fD;
+		}
+		
+		VariableDeclaration sD = new VariableDeclaration();
 		sD.modifiers = modifiers;
-
-		try {
-			sD.name = (Identifier)tStream.peek();
-			tStream.next();
-		}catch (ClassCastException e) {
-			tStream.croak("Expected identifier (variable name)");
-		}
-
-		if(tStream.peek().getValue().equals(Punctuations.COL)) { 
-			eat(Punctuations.COL);
-			sD.type = parseType();
-		}
-
+		sD.name = id;
+		sD.type = parseType();
 		return sD;
 	}
 
-
-
-	public Signature parseSignature(List<Modifier> modifiers) {
+	public Signature parseSignature() {
 
 		Signature sg = new Signature();
-		sg.modifiers = modifiers;
 		eat(Punctuations.SLASH_BCK);
-		sg.params = parseMultiOrSingleDeclaration(modifiers);
+		sg.params = parseDeclaration();
 
 		if(tStream.peek().getValue().equals(Punctuations.COL)) {
 			eat(Punctuations.COL);
@@ -510,16 +521,23 @@ public class Parser {
 
 	}
 
+
 	public Expression parseSingleExpression() {
+		return parseSingleExpression(null);
+	}
+
+	public Expression parseSingleExpression(LeftValue lV) {
 
 		// assignment (assignment or conditional)
-		return parseAsgnExpression();
+		return parseAsgnExpression(lV);
 
 	}
 
 
 	//right assoc
-	public Expression parseAsgnExpression() {
+	public Expression parseAsgnExpression(LeftValue lV) {
+
+		//check lV is null
 
 		ArrayList<Expression> chain = new ArrayList<Expression>(); 
 		chain.add(parseCondExpression()); 
@@ -988,14 +1006,14 @@ public class Parser {
 		DictExpression dE = new DictExpression();
 		Expression exp;
 		boolean mayBeComprehension = true; 
-		
+
 		while (!tStream.isEnd()) {
-			
+
 			exp = parseExpression();
 
 			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
 				eat(Punctuations.COMMA);
-				
+
 				try {
 					dE.addDestruct((DestructuringExpression)exp);
 				}catch (ClassCastException e) {
@@ -1007,13 +1025,13 @@ public class Parser {
 				Expression val = parseExpression();
 
 				if(tStream.peek().getValue().equals(Keywords.FOR)) {
-					
+
 					if(mayBeComprehension) {
 						return parseDictComprehension(Map.entry(exp, val));
 					}
-					
+
 					tStream.croak("Misplaced 'for', not a comprehension");
-					
+
 				}else {
 					dE.addEntry(exp, val);
 				}

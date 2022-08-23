@@ -3,7 +3,7 @@ package com.luxlunaris.cincia.frontend.ast.expressions;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
+import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
 /**
