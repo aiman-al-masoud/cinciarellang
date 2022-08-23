@@ -529,7 +529,6 @@ public class Parser {
 			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
 				eat(Punctuations.COMMA);
 				mE.addExpression(parseSingleExpression());
-
 				continue;
 			}
 
