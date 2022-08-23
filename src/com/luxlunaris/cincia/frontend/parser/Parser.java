@@ -992,7 +992,12 @@ public class Parser {
 
 			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
 				eat(Punctuations.COMMA);
-				dE.addDestruct((DestructuringExpression)exp);
+				
+				try {
+					dE.addDestruct((DestructuringExpression)exp);
+				}catch (ClassCastException e) {
+					tStream.croak("Expected variable unpacking");
+				}
 
 			}else if (tStream.peek().getValue().equals(Punctuations.COL)) {
 				eat(Punctuations.COL);
