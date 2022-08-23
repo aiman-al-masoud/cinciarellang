@@ -225,8 +225,7 @@ public class Parser {
 		while(!tStream.isEnd()) {
 
 			if (tStream.peek() instanceof Identifier ) {
-				fS.loopVars.add( (Identifier)tStream.peek() );
-				tStream.next(); //eat identifier
+				fS.loopVars.add( parseIdentifier() );
 				continue;
 			}
 
