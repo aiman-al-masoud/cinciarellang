@@ -132,6 +132,7 @@ public class Parser {
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
+			// TODO: (elsewhere!) text preprocessing to auto-add dec keyword before actually feeding into parser
 			res = parseDeclStatement();
 		}else {
 			res = parseExpressionStatement();
