@@ -1013,6 +1013,7 @@ public class Parser {
 					}
 					
 					tStream.croak("Misplaced 'for', not a comprehension");
+					
 				}else {
 					dE.addEntry(exp, val);
 				}
