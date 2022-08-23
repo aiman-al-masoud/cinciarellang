@@ -987,6 +987,7 @@ public class Parser {
 		eat(Punctuations.CURLY_OPN);
 		DictExpression dE = new DictExpression();
 		Expression exp;
+		boolean mayBeComprehension = true; 
 		
 		while (!tStream.isEnd()) {
 			
@@ -1006,7 +1007,12 @@ public class Parser {
 				Expression val = parseExpression();
 
 				if(tStream.peek().getValue().equals(Keywords.FOR)) {
-					return parseDictComprehension(Map.entry(exp, val));
+					
+					if(mayBeComprehension) {
+						return parseDictComprehension(Map.entry(exp, val));
+					}
+					
+					tStream.croak("Misplaced 'for', not a comprehension");
 				}
 
 				dE.addEntry(exp, val);
@@ -1016,6 +1022,7 @@ public class Parser {
 				break;
 			}
 
+			mayBeComprehension = false;
 		}
 
 		return dE;
