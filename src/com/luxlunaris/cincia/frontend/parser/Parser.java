@@ -986,9 +986,11 @@ public class Parser {
 
 		eat(Punctuations.CURLY_OPN);
 		DictExpression dE = new DictExpression();
-
+		Expression exp;
+		
 		while (!tStream.isEnd()) {
-			Expression exp = parseExpression();
+			
+			exp = parseExpression();
 
 			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
 				eat(Punctuations.COMMA);
