@@ -42,7 +42,8 @@ public enum Keywords {
 	 IN,
 	 INT,
 	 FLOAT,
-	 BOOL;	
+	 BOOL,
+	 DEC;// decalaration	
 	
 	public static Keywords fromString(String value){
 		

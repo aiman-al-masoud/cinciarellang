@@ -131,37 +131,45 @@ public class Parser {
 			res = parseDefaultStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
+		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
+			res = parseDeclStatement();
+		}else {
+			res = parseExpressionStatement();
 		}
 
-		return res==null? parseDecOrExpStatement() : res;
-
+		return res;
 	}
 
 
-	public Statement parseDecOrExpStatement() {
+//	public Statement parseDecOrExpStatement() {
+//
+//		if(!(tStream.peek() instanceof Identifier)  &&  !(tStream.peek() instanceof Modifier)) {
+//			return parseExpressionStatement(null);
+//		}
+//
+//		Declaration d = parseDeclaration(); //multi declaration, eg: x:int, y:float OR x OR modifiers \x:int, y:int:int
+//
+//		if (tStream.peek().getValue().equals(Punctuations.STM_SEP)) {
+//			DeclarationStatement dS = new DeclarationStatement(d);
+//			eat(Punctuations.STM_SEP);
+//			return dS;
+//		}
+//
+//		return parseExpressionStatement(d);		
+//	}
 
-		if(!(tStream.peek() instanceof Identifier)  &&  !(tStream.peek() instanceof Modifier)) {
-			return parseExpressionStatement(null);
-		}
+	public ExpressionStatement parseExpressionStatement() {
 
-		Declaration d = parseDeclaration(); //multi declaration, eg: x:int, y:float OR x OR modifiers \x:int, y:int:int
-
-		if (tStream.peek().getValue().equals(Punctuations.STM_SEP)) {
-			DeclarationStatement dS = new DeclarationStatement(d);
-			eat(Punctuations.STM_SEP);
-			return dS;
-		}
-
-		return parseExpressionStatement(d);		
-	}
-
-
-
-	public ExpressionStatement parseExpressionStatement(LeftValue lV) {
-
-		ExpressionStatement eS = new ExpressionStatement(parseSingleExpression(lV));
+		ExpressionStatement eS = new ExpressionStatement(parseSingleExpression());
 		eat(Punctuations.STM_SEP);
 		return eS;
+	}
+	
+	public DeclarationStatement parseDeclStatement() {
+
+		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
+		eat(Punctuations.STM_SEP);
+		return dS;
 	}
 
 
@@ -222,13 +230,7 @@ public class Parser {
 		return cS;
 	}
 
-	public DeclarationStatement parseDeclStatement() {
-
-		//		DeclarationStatement dS = new DeclarationStatement(parseMultiOrSingleDeclaration(parseModifiers()));
-		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
-		eat(Punctuations.STM_SEP);
-		return dS;
-	}
+	
 
 
 	public ForStatement parseForStatement() {
@@ -523,28 +525,22 @@ public class Parser {
 
 
 	public Expression parseSingleExpression() {
-		return parseSingleExpression(null);
-	}
-
-	public Expression parseSingleExpression(LeftValue lV) {
 
 		// assignment (assignment or conditional)
-		return parseAsgnExpression(lV);
+		return parseAsgnExpression();
 
 	}
 
-
 	//right assoc
-	public Expression parseAsgnExpression(LeftValue lV) {
+	public Expression parseAsgnExpression() {
 
-		//check lV is null
-
-		ArrayList<Expression> chain = new ArrayList<Expression>(); 
+		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
 
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
 		}
+		
 
 		while(!tStream.isEnd()) {
 
