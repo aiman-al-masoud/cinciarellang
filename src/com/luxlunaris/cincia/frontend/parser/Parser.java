@@ -861,7 +861,8 @@ public class Parser {
 	public LambdaExpression parseLambdaExpression(List<Modifier> modifiers) {
 
 		LambdaExpression lE = new LambdaExpression();
-		lE.signature = parseSignature(modifiers);
+		lE.modifiers = modifiers;
+		lE.signature = parseSignature();
 		eat(Operators.ARROW);
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
