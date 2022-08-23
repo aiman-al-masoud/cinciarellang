@@ -173,30 +173,6 @@ public class Parser {
 		return ifS;
 	}
 
-	public MatchStatement parseMatchStatement() {
-
-		eat(Keywords.MATCH);
-		MatchStatement mS = new MatchStatement();
-		mS.cond = parseSingleExpression();
-		eat(Punctuations.CURLY_OPN);
-
-		while(!tStream.isEnd()) {
-			if(tStream.peek().getValue().equals(Keywords.CASE)) {
-				mS.add(parseCaseStatement());
-			}else {
-				break;
-			}
-		}
-
-		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
-			mS.defaultStatement = parseDefaultStatement();
-		}
-		
-		eat(Punctuations.CURLY_CLS);
-
-		return mS;
-	}
-
 
 	public CompoundStatement parseCompStatement() {
 
@@ -332,7 +308,31 @@ public class Parser {
 		eat(Keywords.BREAK);
 		return new BreakStatement();
 	}
+	
 
+	public MatchStatement parseMatchStatement() {
+
+		eat(Keywords.MATCH);
+		MatchStatement mS = new MatchStatement();
+		mS.cond = parseSingleExpression();
+		eat(Punctuations.CURLY_OPN);
+
+		while(!tStream.isEnd()) {
+			if(tStream.peek().getValue().equals(Keywords.CASE)) {
+				mS.add(parseCaseStatement());
+			}else {
+				break;
+			}
+		}
+
+		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
+			mS.defaultStatement = parseDefaultStatement();
+		}
+		
+		eat(Punctuations.CURLY_CLS);
+
+		return mS;
+	}
 
 	public CaseStatement parseCaseStatement() {
 		eat(Keywords.CASE);
