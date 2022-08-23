@@ -1013,10 +1013,10 @@ public class Parser {
 					}
 					
 					tStream.croak("Misplaced 'for', not a comprehension");
+				}else {
+					dE.addEntry(exp, val);
 				}
 
-				dE.addEntry(exp, val);
-				
 			}else if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
 				eat(Punctuations.CURLY_CLS);
 				break;
