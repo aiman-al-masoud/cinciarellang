@@ -140,25 +140,8 @@ public class Parser {
 
 		return res;
 	}
-
-
-//	public Statement parseDecOrExpStatement() {
-//
-//		if(!(tStream.peek() instanceof Identifier)  &&  !(tStream.peek() instanceof Modifier)) {
-//			return parseExpressionStatement(null);
-//		}
-//
-//		Declaration d = parseDeclaration(); //multi declaration, eg: x:int, y:float OR x OR modifiers \x:int, y:int:int
-//
-//		if (tStream.peek().getValue().equals(Punctuations.STM_SEP)) {
-//			DeclarationStatement dS = new DeclarationStatement(d);
-//			eat(Punctuations.STM_SEP);
-//			return dS;
-//		}
-//
-//		return parseExpressionStatement(d);		
-//	}
-
+	
+	
 	public ExpressionStatement parseExpressionStatement() {
 
 		ExpressionStatement eS = new ExpressionStatement(parseSingleExpression());
