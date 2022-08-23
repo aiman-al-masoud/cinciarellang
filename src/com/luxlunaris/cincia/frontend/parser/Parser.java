@@ -178,6 +178,7 @@ public class Parser {
 		eat(Keywords.MATCH);
 		MatchStatement mS = new MatchStatement();
 		mS.cond = parseSingleExpression();
+		eat(Punctuations.CURLY_OPN);
 
 		while(!tStream.isEnd()) {
 			if(tStream.peek().getValue().equals(Keywords.CASE)) {
@@ -190,6 +191,8 @@ public class Parser {
 		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
 			mS.defaultStatement = parseDefaultStatement();
 		}
+		
+		eat(Punctuations.CURLY_CLS);
 
 		return mS;
 	}
@@ -334,15 +337,47 @@ public class Parser {
 	public CaseStatement parseCaseStatement() {
 		eat(Keywords.CASE);
 		CaseStatement cS  = new CaseStatement();
+		CompoundStatement block = new CompoundStatement();
+		
 		cS.cond = parseSingleExpression();
-		cS.block = parseCompStatement();
+		eat(Punctuations.COL);
+		
+		while(!tStream.isEnd()) {
+			
+			//DOESN'T stop at break.
+			//stops at next case statement, or default statement, or closing curly brace
+			if(tStream.peek().getValue().equals(Keywords.CASE) || tStream.peek().getValue().equals(Keywords.DEFAULT) || tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+				break;
+			}
+			
+			block.add(parseStatement());
+			
+		}
+		
+		cS.block = block;
 		return cS;
 	}
+	
 
 	public DefaultStatement parseDefaultStatement() {
 		eat(Keywords.DEFAULT);
+		eat(Punctuations.COL);
 		DefaultStatement dS  = new DefaultStatement();
-		dS.block = parseCompStatement();
+		CompoundStatement block = new CompoundStatement();
+		
+		while(!tStream.isEnd()) {
+			
+			//DOESN'T stop at break.
+			//stops at closing curly brace
+			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+				break;
+			}
+			
+			block.add(parseStatement());
+			
+		}
+		
+		dS.block = block;
 		return dS;
 	}
 
