@@ -1162,7 +1162,7 @@ public class Parser {
 			id = (Identifier)tStream.peek();
 			tStream.next();
 		}catch (ClassCastException e) {
-			tStream.croak("Expected id");
+			tStream.croak("Expected identifier");
 		}
 
 		return id;
