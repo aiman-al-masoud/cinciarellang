@@ -29,4 +29,9 @@ public class VariableDeclaration extends SingleDeclaration{
 		modifiers.add(modifier);
 	}
 	
+	@Override
+		public String toString() {
+			return modifiers+" "+name+":"+type;
+		}
+	
 }

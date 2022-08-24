@@ -12,4 +12,9 @@ public class DeclarationStatement implements Statement{
 		this.declaration = declaration;
 	}
 	
+	@Override
+	public String toString() {
+		return declaration.toString();
+	}
+	
 }
