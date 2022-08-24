@@ -752,6 +752,7 @@ public class Parser {
 
 
 	public CalledExpression parseCalledExpression(PostfixExpression left) {
+		
 		eat(Punctuations.PAREN_OPN);
 		CalledExpression cE = new CalledExpression();
 		cE.callable = left;
