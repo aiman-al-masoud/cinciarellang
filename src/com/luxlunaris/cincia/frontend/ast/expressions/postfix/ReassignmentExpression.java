@@ -15,5 +15,12 @@ public class ReassignmentExpression implements PostfixExpression{
 	public PostfixExpression left;
 	public Expression right; //could be null (x++, x--)
 	
+	@Override
+	public Expression simplify() {
+		this.left = (PostfixExpression) left.simplify();
+		this.right = left.simplify();
+		return this;
+	}
+	
 	
 }

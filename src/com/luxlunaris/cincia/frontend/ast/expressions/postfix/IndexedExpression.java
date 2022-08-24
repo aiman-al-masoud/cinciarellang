@@ -13,6 +13,13 @@ public class IndexedExpression implements PostfixExpression, LeftValue{
 	public PostfixExpression indexable;
 	public Expression index; //can also be iterable
 	
+	@Override
+	public Expression simplify() {
+		this.indexable = (PostfixExpression) indexable.simplify();
+		this.index = index.simplify();
+		return this;
+	}
+	
 //	public IndexedExpression indexOrIterable;
 	
 	

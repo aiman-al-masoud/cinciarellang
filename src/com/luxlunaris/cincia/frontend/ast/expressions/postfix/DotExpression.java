@@ -21,5 +21,11 @@ public class DotExpression implements PostfixExpression, LeftValue {
 	public String toString() {
 		return "("+left+"."+right+")";
 	}
+
+	@Override
+	public Expression simplify() {
+		this.left = (PostfixExpression) left.simplify();
+		return this;
+	}
 	
 }
