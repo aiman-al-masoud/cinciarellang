@@ -1137,7 +1137,7 @@ public class Parser {
 		ListType lT = new ListType();
 		lT.value = oT;
 		eat(Punctuations.SQBR_OPN);
-		eat(Punctuations.SQBR_CLS);
+		eat(Punctuations.SQBR_CLS); // TODO: keep on doing this in a loop for x[][][]...
 		return lT;
 	}
 
