@@ -12,6 +12,13 @@ public class Test {
 		
 		String source = "1;";
 		source = "x == 1 ? 3 : 4;";
+		source = "a = b = c = 1;";
+		source = "x = [1,2,3];";
+		source = "f  = \\x -> 1;";
+		source = "x = {'y' : 222 };";
+		
+		
+
 		CharStream cS = new CharStream(source);
 		TokenStream tS = new TokenStream(cS);		
 		Parser p  = new Parser(tS);

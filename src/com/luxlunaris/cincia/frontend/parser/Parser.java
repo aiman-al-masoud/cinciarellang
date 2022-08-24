@@ -981,7 +981,7 @@ public class Parser {
 	private ObjectExpression parseList() {
 
 		eat(Punctuations.SQBR_OPN);
-		Expression exp = parseExpression();
+		Expression exp = parseSingleExpression();
 
 		if(tStream.peek().getValue().equals(Keywords.FOR)) {
 			return parseListComprehension(exp);
@@ -1022,7 +1022,7 @@ public class Parser {
 
 		while (!tStream.isEnd()) {
 
-			exp = parseExpression();
+			exp = parseSingleExpression();
 
 			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
 				eat(Punctuations.COMMA);
@@ -1034,8 +1034,10 @@ public class Parser {
 				}
 
 			}else if (tStream.peek().getValue().equals(Punctuations.COL)) {
+				
 				eat(Punctuations.COL);
-				Expression val = parseExpression();
+				Expression val = parseSingleExpression();
+
 
 				if(tStream.peek().getValue().equals(Keywords.FOR)) {
 
@@ -1049,7 +1051,10 @@ public class Parser {
 					dE.addEntry(exp, val);
 				}
 
-			}else if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+			}
+			
+			
+			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
 				eat(Punctuations.CURLY_CLS);
 				break;
 			}
