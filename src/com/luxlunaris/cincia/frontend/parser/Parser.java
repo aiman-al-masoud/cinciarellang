@@ -591,8 +591,8 @@ public class Parser {
 		
 	}
 
-	//left assoc
-	public OrExpression parseOrExpression() {
+	
+	public OrExpression parseOrExpression() { //left assoc, as most of the others
 
 		OrExpression oE = new OrExpression(); 
 		oE.left = parseAndExpression();
