@@ -230,7 +230,6 @@ public class Parser {
 	public TryStatement parseTryStatement() {
 
 		eat(Keywords.TRY);
-
 		TryStatement tS = new TryStatement();
 		tS.tryBlock = parseCompStatement();
 
