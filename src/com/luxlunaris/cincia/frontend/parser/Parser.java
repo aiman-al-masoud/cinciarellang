@@ -392,6 +392,7 @@ public class Parser {
 		}
 
 		eat(Keywords.FROM);
+		
 		try {
 			iS.fromPath =  (Str)tStream.peek();
 		}catch (ClassCastException e) {
