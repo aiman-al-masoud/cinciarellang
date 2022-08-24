@@ -597,7 +597,6 @@ public class Parser {
 		OrExpression oE = new OrExpression(); 
 		oE.left = parseAndExpression();
 
-
 		while(!tStream.isEnd()) {
 			if(tStream.peek().getValue().equals(Operators.OR)) {
 				eat(Operators.OR);
