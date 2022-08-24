@@ -801,7 +801,13 @@ public class Parser {
 		
 		ReassignmentExpression rE = new ReassignmentExpression();
 		rE.left = left;
-		rE.operator = (Operators)tStream.peek().getValue();
+		
+		try {
+			rE.operator = (Operators)tStream.peek().getValue();
+		}catch (ClassCastException e) {
+			tStream.croak("Expected postfix operator");
+		}
+		
 		tStream.next(); // eat operator
 		rE.right =  parseExpression();
 		return rE;
