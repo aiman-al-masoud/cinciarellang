@@ -1016,7 +1016,7 @@ public class Parser {
 		eat(Punctuations.CURLY_OPN);
 		DictExpression dE = new DictExpression();
 		Expression exp;
-		boolean mayBeComprehension = true; 
+		boolean firstLoop = true; 
 
 		while (!tStream.isEnd()) {
 
@@ -1037,7 +1037,7 @@ public class Parser {
 
 				if(tStream.peek().getValue().equals(Keywords.FOR)) {
 
-					if(mayBeComprehension) {
+					if(firstLoop) {
 						return parseDictComprehension(Map.entry(exp, val));
 					}
 
@@ -1052,7 +1052,7 @@ public class Parser {
 				break;
 			}
 
-			mayBeComprehension = false;
+			firstLoop = false;
 		}
 
 		return dE;
