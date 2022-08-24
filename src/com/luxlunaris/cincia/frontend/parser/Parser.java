@@ -323,10 +323,10 @@ public class Parser {
 	}
 
 	public CaseStatement parseCaseStatement() {
+		
 		eat(Keywords.CASE);
 		CaseStatement cS  = new CaseStatement();
 		CompoundStatement block = new CompoundStatement();
-		
 		cS.cond = parseSingleExpression();
 		eat(Punctuations.COL);
 		
