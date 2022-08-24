@@ -571,9 +571,7 @@ public class Parser {
 
 
 
-	public Expression parseCondExpression() {
-
-		//OrExpression or TernaryExpression
+	public Expression parseCondExpression() { //OrExpression or TernaryExpression
 
 		Expression oE = parseOrExpression();
 
