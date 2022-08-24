@@ -15,4 +15,9 @@ public class DestructuringExpression implements UnaryExpression{
 	public DestructuringExpression(UnaryExpression arg) {
 		this.arg = arg;
 	}
+	
+	@Override
+	public Expression simplify() {
+		return new DestructuringExpression((UnaryExpression)arg.simplify());
+	}
 }

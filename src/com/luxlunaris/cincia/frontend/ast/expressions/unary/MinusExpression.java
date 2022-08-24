@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.unary;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.UnaryExpression;
 
 /**
@@ -13,5 +14,10 @@ public class MinusExpression implements UnaryExpression{
 	
 	public MinusExpression(UnaryExpression arg) {
 		this.arg = arg;
+	}
+	
+	@Override
+	public Expression simplify() {
+		return new MinusExpression((UnaryExpression)arg.simplify());
 	}
 }
