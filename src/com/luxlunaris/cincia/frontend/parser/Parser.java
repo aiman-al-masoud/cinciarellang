@@ -152,6 +152,7 @@ public class Parser {
 	
 	private DeclarationStatement parseDeclStatement() {
 
+		eat(Keywords.DEC);
 		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
 		eat(Punctuations.STM_SEP);
 		return dS;
@@ -463,7 +464,12 @@ public class Parser {
 
 	private SingleDeclaration parseSingleDeclaration() {
 		
-		List<Modifier> modifiers = parseModifiers();
+		List<Modifier> modifiers = new ArrayList<Modifier>();
+		
+		if(tStream.peek() instanceof Modifier) {
+			modifiers = parseModifiers();
+		}
+		
 		Identifier id = parseIdentifier();
 		eat(Punctuations.COL);
 

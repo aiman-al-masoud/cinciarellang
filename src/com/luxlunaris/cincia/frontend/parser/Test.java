@@ -15,8 +15,9 @@ public class Test {
 		source = "a = b = c = 1;";
 		source = "x = [1,2,3];";
 		source = "f  = \\x -> 1;";
-		source = "x = {'y' : 222 };";
-		
+//		source = "x = {'y' : 222 };";
+		source = "dec x:int;";
+
 		
 
 		CharStream cS = new CharStream(source);
