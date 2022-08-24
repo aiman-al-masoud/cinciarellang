@@ -465,12 +465,12 @@ public class Parser {
 		List<Modifier> modifiers = parseModifiers();
 		Identifier id = parseIdentifier();
 		
-		if(!tStream.peek().getValue().equals(Punctuations.COL)) {
-			VariableDeclaration vD = new VariableDeclaration();
-			vD.modifiers = modifiers;
-			vD.name = id;
-			return vD; //type is unspecified
-		}
+//		if(!tStream.peek().getValue().equals(Punctuations.COL)) {
+//			VariableDeclaration vD = new VariableDeclaration();
+//			vD.modifiers = modifiers;
+//			vD.name = id;
+//			return vD; //type is unspecified
+//		}
 		
 		eat(Punctuations.COL);
 
