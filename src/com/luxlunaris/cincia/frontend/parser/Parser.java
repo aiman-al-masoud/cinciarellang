@@ -85,7 +85,7 @@ public class Parser {
 
 	public Parser(TokenStream tStream) {
 		this.tStream = tStream;
-		this.tStream.next(); //initialize
+		this.tStream.next(); //get first token
 	}
 
 	public List<Statement> parse(){
