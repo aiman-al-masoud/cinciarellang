@@ -556,7 +556,9 @@ public class Parser {
 		for(int i = 1; i < chain.size(); i++) {
 
 			try {
-				asgn1.left = (LeftValue) chain.get(i);
+				//TODO: fix this
+//				asgn1.left = (LeftValue) chain.get(i);
+				asgn1.left = chain.get(i);
 				AssignmentExpression asgn2 = new AssignmentExpression();
 				asgn2.right = asgn1;
 				asgn1 = asgn2;
@@ -825,7 +827,7 @@ public class Parser {
 		}
 
 		// identifiers
-		if(tStream.peek().getValue() instanceof Identifier) {
+		if(tStream.peek() instanceof Identifier) {
 			return parseIdentifier();
 		}
 

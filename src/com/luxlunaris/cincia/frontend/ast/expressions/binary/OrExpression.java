@@ -10,6 +10,11 @@ public class OrExpression implements Expression{
 	public Expression left;
 	public AndExpression right;
 	
+	@Override
+	public String toString() {
+		return "("+left+" || "+right+")";
+	}
+	
 // or other solution
 //	public OrExpression left;
 //	OrExpression e = new OrExpression();

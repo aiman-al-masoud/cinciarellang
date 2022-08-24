@@ -9,5 +9,8 @@ public class AddExpression implements Expression{
 	public Expression left;
 	public MulExpression right;
 	
-	
+	@Override
+	public String toString() {
+		return "("+left+" "+op+" "+right+")";
+	}
 }

@@ -9,4 +9,9 @@ public class ComparisonExpression implements Expression{
 	public Expression left;
 	public AddExpression right;
 	
+	@Override
+	public String toString() {
+		return "("+left+" "+op+" "+right+")";
+	}
+	
 }

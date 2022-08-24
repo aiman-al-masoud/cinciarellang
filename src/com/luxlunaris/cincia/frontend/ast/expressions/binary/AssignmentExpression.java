@@ -11,8 +11,9 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
  */
 public class AssignmentExpression implements Expression{
 	
-	
-	public LeftValue left;
+	//TODO: fix this
+//	public LeftValue left;
+	public Expression left;
 	public Expression right; //other assignment expression or conditional expression or object
 	
 	@Override

@@ -16,7 +16,7 @@ public class Test3 {
 
 		DotExpression dexp2 = new DotExpression();
 		dexp2.left  = new Identifier("y");
-		dexp2.right = dexp3;	
+//		dexp2.right = dexp3;	
 		
 		AssignmentExpression asgn =  new AssignmentExpression();
 		

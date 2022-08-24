@@ -7,4 +7,9 @@ public class AndExpression implements Expression{
 	public Expression left;
 	public ComparisonExpression right;
 	
+	@Override
+	public String toString() {
+		return "("+left+" && "+right+")";
+	}
+	
 }

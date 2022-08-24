@@ -10,4 +10,9 @@ public class MulExpression implements Expression{
 	public Expression left;
 	public UnaryExpression right;
 	
+	@Override
+	public String toString() {
+		return "("+left+" "+op+" "+right+")";
+	}
+	
 }

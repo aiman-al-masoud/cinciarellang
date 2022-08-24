@@ -16,12 +16,12 @@ public class Test2 {
 
 		DotExpression dexp2 = new DotExpression();
 		dexp2.left  = new Identifier("y");
-		dexp2.right = dexp3;
+//		dexp2.right = dexp3;
 		
 		
 		DotExpression dexp = new DotExpression();
 		dexp.left = new Identifier("x");
-		dexp.right = dexp2;
+//		dexp.right = dexp2;
 		
 		// x.y.z which really is (z.(y.(z)))
 		System.out.println(dexp);
