@@ -913,15 +913,13 @@ public class Parser {
 
 		eat(Punctuations.CURLY_OPN);
 
-		// parse attributes and methods
-		// OR parse declaration statements and assignments. 
-
 		while(!tStream.isEnd()) {
 
 			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
 				break;
 			}
 
+			//TODO cast type and check validity
 			cE.addStatement(parseStatement());
 		}
 
