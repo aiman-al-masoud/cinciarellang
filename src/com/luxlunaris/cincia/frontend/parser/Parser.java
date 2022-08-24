@@ -997,9 +997,9 @@ public class Parser {
 
 	public ListComprehension parseListComprehension(Expression exp) {
 
+		eat(Keywords.FOR);
 		ListComprehension lC = new ListComprehension();
 		lC.element = exp;
-		eat(Keywords.FOR);
 		lC.iterable = parseExpression();
 
 		if(tStream.peek().getValue().equals(Keywords.WHERE)) {
