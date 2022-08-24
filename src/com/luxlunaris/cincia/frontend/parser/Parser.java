@@ -268,9 +268,8 @@ public class Parser {
 		return tS;
 	}
 
-
-
 	public ReturnStatement parseReturnStatement() {
+		
 		eat(Keywords.RETURN);
 		ReturnStatement rS  = new ReturnStatement();
 
