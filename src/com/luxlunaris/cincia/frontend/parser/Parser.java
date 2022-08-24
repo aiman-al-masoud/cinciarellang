@@ -665,7 +665,7 @@ public class Parser {
 		while(!tStream.isEnd()) {
 			if(Operators.isAddOperator(tStream.peek().getValue())) {
 				one.op = (Operators)tStream.peek().getValue();
-				tStream.next();
+				eat(one.op);
 				one.right = parseMulExpression();
 				AddExpression two = new AddExpression();
 				two.left = one;
@@ -686,7 +686,7 @@ public class Parser {
 		while(!tStream.isEnd()) {
 			if(Operators.isMulOperator(tStream.peek().getValue())) {
 				one.op = (Operators)tStream.peek().getValue();
-				tStream.next();
+				eat(one.op);
 				one.right = parseUnaryExpression();
 				MulExpression two = new MulExpression();
 				two.left = one;
