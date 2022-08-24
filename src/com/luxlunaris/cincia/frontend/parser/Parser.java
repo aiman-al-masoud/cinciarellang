@@ -582,9 +582,11 @@ public class Parser {
 		TernaryExpression tE = new TernaryExpression();
 		tE.cond = oE;
 		eat(Punctuations.QUESTION_MARK);
-		tE.thenExpression = parseOrExpression();
+//		tE.thenExpression = parseOrExpression();
+		tE.thenExpression = parseSingleExpression();
 		eat(Punctuations.COL);
-		tE.elseExpression = parseOrExpression();
+//		tE.elseExpression = parseOrExpression();
+		tE.elseExpression = parseSingleExpression();
 		return tE;
 		
 	}
