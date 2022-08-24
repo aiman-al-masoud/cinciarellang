@@ -285,11 +285,13 @@ public class Parser {
 	}
 
 	public ContinueStatement parseContinueStatement() {
+		
 		eat(Keywords.CONTINUE);
 		return new ContinueStatement();
 	}
 
 	public BreakStatement parseBreakStatement() {
+		
 		eat(Keywords.BREAK);
 		return new BreakStatement();
 	}
