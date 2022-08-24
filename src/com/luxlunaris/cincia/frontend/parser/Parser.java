@@ -215,7 +215,6 @@ public class Parser {
 		eat(Keywords.IN); // TODO: or 'of' ?
 		fS.iterable = parseSingleExpression();
 		fS.block = parseCompStatement();
-
 		return fS;
 	}
 
