@@ -244,6 +244,7 @@ public class Parser {
 		}
 
 		if(tStream.peek().getValue().equals(Keywords.FINALLY)) {
+			eat(Keywords.FINALLY);
 			tS.finallyBlock = parseCompStatement();
 		}
 
