@@ -644,7 +644,7 @@ public class Parser {
 		while(!tStream.isEnd()) {
 			if(Operators.isComparisonOperator(tStream.peek().getValue())) {
 				one.op = (Operators)tStream.peek().getValue();
-				tStream.next();
+				tStream.next(); // eat operator
 				one.right = parseAddExpression();
 				ComparisonExpression two = new ComparisonExpression();
 				two.left = one;
