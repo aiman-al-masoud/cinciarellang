@@ -348,6 +348,7 @@ public class Parser {
 	
 
 	public DefaultStatement parseDefaultStatement() {
+		
 		eat(Keywords.DEFAULT);
 		eat(Punctuations.COL);
 		DefaultStatement dS  = new DefaultStatement();
