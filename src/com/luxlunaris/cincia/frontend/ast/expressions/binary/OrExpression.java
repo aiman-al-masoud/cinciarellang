@@ -15,6 +15,7 @@ public class OrExpression implements Expression{
 		return "("+left+" || "+right+")";
 	}
 	
+	
 // or other solution
 //	public OrExpression left;
 //	OrExpression e = new OrExpression();
