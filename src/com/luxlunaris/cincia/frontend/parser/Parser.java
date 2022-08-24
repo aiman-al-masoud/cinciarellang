@@ -471,6 +471,14 @@ public class Parser {
 		}
 		
 		Identifier id = parseIdentifier();
+		
+		if(!tStream.peek().getValue().equals(Punctuations.COL)) {
+			VariableDeclaration vD = new VariableDeclaration();
+			vD.name = id;
+			vD.modifiers = modifiers;
+			return vD; //unspecified type
+		}
+		
 		eat(Punctuations.COL);
 
 		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
