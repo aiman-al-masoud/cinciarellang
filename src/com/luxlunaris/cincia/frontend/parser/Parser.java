@@ -547,12 +547,8 @@ public class Parser {
 			eat(Operators.ASSIGN);
 			chain.add(parseCondExpression());  			
 		}
-
-		// z = y = x = 1  ---->  1, x, y, z
-		// to traverse chain from right to left
-		Collections.reverse(chain);
-
-
+		
+		Collections.reverse(chain); // to traverse chain from right to left, eg: z = y = x = 1  ---->  1, x, y, z
 		AssignmentExpression asgn1 = new AssignmentExpression();
 		asgn1.right = chain.get(0); //  preamble
 
