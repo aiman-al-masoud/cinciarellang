@@ -305,11 +305,13 @@ public class Parser {
 		eat(Punctuations.CURLY_OPN);
 
 		while(!tStream.isEnd()) {
+			
 			if(tStream.peek().getValue().equals(Keywords.CASE)) {
 				mS.add(parseCaseStatement());
 			}else {
 				break;
 			}
+			
 		}
 
 		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
