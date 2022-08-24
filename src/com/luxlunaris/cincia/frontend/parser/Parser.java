@@ -808,7 +808,7 @@ public class Parser {
 			tStream.croak("Expected postfix operator");
 		}
 		
-		tStream.next(); // eat operator
+		eat(rE.operator);
 		rE.right =  parseExpression();
 		return rE;
 	}
