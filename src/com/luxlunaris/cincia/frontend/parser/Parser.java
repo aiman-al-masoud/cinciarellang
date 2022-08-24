@@ -369,7 +369,7 @@ public class Parser {
 		dS.block = block;
 		return dS;
 	}
-
+	
 
 	public ImportStatement parseImportStatement() {
 
@@ -402,7 +402,7 @@ public class Parser {
 		eat(Punctuations.STM_SEP);
 		return iS;
 	}
-
+	
 
 	public Entry<DotExpression, Identifier> parseImported(){
 
