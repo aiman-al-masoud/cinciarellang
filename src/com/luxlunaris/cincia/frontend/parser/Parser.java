@@ -714,16 +714,19 @@ public class Parser {
 	}
 
 	public MinusExpression parseMinusExpression() {
+		
 		eat(Operators.MINUS);
 		return new MinusExpression(parseUnaryExpression());
 	}
 
 	public NegationExpression parseNegationExpression() {
+		
 		eat(Operators.NOT);
 		return new NegationExpression(parseUnaryExpression());
 
 	}
 	public DestructuringExpression parseDestrExpression() {
+		
 		eat(Operators.ASTERISK);
 		return new DestructuringExpression(parseUnaryExpression());
 	}
