@@ -735,20 +735,32 @@ public class Parser {
 
 	public PostfixExpression parsePostfixExpression() {
 
-		PrimaryExpression exp = parsePrimaryExpression();
+//		PrimaryExpression exp = parsePrimaryExpression();
+		PostfixExpression exp = parsePrimaryExpression();
+//		ArrayList<PostfixExpression> chain = new ArrayList<PostfixExpression>();
+//		chain.add(parsePrimaryExpression());
 
-		if(tStream.peek().getValue().equals(Punctuations.PAREN_OPN)) {
-			return parseCalledExpression(exp);
-		}else if(tStream.peek().getValue().equals(Punctuations.SQBR_OPN)) {
-			return parseIndexedExpression(exp);
-		}else if(tStream.peek().getValue().equals(Punctuations.DOT)) {
-			return parseDotExpression(exp);
-		}else if(Operators.isReassignmentOperator(tStream.peek().getValue())) {
-			return parseReasgnExpression(exp);
-		}else {
-			return exp;
+		while (!tStream.isEnd()) {
+			
+			if(tStream.peek().getValue().equals(Punctuations.PAREN_OPN)) {
+//				return parseCalledExpression(exp);
+				exp = parseCalledExpression(exp);
+			}else if(tStream.peek().getValue().equals(Punctuations.SQBR_OPN)) {
+//				return parseIndexedExpression(exp);
+				exp = parseIndexedExpression(exp);
+			}else if(tStream.peek().getValue().equals(Punctuations.DOT)) {
+//				return parseDotExpression(exp);
+				exp  = parseDotExpression(exp);
+			}else if(Operators.isReassignmentOperator(tStream.peek().getValue())) {
+//				return parseReasgnExpression(exp);
+				exp = parseReasgnExpression(exp);
+			}else {
+				break;
+			}
+			
 		}
-
+		
+		return exp;
 	}
 
 
