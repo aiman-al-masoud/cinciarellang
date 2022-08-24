@@ -27,7 +27,6 @@ public class Test {
 		List<Statement> statements = p.parse();
 		System.out.println(statements.get(0));
 		
-		
 	}
 
 	
