@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.frontend.ast.tokens;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
 
 public abstract class AbstractToken implements Token{
@@ -33,6 +34,11 @@ public abstract class AbstractToken implements Token{
 			e.printStackTrace();
 		} 
 		return null;
+	}
+	
+	@Override
+	public Expression simplify() {
+		return this;
 	}
 	
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
-public class OrExpression implements Expression{
+public class OrExpression extends AssignmentExpression{
 
 
 	public Expression left;
@@ -13,6 +13,19 @@ public class OrExpression implements Expression{
 	@Override
 	public String toString() {
 		return "("+left+" || "+right+")";
+	}
+	
+	@Override
+	public Expression simplify() {
+		
+		this.left = left.simplify();
+		
+		if(right==null) {
+			return left;
+		}
+		
+		this.right = (AndExpression) right.simplify();
+		return this;
 	}
 	
 	

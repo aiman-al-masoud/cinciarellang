@@ -26,11 +26,13 @@ public class AssignmentExpression implements Expression{
 		
 		if(left==null) {
 			return right.simplify();
+		}else {
+			this.left = left.simplify();
+			this.right = right.simplify();
+			return this;
 		}
 		
-		this.left = left.simplify();
-		this.right = right.simplify();
-		return this;
+		
 	}
 	
 	
