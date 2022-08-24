@@ -930,16 +930,13 @@ public class Parser {
 
 
 	public InterfaceExpression parseInterfaceExpression(List<Modifier> modifiers) {
+		
 		InterfaceExpression iE = new InterfaceExpression();
 		iE.modifiers = modifiers;
 		eat(Keywords.INTERFACE);
-
-		while( !tStream.isEnd() && !tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {  
-
-			if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {				
-				iE.superInterfaces = parseIdList();
-			}
-
+		
+		if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {				
+			iE.superInterfaces = parseIdList();
 		}
 
 		eat(Punctuations.CURLY_OPN);
