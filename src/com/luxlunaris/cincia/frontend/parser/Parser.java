@@ -528,16 +528,15 @@ public class Parser {
 		return parseAsgnExpression();		
 	}
 
-	//right assoc
-	public Expression parseAsgnExpression() {
-
+	
+	public Expression parseAsgnExpression() { //right assoc
+		
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
 
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
 		}
-		
 
 		while(!tStream.isEnd()) {
 
