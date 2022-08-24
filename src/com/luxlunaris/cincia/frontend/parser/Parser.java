@@ -1133,6 +1133,7 @@ public class Parser {
 	}
 
 	public ListType parseListType(OneNameType oT) {
+		
 		ListType lT = new ListType();
 		lT.value = oT;
 		eat(Punctuations.SQBR_OPN);
