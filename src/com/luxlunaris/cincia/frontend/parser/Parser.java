@@ -34,6 +34,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
@@ -1071,11 +1072,11 @@ public class Parser {
 
 	public Token parseConstant() { 
 
-		Token token;
+		Constant constant;
 		try {
-			token = tStream.peek();
+			constant = (Constant)tStream.peek();
 			tStream.next();
-			return token;
+			return constant;
 		}catch (ClassCastException e) {
 			tStream.croak("Expected constant literal");
 			return null;
