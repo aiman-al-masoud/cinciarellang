@@ -1154,13 +1154,11 @@ public class Parser {
 
 	public OneNameType parseOneNameType() {
 
-		Token token = tStream.peek();
-
-		if(token instanceof Keyword) {
+		if(tStream.peek() instanceof Keyword) {
 			return parsePrimitiveType();
 		}
 
-		if(token instanceof Identifier) {
+		if(tStream.peek() instanceof Identifier) {
 			return parseIdentifierType();
 		}
 
