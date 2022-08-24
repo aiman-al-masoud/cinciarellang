@@ -1181,7 +1181,6 @@ public class Parser {
 	}
 
 
-
 	public Identifier parseIdentifier() {
 
 		Identifier id = null;
