@@ -762,6 +762,7 @@ public class Parser {
 	}
 
 	public IndexedExpression parseIndexedExpression(PostfixExpression left) {
+		
 		eat(Punctuations.SQBR_OPN);
 		IndexedExpression iE = new IndexedExpression();
 		iE.indexable = left;  
@@ -771,6 +772,7 @@ public class Parser {
 	}
 
 	public DotExpression parseDotExpression(PostfixExpression left) {
+		
 		eat(Punctuations.DOT);
 		DotExpression dE = new DotExpression();
 		dE.left = left;  
@@ -780,6 +782,7 @@ public class Parser {
 	}
 
 	public ReassignmentExpression parseReasgnExpression(PostfixExpression left) {
+		
 		ReassignmentExpression rE = new ReassignmentExpression();
 		rE.left = left;
 		rE.operator = (Operators)tStream.peek().getValue();
