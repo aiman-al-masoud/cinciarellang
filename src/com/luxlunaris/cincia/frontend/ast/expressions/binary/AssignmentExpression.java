@@ -23,6 +23,11 @@ public class AssignmentExpression implements Expression{
 	
 	@Override
 	public Expression simplify() {
+		
+		if(left==null) {
+			return right.simplify();
+		}
+		
 		this.left = left.simplify();
 		this.right = right.simplify();
 		return this;

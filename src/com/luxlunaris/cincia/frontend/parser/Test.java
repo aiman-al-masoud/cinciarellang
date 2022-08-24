@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.frontend.parser;
 import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
+import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
@@ -26,8 +27,8 @@ public class Test {
 		TokenStream tS = new TokenStream(cS);		
 		Parser p  = new Parser(tS);
 		List<Statement> statements = p.parse();
-		System.out.println(statements.get(0));
-		
+		Statement s = statements.get(0);
+		System.out.println(((ExpressionStatement)s).expression.simplify());
 	}
 
 	
