@@ -817,6 +817,7 @@ public class Parser {
 
 
 	public BracketedExpression parseBracketedExpression() {
+		
 		eat(Punctuations.PAREN_OPN);
 		Expression expression = parseExpression();
 		eat(Punctuations.PAREN_CLS);
