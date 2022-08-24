@@ -189,9 +189,7 @@ public class Parser {
 
 		eat(Punctuations.CURLY_CLS);
 		return cS;
-	}
-
-	
+	}	
 
 
 	public ForStatement parseForStatement() {
