@@ -757,7 +757,11 @@ public class Parser {
 		eat(Punctuations.PAREN_OPN);
 		CalledExpression cE = new CalledExpression();
 		cE.callable = left;
-		cE.args = parseMultiExpression();
+		
+		if(!tStream.peek().getValue().equals(Punctuations.PAREN_CLS)) {
+			cE.args = parseMultiExpression();
+		}
+		
 		eat(Punctuations.PAREN_CLS);
 		return cE;
 	}
