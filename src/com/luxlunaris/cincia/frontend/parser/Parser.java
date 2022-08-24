@@ -82,13 +82,14 @@ import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 public class Parser {
 
-	TokenStream tStream;
+	protected TokenStream tStream;
 
 	public Parser(TokenStream tStream) {
 		this.tStream = tStream;
 		this.tStream.next(); //get first token
 	}
-
+	
+	
 	public List<Statement> parse(){
 
 		ArrayList<Statement> res = new ArrayList<Statement>();
@@ -100,9 +101,8 @@ public class Parser {
 		return res;
 	}
 
-
-
-	public Statement parseStatement() {
+	
+	private Statement parseStatement() {
 
 		Statement res = null;
 
@@ -143,14 +143,14 @@ public class Parser {
 	}
 	
 	
-	public ExpressionStatement parseExpressionStatement() {
+	private ExpressionStatement parseExpressionStatement() {
 
 		ExpressionStatement eS = new ExpressionStatement(parseExpression());
 		eat(Punctuations.STM_SEP);
 		return eS;
 	}
 	
-	public DeclarationStatement parseDeclStatement() {
+	private DeclarationStatement parseDeclStatement() {
 
 		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
 		eat(Punctuations.STM_SEP);
@@ -158,7 +158,7 @@ public class Parser {
 	}
 
 
-	public IfStatement parseIfStatement() {
+	private IfStatement parseIfStatement() {
 
 		eat(Keywords.IF);
 		IfStatement ifS = new IfStatement();
@@ -174,7 +174,7 @@ public class Parser {
 	}
 
 
-	public CompoundStatement parseCompStatement() {
+	private CompoundStatement parseCompStatement() {
 
 		eat(Punctuations.CURLY_OPN);
 		CompoundStatement cS = new CompoundStatement();
@@ -193,7 +193,7 @@ public class Parser {
 	}	
 
 
-	public ForStatement parseForStatement() {
+	private ForStatement parseForStatement() {
 		
 		eat(Keywords.FOR);
 		ForStatement fS = new ForStatement();
@@ -219,7 +219,7 @@ public class Parser {
 		return fS;
 	}
 
-	public WhileStatement parseWhileStatement() {
+	private WhileStatement parseWhileStatement() {
 		
 		eat(Keywords.WHILE);
 		WhileStatement wS = new WhileStatement();
@@ -228,7 +228,7 @@ public class Parser {
 		return wS;
 	}
 
-	public TryStatement parseTryStatement() {
+	private TryStatement parseTryStatement() {
 
 		eat(Keywords.TRY);
 		TryStatement tS = new TryStatement();
@@ -252,7 +252,7 @@ public class Parser {
 		return tS;
 	}
 
-	public CatchClause parseCatchClause() {
+	private CatchClause parseCatchClause() {
 		
 		eat(Keywords.CATCH);
 		CatchClause cc = new CatchClause();
@@ -261,7 +261,7 @@ public class Parser {
 		return cc;
 	}
 
-	public ThrowStatement parseThrowStatement() {
+	private ThrowStatement parseThrowStatement() {
 		
 		eat(Keywords.THROW);
 		ThrowStatement tS = new ThrowStatement(parseSingleExpression());		
@@ -269,7 +269,7 @@ public class Parser {
 		return tS;
 	}
 
-	public ReturnStatement parseReturnStatement() {
+	private ReturnStatement parseReturnStatement() {
 		
 		eat(Keywords.RETURN);
 		ReturnStatement rS  = new ReturnStatement();
@@ -285,20 +285,20 @@ public class Parser {
 		
 	}
 
-	public ContinueStatement parseContinueStatement() {
+	private ContinueStatement parseContinueStatement() {
 		
 		eat(Keywords.CONTINUE);
 		return new ContinueStatement();
 	}
 
-	public BreakStatement parseBreakStatement() {
+	private BreakStatement parseBreakStatement() {
 		
 		eat(Keywords.BREAK);
 		return new BreakStatement();
 	}
 	
 
-	public MatchStatement parseMatchStatement() {
+	private MatchStatement parseMatchStatement() {
 
 		eat(Keywords.MATCH);
 		MatchStatement mS = new MatchStatement();
@@ -323,7 +323,7 @@ public class Parser {
 		return mS;
 	}
 
-	public CaseStatement parseCaseStatement() {
+	private CaseStatement parseCaseStatement() {
 		
 		eat(Keywords.CASE);
 		CaseStatement cS  = new CaseStatement();
@@ -348,7 +348,7 @@ public class Parser {
 	}
 	
 
-	public DefaultStatement parseDefaultStatement() {
+	private DefaultStatement parseDefaultStatement() {
 		
 		eat(Keywords.DEFAULT);
 		eat(Punctuations.COL);
@@ -372,7 +372,7 @@ public class Parser {
 	}
 	
 
-	public ImportStatement parseImportStatement() {
+	private ImportStatement parseImportStatement() {
 
 		eat(Keywords.IMPORT);
 		ImportStatement iS = new ImportStatement();
@@ -405,7 +405,7 @@ public class Parser {
 	}
 	
 
-	public Entry<DotExpression, Identifier> parseImported(){
+	private Entry<DotExpression, Identifier> parseImported(){
 
 		DotExpression dEx = parseDotExpression(null);//TODO:: buruf????
 		Identifier alias = null; // can be null
@@ -418,7 +418,7 @@ public class Parser {
 		return Map.entry(dEx, alias);
 	}
 
-	public List<Modifier> parseModifiers(){
+	private List<Modifier> parseModifiers(){
 
 		ArrayList<Modifier> res = new ArrayList<Modifier>();
 
@@ -435,14 +435,14 @@ public class Parser {
 		return res;
 	}
 
-	public Declaration parseDeclaration() {
+	private Declaration parseDeclaration() {
 
 		MultiDeclaration mD = parseMultiDeclaration();
 		return mD.declarations.size()==1? mD.declarations.get(0) : mD;
 	}
 
 
-	public MultiDeclaration parseMultiDeclaration() {
+	private MultiDeclaration parseMultiDeclaration() {
 
 		MultiDeclaration mD = new MultiDeclaration();
 		mD.addDeclaration(parseSingleDeclaration());
@@ -461,7 +461,7 @@ public class Parser {
 		return mD;
 	}
 
-	public SingleDeclaration parseSingleDeclaration() {
+	private SingleDeclaration parseSingleDeclaration() {
 		
 		List<Modifier> modifiers = parseModifiers();
 		Identifier id = parseIdentifier();
@@ -482,7 +482,7 @@ public class Parser {
 		return sD;
 	}
 
-	public Signature parseSignature() {
+	private Signature parseSignature() {
 
 		Signature sg = new Signature();
 		eat(Punctuations.SLASH_BCK);
@@ -497,13 +497,13 @@ public class Parser {
 	}
 
 
-	public Expression parseExpression() {
+	private Expression parseExpression() {
 		
 		MultiExpression mE = parseMultiExpression();
 		return mE.expressions.size()==1? mE.expressions.get(0) : mE;
 	}
 
-	public MultiExpression parseMultiExpression() {
+	private MultiExpression parseMultiExpression() {
 
 		MultiExpression mE = new MultiExpression();
 		mE.addExpression(parseSingleExpression());
@@ -524,13 +524,13 @@ public class Parser {
 	}
 
 
-	public Expression parseSingleExpression() {
+	private Expression parseSingleExpression() {
 		
 		return parseAsgnExpression();		
 	}
 
 	
-	public Expression parseAsgnExpression() { //right assoc
+	private Expression parseAsgnExpression() { //right assoc
 		
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
@@ -572,7 +572,7 @@ public class Parser {
 
 
 
-	public Expression parseCondExpression() { //OrExpression or TernaryExpression
+	private Expression parseCondExpression() { //OrExpression or TernaryExpression
 
 		Expression oE = parseOrExpression();
 
@@ -593,7 +593,7 @@ public class Parser {
 	}
 
 	
-	public OrExpression parseOrExpression() { //left assoc, as most of the others
+	private OrExpression parseOrExpression() { //left assoc, as most of the others
 
 		OrExpression oE = new OrExpression(); 
 		oE.left = parseAndExpression();
@@ -617,7 +617,7 @@ public class Parser {
 		return oE;
 	}
 
-	public AndExpression parseAndExpression() {
+	private AndExpression parseAndExpression() {
 
 		AndExpression one = new AndExpression();
 		one.left = parseComparisonExpression();
@@ -637,7 +637,7 @@ public class Parser {
 		return one;
 	}
 
-	public ComparisonExpression parseComparisonExpression() {
+	private ComparisonExpression parseComparisonExpression() {
 
 		ComparisonExpression one = new ComparisonExpression();
 		one.left = parseAddExpression();
@@ -659,7 +659,7 @@ public class Parser {
 
 	}
 
-	public AddExpression parseAddExpression() {
+	private AddExpression parseAddExpression() {
 		
 		AddExpression one = new AddExpression();
 		one.left = parseMulExpression();
@@ -680,7 +680,7 @@ public class Parser {
 		return one;
 	}
 
-	public MulExpression parseMulExpression() {
+	private MulExpression parseMulExpression() {
 
 		MulExpression one = new MulExpression();
 		one.left = parseUnaryExpression();
@@ -701,7 +701,7 @@ public class Parser {
 		return one;
 	}
 
-	public UnaryExpression parseUnaryExpression() {
+	private UnaryExpression parseUnaryExpression() {
 
 		if(tStream.peek().getValue().equals(Operators.MINUS)) {
 			return parseMinusExpression();
@@ -714,26 +714,26 @@ public class Parser {
 		}
 	}
 
-	public MinusExpression parseMinusExpression() {
+	private MinusExpression parseMinusExpression() {
 		
 		eat(Operators.MINUS);
 		return new MinusExpression(parseUnaryExpression());
 	}
 
-	public NegationExpression parseNegationExpression() {
+	private NegationExpression parseNegationExpression() {
 		
 		eat(Operators.NOT);
 		return new NegationExpression(parseUnaryExpression());
 
 	}
-	public DestructuringExpression parseDestrExpression() {
+	private DestructuringExpression parseDestrExpression() {
 		
 		eat(Operators.ASTERISK);
 		return new DestructuringExpression(parseUnaryExpression());
 	}
 
 
-	public PostfixExpression parsePostfixExpression() {
+	private PostfixExpression parsePostfixExpression() {
 
 		PostfixExpression exp = parsePrimaryExpression();
 
@@ -757,7 +757,7 @@ public class Parser {
 	}
 
 
-	public CalledExpression parseCalledExpression(PostfixExpression left) {
+	private CalledExpression parseCalledExpression(PostfixExpression left) {
 		
 		eat(Punctuations.PAREN_OPN);
 		CalledExpression cE = new CalledExpression();
@@ -771,7 +771,7 @@ public class Parser {
 		return cE;
 	}
 
-	public IndexedExpression parseIndexedExpression(PostfixExpression left) {
+	private IndexedExpression parseIndexedExpression(PostfixExpression left) {
 		
 		eat(Punctuations.SQBR_OPN);
 		
@@ -786,7 +786,7 @@ public class Parser {
 		return iE;
 	}
 
-	public DotExpression parseDotExpression(PostfixExpression left) {
+	private DotExpression parseDotExpression(PostfixExpression left) {
 		
 		eat(Punctuations.DOT);
 		DotExpression dE = new DotExpression();
@@ -795,7 +795,7 @@ public class Parser {
 		return dE;
 	}
 
-	public ReassignmentExpression parseReasgnExpression(PostfixExpression left) {
+	private ReassignmentExpression parseReasgnExpression(PostfixExpression left) {
 		
 		ReassignmentExpression rE = new ReassignmentExpression();
 		rE.left = left;
@@ -811,7 +811,7 @@ public class Parser {
 		return rE;
 	}
 
-	public PrimaryExpression parsePrimaryExpression() {
+	private PrimaryExpression parsePrimaryExpression() {
 
 		// TODO: change EBNF, objects expressions are now primary expressions (does that make sense?)
 		// if it starts with modifer, or 'class' or 'interface' or '{' or '[' it's an object
@@ -835,7 +835,7 @@ public class Parser {
 	}
 
 
-	public BracketedExpression parseBracketedExpression() {
+	private BracketedExpression parseBracketedExpression() {
 		
 		eat(Punctuations.PAREN_OPN);
 		Expression expression = parseExpression();
@@ -844,7 +844,7 @@ public class Parser {
 	}
 
 
-	public ObjectExpression parseObjectExpression() {
+	private ObjectExpression parseObjectExpression() {
 
 		if(tStream.peek().getValue().equals(Punctuations.SQBR_OPN)) {
 			return parseList();
@@ -873,7 +873,7 @@ public class Parser {
 		return null;
 	}
 
-	public LambdaExpression parseLambdaExpression(List<Modifier> modifiers) {
+	private LambdaExpression parseLambdaExpression(List<Modifier> modifiers) {
 
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
@@ -889,7 +889,7 @@ public class Parser {
 		return lE;
 	}
 
-	public ClassExpression parseClassExpression(List<Modifier> modifiers) {
+	private ClassExpression parseClassExpression(List<Modifier> modifiers) {
 
 		ClassExpression cE = new ClassExpression();
 		cE.modifiersList = modifiers;
@@ -929,7 +929,7 @@ public class Parser {
 
 
 
-	public InterfaceExpression parseInterfaceExpression(List<Modifier> modifiers) {
+	private InterfaceExpression parseInterfaceExpression(List<Modifier> modifiers) {
 		
 		InterfaceExpression iE = new InterfaceExpression();
 		iE.modifiers = modifiers;
@@ -957,7 +957,7 @@ public class Parser {
 	}
 
 
-	public List<Identifier> parseIdList(){ //comma separated
+	private List<Identifier> parseIdList(){ //comma separated
 
 		ArrayList<Identifier> ids = new ArrayList<Identifier>();
 		ids.add(parseIdentifier());
@@ -976,7 +976,7 @@ public class Parser {
 		return ids;
 	}
 
-	public ObjectExpression parseList() {
+	private ObjectExpression parseList() {
 
 		eat(Punctuations.SQBR_OPN);
 		Expression exp = parseExpression();
@@ -995,7 +995,7 @@ public class Parser {
 		
 	}
 
-	public ListComprehension parseListComprehension(Expression exp) {
+	private ListComprehension parseListComprehension(Expression exp) {
 
 		eat(Keywords.FOR);
 		ListComprehension lC = new ListComprehension();
@@ -1011,7 +1011,7 @@ public class Parser {
 		return lC;
 	}
 
-	public ObjectExpression parseDict() {
+	private ObjectExpression parseDict() {
 
 		eat(Punctuations.CURLY_OPN);
 		DictExpression dE = new DictExpression();
@@ -1059,7 +1059,7 @@ public class Parser {
 	}
 
 	
-	public DictComprehension parseDictComprehension(Entry<Expression, Expression> entry) {
+	private DictComprehension parseDictComprehension(Entry<Expression, Expression> entry) {
 
 		DictComprehension dC = new DictComprehension();
 		dC.key = entry.getKey();
@@ -1079,7 +1079,7 @@ public class Parser {
 
 
 
-	public Token parseConstant() { 
+	private Token parseConstant() { 
 
 		Constant constant;
 		try {
@@ -1093,12 +1093,12 @@ public class Parser {
 	}
 
 
-	public Type parseType() {
+	private Type parseType() {
 		UnionType type = parseUnionType();
 		return type;
 	}
 
-	public UnionType parseUnionType() {
+	private UnionType parseUnionType() {
 
 		UnionType uT = new UnionType();
 		uT.addType(parseSingleType());
@@ -1116,7 +1116,7 @@ public class Parser {
 		return uT;
 	}
 
-	public SingleType parseSingleType(){
+	private SingleType parseSingleType(){
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			return parseDictType();
@@ -1132,7 +1132,7 @@ public class Parser {
 
 	}
 
-	public ListType parseListType(OneNameType oT) {
+	private ListType parseListType(OneNameType oT) {
 		
 		ListType lT = new ListType();
 		lT.value = oT;
@@ -1141,7 +1141,7 @@ public class Parser {
 		return lT;
 	}
 
-	public DictType parseDictType() {
+	private DictType parseDictType() {
 
 		DictType dT = new DictType();
 		eat(Punctuations.CURLY_OPN);
@@ -1152,7 +1152,7 @@ public class Parser {
 		return dT;
 	}
 
-	public OneNameType parseOneNameType() {
+	private OneNameType parseOneNameType() {
 
 		if(tStream.peek() instanceof Keyword) {
 			return parsePrimitiveType();
@@ -1166,14 +1166,14 @@ public class Parser {
 		return null;
 	}
 
-	public IdentifierType parseIdentifierType() {
+	private IdentifierType parseIdentifierType() {
 		
 		IdentifierType iD = new IdentifierType((Identifier)tStream.peek());
 		tStream.next();
 		return iD;
 	}
 
-	public PrimitiveType parsePrimitiveType() {
+	private PrimitiveType parsePrimitiveType() {
 		
 		PrimitiveType pT = new PrimitiveType((Keywords)tStream.peek().getValue());
 		tStream.next();
@@ -1181,7 +1181,7 @@ public class Parser {
 	}
 
 
-	public Identifier parseIdentifier() {
+	private Identifier parseIdentifier() {
 
 		Identifier id = null;
 
@@ -1196,7 +1196,7 @@ public class Parser {
 	}
 
 
-	public void eat(Object value) {
+	private void eat(Object value) {
 
 		if (!tStream.peek().getValue().equals(value)) {
 			tStream.croak("Expected "+value);
