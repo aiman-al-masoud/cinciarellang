@@ -161,7 +161,6 @@ public class Parser {
 
 		eat(Keywords.IF);
 		IfStatement ifS = new IfStatement();
-
 		ifS.cond =  parseSingleExpression();
 		ifS.thenBlock =  parseCompStatement();
 
