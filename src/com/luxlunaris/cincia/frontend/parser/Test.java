@@ -16,7 +16,6 @@ public class Test {
 		source = "x = [1,2,3];";
 		source = "f  = \\x:int -> 1;";
 		source = "f  = \\x -> 1;";
-
 //		source = "x = {'y' : 222 };";
 //		source = "dec x:int;";
 
