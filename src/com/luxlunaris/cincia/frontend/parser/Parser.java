@@ -549,7 +549,7 @@ public class Parser {
 		}
 		
 		Collections.reverse(chain); // to traverse chain from right to left, eg: z = y = x = 1  ---->  1, x, y, z
-		AssignmentExpression asgn1 = new AssignmentExpression();
+		AssignmentExpression asgn1 = new AssignmentExpression(); //  preamble
 		asgn1.right = chain.get(0); //  preamble
 
 		for(int i = 1; i < chain.size(); i++) {
