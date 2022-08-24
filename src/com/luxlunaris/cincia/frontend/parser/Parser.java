@@ -220,11 +220,9 @@ public class Parser {
 
 	public WhileStatement parseWhileStatement() {
 		eat(Keywords.WHILE);
-
 		WhileStatement wS = new WhileStatement();
 		wS.cond = parseSingleExpression();
 		wS.block = parseCompStatement();
-
 		return wS;
 	}
 
