@@ -850,7 +850,6 @@ public class Parser {
 			return parseInterfaceExpression(modifiers);
 		}
 
-
 		tStream.croak("Expected object-expression");
 		return null;
 	}
