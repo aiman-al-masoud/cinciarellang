@@ -17,4 +17,9 @@ public class TernaryExpression implements Expression{
 		tE.elseExpression = elseExpression.simplify();
 		return tE;
 	}
+	
+	@Override
+	public String toString() {
+		return "("+cond+"?"+thenExpression+":"+elseExpression+")";
+	}
 }

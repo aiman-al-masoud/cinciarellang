@@ -7,7 +7,7 @@ public class ComparisonExpression extends AndExpression{
 	
 	public Operators op;
 	public Expression left;
-	public AddExpression right;
+	public Expression right; //Add expression
 	
 	@Override
 	public String toString() {
@@ -22,7 +22,7 @@ public class ComparisonExpression extends AndExpression{
 			return left;
 		}
 		
-		this.right = (AddExpression) right.simplify();
+		this.right =  right.simplify();
 		return this;
 	}
 	
