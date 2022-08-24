@@ -524,10 +524,8 @@ public class Parser {
 
 
 	public Expression parseSingleExpression() {
-
-		// assignment (assignment or conditional)
-		return parseAsgnExpression();
-
+		
+		return parseAsgnExpression();		
 	}
 
 	//right assoc
