@@ -21,6 +21,12 @@ public class AssignmentExpression implements Expression{
 		return "("+left+" = "+right+")";
 	}
 	
+	@Override
+	public Expression simplify() {
+		this.left = left.simplify();
+		this.right = right.simplify();
+		return this;
+	}
 	
 	
 	
