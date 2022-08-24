@@ -774,6 +774,11 @@ public class Parser {
 	public IndexedExpression parseIndexedExpression(PostfixExpression left) {
 		
 		eat(Punctuations.SQBR_OPN);
+		
+		if(tStream.peek().getValue().equals(Punctuations.SQBR_CLS)) {
+			tStream.croak("Expected index");
+		}
+		
 		IndexedExpression iE = new IndexedExpression();
 		iE.indexable = left;  
 		iE.index = parseExpression(); //TODO: add slicing with ':'
