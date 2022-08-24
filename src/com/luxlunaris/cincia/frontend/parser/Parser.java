@@ -598,6 +598,7 @@ public class Parser {
 		oE.left = parseAndExpression();
 
 		while(!tStream.isEnd()) {
+			
 			if(tStream.peek().getValue().equals(Operators.OR)) {
 				eat(Operators.OR);
 				oE.right = parseAndExpression();
@@ -607,6 +608,7 @@ public class Parser {
 			}else {
 				break;
 			}
+			
 		}
 
 		return oE;
