@@ -790,10 +790,8 @@ public class Parser {
 		
 		eat(Punctuations.DOT);
 		DotExpression dE = new DotExpression();
-		dE.left = left;  
-		//TODO: maybe just expect an identifier as the "right value" here
-		dE.right = (DotExpression)parsePostfixExpression(); //TODO: mhhhhhhhhhhh
-		eat(Punctuations.DOT);
+		dE.left = left;
+		dE.right = parseIdentifier();
 		return dE;
 	}
 

@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.frontend.ast.expressions.postfix;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
 
 /**
@@ -14,7 +15,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
 public class DotExpression implements PostfixExpression, LeftValue {
 	
 	public PostfixExpression left; //dottable
-	public DotExpression right;
+	public Identifier right;
 	
 	@Override
 	public String toString() {
