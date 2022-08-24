@@ -92,7 +92,7 @@ public enum Operators {
 	}
 	
 	public static boolean isOperator(char c) {
-		return "+-*/%=!?<>&|".contains(c+"");
+		return "+-*/%=!<>&|".contains(c+"");
 	}
 	
 	public static boolean isAddOperator(Object op) {
