@@ -992,6 +992,7 @@ public class Parser {
 		lE.elements = mE;
 		eat(Punctuations.SQBR_CLS);
 		return lE;
+		
 	}
 
 	public ListComprehension parseListComprehension(Expression exp) {
