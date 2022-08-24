@@ -585,8 +585,8 @@ public class Parser {
 		tE.thenExpression = parseOrExpression();
 		eat(Punctuations.COL);
 		tE.elseExpression = parseOrExpression();
-
 		return tE;
+		
 	}
 
 	//left assoc
