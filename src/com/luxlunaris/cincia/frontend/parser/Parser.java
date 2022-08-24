@@ -272,23 +272,16 @@ public class Parser {
 		
 		eat(Keywords.RETURN);
 		ReturnStatement rS  = new ReturnStatement();
-
-		while(!tStream.isEnd()) {
-
-			if(tStream.peek().getValue().equals(Punctuations.STM_SEP)) {
-				break;
-			}
-
-			if(tStream.peek().getValue().equals(Punctuations.COMMA)) { //TODO: also useless, could do with whitespace alone, but maybe this is useful in some sense...
-				eat(Punctuations.COMMA);
-				continue;
-			}
-
-			rS.addValue(parseSingleExpression());
+		
+		if(tStream.peek().getValue().equals(Punctuations.STM_SEP)) {
+			eat(Punctuations.STM_SEP);
+			return rS;
 		}
-
+		
+		rS.expression = parseExpression();
 		eat(Punctuations.STM_SEP);
 		return rS;
+		
 	}
 
 	public ContinueStatement parseContinueStatement() {

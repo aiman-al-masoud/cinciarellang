@@ -8,13 +8,14 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 
 public class ReturnStatement implements Statement{
 	
-	public List<Expression> values;
+//	public List<Expression> values;
+	public Expression expression;
 	
 	public ReturnStatement() {
-		values = new ArrayList<Expression>();
+//		values = new ArrayList<Expression>();
 	}
 	
-	public void addValue(Expression value) {
-		this.values.add(value);
-	}
+//	public void addValue(Expression value) {
+//		this.values.add(value);
+//	}
 }
