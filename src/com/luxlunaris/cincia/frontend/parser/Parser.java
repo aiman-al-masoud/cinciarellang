@@ -986,7 +986,7 @@ public class Parser {
 		}
 
 		eat(Punctuations.COMMA);
-		MultiExpression mE = new MultiExpression();
+		MultiExpression mE = parseMultiExpression();
 		mE.expressions.add(0, exp);
 		ListExpression lE = new ListExpression();
 		lE.elements = mE;
