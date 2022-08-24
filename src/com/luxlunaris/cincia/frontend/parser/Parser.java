@@ -260,8 +260,8 @@ public class Parser {
 	}
 
 	public ThrowStatement parseThrowStatement() {
+		
 		eat(Keywords.THROW);
-
 		ThrowStatement tS = new ThrowStatement(parseSingleExpression());		
 		eat(Punctuations.STM_SEP);
 		return tS;
