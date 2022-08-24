@@ -17,6 +17,7 @@ public class Test {
 		source = "f  = \\x:int -> 1;";
 		source = "f  = \\x -> 1;";
 		source = "x = {'y' : 222 };";
+		source = "dec get final static private foo:int, x:float;";
 		source = "dec get final static private foo:int;";
 
 		
