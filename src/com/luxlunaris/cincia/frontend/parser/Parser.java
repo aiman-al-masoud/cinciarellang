@@ -1167,12 +1167,14 @@ public class Parser {
 	}
 
 	public IdentifierType parseIdentifierType() {
+		
 		IdentifierType iD = new IdentifierType((Identifier)tStream.peek());
 		tStream.next();
 		return iD;
 	}
 
 	public PrimitiveType parsePrimitiveType() {
+		
 		PrimitiveType pT = new PrimitiveType((Keywords)tStream.peek().getValue());
 		tStream.next();
 		return pT;
