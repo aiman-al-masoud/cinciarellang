@@ -144,7 +144,7 @@ public class Parser {
 	
 	public ExpressionStatement parseExpressionStatement() {
 
-		ExpressionStatement eS = new ExpressionStatement(parseSingleExpression());
+		ExpressionStatement eS = new ExpressionStatement(parseExpression());
 		eat(Punctuations.STM_SEP);
 		return eS;
 	}
