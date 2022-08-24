@@ -16,4 +16,9 @@ public class BracketedExpression implements PrimaryExpression {
 		this.expression = expression;
 	}
 	
+	@Override
+		public Expression simplify() {
+			return new BracketedExpression(expression.simplify());
+		}
+	
 }
