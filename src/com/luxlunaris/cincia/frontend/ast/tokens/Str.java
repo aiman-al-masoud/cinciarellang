@@ -9,4 +9,9 @@ public class Str extends AbstractToken implements Constant{
 	public Str(String value) {
 		this.value = value;
 	}
+	
+	@Override
+	public String toString() {
+		return "'"+value+"'";
+	}
 }
