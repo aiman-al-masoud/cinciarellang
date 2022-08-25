@@ -20,7 +20,7 @@ public class Test {
 		source = "a = b = c = 1;";
 		source = "x = z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123' };";
 		source = "x = [1,2,3];";
-		source = "x[0] = z = [1,2,3];";
+		source = "x[0] = z = a = [1,2,3];";
 
 		
 
