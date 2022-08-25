@@ -7,7 +7,8 @@ public class AddExpression extends ComparisonExpression{
 	
 	public Operators op;
 	public Expression left;
-	public MulExpression right;
+//	public MulExpression right;
+	public Expression right;
 	
 	@Override
 	public String toString() {
@@ -22,7 +23,8 @@ public class AddExpression extends ComparisonExpression{
 			return left;
 		}
 		
-		this.right = (MulExpression) right.simplify();
+//		this.right = (MulExpression) right.simplify();
+		this.right =  right.simplify();
 		return this;
 	}
 }
