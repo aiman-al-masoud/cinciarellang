@@ -15,11 +15,11 @@ public class Test {
 		source = "x = [1,2,3];";
 		source = "f  = \\x:int -> 1;";
 		source = "f  = \\x -> 1;";
-		source = "x = {'y' : 222 };";
 		source = "dec get final static private foo:int, x:float;";
 		source = "dec get final static private foo:int;";
-		source = "a = b = c = 1;";
 		source = "x == 1 ? 3 : 4;";
+		source = "a = b = c = 1;";
+		source = "x = {'y' : 222 };";
 
 		
 
