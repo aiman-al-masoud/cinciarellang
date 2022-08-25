@@ -23,5 +23,11 @@ public class TryStatement implements Statement{
 		this.catchClausesList.add(catchClause);
 	}
 	
+	@Override
+	public Statement simplify() {
+		this.tryBlock = (CompoundStatement) tryBlock.simplify();
+		this.finallyBlock = (CompoundStatement) finallyBlock.simplify();
+		return this;
+	}
 	
 }

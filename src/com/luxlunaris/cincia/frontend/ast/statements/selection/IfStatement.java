@@ -10,6 +10,18 @@ public class IfStatement implements Statement{
 	public CompoundStatement thenBlock;
 	public CompoundStatement elseBlock;
 	
+	@Override
+	public Statement simplify() {
+		this.cond  = cond.simplify();
+		this.thenBlock = (CompoundStatement) thenBlock.simplify();
+		
+		if(elseBlock!=null) {
+			this.elseBlock  = (CompoundStatement) elseBlock.simplify();
+		}
+		
+		return this;
+	}
+	
 	
 	
 }

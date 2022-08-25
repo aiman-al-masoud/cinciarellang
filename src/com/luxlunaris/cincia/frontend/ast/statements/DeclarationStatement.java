@@ -16,5 +16,10 @@ public class DeclarationStatement implements Statement{
 	public String toString() {
 		return declaration.toString();
 	}
+
+	@Override
+	public Statement simplify() {
+		return this;
+	}
 	
 }

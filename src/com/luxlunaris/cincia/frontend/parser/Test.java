@@ -22,8 +22,8 @@ public class Test {
 		source = "f  = \\x -> 1;";
 		source = "a = b = c = 1;";
 		source = "dec get final static private foo:int;";
-		source = "x == 1 ? 3 : 4;";
 		source = "dec get final static private foo:int, x:float;";
+		source = "x == 1 ? 3 : 4;";
 
 		
 
@@ -32,7 +32,7 @@ public class Test {
 		Parser p  = new Parser(tS);
 		List<Statement> statements = p.parse();
 		Statement s = statements.get(0);
-		System.out.println(s);
+		System.out.println(s.simplify());
 //		System.out.println(((ExpressionStatement)s).expression.simplify());
 	}
 

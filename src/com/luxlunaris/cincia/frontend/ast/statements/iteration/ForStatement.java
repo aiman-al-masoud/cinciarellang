@@ -18,8 +18,15 @@ public class ForStatement implements Statement{
 	public ForStatement() {
 		loopVars  = new ArrayList<Identifier>();
 	}
-	
 
+	@Override
+	public Statement simplify() {
+		this.iterable = iterable.simplify();
+		this.block = (CompoundStatement) block.simplify();
+		return this;
+	}
+	
+	
 	
 	
 	

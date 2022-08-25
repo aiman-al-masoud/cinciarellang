@@ -22,5 +22,11 @@ public class MatchStatement implements Statement{
 	public void add(CaseStatement cS) {
 		casesList.add(cS);
 	}
+
+	@Override
+	public Statement simplify() {
+		this.cond = cond.simplify();
+		return this;
+	}
 	
 }

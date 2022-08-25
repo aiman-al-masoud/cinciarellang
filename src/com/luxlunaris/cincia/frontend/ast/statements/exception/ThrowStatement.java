@@ -13,4 +13,10 @@ public class ThrowStatement implements Statement{
 		this.throwable  =throwable;
 	}
 	
+	@Override
+	public Statement simplify() {
+		this.throwable = throwable.simplify();
+		return this;
+	}
+	
 }

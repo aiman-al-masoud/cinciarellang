@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.frontend.ast.statements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 
@@ -19,5 +20,10 @@ public class CompoundStatement implements Statement{
 		statements.add(statement);
 	}
 	
+	@Override
+	public Statement simplify() {
+		this.statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
+		return this;
+	}
 	
 }

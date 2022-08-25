@@ -15,6 +15,12 @@ public class ReturnStatement implements Statement{
 //		values = new ArrayList<Expression>();
 	}
 	
+	@Override
+	public Statement simplify() {
+		this.expression = expression.simplify();
+		return this;
+	}
+	
 //	public void addValue(Expression value) {
 //		this.values.add(value);
 //	}

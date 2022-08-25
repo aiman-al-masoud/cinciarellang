@@ -28,5 +28,9 @@ public class ImportStatement implements Statement{
 		imports.add(Map.entry(imported, alias)); //alias could be null
 	}
 	
+	@Override
+	public Statement simplify() {
+		return this;
+	}
 	
 }

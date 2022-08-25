@@ -10,5 +10,11 @@ public class CaseStatement implements Statement{
 	public Expression cond;
 	public CompoundStatement block;
 	
+	@Override
+	public Statement simplify() {
+		this.cond = cond.simplify();
+		this.block = (CompoundStatement) block.simplify();
+		return this;
+	}
 	
 }

@@ -15,5 +15,11 @@ public class ExpressionStatement implements Statement{
 	public String toString() {
 		return expression.toString();
 	}
+
+	@Override
+	public Statement simplify() {
+		this.expression = expression.simplify();
+		return this;
+	}
 	
 }
