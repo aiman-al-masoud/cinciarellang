@@ -1036,66 +1036,117 @@ public class Parser {
 
 
 	private ObjectExpression parseDict() {
-
+		
 		eat(Punctuations.CURLY_OPN);
 		DictExpression dE = new DictExpression();
-		boolean firstLoop = true;
 		Expression key;
 		Expression val;
-		key = parseSingleExpression();
-
-		while (!tStream.isEnd()) {
-
+		key = val = null;
+		
+		while(!tStream.isEnd()) {
+			
 			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
 				eat(Punctuations.CURLY_CLS);
 				break;
 			}
-
-			if (tStream.peek().getValue().equals(Punctuations.COL)) {
-
-				eat(Punctuations.COL);
-				val = parseSingleExpression();
-
-				if(tStream.peek().getValue().equals(Keywords.FOR)) {
-
-					if(firstLoop) {
-						return parseDictComprehension(Map.entry(key, val));
-					}
-
-					tStream.croak("Misplaced 'for', not a comprehension");
-
-				}else {
-					dE.addEntry(key, val);
-					
-					if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
-						eat(Punctuations.CURLY_CLS);
-						break;
-					}
-					
-					eat(Punctuations.COMMA);
-				}
-
-			}
-
+			
 			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
 				eat(Punctuations.COMMA);
-
-				try {
-					dE.addDestruct((DestructuringExpression)key);
-				}catch (ClassCastException e) {
-					tStream.croak("Expected variable unpacking");
+				
+				if(key!=null  &&  val != null) {
+					dE.addEntry(key, val);
+					key = val = null;
 				}
-
+				
+				continue;
 			}
 			
-
-			key = parseSingleExpression();
-			firstLoop = false;
-
+			if(tStream.peek().getValue().equals(Operators.ASTERISK)) {
+				dE.addDestruct(parseDestrExpression());
+				continue;
+			}
+			
+			if(tStream.peek().getValue().equals(Punctuations.COL)) {
+				eat(Punctuations.COL);
+				val = parseSingleExpression();
+				continue;
+			}
+			
+			if(tStream.peek().getValue().equals(Keywords.FOR)) {		
+				return parseDictComprehension(Map.entry(key, val));
+			}
+			
+			key = parseSingleExpression();			
+			
 		}
 		
 		return dE;
 	}
+
+
+//		eat(Punctuations.CURLY_OPN);
+//		DictExpression dE = new DictExpression();
+//		boolean firstLoop = true;
+//		Expression key;
+//		Expression val;
+//		key = parseSingleExpression();
+//
+//		while (!tStream.isEnd()) {
+//
+//			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+//				eat(Punctuations.CURLY_CLS);
+//				break;
+//			}
+//
+//			if (tStream.peek().getValue().equals(Punctuations.COL)) {
+//
+//				eat(Punctuations.COL);
+//				val = parseSingleExpression();
+//
+//				if(tStream.peek().getValue().equals(Keywords.FOR)) {
+//
+//					if(firstLoop) {
+//						return parseDictComprehension(Map.entry(key, val));
+//					}
+//
+//					tStream.croak("Misplaced 'for', not a comprehension");
+//
+//				}else {
+//					dE.addEntry(key, val);
+//					
+//					if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+//						eat(Punctuations.CURLY_CLS);
+//						break;
+//					}
+//					
+//					eat(Punctuations.COMMA);
+//				}
+//
+//			}
+//
+//			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
+//				eat(Punctuations.COMMA);
+//
+//				try {
+//					dE.addDestruct((DestructuringExpression)key);
+//				}catch (ClassCastException e) {
+//					tStream.croak("Expected variable unpacking");
+//				}
+//
+//			}
+//			
+//
+//			key = parseSingleExpression();
+//			firstLoop = false;
+//
+//		}
+//		
+//		return dE;
+		
+		
+		
+
+	
 
 
 

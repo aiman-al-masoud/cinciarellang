@@ -47,7 +47,7 @@ public class DictExpression implements ObjectExpression{
 		
 //		System.out.println(pairs+" "+des.isPresent());
 //		return "";
-		return "{" + ( pairs.isPresent()? pairs.get() : "") + ( des.isPresent()? ","+des.get() : "") +"}";
+		return "{" + ( pairs.isPresent()? pairs.get() : "") + ( des.isPresent()? ", "+des.get() : "") +"}";
 	}
 	
 	
