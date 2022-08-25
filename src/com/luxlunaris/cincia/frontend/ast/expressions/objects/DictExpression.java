@@ -8,6 +8,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpress
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DictExpression implements ObjectExpression{
@@ -38,9 +39,15 @@ public class DictExpression implements ObjectExpression{
 	@Override
 	public String toString() {
 
-//		destructs.stream().map(e->"*("+e.arg+")").reduce( (e1,e2)-> {return e1+", "+e2;}).get()+"}"
-		return "{" + entries.stream().map(e->e.getKey().simplify()+" : "+e.getValue().simplify())
-		.reduce( (e1,e2)-> {return e1+", "+e2;}).get()+"}";
+//		System.out.println(destructs);
+		Optional<String> des = destructs.stream().map(e->"*("+e.arg+")").reduce( (e1,e2)-> {return e1+", "+e2;});
+		
+		
+		Optional<String> pairs=  entries.stream().map(e->e.getKey().simplify()+" : "+e.getValue().simplify()).reduce( (e1,e2)-> {return e1+", "+e2;});
+		
+//		System.out.println(pairs+" "+des.isPresent());
+//		return "";
+		return "{" + ( pairs.isPresent()? pairs.get() : "") + ( des.isPresent()? ","+des.get() : "") +"}";
 	}
 	
 	
