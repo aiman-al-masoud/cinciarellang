@@ -32,21 +32,34 @@ public class Test {
 		tests.put("a = b = c = 1;", "(a = (b = (c = 1)))");
 		tests.put("x = z = {1:2 , * x, 'capra': 3212, };", "(x = (z = {1 : 2, 'capra' : 3212, *(x)}))");
 		tests.put("for i in x{ x = do(x); x+=1;  }", "for [i] in x{(x = do(x)); (x PLUS_ASSIGN 1)}");
-		tests.put("dec get final static private foo:int, x:float;", "[([GET, FINAL, STATIC, PRIVATE] foo:INT), ([] x:FLOAT)]");
-		tests.put("dec get final static private foo:int;", "([GET, FINAL, STATIC, PRIVATE] foo:INT)");
-		tests.put("dec f:\\x:int:int;", "([] f \\([] x:INT) : INT)");
-		tests.put("x == 1 ? 3 : 4;", "((x COMPARE 1)?3:4)");
-		tests.put("match x{case 1: return 1; case 2: return 2;}", "match [case 1 {return 1;}, case 2 {return 2;}] null");
+		tests.put("get final static private foo:int, x:float;", "[([GET, FINAL, STATIC, PRIVATE] foo:INT), ([] x:FLOAT)]");
+		tests.put("get final static private foo:int;", "([GET, FINAL, STATIC, PRIVATE] foo:INT)");
+		tests.put("f:\\x:int:int;", "([] f \\([] x:INT) : INT)");
+		tests.put("x:int|float;", "([] x:INT)");
 		
+		tests.put("dec x:int|float;", "([] x:INT | FLOAT)");
+
+
+		tests.put("x == 1 ? 3 : 4;", "((x COMPARE 1)?3:4)");
+		tests.put("match x{case 1:\n return 1; case 2: return 2;}", "match [case 1 {return 1;}, case 2 {return 2;}] null");
+		tests.put("while true{ x+=1;y+=2; }\n x+=1;", "while true then {(x PLUS_ASSIGN 1); (y PLUS_ASSIGN 2)}");
+
 		
 		for(Entry<String, String> e : tests.entrySet()) {
 			
 			Preprocessor pP = new Preprocessor(e.getKey());
 			CharStream cS = new CharStream(pP.process());
 			TokenStream tS = new TokenStream(cS);		
-			Parser p  = new Parser(tS);
-			Statement s = p.parse().get(0).simplify();
-			System.out.println(s+" "+ ( e.getValue().equals(s.toString()) ? ok("OK") : fail("FAIL") ));
+			
+			try {
+				Parser p  = new Parser(tS);
+				Statement s = p.parse().get(0).simplify();
+				System.out.println(e.getKey()+" "+ ( e.getValue().equals(s.toString()) ? ok("OK") : fail("FAIL") ));
+			}catch (Exception exception) {
+				System.out.println(fail(e.getKey()+" "+exception.getMessage()+" FAIL"));;
+//				exception.printStackTrace();
+			}
+			
 		}
 
 		

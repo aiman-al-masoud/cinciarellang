@@ -190,6 +190,7 @@ public class Parser {
 		}
 
 		eat(Punctuations.CURLY_CLS);
+		eat(Punctuations.STM_SEP);
 		return cS;
 	}	
 
@@ -321,6 +322,7 @@ public class Parser {
 		}
 
 		eat(Punctuations.CURLY_CLS);
+		eat(Punctuations.STM_SEP);
 		return mS;
 	}
 

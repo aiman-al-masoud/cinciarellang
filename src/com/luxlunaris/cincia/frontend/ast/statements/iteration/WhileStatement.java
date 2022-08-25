@@ -16,5 +16,10 @@ public class WhileStatement implements Statement{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return "while "+cond+" then "+block;
+	}
+	
 	
 }

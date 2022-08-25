@@ -1,5 +1,10 @@
 package com.luxlunaris.cincia.frontend.preprocessor;
 
+import java.util.Arrays;
+
+import com.luxlunaris.cincia.frontend.preprocessor.transformations.AddDecKeyword;
+import com.luxlunaris.cincia.frontend.preprocessor.transformations.AddSemicols;
+
 public class Preprocessor {
 	
 	protected String source;
@@ -9,7 +14,20 @@ public class Preprocessor {
 	}
 	
 	public String process() {
-		return this.source;
+		
+		// add semicols automatically where possible
+		String processedSource = AddSemicols.apply(source);
+		
+		// split statements
+		String[] statements = processedSource.split(";");
+		
+		// apply per-statement transformation
+		String t = Arrays.stream(statements)
+				.map(s->s+";")
+				.map(AddDecKeyword::applyLine)
+				.reduce((s1, s2)->s1+s2).get();  
+		
+		return t;
 	}
 	
 }
