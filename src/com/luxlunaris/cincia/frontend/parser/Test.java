@@ -15,7 +15,6 @@ public class Test {
 		source = "f  = \\x:int -> 1;";
 		source = "dec get final static private foo:int, x:float;";
 		source = "dec get final static private foo:int;";
-		source = "x == 1 ? 3 : 4;";
 		source = "a = b = c = 1;";
 		source = "x = z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123' };";
 		source = "x = [1,2,3];";
@@ -24,6 +23,7 @@ public class Test {
 		source = "x = z = {1:2 , * x, 'capra': 3212, };";
 		source = "x = { 1-1*1 : 2 };";
 		source = "f  = \\x -> 1;";
+		source = "x == 1 ? 3 : 4;";
 
 		
 
