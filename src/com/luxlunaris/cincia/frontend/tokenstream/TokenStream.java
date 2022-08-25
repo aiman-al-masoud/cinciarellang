@@ -30,7 +30,7 @@ public class TokenStream {
 	public void next() {
 
 		// skip whitespace
-		readWhile( c -> { return c == ' ' || c == '\t'; });
+		readWhile( c -> { return c == ' ' || c == '\t' || c=='\n'; });
 
 		char curr  = cStream.peek();
 

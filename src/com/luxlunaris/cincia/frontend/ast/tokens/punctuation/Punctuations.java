@@ -1,12 +1,10 @@
 package com.luxlunaris.cincia.frontend.ast.tokens.punctuation;
 
-import javax.management.RuntimeErrorException;
 
 public enum Punctuations {
 	
-//	NEWLINE, 
-//	SEMI_COL,
-	STM_SEP, //statement separator, newline or semicol
+
+	STM_SEP, //statement separator
 	COL, 
 	PAREN_OPN, 
 	PAREN_CLS, 
@@ -23,8 +21,6 @@ public enum Punctuations {
 		
 		switch (value) {
 		
-			case '\n':
-				return STM_SEP;
 			case ';':
 				return STM_SEP;
 			case ':':
