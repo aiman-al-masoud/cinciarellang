@@ -28,8 +28,6 @@ public class FunctionDeclaration extends SingleDeclaration {
 	
 	@Override
 	public String toString() {
-		
-		
 		return "("+modifiers+" "+name+" "+signature+")";
 	}
 	
