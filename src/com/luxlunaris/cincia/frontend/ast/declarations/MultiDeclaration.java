@@ -21,4 +21,9 @@ public class MultiDeclaration implements Declaration{
 		declarations.add(sd);
 	}
 	
+	@Override
+	public String toString() {
+		return "["+declarations.stream().map(x->x+"").reduce((x1, x2)->x1+", "+x2).get()+"]";
+	}
+
 }
