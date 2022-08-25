@@ -8,9 +8,9 @@ public class ListType  extends CollectionType{
 	
 	public Type value;
 
-	@Override
-	public Object getValue() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Object getValue() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

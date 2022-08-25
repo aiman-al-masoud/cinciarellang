@@ -15,12 +15,17 @@ public class PrimitiveType extends OneNameType{
 		value = type;
 	}
 	
-
 	@Override
-	public Object getValue() {
-		// TODO Auto-generated method stub
-		return null;
+	public String toString() {
+		return value+"";
 	}
+	
+
+//	@Override
+//	public Object getValue() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 	
 	

@@ -1,5 +1,5 @@
 package com.luxlunaris.cincia.frontend.ast.interfaces;
 
-public interface Type extends Token{
+public interface Type extends Expression{
 
 }

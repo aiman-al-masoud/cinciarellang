@@ -9,10 +9,10 @@ public class DictType extends CollectionType{
 	public Type keyType;
 	public Type valType;
 	
-	@Override
-	public Object getValue() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Object getValue() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 }
