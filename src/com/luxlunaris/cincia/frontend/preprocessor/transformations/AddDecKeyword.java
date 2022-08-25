@@ -1,8 +1,14 @@
 package com.luxlunaris.cincia.frontend.preprocessor.transformations;
 
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
+
 public class AddDecKeyword {
 	
+	
+	
 	public static String applyLine(String statement) {
+		
+		String DEC = "dec";
 		
 		String output = statement;
 		
@@ -16,9 +22,10 @@ public class AddDecKeyword {
 		String multiDec = "("+singleDec+"\\s*,"+singleDec+")*";
 		
 		if(  statement.matches(singleDec+";") || statement.matches(multiDec+";") ) {
-			output = statement.replaceFirst("\\s*dec\\s*", "");
+			output = statement.replaceFirst("\\s*"+DEC+"\\s*", "");
 			output = "dec "+output;
 		}
+		
 		
 		return output;
 		
