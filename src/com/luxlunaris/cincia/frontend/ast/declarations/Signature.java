@@ -23,4 +23,11 @@ public class Signature{
 	public String toString() {
 		return "\\" + params +" : "+returnType;
 	}
+	
+	Signature simplify() {
+		this.params = params.simplify();
+		this.returnType = (Type) returnType.simplify();
+		return this;
+	}
+	
 }

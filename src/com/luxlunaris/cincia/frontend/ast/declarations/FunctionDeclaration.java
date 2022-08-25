@@ -21,5 +21,16 @@ public class FunctionDeclaration extends SingleDeclaration {
 		this.modifiers = new ArrayList<Modifier>();
 	}
 	
+	@Override
+	public Declaration simplify() {
+		return this;
+	}
+	
+	@Override
+	public String toString() {
+		
+		
+		return "("+modifiers+" "+name+" "+signature+")";
+	}
 	
 }

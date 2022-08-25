@@ -33,5 +33,11 @@ public class VariableDeclaration extends SingleDeclaration{
 		public String toString() {
 			return "("+modifiers+" "+name+":"+type+")";
 		}
+
+	@Override
+	public Declaration simplify() {
+		this.type = (Type) type.simplify();
+		return this;
+	}
 	
 }

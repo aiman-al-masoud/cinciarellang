@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.frontend.ast.declarations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 
@@ -24,6 +25,12 @@ public class MultiDeclaration implements Declaration{
 	@Override
 	public String toString() {
 		return "["+declarations.stream().map(x->x+"").reduce((x1, x2)->x1+", "+x2).get()+"]";
+	}
+
+	@Override
+	public Declaration simplify() {
+		this.declarations  = declarations.stream().map(d-> (SingleDeclaration) d.simplify()).collect(Collectors.toList());
+		return this;
 	}
 
 }
