@@ -19,7 +19,7 @@ public class Test {
 		source = "dec get final static private foo:int;";
 		source = "x == 1 ? 3 : 4;";
 		source = "a = b = c = 1;";
-		source = "x = {'y' : 222 };";
+		source = "x = {'y' : 222, 'capra' : 1 };";
 
 		
 

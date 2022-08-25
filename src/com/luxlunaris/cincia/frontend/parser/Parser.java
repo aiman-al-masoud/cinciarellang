@@ -88,8 +88,8 @@ public class Parser {
 		this.tStream = tStream;
 		this.tStream.next(); //get first token
 	}
-	
-	
+
+
 	public List<Statement> parse(){
 
 		ArrayList<Statement> res = new ArrayList<Statement>();
@@ -101,7 +101,7 @@ public class Parser {
 		return res;
 	}
 
-	
+
 	private Statement parseStatement() {
 
 		Statement res = null;
@@ -141,15 +141,15 @@ public class Parser {
 
 		return res;
 	}
-	
-	
+
+
 	private ExpressionStatement parseExpressionStatement() {
 
 		ExpressionStatement eS = new ExpressionStatement(parseExpression());
 		eat(Punctuations.STM_SEP);
 		return eS;
 	}
-	
+
 	private DeclarationStatement parseDeclStatement() {
 
 		eat(Keywords.DEC);
@@ -195,7 +195,7 @@ public class Parser {
 
 
 	private ForStatement parseForStatement() {
-		
+
 		eat(Keywords.FOR);
 		ForStatement fS = new ForStatement();
 
@@ -213,7 +213,7 @@ public class Parser {
 
 			break;
 		}
-		
+
 		eat(Keywords.IN); // TODO: or 'of' ?
 		fS.iterable = parseSingleExpression();
 		fS.block = parseCompStatement();
@@ -221,7 +221,7 @@ public class Parser {
 	}
 
 	private WhileStatement parseWhileStatement() {
-		
+
 		eat(Keywords.WHILE);
 		WhileStatement wS = new WhileStatement();
 		wS.cond = parseSingleExpression();
@@ -254,7 +254,7 @@ public class Parser {
 	}
 
 	private CatchClause parseCatchClause() {
-		
+
 		eat(Keywords.CATCH);
 		CatchClause cc = new CatchClause();
 		cc.throwable = parseSingleExpression();
@@ -263,7 +263,7 @@ public class Parser {
 	}
 
 	private ThrowStatement parseThrowStatement() {
-		
+
 		eat(Keywords.THROW);
 		ThrowStatement tS = new ThrowStatement(parseSingleExpression());		
 		eat(Punctuations.STM_SEP);
@@ -271,33 +271,33 @@ public class Parser {
 	}
 
 	private ReturnStatement parseReturnStatement() {
-		
+
 		eat(Keywords.RETURN);
 		ReturnStatement rS  = new ReturnStatement();
-		
+
 		if(tStream.peek().getValue().equals(Punctuations.STM_SEP)) {
 			eat(Punctuations.STM_SEP);
 			return rS;
 		}
-		
+
 		rS.expression = parseExpression();
 		eat(Punctuations.STM_SEP);
 		return rS;
-		
+
 	}
 
 	private ContinueStatement parseContinueStatement() {
-		
+
 		eat(Keywords.CONTINUE);
 		return new ContinueStatement();
 	}
 
 	private BreakStatement parseBreakStatement() {
-		
+
 		eat(Keywords.BREAK);
 		return new BreakStatement();
 	}
-	
+
 
 	private MatchStatement parseMatchStatement() {
 
@@ -307,71 +307,71 @@ public class Parser {
 		eat(Punctuations.CURLY_OPN);
 
 		while(!tStream.isEnd()) {
-			
+
 			if(tStream.peek().getValue().equals(Keywords.CASE)) {
 				mS.add(parseCaseStatement());
 			}else {
 				break;
 			}
-			
+
 		}
 
 		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
 			mS.defaultStatement = parseDefaultStatement();
 		}
-		
+
 		eat(Punctuations.CURLY_CLS);
 		return mS;
 	}
 
 	private CaseStatement parseCaseStatement() {
-		
+
 		eat(Keywords.CASE);
 		CaseStatement cS  = new CaseStatement();
 		CompoundStatement block = new CompoundStatement();
 		cS.cond = parseSingleExpression();
 		eat(Punctuations.COL);
-		
+
 		while(!tStream.isEnd()) {
-			
+
 			//DOESN'T stop at break.
 			//stops at next case statement, or default statement, or closing curly brace
 			if(tStream.peek().getValue().equals(Keywords.CASE) || tStream.peek().getValue().equals(Keywords.DEFAULT) || tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
 				break;
 			}
-			
+
 			block.add(parseStatement());
-			
+
 		}
-		
+
 		cS.block = block;
 		return cS;
 	}
-	
+
 
 	private DefaultStatement parseDefaultStatement() {
-		
+
 		eat(Keywords.DEFAULT);
 		eat(Punctuations.COL);
 		DefaultStatement dS  = new DefaultStatement();
 		CompoundStatement block = new CompoundStatement();
-		
+
 		while(!tStream.isEnd()) {
-			
+
 			//DOESN'T stop at break.
 			//stops at closing curly brace
 			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
 				break;
 			}
-			
+
 			block.add(parseStatement());
-			
+
 		}
-		
+
 		dS.block = block;
 		return dS;
 	}
-	
+
 
 	private ImportStatement parseImportStatement() {
 
@@ -394,7 +394,7 @@ public class Parser {
 		}
 
 		eat(Keywords.FROM);
-		
+
 		try {
 			iS.fromPath =  (Str)tStream.peek();
 		}catch (ClassCastException e) {
@@ -404,7 +404,7 @@ public class Parser {
 		eat(Punctuations.STM_SEP);
 		return iS;
 	}
-	
+
 
 	private Entry<DotExpression, Identifier> parseImported(){
 
@@ -463,22 +463,22 @@ public class Parser {
 	}
 
 	private SingleDeclaration parseSingleDeclaration() {
-		
+
 		List<Modifier> modifiers = new ArrayList<Modifier>();
-		
+
 		if(tStream.peek() instanceof Modifier) {
 			modifiers = parseModifiers();
 		}
-		
+
 		Identifier id = parseIdentifier();
-		
+
 		if(!tStream.peek().getValue().equals(Punctuations.COL)) {
 			VariableDeclaration vD = new VariableDeclaration();
 			vD.name = id;
 			vD.modifiers = modifiers;
 			return vD; //unspecified type
 		}
-		
+
 		eat(Punctuations.COL);
 
 		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
@@ -488,7 +488,7 @@ public class Parser {
 			fD.signature = parseSignature();
 			return fD;
 		}
-		
+
 		VariableDeclaration sD = new VariableDeclaration();
 		sD.modifiers = modifiers;
 		sD.name = id;
@@ -512,7 +512,7 @@ public class Parser {
 
 
 	private Expression parseExpression() {
-		
+
 		MultiExpression mE = parseMultiExpression();
 		return mE.expressions.size()==1? mE.expressions.get(0) : mE;
 	}
@@ -539,13 +539,13 @@ public class Parser {
 
 
 	private Expression parseSingleExpression() {
-		
+
 		return parseAsgnExpression();		
 	}
 
-	
+
 	private Expression parseAsgnExpression() { //right assoc
-		
+
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
 
@@ -562,7 +562,7 @@ public class Parser {
 			eat(Operators.ASSIGN);
 			chain.add(parseCondExpression());  			
 		}
-		
+
 		Collections.reverse(chain); // to traverse chain from right to left, eg: z = y = x = 1  ---->  1, x, y, z
 		AssignmentExpression asgn1 = new AssignmentExpression(); //  preamble
 		asgn1.right = chain.get(0); //  preamble
@@ -571,7 +571,7 @@ public class Parser {
 
 			try {
 				//TODO: fix this
-//				asgn1.left = (LeftValue) chain.get(i);
+				//				asgn1.left = (LeftValue) chain.get(i);
 				asgn1.left = chain.get(i);
 				AssignmentExpression asgn2 = new AssignmentExpression();
 				asgn2.right = asgn1;
@@ -599,35 +599,35 @@ public class Parser {
 		TernaryExpression tE = new TernaryExpression();
 		tE.cond = oE;
 		eat(Punctuations.QUESTION_MARK);
-//		tE.thenExpression = parseOrExpression();
+		//		tE.thenExpression = parseOrExpression();
 		tE.thenExpression = parseSingleExpression();
 		eat(Punctuations.COL);
-//		tE.elseExpression = parseOrExpression();
+		//		tE.elseExpression = parseOrExpression();
 		tE.elseExpression = parseSingleExpression();
 		return tE;
-		
+
 	}
 
-	
+
 	private OrExpression parseOrExpression() { //left assoc, as most of the others
 
 		OrExpression oE = new OrExpression(); 
 		oE.left = parseAndExpression();
 
 		while(!tStream.isEnd()) {
-			
+
 			if(tStream.peek().getValue().equals(Operators.OR)) {
-				
+
 				eat(Operators.OR);
 				oE.right = parseAndExpression();
 				OrExpression oE2 = new OrExpression();
 				oE2.left = oE;
 				oE = oE2;
-				
+
 			}else {
 				break;
 			}
-			
+
 		}
 
 		return oE;
@@ -676,7 +676,7 @@ public class Parser {
 	}
 
 	private AddExpression parseAddExpression() {
-		
+
 		AddExpression one = new AddExpression();
 		one.left = parseMulExpression();
 
@@ -731,19 +731,19 @@ public class Parser {
 	}
 
 	private MinusExpression parseMinusExpression() {
-		
+
 		eat(Operators.MINUS);
 		return new MinusExpression(parseUnaryExpression());
 	}
 
 	private NegationExpression parseNegationExpression() {
-		
+
 		eat(Operators.NOT);
 		return new NegationExpression(parseUnaryExpression());
 
 	}
 	private DestructuringExpression parseDestrExpression() {
-		
+
 		eat(Operators.ASTERISK);
 		return new DestructuringExpression(parseUnaryExpression());
 	}
@@ -754,7 +754,7 @@ public class Parser {
 		PostfixExpression exp = parsePrimaryExpression();
 
 		while (!tStream.isEnd()) {
-			
+
 			if(tStream.peek().getValue().equals(Punctuations.PAREN_OPN)) {
 				exp = parseCalledExpression(exp);
 			}else if(tStream.peek().getValue().equals(Punctuations.SQBR_OPN)) {
@@ -766,35 +766,35 @@ public class Parser {
 			}else {
 				break;
 			}
-			
+
 		}
-		
+
 		return exp;
 	}
 
 
 	private CalledExpression parseCalledExpression(PostfixExpression left) {
-		
+
 		eat(Punctuations.PAREN_OPN);
 		CalledExpression cE = new CalledExpression();
 		cE.callable = left;
-		
+
 		if(!tStream.peek().getValue().equals(Punctuations.PAREN_CLS)) {
 			cE.args = parseMultiExpression();
 		}
-		
+
 		eat(Punctuations.PAREN_CLS);
 		return cE;
 	}
 
 	private IndexedExpression parseIndexedExpression(PostfixExpression left) {
-		
+
 		eat(Punctuations.SQBR_OPN);
-		
+
 		if(tStream.peek().getValue().equals(Punctuations.SQBR_CLS)) {
 			tStream.croak("Expected index");
 		}
-		
+
 		IndexedExpression iE = new IndexedExpression();
 		iE.indexable = left;  
 		iE.index = parseExpression(); //TODO: add slicing with ':'
@@ -803,7 +803,7 @@ public class Parser {
 	}
 
 	private DotExpression parseDotExpression(PostfixExpression left) {
-		
+
 		eat(Punctuations.DOT);
 		DotExpression dE = new DotExpression();
 		dE.left = left;
@@ -812,16 +812,16 @@ public class Parser {
 	}
 
 	private ReassignmentExpression parseReasgnExpression(PostfixExpression left) {
-		
+
 		ReassignmentExpression rE = new ReassignmentExpression();
 		rE.left = left;
-		
+
 		try {
 			rE.operator = (Operators)tStream.peek().getValue();
 		}catch (ClassCastException e) {
 			tStream.croak("Expected postfix operator");
 		}
-		
+
 		eat(rE.operator);
 		rE.right =  parseExpression();
 		return rE;
@@ -852,7 +852,7 @@ public class Parser {
 
 
 	private BracketedExpression parseBracketedExpression() {
-		
+
 		eat(Punctuations.PAREN_OPN);
 		Expression expression = parseExpression();
 		eat(Punctuations.PAREN_CLS);
@@ -946,11 +946,11 @@ public class Parser {
 
 
 	private InterfaceExpression parseInterfaceExpression(List<Modifier> modifiers) {
-		
+
 		InterfaceExpression iE = new InterfaceExpression();
 		iE.modifiers = modifiers;
 		eat(Keywords.INTERFACE);
-		
+
 		if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {				
 			iE.superInterfaces = parseIdList();
 		}
@@ -969,7 +969,7 @@ public class Parser {
 
 		eat(Punctuations.CURLY_CLS);
 		return iE;
-		
+
 	}
 
 
@@ -1008,7 +1008,7 @@ public class Parser {
 		lE.elements = mE;
 		eat(Punctuations.SQBR_CLS);
 		return lE;
-		
+
 	}
 
 	private ListComprehension parseListComprehension(Expression exp) {
@@ -1027,59 +1027,87 @@ public class Parser {
 		return lC;
 	}
 
+
+
+
+
+
+
+
+
 	private ObjectExpression parseDict() {
 
 		eat(Punctuations.CURLY_OPN);
 		DictExpression dE = new DictExpression();
-		Expression exp;
-		boolean firstLoop = true; 
+		boolean firstLoop = true;
+		Expression key;
+		Expression val;
+		key = parseSingleExpression();
 
 		while (!tStream.isEnd()) {
 
-			exp = parseSingleExpression();
-
-			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
-				eat(Punctuations.COMMA);
-
-				try {
-					dE.addDestruct((DestructuringExpression)exp);
-				}catch (ClassCastException e) {
-					tStream.croak("Expected variable unpacking");
-				}
-
-			}else if (tStream.peek().getValue().equals(Punctuations.COL)) {
-				
-				eat(Punctuations.COL);
-				Expression val = parseSingleExpression();
-
-
-				if(tStream.peek().getValue().equals(Keywords.FOR)) {
-
-					if(firstLoop) {
-						return parseDictComprehension(Map.entry(exp, val));
-					}
-
-					tStream.croak("Misplaced 'for', not a comprehension");
-
-				}else {
-					dE.addEntry(exp, val);
-				}
-
-			}
-			
-			
 			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
 				eat(Punctuations.CURLY_CLS);
 				break;
 			}
 
-			firstLoop = false;
-		}
+			if (tStream.peek().getValue().equals(Punctuations.COL)) {
 
+				eat(Punctuations.COL);
+				val = parseSingleExpression();
+
+				if(tStream.peek().getValue().equals(Keywords.FOR)) {
+
+					if(firstLoop) {
+						return parseDictComprehension(Map.entry(key, val));
+					}
+
+					tStream.croak("Misplaced 'for', not a comprehension");
+
+				}else {
+					dE.addEntry(key, val);
+					
+					if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+						eat(Punctuations.CURLY_CLS);
+						break;
+					}
+					
+					eat(Punctuations.COMMA);
+				}
+
+			}
+
+			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
+				eat(Punctuations.COMMA);
+
+				try {
+					dE.addDestruct((DestructuringExpression)key);
+				}catch (ClassCastException e) {
+					tStream.croak("Expected variable unpacking");
+				}
+
+			}
+			
+
+			key = parseSingleExpression();
+			firstLoop = false;
+
+		}
+		
 		return dE;
 	}
 
-	
+
+
+
+
+
+
+
+
+
+
+
 	private DictComprehension parseDictComprehension(Entry<Expression, Expression> entry) {
 
 		DictComprehension dC = new DictComprehension();
@@ -1154,7 +1182,7 @@ public class Parser {
 	}
 
 	private ListType parseListType(OneNameType oT) {
-		
+
 		ListType lT = new ListType();
 		lT.value = oT;
 		eat(Punctuations.SQBR_OPN);
@@ -1188,14 +1216,14 @@ public class Parser {
 	}
 
 	private IdentifierType parseIdentifierType() {
-		
+
 		IdentifierType iD = new IdentifierType((Identifier)tStream.peek());
 		tStream.next();
 		return iD;
 	}
 
 	private PrimitiveType parsePrimitiveType() {
-		
+
 		PrimitiveType pT = new PrimitiveType((Keywords)tStream.peek().getValue());
 		tStream.next();
 		return pT;
