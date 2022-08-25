@@ -39,14 +39,8 @@ public class DictExpression implements ObjectExpression{
 	@Override
 	public String toString() {
 
-//		System.out.println(destructs);
 		Optional<String> des = destructs.stream().map(e->"*("+e.arg+")").reduce( (e1,e2)-> {return e1+", "+e2;});
-		
-		
 		Optional<String> pairs=  entries.stream().map(e->e.getKey().simplify()+" : "+e.getValue().simplify()).reduce( (e1,e2)-> {return e1+", "+e2;});
-		
-//		System.out.println(pairs+" "+des.isPresent());
-//		return "";
 		return "{" + ( pairs.isPresent()? pairs.get() : "") + ( des.isPresent()? ", "+des.get() : "") +"}";
 	}
 	
