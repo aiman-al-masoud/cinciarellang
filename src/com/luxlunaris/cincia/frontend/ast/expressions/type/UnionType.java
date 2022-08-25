@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.ast.tokens.type;
+package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
 import java.util.ArrayList;
 import java.util.List;

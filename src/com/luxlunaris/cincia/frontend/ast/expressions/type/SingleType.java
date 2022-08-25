@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.ast.tokens.type;
+package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;

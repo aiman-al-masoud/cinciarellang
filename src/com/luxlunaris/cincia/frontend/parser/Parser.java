@@ -31,6 +31,13 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.OneNameType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.SingleType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.UnionType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -69,13 +76,6 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.PrimitiveType;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.SingleType;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.IdentifierType;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.DictType;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.ListType;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.OneNameType;
-import com.luxlunaris.cincia.frontend.ast.tokens.type.UnionType;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 
