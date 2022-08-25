@@ -10,12 +10,18 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
 
 //could include one or more DestructuringExpression(s)
 public class ListExpression implements ObjectExpression{
-	
-//	public List<Expression> elements; 
-	public MultiExpression elements;
-	
+
+	//	public List<Expression> elements; 
+	public Expression elements;
+
 	public ListExpression() {
-//		elements = new ArrayList<Expression>();
+		//		elements = new ArrayList<Expression>();
 	}
-	
+
+	@Override
+	public Expression simplify() {
+		this.elements = elements.simplify();
+		return this;
+	}
+
 }
