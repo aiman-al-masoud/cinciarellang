@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.frontend.ast.test;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 
 
 public class Test {

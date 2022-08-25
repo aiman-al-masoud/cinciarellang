@@ -3,11 +3,11 @@ package com.luxlunaris.cincia.frontend.tokenstream;
 import java.util.function.Predicate;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
-import com.luxlunaris.cincia.frontend.ast.tokens.Bool;
-import com.luxlunaris.cincia.frontend.ast.tokens.Float;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.Int;
-import com.luxlunaris.cincia.frontend.ast.tokens.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;

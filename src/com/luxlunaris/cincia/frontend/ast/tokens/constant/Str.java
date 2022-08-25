@@ -1,6 +1,7 @@
-package com.luxlunaris.cincia.frontend.ast.tokens;
+package com.luxlunaris.cincia.frontend.ast.tokens.constant;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
+import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
 
 public class Str extends AbstractToken implements Constant{
 	

@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 
 /**
  * 

@@ -69,7 +69,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
