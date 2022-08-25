@@ -29,6 +29,12 @@ public class InterfaceExpression implements ObjectExpression{
 	public void addDeclaration(Declaration declaration) {
 		declarations.add(declaration);
 	}
+
+
+	@Override
+	public Expression simplify() {
+		return this;
+	}
 	
 	
 }

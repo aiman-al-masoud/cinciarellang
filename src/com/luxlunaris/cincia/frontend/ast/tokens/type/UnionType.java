@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.frontend.ast.tokens.type;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
 
@@ -23,5 +24,10 @@ public class UnionType implements Type{
 	public Object getValue() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Expression simplify() {
+		return this;
 	}
 }

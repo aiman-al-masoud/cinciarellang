@@ -23,6 +23,13 @@ public class LambdaExpression implements ObjectExpression{
 	public LambdaExpression() {
 		modifiers = new ArrayList<Modifier>();
 	}
+
+
+	@Override
+	public Expression simplify() {
+		this.expression = expression.simplify();
+		return this;
+	}
 	
 	
 	

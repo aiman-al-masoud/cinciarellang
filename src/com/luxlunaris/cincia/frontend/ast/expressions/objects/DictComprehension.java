@@ -10,4 +10,16 @@ public class DictComprehension implements ObjectExpression{
 	public Expression val;
 	public Expression iterable;
 	public Expression where; //optional
+	
+	
+	@Override
+	public Expression simplify() {
+		this.key = key.simplify();
+		this.val = val.simplify();
+		this.iterable = iterable.simplify();
+		this.where = where.simplify();
+		return this;
+	}
+	
+	
 }

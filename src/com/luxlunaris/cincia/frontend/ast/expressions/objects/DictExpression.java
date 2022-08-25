@@ -29,5 +29,10 @@ public class DictExpression implements ObjectExpression{
 		destructs.add(exp);
 	}
 
+	@Override
+	public Expression simplify() {
+		return this;
+	}
+	
 	
 }

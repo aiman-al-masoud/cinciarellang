@@ -10,4 +10,12 @@ public class ListComprehension implements ObjectExpression{
 	public Expression iterable;
 	public Expression where; //optional
 	
+	@Override
+	public Expression simplify() {
+		this.element = element.simplify();
+		this.iterable = iterable.simplify();
+		this.where = where.simplify();
+		return this;
+	}
+	
 }

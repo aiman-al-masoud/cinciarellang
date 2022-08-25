@@ -37,5 +37,10 @@ public class ClassExpression implements ObjectExpression{
 	}
 	
 	
+	@Override
+	public Expression simplify() {
+		return this;
+	}
+	
 	
 }
