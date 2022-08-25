@@ -33,7 +33,7 @@ public class Test {
 		List<Statement> statements = p.parse();
 		Statement s = statements.get(0);
 		System.out.println(s.simplify());
-//		System.out.println(((ExpressionStatement)s).expression.simplify());
+		
 	}
 
 	
