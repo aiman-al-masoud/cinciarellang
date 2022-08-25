@@ -21,6 +21,11 @@ public class ReturnStatement implements Statement{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return "return "+expression+";";
+	}
+	
 //	public void addValue(Expression value) {
 //		this.values.add(value);
 //	}
