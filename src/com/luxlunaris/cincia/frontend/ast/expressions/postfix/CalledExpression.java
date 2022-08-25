@@ -18,4 +18,9 @@ public class CalledExpression implements PostfixExpression {
 		cE.args = args.simplify();
 		return cE;
 	}
+	
+	@Override
+	public String toString() {
+		return callable+"("+args+")";
+	}
 }

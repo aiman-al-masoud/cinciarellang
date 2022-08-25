@@ -18,8 +18,13 @@ public class ReassignmentExpression implements PostfixExpression{
 	@Override
 	public Expression simplify() {
 		this.left = (PostfixExpression) left.simplify();
-		this.right = left.simplify();
+		this.right = right.simplify();
 		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return "("+left+" "+operator+" "+right+")";
 	}
 	
 	

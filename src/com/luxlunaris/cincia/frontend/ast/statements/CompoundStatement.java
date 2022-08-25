@@ -26,4 +26,9 @@ public class CompoundStatement implements Statement{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return "{"+statements.stream().map(s->s+"").reduce((s1,s2)->s1+"; "+s2).get()+"}";
+	}
+	
 }

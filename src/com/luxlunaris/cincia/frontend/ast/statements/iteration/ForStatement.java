@@ -26,6 +26,11 @@ public class ForStatement implements Statement{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return "for "+loopVars+" in "+iterable+""+block;
+	}
+	
 	
 	
 	

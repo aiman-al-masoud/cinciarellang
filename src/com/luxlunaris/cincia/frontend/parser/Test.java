@@ -24,6 +24,7 @@ public class Test {
 		source = "dec get final static private foo:int, x:float;";
 		source = "x == 1 ? 3 : 4;";
 		source = "x = z = {1:2 , * x, 'capra': 3212, };";
+		source = "for i in x{ x = do(x); x+=1;  }";
 
 		
 
