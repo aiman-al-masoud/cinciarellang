@@ -22,6 +22,10 @@ public class IndexedExpression implements PostfixExpression, LeftValue{
 	
 //	public IndexedExpression indexOrIterable;
 	
+	@Override
+	public String toString() {
+		return indexable+"["+index+"]";
+	}
 	
 	
 }
