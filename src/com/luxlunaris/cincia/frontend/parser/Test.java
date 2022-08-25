@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
+import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 public class Test {
@@ -40,7 +41,8 @@ public class Test {
 		
 		for(Entry<String, String> e : tests.entrySet()) {
 			
-			CharStream cS = new CharStream(e.getKey());
+			Preprocessor pP = new Preprocessor(e.getKey());
+			CharStream cS = new CharStream(pP.process());
 			TokenStream tS = new TokenStream(cS);		
 			Parser p  = new Parser(tS);
 			Statement s = p.parse().get(0).simplify();
