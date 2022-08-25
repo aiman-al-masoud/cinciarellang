@@ -1047,6 +1047,12 @@ public class Parser {
 			
 			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
 				eat(Punctuations.CURLY_CLS);
+				
+				if(key!=null  &&  val != null) {
+					dE.addEntry(key, val);
+					key = val = null;
+				}
+				
 				break;
 			}
 			

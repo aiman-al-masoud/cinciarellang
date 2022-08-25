@@ -22,6 +22,7 @@ public class Test {
 		source = "x = [1,2,3];";
 		source = "x[0] = z = a = [1,2,3];";
 		source = "x = z = {1:2 , * x, 'capra': 3212, };";
+		source = "x = { 1 : 2 };";
 
 		
 
