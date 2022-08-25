@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.frontend.ast.statements.selection;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
@@ -26,7 +27,13 @@ public class MatchStatement implements Statement{
 	@Override
 	public Statement simplify() {
 		this.cond = cond.simplify();
+		this.casesList = casesList.stream().map(c->(CaseStatement)c.simplify()).collect(Collectors.toList());
 		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return "match "+casesList+" "+defaultStatement;
 	}
 	
 }

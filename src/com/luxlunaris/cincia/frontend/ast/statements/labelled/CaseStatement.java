@@ -17,4 +17,9 @@ public class CaseStatement implements Statement{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return "case "+cond+" "+block;
+	}
+	
 }

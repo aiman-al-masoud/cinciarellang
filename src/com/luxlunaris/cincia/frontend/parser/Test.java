@@ -26,7 +26,7 @@ public class Test {
 		source = "dec get final static private foo:int;";
 		source = "dec f:\\x:int:int;";
 		source = "x == 1 ? 3 : 4;";
-
+		source = "match x{case 1: return 1; case 2: return 2;}";
 		
 
 		CharStream cS = new CharStream(source);
