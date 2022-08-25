@@ -35,4 +35,9 @@ public class MultiExpression implements Expression{
 		return mE.expressions.size()==1? mE.expressions.get(0) : mE;
 	}
 	
+	@Override
+		public String toString() {
+			return expressions.toString();
+		}
+	
 }

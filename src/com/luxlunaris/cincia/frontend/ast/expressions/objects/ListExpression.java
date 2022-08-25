@@ -23,5 +23,10 @@ public class ListExpression implements ObjectExpression{
 		this.elements = elements.simplify();
 		return this;
 	}
+	
+	@Override
+	public String toString() {
+		return elements.toString();
+	}
 
 }

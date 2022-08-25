@@ -12,7 +12,6 @@ public class Test {
 	public static void main(String[] args) {
 		
 		String source = "1;";
-		source = "x = [1,2,3];";
 		source = "f  = \\x:int -> 1;";
 		source = "f  = \\x -> 1;";
 		source = "dec get final static private foo:int, x:float;";
@@ -20,7 +19,8 @@ public class Test {
 		source = "x == 1 ? 3 : 4;";
 		source = "a = b = c = 1;";
 		source = "x = z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123' };";
-
+		source = "x = [1,2,3];";
+		
 		
 
 		CharStream cS = new CharStream(source);
