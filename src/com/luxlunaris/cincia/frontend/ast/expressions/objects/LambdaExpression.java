@@ -31,6 +31,10 @@ public class LambdaExpression implements ObjectExpression{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return modifiers+" "+signature+"->"+(block==null? expression :block);
+	}
 	
 	
 }

@@ -15,15 +15,12 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
  */
 public class Signature{
 	
-//	public List<Modifier> modifiers; // can be empty
 	public Declaration params;// can be null if func takes no args
 	public Type returnType;
 	
-	public Signature() {
-//		modifiers = new ArrayList<Modifier>();
-	}
 	
-//	public void addModifier(Modifier modifier) {
-//		modifiers.add(modifier);
-//	}
+	@Override
+	public String toString() {
+		return "\\" + params +" : "+returnType;
+	}
 }
