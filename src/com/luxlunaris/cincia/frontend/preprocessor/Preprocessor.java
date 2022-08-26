@@ -13,7 +13,7 @@ public class Preprocessor {
 		this.source = source;
 	}
 	
-	public String process() {
+	public String process() {		
 		
 		// add semicols automatically where possible
 		String processedSource = AddSemicols.apply(source);
