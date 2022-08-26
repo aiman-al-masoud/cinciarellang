@@ -64,7 +64,9 @@ public class Test {
 		add("\\x->1;", "");
 		add("\\x->{ x = 1;y=x+1;return y; };", "");
 		add("class { dec x:int; f = \\x->1;  };", "");
-//		add("class { x:int; f = \\x->1;  };", "");
+		add("class { x = 1; x:int; f = \\x->1;  };", "");
+		add("class { x:int; f = \\x->1;  };", "");
+
 
 		
 		for(Entry<String, String> e : tests) {
