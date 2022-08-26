@@ -592,7 +592,7 @@ public class Parser {
 	private Expression parseCondExpression() { //OrExpression or TernaryExpression
 
 		Expression oE = parseOrExpression();
-
+		
 		if(!tStream.peek().getValue().equals(Punctuations.QUESTION_MARK)) {
 			return oE;
 		}
