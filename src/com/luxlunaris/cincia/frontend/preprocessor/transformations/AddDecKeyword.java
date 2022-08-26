@@ -9,15 +9,13 @@ public class AddDecKeyword {
 	public static String applyLine(String statement) {
 		
 		String DEC = "dec";
-		
-		String output = statement;
-		
-//		statement.replace("|", "pipe").
+		String output = statement;		
 		String identifier = "([a-zA-Z_][a-zA-Z0-9_]*)";
 		String modifiers = "("+identifier+"\\s*)*";
-		String type = ":"+identifier;
-		
-		
+		String type = ":"+"(\\\\)*"+identifier+"(:"+identifier+")*";
+//		String type = ":\\s*\\\\*\\s*\\w*\\s*:\\s*\\w*(\\s*:\\s*\\w*)*";
+//		String type = ":\\s*\\\\*\\s*"+identifier+"\\s*:\\s*"+identifier+"(\\s*:\\s*"+identifier+")*";
+//		System.out.println(type);
 		String singleDec = modifiers+"\\s+"+identifier+"\\s*"+type;
 		String multiDec = "("+singleDec+"\\s*,"+singleDec+")*";
 		
