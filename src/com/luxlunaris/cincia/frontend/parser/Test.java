@@ -59,7 +59,6 @@ public class Test {
 		//object
 		add("x = { 1 : 2 };", "(x = {1 : 2})");
 
-		
 
 		
 		for(Entry<String, String> e : tests) {
