@@ -47,6 +47,14 @@ public class Test {
 		add("1 / 2;", "");
 		add("1 * 2;", "");
 		add("1 + 1;", "");
+		add("1 - 1;", "");
+		add("1 == 1;", "");
+		add("1 <= 1;", "");
+		add("1 >= 1;", "");
+		add("1 != 1;", "");
+		add("1 < 1;", "");
+		add("1 > 1;", "");
+
 		
 		for(Entry<String, String> e : tests) {
 			
