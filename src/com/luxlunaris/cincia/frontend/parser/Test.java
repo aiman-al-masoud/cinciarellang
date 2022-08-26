@@ -59,9 +59,8 @@ public class Test {
 		//object
 		add("x = { 1 : 2 };", "(x = {1 : 2})");
 		add("[1,2,3,4];", "");
-
-		
 		add("[x+1 for x in l];", "");
+		
 //		add("x = { key : val for v in dict };", "");
 
 
