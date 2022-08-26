@@ -16,7 +16,7 @@ public class AddDecKeyword {
 //		String type = ":\\s*\\\\*\\s*\\w*\\s*:\\s*\\w*(\\s*:\\s*\\w*)*";
 //		String type = ":\\s*\\\\*\\s*"+identifier+"\\s*:\\s*"+identifier+"(\\s*:\\s*"+identifier+")*";
 //		System.out.println(type);
-		String singleDec = modifiers+"\\s+"+identifier+"\\s*"+type;
+		String singleDec = modifiers+"\\s*"+identifier+"\\s*"+type;
 		String multiDec = "("+singleDec+"\\s*,"+singleDec+")*";
 		
 		if(  statement.matches(singleDec+";") || statement.matches(multiDec+";") ) {
