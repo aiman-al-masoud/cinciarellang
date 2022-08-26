@@ -61,6 +61,8 @@ public class Test {
 		add("[1,2,3,4];", "");
 		add("[x+1 for x in l];", "");
 		add("x = { key : val for v in dict };", "");
+		add("\\x->1;", "");
+		add("\\x->{ x = 1;y=x+1;return y; };", "");
 
 
 		
