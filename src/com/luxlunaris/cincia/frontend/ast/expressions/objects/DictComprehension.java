@@ -29,5 +29,9 @@ public class DictComprehension implements ObjectExpression{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return "{"+key+" : "+val+" for "+source+" in "+iterable+"}";
+	}
 	
 }

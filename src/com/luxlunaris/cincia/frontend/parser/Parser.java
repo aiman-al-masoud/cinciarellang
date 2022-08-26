@@ -1092,7 +1092,9 @@ public class Parser {
 		dC.key = entry.getKey();
 		dC.val = entry.getValue();
 		eat(Keywords.FOR);
-		dC.iterable = parseExpression();
+		dC.source = parseSingleExpression();
+		eat(Keywords.IN);
+		dC.iterable = parseSingleExpression();
 
 		if(tStream.peek().getValue().equals(Keywords.WHERE)) {
 			eat(Keywords.WHERE);
