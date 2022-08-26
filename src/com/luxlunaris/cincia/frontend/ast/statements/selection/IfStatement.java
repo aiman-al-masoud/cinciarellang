@@ -22,6 +22,10 @@ public class IfStatement implements Statement{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return "if "+cond+" then "+thenBlock+" else "+elseBlock;
+	}
 	
 	
 }

@@ -79,7 +79,8 @@ public class Test {
 		add("x:{int:int}", "");
 		add("x:int[]", "");
 		// sel statements
-		
+		add("if x { x = 1; y = 2;}else{y = x = 0; }", "");
+
 		
 
 		
