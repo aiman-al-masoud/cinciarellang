@@ -8,7 +8,8 @@ public class OrExpression extends AssignmentExpression{
 
 
 	public Expression left;
-	public AndExpression right;
+//	public AndExpression right;
+	public Expression right;
 	
 	@Override
 	public String toString() {
@@ -24,7 +25,8 @@ public class OrExpression extends AssignmentExpression{
 			return left;
 		}
 		
-		this.right = (AndExpression) right.simplify();
+//		this.right = (AndExpression) right.simplify();
+		this.right = right.simplify();
 		return this;
 	}
 	
