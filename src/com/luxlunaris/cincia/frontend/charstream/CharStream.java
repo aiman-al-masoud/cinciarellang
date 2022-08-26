@@ -24,6 +24,17 @@ public class CharStream {
 		
 	}
 	
+	public void prev() {
+		
+//		if(peek() == '\n') {
+//			row--;
+//		}else {
+//			col--;
+//		}
+//		
+		pos--;
+	}
+	
 	public char peek() {
 		return isEnd() ? EOF : source.charAt(pos);
 	}
@@ -35,6 +46,7 @@ public class CharStream {
 	public boolean isEnd() {
 		return pos >= source.length();
 	}
+	
 	
 	
 	

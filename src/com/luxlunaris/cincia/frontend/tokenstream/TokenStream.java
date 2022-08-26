@@ -35,14 +35,16 @@ public class TokenStream {
 		char curr  = cStream.peek();
 
 		if(curr == '/') {
-			skipComment();
-			next();
-			return;
+
+			if(skipComment() != null) {
+				next();
+				return;
+			}
+
 		}
 
-
 		if(Identifier.isIdStart(curr)) {
-			
+
 			String val = readWhile(Identifier::isId);
 			Keywords kw = Keywords.fromString(val);
 			Boolean b = Bool.stringToBool(val);
@@ -52,52 +54,52 @@ public class TokenStream {
 				currTok = new Identifier(val);
 				return;
 			} 
-			
+
 			if(b!=null) {
 				currTok = new Bool(b);
 				return;
 			}
-			
+
 			if(mod!=null) {
 				currTok = new Modifier(mod);
 				return;
 			}
-			
+
 			currTok = new Keyword(kw);
 			return;
 		}
-		
+
 		//TODO: consider changing f-string syntax to something more like js
 		if(curr=='"' || curr == '\'' || curr == 'f') {
 			currTok = readString();
 			return;
 		}
-		
+
 		if(Character.isDigit(curr)) {
 			currTok = readNumeric();
 			return;
 		}
-		
+
 		if(Operators.isOperator(curr)) {
 			String val = readWhile(c->Operators.isOperator(c));
 			Operators op = Operators.fromString(val);
-			
+
 			if(op==null) {
 				croak("'"+val+"' is not a valid operator");
 			}
-			
+
 			currTok = new Operator(op);
 			return;
 		}
-		
-		
+
+
 		if(Punctuations.isPunctuation(curr)) {
 			currTok = new Punctuation(Punctuations.fromChar(curr));
 			cStream.next();
 			return;
 		}
-		
-		
+
+
 		//if everything fails, normally at the end of the char stream:
 		currTok = null;
 	}
@@ -122,14 +124,16 @@ public class TokenStream {
 		eat('/');
 
 		switch (cStream.peek()) {
+		
 		case '/':
 			return skipSingleLineComment();
 		case '*':
 			eat('*');
 			return skipMultilineComment();
-		default:
-			croak("Expected '/' or '*'");
+		default: // not a comment
+			cStream.prev();
 			return null;
+			
 		}
 
 	}
@@ -256,8 +260,8 @@ public class TokenStream {
 
 
 
-	
-	
+
+
 
 
 
