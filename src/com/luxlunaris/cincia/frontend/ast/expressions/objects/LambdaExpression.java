@@ -27,7 +27,15 @@ public class LambdaExpression implements ObjectExpression{
 
 	@Override
 	public Expression simplify() {
-		this.expression = expression.simplify();
+		
+		if(expression != null) {
+			this.expression = expression.simplify();
+		}
+		
+		if(block != null) {
+			this.block = (CompoundStatement) block.simplify();
+		}
+		
 		return this;
 	}
 	

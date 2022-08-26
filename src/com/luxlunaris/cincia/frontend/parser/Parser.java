@@ -138,6 +138,7 @@ public class Parser {
 			res = parseExpressionStatement();
 		}
 
+		eat(Punctuations.STM_SEP);
 		return res;
 	}
 
@@ -145,7 +146,7 @@ public class Parser {
 	private ExpressionStatement parseExpressionStatement() {
 
 		ExpressionStatement eS = new ExpressionStatement(parseExpression());
-		eat(Punctuations.STM_SEP);
+//		eat(Punctuations.STM_SEP);
 		return eS;
 	}
 
@@ -153,7 +154,7 @@ public class Parser {
 
 		eat(Keywords.DEC);
 		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
-		eat(Punctuations.STM_SEP);
+//		eat(Punctuations.STM_SEP);
 		return dS;
 	}
 
@@ -187,9 +188,11 @@ public class Parser {
 
 			cS.add(parseStatement());
 		}
+		
 
 		eat(Punctuations.CURLY_CLS);
-		eat(Punctuations.STM_SEP);
+//		eat(Punctuations.STM_SEP);
+
 		return cS;
 	}	
 
@@ -266,7 +269,7 @@ public class Parser {
 
 		eat(Keywords.THROW);
 		ThrowStatement tS = new ThrowStatement(parseSingleExpression());		
-		eat(Punctuations.STM_SEP);
+//		eat(Punctuations.STM_SEP);
 		return tS;
 	}
 
@@ -281,7 +284,7 @@ public class Parser {
 		}
 
 		rS.expression = parseExpression();
-		eat(Punctuations.STM_SEP);
+//		eat(Punctuations.STM_SEP);
 		return rS;
 
 	}
@@ -321,7 +324,7 @@ public class Parser {
 		}
 
 		eat(Punctuations.CURLY_CLS);
-		eat(Punctuations.STM_SEP);
+//		eat(Punctuations.STM_SEP);
 		return mS;
 	}
 
@@ -402,7 +405,7 @@ public class Parser {
 			tStream.croak("Expected import path (string constant)");
 		} 
 
-		eat(Punctuations.STM_SEP);
+//		eat(Punctuations.STM_SEP);
 		return iS;
 	}
 
@@ -592,6 +595,7 @@ public class Parser {
 	private Expression parseCondExpression() { //OrExpression or TernaryExpression
 
 		Expression oE = parseOrExpression();
+		
 		
 		if(!tStream.peek().getValue().equals(Punctuations.QUESTION_MARK)) {
 			return oE;
@@ -891,6 +895,7 @@ public class Parser {
 	}
 
 	private LambdaExpression parseLambdaExpression(List<Modifier> modifiers) {
+		
 
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
@@ -898,6 +903,7 @@ public class Parser {
 		eat(Operators.ARROW);
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+
 			lE.block = parseCompStatement();
 		}else {
 			lE.expression = parseExpression();
