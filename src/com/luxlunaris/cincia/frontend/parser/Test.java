@@ -1,7 +1,6 @@
 package com.luxlunaris.cincia.frontend.parser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -24,7 +23,6 @@ public class Test {
 	public static void main(String[] args) {
 		
 		//TODO: don't rely on string reprs for tests!!! (right now results are correct but some 'fails' crop up due to literal string comparison)
-//		Map<String, String> tests = new HashMap<String, String>();
 		add("1;", "1");
 		add("f  = \\x:int -> 1;", "(f = [] \\([] x:INT) : null->1)");
 		add("x = z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123' };", "(x = (z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123'}))");
