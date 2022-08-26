@@ -12,7 +12,7 @@ public class AddDecKeyword {
 		String output = statement;		
 		String identifier = "([a-zA-Z_][a-zA-Z0-9_]*)";
 		String modifiers = "("+identifier+"\\s*)*";
-		String type = ":"+"(\\\\)*\\s*"+identifier+"\\s*(:"+identifier+")*";
+		String type = ":\\s*"+"(\\\\)*\\s*"+identifier+"\\s*(:"+identifier+")*";
 		String singleDec = modifiers+"\\s*"+identifier+"\\s*"+type;
 		String multiDec = "("+singleDec+"\\s*,"+singleDec+")*";
 		
