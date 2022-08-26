@@ -9,7 +9,7 @@ import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 public class AddDecKeyword {
 	
-	public static String applyLine(final String statement) {
+	public static String apply(final String statement) {
 		
 		String DEC = "dec";
 		String ifDec = statement.replaceFirst("\\s*"+DEC+"\\s*", "");

@@ -24,7 +24,7 @@ public class Preprocessor {
 		// apply per-statement transformation
 		String t = Arrays.stream(statements)
 				.map(s->s+";")
-				.map(AddDecKeyword::applyLine)
+				.map(AddDecKeyword::apply)
 				.reduce((s1, s2)->s1+s2).get();  
 		
 		return t;
