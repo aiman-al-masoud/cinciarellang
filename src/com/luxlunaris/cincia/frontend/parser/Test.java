@@ -74,8 +74,11 @@ public class Test {
 		add("x[1][2]", "");
 		add("x+=1", "");
 		add("x/=1", "");
-		// 
-		
+		// types
+		add("x:int|float|Object", "");
+		add("x:{int:int}", "");
+		add("x:int[]", "");
+
 		
 		for(Entry<String, String> e : tests) {
 			
