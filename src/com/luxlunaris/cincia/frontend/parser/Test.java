@@ -68,8 +68,14 @@ public class Test {
 		add("class { x:int; f = \\x->1;  };", "");
 		add("class { f:\\x:int:int;  };", "");
 		add("interface { x:int; y:int; f:\\x:int:int;  };", "");
-
-
+		// postfix
+		add("f(a,b,1+2);", "");
+		add("a.b.c.d", "");
+		add("x[1][2]", "");
+		add("x+=1", "");
+		add("x/=1", "");
+		// 
+		
 		
 		for(Entry<String, String> e : tests) {
 			
