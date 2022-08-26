@@ -6,7 +6,11 @@ import com.luxlunaris.cincia.frontend.charstream.CharStream;
 import com.luxlunaris.cincia.frontend.parser.Parser;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
-
+/**
+ * Automatically add the DEC keyword to a statement if it's found 
+ * to be a declaration statement.
+ *
+ */
 public class AddDecKeyword {
 	
 	public static String apply(final String statement) {
