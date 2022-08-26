@@ -7,10 +7,10 @@ import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
 public class ListType  extends CollectionType{
 	
 	public Type value;
+	
+	@Override
+	public String toString() {
+		return value+"[]";
+	}
 
-//	@Override
-//	public Object getValue() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 }
