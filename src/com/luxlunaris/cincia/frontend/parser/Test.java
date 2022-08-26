@@ -46,6 +46,7 @@ public class Test {
 		add("true || false;", "");
 		add("1 / 2;", "");
 		add("1 * 2;", "");
+		add("1 % 2;", "");
 		add("1 + 1;", "");
 		add("1 - 1;", "");
 		add("1 == 1;", "");
@@ -54,6 +55,7 @@ public class Test {
 		add("1 != 1;", "");
 		add("1 < 1;", "");
 		add("1 > 1;", "");
+		add("1 > 2 > 1;", "");
 
 		
 		for(Entry<String, String> e : tests) {
