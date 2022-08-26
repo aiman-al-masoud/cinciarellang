@@ -16,10 +16,12 @@ public class AddDecKeyword {
 		ifDec  = dec+" "+ifDec ;
 		
 		try {
+			// try forcing the compiler to parse this statement as a declaration ...
 			Parser parser = new Parser(new TokenStream(new CharStream(ifDec)));
 			parser.parse();
 			return ifDec;
 		}catch (Exception e) {
+			// if it fails, then it's not a declaration!
 			return statement;
 		}
 		
