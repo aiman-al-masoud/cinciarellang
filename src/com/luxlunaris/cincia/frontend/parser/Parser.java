@@ -146,7 +146,6 @@ public class Parser {
 	private ExpressionStatement parseExpressionStatement() {
 
 		ExpressionStatement eS = new ExpressionStatement(parseExpression());
-//		eat(Punctuations.STM_SEP);
 		return eS;
 	}
 
@@ -154,7 +153,6 @@ public class Parser {
 
 		eat(Keywords.DEC);
 		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
-//		eat(Punctuations.STM_SEP);
 		return dS;
 	}
 
@@ -191,8 +189,6 @@ public class Parser {
 		
 
 		eat(Punctuations.CURLY_CLS);
-//		eat(Punctuations.STM_SEP);
-
 		return cS;
 	}	
 
@@ -269,7 +265,6 @@ public class Parser {
 
 		eat(Keywords.THROW);
 		ThrowStatement tS = new ThrowStatement(parseSingleExpression());		
-//		eat(Punctuations.STM_SEP);
 		return tS;
 	}
 
@@ -284,9 +279,8 @@ public class Parser {
 		}
 
 		rS.expression = parseExpression();
-//		eat(Punctuations.STM_SEP);
 		return rS;
-
+		
 	}
 
 	private ContinueStatement parseContinueStatement() {
@@ -324,7 +318,6 @@ public class Parser {
 		}
 
 		eat(Punctuations.CURLY_CLS);
-//		eat(Punctuations.STM_SEP);
 		return mS;
 	}
 
@@ -404,8 +397,7 @@ public class Parser {
 		}catch (ClassCastException e) {
 			tStream.croak("Expected import path (string constant)");
 		} 
-
-//		eat(Punctuations.STM_SEP);
+		
 		return iS;
 	}
 
