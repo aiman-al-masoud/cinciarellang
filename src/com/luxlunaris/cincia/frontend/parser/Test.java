@@ -63,7 +63,7 @@ public class Test {
 		add("x = { key : val for v in dict };", "");
 		add("\\x->1;", "");
 		add("\\x->{ x = 1;y=x+1;return y; };", "");
-
+		add("class {  f = \\x->1;  };", "");
 
 		
 		for(Entry<String, String> e : tests) {
