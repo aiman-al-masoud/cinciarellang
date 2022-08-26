@@ -78,6 +78,9 @@ public class Test {
 		add("x:int|float|Object", "");
 		add("x:{int:int}", "");
 		add("x:int[]", "");
+		// sel statements
+		
+		
 
 		
 		for(Entry<String, String> e : tests) {
