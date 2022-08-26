@@ -44,6 +44,7 @@ public class Test {
 		add("while true{ x+=1;y+=2; }\n x+=1;", "while true then {(x PLUS_ASSIGN 1); (y PLUS_ASSIGN 2)}");
 		add("true && false;", "");
 		add("true || false;", "");
+		// binary
 		add("1 / 2;", "");
 		add("1 * 2;", "");
 		add("1 % 2;", "");
@@ -56,6 +57,8 @@ public class Test {
 		add("1 < 1;", "");
 		add("1 > 1;", "");
 		add("1 > 2 > 1;", "");
+		//object
+		
 
 		
 		for(Entry<String, String> e : tests) {
