@@ -28,7 +28,6 @@ public class Test {
 		add("x = z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123' };", "(x = (z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123'}))");
 		add("x = [1,2,3];", "(x = [1, 2, 3])");
 		add("x[0] = z = a = [1,2,3];", "(x[0] = (z = (a = [1, 2, 3])))");
-		add("x = { 1 : 2 };", "(x = {1 : 2})");
 		add("x = { 1-1*1 : 2 };", "(x = {(1 MINUS (1 ASTERISK 1)) : 2})");
 		add("f = \\x -> 1;", "(f = [] \\([] x:null) : null->1)");
 		add("a = b = c = 1;", "(a = (b = (c = 1)))");
@@ -58,6 +57,8 @@ public class Test {
 		add("1 > 1;", "");
 		add("1 > 2 > 1;", "");
 		//object
+		add("x = { 1 : 2 };", "(x = {1 : 2})");
+
 		
 
 		
