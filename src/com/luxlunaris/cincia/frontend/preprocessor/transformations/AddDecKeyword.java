@@ -11,9 +11,9 @@ public class AddDecKeyword {
 	
 	public static String apply(final String statement) {
 		
-		String DEC = "dec";
-		String ifDec = statement.replaceFirst("\\s*"+DEC+"\\s*", "");
-		ifDec  = DEC+" "+ifDec ;
+		String dec = Keywords.DEC.toString();
+		String ifDec = statement.replaceFirst("\\s*"+dec+"\\s*", "");
+		ifDec  = dec+" "+ifDec ;
 		
 		try {
 			Parser parser = new Parser(new TokenStream(new CharStream(ifDec)));

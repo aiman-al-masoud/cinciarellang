@@ -19,7 +19,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		
+		//TODO: don't rely on string reprs for tests!!! (right now results are correct but some 'fails' crop up due to literal string comparison)
 		Map<String, String> tests = new HashMap<String, String>();
 		tests.put("1;", "1");
 		tests.put("f  = \\x:int -> 1;", "(f = [] \\([] x:INT) : null->1)");
@@ -52,7 +52,7 @@ public class Test {
 				Parser p  = new Parser(tS);
 				Statement s = p.parse().get(0).simplify();
 				System.out.println(e.getKey()+" "+ ( e.getValue().equals(s.toString()) ? ok("OK") : fail("FAIL") ));
-//				System.out.println(s);
+				System.out.println(s);
 			}catch (Exception exception) {
 				System.out.println(fail(e.getKey()+" "+exception.getMessage()+" FAIL"));;
 //				exception.printStackTrace();
