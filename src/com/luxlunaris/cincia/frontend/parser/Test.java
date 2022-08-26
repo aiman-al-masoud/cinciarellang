@@ -61,7 +61,7 @@ public class Test {
 		add("[1,2,3,4];", "");
 
 		
-//		add("[x for x in l];", "");
+		add("[x for x in l];", "");
 //		add("x = { key : val for v in dict };", "");
 
 

@@ -1014,14 +1014,16 @@ public class Parser {
 
 	private ListComprehension parseListComprehension(Expression exp) {
 
-		eat(Keywords.FOR);
 		ListComprehension lC = new ListComprehension();
 		lC.element = exp;
-		lC.iterable = parseExpression();
+		eat(Keywords.FOR);
+		lC.source = parseSingleExpression();
+		eat(Keywords.IN);
+		lC.iterable = parseSingleExpression();
 
 		if(tStream.peek().getValue().equals(Keywords.WHERE)) {
 			eat(Keywords.WHERE);
-			lC.where = parseExpression();
+			lC.where = parseSingleExpression();
 		}
 
 		eat(Punctuations.SQBR_CLS);
