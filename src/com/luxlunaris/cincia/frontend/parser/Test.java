@@ -67,6 +67,8 @@ public class Test {
 		add("class { x = 1; x:int; f = \\x->1;  };", "");
 		add("class { x:int; f = \\x->1;  };", "");
 		add("class { f:\\x:int:int;  };", "");
+		
+		add("interface { f:\\x:int:int;  };", "");
 
 
 		

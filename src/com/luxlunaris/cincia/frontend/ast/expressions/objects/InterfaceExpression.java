@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.frontend.ast.expressions.objects;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
@@ -33,7 +34,13 @@ public class InterfaceExpression implements ObjectExpression{
 
 	@Override
 	public Expression simplify() {
+		this.declarations = declarations.stream().map(d->d.simplify()).collect(Collectors.toList());
 		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return declarations.toString();
 	}
 	
 	

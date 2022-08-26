@@ -186,7 +186,7 @@ public class Parser {
 
 			cS.add(parseStatement());
 		}
-		
+
 
 		eat(Punctuations.CURLY_CLS);
 		return cS;
@@ -280,7 +280,7 @@ public class Parser {
 
 		rS.expression = parseExpression();
 		return rS;
-		
+
 	}
 
 	private ContinueStatement parseContinueStatement() {
@@ -397,7 +397,7 @@ public class Parser {
 		}catch (ClassCastException e) {
 			tStream.croak("Expected import path (string constant)");
 		} 
-		
+
 		return iS;
 	}
 
@@ -587,8 +587,8 @@ public class Parser {
 	private Expression parseCondExpression() { //OrExpression or TernaryExpression
 
 		Expression oE = parseOrExpression();
-		
-		
+
+
 		if(!tStream.peek().getValue().equals(Punctuations.QUESTION_MARK)) {
 			return oE;
 		}
@@ -887,7 +887,7 @@ public class Parser {
 	}
 
 	private LambdaExpression parseLambdaExpression(List<Modifier> modifiers) {
-		
+
 
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
@@ -962,7 +962,10 @@ public class Parser {
 				break;
 			}
 
-			iE.addDeclaration(parseDeclStatement().declaration);
+			try {
+				Statement s  = parseStatement();
+				iE.addDeclaration(((DeclarationStatement)s).declaration);
+			}catch (ClassCastException e) {}
 
 		}
 
