@@ -150,13 +150,15 @@ public class Test {
 		add("x/=1", rE.toString());
 
 		
-		//object
+		// dictionary literal expression
 		DictExpression diE = new DictExpression();
 		diE.addEntry(new Int(1), new Int(2));
 		AssignmentExpression asE = new AssignmentExpression();
 		asE.left = new Identifier("x");
 		asE.right = diE;
 		add("x = { 1 : 2 };", asE.toString());
+		
+		
 		add("[1,2,3,4];", "");
 		add("[x+1 for x in l];", "");
 		add("x = { key : val for v in dict };", "");
