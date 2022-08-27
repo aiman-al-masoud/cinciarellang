@@ -83,6 +83,9 @@ public class Test {
 		// iteration statements 
 		add("for i in x{ x = do(x); x+=1;  }", "");
 		add("while x{ x = do(x); x+=1;  }", "");
+		// jump statements 
+		add("while x{ break;  }", "");
+		add("while x{ continue;  }", "");
 
 
 		
