@@ -15,6 +15,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
@@ -167,7 +168,18 @@ public class Test {
 		add("[1,2,3,4];", lE.toString());
 		
 		
-		add("[x+1 for x in l];", "");
+		// list comprehension
+		ListComprehension lC = new ListComprehension();
+		AddExpression adE = new AddExpression();
+		adE.left = new Identifier("x");
+		adE.right = new Int(1);
+		adE.op = Operators.PLUS;
+		lC.element = adE;
+		lC.source =  new Identifier("x");
+		lC.iterable =  new Identifier("l");
+		add("[x+1 for x in l];", lC.toString());
+		
+		
 		add("x = { key : val for v in dict };", "");
 		add("\\x->1;", "");
 		add("\\x->{ x = 1;y=x+1;return y; };", "");
