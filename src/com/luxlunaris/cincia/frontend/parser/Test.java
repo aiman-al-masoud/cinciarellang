@@ -99,9 +99,11 @@ public class Test {
 		add("2 < 1;", cE.toString());
 		cE.op = Operators.GT;
 		add("2 > 1;", cE.toString());
-		
-		
-		add("2 > 1 > 3;", cE.toString());
+		ComparisonExpression ccE = new ComparisonExpression();
+		ccE.left = cE;
+		ccE.right = new Int(3);
+		ccE.op = Operators.GT;
+		add("2 > 1 > 3;", ccE.toString());
 		
 		
 		//object
