@@ -139,7 +139,7 @@ public class Test {
 		iE2.index = new Int(2);
 		add("x[1][2]", iE2.toString());
 		
-		
+		// reassignment expression
 		ReassignmentExpression rE = new ReassignmentExpression();
 		rE.left = new Identifier("x");
 		rE.right = new Int(1);
