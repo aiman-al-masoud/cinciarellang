@@ -201,9 +201,7 @@ public class Test {
 		tests.add(Map.entry(s1, s2));
 	}
 	
-	public static boolean compareStatements(Statement s1, Statement s2) {
-		return s1.simplify().toString().equals(s2.simplify().toString());
-	}
+	
 	
 
 	
