@@ -136,7 +136,7 @@ public class Test {
 		IndexedExpression iE2 = new IndexedExpression();
 		iE2.indexable = iE;
 		iE2.index = new Int(2);
-		add("x[1][2]", iE.toString());
+		add("x[1][2]", iE2.toString());
 		
 		
 		
