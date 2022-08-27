@@ -113,7 +113,6 @@ public class Test {
 		MultiExpression muE = new MultiExpression();
 		muE.expressions = Arrays.asList(new Identifier("a"), new Identifier("b"), new Int(1));
 		caE.args = muE;
-				
 		add("f(a, b, 1);", caE.toString());
 		add("a.b.c.d", "");
 		add("x[1][2]", "");
