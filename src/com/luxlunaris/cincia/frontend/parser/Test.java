@@ -79,9 +79,10 @@ public class Test {
 		add("x:int[]", "");
 		// sel statements
 		add("if x { x = 1; y = 2;}else{y = x = 0; }", "");
-		add("match x{\ncase 1:\nreturn 1;\ncase 2:\nreturn 2;\ndefault:\nreturn0;\n}", "");
+		add("match x{case 1:return 1;case 2:return 2;default:return 0;}", "");
+		// iteration statements 
+		add("for i in x{ x = do(x); x+=1;  }", "");
 
-		
 
 		
 		for(Entry<String, String> e : tests) {
