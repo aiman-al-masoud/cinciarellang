@@ -92,6 +92,10 @@ public class Test {
 		add("try { 1/0; }catch e:float { }", "");
 		add("try { 1/0; }catch e:int { }", "");
 
+		
+		
+		// import statement 
+//		add("import capra as c from './files/capre' ", "");
 
 		
 		for(Entry<String, String> e : tests) {
