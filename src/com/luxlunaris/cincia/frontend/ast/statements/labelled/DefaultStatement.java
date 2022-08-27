@@ -13,4 +13,9 @@ public class DefaultStatement implements Statement{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return "default "+block;
+	}
+	
 }
