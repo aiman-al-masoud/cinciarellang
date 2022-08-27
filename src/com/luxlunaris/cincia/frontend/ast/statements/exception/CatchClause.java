@@ -8,4 +8,17 @@ public class CatchClause {
 	public Expression throwable;
 	public CompoundStatement block;
 	
+	
+	public CatchClause simplify() {
+		this.throwable = throwable.simplify();
+		this.block = (CompoundStatement) block.simplify();
+		return this;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "catch "+throwable+" "+block;
+	}
+	
 }
