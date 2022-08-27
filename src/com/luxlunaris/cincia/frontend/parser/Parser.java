@@ -138,7 +138,6 @@ public class Parser {
 			res = parseExpressionStatement();
 		}
 		
-//		System.out.println("done parsing statement "+res);
 		eat(Punctuations.STM_SEP);
 		return res;
 	}
@@ -390,24 +389,19 @@ public class Parser {
 
 			Entry<PostfixExpression, Identifier> imported = parseImported();
 			iS.addImport(imported.getKey(), imported.getValue());
-//			System.out.println("imported: "+iS.imports.get(0));
 
 		}
 
 		eat(Keywords.FROM);
-//		System.out.println("ate from");
 
 		try {
-//			System.out.println("string? "+tStream.peek());
 			iS.fromPath = (Str)tStream.peek();
 			tStream.next();
-//			System.out.println("after string "+tStream.peek());
 
 		}catch (ClassCastException e) {
 			tStream.croak("Expected import path (string constant)");
 		} 
 		
-//		System.out.println("done parsing import statement "+iS);
 		return iS;
 	}
 
