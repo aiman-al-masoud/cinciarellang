@@ -7,7 +7,9 @@ import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
@@ -60,6 +62,7 @@ public class Test {
 		add("true || false;", "");
 		// binary
 		
+		// mul expression
 		MulExpression mE = new MulExpression();
 		mE.left = new Int(1);
 		mE.right = new Int(2);
@@ -70,15 +73,37 @@ public class Test {
 		add("1 / 2;", mE.toString());
 		mE.op = Operators.MOD;
 		add("1 % 2;", mE.toString());
-		add("1 + 1;", "");
-		add("1 - 1;", "");
-		add("1 == 1;", "");
-		add("1 <= 1;", "");
-		add("1 >= 1;", "");
-		add("1 != 1;", "");
-		add("1 < 1;", "");
-		add("1 > 1;", "");
-		add("1 > 2 > 1;", "");
+		
+		//add expression
+		AddExpression aE = new AddExpression();
+		aE.left = new Int(1);
+		aE.right = new Int(1);
+		aE.op = Operators.PLUS;
+		add("1 + 1;", aE.toString());
+		aE.op = Operators.MINUS;
+		add("1 - 1;", aE.toString());
+		
+		// comparison expression
+		ComparisonExpression cE = new ComparisonExpression();
+		cE.left = new Int(2);
+		cE.right = new Int(1);
+		cE.op = Operators.COMPARE;
+		add("2 == 1;", cE.toString());
+		cE.op = Operators.LTE;
+		add("2 <= 1;", cE.toString());
+		cE.op = Operators.GTE;
+		add("2 >= 1;", cE.toString());
+		cE.op = Operators.NE;
+		add("2 != 1;", cE.toString());
+		cE.op = Operators.LT;
+		add("2 < 1;", cE.toString());
+		cE.op = Operators.GT;
+		add("2 > 1;", cE.toString());
+		
+		
+		add("2 > 1 > 3;", cE.toString());
+		
+		
 		//object
 		add("x = { 1 : 2 };", "(x = {1 : 2})");
 		add("[1,2,3,4];", "");
@@ -143,19 +168,19 @@ public class Test {
 
 		
 //		f  = \\x:int -> 1
-		AssignmentExpression aE = new AssignmentExpression();
-		aE.left = new Identifier("f");
-		LambdaExpression lE = new LambdaExpression();
-		Signature s = new Signature();
-		VariableDeclaration vD = new VariableDeclaration();
-		vD.name = new Identifier("x");
-		vD.type = new PrimitiveType(Keywords.INT);
-		s.params = vD;
-		lE.signature  = s;
-		lE.expression  = new Int(1);
-		aE.right = lE;
-		ExpressionStatement e = new ExpressionStatement(aE);
-		System.out.println(e.simplify()+" capra");
+//		AssignmentExpression aE = new AssignmentExpression();
+//		aE.left = new Identifier("f");
+//		LambdaExpression lE = new LambdaExpression();
+//		Signature s = new Signature();
+//		VariableDeclaration vD = new VariableDeclaration();
+//		vD.name = new Identifier("x");
+//		vD.type = new PrimitiveType(Keywords.INT);
+//		s.params = vD;
+//		lE.signature  = s;
+//		lE.expression  = new Int(1);
+//		aE.right = lE;
+//		ExpressionStatement e = new ExpressionStatement(aE);
+//		System.out.println(e.simplify()+" capra");
 		
 		
 	}
