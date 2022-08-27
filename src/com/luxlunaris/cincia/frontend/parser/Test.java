@@ -15,6 +15,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
@@ -107,14 +108,27 @@ public class Test {
 		ccE.op = Operators.GT;
 		add("2 > 1 > 3;", ccE.toString());
 		
-		// postfix
+		// call expression
 		CalledExpression caE = new CalledExpression();
 		caE.callable = new Identifier("f");
 		MultiExpression muE = new MultiExpression();
 		muE.expressions = Arrays.asList(new Identifier("a"), new Identifier("b"), new Int(1));
 		caE.args = muE;
 		add("f(a, b, 1);", caE.toString());
-		add("a.b.c.d", "");
+		
+		// dot expression
+		DotExpression dE = new DotExpression();
+		dE.left = new Identifier("a");
+		dE.right = new Identifier("b");
+		DotExpression dE2 = new DotExpression();
+		dE2.left = dE;
+		dE2.right = new Identifier("c");
+		DotExpression dE3 = new DotExpression();
+		dE3.left = dE2;
+		dE3.right = new Identifier("d");
+		add("a.b.c.d", dE3.toString());
+		
+		
 		add("x[1][2]", "");
 		add("x+=1", "");
 		add("x/=1", "");
