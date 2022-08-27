@@ -162,7 +162,7 @@ public class Test {
 		// list literal expression
 		ListExpression lE = new ListExpression();
 		MultiExpression muEx = new MultiExpression();
-		muEx.expressions = Arrays.asList();
+		muEx.expressions = Arrays.asList(new Int(1), new Int(2), new Int(3), new Int(4));
 		lE.elements = muEx;
 		add("[1,2,3,4];", lE.toString());
 		
