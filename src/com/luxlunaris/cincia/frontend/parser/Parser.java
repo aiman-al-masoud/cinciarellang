@@ -137,7 +137,8 @@ public class Parser {
 		}else {
 			res = parseExpressionStatement();
 		}
-
+		
+//		System.out.println("done parsing statement "+res);
 		eat(Punctuations.STM_SEP);
 		return res;
 	}
@@ -389,23 +390,33 @@ public class Parser {
 
 			Entry<DotExpression, Identifier> imported = parseImported();
 			iS.addImport(imported.getKey(), imported.getValue());
+//			System.out.println("imported: "+iS.imports.get(0));
+
 		}
 
 		eat(Keywords.FROM);
+//		System.out.println("ate from");
 
 		try {
-			iS.fromPath =  (Str)tStream.peek();
+//			System.out.println("string? "+tStream.peek());
+			iS.fromPath = (Str)tStream.peek();
+			tStream.next();
+//			System.out.println("after string "+tStream.peek());
+
 		}catch (ClassCastException e) {
 			tStream.croak("Expected import path (string constant)");
 		} 
-
+		
+//		System.out.println("done parsing import statement "+iS);
 		return iS;
 	}
 
 
 	private Entry<DotExpression, Identifier> parseImported(){
 
-		DotExpression dEx = parseDotExpression(null);//TODO:: buruf????
+//		DotExpression dEx = parseDotExpression(null);//TODO:: buruf????
+		DotExpression  dE  = (DotExpression) parsePostfixExpression();
+		
 		Identifier alias = null; // can be null
 
 		if(tStream.peek().getValue().equals(Keywords.AS)) {
@@ -413,7 +424,7 @@ public class Parser {
 			alias = parseIdentifier();
 		}
 
-		return Map.entry(dEx, alias);
+		return Map.entry(dE, alias);
 	}
 
 	private List<Modifier> parseModifiers(){

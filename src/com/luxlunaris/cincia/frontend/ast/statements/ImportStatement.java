@@ -33,4 +33,9 @@ public class ImportStatement implements Statement{
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return "import "+imports+" from "+fromPath;
+	}
+	
 }
