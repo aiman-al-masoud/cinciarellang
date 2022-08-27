@@ -88,7 +88,7 @@ public class Test {
 		add("while x{ continue;  }", "");
 		// exception statements 
 		add("throw 1+1;", "");
-		add("throw 1+1;", "");
+		add("try { 1/0; }catch(e){}", "");
 
 
 

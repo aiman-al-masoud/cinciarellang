@@ -26,8 +26,17 @@ public class TryStatement implements Statement{
 	@Override
 	public Statement simplify() {
 		this.tryBlock = (CompoundStatement) tryBlock.simplify();
-		this.finallyBlock = (CompoundStatement) finallyBlock.simplify();
+		
+		if(finallyBlock!=null) {
+			this.finallyBlock = (CompoundStatement) finallyBlock.simplify();
+		}
+		
 		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return "try "+tryBlock
 	}
 	
 }
