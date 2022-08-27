@@ -22,12 +22,12 @@ public class Preprocessor {
 		String[] statements = processedSource.split(";");
 		
 		// apply per-statement transformation
-		String t = Arrays.stream(statements)
+		processedSource = Arrays.stream(statements)
 				.map(s->s+";")
 				.map(AddDecKeyword::apply)
 				.reduce((s1, s2)->s1+s2).get();  
 		
-		return t;
+		return processedSource;
 	}
 	
 }
