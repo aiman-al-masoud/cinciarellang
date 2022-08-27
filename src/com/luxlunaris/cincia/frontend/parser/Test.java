@@ -91,9 +91,6 @@ public class Test {
 		add("try { 1/0; }catch e:String|char { return 1; }", "");
 		add("try { 1/0; }catch e:float { }", "");
 		add("try { 1/0; }catch e:int { }", "");
-
-		
-		
 		// import statement 
 		add("import capra.c as c from \"./files/capre\";", "");
 		add("import capra as c from \"./files/capre\";", "");
