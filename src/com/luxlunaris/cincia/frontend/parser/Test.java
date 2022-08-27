@@ -15,6 +15,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
@@ -158,8 +159,14 @@ public class Test {
 		asE.right = diE;
 		add("x = { 1 : 2 };", asE.toString());
 		
+		// list literal expression
+		ListExpression lE = new ListExpression();
+		MultiExpression muEx = new MultiExpression();
+		muEx.expressions = Arrays.asList();
+		lE.elements = muEx;
+		add("[1,2,3,4];", lE.toString());
 		
-		add("[1,2,3,4];", "");
+		
 		add("[x+1 for x in l];", "");
 		add("x = { key : val for v in dict };", "");
 		add("\\x->1;", "");
