@@ -13,6 +13,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
@@ -150,7 +151,12 @@ public class Test {
 
 		
 		//object
-		add("x = { 1 : 2 };", "(x = {1 : 2})");
+		DictExpression diE = new DictExpression();
+		diE.addEntry(new Int(1), new Int(2));
+		AssignmentExpression asE = new AssignmentExpression();
+		asE.left = new Identifier("x");
+		asE.right = diE;
+		add("x = { 1 : 2 };", asE.toString());
 		add("[1,2,3,4];", "");
 		add("[x+1 for x in l];", "");
 		add("x = { key : val for v in dict };", "");
