@@ -143,9 +143,9 @@ public class Test {
 		ReassignmentExpression rE = new ReassignmentExpression();
 		rE.left = new Identifier("x");
 		rE.left = new Int(1);
-		rE.op = Operators.PLUS;
+		rE.op = Operators.PLUS_ASSIGN;
 		add("x+=1", rE.toString());
-		rE.op = Operators.DIV;
+		rE.op = Operators.DIV_ASSIGN;
 		add("x/=1", rE.toString());
 
 		
