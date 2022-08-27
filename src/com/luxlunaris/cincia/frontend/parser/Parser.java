@@ -820,12 +820,12 @@ public class Parser {
 		rE.left = left;
 
 		try {
-			rE.operator = (Operators)tStream.peek().getValue();
+			rE.op = (Operators)tStream.peek().getValue();
 		}catch (ClassCastException e) {
 			tStream.croak("Expected postfix operator");
 		}
 
-		eat(rE.operator);
+		eat(rE.op);
 		rE.right =  parseExpression();
 		return rE;
 	}

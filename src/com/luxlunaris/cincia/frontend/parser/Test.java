@@ -17,6 +17,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
@@ -139,10 +140,13 @@ public class Test {
 		add("x[1][2]", iE2.toString());
 		
 		
-		
-		
-		add("x+=1", "");
-		add("x/=1", "");
+		ReassignmentExpression rE = new ReassignmentExpression();
+		rE.left = new Identifier("x");
+		rE.left = new Int(1);
+		rE.op = Operators.PLUS;
+		add("x+=1", rE.toString());
+		rE.op = Operators.DIV;
+		add("x/=1", rE.toString());
 
 		
 		//object
