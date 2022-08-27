@@ -82,6 +82,7 @@ public class Test {
 		add("match x{case 1:return 1;case 2:return 2;default:return 0;}", "");
 		// iteration statements 
 		add("for i in x{ x = do(x); x+=1;  }", "");
+		add("while x{ x = do(x); x+=1;  }", "");
 
 
 		
