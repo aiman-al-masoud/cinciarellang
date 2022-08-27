@@ -5,10 +5,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
+import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
+import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
+import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
 import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
+
+import jdk.jshell.StatementSnippet;
 
 public class Test {
 	
@@ -23,6 +37,8 @@ public class Test {
 	public static void main(String[] args) {
 		
 		//TODO: don't rely on string reprs for tests!!! (right now results are correct but some 'fails' crop up due to literal string comparison)
+		
+		
 		add("1;", "1");
 		add("f  = \\x:int -> 1;", "(f = [] \\([] x:INT) : null->1)");
 		add("x = z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123' };", "(x = (z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123'}))");
@@ -43,8 +59,16 @@ public class Test {
 		add("true && false;", "");
 		add("true || false;", "");
 		// binary
+		
+		MulExpression mE = new MulExpression();
+		mE.left = new Int(1);
+		mE.right = new Int(2);
+		mE.op = Operators.ASTERISK;
+		ExpressionStatement ex = new ExpressionStatement(mE);
+		add("1 * 2;", mE.toString());
+
+		
 		add("1 / 2;", "");
-		add("1 * 2;", "");
 		add("1 % 2;", "");
 		add("1 + 1;", "");
 		add("1 - 1;", "");
@@ -118,6 +142,21 @@ public class Test {
 		}
 
 		
+//		f  = \\x:int -> 1
+		AssignmentExpression aE = new AssignmentExpression();
+		aE.left = new Identifier("f");
+		LambdaExpression lE = new LambdaExpression();
+		Signature s = new Signature();
+		VariableDeclaration vD = new VariableDeclaration();
+		vD.name = new Identifier("x");
+		vD.type = new PrimitiveType(Keywords.INT);
+		s.params = vD;
+		lE.signature  = s;
+		lE.expression  = new Int(1);
+		aE.right = lE;
+		ExpressionStatement e = new ExpressionStatement(aE);
+		System.out.println(e.simplify()+" capra");
+		
 		
 	}
 	
@@ -132,6 +171,11 @@ public class Test {
 	public static void add(String s1, String s2) {
 		tests.add(Map.entry(s1, s2));
 	}
+	
+	public static boolean compareStatements(Statement s1, Statement s2) {
+		return s1.simplify().toString().equals(s2.simplify().toString());
+	}
+	
 
 	
 	
