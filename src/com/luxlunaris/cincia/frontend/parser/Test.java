@@ -39,7 +39,6 @@ public class Test {
 		add("x:int|float;", "([] x:INT | FLOAT)");
 		add("dec x:int|float;", "([] x:INT | FLOAT)");
 		add("x == 1 ? 3 : 4;", "((x COMPARE 1)?3:4)");
-		add("match x{case 1:\n return 1; case 2: return 2;}", "match [case 1 {return 1;}, case 2 {return 2;}] null");
 		add("while true{ x+=1;y+=2; }\n x+=1;", "while true then {(x PLUS_ASSIGN 1); (y PLUS_ASSIGN 2)}");
 		add("true && false;", "");
 		add("true || false;", "");
@@ -80,6 +79,7 @@ public class Test {
 		add("x:int[]", "");
 		// sel statements
 		add("if x { x = 1; y = 2;}else{y = x = 0; }", "");
+		add("match x{\ncase 1:\nreturn 1;\ncase 2:\nreturn 2;\n}", "");
 
 		
 
