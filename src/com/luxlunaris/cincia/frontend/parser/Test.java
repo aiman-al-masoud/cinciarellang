@@ -73,10 +73,6 @@ public class Test {
 		add("x[1][2]", "");
 		add("x+=1", "");
 		add("x/=1", "");
-		// types/declarations
-		add("x:int|float|Object", "");
-		add("x:{int:int}", "");
-		add("x:int[]", "");
 		// sel statements
 		add("if x { x = 1; y = 2;}else{y = x = 0; }", "");
 		add("match x{case 1:return 1;case 2:return 2;default:return 0;}", "");
@@ -95,7 +91,12 @@ public class Test {
 		add("import capra.c as c from \"./files/capre\";", "");
 		add("import capra as c from \"./files/capre\";", "");
 		add("import capra as c, muflone.lana as m from \"./files/capre\";", "");
-
+		// types/declarations
+		add("x:int|float|Object", "");
+		add("x:{int:int}", "");
+		add("x:int[]", "");
+		
+		
 		
 		for(Entry<String, String> e : tests) {
 			
