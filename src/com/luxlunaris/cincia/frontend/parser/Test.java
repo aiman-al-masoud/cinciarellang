@@ -92,10 +92,12 @@ public class Test {
 		add("import capra as c from \"./files/capre\";", "");
 		add("import capra as c, muflone.lana as m from \"./files/capre\";", "");
 		// types/declarations
+		add("x:int", "");
 		add("x:int|float|Object", "");
 		add("x:{int:int}", "");
 		add("x:int[]", "");
-		
+		add("f:\\x:int:int;", "");
+
 		
 		
 		for(Entry<String, String> e : tests) {
