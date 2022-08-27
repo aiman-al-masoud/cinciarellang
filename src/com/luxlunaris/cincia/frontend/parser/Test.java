@@ -16,6 +16,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
@@ -128,8 +129,18 @@ public class Test {
 		dE3.right = new Identifier("d");
 		add("a.b.c.d", dE3.toString());
 		
+		// indexed expression
+		IndexedExpression iE = new IndexedExpression();
+		iE.indexable = new Identifier("x");
+		iE.index = new Int(1);
+		IndexedExpression iE2 = new IndexedExpression();
+		iE2.indexable = iE;
+		iE2.index = new Int(2);
+		add("x[1][2]", iE.toString());
 		
-		add("x[1][2]", "");
+		
+		
+		
 		add("x+=1", "");
 		add("x/=1", "");
 
