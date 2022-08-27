@@ -105,6 +105,13 @@ public class Test {
 		ccE.op = Operators.GT;
 		add("2 > 1 > 3;", ccE.toString());
 		
+		// postfix
+		add("f(a,b,1+2);", "");
+		add("a.b.c.d", "");
+		add("x[1][2]", "");
+		add("x+=1", "");
+		add("x/=1", "");
+
 		
 		//object
 		add("x = { 1 : 2 };", "(x = {1 : 2})");
@@ -118,12 +125,7 @@ public class Test {
 		add("class { x:int; f = \\x->1;  };", "");
 		add("class { f:\\x:int:int;  };", "");
 		add("interface { x:int; y:int; f:\\x:int:int;  };", "");
-		// postfix
-		add("f(a,b,1+2);", "");
-		add("a.b.c.d", "");
-		add("x[1][2]", "");
-		add("x+=1", "");
-		add("x/=1", "");
+		
 		// sel statements
 		add("if x { x = 1; y = 2;}else{y = x = 0; }", "");
 		add("match x{case 1:return 1;case 2:return 2;default:return 0;}", "");
