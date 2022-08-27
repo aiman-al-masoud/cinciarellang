@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
@@ -17,14 +18,14 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
  */
 public class ImportStatement implements Statement{
 	
-	public List<Entry<DotExpression, Identifier>> imports;
+	public List<Entry<PostfixExpression, Identifier>> imports;
 	public Str fromPath;
 	
 	public ImportStatement() {
-		imports = new ArrayList<Map.Entry<DotExpression,Identifier>>();
+		imports = new ArrayList<Map.Entry<PostfixExpression,Identifier>>();
 	}
 	
-	public void addImport(DotExpression imported, Identifier alias) {
+	public void addImport(PostfixExpression imported, Identifier alias) {
 		imports.add(Map.entry(imported, alias)); //alias could be null
 	}
 	

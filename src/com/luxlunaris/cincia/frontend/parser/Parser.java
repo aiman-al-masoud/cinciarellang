@@ -388,7 +388,7 @@ public class Parser {
 				continue;
 			}
 
-			Entry<DotExpression, Identifier> imported = parseImported();
+			Entry<PostfixExpression, Identifier> imported = parseImported();
 			iS.addImport(imported.getKey(), imported.getValue());
 //			System.out.println("imported: "+iS.imports.get(0));
 
@@ -412,10 +412,10 @@ public class Parser {
 	}
 
 
-	private Entry<DotExpression, Identifier> parseImported(){
+	private Entry<PostfixExpression, Identifier> parseImported(){
 
 //		DotExpression dEx = parseDotExpression(null);//TODO:: buruf????
-		DotExpression  dE  = (DotExpression) parsePostfixExpression();
+		PostfixExpression  dE  = parsePostfixExpression();
 		
 		Identifier alias = null; // can be null
 

@@ -96,6 +96,7 @@ public class Test {
 		
 		// import statement 
 		add("import capra.c as c from \"./files/capre\";", "");
+		add("import capra as c from \"./files/capre\";", "");
 
 		
 		for(Entry<String, String> e : tests) {
