@@ -65,7 +65,7 @@ public class Test {
 		mE.right = new Int(2);
 		mE.op = Operators.ASTERISK;
 		ExpressionStatement ex = new ExpressionStatement(mE);
-		add("1 * 2;", mE.toString());
+		add("1 * 2;", ex.toString());
 
 		
 		add("1 / 2;", "");
