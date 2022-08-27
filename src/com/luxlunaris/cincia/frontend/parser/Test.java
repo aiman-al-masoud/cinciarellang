@@ -88,9 +88,9 @@ public class Test {
 		add("while x{ continue;  }", "");
 		// exception statements 
 		add("throw 1+1;", "");
-		add("try { 1/0; }catch e { return 1; }", "");
-
-		add("try { 1/0; }catch e { }", "");
+		add("try { 1/0; }catch e:String|char { return 1; }", "");
+		add("try { 1/0; }catch e:float { }", "");
+		add("try { 1/0; }catch e:int { }", "");
 
 
 		

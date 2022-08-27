@@ -39,7 +39,6 @@ public class TryStatement implements Statement{
 	
 	@Override
 	public String toString() {
-		System.out.println(catchClausesList);
 		Optional<String> cc = catchClausesList.stream().map(c->c.toString()).reduce((c1, c2)->c1+" "+c2);
 		return "try "+tryBlock+" "+(cc.isPresent()? cc.get() : "")+" finally "+finallyBlock;
 	}

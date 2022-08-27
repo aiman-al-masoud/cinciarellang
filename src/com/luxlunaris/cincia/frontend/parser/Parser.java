@@ -256,7 +256,8 @@ public class Parser {
 
 		eat(Keywords.CATCH);
 		CatchClause cc = new CatchClause();
-		cc.throwable = parseSingleExpression();
+//		cc.throwable = parseSingleExpression();
+		cc.throwable = parseSingleDeclaration();
 		cc.block = parseCompStatement();
 		return cc;
 	}
