@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.frontend.ast.statements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
@@ -28,7 +29,8 @@ public class CompoundStatement implements Statement{
 	
 	@Override
 	public String toString() {
-		return "{"+statements.stream().map(s->s+"").reduce((s1,s2)->s1+"; "+s2).get()+"}";
+		Optional<String> b = statements.stream().map(s->s+"").reduce((s1,s2)->s1+"; "+s2);
+		return "{"+(b.isPresent()? b.get() : "")+"}";
 	}
 	
 }

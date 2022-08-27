@@ -90,6 +90,7 @@ public class Test {
 		add("throw 1+1;", "");
 		add("try { 1/0; }catch e { return 1; }", "");
 
+		add("try { 1/0; }catch e { }", "");
 
 
 		
