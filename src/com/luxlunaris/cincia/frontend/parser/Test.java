@@ -87,7 +87,10 @@ public class Test {
 		add("while x{ break;  }", "");
 		add("while x{ continue;  }", "");
 		// exception statements 
-		
+		add("throw 1+1;", "");
+		add("throw 1+1;", "");
+
+
 
 		
 		for(Entry<String, String> e : tests) {
