@@ -96,12 +96,7 @@ public class Test {
 		add("while x{ continue;  }", "");
 		
 		
-		// types/declarations
-		add("x:int", "");
-		add("x:int|float|Object", "");
-		add("x:{int:int}", "");
-		add("x:int[]", "");
-		add("f:\\x:int:int;", "");
+		
 
 
 
