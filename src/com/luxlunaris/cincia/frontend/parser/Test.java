@@ -214,7 +214,7 @@ public class Test {
 		
 		// lambda expression with code block
 		lex.expression = null;
-		CompoundStatement cS = new CompoundStatement();
+		CompoundStatement co = new CompoundStatement();
 		AssignmentExpression one = new AssignmentExpression();
 		AssignmentExpression two = new AssignmentExpression();
 		ReturnStatement three = new ReturnStatement();
@@ -223,15 +223,15 @@ public class Test {
 		AddExpression aex = new AddExpression();
 		aex.left = new Identifier("x");
 		aex.right  = new Int(1);
+		aex.op = Operators.PLUS;
 		two.left = new Identifier("y");
 		two.right = aex;
 		three.expression = new Identifier("y");
-		
-		
-//		lex.block = 
-		
-		add("\\x->{ x = 1;y=x+1;return y; };", "");
-		
+		co.add(new ExpressionStatement(one));
+		co.add(new ExpressionStatement(two));
+		co.add(three);
+		lex.block =co;
+		add("\\x->{ x = 1;y=x+1;return y; };", lex.toString());
 		
 		
 		
