@@ -24,7 +24,7 @@ public class DeclarationTester extends AbstractTester{
 		uT.addType(new PrimitiveType(PrimitiveType.FLOAT));
 		uT.addType(new IdentifierType(new Identifier("Object")));
 		un.type = uT;
-		add("x:int|float|Object", uT.toString());
+		add("x:int|float|Object", un.toString());
 		
 		
 		add("x:{int:int}", "");
