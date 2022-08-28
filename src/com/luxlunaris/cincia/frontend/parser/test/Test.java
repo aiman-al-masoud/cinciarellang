@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.parser;
+package com.luxlunaris.cincia.frontend.parser.test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +33,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
+import com.luxlunaris.cincia.frontend.parser.Parser;
 import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
