@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.UnionType;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
@@ -37,7 +38,12 @@ public class DeclarationTester extends AbstractTester{
 		add("x:int|float|Object", un.toString());
 		
 		
-		add("x:int[]", "");
+		VariableDeclaration lD = new VariableDeclaration();
+		pr.name = new Identifier("x");
+		ListType lT = new ListType();
+		lT.value = new PrimitiveType(PrimitiveType.INT);
+		pr.type = lT;
+		add("x:int[]", lD.toString());
 
 		
 		add("x:{int:int}", "");
