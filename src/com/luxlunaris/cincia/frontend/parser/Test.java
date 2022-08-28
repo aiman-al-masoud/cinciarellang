@@ -201,6 +201,7 @@ public class Test {
 		ase.right = dC;
 		add("x = { e[0] : e[1] for e in entries };", ase.toString());
 		
+		
 		// lambda expression
 		LambdaExpression lex = new LambdaExpression();
 		lex.expression = new Int(1);
@@ -210,6 +211,7 @@ public class Test {
 		sg.params = vD;
 		lex.signature = sg;
 		add("\\x->1;", lex.toString());
+		
 		
 		// lambda expression with code block
 		lex.expression = null;
