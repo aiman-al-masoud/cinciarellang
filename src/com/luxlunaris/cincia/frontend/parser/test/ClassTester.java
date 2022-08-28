@@ -51,6 +51,8 @@ public class ClassTester extends AbstractTester {
 		lE.signature = sg2;
 		ase.right = lE;
 		cE.addStatement(new ExpressionStatement(ase));
+		
+		// variable assignment
  		
 		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", cE.toString());
 
