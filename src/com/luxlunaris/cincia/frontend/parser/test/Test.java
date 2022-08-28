@@ -85,8 +85,6 @@ public class Test {
 		// iteration statements 
 		
 		// jump statements 
-		add("while x{ break;  }", "");
-		add("while x{ continue;  }", "");
 		
 		
 		
