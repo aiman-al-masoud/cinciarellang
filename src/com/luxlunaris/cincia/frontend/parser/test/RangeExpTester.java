@@ -1,6 +1,8 @@
 package com.luxlunaris.cincia.frontend.parser.test;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 
 public class RangeExpTester extends AbstractTester {
@@ -15,12 +17,10 @@ public class RangeExpTester extends AbstractTester {
 		
 		
 		// used as a fancy index in an array
-		
-		
-		
-		add("arr[1 to 4]", );
-		
-		
+		IndexedExpression iE = new IndexedExpression();
+		iE.indexable = new Identifier("arr");
+		iE.index  = rE;
+		add("arr[1 to 10]", iE.toString());
 		
 	}
 	
