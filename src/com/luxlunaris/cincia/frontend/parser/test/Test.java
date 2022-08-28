@@ -87,7 +87,11 @@ public class Test {
 		//		ExpressionStatement e = new ExpressionStatement(aE);
 		//		System.out.println(e.simplify()+" capra");
 		
-		
+		add(new BinExpTester());
+		add(new DictTester());
+		add(new ListTester());
+		add(new LambdaTester());
+		add(new PostfixExpTester());
 
 
 		for(Entry<String, String> e : tests) {
@@ -99,7 +103,7 @@ public class Test {
 
 			try {
 				Statement s = p.parse().get(0).simplify();
-				System.out.println(e.getKey()+" "+ ( e.getValue().equals(s.toString()) ? ok("OK") : fail("FAIL") ) +" "+s);
+				System.out.println(e.getKey()+" "+ ( e.getValue().equals(s.toString()) ? ok("OK") : fail("FAIL") ) );
 			}catch (Exception exception) {
 				System.out.println(fail(e.getKey()+" "+exception.getMessage()+" FAIL"));;
 				exception.printStackTrace();
