@@ -43,7 +43,8 @@ public enum Keywords {
 	 INT,
 	 FLOAT,
 	 BOOL,
-	 DEC;// decalaration	
+	 DEC,// decalaration	
+	 TO;
 	
 	public static Keywords fromString(String value){
 		

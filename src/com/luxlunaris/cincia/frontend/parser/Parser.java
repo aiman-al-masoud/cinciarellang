@@ -12,6 +12,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.TernaryExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AndExpression;
@@ -595,20 +596,27 @@ public class Parser {
 		Expression oE = parseOrExpression();
 
 
-		if(!tStream.peek().getValue().equals(Punctuations.QUESTION_MARK)) {
-			return oE;
+		if(tStream.peek().getValue().equals(Punctuations.QUESTION_MARK)) {
+			TernaryExpression tE = new TernaryExpression();
+			tE.cond = oE;
+			eat(Punctuations.QUESTION_MARK);
+			tE.thenExpression = parseSingleExpression();
+			eat(Punctuations.COL);
+			tE.elseExpression = parseSingleExpression();
+			return tE;
 		}
-
-		TernaryExpression tE = new TernaryExpression();
-		tE.cond = oE;
-		eat(Punctuations.QUESTION_MARK);
-		//		tE.thenExpression = parseOrExpression();
-		tE.thenExpression = parseSingleExpression();
-		eat(Punctuations.COL);
-		//		tE.elseExpression = parseOrExpression();
-		tE.elseExpression = parseSingleExpression();
-		return tE;
-
+		
+		
+		if(tStream.peek().getValue().equals(Keywords.TO)) {
+			RangeExpression rE = new RangeExpression();
+			rE.from = oE;
+			eat(Keywords.TO);
+			rE.to = parseSingleExpression();
+			return rE;
+		}
+		
+		
+		return oE;
 	}
 
 

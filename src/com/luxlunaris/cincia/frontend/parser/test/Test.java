@@ -85,6 +85,7 @@ public class Test {
 		add(new IterationTester());
 		add(new JumpTester());
 		add(new ImportTester());
+		add(new RangeExpTester());
 
 		for(Entry<String, String> e : tests) {
 
