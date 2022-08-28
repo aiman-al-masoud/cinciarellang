@@ -11,7 +11,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
-import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 /**
  * Tests a class, complete with declarations, methods and assignments.
@@ -53,6 +52,7 @@ public class ClassTester extends AbstractTester {
 		cE.addStatement(new ExpressionStatement(ase));
 		
 		// variable assignment
+		
  		
 		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", cE.toString());
 
