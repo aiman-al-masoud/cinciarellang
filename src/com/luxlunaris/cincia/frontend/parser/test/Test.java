@@ -199,9 +199,9 @@ public class Test {
 			Preprocessor pP = new Preprocessor(e.getKey());
 			CharStream cS = new CharStream(pP.process());
 			TokenStream tS = new TokenStream(cS);		
-
+			Parser p  = new Parser(tS);
+			
 			try {
-				Parser p  = new Parser(tS);
 				Statement s = p.parse().get(0).simplify();
 				System.out.println(e.getKey()+" "+ ( e.getValue().equals(s.toString()) ? ok("OK") : fail("FAIL") ) +" "+s);
 			}catch (Exception exception) {
