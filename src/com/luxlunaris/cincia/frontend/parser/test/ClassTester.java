@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
@@ -24,7 +25,7 @@ public class ClassTester extends AbstractTester {
 		ClassExpression cE = new ClassExpression();
 		
 		// null op (placed by preprocessor, go read AddDecKeyword)
-		
+		cE.addStatement(new ExpressionStatement(new Int(0)));
 		
 		// variable declaration
 		VariableDeclaration vD = new VariableDeclaration();

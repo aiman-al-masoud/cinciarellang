@@ -103,7 +103,7 @@ public class Test {
 
 			try {
 				Statement s = p.parse().get(0).simplify();
-				System.out.println(e.getKey()+" "+ ( e.getValue().equals(s.toString()) ? ok("OK") : fail("FAIL") )  +" "+s);
+				System.out.println(e.getKey()+" "+ ( e.getValue().equals(s.toString()) ? ok("OK") : fail("FAIL") ) );
 			}catch (Exception exception) {
 				System.out.println(fail(e.getKey()+" "+exception.getMessage()+" FAIL"));;
 				exception.printStackTrace();
