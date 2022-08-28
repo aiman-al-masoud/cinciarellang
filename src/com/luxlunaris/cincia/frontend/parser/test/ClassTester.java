@@ -52,6 +52,10 @@ public class ClassTester extends AbstractTester {
 		cE.addStatement(new ExpressionStatement(ase));
 		
 		// variable assignment
+		AssignmentExpression ase2 = new AssignmentExpression();
+		ase2.left = new Identifier("x");
+		ase2.right = new Int(1);
+		cE.addStatement(new ExpressionStatement(ase2));
 		
  		
 		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", cE.toString());
