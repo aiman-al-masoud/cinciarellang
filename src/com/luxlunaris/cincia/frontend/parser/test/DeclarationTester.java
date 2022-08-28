@@ -10,11 +10,15 @@ public class DeclarationTester extends AbstractTester{
 
 	public DeclarationTester() {
 
-		// primitive type variable declaration
+		// primitive type variable 
 		VariableDeclaration pr = new VariableDeclaration();
 		pr.name = new Identifier("x");
 		pr.type = new PrimitiveType(PrimitiveType.INT);
 		add("x:int", pr.toString());
+		
+		// primitive type variable with modifiers
+		
+		
 		
 		// union type
 		VariableDeclaration un = new VariableDeclaration();
