@@ -16,7 +16,7 @@ public class DeclarationTester extends AbstractTester{
 		pr.type = new PrimitiveType(PrimitiveType.INT);
 		add("x:int", pr.toString());
 		
-		// primitive type variable with modifiers
+		// primitive type variable w/ modifiers
 		
 		
 		
