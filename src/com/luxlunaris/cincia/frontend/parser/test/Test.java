@@ -76,11 +76,7 @@ public class Test {
 
 
 
-		
-
-		
-
-
+	
 
 
 		for(Entry<String, String> e : tests) {
