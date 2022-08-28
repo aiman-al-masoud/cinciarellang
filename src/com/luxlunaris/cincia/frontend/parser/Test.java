@@ -234,13 +234,10 @@ public class Test {
 		lex.block =co;
 		add("\\x->{ x = 1;y=x+1;return y; };", lex.toString());
 		
+		// class with declarations, methods and assignments
+		add("class { x:int; f:\\\\x:int:int; f = \\x->1; x = 1;  };", "");
+
 		
-		
-		
-		add("class { x:int; f = \\x->1;  };", "");
-		add("class { x = 1; x:int; f = \\x->1;  };", "");
-		add("class { x:int; f = \\x->1;  };", "");
-		add("class { f:\\x:int:int;  };", "");
 		add("interface { x:int; y:int; f:\\x:int:int;  };", "");
 		
 		// sel statements
