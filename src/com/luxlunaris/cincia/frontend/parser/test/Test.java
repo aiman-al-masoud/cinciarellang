@@ -88,6 +88,7 @@ public class Test {
 		//		System.out.println(e.simplify()+" capra");
 		
 		add(new BinExpTester());
+		add(new DeclarationTester());
 		add(new DictTester());
 		add(new ListTester());
 		add(new LambdaTester());
