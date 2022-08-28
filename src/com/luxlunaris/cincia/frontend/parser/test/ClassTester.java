@@ -24,6 +24,7 @@ public class ClassTester extends AbstractTester {
 				
 		ClassExpression cE = new ClassExpression();
 		
+		// variable declaration
 		VariableDeclaration vD = new VariableDeclaration();
 		vD.name = new Identifier("x");
 		vD.type = new PrimitiveType(PrimitiveType.INT);
