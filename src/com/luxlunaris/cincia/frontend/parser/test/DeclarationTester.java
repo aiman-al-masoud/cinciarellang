@@ -37,7 +37,7 @@ public class DeclarationTester extends AbstractTester{
 		un.type = uT;
 		add("x:int|float|Object", un.toString());
 		
-		
+		// list-type variable
 		VariableDeclaration lD = new VariableDeclaration();
 		lD.name = new Identifier("x");
 		ListType lT = new ListType();
