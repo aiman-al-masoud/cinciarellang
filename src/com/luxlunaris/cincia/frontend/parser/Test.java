@@ -200,7 +200,17 @@ public class Test {
 		add("x = { e[0] : e[1] for e in entries };", ase.toString());
 		
 		
-		add("\\x->1;", "");
+		LambdaExpression lex = new LambdaExpression();
+		lex.expression = new Int(1);
+		Signature sg = new Signature();
+		VariableDeclaration vD = new VariableDeclaration();
+		vD.name = new Identifier("x");
+		sg.params = vD;
+		lex.signature = sg;
+		add("\\x->1;", lex.toString());
+		
+		
+		
 		add("\\x->{ x = 1;y=x+1;return y; };", "");
 		add("class { dec x:int; f = \\x->1;  };", "");
 		add("class { x = 1; x:int; f = \\x->1;  };", "");
