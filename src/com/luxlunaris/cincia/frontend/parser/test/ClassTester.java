@@ -26,10 +26,11 @@ public class ClassTester extends AbstractTester {
 		fD.name = new Identifier("f");
 		Signature sg = new Signature();
 		sg.params =  vD;
+		sg.returnType = new PrimitiveType(PrimitiveType.INT);
 		fD.signature = sg;
 		
  		
-		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", "");
+		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", fD.toString());
 
 	}
 }
