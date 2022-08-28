@@ -238,7 +238,10 @@ public class Test {
 		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", "");
 
 		
+		// interface 
 		add("interface { x:int; y:int; f:\\x:int:int;  };", "");
+		
+		
 		
 		// sel statements
 		add("if x { x = 1; y = 2;}else{y = x = 0; }", "");
