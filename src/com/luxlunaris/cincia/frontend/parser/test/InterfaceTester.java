@@ -23,8 +23,8 @@ public class InterfaceTester extends AbstractTester {
 
 		// other variable declaration
 		VariableDeclaration vD2 = new VariableDeclaration();
-		vD.name = new Identifier("y");
-		vD.type = new PrimitiveType(PrimitiveType.INT);
+		vD2.name = new Identifier("y");
+		vD2.type = new PrimitiveType(PrimitiveType.INT);
 		iE.addDeclaration(vD2);
 
 		// method declaration
@@ -35,7 +35,8 @@ public class InterfaceTester extends AbstractTester {
 		sg.returnType = new PrimitiveType(PrimitiveType.INT);
 		fD.signature = sg;
 		iE.addDeclaration(fD);
-
+		
+		
 		// interface 
 		add("interface { x:int; y:int; f:\\x:int:int;  };", iE.toString());
 
