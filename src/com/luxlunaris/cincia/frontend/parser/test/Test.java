@@ -78,27 +78,6 @@ public class Test {
 
 
 
-		// list literal expression
-		ListExpression lE = new ListExpression();
-		MultiExpression muEx = new MultiExpression();
-		muEx.expressions = Arrays.asList(new Int(1), new Int(2), new Int(3), new Int(4));
-		lE.elements = muEx;
-		add("[1,2,3,4];", lE.toString());
-
-
-		// list comprehension
-		ListComprehension lC = new ListComprehension();
-		AddExpression adE = new AddExpression();
-		adE.left = new Identifier("x");
-		adE.right = new Int(1);
-		adE.op = Operators.PLUS;
-		lC.element = adE;
-		lC.source =  new Identifier("x");
-		lC.iterable =  new Identifier("l");
-		add("[x+1 for x in l];", lC.toString());
-
-
-
 		// lambda expression
 		LambdaExpression lex = new LambdaExpression();
 		lex.expression = new Int(1);
