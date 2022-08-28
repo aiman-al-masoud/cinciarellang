@@ -1,5 +1,7 @@
 package com.luxlunaris.cincia.frontend.parser.test;
 
+import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
+import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.InterfaceExpression;
@@ -18,22 +20,25 @@ public class InterfaceTester extends AbstractTester {
 		vD.name = new Identifier("x");
 		vD.type = new PrimitiveType(PrimitiveType.INT);
 		iE.addDeclaration(vD);
-		
-		
+
+
 		// other var declaration
 		VariableDeclaration vD2 = new VariableDeclaration();
 		vD.name = new Identifier("y");
 		vD.type = new PrimitiveType(PrimitiveType.INT);
 		iE.addDeclaration(vD2);
-		
-		
-		
-		
+
+		// method declaration
+		FunctionDeclaration fD = new FunctionDeclaration();
+		fD.name = new Identifier("f");
+		Signature sg = new Signature();
+		sg.params =  vD;
+		sg.returnType = new PrimitiveType(PrimitiveType.INT);
+		fD.signature = sg;
+		iE.addDeclaration(fD);
+
 		// interface 
-		add("interface { x:int; y:int; f:\\x:int:int;  };", "");
-
-
-
+		add("interface { x:int; y:int; f:\\x:int:int;  };", iE.toString());
 
 
 
