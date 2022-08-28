@@ -211,7 +211,12 @@ public class Test {
 		add("\\x->1;", lex.toString());
 		
 		// lambda expression with code block
+		
+		
+		
 		add("\\x->{ x = 1;y=x+1;return y; };", "");
+		
+		
 		
 		
 		
