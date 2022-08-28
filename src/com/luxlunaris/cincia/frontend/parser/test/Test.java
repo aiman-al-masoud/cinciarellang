@@ -81,6 +81,10 @@ public class Test {
 		add(new PostfixExpTester());
 		add(new ClassTester());
 		add(new InterfaceTester());
+		add(new SelectionTester());
+		add(new IterationTester());
+		add(new JumpTester());
+		add(new ImportTester());
 
 		for(Entry<String, String> e : tests) {
 
