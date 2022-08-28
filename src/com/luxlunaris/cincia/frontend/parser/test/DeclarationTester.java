@@ -1,11 +1,24 @@
 package com.luxlunaris.cincia.frontend.parser.test;
 
+import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
+
 public class DeclarationTester extends AbstractTester{
 
 	public DeclarationTester() {
-		// types/declarations
-		add("x:int", "");
+
+		// primitive type variable declaration
+		VariableDeclaration pr = new VariableDeclaration();
+		pr.name = new Identifier("x");
+		pr.type = new PrimitiveType(PrimitiveType.INT);
+		add("x:int", pr.toString());
+		
+		
 		add("x:int|float|Object", "");
+		
+		
+		
 		add("x:{int:int}", "");
 		add("x:int[]", "");
 		add("f:\\x:int:int;", "");
