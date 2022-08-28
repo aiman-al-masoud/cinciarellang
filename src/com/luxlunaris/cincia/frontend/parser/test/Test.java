@@ -39,20 +39,20 @@ import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 
 public class Test {
-	
+
 	static final String OKGREEN = "\033[92m";
 	static final String WARNING = "\033[93m";
 	static final String FAIL = "\033[91m";
 	static final String ENDC = "\033[0m";
 	static final List<Entry<String, String>> tests = new ArrayList<Map.Entry<String,String>>();
 
-	
-	
+
+
 	public static void main(String[] args) {
-		
+
 		//TODO: don't rely on string reprs for tests!!! (right now results are correct but some 'fails' crop up due to literal string comparison)
-		
-		
+
+
 		add("1;", "1");
 		add("f  = \\x:int -> 1;", "(f = [] \\([] x:INT) : null->1)");
 		add("x = z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123' };", "(x = (z = {'y' : 222, 'capra' : 1, 'buruf' : 'hallo123'}))");
@@ -73,10 +73,10 @@ public class Test {
 		add("true && false;", "");
 		add("true || false;", "");
 		// binary
-		
-		
-		
-		
+
+
+
+
 		// dictionary literal expression
 		DictExpression diE = new DictExpression();
 		diE.addEntry(new Int(1), new Int(2));
@@ -84,27 +84,7 @@ public class Test {
 		asE.left = new Identifier("x");
 		asE.right = diE;
 		add("x = { 1 : 2 };", asE.toString());
-		
-		// list literal expression
-		ListExpression lE = new ListExpression();
-		MultiExpression muEx = new MultiExpression();
-		muEx.expressions = Arrays.asList(new Int(1), new Int(2), new Int(3), new Int(4));
-		lE.elements = muEx;
-		add("[1,2,3,4];", lE.toString());
-		
-		
-		// list comprehension
-		ListComprehension lC = new ListComprehension();
-		AddExpression adE = new AddExpression();
-		adE.left = new Identifier("x");
-		adE.right = new Int(1);
-		adE.op = Operators.PLUS;
-		lC.element = adE;
-		lC.source =  new Identifier("x");
-		lC.iterable =  new Identifier("l");
-		add("[x+1 for x in l];", lC.toString());
-		
-		
+
 		// dict comprehension
 		DictComprehension dC = new DictComprehension();
 		Identifier en = new Identifier("e");
@@ -122,8 +102,30 @@ public class Test {
 		ase.left = new Identifier("x");
 		ase.right = dC;
 		add("x = { e[0] : e[1] for e in entries };", ase.toString());
-		
-		
+
+
+
+		// list literal expression
+		ListExpression lE = new ListExpression();
+		MultiExpression muEx = new MultiExpression();
+		muEx.expressions = Arrays.asList(new Int(1), new Int(2), new Int(3), new Int(4));
+		lE.elements = muEx;
+		add("[1,2,3,4];", lE.toString());
+
+
+		// list comprehension
+		ListComprehension lC = new ListComprehension();
+		AddExpression adE = new AddExpression();
+		adE.left = new Identifier("x");
+		adE.right = new Int(1);
+		adE.op = Operators.PLUS;
+		lC.element = adE;
+		lC.source =  new Identifier("x");
+		lC.iterable =  new Identifier("l");
+		add("[x+1 for x in l];", lC.toString());
+
+
+
 		// lambda expression
 		LambdaExpression lex = new LambdaExpression();
 		lex.expression = new Int(1);
@@ -133,8 +135,8 @@ public class Test {
 		sg.params = vD;
 		lex.signature = sg;
 		add("\\x->1;", lex.toString());
-		
-		
+
+
 		// lambda expression with code block
 		lex.expression = null;
 		CompoundStatement co = new CompoundStatement();
@@ -155,16 +157,16 @@ public class Test {
 		co.add(three);
 		lex.block =co;
 		add("\\x->{ x = 1;y=x+1;return y; };", lex.toString());
-		
+
 		// class with declarations, methods and assignments
 		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", "");
 
-		
+
 		// interface 
 		add("interface { x:int; y:int; f:\\x:int:int;  };", "");
-		
-		
-		
+
+
+
 		// sel statements
 		add("if x { x = 1; y = 2;}else{y = x = 0; }", "");
 		add("match x{case 1:return 1;case 2:return 2;default:return 0;}", "");
@@ -190,14 +192,14 @@ public class Test {
 		add("x:int[]", "");
 		add("f:\\x:int:int;", "");
 
-		
-		
+
+
 		for(Entry<String, String> e : tests) {
-			
+
 			Preprocessor pP = new Preprocessor(e.getKey());
 			CharStream cS = new CharStream(pP.process());
 			TokenStream tS = new TokenStream(cS);		
-			
+
 			try {
 				Parser p  = new Parser(tS);
 				Statement s = p.parse().get(0).simplify();
@@ -206,43 +208,43 @@ public class Test {
 				System.out.println(fail(e.getKey()+" "+exception.getMessage()+" FAIL"));;
 				exception.printStackTrace();
 			}
-			
+
 		}
 
-		
-//		f  = \\x:int -> 1
-//		AssignmentExpression aE = new AssignmentExpression();
-//		aE.left = new Identifier("f");
-//		LambdaExpression lE = new LambdaExpression();
-//		Signature s = new Signature();
-//		VariableDeclaration vD = new VariableDeclaration();
-//		vD.name = new Identifier("x");
-//		vD.type = new PrimitiveType(Keywords.INT);
-//		s.params = vD;
-//		lE.signature  = s;
-//		lE.expression  = new Int(1);
-//		aE.right = lE;
-//		ExpressionStatement e = new ExpressionStatement(aE);
-//		System.out.println(e.simplify()+" capra");
-		
-		
+
+		//		f  = \\x:int -> 1
+		//		AssignmentExpression aE = new AssignmentExpression();
+		//		aE.left = new Identifier("f");
+		//		LambdaExpression lE = new LambdaExpression();
+		//		Signature s = new Signature();
+		//		VariableDeclaration vD = new VariableDeclaration();
+		//		vD.name = new Identifier("x");
+		//		vD.type = new PrimitiveType(Keywords.INT);
+		//		s.params = vD;
+		//		lE.signature  = s;
+		//		lE.expression  = new Int(1);
+		//		aE.right = lE;
+		//		ExpressionStatement e = new ExpressionStatement(aE);
+		//		System.out.println(e.simplify()+" capra");
+
+
 	}
-	
+
 	public static String ok(String s) {
 		return OKGREEN+s+ENDC;
 	}
-	
+
 	public static String fail(String s) {
 		return FAIL+s+ENDC;
 	}
-	
+
 	public static void add(String s1, String s2) {
 		tests.add(Map.entry(s1, s2));
 	}
-	
-	
-	
 
-	
-	
+
+
+
+
+
 }
