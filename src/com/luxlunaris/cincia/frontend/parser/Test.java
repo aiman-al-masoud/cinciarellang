@@ -200,6 +200,7 @@ public class Test {
 		add("x = { e[0] : e[1] for e in entries };", ase.toString());
 		
 		
+		// lambda expression
 		LambdaExpression lex = new LambdaExpression();
 		lex.expression = new Int(1);
 		Signature sg = new Signature();
@@ -208,7 +209,6 @@ public class Test {
 		sg.params = vD;
 		lex.signature = sg;
 		add("\\x->1;", lex.toString());
-		
 		
 		
 		add("\\x->{ x = 1;y=x+1;return y; };", "");
