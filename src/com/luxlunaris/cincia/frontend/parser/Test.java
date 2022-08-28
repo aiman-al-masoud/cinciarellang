@@ -24,8 +24,10 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
+import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
@@ -211,8 +213,22 @@ public class Test {
 		add("\\x->1;", lex.toString());
 		
 		// lambda expression with code block
+		lex.expression = null;
+		CompoundStatement cS = new CompoundStatement();
+		AssignmentExpression one = new AssignmentExpression();
+		AssignmentExpression two = new AssignmentExpression();
+		ReturnStatement three = new ReturnStatement();
+		one.left = new Identifier("x");
+		one.right = new Int(1);
+		AddExpression aex = new AddExpression();
+		aex.left = new Identifier("x");
+		aex.right  = new Int(1);
+		two.left = new Identifier("y");
+		two.right = aex;
+		three.expression = new Identifier("y");
 		
 		
+//		lex.block = 
 		
 		add("\\x->{ x = 1;y=x+1;return y; };", "");
 		
