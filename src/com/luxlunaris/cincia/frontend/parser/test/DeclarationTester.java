@@ -39,10 +39,10 @@ public class DeclarationTester extends AbstractTester{
 		
 		
 		VariableDeclaration lD = new VariableDeclaration();
-		pr.name = new Identifier("x");
+		lD.name = new Identifier("x");
 		ListType lT = new ListType();
 		lT.value = new PrimitiveType(PrimitiveType.INT);
-		pr.type = lT;
+		lD.type = lT;
 		add("x:int[]", lD.toString());
 
 		
