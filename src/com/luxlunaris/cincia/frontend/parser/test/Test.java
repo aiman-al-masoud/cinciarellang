@@ -80,14 +80,6 @@ public class Test {
 
 		
 
-		// sel statements
-
-		// iteration statements 
-		
-		// jump statements 
-		
-		
-		
 
 
 
