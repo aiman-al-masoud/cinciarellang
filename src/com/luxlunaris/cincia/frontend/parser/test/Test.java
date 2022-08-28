@@ -74,87 +74,8 @@ public class Test {
 		add("true || false;", "");
 		// binary
 		
-		// mul expression
-		MulExpression mE = new MulExpression();
-		mE.left = new Int(1);
-		mE.right = new Int(2);
-		mE.op = Operators.ASTERISK;
-		ExpressionStatement ex = new ExpressionStatement(mE);
-		add("1 * 2;", ex.toString());
-		mE.op = Operators.DIV;
-		add("1 / 2;", mE.toString());
-		mE.op = Operators.MOD;
-		add("1 % 2;", mE.toString());
 		
-		//add expression
-		AddExpression aE = new AddExpression();
-		aE.left = new Int(1);
-		aE.right = new Int(1);
-		aE.op = Operators.PLUS;
-		add("1 + 1;", aE.toString());
-		aE.op = Operators.MINUS;
-		add("1 - 1;", aE.toString());
 		
-		// comparison expression
-		ComparisonExpression cE = new ComparisonExpression();
-		cE.left = new Int(2);
-		cE.right = new Int(1);
-		cE.op = Operators.COMPARE;
-		add("2 == 1;", cE.toString());
-		cE.op = Operators.LTE;
-		add("2 <= 1;", cE.toString());
-		cE.op = Operators.GTE;
-		add("2 >= 1;", cE.toString());
-		cE.op = Operators.NE;
-		add("2 != 1;", cE.toString());
-		cE.op = Operators.LT;
-		add("2 < 1;", cE.toString());
-		cE.op = Operators.GT;
-		add("2 > 1;", cE.toString());
-		ComparisonExpression ccE = new ComparisonExpression();
-		ccE.left = cE;
-		ccE.right = new Int(3);
-		ccE.op = Operators.GT;
-		add("2 > 1 > 3;", ccE.toString());
-		
-		// call expression
-		CalledExpression caE = new CalledExpression();
-		caE.callable = new Identifier("f");
-		MultiExpression muE = new MultiExpression();
-		muE.expressions = Arrays.asList(new Identifier("a"), new Identifier("b"), new Int(1));
-		caE.args = muE;
-		add("f(a, b, 1);", caE.toString());
-		
-		// dot expression
-		DotExpression dE = new DotExpression();
-		dE.left = new Identifier("a");
-		dE.right = new Identifier("b");
-		DotExpression dE2 = new DotExpression();
-		dE2.left = dE;
-		dE2.right = new Identifier("c");
-		DotExpression dE3 = new DotExpression();
-		dE3.left = dE2;
-		dE3.right = new Identifier("d");
-		add("a.b.c.d", dE3.toString());
-		
-		// indexed expression
-		IndexedExpression iE = new IndexedExpression();
-		iE.indexable = new Identifier("x");
-		iE.index = new Int(1);
-		IndexedExpression iE2 = new IndexedExpression();
-		iE2.indexable = iE;
-		iE2.index = new Int(2);
-		add("x[1][2]", iE2.toString());
-		
-		// reassignment expression
-		ReassignmentExpression rE = new ReassignmentExpression();
-		rE.left = new Identifier("x");
-		rE.right = new Int(1);
-		rE.op = Operators.PLUS_ASSIGN;
-		add("x+=1", rE.toString());
-		rE.op = Operators.DIV_ASSIGN;
-		add("x/=1", rE.toString());
-
 		
 		// dictionary literal expression
 		DictExpression diE = new DictExpression();
