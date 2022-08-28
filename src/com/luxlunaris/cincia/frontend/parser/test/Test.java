@@ -72,20 +72,6 @@ public class Test {
 		//		add("while true{ x+=1;y+=2; }\n x+=1;", "while true then {(x PLUS_ASSIGN 1); (y PLUS_ASSIGN 2)}");
 		//		add("true && false;", "");
 		//		add("true || false;", "");
-		// 		f  = \\x:int -> 1
-		//		AssignmentExpression aE = new AssignmentExpression();
-		//		aE.left = new Identifier("f");
-		//		LambdaExpression lE = new LambdaExpression();
-		//		Signature s = new Signature();
-		//		VariableDeclaration vD = new VariableDeclaration();
-		//		vD.name = new Identifier("x");
-		//		vD.type = new PrimitiveType(Keywords.INT);
-		//		s.params = vD;
-		//		lE.signature  = s;
-		//		lE.expression  = new Int(1);
-		//		aE.right = lE;
-		//		ExpressionStatement e = new ExpressionStatement(aE);
-		//		System.out.println(e.simplify()+" capra");
 		
 		add(new BinExpTester());
 		add(new DeclarationTester());
