@@ -92,7 +92,7 @@ public class Test {
 		add(new ListTester());
 		add(new LambdaTester());
 		add(new PostfixExpTester());
-
+		add(new ClassTester());
 
 		for(Entry<String, String> e : tests) {
 
