@@ -241,9 +241,10 @@ public class Test {
 	public static void add(String s1, String s2) {
 		tests.add(Map.entry(s1, s2));
 	}
-
-
-
+	
+	public static void add(AbstractTester tester) {
+		tests.addAll(tester.tests);
+	}
 
 
 
