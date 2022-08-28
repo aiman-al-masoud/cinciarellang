@@ -45,8 +45,12 @@ public class DeclarationTester extends AbstractTester{
 		lD.type = lT;
 		add("x:int[]", lD.toString());
 
+		// dict type variable
 		
 		add("x:{int:int}", "");
+		
+		
+		
 		add("f:\\x:int:int;", "");
 	}
 
