@@ -81,11 +81,9 @@ public class Test {
 		
 
 		// sel statements
-		add("if x { x = 1; y = 2;}else{y = x = 0; }", "");
-		add("match x{case 1:return 1;case 2:return 2;default:return 0;}", "");
+
 		// iteration statements 
-		add("for i in x{ x = do(x); x+=1;  }", "");
-		add("while x{ x = do(x); x+=1;  }", "");
+		
 		// jump statements 
 		add("while x{ break;  }", "");
 		add("while x{ continue;  }", "");
