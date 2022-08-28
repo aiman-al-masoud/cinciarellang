@@ -1,5 +1,7 @@
 package com.luxlunaris.cincia.frontend.parser.test;
 
+import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
+import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
@@ -20,8 +22,13 @@ public class ClassTester extends AbstractTester {
 		vD.type = new PrimitiveType(PrimitiveType.INT);
 		cE.addStatement(new DeclarationStatement(vD));
 		
+		FunctionDeclaration fD = new FunctionDeclaration();
+		fD.name = new Identifier("f");
+		Signature sg = new Signature();
+		sg.params =  vD;
+		fD.signature = sg;
 		
-		
+ 		
 		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", "");
 
 	}
