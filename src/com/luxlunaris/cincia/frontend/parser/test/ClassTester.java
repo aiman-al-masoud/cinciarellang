@@ -30,6 +30,7 @@ public class ClassTester extends AbstractTester {
 		vD.type = new PrimitiveType(PrimitiveType.INT);
 		cE.addStatement(new DeclarationStatement(vD));
 		
+		// function declaration
 		FunctionDeclaration fD = new FunctionDeclaration();
 		fD.name = new Identifier("f");
 		Signature sg = new Signature();
@@ -38,6 +39,7 @@ public class ClassTester extends AbstractTester {
 		fD.signature = sg;
 		cE.addStatement(new DeclarationStatement(fD));
 		
+		// method definition
 		AssignmentExpression ase = new AssignmentExpression();
 		ase.left = new Identifier("f");
 		LambdaExpression lE = new LambdaExpression();
