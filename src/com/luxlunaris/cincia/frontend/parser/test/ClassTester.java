@@ -61,7 +61,6 @@ public class ClassTester extends AbstractTester {
 		ase2.right = new Int(1);
 		cE.addStatement(new ExpressionStatement(ase2));
 		
-		System.out.println(cE.toString());
  		
 		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", cE.toString());
 
