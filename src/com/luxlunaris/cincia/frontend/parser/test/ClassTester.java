@@ -13,12 +13,15 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
+/**
+ * Tests a class, complete with declarations, methods and assignments.
+ *
+ */
 public class ClassTester extends AbstractTester {
 
 	public ClassTester() {
 		
-		// class with declarations, methods and assignments
-		
+				
 		ClassExpression cE = new ClassExpression();
 		
 		VariableDeclaration vD = new VariableDeclaration();
