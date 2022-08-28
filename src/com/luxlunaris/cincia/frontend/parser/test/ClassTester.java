@@ -29,6 +29,8 @@ public class ClassTester extends AbstractTester {
 		sg.returnType = new PrimitiveType(PrimitiveType.INT);
 		fD.signature = sg;
 		cE.addStatement(new DeclarationStatement(fD));
+		
+		
  		
 		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", cE.toString());
 
