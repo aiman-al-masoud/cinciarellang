@@ -86,10 +86,8 @@ public class Test {
 		//		aE.right = lE;
 		//		ExpressionStatement e = new ExpressionStatement(aE);
 		//		System.out.println(e.simplify()+" capra");
-
-
-
-
+		
+		
 
 
 		for(Entry<String, String> e : tests) {
