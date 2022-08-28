@@ -21,7 +21,6 @@ public class InterfaceTester extends AbstractTester {
 		vD.type = new PrimitiveType(PrimitiveType.INT);
 		iE.addDeclaration(vD);
 
-
 		// other var declaration
 		VariableDeclaration vD2 = new VariableDeclaration();
 		vD.name = new Identifier("y");
