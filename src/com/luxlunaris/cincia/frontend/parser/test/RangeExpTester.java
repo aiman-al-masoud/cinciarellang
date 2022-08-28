@@ -7,12 +7,15 @@ public class RangeExpTester extends AbstractTester {
 	
 	public RangeExpTester() {
 		
-		
 		RangeExpression rE  = new RangeExpression();
 		rE.from = new Int(1);
 		rE.to = new Int(10);
 		
 		add("1 to 10;", rE.toString());
+		
+		
+		
+		
 	}
 	
 }
