@@ -27,8 +27,10 @@ public class DeclarationTester extends AbstractTester{
 		add("x:int|float|Object", un.toString());
 		
 		
-		add("x:{int:int}", "");
 		add("x:int[]", "");
+
+		
+		add("x:{int:int}", "");
 		add("f:\\x:int:int;", "");
 	}
 
