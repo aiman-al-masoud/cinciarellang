@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
@@ -46,8 +47,13 @@ public class DeclarationTester extends AbstractTester{
 		add("x:int[]", lD.toString());
 
 		// dict type variable
-		
-		add("x:{int:int}", "");
+		VariableDeclaration dD = new VariableDeclaration();
+		dD.name = new Identifier("x");
+		DictType dictType = new DictType();
+		dictType.keyType = new PrimitiveType(PrimitiveType.INT);
+		dictType.valType = new PrimitiveType(PrimitiveType.INT);
+		dD.type = dictType;
+		add("x:{int:int}", dD.toString());
 		
 		
 		
