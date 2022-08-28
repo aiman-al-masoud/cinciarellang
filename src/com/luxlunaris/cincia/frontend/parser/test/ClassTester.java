@@ -23,6 +23,9 @@ public class ClassTester extends AbstractTester {
 				
 		ClassExpression cE = new ClassExpression();
 		
+		// null op (placed by preprocessor, go read AddDecKeyword)
+		
+		
 		// variable declaration
 		VariableDeclaration vD = new VariableDeclaration();
 		vD.name = new Identifier("x");
