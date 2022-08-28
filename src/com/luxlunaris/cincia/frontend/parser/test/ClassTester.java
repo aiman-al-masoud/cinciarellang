@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.frontend.parser.test;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
@@ -29,6 +30,9 @@ public class ClassTester extends AbstractTester {
 		sg.returnType = new PrimitiveType(PrimitiveType.INT);
 		fD.signature = sg;
 		cE.addStatement(new DeclarationStatement(fD));
+		
+		AssignmentExpression ase = new AssignmentExpression();
+		ase.left = new Identifier("f");
 		
 		
  		
