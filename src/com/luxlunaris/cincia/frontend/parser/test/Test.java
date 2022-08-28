@@ -93,6 +93,7 @@ public class Test {
 		add(new LambdaTester());
 		add(new PostfixExpTester());
 		add(new ClassTester());
+		add(new InterfaceTester());
 
 		for(Entry<String, String> e : tests) {
 
