@@ -111,6 +111,25 @@ public abstract class AbstractTraversal {
 
 	}
 	
+	
+	public Object evalBinaryExpression(BinaryExpression binexp, Enviro enviro) {
+		
+		if(binexp instanceof MulExpression) {
+			
+		}else if(binexp instanceof AddExpression) {
+			
+		}else if(binexp instanceof ComparisonExpression) {
+			
+		}else if(binexp instanceof AndExpression) {
+			
+		}else if(binexp instanceof OrExpression) {
+			
+		}else if(binexp instanceof AssignmentExpression) {
+			
+		}
+		
+	}
+	
 	public Object evalObjectExpression(ObjectExpression objex, Enviro enviro) {
 		
 	}
@@ -133,23 +152,7 @@ public abstract class AbstractTraversal {
 	}
 	
 	
-	public Object evalBinaryExpression(BinaryExpression binexp, Enviro enviro) {
-		
-		if(binexp instanceof MulExpression) {
-			
-		}else if(binexp instanceof AddExpression) {
-			
-		}else if(binexp instanceof ComparisonExpression) {
-			
-		}else if(binexp instanceof AndExpression) {
-			
-		}else if(binexp instanceof OrExpression) {
-			
-		}else if(binexp instanceof AssignmentExpression) {
-			
-		}
-		
-	}
+
 	
 	
 	public abstract Object evalTernaryExpression(TernaryExpression terex, Enviro enviro);
