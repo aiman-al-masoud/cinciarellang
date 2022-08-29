@@ -23,6 +23,10 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.BinaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
@@ -213,6 +217,11 @@ public abstract class AbstractTraversal {
 	public abstract Object evalIndexedExpression(IndexedExpression indexex, Enviro enviro);
 	public abstract Object evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro);
 
+	public abstract Object evalBracketedExpression(BracketedExpression brackex, Enviro enviro);
+	public abstract Object evalDestructuringExpression(DestructuringExpression destex, Enviro enviro);
+	public abstract Object evalMinusExpression(MinusExpression minex, Enviro enviro);
+	public abstract Object evalNegationExpression(NegationExpression negex, Enviro enviro);
+	
 	
 	
 	
