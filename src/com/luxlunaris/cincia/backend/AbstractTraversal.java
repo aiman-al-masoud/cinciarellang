@@ -24,6 +24,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -202,8 +203,6 @@ public abstract class AbstractTraversal {
 	public abstract Object evalOrExpression(OrExpression orex, Enviro enviro);
 	public abstract Object evalAndExpression(AndExpression andex, Enviro enviro);
 	public abstract Object evalAssignmentExpression(AssignmentExpression assex, Enviro enviro);
-
-	
 	public abstract Object evalClassExpression(ClassExpression classex, Enviro enviro);
 	public abstract Object evalDictExpression(DictExpression dictex, Enviro enviro);
 	public abstract Object evalDictComprehension(DictComprehension dictcompex, Enviro enviro);
@@ -211,18 +210,17 @@ public abstract class AbstractTraversal {
 	public abstract Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro);
 	public abstract Object evalListComprehension(ListComprehension listcompex, Enviro enviro);
 	public abstract Object evalListExpression(ListExpression listex, Enviro enviro);
-	
 	public abstract Object evalCalledExpression(CalledExpression callex, Enviro enviro);
 	public abstract Object evalDotExpression(DotExpression dotex, Enviro enviro);
 	public abstract Object evalIndexedExpression(IndexedExpression indexex, Enviro enviro);
 	public abstract Object evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro);
-
 	public abstract Object evalBracketedExpression(BracketedExpression brackex, Enviro enviro);
 	public abstract Object evalDestructuringExpression(DestructuringExpression destex, Enviro enviro);
 	public abstract Object evalMinusExpression(MinusExpression minex, Enviro enviro);
 	public abstract Object evalNegationExpression(NegationExpression negex, Enviro enviro);
 	
 	
+	public abstract Object evalIdentifierType(IdentifierType idtype, Enviro enviro);
 	
 	
 	
