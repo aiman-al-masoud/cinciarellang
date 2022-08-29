@@ -158,6 +158,21 @@ public abstract class AbstractTraversal {
 	
 	public Object evalObjectExpression(ObjectExpression objex, Enviro enviro) {
 		
+		if(objex instanceof ListExpression) {
+			return evalListExpression((ListExpression)objex, enviro);
+		}else if (objex instanceof DictExpression) {
+			return evalDictExpression((DictExpression)objex, enviro);
+		}else if (objex instanceof ListComprehension) {
+			return evalListComprehension((ListComprehension)objex, enviro);
+		}else if (objex instanceof DictComprehension) {
+			return evalDictComprehension((DictComprehension)objex, enviro);
+		}else if (objex instanceof InterfaceExpression) {
+			return evalInterfaceExpression((InterfaceExpression)objex, enviro);
+		}else if (objex instanceof ClassExpression) {
+			return evalClassExpression((ClassExpression)objex, enviro);
+		}
+		
+		throw new RuntimeException("No such object expression!");
 	}
 	
 	
