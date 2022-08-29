@@ -55,6 +55,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public abstract class AbstractTraversal {
 
@@ -203,6 +204,16 @@ public abstract class AbstractTraversal {
 	}
 	
 	public Object evalUnaryExpression(UnaryExpression unex, Enviro enviro) {
+		
+		if(unex instanceof DestructuringExpression) {
+			return evalDestructuringExpression((DestructuringExpression)unex, enviro);
+		}else if(unex instanceof MinusExpression) {
+			return evalMinusExpression((MinusExpression)unex, enviro);
+		}else if(unex instanceof NegationExpression) {
+			return evalNegationExpression((NegationExpression)unex, enviro);
+		}
+		
+		throw new RuntimeException("No such unary expression!");
 		
 	}
 	
