@@ -19,6 +19,10 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.InterfaceExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.BinaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
@@ -203,6 +207,16 @@ public abstract class AbstractTraversal {
 	public abstract Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro);
 	public abstract Object evalListComprehension(ListComprehension listcompex, Enviro enviro);
 	public abstract Object evalListExpression(ListExpression listex, Enviro enviro);
+	
+	public abstract Object evalCalledExpression(CalledExpression callex, Enviro enviro);
+	public abstract Object evalDotExpression(DotExpression dotex, Enviro enviro);
+	public abstract Object evalIndexedExpression(IndexedExpression indexex, Enviro enviro);
+	public abstract Object evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro);
 
+	
+	
+	
+	
+	
 
 }
