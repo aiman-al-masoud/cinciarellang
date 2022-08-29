@@ -211,9 +211,6 @@ public abstract class AbstractTraversal {
 	}
 	
 	
-
-	
-	
 	public abstract Object evalTernaryExpression(TernaryExpression terex, Enviro enviro);
 	public abstract Object evalConstant(Constant constant, Enviro enviro);
 	public abstract Object evalIfStatement(IfStatement ifStatement, Enviro enviro);
