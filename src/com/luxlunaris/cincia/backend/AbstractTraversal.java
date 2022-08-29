@@ -24,7 +24,11 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.UnionType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -221,9 +225,10 @@ public abstract class AbstractTraversal {
 	
 	
 	public abstract Object evalIdentifierType(IdentifierType idtype, Enviro enviro);
-	
-	
-	
-	
+	public abstract Object evalPrimitiveType(PrimitiveType idtype, Enviro enviro);
+	public abstract Object evalListType(ListType idtype, Enviro enviro);
+	public abstract Object evalDictType(DictType idtype, Enviro enviro);
+	public abstract Object evalUnionType(UnionType idtype, Enviro enviro);
+
 
 }
