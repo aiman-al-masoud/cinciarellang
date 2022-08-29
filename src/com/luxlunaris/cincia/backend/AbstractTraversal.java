@@ -119,18 +119,20 @@ public abstract class AbstractTraversal {
 	public Object evalBinaryExpression(BinaryExpression binexp, Enviro enviro) {
 		
 		if(binexp instanceof MulExpression) {
-			
+			return evalMulExpression((MulExpression)binexp, enviro);
 		}else if(binexp instanceof AddExpression) {
-			
+			return evalAddExpression((AddExpression)binexp, enviro);
 		}else if(binexp instanceof ComparisonExpression) {
-			
+			return evalComparisonExpression((ComparisonExpression)binexp, enviro);
 		}else if(binexp instanceof AndExpression) {
-			
+			return evalAndExpression((AndExpression)binexp, enviro);
 		}else if(binexp instanceof OrExpression) {
-			
+			return evalOrExpression((OrExpression)binexp, enviro);
 		}else if(binexp instanceof AssignmentExpression) {
-			
+			return evalAssignmentExpression((AssignmentExpression)binexp, enviro);
 		}
+		
+		throw new RuntimeException("No such binary expression class!");
 		
 	}
 	
@@ -179,6 +181,14 @@ public abstract class AbstractTraversal {
 	public abstract Object evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro);
 	public abstract Object evalVariableDeclaration(VariableDeclaration vD, Enviro enviro);
 	public abstract Object evalMultiDeclaration(MultiDeclaration mD, Enviro enviro);
+	public abstract Object evalMulExpression(MulExpression mulex, Enviro enviro);
+	public abstract Object evalAddExpression(AddExpression addex, Enviro enviro);
+	public abstract Object evalComparisonExpression(ComparisonExpression compex, Enviro enviro);
+	public abstract Object evalOrExpression(OrExpression orex, Enviro enviro);
+	public abstract Object evalAndExpression(AndExpression andex, Enviro enviro);
+	public abstract Object evalAssignmentExpression(AssignmentExpression assex, Enviro enviro);
 
+	
+	
 
 }
