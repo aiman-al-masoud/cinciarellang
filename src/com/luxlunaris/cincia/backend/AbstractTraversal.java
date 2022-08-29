@@ -221,7 +221,21 @@ public abstract class AbstractTraversal {
 	}
 
 	public Object evalType(Type typex, Enviro enviro) {
-
+		
+		if(typex instanceof PrimitiveType) {
+			return evalPrimitiveType((PrimitiveType)typex, enviro);
+		}else if(typex instanceof IdentifierType) {
+			return evalIdentifierType((IdentifierType)typex, enviro);
+		}else if(typex instanceof DictType) {
+			return evalDictType((DictType)typex, enviro);
+		}else if(typex instanceof ListType) {
+			return evalListType((ListType)typex, enviro);
+		}else if(typex instanceof UnionType) {
+			return evalUnionType((UnionType)typex, enviro);
+		}
+		
+		throw new RuntimeException("No such type expression!");
+		
 	}
 
 
