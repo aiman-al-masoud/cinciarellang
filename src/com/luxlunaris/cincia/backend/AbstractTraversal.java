@@ -1,0 +1,145 @@
+package com.luxlunaris.cincia.backend;
+
+import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
+import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
+import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.TernaryExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.AndExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.OrExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
+import com.luxlunaris.cincia.frontend.ast.interfaces.BinaryExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.interfaces.UnaryExpression;
+import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.iteration.ForStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.iteration.WhileStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
+
+public abstract class AbstractTraversal {
+
+	public Object eval(Ast ast, Enviro enviro) {
+
+		if(ast instanceof Expression) {
+			return evalExpression((Expression)ast, enviro);
+
+		}else if (ast instanceof Declaration) {
+			return evalDeclaration((Declaration)ast, enviro);
+
+		}else if( ast instanceof IfStatement ) {
+			return evalIfStatement((IfStatement)ast, enviro);
+
+		}else if(ast instanceof MatchStatement) {
+			return evalMatchStatement((MatchStatement)ast, enviro);
+
+		}
+
+
+	}
+
+
+	public Object evalExpression(Expression expression, Enviro enviro) {
+
+
+		if(expression instanceof BinaryExpression) {
+			return evalBinaryExpression((BinaryExpression)expression, enviro);
+			
+		}else if(expression instanceof TernaryExpression) {
+			return evalTernaryExpression((TernaryExpression)expression, enviro);
+			
+		}else if(expression instanceof MultiExpression) {
+
+		}else if(expression instanceof ObjectExpression) {
+
+		}else if(expression instanceof PostfixExpression) {
+
+		}else if(expression instanceof PrimaryExpression) {
+
+		}else if(expression instanceof UnaryExpression) {
+
+		}else if(expression instanceof Type) {
+
+		}else if(expression instanceof Constant) {
+			return evalConstant((Constant)expression, enviro);
+			
+		}else if(expression instanceof RangeExpression) {
+
+		}
+
+	}
+
+
+	public Object evalDeclaration(Declaration declaration, Enviro enviro) {
+
+		if(declaration instanceof FunctionDeclaration) {
+
+		}else if (declaration instanceof VariableDeclaration) {
+
+		}else if (declaration instanceof MultiDeclaration) {
+
+		}
+
+	}
+	
+	
+	public Object evalBinaryExpression(BinaryExpression binexp, Enviro enviro) {
+		
+		if(binexp instanceof MulExpression) {
+			
+		}else if(binexp instanceof AddExpression) {
+			
+		}else if(binexp instanceof ComparisonExpression) {
+			
+		}else if(binexp instanceof AndExpression) {
+			
+		}else if(binexp instanceof OrExpression) {
+			
+		}else if(binexp instanceof AssignmentExpression) {
+			
+		}
+		
+	}
+	
+	
+	public abstract Object evalTernaryExpression(TernaryExpression terex, Enviro enviro);
+	public abstract Object evalConstant(Constant constant, Enviro enviro);
+	public abstract Object evalIfStatement(IfStatement ifStatement, Enviro enviro);
+	public abstract Object evalMatchStatement(MatchStatement ifStatement, Enviro enviro);
+	public abstract Object evalBreakStatement(BreakStatement breakStatement, Enviro enviro);
+	public abstract Object evalContinueStatement(ContinueStatement continueStatement, Enviro enviro);
+	public abstract Object evalForStatement(ForStatement forStatement, Enviro enviro);
+	public abstract Object evalWhileStatement(WhileStatement whileStatement, Enviro enviro);
+	public abstract Object evalImportStatement(ImportStatement importStatement, Enviro enviro);
+	public abstract Object evalCompoundStatement(CompoundStatement compoundStatement, Enviro enviro);
+	public abstract Object evalTryStatement(TryStatement tryStatement, Enviro enviro);
+	public abstract Object evalThrowStatement(ThrowStatement throwStatement, Enviro enviro);	
+	public abstract Object evalDefaultStatement(DefaultStatement defaultStatement, Enviro enviro);
+	public abstract Object evalReturnStatement(ReturnStatement returnStatement, Enviro enviro);
+	public abstract Object evalCaseStatement(CaseStatement caseStatement, Enviro enviro);
+
+
+
+
+
+
+}
