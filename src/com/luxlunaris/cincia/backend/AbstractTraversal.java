@@ -102,13 +102,17 @@ public abstract class AbstractTraversal {
 	public Object evalDeclaration(Declaration declaration, Enviro enviro) {
 
 		if(declaration instanceof FunctionDeclaration) {
-
+			return evalFunctionDeclaration((FunctionDeclaration)declaration, enviro);
+			
 		}else if (declaration instanceof VariableDeclaration) {
-
+			return evalVariableDeclaration((VariableDeclaration)declaration, enviro);
+					
 		}else if (declaration instanceof MultiDeclaration) {
-
+			return evalMultiDeclaration((MultiDeclaration)declaration, enviro);
+					
 		}
-
+		
+		throw new RuntimeException("No such declaration class!");
 	}
 	
 	
@@ -172,8 +176,9 @@ public abstract class AbstractTraversal {
 	public abstract Object evalCaseStatement(CaseStatement caseStatement, Enviro enviro);
 	public abstract Object evalMultiExpression(MultiExpression multex, Enviro enviro);
 	public abstract Object evalRangeExpression(RangeExpression rangex, Enviro enviro);
-
-	
+	public abstract Object evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro);
+	public abstract Object evalVariableDeclaration(VariableDeclaration vD, Enviro enviro);
+	public abstract Object evalMultiDeclaration(MultiDeclaration mD, Enviro enviro);
 
 
 }
