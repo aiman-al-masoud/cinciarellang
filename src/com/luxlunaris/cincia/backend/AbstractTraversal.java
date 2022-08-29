@@ -76,7 +76,7 @@ public abstract class AbstractTraversal {
 		}
 
 		throw new RuntimeException("No such AST class!");
-		
+
 	}
 
 
@@ -85,36 +85,36 @@ public abstract class AbstractTraversal {
 
 		if(expression instanceof BinaryExpression) {
 			return evalBinaryExpression((BinaryExpression)expression, enviro);
-			
+
 		}else if(expression instanceof TernaryExpression) {
 			return evalTernaryExpression((TernaryExpression)expression, enviro);
-			
+
 		}else if(expression instanceof MultiExpression) {
 			return evalMultiExpression((MultiExpression)expression, enviro);
 
 		}else if(expression instanceof ObjectExpression) {
 			return evalObjectExpression((ObjectExpression)expression, enviro);
-			
+
 		}else if(expression instanceof PostfixExpression) {
 			return evalPostfixExpression((PostfixExpression)expression, enviro);
-			
+
 		}else if(expression instanceof PrimaryExpression) {
 			return evalPrimaryExpression((PrimaryExpression)expression, enviro);
-			
+
 		}else if(expression instanceof UnaryExpression) {
 			return evalUnaryExpression((UnaryExpression)expression, enviro);
-			
+
 		}else if(expression instanceof Type) {
 			return evalType((Type)expression, enviro);
 
 		}else if(expression instanceof Constant) {
 			return evalConstant((Constant)expression, enviro);
-			
+
 		}else if(expression instanceof RangeExpression) {
 			return evalRangeExpression((RangeExpression)expression, enviro);
-			
+
 		}
-		
+
 		throw new RuntimeException("No such expression class!");
 
 	}
@@ -124,21 +124,21 @@ public abstract class AbstractTraversal {
 
 		if(declaration instanceof FunctionDeclaration) {
 			return evalFunctionDeclaration((FunctionDeclaration)declaration, enviro);
-			
+
 		}else if (declaration instanceof VariableDeclaration) {
 			return evalVariableDeclaration((VariableDeclaration)declaration, enviro);
-					
+
 		}else if (declaration instanceof MultiDeclaration) {
 			return evalMultiDeclaration((MultiDeclaration)declaration, enviro);
-					
+
 		}
-		
+
 		throw new RuntimeException("No such declaration class!");
 	}
-	
-	
+
+
 	public Object evalBinaryExpression(BinaryExpression binexp, Enviro enviro) {
-		
+
 		if(binexp instanceof MulExpression) {
 			return evalMulExpression((MulExpression)binexp, enviro);
 		}else if(binexp instanceof AddExpression) {
@@ -152,13 +152,13 @@ public abstract class AbstractTraversal {
 		}else if(binexp instanceof AssignmentExpression) {
 			return evalAssignmentExpression((AssignmentExpression)binexp, enviro);
 		}
-		
+
 		throw new RuntimeException("No such binary expression class!");
-		
+
 	}
-	
+
 	public Object evalObjectExpression(ObjectExpression objex, Enviro enviro) {
-		
+
 		if(objex instanceof ListExpression) {
 			return evalListExpression((ListExpression)objex, enviro);
 		}else if (objex instanceof DictExpression) {
@@ -172,13 +172,13 @@ public abstract class AbstractTraversal {
 		}else if (objex instanceof ClassExpression) {
 			return evalClassExpression((ClassExpression)objex, enviro);
 		}
-		
+
 		throw new RuntimeException("No such object expression!");
 	}
-	
-	
+
+
 	public Object evalPostfixExpression(PostfixExpression posex, Enviro enviro) {
-		
+
 		if(posex instanceof CalledExpression) {
 			return evalCalledExpression((CalledExpression)posex, enviro);
 		}else if(posex instanceof DotExpression) {
@@ -188,23 +188,15 @@ public abstract class AbstractTraversal {
 		}else if(posex instanceof ReassignmentExpression) {
 			return evalReassignmentExpression((ReassignmentExpression)posex, enviro);
 		}
-		
+
 		throw new RuntimeException("No such postfix expression!");
-		
-	}
-	
-	public Object evalPrimaryExpression(PrimaryExpression primex, Enviro enviro) {
-		
-		if(primex instanceof BracketedExpression) {
-			return evalBracketedExpression((BracketedExpression)primex, enviro);
-		}
-		
-		throw new RuntimeException("No such primary expression!");
 
 	}
-	
+
+
+
 	public Object evalUnaryExpression(UnaryExpression unex, Enviro enviro) {
-		
+
 		if(unex instanceof DestructuringExpression) {
 			return evalDestructuringExpression((DestructuringExpression)unex, enviro);
 		}else if(unex instanceof MinusExpression) {
@@ -212,16 +204,26 @@ public abstract class AbstractTraversal {
 		}else if(unex instanceof NegationExpression) {
 			return evalNegationExpression((NegationExpression)unex, enviro);
 		}
-		
+
 		throw new RuntimeException("No such unary expression!");
-		
+
 	}
-	
+
+	public Object evalPrimaryExpression(PrimaryExpression primex, Enviro enviro) {
+
+		if(primex instanceof BracketedExpression) {
+			return evalBracketedExpression((BracketedExpression)primex, enviro);
+		}
+
+		throw new RuntimeException("No such primary expression!");
+
+	}
+
 	public Object evalType(Type typex, Enviro enviro) {
-		
+
 	}
-	
-	
+
+
 	public abstract Object evalTernaryExpression(TernaryExpression terex, Enviro enviro);
 	public abstract Object evalConstant(Constant constant, Enviro enviro);
 	public abstract Object evalIfStatement(IfStatement ifStatement, Enviro enviro);
