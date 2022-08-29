@@ -222,8 +222,6 @@ public abstract class AbstractTraversal {
 	public abstract Object evalDestructuringExpression(DestructuringExpression destex, Enviro enviro);
 	public abstract Object evalMinusExpression(MinusExpression minex, Enviro enviro);
 	public abstract Object evalNegationExpression(NegationExpression negex, Enviro enviro);
-	
-	
 	public abstract Object evalIdentifierType(IdentifierType idtype, Enviro enviro);
 	public abstract Object evalPrimitiveType(PrimitiveType idtype, Enviro enviro);
 	public abstract Object evalListType(ListType idtype, Enviro enviro);
