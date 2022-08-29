@@ -12,6 +12,13 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.OrExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.InterfaceExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListComprehension;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.BinaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
@@ -189,6 +196,13 @@ public abstract class AbstractTraversal {
 	public abstract Object evalAssignmentExpression(AssignmentExpression assex, Enviro enviro);
 
 	
-	
+	public abstract Object evalClassExpression(ClassExpression classex, Enviro enviro);
+	public abstract Object evalDictExpression(DictExpression dictex, Enviro enviro);
+	public abstract Object evalDictComprehension(DictComprehension dictcompex, Enviro enviro);
+	public abstract Object evalInterfaceExpression(InterfaceExpression interex, Enviro enviro);
+	public abstract Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro);
+	public abstract Object evalListComprehension(ListComprehension listcompex, Enviro enviro);
+	public abstract Object evalListExpression(ListExpression listex, Enviro enviro);
+
 
 }
