@@ -55,7 +55,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 
 public abstract class AbstractTraversal {
 
