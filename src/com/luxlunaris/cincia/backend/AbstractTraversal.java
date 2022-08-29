@@ -54,7 +54,8 @@ public abstract class AbstractTraversal {
 
 		}
 
-
+		throw new RuntimeException("No such AST class!");
+		
 	}
 
 
@@ -68,23 +69,32 @@ public abstract class AbstractTraversal {
 			return evalTernaryExpression((TernaryExpression)expression, enviro);
 			
 		}else if(expression instanceof MultiExpression) {
+			return evalMultiExpression((MultiExpression)expression, enviro);
 
 		}else if(expression instanceof ObjectExpression) {
-
+			return evalObjectExpression((ObjectExpression)expression, enviro);
+			
 		}else if(expression instanceof PostfixExpression) {
-
+			return evalPostfixExpression((PostfixExpression)expression, enviro);
+			
 		}else if(expression instanceof PrimaryExpression) {
-
+			return evalPrimaryExpression((PrimaryExpression)expression, enviro);
+			
 		}else if(expression instanceof UnaryExpression) {
-
+			return evalUnaryExpression((UnaryExpression)expression, enviro);
+			
 		}else if(expression instanceof Type) {
+			return evalType((Type)expression, enviro);
 
 		}else if(expression instanceof Constant) {
 			return evalConstant((Constant)expression, enviro);
 			
 		}else if(expression instanceof RangeExpression) {
-
+			return evalRangeExpression((RangeExpression)expression, enviro);
+			
 		}
+		
+		throw new RuntimeException("No such expression class!");
 
 	}
 
@@ -99,6 +109,27 @@ public abstract class AbstractTraversal {
 
 		}
 
+	}
+	
+	public Object evalObjectExpression(ObjectExpression objex, Enviro enviro) {
+		
+	}
+	
+	
+	public Object evalPostfixExpression(PostfixExpression posex, Enviro enviro) {
+		
+	}
+	
+	public Object evalPrimaryExpression(PrimaryExpression primex, Enviro enviro) {
+		
+	}
+	
+	public Object evalUnaryExpression(UnaryExpression unex, Enviro enviro) {
+		
+	}
+	
+	public Object evalType(Type typex, Enviro enviro) {
+		
 	}
 	
 	
@@ -136,10 +167,10 @@ public abstract class AbstractTraversal {
 	public abstract Object evalDefaultStatement(DefaultStatement defaultStatement, Enviro enviro);
 	public abstract Object evalReturnStatement(ReturnStatement returnStatement, Enviro enviro);
 	public abstract Object evalCaseStatement(CaseStatement caseStatement, Enviro enviro);
+	public abstract Object evalMultiExpression(MultiExpression multex, Enviro enviro);
+	public abstract Object evalRangeExpression(RangeExpression rangex, Enviro enviro);
 
-
-
-
+	
 
 
 }
