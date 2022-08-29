@@ -194,6 +194,12 @@ public abstract class AbstractTraversal {
 	
 	public Object evalPrimaryExpression(PrimaryExpression primex, Enviro enviro) {
 		
+		if(primex instanceof BracketedExpression) {
+			return evalBracketedExpression((BracketedExpression)primex, enviro);
+		}
+		
+		throw new RuntimeException("No such primary expression!");
+
 	}
 	
 	public Object evalUnaryExpression(UnaryExpression unex, Enviro enviro) {
