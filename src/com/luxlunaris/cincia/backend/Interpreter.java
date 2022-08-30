@@ -356,6 +356,7 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalIdentifierType(IdentifierType idtype, Enviro enviro) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
