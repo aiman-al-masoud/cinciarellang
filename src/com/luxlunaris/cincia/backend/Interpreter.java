@@ -344,14 +344,12 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalMinusExpression(MinusExpression minex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return -(double)eval(minex.arg, enviro);
 	}
 
 	@Override
 	public Object evalNegationExpression(NegationExpression negex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return !(boolean)eval(negex.arg, enviro);
 	}
 
 	@Override
