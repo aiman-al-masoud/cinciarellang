@@ -54,29 +54,29 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 
 public class Interpreter extends AbstractTraversal {
-	
+
 	Stack<Enviro> scopes;
-	
+
 	public Interpreter() {
 		scopes = new Stack<Enviro>();
 		scopes.push(new Enviro(null));
 	}
-	
+
 	public void enterEnv(Enviro env) {
 		scopes.push(env);
 	}
-	
+
 	public void exitEnv() {
-		
+
 		if(scopes.size() > 1) {
 			scopes.pop();
 		}
 	}
-	
+
 	public Enviro getEnv() {
 		return scopes.peek();
 	}
-	
+
 	@Override
 	public Object evalInt(Int intex, Enviro enviro) {
 		return intex.getValue();
@@ -99,14 +99,24 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+
+		if((boolean)eval(terex.cond, enviro)) {
+			return eval(terex.thenExpression, enviro);
+		}else {
+			return eval(terex.elseExpression, enviro);
+		}
+
 	}
 
 	@Override
 	public Object evalIfStatement(IfStatement ifStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+
+		if((boolean)eval(ifStatement.cond, enviro)) {
+			return eval(ifStatement.thenBlock, enviro);
+		}else {
+			return eval(ifStatement.elseBlock, enviro);
+		}
+
 	}
 
 	@Override
