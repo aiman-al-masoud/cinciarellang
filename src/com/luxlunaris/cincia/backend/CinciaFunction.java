@@ -4,7 +4,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 
-public class CinciaFunction extends CinciaObject{
+public class CinciaFunction extends CinciaObject implements Callable{
 	
 	private CompoundStatement block;
 	private Expression expression;
