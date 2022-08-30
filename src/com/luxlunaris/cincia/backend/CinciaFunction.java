@@ -9,6 +9,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	private CompoundStatement block;
 	private Expression expression;
 	private Signature signature;
+	private CinciaObject parent;
 	
 	
 	public CinciaFunction(Signature signature, CompoundStatement block) {
@@ -23,7 +24,14 @@ public class CinciaFunction extends CinciaObject implements Callable{
 		this.signature = signature;
 	}
 	
+	public void setParent(CinciaObject parent) {
+		this.parent = parent;
+	}
 	
+	public CinciaObject getParent() {
+		return parent;
+	}
+
 
 	
 	
