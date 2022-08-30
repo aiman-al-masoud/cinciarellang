@@ -8,22 +8,22 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 public class CinciaObject {
 
 	private boolean immutable;	
-	Map<String, Object> attribs;
+	private Map<String, CinciaObject> attribs;
 	Type type;
 
 
 	public CinciaObject(Type type) {
 
-		attribs = new HashMap<String, Object>();
+		attribs = new HashMap<String, CinciaObject>();
 		this.type = type;
 		immutable = false;
 	}
 
-	public Object get(String key) {
+	public CinciaObject get(String key) {
 		return attribs.get(key);
 	}
 
-	public void set(String key, Object val) {
+	public void set(String key, CinciaObject val) {
 
 		if(!immutable) {
 			attribs.put(key, val);
