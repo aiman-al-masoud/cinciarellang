@@ -148,13 +148,13 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalForStatement(ForStatement forStatement, Enviro enviro) {
-		
+
 		Object iterable = eval(forStatement.iterable, enviro);
-		
-//		for(Object x : iterable) {
-//			
-//		}
-		
+
+		//		for(Object x : iterable) {
+		//			
+		//		}
+
 		return null;
 	}
 
@@ -162,21 +162,21 @@ public class Interpreter extends AbstractTraversal {
 	public Object evalWhileStatement(WhileStatement whileStatement, Enviro enviro) {
 
 		while((boolean)eval(whileStatement.cond, enviro)) {
-			
+
 			Object o = eval(whileStatement.block, enviro);
-			
+
 			if(o == null) {
 				continue;
 			}
-			
+
 			if(o.equals(Keywords.CONTINUE)) {
 				continue;
 			}
-			
+
 			if(o.equals(Keywords.BREAK)) {
 				break;
 			}
-			
+
 		}
 
 		return null;
@@ -304,11 +304,11 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
-		
-//		eval(assex.left, enviro);
-//		eval(assex.right, enviro);
-		
-		
+
+		//		eval(assex.left, enviro);
+		//		eval(assex.right, enviro);
+
+
 		return null;
 	}
 
@@ -339,7 +339,7 @@ public class Interpreter extends AbstractTraversal {
 	@Override
 	public Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 		// TODO Auto-generated method stub
-//		lambdex.
+		//		lambdex.
 		return null;
 	}
 
