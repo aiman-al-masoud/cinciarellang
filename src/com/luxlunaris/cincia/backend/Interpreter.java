@@ -340,9 +340,9 @@ public class Interpreter extends AbstractTraversal {
 	public Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 		
 		if(lambdex.expression!=null) {
-			return new CinciaLambda(lambdex.signature, lambdex.expression);
+			return new CinciaFunction(lambdex.signature, lambdex.expression);
 		}else if (lambdex.expression!=null) {
-			return new CinciaLambda(lambdex.signature, lambdex.block);
+			return new CinciaFunction(lambdex.signature, lambdex.block);
 		}
 		
 		throw new RuntimeException("Lambda has no expression nor block!");
@@ -368,7 +368,7 @@ public class Interpreter extends AbstractTraversal {
 		// 1 get name of function, 
 		String name = ((Identifier)callex.callable).value;		
 		// 2 get function object from env
-		CinciaLambda cL = (CinciaLambda) enviro.get(name);
+		CinciaFunction cL = (CinciaFunction) enviro.get(name);
 		// 3. create a new enviro from current 
 		
 		// 4. enter it
