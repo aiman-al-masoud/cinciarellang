@@ -55,7 +55,6 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class Interpreter extends AbstractTraversal {
 
