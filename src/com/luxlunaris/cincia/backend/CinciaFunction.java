@@ -14,11 +14,13 @@ public class CinciaFunction extends CinciaObject{
 	public CinciaFunction(Signature signature, CompoundStatement block) {
 		super(null);
 		this.block = block;
+		this.signature = signature;
 	}
 	
 	public CinciaFunction(Signature signature, Expression expression) {
 		super(null);
 		this.expression = expression;
+		this.signature = signature;
 	}
 	
 	
