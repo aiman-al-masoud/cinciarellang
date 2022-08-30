@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class Enviro {
 
-	Enviro parent;
-	Map<String, CinciaObject> vars;
+	private Enviro parent;
+	private Map<String, CinciaObject> vars;
 
 
 	public Enviro(Enviro parent) {
@@ -26,7 +26,7 @@ public class Enviro {
 	}
 
 
-	public Object get(String key) {
+	public CinciaObject get(String key) {
 		return vars.get(key);
 	}
 	
@@ -39,7 +39,10 @@ public class Enviro {
 	public void remove(String key) {
 		vars.remove(key);
 	}
-
+	
+	public Enviro getParent() {
+		return parent;
+	}
 
 
 
