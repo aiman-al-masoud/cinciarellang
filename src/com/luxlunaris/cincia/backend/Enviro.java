@@ -14,8 +14,9 @@ public class Enviro {
 		this.parent = parent;
 
 		if(parent.vars != null ) {
-
 			this.vars = new HashMap<String, Objekt>(parent.vars);
+		}else {
+			this.vars = new HashMap<String, Objekt>();
 		}
 
 	}
