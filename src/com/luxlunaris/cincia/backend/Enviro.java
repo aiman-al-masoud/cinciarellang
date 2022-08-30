@@ -28,13 +28,16 @@ public class Enviro {
 	public Object get(String key) {
 		return vars.get(key);
 	}
-
+	
 
 	public void set(String key, Objekt val) {
 		vars.put(key, val);
 	}
 
 
+	public void remove(String key) {
+		vars.remove(key);
+	}
 
 
 
