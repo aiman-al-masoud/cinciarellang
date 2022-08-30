@@ -1,5 +1,11 @@
 package com.luxlunaris.cincia.backend;
 
-public class CinciaDict {
+import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
+
+public class CinciaDict extends CinciaObject{
+
+	public CinciaDict() {
+		super(new DictType());
+	}
 
 }
