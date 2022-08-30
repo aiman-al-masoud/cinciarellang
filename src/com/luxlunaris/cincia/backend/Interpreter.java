@@ -362,11 +362,18 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalCalledExpression(CalledExpression callex, Enviro enviro) {
+		
+		
+		
 		// 1 get name of function, 
+		String name = ((Identifier)callex.callable).value;		
 		// 2 get function object from env
-		// 3. create a new enviro from current
+		CinciaLambda cL = (CinciaLambda) enviro.get(name);
+		// 3. create a new enviro from current 
+		
 		// 4. enter it
-		// 5. bind arg values to param names in env (param names from func object)
+		// 5. bind arg values to param names in env, add object attributes for methods.
+		
 		// 6. run function's code block
 		// 7. exit env
 		// 8. return function result
