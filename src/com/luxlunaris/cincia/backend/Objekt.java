@@ -3,16 +3,19 @@ package com.luxlunaris.cincia.backend;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+
 public class Objekt {
 	
-	public final String INT = "int";
-	public final String FLOAT = "float";
-	public final String BOOL = "bool";
-	public final String STRING = "string";
+//	public final String INT = "int";
+//	public final String FLOAT = "float";
+//	public final String BOOL = "bool";
+//	public final String STRING = "string";
 	private boolean immutable;
 	
-	String type;
+//	String type;
 	Map<String, Object> attribs;
+	Type type;
 
 	
 	public Objekt() {
