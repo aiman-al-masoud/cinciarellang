@@ -55,6 +55,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
@@ -217,6 +218,8 @@ public abstract class AbstractTraversal {
 
 		if(primex instanceof BracketedExpression) {
 			return evalBracketedExpression((BracketedExpression)primex, enviro);
+		}else if(primex instanceof Identifier) {
+			return evalIdentifier((Identifier)primex, enviro);
 		}
 
 		throw new RuntimeException("No such primary expression!");
@@ -256,7 +259,7 @@ public abstract class AbstractTraversal {
 		throw new RuntimeException("No such constant expression!");
 	}
 	
-	
+	public abstract Object evalIdentifier(Identifier identex, Enviro enviro);
 	public abstract Object evalInt(Int intex, Enviro enviro);
 	public abstract Object evalFloat(com.luxlunaris.cincia.frontend.ast.tokens.constant.Float floatex, Enviro enviro);
 	public abstract Object evalStr(Str strex, Enviro enviro);

@@ -48,6 +48,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
@@ -96,6 +97,12 @@ public class Interpreter extends AbstractTraversal {
 	public Object evalBool(Bool boolex, Enviro enviro) {
 		return boolex.getValue();		
 	}
+	
+	@Override
+	public Object evalIdentifier(Identifier identex, Enviro enviro) {
+		return enviro.get(identex.value);
+	}
+
 
 	@Override
 	public Object evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
@@ -349,7 +356,6 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalIdentifierType(IdentifierType idtype, Enviro enviro) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -377,6 +383,7 @@ public class Interpreter extends AbstractTraversal {
 		return null;
 	}
 
+	
 
 
 }
