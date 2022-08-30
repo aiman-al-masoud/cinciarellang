@@ -97,7 +97,7 @@ public class Interpreter extends AbstractTraversal {
 	public Object evalBool(Bool boolex, Enviro enviro) {
 		return boolex.getValue();		
 	}
-	
+
 	@Override
 	public Object evalIdentifier(Identifier identex, Enviro enviro) {
 		return enviro.get(identex.value);
@@ -381,7 +381,7 @@ public class Interpreter extends AbstractTraversal {
 		return null;
 	}
 
-	
+
 
 
 }
