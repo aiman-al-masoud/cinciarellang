@@ -169,7 +169,7 @@ public class Interpreter extends AbstractTraversal {
 		for (Statement s : cS.statements) {
 
 			if(s instanceof ReturnStatement) {
-				return eval(((ReturnStatement)s).expression, enviro);
+				return eval( ((ReturnStatement)s) , enviro);
 
 			}else if(s instanceof BreakStatement) {
 				break;
@@ -205,8 +205,7 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalReturnStatement(ReturnStatement returnStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return eval(returnStatement.expression, enviro);
 	}
 
 	@Override
