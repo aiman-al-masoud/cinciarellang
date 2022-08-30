@@ -55,6 +55,9 @@ import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 
 
 public abstract class AbstractTraversal {
@@ -237,10 +240,28 @@ public abstract class AbstractTraversal {
 		throw new RuntimeException("No such type expression!");
 		
 	}
-
-
+	
+	public Object evalConstant(Constant constant, Enviro enviro) {
+		
+		if(constant instanceof Int) {
+			return evalInt((Int)constant, enviro);
+		}else if(constant instanceof com.luxlunaris.cincia.frontend.ast.tokens.constant.Float) {
+			return evalFloat((com.luxlunaris.cincia.frontend.ast.tokens.constant.Float)constant, enviro);
+		}else if(constant instanceof Str) {
+			return evalStr((Str)constant, enviro);
+		}else if(constant instanceof Bool) {
+			return evalBool((Bool)constant, enviro);
+		}
+		
+		throw new RuntimeException("No such constant expression!");
+	}
+	
+	
+	public abstract Object evalInt(Int intex, Enviro enviro);
+	public abstract Object evalFloat(com.luxlunaris.cincia.frontend.ast.tokens.constant.Float floatex, Enviro enviro);
+	public abstract Object evalStr(Str strex, Enviro enviro);
+	public abstract Object evalBool(Bool boolex, Enviro enviro);	
 	public abstract Object evalTernaryExpression(TernaryExpression terex, Enviro enviro);
-	public abstract Object evalConstant(Constant constant, Enviro enviro);
 	public abstract Object evalIfStatement(IfStatement ifStatement, Enviro enviro);
 	public abstract Object evalMatchStatement(MatchStatement ifStatement, Enviro enviro);
 	public abstract Object evalBreakStatement(BreakStatement breakStatement, Enviro enviro);
