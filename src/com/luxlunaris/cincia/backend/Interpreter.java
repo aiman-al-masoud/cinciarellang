@@ -369,7 +369,7 @@ public class Interpreter extends AbstractTraversal {
 		// 1 get name of function, 
 //		String name = ((Identifier)callex.callable).value;		
 		// 2 get function object from env
-		CinciaFunction cL = (CinciaFunction) enviro.get(name);
+//		CinciaFunction cL = (CinciaFunction) enviro.get(name);
 		// 3. create a new enviro from current 
 		
 		
