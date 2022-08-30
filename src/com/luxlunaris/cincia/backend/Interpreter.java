@@ -332,8 +332,7 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalBracketedExpression(BracketedExpression brackex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return eval(brackex.expression, enviro);
 	}
 
 	@Override
