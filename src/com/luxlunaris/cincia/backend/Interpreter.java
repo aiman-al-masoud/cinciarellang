@@ -79,28 +79,23 @@ public class Interpreter extends AbstractTraversal {
 	
 	@Override
 	public Object evalInt(Int intex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return intex.getValue();
 	}
 
 	@Override
 	public Object evalFloat(Float floatex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return floatex.getValue();
 	}
 
 	@Override
 	public Object evalStr(Str strex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return strex.getValue();
 	}
 
 	@Override
 	public Object evalBool(Bool boolex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return boolex.getValue();		
 	}
-	
 
 	@Override
 	public Object evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
