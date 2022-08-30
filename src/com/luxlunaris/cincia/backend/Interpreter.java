@@ -262,7 +262,8 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
-		// TODO Auto-generated method stub
+		
+		enviro.set(vD.name.value, new CinciaUndefined(vD.type));
 		return null;
 	}
 
@@ -419,9 +420,10 @@ public class Interpreter extends AbstractTraversal {
 		return !(boolean)eval(negex.arg, enviro);
 	}
 
+	
 	@Override
 	public Object evalIdentifierType(IdentifierType idtype, Enviro enviro) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		return null;
 	}
 
