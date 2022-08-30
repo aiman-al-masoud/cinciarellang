@@ -170,13 +170,14 @@ public class Interpreter extends AbstractTraversal {
 
 			if(s instanceof ReturnStatement) {
 				return eval(((ReturnStatement)s).expression, enviro);
-			}
 
-			if(s instanceof BreakStatement) {
+			}else if(s instanceof BreakStatement) {
 				break;
-			}
 
-			eval(s, enviro);
+			}else {
+				eval(s, enviro);
+
+			}
 
 		}
 
