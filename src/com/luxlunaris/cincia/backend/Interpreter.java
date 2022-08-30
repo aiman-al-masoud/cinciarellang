@@ -339,7 +339,9 @@ public class Interpreter extends AbstractTraversal {
 	@Override
 	public Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 		// TODO Auto-generated method stub
-		//		lambdex.
+		
+		
+		
 		return null;
 	}
 
