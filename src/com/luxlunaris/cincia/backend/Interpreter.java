@@ -55,6 +55,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class Interpreter extends AbstractTraversal {
 
@@ -338,11 +339,14 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
-		// TODO Auto-generated method stub
 		
+		if(lambdex.expression!=null) {
+			return new CinciaLambda(lambdex.signature, lambdex.expression);
+		}else if (lambdex.expression!=null) {
+			return new CinciaLambda(lambdex.signature, lambdex.block);
+		}
 		
-		
-		return null;
+		throw new RuntimeException("Lambda has no expression nor block!");
 	}
 
 	@Override
