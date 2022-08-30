@@ -54,11 +54,10 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 public class Interpreter extends AbstractTraversal {
 
-
-	public static final String BREAK = "break";
 
 
 	Stack<Enviro> scopes;
@@ -166,7 +165,11 @@ public class Interpreter extends AbstractTraversal {
 				continue;
 			}
 			
-			if(o.equals(BREAK)) {
+			if(o.equals(Keywords.CONTINUE)) {
+				continue;
+			}
+			
+			if(o.equals(Keywords.BREAK)) {
 				break;
 			}
 			
@@ -190,7 +193,10 @@ public class Interpreter extends AbstractTraversal {
 				return eval( ((ReturnStatement)s) , enviro);
 
 			}else if(s instanceof BreakStatement) {
-				return BREAK;
+				return Keywords.BREAK;
+
+			}else if(s instanceof ContinueStatement) {
+				return Keywords.CONTINUE;
 
 			}else {
 				eval(s, enviro);
