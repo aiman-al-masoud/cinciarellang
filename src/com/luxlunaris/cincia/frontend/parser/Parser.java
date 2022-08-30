@@ -138,7 +138,7 @@ public class Parser {
 		}else {
 			res = parseExpressionStatement();
 		}
-		
+
 		eat(Punctuations.STM_SEP);
 		return res;
 	}
@@ -257,7 +257,7 @@ public class Parser {
 
 		eat(Keywords.CATCH);
 		CatchClause cc = new CatchClause();
-//		cc.throwable = parseSingleExpression();
+		//		cc.throwable = parseSingleExpression();
 		cc.throwable = parseSingleDeclaration();
 		cc.block = parseCompStatement();
 		return cc;
@@ -402,16 +402,16 @@ public class Parser {
 		}catch (ClassCastException e) {
 			tStream.croak("Expected import path (string constant)");
 		} 
-		
+
 		return iS;
 	}
 
 
 	private Entry<PostfixExpression, Identifier> parseImported(){
 
-//		DotExpression dEx = parseDotExpression(null);//TODO:: buruf????
+		//		DotExpression dEx = parseDotExpression(null);//TODO:: buruf????
 		PostfixExpression  dE  = parsePostfixExpression();
-		
+
 		Identifier alias = null; // can be null
 
 		if(tStream.peek().getValue().equals(Keywords.AS)) {
@@ -605,8 +605,8 @@ public class Parser {
 			tE.elseExpression = parseSingleExpression();
 			return tE;
 		}
-		
-		
+
+
 		if(tStream.peek().getValue().equals(Keywords.TO)) {
 			RangeExpression rE = new RangeExpression();
 			rE.from = oE;
@@ -614,8 +614,8 @@ public class Parser {
 			rE.to = parseSingleExpression();
 			return rE;
 		}
-		
-		
+
+
 		return oE;
 	}
 
@@ -948,8 +948,18 @@ public class Parser {
 				break;
 			}
 
-			//TODO cast type and check validity
-			cE.addStatement(parseStatement());
+			Statement s = parseStatement();
+			
+			try {
+				ExpressionStatement ex = (ExpressionStatement)s;
+				cE.addAssignment((AssignmentExpression)ex.expression);
+				
+			}catch (ClassCastException e) {
+				DeclarationStatement dec = (DeclarationStatement)s;
+				cE.addDeclaration(dec.declaration);				
+				
+			}
+			
 		}
 
 		eat(Punctuations.CURLY_CLS);

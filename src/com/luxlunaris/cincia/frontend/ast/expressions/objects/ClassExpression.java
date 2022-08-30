@@ -4,49 +4,61 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 
 public class ClassExpression implements ObjectExpression{
 
-	
-	public List<Statement> statements;
 	public List<Modifier> modifiersList; // can be empty
 	public Identifier superclass;
 	public List<Identifier> interfaces;
 	public List<Identifier> observables;
-	public List<LambdaExpression> methods;
-	public List<Declaration> attributes; 
+	public List<AssignmentExpression> assignments;
+	public List<Declaration> declarations; 
+	
 	
 	public ClassExpression() {
-		statements = new ArrayList<Statement>();
+		
 		modifiersList = new ArrayList<Modifier>();
 		interfaces = new ArrayList<Identifier>();
 		observables = new ArrayList<Identifier>();
-		methods = new ArrayList<LambdaExpression>();
-		attributes = new ArrayList<Declaration>();
+		assignments = new ArrayList<AssignmentExpression>();
+		declarations = new ArrayList<Declaration>();
+	}
+	
+	public void addDeclaration(Declaration declaration) {
+		declarations.add(declaration);
 	}
 	
 	
-	//TODO: cast it to "attribute" or "method"
-	public void addStatement(Statement statement) {
-		statements.add(statement);
+	public void addAssignment(AssignmentExpression assignment) {
+		
+		if(assignment.simplify() instanceof Int) { // remove nullop (see AddDecKeyword in preprocessor)
+			return;
+		}
+		
+		assignments.add(assignment);
 	}
+	
 	
 	
 	@Override
 	public Expression simplify() {
-		this.statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
+		this.declarations = declarations.stream().map(s->s.simplify()).collect(Collectors.toList());
+		this.assignments = assignments.stream().map(s->(AssignmentExpression)s.simplify()).collect(Collectors.toList());		
 		return this;
 	}
 	
 	@Override
 	public String toString() {
-		return statements.toString();
+		return "class{ declarations: "+declarations.toString()+", assignments: "+assignments.toString()+" }";
 	}
 	
 	

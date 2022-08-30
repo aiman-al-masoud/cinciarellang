@@ -24,13 +24,13 @@ public class ClassTester extends AbstractTester {
 		ClassExpression cE = new ClassExpression();
 		
 		// null op (placed by preprocessor, go read AddDecKeyword)
-		cE.addStatement(new ExpressionStatement(new Int(0)));
+//		cE.addStatement(new ExpressionStatement(new Int(0)));
 		
 		// variable declaration
 		VariableDeclaration vD = new VariableDeclaration();
 		vD.name = new Identifier("x");
 		vD.type = new PrimitiveType(PrimitiveType.INT);
-		cE.addStatement(new DeclarationStatement(vD));
+		cE.addDeclaration(vD);
 		
 		// method declaration
 		FunctionDeclaration fD = new FunctionDeclaration();
@@ -39,7 +39,7 @@ public class ClassTester extends AbstractTester {
 		sg.params =  vD;
 		sg.returnType = new PrimitiveType(PrimitiveType.INT);
 		fD.signature = sg;
-		cE.addStatement(new DeclarationStatement(fD));
+		cE.addDeclaration(fD);
 		
 		// method definition
 		AssignmentExpression ase = new AssignmentExpression();
@@ -52,16 +52,18 @@ public class ClassTester extends AbstractTester {
 		sg2.params = vD2;
 		lE.signature = sg2;
 		ase.right = lE;
-		cE.addStatement(new ExpressionStatement(ase));
+		cE.addAssignment(ase);
 		
 		// variable assignment
 		AssignmentExpression ase2 = new AssignmentExpression();
 		ase2.left = new Identifier("x");
 		ase2.right = new Int(1);
-		cE.addStatement(new ExpressionStatement(ase2));
+		cE.addAssignment(ase2);
 		
  		
 		add("class { x:int; f:\\x:int:int; f = \\x->1; x = 1;  };", cE.toString());
+		
+		
 
 	}
 }
