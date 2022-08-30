@@ -194,7 +194,7 @@ public class Interpreter extends AbstractTraversal {
 		for (Statement s : cS.statements) {
 
 			if(s instanceof ReturnStatement) {
-				return eval( ((ReturnStatement)s) , enviro);
+				return eval( (ReturnStatement)s , enviro);
 
 			}else if(s instanceof BreakStatement) {
 				return Keywords.BREAK;
@@ -339,6 +339,7 @@ public class Interpreter extends AbstractTraversal {
 	@Override
 	public Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 		// TODO Auto-generated method stub
+//		lambdex.
 		return null;
 	}
 
