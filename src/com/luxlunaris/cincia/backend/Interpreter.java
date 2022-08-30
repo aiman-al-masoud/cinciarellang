@@ -57,6 +57,10 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 
 public class Interpreter extends AbstractTraversal {
 
+
+	public static final String BREAK = "break";
+
+
 	Stack<Enviro> scopes;
 
 	public Interpreter() {
@@ -153,7 +157,21 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalWhileStatement(WhileStatement whileStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
+
+		while((boolean)eval(whileStatement.cond, enviro)) {
+			
+			Object o = eval(whileStatement.block, enviro);
+			
+			if(o == null) {
+				continue;
+			}
+			
+			if(o.equals(BREAK)) {
+				break;
+			}
+			
+		}
+
 		return null;
 	}
 
