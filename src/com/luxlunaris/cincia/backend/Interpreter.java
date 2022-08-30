@@ -372,6 +372,8 @@ public class Interpreter extends AbstractTraversal {
 		CinciaFunction cL = (CinciaFunction) enviro.get(name);
 		// 3. create a new enviro from current 
 		
+		
+		
 		// 4. enter it
 		// 5. bind arg values to param names in env, add object attributes for methods.
 		
