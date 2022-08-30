@@ -349,8 +349,8 @@ public class Interpreter extends AbstractTraversal {
 	@Override
 	public Object evalCalledExpression(CalledExpression callex, Enviro enviro) {
 		// 1 get name of function, 
-		// 2 get function object from 
-		// 3. create e nre enviro from current
+		// 2 get function object from env
+		// 3. create a new enviro from current
 		// 4. enter it
 		// 5. bind arg values to param names in env (param names from func object)
 		// 6. run function's code block
