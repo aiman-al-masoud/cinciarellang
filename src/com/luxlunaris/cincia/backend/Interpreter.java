@@ -190,7 +190,7 @@ public class Interpreter extends AbstractTraversal {
 				return eval( ((ReturnStatement)s) , enviro);
 
 			}else if(s instanceof BreakStatement) {
-				break;
+				return BREAK;
 
 			}else {
 				eval(s, enviro);
