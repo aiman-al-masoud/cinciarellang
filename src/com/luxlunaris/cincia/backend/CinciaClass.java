@@ -9,10 +9,10 @@ public class CinciaClass extends CinciaObject{
 	}
 	
 	
-	public CinciaObject constructor() {
-		
-	}
-	
+//	public CinciaObject constructor() {
+//		
+//	}
+//	
 	
 	
 
