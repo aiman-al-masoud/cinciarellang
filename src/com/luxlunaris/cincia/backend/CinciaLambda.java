@@ -4,7 +4,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 
-public class CinciaLambda {
+public class CinciaLambda extends CinciaObject{
 	
 	private CompoundStatement block;
 	private Expression expression;
@@ -12,18 +12,17 @@ public class CinciaLambda {
 	
 	
 	public CinciaLambda(Signature signature, CompoundStatement block) {
+		super(null);
 		this.block = block;
 	}
 	
 	public CinciaLambda(Signature signature, Expression expression) {
+		super(null);
 		this.expression = expression;
 	}
 	
 	
-	
-	
-	
-	
+
 	
 	
 	
