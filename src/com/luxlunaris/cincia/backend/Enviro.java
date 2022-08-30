@@ -6,7 +6,7 @@ import java.util.Map;
 public class Enviro {
 
 	Enviro parent;
-	Map<String, Objekt> vars;
+	Map<String, CinciaObject> vars;
 
 
 	public Enviro(Enviro parent) {
@@ -14,9 +14,9 @@ public class Enviro {
 		this.parent = parent;
 
 		if(parent.vars != null ) {
-			this.vars = new HashMap<String, Objekt>(parent.vars);
+			this.vars = new HashMap<String, CinciaObject>(parent.vars);
 		}else {
-			this.vars = new HashMap<String, Objekt>();
+			this.vars = new HashMap<String, CinciaObject>();
 		}
 
 	}
@@ -31,7 +31,7 @@ public class Enviro {
 	}
 	
 
-	public void set(String key, Objekt val) {
+	public void set(String key, CinciaObject val) {
 		vars.put(key, val);
 	}
 

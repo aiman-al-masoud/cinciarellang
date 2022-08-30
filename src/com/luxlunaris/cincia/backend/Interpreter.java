@@ -138,19 +138,23 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalBreakStatement(BreakStatement breakStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return null; //useless
 	}
 
 	@Override
 	public Object evalContinueStatement(ContinueStatement continueStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		return null; //useless
 	}
 
 	@Override
 	public Object evalForStatement(ForStatement forStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
+		
+		Object iterable = eval(forStatement.iterable, enviro);
+		
+//		for(Object x : iterable) {
+//			
+//		}
+		
 		return null;
 	}
 
@@ -300,7 +304,11 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
-		// TODO Auto-generated method stub
+		
+//		eval(assex.left, enviro);
+//		eval(assex.right, enviro);
+		
+		
 		return null;
 	}
 

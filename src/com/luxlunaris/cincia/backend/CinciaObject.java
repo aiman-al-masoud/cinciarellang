@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-public class Objekt {
+public class CinciaObject {
 	
 //	public final String INT = "int";
 //	public final String FLOAT = "float";
@@ -18,7 +18,8 @@ public class Objekt {
 	Type type;
 
 	
-	public Objekt(Type type) {
+	public CinciaObject(Type type) {
+		
 		attribs = new HashMap<String, Object>();
 		this.type = type;
 		immutable = false;
@@ -29,6 +30,7 @@ public class Objekt {
 	}
 
 	public void set(String key, Object val) {
+		
 		if(!immutable) {
 			attribs.put(key, val);
 		}else {
@@ -47,18 +49,6 @@ public class Objekt {
 	public void setImmutable() {
 		immutable = true;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 	
