@@ -47,6 +47,19 @@ public class Objekt {
 	public void setImmutable() {
 		immutable = true;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 }
