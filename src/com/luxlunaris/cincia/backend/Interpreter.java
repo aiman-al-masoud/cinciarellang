@@ -80,22 +80,22 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalInt(Int intex, Enviro enviro) {
-		return intex.getValue();
+		return (int)intex.getValue();
 	}
 
 	@Override
 	public Object evalFloat(Float floatex, Enviro enviro) {
-		return floatex.getValue();
+		return (double)floatex.getValue();
 	}
 
 	@Override
 	public Object evalStr(Str strex, Enviro enviro) {
-		return strex.getValue();
+		return (String)strex.getValue();
 	}
 
 	@Override
 	public Object evalBool(Bool boolex, Enviro enviro) {
-		return boolex.getValue();		
+		return (boolean)boolex.getValue();		
 	}
 
 	@Override
