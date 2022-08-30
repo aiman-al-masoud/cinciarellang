@@ -35,6 +35,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpress
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
@@ -163,10 +164,25 @@ public class Interpreter extends AbstractTraversal {
 	}
 
 	@Override
-	public Object evalCompoundStatement(CompoundStatement compoundStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
+	public Object evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
+
+		for (Statement s : cS.statements) {
+
+			if(s instanceof ReturnStatement) {
+				return eval(((ReturnStatement)s).expression, enviro);
+			}
+
+			if(s instanceof BreakStatement) {
+				break;
+			}
+
+			eval(s, enviro);
+
+		}
+
 		return null;
 	}
+
 
 	@Override
 	public Object evalTryStatement(TryStatement tryStatement, Enviro enviro) {
