@@ -18,8 +18,9 @@ public class Objekt {
 	Type type;
 
 	
-	public Objekt() {
+	public Objekt(Type type) {
 		attribs = new HashMap<String, Object>();
+		this.type = type;
 		immutable = false;
 	}
 	
