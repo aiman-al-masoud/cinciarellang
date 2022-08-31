@@ -341,6 +341,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		//		eval(assex.left, enviro);
 		//		eval(assex.right, enviro);
+		
+		
 
 
 		return null;
