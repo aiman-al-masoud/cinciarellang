@@ -58,7 +58,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 
-public class Interpreter extends AbstractTraversal {
+public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 
 
@@ -476,7 +476,7 @@ public class Interpreter extends AbstractTraversal {
 	}
 
 	@Override
-	public Object evalUnionType(UnionType idtype, Enviro enviro) {
+	public CinciaObject evalUnionType(UnionType idtype, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}

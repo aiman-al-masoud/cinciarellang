@@ -61,9 +61,9 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 
 
-public abstract class AbstractTraversal {
+public abstract class AbstractTraversal<T> {
 
-	public Object eval(Ast ast, Enviro enviro) {
+	public T eval(Ast ast, Enviro enviro) {
 
 		if(ast instanceof Expression) {
 			return evalExpression((Expression)ast, enviro);
@@ -84,7 +84,7 @@ public abstract class AbstractTraversal {
 	}
 
 
-	public Object evalExpression(Expression expression, Enviro enviro) {
+	public T evalExpression(Expression expression, Enviro enviro) {
 
 
 		if(expression instanceof BinaryExpression) {
@@ -124,7 +124,7 @@ public abstract class AbstractTraversal {
 	}
 
 
-	public Object evalDeclaration(Declaration declaration, Enviro enviro) {
+	public T evalDeclaration(Declaration declaration, Enviro enviro) {
 
 		if(declaration instanceof FunctionDeclaration) {
 			return evalFunctionDeclaration((FunctionDeclaration)declaration, enviro);
@@ -141,7 +141,7 @@ public abstract class AbstractTraversal {
 	}
 
 
-	public Object evalBinaryExpression(BinaryExpression binexp, Enviro enviro) {
+	public T evalBinaryExpression(BinaryExpression binexp, Enviro enviro) {
 
 		if(binexp instanceof MulExpression) {
 			return evalMulExpression((MulExpression)binexp, enviro);
@@ -161,7 +161,7 @@ public abstract class AbstractTraversal {
 
 	}
 
-	public Object evalObjectExpression(ObjectExpression objex, Enviro enviro) {
+	public T evalObjectExpression(ObjectExpression objex, Enviro enviro) {
 
 		if(objex instanceof ListExpression) {
 			return evalListExpression((ListExpression)objex, enviro);
@@ -181,7 +181,7 @@ public abstract class AbstractTraversal {
 	}
 
 
-	public Object evalPostfixExpression(PostfixExpression posex, Enviro enviro) {
+	public T evalPostfixExpression(PostfixExpression posex, Enviro enviro) {
 
 		if(posex instanceof CalledExpression) {
 			return evalCalledExpression((CalledExpression)posex, enviro);
@@ -201,7 +201,7 @@ public abstract class AbstractTraversal {
 
 
 
-	public Object evalUnaryExpression(UnaryExpression unex, Enviro enviro) {
+	public T evalUnaryExpression(UnaryExpression unex, Enviro enviro) {
 
 		if(unex instanceof DestructuringExpression) {
 			return evalDestructuringExpression((DestructuringExpression)unex, enviro);
@@ -214,9 +214,9 @@ public abstract class AbstractTraversal {
 		throw new RuntimeException("No such unary expression!");
 
 	}
-	
 
-	public Object evalPrimaryExpression(PrimaryExpression primex, Enviro enviro) {
+
+	public T evalPrimaryExpression(PrimaryExpression primex, Enviro enviro) {
 
 		if(primex instanceof BracketedExpression) {
 			return evalBracketedExpression((BracketedExpression)primex, enviro);
@@ -228,8 +228,8 @@ public abstract class AbstractTraversal {
 
 	}
 
-	public Object evalType(Type typex, Enviro enviro) {
-		
+	public T evalType(Type typex, Enviro enviro) {
+
 		if(typex instanceof PrimitiveType) {
 			return evalPrimitiveType((PrimitiveType)typex, enviro);
 		}else if(typex instanceof IdentifierType) {
@@ -241,13 +241,13 @@ public abstract class AbstractTraversal {
 		}else if(typex instanceof UnionType) {
 			return evalUnionType((UnionType)typex, enviro);
 		}
-		
+
 		throw new RuntimeException("No such type expression!");
-		
+
 	}
-	
-	public Object evalConstant(Constant constant, Enviro enviro) {
-		
+
+	public T evalConstant(Constant constant, Enviro enviro) {
+
 		if(constant instanceof Int) {
 			return evalInt((Int)constant, enviro);
 		}else if(constant instanceof com.luxlunaris.cincia.frontend.ast.tokens.constant.Float) {
@@ -257,60 +257,60 @@ public abstract class AbstractTraversal {
 		}else if(constant instanceof Bool) {
 			return evalBool((Bool)constant, enviro);
 		}
-		
+
 		throw new RuntimeException("No such constant expression!");
 	}
-	
-	public abstract Object evalIdentifier(Identifier identex, Enviro enviro);
-	public abstract Object evalInt(Int intex, Enviro enviro);
-	public abstract Object evalFloat(com.luxlunaris.cincia.frontend.ast.tokens.constant.Float floatex, Enviro enviro);
-	public abstract Object evalStr(Str strex, Enviro enviro);
-	public abstract Object evalBool(Bool boolex, Enviro enviro);	
-	public abstract Object evalTernaryExpression(TernaryExpression terex, Enviro enviro);
-	public abstract Object evalIfStatement(IfStatement ifStatement, Enviro enviro);
-	public abstract Object evalMatchStatement(MatchStatement ifStatement, Enviro enviro);
-	public abstract Object evalBreakStatement(BreakStatement breakStatement, Enviro enviro);
-	public abstract Object evalContinueStatement(ContinueStatement continueStatement, Enviro enviro);
-	public abstract Object evalForStatement(ForStatement forStatement, Enviro enviro);
-	public abstract Object evalWhileStatement(WhileStatement whileStatement, Enviro enviro);
-	public abstract Object evalImportStatement(ImportStatement importStatement, Enviro enviro);
-	public abstract Object evalCompoundStatement(CompoundStatement compoundStatement, Enviro enviro);
-	public abstract Object evalTryStatement(TryStatement tryStatement, Enviro enviro);
-	public abstract Object evalThrowStatement(ThrowStatement throwStatement, Enviro enviro);	
-	public abstract Object evalDefaultStatement(DefaultStatement defaultStatement, Enviro enviro);
-	public abstract Object evalReturnStatement(ReturnStatement returnStatement, Enviro enviro);
-	public abstract Object evalCaseStatement(CaseStatement caseStatement, Enviro enviro);
-	public abstract Object evalMultiExpression(MultiExpression multex, Enviro enviro);
-	public abstract Object evalRangeExpression(RangeExpression rangex, Enviro enviro);
-	public abstract Object evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro);
-	public abstract Object evalVariableDeclaration(VariableDeclaration vD, Enviro enviro);
-	public abstract Object evalMultiDeclaration(MultiDeclaration mD, Enviro enviro);
-	public abstract Object evalMulExpression(MulExpression mulex, Enviro enviro);
-	public abstract Object evalAddExpression(AddExpression addex, Enviro enviro);
-	public abstract Object evalComparisonExpression(ComparisonExpression compex, Enviro enviro);
-	public abstract Object evalOrExpression(OrExpression orex, Enviro enviro);
-	public abstract Object evalAndExpression(AndExpression andex, Enviro enviro);
-	public abstract Object evalAssignmentExpression(AssignmentExpression assex, Enviro enviro);
-	public abstract Object evalClassExpression(ClassExpression classex, Enviro enviro);
-	public abstract Object evalDictExpression(DictExpression dictex, Enviro enviro);
-	public abstract Object evalDictComprehension(DictComprehension dictcompex, Enviro enviro);
-	public abstract Object evalInterfaceExpression(InterfaceExpression interex, Enviro enviro);
-	public abstract Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro);
-	public abstract Object evalListComprehension(ListComprehension listcompex, Enviro enviro);
-	public abstract Object evalListExpression(ListExpression listex, Enviro enviro);
-	public abstract Object evalCalledExpression(CalledExpression callex, Enviro enviro);
-	public abstract Object evalDotExpression(DotExpression dotex, Enviro enviro);
-	public abstract Object evalIndexedExpression(IndexedExpression indexex, Enviro enviro);
-	public abstract Object evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro);
-	public abstract Object evalBracketedExpression(BracketedExpression brackex, Enviro enviro);
-	public abstract Object evalDestructuringExpression(DestructuringExpression destex, Enviro enviro);
-	public abstract Object evalMinusExpression(MinusExpression minex, Enviro enviro);
-	public abstract Object evalNegationExpression(NegationExpression negex, Enviro enviro);
-	public abstract Object evalIdentifierType(IdentifierType idtype, Enviro enviro);
-	public abstract Object evalPrimitiveType(PrimitiveType idtype, Enviro enviro);
-	public abstract Object evalListType(ListType idtype, Enviro enviro);
-	public abstract Object evalDictType(DictType idtype, Enviro enviro);
-	public abstract Object evalUnionType(UnionType idtype, Enviro enviro);
+
+	public abstract T evalIdentifier(Identifier identex, Enviro enviro);
+	public abstract T evalInt(Int intex, Enviro enviro);
+	public abstract T evalFloat(com.luxlunaris.cincia.frontend.ast.tokens.constant.Float floatex, Enviro enviro);
+	public abstract T evalStr(Str strex, Enviro enviro);
+	public abstract T evalBool(Bool boolex, Enviro enviro);	
+	public abstract T evalTernaryExpression(TernaryExpression terex, Enviro enviro);
+	public abstract T evalIfStatement(IfStatement ifStatement, Enviro enviro);
+	public abstract T evalMatchStatement(MatchStatement ifStatement, Enviro enviro);
+	public abstract T evalBreakStatement(BreakStatement breakStatement, Enviro enviro);
+	public abstract T evalContinueStatement(ContinueStatement continueStatement, Enviro enviro);
+	public abstract T evalForStatement(ForStatement forStatement, Enviro enviro);
+	public abstract T evalWhileStatement(WhileStatement whileStatement, Enviro enviro);
+	public abstract T evalImportStatement(ImportStatement importStatement, Enviro enviro);
+	public abstract T evalCompoundStatement(CompoundStatement compoundStatement, Enviro enviro);
+	public abstract T evalTryStatement(TryStatement tryStatement, Enviro enviro);
+	public abstract T evalThrowStatement(ThrowStatement throwStatement, Enviro enviro);	
+	public abstract T evalDefaultStatement(DefaultStatement defaultStatement, Enviro enviro);
+	public abstract T evalReturnStatement(ReturnStatement returnStatement, Enviro enviro);
+	public abstract T evalCaseStatement(CaseStatement caseStatement, Enviro enviro);
+	public abstract T evalMultiExpression(MultiExpression multex, Enviro enviro);
+	public abstract T evalRangeExpression(RangeExpression rangex, Enviro enviro);
+	public abstract T evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro);
+	public abstract T evalVariableDeclaration(VariableDeclaration vD, Enviro enviro);
+	public abstract T evalMultiDeclaration(MultiDeclaration mD, Enviro enviro);
+	public abstract T evalMulExpression(MulExpression mulex, Enviro enviro);
+	public abstract T evalAddExpression(AddExpression addex, Enviro enviro);
+	public abstract T evalComparisonExpression(ComparisonExpression compex, Enviro enviro);
+	public abstract T evalOrExpression(OrExpression orex, Enviro enviro);
+	public abstract T evalAndExpression(AndExpression andex, Enviro enviro);
+	public abstract T evalAssignmentExpression(AssignmentExpression assex, Enviro enviro);
+	public abstract T evalClassExpression(ClassExpression classex, Enviro enviro);
+	public abstract T evalDictExpression(DictExpression dictex, Enviro enviro);
+	public abstract T evalDictComprehension(DictComprehension dictcompex, Enviro enviro);
+	public abstract T evalInterfaceExpression(InterfaceExpression interex, Enviro enviro);
+	public abstract T evalLambdaExpression(LambdaExpression lambdex, Enviro enviro);
+	public abstract T evalListComprehension(ListComprehension listcompex, Enviro enviro);
+	public abstract T evalListExpression(ListExpression listex, Enviro enviro);
+	public abstract T evalCalledExpression(CalledExpression callex, Enviro enviro);
+	public abstract T evalDotExpression(DotExpression dotex, Enviro enviro);
+	public abstract T evalIndexedExpression(IndexedExpression indexex, Enviro enviro);
+	public abstract T evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro);
+	public abstract T evalBracketedExpression(BracketedExpression brackex, Enviro enviro);
+	public abstract T evalDestructuringExpression(DestructuringExpression destex, Enviro enviro);
+	public abstract T evalMinusExpression(MinusExpression minex, Enviro enviro);
+	public abstract T evalNegationExpression(NegationExpression negex, Enviro enviro);
+	public abstract T evalIdentifierType(IdentifierType idtype, Enviro enviro);
+	public abstract T evalPrimitiveType(PrimitiveType idtype, Enviro enviro);
+	public abstract T evalListType(ListType idtype, Enviro enviro);
+	public abstract T evalDictType(DictType idtype, Enviro enviro);
+	public abstract T evalUnionType(UnionType idtype, Enviro enviro);
 
 
 }
