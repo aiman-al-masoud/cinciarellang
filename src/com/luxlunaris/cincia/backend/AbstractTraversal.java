@@ -191,6 +191,8 @@ public abstract class AbstractTraversal {
 			return evalIndexedExpression((IndexedExpression)posex, enviro);
 		}else if(posex instanceof ReassignmentExpression) {
 			return evalReassignmentExpression((ReassignmentExpression)posex, enviro);
+		}else if(posex instanceof PrimaryExpression) {
+			return evalPrimaryExpression((PrimaryExpression)posex, enviro);
 		}
 
 		throw new RuntimeException("No such postfix expression!");

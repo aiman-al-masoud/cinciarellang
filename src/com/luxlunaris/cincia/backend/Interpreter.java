@@ -364,25 +364,20 @@ public class Interpreter extends AbstractTraversal {
 	@Override
 	public Object evalCalledExpression(CalledExpression callex, Enviro enviro) {
 		
+		// get function 
+		CinciaFunction f = (CinciaFunction)eval(callex.callable, enviro);
 		
+		// try if method
+		try {
+			CinciaMethod cm = (CinciaMethod)f;
+			return cm.run(callex.args, this::eval);
+		}catch (ClassCastException e) {
+			
+		}
 		
-		// 1 get name of function, 
-//		String name = ((Identifier)callex.callable).value;		
-		// 2 get function object from env
-//		CinciaFunction cL = (CinciaFunction) enviro.get(name);
-		// 3. create a new enviro from current 
+		// else it's a top level function, call on COPY of current environment
+		return f.run(callex.args, getEnv().newChild(), this::eval);
 		
-		
-		
-		// 4. enter it
-		// 5. bind arg values to param names in env, add object attributes for methods.
-		
-		// 6. run function's code block
-		// 7. exit env
-		// 8. return function result
-		
-		
-		return null;
 	}
 
 	@Override
