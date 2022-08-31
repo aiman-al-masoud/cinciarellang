@@ -99,7 +99,9 @@ public class CinciaObject {
 		//TODO: retrieve __add__ from object's attributes
 		// and call it 
 		
-		
+//		if(type instanceof PrimitiveType && other.type instanceof PrimitiveType) {
+			return new CinciaObject((int)value + (int)other.value);
+//		}
 		
 	}
 	

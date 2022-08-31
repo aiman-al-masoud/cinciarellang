@@ -291,9 +291,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalAddExpression(AddExpression addex, Enviro enviro) {
 
-		float left = (float)eval(addex.left, enviro);
-		float right = (float)eval(addex.right, enviro);
-		return left + right;
+		CinciaObject left = eval(addex.left, enviro);
+		CinciaObject right = eval(addex.right, enviro);
+		return left.__add__(right);
 	}
 
 	@Override
