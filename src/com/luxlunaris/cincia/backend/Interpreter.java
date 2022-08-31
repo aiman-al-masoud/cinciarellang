@@ -277,11 +277,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return null;
 	}
 
-	
+
 
 
 	// TODO: generalize for operator overloading
-	
+
 	@Override
 	public CinciaObject evalMulExpression(MulExpression mulex, Enviro enviro) {
 		// TODO Auto-generated method stub
@@ -341,7 +341,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		//		eval(assex.left, enviro);
 		//		eval(assex.right, enviro);
-		
+
 		return null;
 	}
 
@@ -416,9 +416,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject o = eval(indexex.indexable, enviro);
 		CinciaObject index = eval(indexex.index , enviro);
-		
+
 		// check if index is string, int or iterable (fancy index)
-		
+
+		if( index.value instanceof String ) {
+			return o.get((String)index.value);
+		}
+
 		return null;
 	}
 
