@@ -367,7 +367,7 @@ public class Interpreter extends AbstractTraversal {
 		// get function 
 		CinciaFunction f = (CinciaFunction)eval(callex.callable, enviro);
 		
-		// if method, call on own object's ORIGINAL env
+		// if method, call on parent object's ORIGINAL env
 		try {
 			CinciaMethod cm = (CinciaMethod)f;
 			return cm.run(callex.args, this::eval);
