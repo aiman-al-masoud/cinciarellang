@@ -110,6 +110,8 @@ public class CinciaObject {
 		
 	}
 	
+	// .as(ClassName)
+	
 
 
 }
