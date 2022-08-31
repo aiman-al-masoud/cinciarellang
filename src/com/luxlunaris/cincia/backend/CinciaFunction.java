@@ -50,9 +50,9 @@ public class CinciaFunction extends CinciaObject implements Callable{
 		}
 
 		if(block != null) {
-			return (CinciaObject) eval.eval(this.block, enviro);
+			return eval.eval(this.block, enviro);
 		}else if(expression != null){
-			return (CinciaObject) eval.eval(this.expression, enviro);
+			return eval.eval(this.expression, enviro);
 		}
 
 		throw new RuntimeException("Lambda without expression nor block!");
