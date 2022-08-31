@@ -417,7 +417,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		CinciaObject o = eval(indexex.indexable, enviro);
 		CinciaObject index = eval(indexex.index , enviro);
 
-		// check if index is string, int or iterable (fancy index)
+		// TODO: check if index is int or iterable (fancy index)
 
 		if( index.value instanceof String ) {
 			return o.get((String)index.value);
