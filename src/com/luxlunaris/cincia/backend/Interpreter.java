@@ -398,7 +398,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 		
 		
-		// TODO: do some of this stuff in parseMultiExpression ! 
+		// TODO: do some of this stuff in evalMultiExpression ! 
 		List<CinciaObject> args = new ArrayList<CinciaObject>();
 		
 		try {
