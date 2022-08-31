@@ -85,32 +85,32 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalInt(Int intex, Enviro enviro) {
+	public CinciaObject evalInt(Int intex, Enviro enviro) {
 		return new CinciaObject((int)intex.getValue());
 	}
 
 	@Override
-	public Object evalFloat(Float floatex, Enviro enviro) {
+	public CinciaObject evalFloat(Float floatex, Enviro enviro) {
 		return new CinciaObject((double)floatex.getValue());
 	}
 
 	@Override
-	public Object evalStr(Str strex, Enviro enviro) {
+	public CinciaObject evalStr(Str strex, Enviro enviro) {
 		return new CinciaObject((String)strex.getValue());
 	}
 
 	@Override
-	public Object evalBool(Bool boolex, Enviro enviro) {
+	public CinciaObject evalBool(Bool boolex, Enviro enviro) {
 		return new CinciaObject((boolean)boolex.getValue());		
 	}
 
 	@Override
-	public Object evalIdentifier(Identifier identex, Enviro enviro) {
+	public CinciaObject evalIdentifier(Identifier identex, Enviro enviro) {
 		return enviro.get(identex.value);
 	}
 
 	@Override
-	public Object evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
+	public CinciaObject evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
 
 		if((boolean)eval(terex.cond, enviro)) {
 			return eval(terex.thenExpression, enviro);
@@ -121,7 +121,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalIfStatement(IfStatement ifStatement, Enviro enviro) {
+	public CinciaObject evalIfStatement(IfStatement ifStatement, Enviro enviro) {
 
 		if((boolean)eval(ifStatement.cond, enviro)) {
 			return eval(ifStatement.thenBlock, enviro);
@@ -132,23 +132,23 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalMatchStatement(MatchStatement ifStatement, Enviro enviro) {
+	public CinciaObject evalMatchStatement(MatchStatement ifStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalBreakStatement(BreakStatement breakStatement, Enviro enviro) {
+	public CinciaObject evalBreakStatement(BreakStatement breakStatement, Enviro enviro) {
 		return null; //useless
 	}
 
 	@Override
-	public Object evalContinueStatement(ContinueStatement continueStatement, Enviro enviro) {
+	public CinciaObject evalContinueStatement(ContinueStatement continueStatement, Enviro enviro) {
 		return null; //useless
 	}
 
 	@Override
-	public Object evalForStatement(ForStatement forStatement, Enviro enviro) {
+	public CinciaObject evalForStatement(ForStatement forStatement, Enviro enviro) {
 
 		Object iterable = eval(forStatement.iterable, enviro);
 
@@ -160,7 +160,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalWhileStatement(WhileStatement whileStatement, Enviro enviro) {
+	public CinciaObject evalWhileStatement(WhileStatement whileStatement, Enviro enviro) {
 
 		while((boolean)eval(whileStatement.cond, enviro)) {
 
@@ -184,13 +184,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalImportStatement(ImportStatement importStatement, Enviro enviro) {
+	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
+	public CinciaObject evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
 
 		for (Statement s : cS.statements) {
 
@@ -215,60 +215,60 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 
 	@Override
-	public Object evalTryStatement(TryStatement tryStatement, Enviro enviro) {
+	public CinciaObject evalTryStatement(TryStatement tryStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalThrowStatement(ThrowStatement throwStatement, Enviro enviro) {
+	public CinciaObject evalThrowStatement(ThrowStatement throwStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalDefaultStatement(DefaultStatement defaultStatement, Enviro enviro) {
+	public CinciaObject evalDefaultStatement(DefaultStatement defaultStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalReturnStatement(ReturnStatement returnStatement, Enviro enviro) {
+	public CinciaObject evalReturnStatement(ReturnStatement returnStatement, Enviro enviro) {
 		return eval(returnStatement.expression, enviro);
 	}
 
 	@Override
-	public Object evalCaseStatement(CaseStatement caseStatement, Enviro enviro) {
+	public CinciaObject evalCaseStatement(CaseStatement caseStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalMultiExpression(MultiExpression multex, Enviro enviro) {
+	public CinciaObject evalMultiExpression(MultiExpression multex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalRangeExpression(RangeExpression rangex, Enviro enviro) {
+	public CinciaObject evalRangeExpression(RangeExpression rangex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro) {
+	public CinciaObject evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro) {
 		enviro.set(fD.name.value, null, fD.signature);
 		return null;
 	}
 
 	@Override
-	public Object evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
+	public CinciaObject evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
 		enviro.set(vD.name.value, null, vD.type);
 		return null;
 	}
 
 	@Override
-	public Object evalMultiDeclaration(MultiDeclaration mD, Enviro enviro) {
+	public CinciaObject evalMultiDeclaration(MultiDeclaration mD, Enviro enviro) {
 
 		for(Declaration d : mD.declarations) {
 
@@ -283,13 +283,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	// TODO: generalize for operator overloading
 	
 	@Override
-	public Object evalMulExpression(MulExpression mulex, Enviro enviro) {
+	public CinciaObject evalMulExpression(MulExpression mulex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalAddExpression(AddExpression addex, Enviro enviro) {
+	public CinciaObject evalAddExpression(AddExpression addex, Enviro enviro) {
 
 		float left = (float)eval(addex.left, enviro);
 		float right = (float)eval(addex.right, enviro);
@@ -297,7 +297,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalComparisonExpression(ComparisonExpression compex, Enviro enviro) {
+	public CinciaObject evalComparisonExpression(ComparisonExpression compex, Enviro enviro) {
 
 		Object left = eval(compex.left, enviro);
 		Object right = eval(compex.right, enviro);
@@ -323,21 +323,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalOrExpression(OrExpression orex, Enviro enviro) {
+	public CinciaObject evalOrExpression(OrExpression orex, Enviro enviro) {
 		boolean left = (boolean)eval(orex.left, enviro);
 		boolean right = (boolean)eval(orex.right, enviro);
 		return left || right;
 	}
 
 	@Override
-	public Object evalAndExpression(AndExpression andex, Enviro enviro) {
+	public CinciaObject evalAndExpression(AndExpression andex, Enviro enviro) {
 		boolean left = (boolean)eval(andex.left, enviro);
 		boolean right = (boolean)eval(andex.right, enviro);
 		return left && right;
 	}
 
 	@Override
-	public Object evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
+	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
 
 		//		eval(assex.left, enviro);
 		//		eval(assex.right, enviro);
@@ -347,48 +347,48 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalClassExpression(ClassExpression classex, Enviro enviro) {
+	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalDictExpression(DictExpression dictex, Enviro enviro) {
+	public CinciaObject evalDictExpression(DictExpression dictex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalDictComprehension(DictComprehension dictcompex, Enviro enviro) {
+	public CinciaObject evalDictComprehension(DictComprehension dictcompex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalInterfaceExpression(InterfaceExpression interex, Enviro enviro) {
+	public CinciaObject evalInterfaceExpression(InterfaceExpression interex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
+	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 		return new CinciaFunction(lambdex);
 	}
 
 	@Override
-	public Object evalListComprehension(ListComprehension listcompex, Enviro enviro) {
+	public CinciaObject evalListComprehension(ListComprehension listcompex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalListExpression(ListExpression listex, Enviro enviro) {
+	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalCalledExpression(CalledExpression callex, Enviro enviro) {
+	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 
 		// get function 
 		CinciaFunction f = (CinciaFunction)eval(callex.callable, enviro);
@@ -407,13 +407,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalDotExpression(DotExpression dotex, Enviro enviro) {
+	public CinciaObject evalDotExpression(DotExpression dotex, Enviro enviro) {
 		CinciaObject o = (CinciaObject)eval(dotex.left, enviro);
 		return o.get(dotex.right.value);		
 	}
 
 	@Override
-	public Object evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
+	public CinciaObject evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
 
 		CinciaObject o = (CinciaObject)eval(indexex.indexable, enviro);
 		Object index = eval(indexex.index , enviro);
@@ -424,53 +424,53 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public Object evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
+	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalBracketedExpression(BracketedExpression brackex, Enviro enviro) {
+	public CinciaObject evalBracketedExpression(BracketedExpression brackex, Enviro enviro) {
 		return eval(brackex.expression, enviro);
 	}
 
 	@Override
-	public Object evalDestructuringExpression(DestructuringExpression destex, Enviro enviro) {
+	public CinciaObject evalDestructuringExpression(DestructuringExpression destex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalMinusExpression(MinusExpression minex, Enviro enviro) {
+	public CinciaObject evalMinusExpression(MinusExpression minex, Enviro enviro) {
 		return -(double)eval(minex.arg, enviro);
 	}
 
 	@Override
-	public Object evalNegationExpression(NegationExpression negex, Enviro enviro) {
+	public CinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
 		return !(boolean)eval(negex.arg, enviro);
 	}
 
 
 	@Override
-	public Object evalIdentifierType(IdentifierType idtype, Enviro enviro) {
+	public CinciaObject evalIdentifierType(IdentifierType idtype, Enviro enviro) {
 		// TODO Auto-generated method stub		
 		return null;
 	}
 
 	@Override
-	public Object evalPrimitiveType(PrimitiveType idtype, Enviro enviro) {
+	public CinciaObject evalPrimitiveType(PrimitiveType idtype, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalListType(ListType idtype, Enviro enviro) {
+	public CinciaObject evalListType(ListType idtype, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evalDictType(DictType idtype, Enviro enviro) {
+	public CinciaObject evalDictType(DictType idtype, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
