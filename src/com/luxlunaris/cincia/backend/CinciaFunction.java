@@ -25,6 +25,10 @@ public class CinciaFunction extends CinciaObject implements Callable{
 		this.parent = parent;
 	}
 	
+	public boolean isMethod() {
+		return parent!=null;
+	}
+	
 	public CinciaObject getParent() {
 		return parent;
 	}
