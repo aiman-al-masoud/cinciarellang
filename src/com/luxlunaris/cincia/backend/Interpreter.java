@@ -275,7 +275,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalMultiDeclaration(MultiDeclaration mD, Enviro enviro) {
 
 		for(Declaration d : mD.declarations) {
-
+			evalDeclaration(d, enviro);
 		}
 
 		return null;
