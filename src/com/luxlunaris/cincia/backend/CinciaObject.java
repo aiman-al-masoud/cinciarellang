@@ -101,13 +101,14 @@ public class CinciaObject {
 	
 	public CinciaObject __add__(CinciaObject other) {
 		
-		//TODO: retrieve __add__ from object's attributes
-		// and call it 
+		
 		
 		if(type instanceof PrimitiveType && other.type instanceof PrimitiveType) {
 			return new CinciaObject((int)value + (int)other.value);
 		}
 			
+		
+		// retrieve __add__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get("__add__");
 		return cm.run(Arrays.asList(other));
 		
