@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 public class CinciaObject {
 
@@ -77,6 +78,19 @@ public class CinciaObject {
 	
 	public Enviro getEnviro() {
 		return enviro;
+	}
+	
+	
+	public boolean __bool__(){
+		
+//		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == PrimitiveType.BOOL) {
+			return (boolean)value;
+//		}
+			
+		//TODO: retrieve __bool__ from object's attributes
+		// and call it 
+			
+		
 	}
 	
 

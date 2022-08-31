@@ -112,7 +112,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
 
-		if((boolean)eval(terex.cond, enviro)) {
+		if(eval(terex.cond, enviro).__bool__()) {
 			return eval(terex.thenExpression, enviro);
 		}else {
 			return eval(terex.elseExpression, enviro);
