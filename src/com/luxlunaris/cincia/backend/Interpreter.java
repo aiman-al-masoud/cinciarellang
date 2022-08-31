@@ -269,11 +269,11 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalMultiDeclaration(MultiDeclaration mD, Enviro enviro) {
-		
+
 		for(Declaration d : mD.declarations) {
-			
+
 		}
-		
+
 		return null;
 	}
 
@@ -283,28 +283,55 @@ public class Interpreter extends AbstractTraversal {
 		return null;
 	}
 
+
+	// TODO: generalize for operator overloading
+
 	@Override
 	public Object evalAddExpression(AddExpression addex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+
+		float left = (float)eval(addex.left, enviro);
+		float right = (float)eval(addex.right, enviro);
+		return left + right;
 	}
 
 	@Override
 	public Object evalComparisonExpression(ComparisonExpression compex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Object left = eval(compex.left, enviro);
+		Object right = eval(compex.right, enviro);
+
+		switch (compex.op) {
+		
+		case COMPARE:
+			return left == right;
+		case NE:
+			return left != right;
+		case LT:
+			return (float)left < (float)right;
+		case GT:
+			return (float)left > (float)right;
+		case LTE:
+			return (float)left <= (float)right;
+		case GTE:
+			return (float)left >= (float)right;
+		default:
+			throw new RuntimeException("Unknown comparison operator!");
+		}
+
 	}
 
 	@Override
 	public Object evalOrExpression(OrExpression orex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		boolean left = (boolean)eval(orex.left, enviro);
+		boolean right = (boolean)eval(orex.right, enviro);
+		return left || right;
 	}
 
 	@Override
 	public Object evalAndExpression(AndExpression andex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		boolean left = (boolean)eval(andex.left, enviro);
+		boolean right = (boolean)eval(andex.right, enviro);
+		return left && right;
 	}
 
 	@Override
@@ -343,13 +370,13 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
-		
+
 		if(lambdex.expression!=null) {
 			return new CinciaFunction(lambdex.signature, lambdex.expression);
 		}else if (lambdex.expression!=null) {
 			return new CinciaFunction(lambdex.signature, lambdex.block);
 		}
-		
+
 		throw new RuntimeException("Lambda has no expression nor block!");
 	}
 
@@ -367,21 +394,21 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalCalledExpression(CalledExpression callex, Enviro enviro) {
-		
+
 		// get function 
 		CinciaFunction f = (CinciaFunction)eval(callex.callable, enviro);
-		
+
 		// if method, call on parent object's ORIGINAL env
 		try {
 			CinciaMethod cm = (CinciaMethod)f;
 			return cm.run(callex.args, this::eval);
 		}catch (ClassCastException e) {
-			
+
 		}
-		
+
 		// else it's a top level function, call on COPY of current environment
 		return f.run(callex.args, getEnv().newChild(), this::eval);
-		
+
 	}
 
 	@Override
@@ -423,7 +450,7 @@ public class Interpreter extends AbstractTraversal {
 		return !(boolean)eval(negex.arg, enviro);
 	}
 
-	
+
 	@Override
 	public Object evalIdentifierType(IdentifierType idtype, Enviro enviro) {
 		// TODO Auto-generated method stub		
