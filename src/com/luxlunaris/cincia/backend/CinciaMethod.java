@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.backend;
 
 import java.util.List;
 
-import com.luxlunaris.cincia.backend.CinciaFunction.Eval;
+import com.luxlunaris.cincia.backend.Interpreter.Eval;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;

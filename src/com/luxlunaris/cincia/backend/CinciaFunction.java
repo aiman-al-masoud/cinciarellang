@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.backend.Interpreter.Eval;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
@@ -22,10 +23,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 
 public class CinciaFunction extends CinciaObject implements Callable{
 
-	@FunctionalInterface
-	interface Eval{
-		CinciaObject eval(Ast ast, Enviro enviro);
-	}
+	
 
 	private CompoundStatement block;
 	private Expression expression;	

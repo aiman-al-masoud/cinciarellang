@@ -34,6 +34,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.UnionType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
@@ -60,7 +61,10 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 public class Interpreter extends AbstractTraversal<CinciaObject> {
 
-
+	@FunctionalInterface
+	interface Eval{
+		CinciaObject eval(Ast ast, Enviro enviro);
+	}
 
 	Stack<Enviro> scopes;
 

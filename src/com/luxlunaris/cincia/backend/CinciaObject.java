@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend;
 
 import java.util.Arrays;
 
+import com.luxlunaris.cincia.backend.Interpreter.Eval;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
@@ -83,20 +84,16 @@ public class CinciaObject {
 	}
 	
 	
-	public boolean __bool__(){
+	public boolean __bool__(Eval eval){
 		
 		
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == PrimitiveType.BOOL) {
 			return (boolean)value;
 		}
 			
-		//TODO: retrieve __bool__ from object's attributes
-		// and call it 
-		
-		
+		//retrieve __bool__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get("__bool__");
-		cm.run(Arrays.asList(), eval);
-		
+		return (boolean)cm.run(null, eval).value;
 		
 	}
 	
