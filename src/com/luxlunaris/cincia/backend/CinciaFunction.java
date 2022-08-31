@@ -29,7 +29,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	private Expression expression;	
 	private List<Entry<String, ? extends Type>> params;
 	private Eval eval;
-	
+
 	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
 		super(lambdex.signature);
 		this.expression = lambdex.expression;
@@ -38,23 +38,18 @@ public class CinciaFunction extends CinciaObject implements Callable{
 		parseParams();
 	}
 
-	public CinciaObject run(Expression args, Enviro enviro) {
-
-
+	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
+		
 		if(args !=null) {
 
-			List<Expression> arguments = parseArgs(args);
-
 			// bind args to env
-			for(int i=0; i < arguments.size(); i++) {
-				Object o = eval.eval(arguments.get(i), enviro);
-				enviro.set(params.get(i).getKey(), (CinciaObject)o, type);
+			for(int i=0; i < args.size(); i++) {
+				enviro.set(params.get(i).getKey(), args.get(i), params.get(i).getValue());
 			}
 
 		}
 
-
-		if(block !=null) {
+		if(block != null) {
 			return (CinciaObject) eval.eval(this.block, enviro);
 		}else {
 			return (CinciaObject) eval.eval(this.expression, enviro);
@@ -63,19 +58,19 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	}
 
 
-	public List<Expression> parseArgs(Expression args){
-
-		List<Expression> arguments = new ArrayList<Expression>();
-
-		try {
-			MultiExpression mE = (MultiExpression)args;
-			arguments.addAll(mE.expressions);
-		}catch (ClassCastException e) {
-			arguments.add(args);
-		}
-
-		return arguments;
-	}
+	//	public List<Expression> parseArgs(Expression args){
+	//
+	//		List<Expression> arguments = new ArrayList<Expression>();
+	//
+	//		try {
+	//			MultiExpression mE = (MultiExpression)args;
+	//			arguments.addAll(mE.expressions);
+	//		}catch (ClassCastException e) {
+	//			arguments.add(args);
+	//		}
+	//
+	//		return arguments;
+	//	}
 
 
 	public void parseParams() {

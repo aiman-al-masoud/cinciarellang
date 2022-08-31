@@ -1,5 +1,7 @@
 package com.luxlunaris.cincia.backend;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
@@ -37,6 +39,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
@@ -392,20 +395,27 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
-
+		
+		// eval arguments
+		CinciaObject arg = eval(callex.args, enviro);
+		//TODO: remove tmp stupid 'sol' just to finish off transforming this and commiting
+		List<CinciaObject> args = new ArrayList<CinciaObject>();
+		args.add(arg);
+		
+		
 		// get function 
 		CinciaFunction f = (CinciaFunction)eval(callex.callable, enviro);
 
 		// if method, call on parent object's ORIGINAL env
 		try {
 			CinciaMethod cm = (CinciaMethod)f;
-			return cm.run(callex.args);
+			return cm.run(args);
 		}catch (ClassCastException e) {
-
+			
 		}
 
 		// else it's a top level function, call on COPY of current environment
-		return f.run(callex.args, getEnv().newChild());
+		return f.run(args, getEnv().newChild());
 
 	}
 
