@@ -123,7 +123,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalIfStatement(IfStatement ifStatement, Enviro enviro) {
 
-		if((boolean)eval(ifStatement.cond, enviro)) {
+		if(eval(ifStatement.cond, enviro).__bool__()) {
 			return eval(ifStatement.thenBlock, enviro);
 		}else {
 			return eval(ifStatement.elseBlock, enviro);
