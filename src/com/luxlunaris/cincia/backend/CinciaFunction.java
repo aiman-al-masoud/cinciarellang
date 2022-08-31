@@ -13,7 +13,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	
 	
 	public CinciaFunction(Signature signature, CompoundStatement block) {
-		super(null);
+		super(signature);
 		this.block = block;
 		this.signature = signature;
 	}
