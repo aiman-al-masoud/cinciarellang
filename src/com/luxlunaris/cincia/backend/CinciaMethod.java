@@ -36,6 +36,7 @@ public class CinciaMethod extends CinciaFunction{
 	 * @return
 	 */
 	public CinciaObject run(List<Expression> args, Eval eval) {
+		//TODO PROBLEM: this overwrites also stuff in this given how this was implemented
 		return super.run(args, parent.getEnviro(), eval);
 	}
 	
