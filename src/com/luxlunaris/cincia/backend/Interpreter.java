@@ -35,6 +35,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpress
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
@@ -256,20 +257,23 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro) {
-		// TODO Auto-generated method stub
+		enviro.set(fD.name.value, null, fD.signature);
 		return null;
 	}
 
 	@Override
 	public Object evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
-		
-//		enviro.set(vD.name.value, new CinciaUndefined(vD.type));
+		enviro.set(vD.name.value, null, vD.type);
 		return null;
 	}
 
 	@Override
 	public Object evalMultiDeclaration(MultiDeclaration mD, Enviro enviro) {
-		// TODO Auto-generated method stub
+		
+		for(Declaration d : mD.declarations) {
+			
+		}
+		
 		return null;
 	}
 
