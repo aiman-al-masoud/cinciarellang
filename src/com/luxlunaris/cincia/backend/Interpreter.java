@@ -56,6 +56,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 
 public class Interpreter extends AbstractTraversal {
@@ -91,17 +92,17 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalFloat(Float floatex, Enviro enviro) {
-		return (double)floatex.getValue();
+		return new CinciaObject((double)floatex.getValue());
 	}
 
 	@Override
 	public Object evalStr(Str strex, Enviro enviro) {
-		return (String)strex.getValue();
+		return new CinciaObject((String)strex.getValue());
 	}
 
 	@Override
 	public Object evalBool(Bool boolex, Enviro enviro) {
-		return (boolean)boolex.getValue();		
+		return new CinciaObject((boolean)boolex.getValue());		
 	}
 
 	@Override
