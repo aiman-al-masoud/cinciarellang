@@ -86,7 +86,7 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalInt(Int intex, Enviro enviro) {
-		return (int)intex.getValue();
+		return new CinciaObject((int)intex.getValue());
 	}
 
 	@Override
