@@ -108,9 +108,6 @@ public abstract class AbstractTraversal<T> {
 		}else if(expression instanceof UnaryExpression) {
 			return evalUnaryExpression((UnaryExpression)expression, enviro);
 
-//		}else if(expression instanceof Type) {
-//			return evalType((Type)expression, enviro);
-
 		}else if(expression instanceof Constant) {
 			return evalConstant((Constant)expression, enviro);
 
@@ -199,8 +196,6 @@ public abstract class AbstractTraversal<T> {
 
 	}
 
-
-
 	public T evalUnaryExpression(UnaryExpression unex, Enviro enviro) {
 
 		if(unex instanceof DestructuringExpression) {
@@ -227,24 +222,6 @@ public abstract class AbstractTraversal<T> {
 		throw new RuntimeException("No such primary expression!");
 
 	}
-
-//	public T evalType(Type typex, Enviro enviro) {
-//
-//		if(typex instanceof PrimitiveType) {
-//			return evalPrimitiveType((PrimitiveType)typex, enviro);
-//		}else if(typex instanceof IdentifierType) {
-//			return evalIdentifierType((IdentifierType)typex, enviro);
-//		}else if(typex instanceof DictType) {
-//			return evalDictType((DictType)typex, enviro);
-//		}else if(typex instanceof ListType) {
-//			return evalListType((ListType)typex, enviro);
-//		}else if(typex instanceof UnionType) {
-//			return evalUnionType((UnionType)typex, enviro);
-//		}
-//
-//		throw new RuntimeException("No such type expression!");
-//
-//	}
 
 	public T evalConstant(Constant constant, Enviro enviro) {
 
@@ -306,11 +283,6 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalDestructuringExpression(DestructuringExpression destex, Enviro enviro);
 	public abstract T evalMinusExpression(MinusExpression minex, Enviro enviro);
 	public abstract T evalNegationExpression(NegationExpression negex, Enviro enviro);
-//	public abstract T evalIdentifierType(IdentifierType idtype, Enviro enviro);
-//	public abstract T evalPrimitiveType(PrimitiveType idtype, Enviro enviro);
-//	public abstract T evalListType(ListType idtype, Enviro enviro);
-//	public abstract T evalDictType(DictType idtype, Enviro enviro);
-//	public abstract T evalUnionType(UnionType idtype, Enviro enviro);
-
+	
 
 }
