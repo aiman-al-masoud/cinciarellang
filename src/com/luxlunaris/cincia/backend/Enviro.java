@@ -3,11 +3,14 @@ package com.luxlunaris.cincia.backend;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+
 public class Enviro {
 
 	private Enviro parent;
 	private Map<String, CinciaObject> vars;
-
+	private Map<String, Type> types;
+	
 
 	public Enviro(Enviro parent) {
 
@@ -15,8 +18,10 @@ public class Enviro {
 
 		if(parent.vars != null ) {
 			this.vars = new HashMap<String, CinciaObject>(parent.vars);
+			this.types = new HashMap<String, Type>(parent.types);
 		}else {
 			this.vars = new HashMap<String, CinciaObject>();
+			this.types = new HashMap<String, Type>();
 		}
 
 	}
@@ -30,24 +35,24 @@ public class Enviro {
 		return vars.get(key);
 	}
 	
-
-	public void set(String key, CinciaObject val) {
-		vars.put(key, val);
+	public Type getType(String key) {
+		return types.get(key);
 	}
+	
 
+	public void set(String key, CinciaObject val, Type type) {
+		vars.put(key, val);
+		types.put(key, type);
+	}
 
 	public void remove(String key) {
 		vars.remove(key);
+		types.remove(key);
 	}
 	
 	public Enviro getParent() {
 		return parent;
 	}
-
-
-
-
-
 
 
 }

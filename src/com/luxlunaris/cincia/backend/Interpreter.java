@@ -263,7 +263,7 @@ public class Interpreter extends AbstractTraversal {
 	@Override
 	public Object evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
 		
-		enviro.set(vD.name.value, new CinciaUndefined(vD.type));
+//		enviro.set(vD.name.value, new CinciaUndefined(vD.type));
 		return null;
 	}
 
