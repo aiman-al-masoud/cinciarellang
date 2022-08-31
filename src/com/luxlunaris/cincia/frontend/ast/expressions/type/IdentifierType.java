@@ -5,10 +5,11 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
 public class IdentifierType extends OneNameType{
 	
-	public Identifier value;
+//	public Identifier value;
+	public String value;
 	
-	public IdentifierType(Identifier value) {
-		this.value = value;
+	public IdentifierType(Identifier id) {
+		this.value = id.value;
 	}
 	
 	@Override
