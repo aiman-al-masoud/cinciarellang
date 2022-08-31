@@ -405,7 +405,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		// else it's a top level function, call on COPY of current environment
-		return f.run(callex.args, getEnv().newChild(), this::eval);
+		return f.run(callex.args, getEnv().newChild());
 
 	}
 
