@@ -299,8 +299,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalComparisonExpression(ComparisonExpression compex, Enviro enviro) {
 
-		Object left = eval(compex.left, enviro);
-		Object right = eval(compex.right, enviro);
+		CinciaObject left = eval(compex.left, enviro);
+		CinciaObject right = eval(compex.right, enviro);
 
 		switch (compex.op) {
 
