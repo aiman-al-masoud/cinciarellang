@@ -8,20 +8,17 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	
 	private CompoundStatement block;
 	private Expression expression;
-	private Signature signature;
 	private CinciaObject parent;
 	
 	
 	public CinciaFunction(Signature signature, CompoundStatement block) {
 		super(signature);
 		this.block = block;
-		this.signature = signature;
 	}
 	
 	public CinciaFunction(Signature signature, Expression expression) {
-		super(null);
+		super(signature);
 		this.expression = expression;
-		this.signature = signature;
 	}
 	
 	public void setParent(CinciaObject parent) {
