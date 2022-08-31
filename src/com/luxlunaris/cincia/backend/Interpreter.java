@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -396,11 +397,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 		
-		// eval arguments
-		CinciaObject arg = eval(callex.args, enviro);
-		//TODO: remove tmp stupid 'sol' just to finish off transforming this and commiting
+		
+		// TODO: do some of this stuff in parseMultiExpression ! 
 		List<CinciaObject> args = new ArrayList<CinciaObject>();
-		args.add(arg);
+		
+		try {
+			MultiExpression mE = (MultiExpression)callex.args;
+			args.addAll(mE.expressions.stream().map(e-> eval(e, enviro)).collect(Collectors.toList()) );
+		}catch (ClassCastException e) {
+			args.add(eval(callex.args, enviro));
+		}
 		
 		
 		// get function 
