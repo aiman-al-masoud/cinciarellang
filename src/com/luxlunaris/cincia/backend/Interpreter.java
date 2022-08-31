@@ -456,37 +456,4 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 
-	@Override
-	public CinciaObject evalIdentifierType(IdentifierType idtype, Enviro enviro) {
-		// TODO Auto-generated method stub		
-		return null;
-	}
-
-	@Override
-	public CinciaObject evalPrimitiveType(PrimitiveType idtype, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public CinciaObject evalListType(ListType idtype, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public CinciaObject evalDictType(DictType idtype, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public CinciaObject evalUnionType(UnionType idtype, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
 }
