@@ -96,9 +96,10 @@ public class CinciaObject {
 	
 	public CinciaObject __add__(CinciaObject other) {
 		
-		
 		//TODO: retrieve __add__ from object's attributes
 		// and call it 
+		
+		
 		
 	}
 	
