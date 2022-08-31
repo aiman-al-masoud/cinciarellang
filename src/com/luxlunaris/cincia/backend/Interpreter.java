@@ -57,6 +57,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
+
 public class Interpreter extends AbstractTraversal {
 
 
@@ -370,14 +371,7 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
-
-		if(lambdex.expression!=null) {
-			return new CinciaFunction(lambdex.signature, lambdex.expression);
-		}else if (lambdex.expression!=null) {
-			return new CinciaFunction(lambdex.signature, lambdex.block);
-		}
-
-		throw new RuntimeException("Lambda has no expression nor block!");
+		return new CinciaFunction(lambdex);
 	}
 
 	@Override

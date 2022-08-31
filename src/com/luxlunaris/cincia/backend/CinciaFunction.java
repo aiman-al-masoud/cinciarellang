@@ -12,6 +12,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
@@ -29,21 +30,12 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	private CompoundStatement block;
 	private Expression expression;	
 	private List<Entry<String, ? extends Type>> params;
-
-
-	private CinciaFunction(Signature signature) {
-		super(signature);
+	
+	public CinciaFunction(LambdaExpression lambdex) {
+		super(lambdex.signature);
+		this.expression = lambdex.expression;
+		this.block = lambdex.block;
 		parseParams();
-	}
-
-	public CinciaFunction(Signature signature, CompoundStatement block) {
-		this(signature);
-		this.block = block;
-	}
-
-	public CinciaFunction(Signature signature, Expression expression) {
-		this(signature);
-		this.expression = expression;
 	}
 
 	public CinciaObject run(Expression args, Enviro enviro, Eval eval) {
