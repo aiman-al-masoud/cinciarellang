@@ -8,6 +8,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
+//TODO: subclass for Primitive object
 public class CinciaObject {
 
 	private boolean immutable;	
