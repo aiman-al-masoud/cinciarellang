@@ -399,7 +399,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// if method, call on parent object's ORIGINAL env
 		try {
 			CinciaMethod cm = (CinciaMethod)f;
-			return cm.run(callex.args, this::eval);
+			return cm.run(callex.args);
 		}catch (ClassCastException e) {
 
 		}
