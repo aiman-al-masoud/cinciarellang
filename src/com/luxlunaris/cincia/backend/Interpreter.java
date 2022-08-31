@@ -375,7 +375,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
-		return new CinciaFunction(lambdex);
+		return new CinciaFunction(lambdex, this::eval);
 	}
 
 	@Override

@@ -13,8 +13,8 @@ public class CinciaMethod extends CinciaFunction{
 	
 	private CinciaObject parent;
 	
-	public CinciaMethod(LambdaExpression lambdex) {
-		super(lambdex);
+	public CinciaMethod(LambdaExpression lambdex, Eval eval) {
+		super(lambdex, eval);
 	}
 	
 	public void setParent(CinciaObject parent) {
@@ -32,9 +32,9 @@ public class CinciaMethod extends CinciaFunction{
 	 * @param eval
 	 * @return
 	 */
-	public CinciaObject run(Expression args, Eval eval) {
+	public CinciaObject run(Expression args) {
 		//TODO PROBLEM: this overwrites also stuff in this given how this was implemented
-		return super.run(args, parent.getEnviro(), eval);
+		return super.run(args, parent.getEnviro());
 	}
 	
 	

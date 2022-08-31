@@ -28,15 +28,17 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	private CompoundStatement block;
 	private Expression expression;	
 	private List<Entry<String, ? extends Type>> params;
-
-	public CinciaFunction(LambdaExpression lambdex) {
+	private Eval eval;
+	
+	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
 		super(lambdex.signature);
 		this.expression = lambdex.expression;
 		this.block = lambdex.block;
+		this.eval = eval;
 		parseParams();
 	}
 
-	public CinciaObject run(Expression args, Enviro enviro, Eval eval) {
+	public CinciaObject run(Expression args, Enviro enviro) {
 
 
 		if(args !=null) {

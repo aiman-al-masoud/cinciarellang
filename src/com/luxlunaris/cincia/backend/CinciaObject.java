@@ -94,7 +94,7 @@ public class CinciaObject {
 			
 		//retrieve __bool__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get("__bool__");
-		return (boolean)cm.run(null, eval).value;
+		return (boolean)cm.run(null).value;
 		
 	}
 	
