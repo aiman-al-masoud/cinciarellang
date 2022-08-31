@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.CinciaFunction.Eval;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
@@ -12,14 +13,10 @@ public class CinciaMethod extends CinciaFunction{
 	
 	private CinciaObject parent;
 	
-	public CinciaMethod(Signature signature, CompoundStatement block) {
-		super(signature, block);
+	public CinciaMethod(LambdaExpression lambdex) {
+		super(lambdex);
 	}
 	
-	public CinciaMethod(Signature signature, Expression expression) {
-		super(signature, expression);
-	}
-
 	public void setParent(CinciaObject parent) {
 		this.parent = parent;
 	}
