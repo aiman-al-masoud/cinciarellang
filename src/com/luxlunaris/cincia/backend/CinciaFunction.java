@@ -27,16 +27,21 @@ public class CinciaFunction extends CinciaObject implements Callable{
 
 	private CompoundStatement block;
 	private Expression expression;	
-	List<Entry<String, ? extends Type>> params;
-
-	public CinciaFunction(Signature signature, CompoundStatement block) {
+	private List<Entry<String, ? extends Type>> params;
+	
+	
+	public CinciaFunction(Signature signature) {
 		super(signature);
-		this.block = block;
 		parseParams();
 	}
 
+	public CinciaFunction(Signature signature, CompoundStatement block) {
+		this(signature);
+		this.block = block;
+	}
+
 	public CinciaFunction(Signature signature, Expression expression) {
-		super(signature);
+		this(signature);
 		this.expression = expression;
 	}
 
