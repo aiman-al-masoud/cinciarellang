@@ -23,12 +23,12 @@ import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 
 public class CinciaFunction extends CinciaObject implements Callable{
 
-	
+
 
 	private CompoundStatement block;
 	private Expression expression;	
 	private List<Entry<String, ? extends Type>> params;
-	
+
 	public CinciaFunction(LambdaExpression lambdex) {
 		super(lambdex.signature);
 		this.expression = lambdex.expression;
@@ -37,14 +37,20 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	}
 
 	public CinciaObject run(Expression args, Enviro enviro, Eval eval) {
-		
-		List<Expression> arguments = parseArgs(args);
-		
-		// bind args to env
-		for(int i=0; i < arguments.size(); i++) {
-			Object o = eval.eval(arguments.get(i), enviro);
-			enviro.set(params.get(i).getKey(), (CinciaObject)o, type);
+
+
+		if(args !=null) {
+
+			List<Expression> arguments = parseArgs(args);
+
+			// bind args to env
+			for(int i=0; i < arguments.size(); i++) {
+				Object o = eval.eval(arguments.get(i), enviro);
+				enviro.set(params.get(i).getKey(), (CinciaObject)o, type);
+			}
+
 		}
+
 
 		if(block !=null) {
 			return (CinciaObject) eval.eval(this.block, enviro);
@@ -56,7 +62,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 
 
 	public List<Expression> parseArgs(Expression args){
-		
+
 		List<Expression> arguments = new ArrayList<Expression>();
 
 		try {
