@@ -109,7 +109,6 @@ public class Interpreter extends AbstractTraversal {
 		return enviro.get(identex.value);
 	}
 
-
 	@Override
 	public Object evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
 
