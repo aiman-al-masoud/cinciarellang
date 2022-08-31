@@ -39,7 +39,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	}
 
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
-		
+
 		if(args !=null) {
 
 			// bind args to env
@@ -56,7 +56,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 		}
 
 	}
-	
+
 	public void parseParams() {
 
 		Declaration decParams = ((Signature)type).params;
