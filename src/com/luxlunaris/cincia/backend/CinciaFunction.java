@@ -30,7 +30,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	private List<Entry<String, ? extends Type>> params;
 	
 	
-	public CinciaFunction(Signature signature) {
+	private CinciaFunction(Signature signature) {
 		super(signature);
 		parseParams();
 	}
