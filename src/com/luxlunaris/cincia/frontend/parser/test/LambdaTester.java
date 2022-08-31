@@ -1,10 +1,10 @@
 package com.luxlunaris.cincia.frontend.parser.test;
 
-import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;

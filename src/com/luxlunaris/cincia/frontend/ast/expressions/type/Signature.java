@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.ast.declarations;
+package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
  * 
  * signature ::= '\' [multi_declaration] [':' type]  
  */
-public class Signature{
+public class Signature implements Type{
 	
 	public Declaration params;// can be null if func takes no args
 	public Type returnType;
@@ -24,7 +24,8 @@ public class Signature{
 		return "\\" + params +" : "+returnType;
 	}
 	
-	Signature simplify() {
+	@Override
+	public Signature simplify() { 
 		this.params = params.simplify();
 		this.returnType = (Type) returnType.simplify();
 		return this;

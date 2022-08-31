@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
-import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.UnionType;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
@@ -23,6 +22,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;

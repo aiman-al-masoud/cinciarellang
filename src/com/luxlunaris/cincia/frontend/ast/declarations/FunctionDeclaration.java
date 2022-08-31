@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.frontend.ast.declarations;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;

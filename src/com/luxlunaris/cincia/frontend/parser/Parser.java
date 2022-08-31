@@ -8,7 +8,6 @@ import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
-import com.luxlunaris.cincia.frontend.ast.declarations.Signature;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
@@ -37,6 +36,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.OneNameType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.SingleType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.UnionType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
