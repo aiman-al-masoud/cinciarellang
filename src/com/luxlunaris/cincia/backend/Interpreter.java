@@ -414,8 +414,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
 
-		CinciaObject o = (CinciaObject)eval(indexex.indexable, enviro);
-		Object index = eval(indexex.index , enviro);
+		CinciaObject o = eval(indexex.indexable, enviro);
+		CinciaObject index = eval(indexex.index , enviro);
 		
 		// check if index is string, int or iterable (fancy index)
 		
