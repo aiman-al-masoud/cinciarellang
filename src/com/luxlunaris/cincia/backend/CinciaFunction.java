@@ -24,7 +24,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 
 	@FunctionalInterface
 	interface Eval{
-		Object eval(Ast ast, Enviro enviro);
+		CinciaObject eval(Ast ast, Enviro enviro);
 	}
 
 	private CompoundStatement block;
