@@ -10,7 +10,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 public class CinciaMethod extends CinciaFunction{
 	
 	
-	CinciaObject parent;
+	private CinciaObject parent;
 	
 	public CinciaMethod(Signature signature, CompoundStatement block) {
 		super(signature, block);
@@ -22,6 +22,10 @@ public class CinciaMethod extends CinciaFunction{
 
 	public void setParent(CinciaObject parent) {
 		this.parent = parent;
+	}
+	
+	public CinciaObject getParent(CinciaObject parent) {
+		return parent;
 	}
 	
 	/**
