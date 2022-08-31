@@ -301,7 +301,7 @@ public class Interpreter extends AbstractTraversal {
 		Object right = eval(compex.right, enviro);
 
 		switch (compex.op) {
-		
+
 		case COMPARE:
 			return left == right;
 		case NE:
@@ -413,13 +413,18 @@ public class Interpreter extends AbstractTraversal {
 
 	@Override
 	public Object evalDotExpression(DotExpression dotex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		CinciaObject o = (CinciaObject)eval(dotex.left, enviro);
+		return o.get(dotex.right.value);		
 	}
 
 	@Override
 	public Object evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
-		// TODO Auto-generated method stub
+
+		CinciaObject o = (CinciaObject)eval(indexex.indexable, enviro);
+		Object index = eval(indexex.index , enviro);
+		
+		// check if index is string, int or iterable (fancy index)
+		
 		return null;
 	}
 
