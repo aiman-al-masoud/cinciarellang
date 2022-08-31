@@ -56,23 +56,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 		}
 
 	}
-
-
-	//	public List<Expression> parseArgs(Expression args){
-	//
-	//		List<Expression> arguments = new ArrayList<Expression>();
-	//
-	//		try {
-	//			MultiExpression mE = (MultiExpression)args;
-	//			arguments.addAll(mE.expressions);
-	//		}catch (ClassCastException e) {
-	//			arguments.add(args);
-	//		}
-	//
-	//		return arguments;
-	//	}
-
-
+	
 	public void parseParams() {
 
 		Declaration decParams = ((Signature)type).params;
