@@ -11,6 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
@@ -28,8 +29,8 @@ public class CinciaFunction extends CinciaObject implements Callable{
 	private CompoundStatement block;
 	private Expression expression;	
 	private List<Entry<String, ? extends Type>> params;
-	
-	
+
+
 	private CinciaFunction(Signature signature) {
 		super(signature);
 		parseParams();
@@ -45,21 +46,38 @@ public class CinciaFunction extends CinciaObject implements Callable{
 		this.expression = expression;
 	}
 
-	public CinciaObject run(List<Expression> args, Enviro enviro, Eval eval) {
-
+	public CinciaObject run(Expression args, Enviro enviro, Eval eval) {
+		
+		List<Expression> arguments = parseArgs(args);
+		
 		// bind args to env
-		for(int i=0; i < args.size(); i++) {
-			Object o = eval.eval(args.get(i), enviro);
+		for(int i=0; i < arguments.size(); i++) {
+			Object o = eval.eval(arguments.get(i), enviro);
 			enviro.set(params.get(i).getKey(), (CinciaObject)o, type);
 		}
-		
-		
+
+
 		if(block !=null) {
 			return (CinciaObject) eval.eval(this.block, enviro);
 		}else {
 			return (CinciaObject) eval.eval(this.expression, enviro);
 		}
+
+	}
+
+
+	public List<Expression> parseArgs(Expression args){
 		
+		List<Expression> arguments = new ArrayList<Expression>();
+
+		try {
+			MultiExpression mE = (MultiExpression)args;
+			arguments.addAll(mE.expressions);
+		}catch (ClassCastException e) {
+			arguments.add(args);
+		}
+
+		return arguments;
 	}
 
 
