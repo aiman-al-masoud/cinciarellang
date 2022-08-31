@@ -162,7 +162,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalWhileStatement(WhileStatement whileStatement, Enviro enviro) {
 
-		while((boolean)eval(whileStatement.cond, enviro)) {
+		while(eval(whileStatement.cond, enviro).__bool__()) {
 
 			Object o = eval(whileStatement.block, enviro);
 
