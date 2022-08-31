@@ -85,7 +85,7 @@ public class CinciaObject {
 	}
 	
 	
-	public boolean __bool__(Eval eval){
+	public boolean __bool__(){
 		
 		
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == PrimitiveType.BOOL) {
