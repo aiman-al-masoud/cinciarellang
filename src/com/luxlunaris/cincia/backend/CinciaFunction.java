@@ -47,8 +47,14 @@ public class CinciaFunction extends CinciaObject implements Callable{
 			Object o = eval.eval(args.get(i), enviro);
 			enviro.set(params.get(i).getKey(), (CinciaObject)o, type);
 		}
-
-		return (CinciaObject) eval.eval(this.block, enviro);
+		
+		
+		if(block !=null) {
+			return (CinciaObject) eval.eval(this.block, enviro);
+		}else {
+			return (CinciaObject) eval.eval(this.expression, enviro);
+		}
+		
 	}
 
 
