@@ -70,12 +70,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	interface Eval{
 		CinciaObject eval(Ast ast, Enviro enviro);
 	}
-	
-	
-
-	public Interpreter() {
-		scopes.push(new Enviro(null));
-	}
 
 	@Override
 	public CinciaObject evalInt(Int intex, Enviro enviro) {
