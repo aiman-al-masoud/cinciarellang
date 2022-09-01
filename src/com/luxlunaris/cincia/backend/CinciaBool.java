@@ -101,14 +101,23 @@ public class CinciaBool extends CinciaObject {
 
 	@Override
 	public CinciaObject __eq__(CinciaObject other) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try {
+			
+			CinciaBool otherBool = (CinciaBool)other;
+			return new CinciaBool(value==otherBool.value);
+			
+		} catch (ClassCastException e) {
+			
+		}
+		
+		throw new RuntimeException("");
 	}
 
 	@Override
 	public CinciaObject __ne__(CinciaObject other) {
-		// TODO Auto-generated method stub
-		return null;
+		CinciaBool eq = (CinciaBool)this.__eq__(other);
+		return new CinciaBool(!eq.value);
 	}
 
 	@Override
