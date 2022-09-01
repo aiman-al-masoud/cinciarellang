@@ -77,20 +77,20 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		scopes.push(new Enviro(null));
 	}
 
-	public void enterEnv(Enviro env) {
-		scopes.push(env);
-	}
-
-	public void exitEnv() {
-
-		if(scopes.size() > 1) {
-			scopes.pop();
-		}
-	}
-
-	public Enviro getEnv() {
-		return scopes.peek();
-	}
+//	public void enterEnv(Enviro env) {
+//		scopes.push(env);
+//	}
+//
+//	public void exitEnv() {
+//
+//		if(scopes.size() > 1) {
+//			scopes.pop();
+//		}
+//	}
+//
+//	public Enviro getEnv() {
+//		return scopes.peek();
+//	}
 
 	@Override
 	public CinciaObject evalInt(Int intex, Enviro enviro) {
@@ -434,7 +434,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		// else it's a top level function, call on COPY of current environment
-		return f.run(args, getEnv().newChild());
+		return f.run(args, enviro.newChild());
 
 	}
 
