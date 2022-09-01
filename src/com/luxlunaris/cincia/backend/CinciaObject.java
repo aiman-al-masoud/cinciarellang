@@ -45,7 +45,6 @@ public class CinciaObject {
 		this.value = value;
 	}
 
-
 	public CinciaObject(String value) {
 		type = new PrimitiveType(PrimitiveType.STRING);
 		immutable = true;
