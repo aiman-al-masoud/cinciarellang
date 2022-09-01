@@ -51,7 +51,7 @@ public class CinciaObject {
 		this.value = value;
 	}
 
-	//TODO: tmp fix, read Interpreter.evalCompoundStatement()
+	//TODO: hacky fix, read Interpreter.evalCompoundStatement()
 	public CinciaObject(Keywords value) {
 		type =  null;
 		immutable = true;
