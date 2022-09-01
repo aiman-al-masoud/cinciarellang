@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.backend;
 
 
 /**
- * A set of overridable method names.
+ * A set of standard CinciaObject methods, most of which overridable.
  * 
  */
 public enum Magic {
