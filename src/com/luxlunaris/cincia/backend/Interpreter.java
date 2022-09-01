@@ -158,7 +158,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			if(o.value.equals(Keywords.BREAK)) {
 				break;
 			}
-			
+
 			//return statement
 			if(o != null) { 
 				return o;
@@ -342,7 +342,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			enviro.set(((Identifier)assex.left).value, rval, rval.type);
 		}
 
-		//TODO: if indexed expresson or dot expression ... 
+		// if dot expression
+		try {
+			DotExpression dotex = (DotExpression)assex.left;
+			CinciaObject dottable = eval(dotex.left, enviro);
+			dottable.set(dotex.right.value, rval);
+		}catch (ClassCastException e) {
+
+		}
+
+		//TODO: if indexed expresson  
 
 		return rval;
 	}
@@ -472,7 +481,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		//		CinciaObject o = eval(reassex.left, enviro);
-		
+
 		return null;
 	}
 
