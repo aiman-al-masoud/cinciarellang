@@ -9,7 +9,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
-public class CinciaClass extends CinciaObject{
+public class CinciaClass extends AbstractCinciaObject{
 
 	public CinciaClass() {
 		super(new IdentifierType("Class"));
@@ -27,15 +27,15 @@ public class CinciaClass extends CinciaObject{
 		set(name, method, method.type);
 	}	
 
-	public void addAttribute(String name, CinciaObject value) {
+	public void addAttribute(String name, AbstractCinciaObject value) {
 		set(name, value, value.type);
 	}	
 
 	//TODO: remove method duplication (all instances should refer to same func objects)
 	//TODO: deal with modifiers such as static
-	public CinciaObject constructor(List<CinciaObject> args) {
+	public AbstractCinciaObject constructor(List<AbstractCinciaObject> args) {
 		Enviro newEnv = this.getEnviro().newChild(); 
-		CinciaObject obj = new CinciaObject(this.type);  
+		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);  
 		obj.myClass = this;
 		obj.enviro = newEnv;
 		obj.__init__(args);

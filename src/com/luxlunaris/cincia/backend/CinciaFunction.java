@@ -23,11 +23,11 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
-public class CinciaFunction extends CinciaObject implements Callable{
+public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	
 	@FunctionalInterface
 	interface WrappedFunction{
-		CinciaObject run(List<CinciaObject> args);
+		AbstractCinciaObject run(List<AbstractCinciaObject> args);
 	}
 
 	private CompoundStatement block;
@@ -49,7 +49,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 		this.wrappedFunction = wrappedFunction;
 	}
 
-	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
+	public AbstractCinciaObject run(List<AbstractCinciaObject> args, Enviro enviro) {
 
 		if(args !=null) {
 

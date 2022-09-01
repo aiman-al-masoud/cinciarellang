@@ -11,7 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 public class Enviro {
 
 	private Enviro parent;
-	private Map<String, CinciaObject> vars;
+	private Map<String, AbstractCinciaObject> vars;
 	private Map<String, Type> types;
 	
 
@@ -20,10 +20,10 @@ public class Enviro {
 		this.parent = parent;
 
 		if(parent.vars != null ) {
-			this.vars = new HashMap<String, CinciaObject>(parent.vars);
+			this.vars = new HashMap<String, AbstractCinciaObject>(parent.vars);
 			this.types = new HashMap<String, Type>(parent.types);
 		}else {
-			this.vars = new HashMap<String, CinciaObject>();
+			this.vars = new HashMap<String, AbstractCinciaObject>();
 			this.types = new HashMap<String, Type>();
 		}
 
@@ -34,7 +34,7 @@ public class Enviro {
 	}
 
 
-	public CinciaObject get(String key) {
+	public AbstractCinciaObject get(String key) {
 		return vars.get(key);
 	}
 	
@@ -42,7 +42,7 @@ public class Enviro {
 		return types.get(key);
 	}
 	
-	public void set(String key, CinciaObject val, Type type) {
+	public void set(String key, AbstractCinciaObject val, Type type) {
 		vars.put(key, val);
 		types.put(key, type);
 	}
@@ -56,8 +56,8 @@ public class Enviro {
 		return parent;
 	}
 	
-	public List<CinciaObject> values(){
-		return new ArrayList<CinciaObject>(vars.values());
+	public List<AbstractCinciaObject> values(){
+		return new ArrayList<AbstractCinciaObject>(vars.values());
 	}
 
 

@@ -11,7 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 public class CinciaMethod extends CinciaFunction{
 	
 	
-	private CinciaObject parent;
+	private AbstractCinciaObject parent;
 	
 	public CinciaMethod(LambdaExpression lambdex, Eval eval) {
 		super(lambdex, eval);
@@ -21,11 +21,11 @@ public class CinciaMethod extends CinciaFunction{
 		super(wrappedFunction);
 	}
 	
-	public void setParent(CinciaObject parent) {
+	public void setParent(AbstractCinciaObject parent) {
 		this.parent = parent;
 	}
 	
-	public CinciaObject getParent(CinciaObject parent) {
+	public AbstractCinciaObject getParent(AbstractCinciaObject parent) {
 		return parent;
 	}
 	
@@ -36,7 +36,7 @@ public class CinciaMethod extends CinciaFunction{
 	 * @param eval
 	 * @return
 	 */
-	public CinciaObject run(List<CinciaObject> args) {
+	public AbstractCinciaObject run(List<AbstractCinciaObject> args) {
 		//TODO PROBLEM: this overwrites also stuff in this given how this was implemented
 		return super.run(args, parent.getEnviro());
 	}

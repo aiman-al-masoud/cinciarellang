@@ -56,44 +56,44 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 
-public class Interpreter extends AbstractTraversal<CinciaObject> {
+public class Interpreter extends AbstractTraversal<AbstractCinciaObject> {
 
 	@FunctionalInterface
 	interface Eval{
-		CinciaObject eval(Ast ast, Enviro enviro);
+		AbstractCinciaObject eval(Ast ast, Enviro enviro);
 	}
 
 	@Override
-	public CinciaObject evalInt(Int intex, Enviro enviro) {
-		return Cincia.create(intex.getValue());
+	public AbstractCinciaObject evalInt(Int intex, Enviro enviro) {
+		return CinciaObject.create(intex.getValue());
 //		return new CinciaObject((int)intex.getValue());
 	}
 
 	@Override
-	public CinciaObject evalFloat(Float floatex, Enviro enviro) {
+	public AbstractCinciaObject evalFloat(Float floatex, Enviro enviro) {
 //		return new CinciaObject((double)floatex.getValue());
-		return Cincia.create(floatex.getValue());
+		return CinciaObject.create(floatex.getValue());
 	}
 
 	@Override
-	public CinciaObject evalStr(Str strex, Enviro enviro) {
+	public AbstractCinciaObject evalStr(Str strex, Enviro enviro) {
 //		return new CinciaObject((String)strex.getValue());
-		return Cincia.create(strex.getValue());
+		return CinciaObject.create(strex.getValue());
 	}
 
 	@Override
-	public CinciaObject evalBool(Bool boolex, Enviro enviro) {
+	public AbstractCinciaObject evalBool(Bool boolex, Enviro enviro) {
 //		return new CinciaObject((boolean)boolex.getValue());	
-		return Cincia.create(boolex.getValue());
+		return CinciaObject.create(boolex.getValue());
 	}
 
 	@Override
-	public CinciaObject evalIdentifier(Identifier identex, Enviro enviro) {
+	public AbstractCinciaObject evalIdentifier(Identifier identex, Enviro enviro) {
 		return enviro.get(identex.value);
 	}
 
 	@Override
-	public CinciaObject evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
+	public AbstractCinciaObject evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
 
 		if(eval(terex.cond, enviro).__bool__()) {
 			return eval(terex.thenExpression, enviro);
@@ -104,7 +104,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalIfStatement(IfStatement ifStatement, Enviro enviro) {
+	public AbstractCinciaObject evalIfStatement(IfStatement ifStatement, Enviro enviro) {
 
 		if(eval(ifStatement.cond, enviro).__bool__()) {
 			return eval(ifStatement.thenBlock, enviro);
@@ -115,23 +115,23 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalMatchStatement(MatchStatement ifStatement, Enviro enviro) {
+	public AbstractCinciaObject evalMatchStatement(MatchStatement ifStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalBreakStatement(BreakStatement breakStatement, Enviro enviro) {
+	public AbstractCinciaObject evalBreakStatement(BreakStatement breakStatement, Enviro enviro) {
 		return null; //useless
 	}
 
 	@Override
-	public CinciaObject evalContinueStatement(ContinueStatement continueStatement, Enviro enviro) {
+	public AbstractCinciaObject evalContinueStatement(ContinueStatement continueStatement, Enviro enviro) {
 		return null; //useless
 	}
 
 	@Override
-	public CinciaObject evalForStatement(ForStatement forStatement, Enviro enviro) {
+	public AbstractCinciaObject evalForStatement(ForStatement forStatement, Enviro enviro) {
 
 		Object iterable = eval(forStatement.iterable, enviro);
 
@@ -143,12 +143,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalWhileStatement(WhileStatement whileStatement, Enviro enviro) {
+	public AbstractCinciaObject evalWhileStatement(WhileStatement whileStatement, Enviro enviro) {
 
 		while(eval(whileStatement.cond, enviro).__bool__()) {
 
 			// run one iteration
-			CinciaObject o = eval(whileStatement.block, enviro); 
+			AbstractCinciaObject o = eval(whileStatement.block, enviro); 
 
 			//check iteration exit value to determine what to do next
 			if(o == null) {
@@ -174,13 +174,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
+	public AbstractCinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
+	public AbstractCinciaObject evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
 
 		for (Statement s : cS.statements) {
 
@@ -203,60 +203,60 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 
 	@Override
-	public CinciaObject evalTryStatement(TryStatement tryStatement, Enviro enviro) {
+	public AbstractCinciaObject evalTryStatement(TryStatement tryStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalThrowStatement(ThrowStatement throwStatement, Enviro enviro) {
+	public AbstractCinciaObject evalThrowStatement(ThrowStatement throwStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalDefaultStatement(DefaultStatement defaultStatement, Enviro enviro) {
+	public AbstractCinciaObject evalDefaultStatement(DefaultStatement defaultStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalReturnStatement(ReturnStatement returnStatement, Enviro enviro) {
+	public AbstractCinciaObject evalReturnStatement(ReturnStatement returnStatement, Enviro enviro) {
 		return eval(returnStatement.expression, enviro);
 	}
 
 	@Override
-	public CinciaObject evalCaseStatement(CaseStatement caseStatement, Enviro enviro) {
+	public AbstractCinciaObject evalCaseStatement(CaseStatement caseStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalMultiExpression(MultiExpression multex, Enviro enviro) {
+	public AbstractCinciaObject evalMultiExpression(MultiExpression multex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalRangeExpression(RangeExpression rangex, Enviro enviro) {
+	public AbstractCinciaObject evalRangeExpression(RangeExpression rangex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro) {
+	public AbstractCinciaObject evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro) {
 		enviro.set(fD.name.value, null, fD.signature);
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
+	public AbstractCinciaObject evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
 		enviro.set(vD.name.value, null, vD.type);
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalMultiDeclaration(MultiDeclaration mD, Enviro enviro) {
+	public AbstractCinciaObject evalMultiDeclaration(MultiDeclaration mD, Enviro enviro) {
 
 		for(Declaration d : mD.declarations) {
 			evalDeclaration(d, enviro);
@@ -267,10 +267,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 
 	@Override
-	public CinciaObject evalMulExpression(MulExpression mulex, Enviro enviro) {
+	public AbstractCinciaObject evalMulExpression(MulExpression mulex, Enviro enviro) {
 
-		CinciaObject left = eval(mulex.left, enviro);
-		CinciaObject right = eval(mulex.right, enviro);
+		AbstractCinciaObject left = eval(mulex.left, enviro);
+		AbstractCinciaObject right = eval(mulex.right, enviro);
 
 		if(mulex.op == Operators.ASTERISK) {
 			return left.__mul__(right);
@@ -284,10 +284,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalAddExpression(AddExpression addex, Enviro enviro) {
+	public AbstractCinciaObject evalAddExpression(AddExpression addex, Enviro enviro) {
 
-		CinciaObject left = eval(addex.left, enviro);
-		CinciaObject right = eval(addex.right, enviro);
+		AbstractCinciaObject left = eval(addex.left, enviro);
+		AbstractCinciaObject right = eval(addex.right, enviro);
 
 		if(addex.op == Operators.PLUS) {
 			return left.__add__(right);
@@ -300,10 +300,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalComparisonExpression(ComparisonExpression compex, Enviro enviro) {
+	public AbstractCinciaObject evalComparisonExpression(ComparisonExpression compex, Enviro enviro) {
 
-		CinciaObject left = eval(compex.left, enviro);
-		CinciaObject right = eval(compex.right, enviro);
+		AbstractCinciaObject left = eval(compex.left, enviro);
+		AbstractCinciaObject right = eval(compex.right, enviro);
 
 		switch (compex.op) {
 
@@ -326,23 +326,23 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalOrExpression(OrExpression orex, Enviro enviro) {
-		CinciaObject left = eval(orex.left, enviro);
-		CinciaObject right = eval(orex.right, enviro);
+	public AbstractCinciaObject evalOrExpression(OrExpression orex, Enviro enviro) {
+		AbstractCinciaObject left = eval(orex.left, enviro);
+		AbstractCinciaObject right = eval(orex.right, enviro);
 		return left.__or__(right);
 	}
 
 	@Override
-	public CinciaObject evalAndExpression(AndExpression andex, Enviro enviro) {
-		CinciaObject left = eval(andex.left, enviro);
-		CinciaObject right = eval(andex.right, enviro);
+	public AbstractCinciaObject evalAndExpression(AndExpression andex, Enviro enviro) {
+		AbstractCinciaObject left = eval(andex.left, enviro);
+		AbstractCinciaObject right = eval(andex.right, enviro);
 		return left.__and__(right);
 	}
 
 	@Override
-	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
+	public AbstractCinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
 
-		CinciaObject rval =  eval(assex.right, enviro);
+		AbstractCinciaObject rval =  eval(assex.right, enviro);
 
 		if(assex.left instanceof Identifier) {
 			enviro.set(((Identifier)assex.left).value, rval, rval.type);
@@ -351,7 +351,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// if dot expression
 		try {
 			DotExpression dotex = (DotExpression)assex.left;
-			CinciaObject dottable = eval(dotex.left, enviro);
+			AbstractCinciaObject dottable = eval(dotex.left, enviro);
 			dottable.set(dotex.right.value, rval);
 		}catch (ClassCastException e) {
 
@@ -364,7 +364,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
+	public AbstractCinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
 
 		CinciaClass c = new CinciaClass();
 
@@ -380,25 +380,25 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalDictExpression(DictExpression dictex, Enviro enviro) {
+	public AbstractCinciaObject evalDictExpression(DictExpression dictex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalDictComprehension(DictComprehension dictcompex, Enviro enviro) {
+	public AbstractCinciaObject evalDictComprehension(DictComprehension dictcompex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalInterfaceExpression(InterfaceExpression interex, Enviro enviro) {
+	public AbstractCinciaObject evalInterfaceExpression(InterfaceExpression interex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
+	public AbstractCinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 
 		// TODO: check if env is class, in that return a method.
 
@@ -406,24 +406,24 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalListComprehension(ListComprehension listcompex, Enviro enviro) {
+	public AbstractCinciaObject evalListComprehension(ListComprehension listcompex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
+	public AbstractCinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
+	public AbstractCinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 
 
 		// TODO: do some of this stuff in evalMultiExpression ! 
 		// get arguments 
-		List<CinciaObject> args = new ArrayList<CinciaObject>();
+		List<AbstractCinciaObject> args = new ArrayList<AbstractCinciaObject>();
 
 		try {
 			MultiExpression mE = (MultiExpression)callex.args;
@@ -433,7 +433,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		// get called expression
-		CinciaObject f = eval(callex.callable, enviro);
+		AbstractCinciaObject f = eval(callex.callable, enviro);
 
 
 		// if class, call constructor and return reference to new object
@@ -464,16 +464,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalDotExpression(DotExpression dotex, Enviro enviro) {
-		CinciaObject o = eval(dotex.left, enviro);
+	public AbstractCinciaObject evalDotExpression(DotExpression dotex, Enviro enviro) {
+		AbstractCinciaObject o = eval(dotex.left, enviro);
 		return o.get(dotex.right.value);		
 	}
 
 	@Override
-	public CinciaObject evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
+	public AbstractCinciaObject evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
 
-		CinciaObject o = eval(indexex.indexable, enviro);
-		CinciaObject index = eval(indexex.index , enviro);
+		AbstractCinciaObject o = eval(indexex.indexable, enviro);
+		AbstractCinciaObject index = eval(indexex.index , enviro);
 		
 		
 		if( index instanceof CinciaString ) {
@@ -486,7 +486,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
+	public AbstractCinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		//		CinciaObject o = eval(reassex.left, enviro);
 
@@ -494,23 +494,23 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalBracketedExpression(BracketedExpression brackex, Enviro enviro) {
+	public AbstractCinciaObject evalBracketedExpression(BracketedExpression brackex, Enviro enviro) {
 		return eval(brackex.expression, enviro);
 	}
 
 	@Override
-	public CinciaObject evalDestructuringExpression(DestructuringExpression destex, Enviro enviro) {
+	public AbstractCinciaObject evalDestructuringExpression(DestructuringExpression destex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CinciaObject evalMinusExpression(MinusExpression minex, Enviro enviro) {
+	public AbstractCinciaObject evalMinusExpression(MinusExpression minex, Enviro enviro) {
 		return eval(minex.arg, enviro).__neg__();
 	}
 
 	@Override
-	public CinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
+	public AbstractCinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
 		return eval(negex.arg, enviro).__not__();
 	}
 

@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.backend;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
-public class CinciaString extends CinciaObject {
+public class CinciaString extends AbstractCinciaObject {
 
 	private String value;
 
@@ -17,7 +17,7 @@ public class CinciaString extends CinciaObject {
 	}
 	
 	@Override
-	public CinciaObject __add__(CinciaObject other) {
+	public AbstractCinciaObject __add__(AbstractCinciaObject other) {
 		
 		try {
 			CinciaString otherStr =  (CinciaString)other;

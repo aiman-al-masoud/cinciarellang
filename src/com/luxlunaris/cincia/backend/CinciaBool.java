@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
-public class CinciaBool extends CinciaObject {
+public class CinciaBool extends AbstractCinciaObject {
 
 	private boolean value;
 
@@ -24,37 +24,37 @@ public class CinciaBool extends CinciaObject {
 	}
 
 	@Override
-	public CinciaObject __add__(CinciaObject other) {
+	public AbstractCinciaObject __add__(AbstractCinciaObject other) {
 		throw new RuntimeException("Addition operators undefined on type bool");
 	}
 
 	@Override
-	public CinciaObject __sub__(CinciaObject other) {
+	public AbstractCinciaObject __sub__(AbstractCinciaObject other) {
 		throw new RuntimeException("Addition operators undefined on type bool");
 	}
 
 	@Override
-	public CinciaObject __mul__(CinciaObject other) {
+	public AbstractCinciaObject __mul__(AbstractCinciaObject other) {
 		throw new RuntimeException("Multiplication operators undefined on type bool");
 	}
 
 	@Override
-	public CinciaObject __mod__(CinciaObject other) {
+	public AbstractCinciaObject __mod__(AbstractCinciaObject other) {
 		throw new RuntimeException("Multiplication operators undefined on type bool");
 	}
 
 	@Override
-	public CinciaObject __div__(CinciaObject other) {
+	public AbstractCinciaObject __div__(AbstractCinciaObject other) {
 		throw new RuntimeException("Multiplication operators undefined on type bool");
 	}
 
 	@Override
-	public CinciaObject __neg__() {
+	public AbstractCinciaObject __neg__() {
 		throw new RuntimeException("");
 	}
 
 	@Override
-	public CinciaObject __or__(CinciaObject other) {
+	public AbstractCinciaObject __or__(AbstractCinciaObject other) {
 
 		try {
 			CinciaBool o = (CinciaBool)other;
@@ -67,7 +67,7 @@ public class CinciaBool extends CinciaObject {
 	}
 
 	@Override
-	public CinciaObject __and__(CinciaObject other) {
+	public AbstractCinciaObject __and__(AbstractCinciaObject other) {
 
 		try {
 			CinciaBool o = (CinciaBool)other;
@@ -80,27 +80,27 @@ public class CinciaBool extends CinciaObject {
 	}
 
 	@Override
-	public CinciaObject __lt__(CinciaObject other) {
+	public AbstractCinciaObject __lt__(AbstractCinciaObject other) {
 		throw new RuntimeException("");
 	}
 
 	@Override
-	public CinciaObject __gt__(CinciaObject other) {
+	public AbstractCinciaObject __gt__(AbstractCinciaObject other) {
 		throw new RuntimeException("");
 	}
 
 	@Override
-	public CinciaObject __lte__(CinciaObject other) {
+	public AbstractCinciaObject __lte__(AbstractCinciaObject other) {
 		throw new RuntimeException("");
 	}
 
 	@Override
-	public CinciaObject __gte__(CinciaObject other) {
+	public AbstractCinciaObject __gte__(AbstractCinciaObject other) {
 		throw new RuntimeException("");
 	}
 
 	@Override
-	public CinciaObject __eq__(CinciaObject other) {
+	public AbstractCinciaObject __eq__(AbstractCinciaObject other) {
 		
 		try {
 			
@@ -115,28 +115,28 @@ public class CinciaBool extends CinciaObject {
 	}
 
 	@Override
-	public CinciaObject __ne__(CinciaObject other) {
+	public AbstractCinciaObject __ne__(AbstractCinciaObject other) {
 		CinciaBool eq = (CinciaBool)this.__eq__(other);
 		return new CinciaBool(!eq.value);
 	}
 
 	@Override
-	public CinciaObject __not__() {
+	public AbstractCinciaObject __not__() {
 		return new CinciaBool(!value);
 	}
 
 	@Override
-	public CinciaObject __str__() {
+	public AbstractCinciaObject __str__() {
 		return new CinciaString(value+"");
 	}
 
 	@Override
-	public CinciaObject __init__(List<CinciaObject> args) {
+	public AbstractCinciaObject __init__(List<AbstractCinciaObject> args) {
 		throw new RuntimeException("");
 	}
 
 	@Override
-	public CinciaObject as(List<CinciaObject> args) {//TODO:!!!
+	public AbstractCinciaObject as(List<AbstractCinciaObject> args) {//TODO:!!!
 		return null;
 	}
 
