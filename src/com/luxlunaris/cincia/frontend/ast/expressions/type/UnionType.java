@@ -29,15 +29,5 @@ public class UnionType implements Type{
 	public String toString() {
 		return types.stream().map(x->x+"").reduce((x1,x2)->x1+" | "+x2).get();
 	}
-
-//	@Override
-//	public Object getValue() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Expression simplify() {
-//		return this;
-//	}
+	
 }
