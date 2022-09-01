@@ -23,6 +23,8 @@ public class CinciaObject {
 		immutable = false;
 		enviro = new Enviro(null); //TODO: parent null?
 		set("this", this, type); //TODO: extract into keywords
+		set("copy", new CinciaMethod(this::copy));
+		set("freeze", new CinciaMethod(this::freeze));
 	}
 
 
@@ -77,6 +79,10 @@ public class CinciaObject {
 		}else {
 			throw new RuntimeException("Cannot mutate immutable object!");
 		}
+	}
+	
+	public void set(String key, CinciaObject val) {
+		set(key, val, val.type);
 	}
 
 	public void remove(String key) {
@@ -215,15 +221,15 @@ public class CinciaObject {
 	//TODO: make CinciaMethod wrapper for these methods:
 	
 	// return a deep (I believe) copy of this object
-	public CinciaObject copy() {
+	public CinciaObject copy(List<CinciaObject> args) {
 		CinciaObject obj = new CinciaObject(this.type);
 		obj.enviro = new Enviro(this.enviro);
 		return obj;
 	}
 
 	// return an immutable copy of this object
-	public CinciaObject freeze() {
-		CinciaObject o = copy();
+	public CinciaObject freeze(List<CinciaObject> args) {
+		CinciaObject o = copy(args);
 		o.setImmutable();
 		return o;
 	}

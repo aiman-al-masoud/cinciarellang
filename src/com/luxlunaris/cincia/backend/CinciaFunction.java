@@ -14,21 +14,27 @@ import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
+import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
 public class CinciaFunction extends CinciaObject implements Callable{
-
-
+	
+	@FunctionalInterface
+	interface WrappedFunction{
+		CinciaObject run(List<CinciaObject> args);
+	}
 
 	private CompoundStatement block;
 	private Expression expression;	
 	private List<Entry<String, ? extends Type>> params;
 	private Eval eval;
+	private WrappedFunction wrappedFunction;
 
 	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
 		super(lambdex.signature);
@@ -36,6 +42,11 @@ public class CinciaFunction extends CinciaObject implements Callable{
 		this.block = lambdex.block;
 		this.eval = eval;
 		parseParams();
+	}
+	
+	public CinciaFunction(WrappedFunction wrappedFunction) {
+		super(new IdentifierType("WrappedFunction"));
+		this.wrappedFunction = wrappedFunction;
 	}
 
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
@@ -53,6 +64,8 @@ public class CinciaFunction extends CinciaObject implements Callable{
 			return eval.eval(this.block, enviro);
 		}else if(expression != null){
 			return eval.eval(this.expression, enviro);
+		}else if(wrappedFunction != null){
+			return wrappedFunction.run(args);
 		}
 
 		throw new RuntimeException("Lambda without expression nor block!");
