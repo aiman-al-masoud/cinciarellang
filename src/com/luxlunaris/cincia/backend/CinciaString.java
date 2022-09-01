@@ -11,6 +11,28 @@ public class CinciaString extends CinciaObject {
 		this.value = value;
 	}
 
+	@Override
+	public Object getValue() {
+		return value;
+	}
+	
+	@Override
+	public CinciaObject __add__(CinciaObject other) {
+		
+		try {
+			CinciaString otherStr =  (CinciaString)other;
+			return new CinciaString(value+otherStr.value);
+		} catch (ClassCastException e) {
+		
+		}
+		
+		throw new RuntimeException("Operator + undefined ...");
+	}
+
+	
+	
+	
+	
 	
 	
 	
