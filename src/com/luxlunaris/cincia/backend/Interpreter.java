@@ -406,6 +406,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 
 		// TODO: do some of this stuff in evalMultiExpression ! 
+		// get arguments 
 		List<CinciaObject> args = new ArrayList<CinciaObject>();
 
 		try {
