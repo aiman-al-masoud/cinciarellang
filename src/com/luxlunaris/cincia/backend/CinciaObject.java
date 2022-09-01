@@ -12,7 +12,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 public class CinciaObject {
 
 	private boolean immutable;	
-	private Enviro enviro; //internal environment of the object
+	public Enviro enviro; //internal environment of the object
 	Type type; // object's type
 	CinciaClass myClass; // object's class
 	Object value; //for primitive types
@@ -21,9 +21,11 @@ public class CinciaObject {
 	public CinciaObject(Type type) {
 		this.type = type;
 		immutable = false;
+		enviro = new Enviro(null); //TODO: parent null?
 		set("this", this, type); //TODO: extract into keywords
 	}
-
+	
+	
 	public CinciaObject(int value) {
 		type = new PrimitiveType(PrimitiveType.INT);
 		immutable = true;
@@ -168,6 +170,11 @@ public class CinciaObject {
 	public CinciaObject __str__() {
 
 	}
+	
+	public CinciaObject __init__() {
+		
+	}
+
 
 
 	// .as(ClassName) //TODO: cast/conversion to other class
