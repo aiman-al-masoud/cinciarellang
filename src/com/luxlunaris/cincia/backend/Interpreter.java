@@ -482,7 +482,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public AbstractCinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
+	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		//		CinciaObject o = eval(reassex.left, enviro);
 
