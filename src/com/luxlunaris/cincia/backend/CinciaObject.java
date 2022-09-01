@@ -23,8 +23,8 @@ public class CinciaObject {
 		immutable = false;
 		enviro = new Enviro(null); //TODO: parent null?
 		set("this", this, type); //TODO: extract into keywords
-		set("copy", new CinciaMethod(this::copy));
-		set("freeze", new CinciaMethod(this::freeze));
+		set(Magic.copy, new CinciaMethod(this::copy));
+		set(Magic.freeze, new CinciaMethod(this::freeze));
 	}
 
 
@@ -84,6 +84,11 @@ public class CinciaObject {
 	public void set(String key, CinciaObject val) {
 		set(key, val, val.type);
 	}
+	
+	public void set(Magic key, CinciaObject val) {
+		set(key.toString(), val, val.type);
+	}
+
 
 	public void remove(String key) {
 
