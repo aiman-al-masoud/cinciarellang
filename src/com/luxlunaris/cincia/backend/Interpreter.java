@@ -383,9 +383,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
-		
+
 		// TODO: check if env is class, in that return a method.
-		
+
 		return new CinciaFunction(lambdex, this::eval);
 	}
 
