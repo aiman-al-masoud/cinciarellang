@@ -313,17 +313,17 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		switch (compex.op) {
 
 		case COMPARE:
-			return left == right;
+			return left.__eq__(right);
 		case NE:
-			return left != right;
+			return left.__ne__(right);
 		case LT:
-			return (float)left < (float)right;
+			return left.__lt__(right);
 		case GT:
-			return (float)left > (float)right;
+			return left.__gt__(right);
 		case LTE:
-			return (float)left <= (float)right;
+			return left.__lte__(right);
 		case GTE:
-			return (float)left >= (float)right;
+			return left.__gte__(right);
 		default:
 			throw new RuntimeException("Unknown comparison operator!");
 		}
@@ -396,19 +396,19 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
-		
-		
+
+
 		// TODO: do some of this stuff in evalMultiExpression ! 
 		List<CinciaObject> args = new ArrayList<CinciaObject>();
-		
+
 		try {
 			MultiExpression mE = (MultiExpression)callex.args;
 			args.addAll(mE.expressions.stream().map(e-> eval(e, enviro)).collect(Collectors.toList()) );
 		}catch (ClassCastException e) {
 			args.add(eval(callex.args, enviro));
 		}
-		
-		
+
+
 		// get function 
 		CinciaFunction f = (CinciaFunction)eval(callex.callable, enviro);
 
@@ -417,7 +417,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			CinciaMethod cm = (CinciaMethod)f;
 			return cm.run(args);
 		}catch (ClassCastException e) {
-			
+
 		}
 
 		// else it's a top level function, call on COPY of current environment
@@ -449,8 +449,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
 		// TODO Auto-generated method stub
-//		CinciaObject o = eval(reassex.left, enviro);
-		
+		//		CinciaObject o = eval(reassex.left, enviro);
+
 		return null;
 	}
 
