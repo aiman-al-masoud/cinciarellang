@@ -166,6 +166,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			if(o.value.equals(Keywords.BREAK)) {
 				break;
 			}
+			
+			if(o!=null) { //return statement
+				return o;
+			}
 
 		}
 
