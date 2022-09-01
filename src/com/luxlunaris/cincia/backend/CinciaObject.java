@@ -15,8 +15,6 @@ public class CinciaObject implements Cincia{
 	public Enviro enviro; //object's internal environment 
 	Type type; // object's type
 	CinciaClass myClass; // for class types
-//	Object value; //for primitive types
-
 
 	public CinciaObject(Type type) {
 		this.type = type;
@@ -27,39 +25,6 @@ public class CinciaObject implements Cincia{
 		set(Magic.freeze, new CinciaMethod(this::freeze));
 		//TODO .as()
 	}
-
-
-//	public CinciaObject(int value) {
-//		type = new PrimitiveType(PrimitiveType.INT);
-//		immutable = true;
-//		this.value = value;
-//	}
-//
-//	public CinciaObject(double value) {
-//		type = new PrimitiveType(PrimitiveType.FLOAT);
-//		immutable = true;
-//		this.value = value;
-//	}
-//
-//	public CinciaObject(boolean value) {
-//		type = new PrimitiveType(PrimitiveType.BOOL);
-//		immutable = true;
-//		this.value = value;
-//	}
-//
-//	public CinciaObject(String value) {
-//		type = new PrimitiveType(PrimitiveType.STRING);
-//		immutable = true;
-//		this.value = value;
-//	}
-//
-//	//TODO: hacky fix, read Interpreter.evalCompoundStatement()
-//	public CinciaObject(Keywords value) {
-//		type =  null;
-//		immutable = true;
-//		this.value = value;
-//	}
-
 
 	public CinciaObject get(String key) {
 		return enviro.get(key);
