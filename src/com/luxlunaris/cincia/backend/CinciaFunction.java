@@ -53,7 +53,7 @@ public class CinciaFunction extends CinciaObject implements Callable{
 
 		if(args !=null) {
 
-			// bind args to env
+			// bind args to env, TODO: check matching types
 			for(int i=0; i < args.size(); i++) {
 				enviro.set(params.get(i).getKey(), args.get(i), params.get(i).getValue());
 			}
