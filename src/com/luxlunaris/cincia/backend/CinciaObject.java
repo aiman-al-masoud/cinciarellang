@@ -221,9 +221,6 @@ public class CinciaObject {
 		CinciaMethod cm = (CinciaMethod)get(Magic.as);
 
 	}
-
-	
-	//TODO: make CinciaMethod wrapper for these methods:
 	
 	// return a deep (I believe) copy of this object
 	public CinciaObject copy(List<CinciaObject> args) {
