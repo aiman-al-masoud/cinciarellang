@@ -9,7 +9,6 @@ public class PrimitiveType extends OneNameType{
 	public static final Keywords FLOAT = Keywords.FLOAT;
 	public static  final Keywords BOOL = Keywords.BOOL;
 	public static  final Keywords STRING = Keywords.STRING;
-
 	
 	public Keywords value;
 	
@@ -21,14 +20,5 @@ public class PrimitiveType extends OneNameType{
 	public String toString() {
 		return value+"";
 	}
-	
-
-//	@Override
-//	public Object getValue() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-	
-	
 	
 }
