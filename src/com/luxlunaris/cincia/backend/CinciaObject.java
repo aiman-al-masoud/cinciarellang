@@ -9,13 +9,13 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 //TODO: subclass for Primitive object
-public class CinciaObject {
+public class CinciaObject implements Cincia{
 
 	private boolean immutable;	
 	public Enviro enviro; //object's internal environment 
 	Type type; // object's type
 	CinciaClass myClass; // for class types
-	Object value; //for primitive types
+//	Object value; //for primitive types
 
 
 	public CinciaObject(Type type) {
@@ -29,36 +29,36 @@ public class CinciaObject {
 	}
 
 
-	public CinciaObject(int value) {
-		type = new PrimitiveType(PrimitiveType.INT);
-		immutable = true;
-		this.value = value;
-	}
-
-	public CinciaObject(double value) {
-		type = new PrimitiveType(PrimitiveType.FLOAT);
-		immutable = true;
-		this.value = value;
-	}
-
-	public CinciaObject(boolean value) {
-		type = new PrimitiveType(PrimitiveType.BOOL);
-		immutable = true;
-		this.value = value;
-	}
-
-	public CinciaObject(String value) {
-		type = new PrimitiveType(PrimitiveType.STRING);
-		immutable = true;
-		this.value = value;
-	}
-
-	//TODO: hacky fix, read Interpreter.evalCompoundStatement()
-	public CinciaObject(Keywords value) {
-		type =  null;
-		immutable = true;
-		this.value = value;
-	}
+//	public CinciaObject(int value) {
+//		type = new PrimitiveType(PrimitiveType.INT);
+//		immutable = true;
+//		this.value = value;
+//	}
+//
+//	public CinciaObject(double value) {
+//		type = new PrimitiveType(PrimitiveType.FLOAT);
+//		immutable = true;
+//		this.value = value;
+//	}
+//
+//	public CinciaObject(boolean value) {
+//		type = new PrimitiveType(PrimitiveType.BOOL);
+//		immutable = true;
+//		this.value = value;
+//	}
+//
+//	public CinciaObject(String value) {
+//		type = new PrimitiveType(PrimitiveType.STRING);
+//		immutable = true;
+//		this.value = value;
+//	}
+//
+//	//TODO: hacky fix, read Interpreter.evalCompoundStatement()
+//	public CinciaObject(Keywords value) {
+//		type =  null;
+//		immutable = true;
+//		this.value = value;
+//	}
 
 
 	public CinciaObject get(String key) {
@@ -125,9 +125,9 @@ public class CinciaObject {
 	public boolean __bool__(){
 
 
-		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == PrimitiveType.BOOL) {
-			return (boolean)value;
-		}
+//		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == PrimitiveType.BOOL) {
+//			return (boolean)value;
+//		}
 
 		//retrieve __bool__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__);
@@ -138,10 +138,10 @@ public class CinciaObject {
 
 	public CinciaObject __add__(CinciaObject other) {
 
-		//TODO: add all cases
-		if(type instanceof PrimitiveType && other.type instanceof PrimitiveType) {
-			return new CinciaObject((int)value + (int)other.value);
-		}
+//		//TODO: add all cases
+//		if(type instanceof PrimitiveType && other.type instanceof PrimitiveType) {
+//			return new CinciaObject((int)value + (int)other.value);
+//		}
 
 		// retrieve __add__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get(Magic.__add__);
@@ -235,6 +235,12 @@ public class CinciaObject {
 		CinciaObject o = copy(args);
 		o.setImmutable();
 		return o;
+	}
+
+
+	@Override
+	public Object getValue() {
+		return this;
 	}
 
 

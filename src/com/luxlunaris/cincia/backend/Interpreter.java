@@ -65,22 +65,26 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalInt(Int intex, Enviro enviro) {
-		return new CinciaObject((int)intex.getValue());
+		return Cincia.create(intex.getValue());
+//		return new CinciaObject((int)intex.getValue());
 	}
 
 	@Override
 	public CinciaObject evalFloat(Float floatex, Enviro enviro) {
-		return new CinciaObject((double)floatex.getValue());
+//		return new CinciaObject((double)floatex.getValue());
+		return Cincia.create(floatex.getValue());
 	}
 
 	@Override
 	public CinciaObject evalStr(Str strex, Enviro enviro) {
-		return new CinciaObject((String)strex.getValue());
+//		return new CinciaObject((String)strex.getValue());
+		return Cincia.create(strex.getValue());
 	}
 
 	@Override
 	public CinciaObject evalBool(Bool boolex, Enviro enviro) {
-		return new CinciaObject((boolean)boolex.getValue());		
+//		return new CinciaObject((boolean)boolex.getValue());	
+		return Cincia.create(boolex.getValue());
 	}
 
 	@Override
@@ -151,11 +155,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				continue;
 			}
 
-			if(o.value.equals(Keywords.CONTINUE)) {
+			if(o.getValue().equals(Keywords.CONTINUE)) {
 				continue;
 			}
 
-			if(o.value.equals(Keywords.BREAK)) {
+			if(o.getValue().equals(Keywords.BREAK)) {
 				break;
 			}
 
@@ -183,9 +187,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			if(s instanceof ReturnStatement) {
 				return eval( (ReturnStatement)s , enviro);
 			}else if(s instanceof BreakStatement) {
-				return new CinciaObject(Keywords.BREAK);
+//				return new CinciaObject(Keywords.BREAK);
+				return new CinciaKeyword(Keywords.BREAK);
 			}else if(s instanceof ContinueStatement) {
-				return new CinciaObject(Keywords.CONTINUE);
+//				return new CinciaObject(Keywords.CONTINUE);
+				return new CinciaKeyword(Keywords.CONTINUE);
 			}else {
 				eval(s, enviro);
 			}
