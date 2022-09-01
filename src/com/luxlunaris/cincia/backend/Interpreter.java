@@ -355,19 +355,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
-		
+
 		CinciaClass c = new CinciaClass();
-		
+
+
+		for(Declaration dec : classex.declarations) {
+			
+		}
+
 		for(AssignmentExpression assign : classex.assignments) {
 			String key = ((Identifier)assign.left).value;
 			CinciaObject value = eval(assign.right, enviro);
 			c.set(key, value, value.type);
 		}
-		
-		
-		
-		
-		return null;
+
+		return c;
 	}
 
 	@Override
