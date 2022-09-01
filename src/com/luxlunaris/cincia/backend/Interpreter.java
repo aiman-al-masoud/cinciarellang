@@ -341,7 +341,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		CinciaObject rval =  eval(assex.right, enviro);
 
 		if(assex.left instanceof Identifier) {
-			enviro.set(((Identifier)assex.left).value, rval, rval.type);
+			enviro.set(((Identifier)assex.left).value, rval, rval.getType());
 		}
 
 		// if dot expression
@@ -414,12 +414,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public AbstractCinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
+	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 
 
 		// TODO: do some of this stuff in evalMultiExpression ! 
 		// get arguments 
-		List<AbstractCinciaObject> args = new ArrayList<AbstractCinciaObject>();
+		List<CinciaObject> args = new ArrayList<CinciaObject>();
 
 		try {
 			MultiExpression mE = (MultiExpression)callex.args;
@@ -429,7 +429,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		// get called expression
-		AbstractCinciaObject f = eval(callex.callable, enviro);
+		CinciaObject f = eval(callex.callable, enviro);
 
 
 		// if class, call constructor and return reference to new object
@@ -460,16 +460,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public AbstractCinciaObject evalDotExpression(DotExpression dotex, Enviro enviro) {
-		AbstractCinciaObject o = eval(dotex.left, enviro);
+	public CinciaObject evalDotExpression(DotExpression dotex, Enviro enviro) {
+		CinciaObject o = eval(dotex.left, enviro);
 		return o.get(dotex.right.value);		
 	}
 
 	@Override
-	public AbstractCinciaObject evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
+	public CinciaObject evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
 
-		AbstractCinciaObject o = eval(indexex.indexable, enviro);
-		AbstractCinciaObject index = eval(indexex.index , enviro);
+		CinciaObject o = eval(indexex.indexable, enviro);
+		CinciaObject index = eval(indexex.index , enviro);
 		
 		
 		if( index instanceof CinciaString ) {
