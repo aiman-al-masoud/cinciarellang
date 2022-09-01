@@ -136,7 +136,31 @@ public class CinciaObject {
 	public CinciaObject __and__(CinciaObject other) {
 
 	}
+	
+	public CinciaObject __lt__(CinciaObject other) {
 
+	}
+	
+	public CinciaObject __gt__(CinciaObject other) {
+
+	}
+	
+	public CinciaObject __lte__(CinciaObject other) {
+
+	}
+	
+	public CinciaObject __gte__(CinciaObject other) {
+
+	}
+	
+	public CinciaObject __eq__(CinciaObject other) {
+
+	}
+	
+	public CinciaObject __ne__(CinciaObject other) {
+
+	}
+	
 	public CinciaObject __not__() {
 
 	}
