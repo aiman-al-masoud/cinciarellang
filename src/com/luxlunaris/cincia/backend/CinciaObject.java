@@ -59,7 +59,6 @@ public class CinciaObject {
 	}
 	
 
-
 	public CinciaObject get(String key) {
 		return enviro.get(key);
 	}
