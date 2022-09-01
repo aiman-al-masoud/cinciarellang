@@ -44,7 +44,8 @@ public enum Keywords {
 	 FLOAT,
 	 BOOL,
 	 DEC,// decalaration	
-	 TO;
+	 TO,
+	 STRING;
 	
 	public static Keywords fromString(String value){
 		

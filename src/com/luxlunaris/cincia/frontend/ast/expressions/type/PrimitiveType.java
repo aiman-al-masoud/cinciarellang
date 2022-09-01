@@ -8,7 +8,7 @@ public class PrimitiveType extends OneNameType{
 	public static final Keywords INT = Keywords.INT;
 	public static final Keywords FLOAT = Keywords.FLOAT;
 	public static  final Keywords BOOL = Keywords.BOOL;
-	public static  final Keywords STRING = null;
+	public static  final Keywords STRING = Keywords.STRING;
 
 	
 	public Keywords value;
