@@ -211,9 +211,8 @@ public class CinciaObject {
 	
 	// return a deep (I believe) copy of this object
 	public CinciaObject copy() {
-		Enviro env = new Enviro(enviro);
 		CinciaObject obj = new CinciaObject(this.type);
-		obj.enviro = env;
+		obj.enviro = new Enviro(this.enviro);
 		return obj;
 	}
 
