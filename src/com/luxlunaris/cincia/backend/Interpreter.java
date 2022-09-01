@@ -74,7 +74,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	
 
 	public Interpreter() {
-		scopes = new Stack<Enviro>();
 		scopes.push(new Enviro(null));
 	}
 
