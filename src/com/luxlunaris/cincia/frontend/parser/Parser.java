@@ -1222,7 +1222,7 @@ public class Parser {
 
 	private IdentifierType parseIdentifierType() {
 
-		IdentifierType iD = new IdentifierType((Identifier)tStream.peek());
+		IdentifierType iD = new IdentifierType(((Identifier)tStream.peek()).value);
 		tStream.next();
 		return iD;
 	}

@@ -5,11 +5,10 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
 public class IdentifierType extends OneNameType{
 	
-//	public Identifier value;
 	public String value;
 	
-	public IdentifierType(Identifier id) {
-		this.value = id.value;
+	public IdentifierType(String id) {
+		this.value = id;
 	}
 	
 	@Override
@@ -17,10 +16,4 @@ public class IdentifierType extends OneNameType{
 		return value+"";
 	}
 
-//	@Override
-//	public Object getValue() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-	
 }

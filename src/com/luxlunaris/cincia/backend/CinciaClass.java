@@ -12,7 +12,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 public class CinciaClass extends CinciaObject{
 
 	public CinciaClass() {
-		super(new IdentifierType(new Identifier("Class")));
+		super(new IdentifierType("Class"));
 	}
 
 	public void declareAttribute(String name, Type type) {

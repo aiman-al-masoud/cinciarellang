@@ -37,7 +37,7 @@ public class DeclarationTester extends AbstractTester{
 		UnionType uT = new UnionType();
 		uT.addType(new PrimitiveType(PrimitiveType.INT));
 		uT.addType(new PrimitiveType(PrimitiveType.FLOAT));
-		uT.addType(new IdentifierType(new Identifier("Object")));
+		uT.addType(new IdentifierType(new Identifier("Object").value));
 		un.type = uT;
 		add("x:int|float|Object", un.toString());
 		
