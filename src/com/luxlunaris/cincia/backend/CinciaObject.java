@@ -46,11 +46,11 @@ public class CinciaObject implements Cincia{
 			throw new RuntimeException("Cannot mutate immutable object!");
 		}
 	}
-	
+
 	public void set(String key, CinciaObject val) {
 		set(key, val, val.type);
 	}
-	
+
 	public void set(Magic key, CinciaObject val) {
 		set(key.toString(), val, val.type);
 	}
@@ -69,7 +69,7 @@ public class CinciaObject implements Cincia{
 	public void setImmutable() {
 
 		immutable = true;
-		
+
 		if(enviro.values().size()==0) {//TODO: maybe unnecessary?
 			return;
 		}
@@ -101,78 +101,91 @@ public class CinciaObject implements Cincia{
 
 
 	public CinciaObject __sub__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__sub__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __mul__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__mul__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __mod__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__mod__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __div__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__div__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __neg__() {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__neg__);
+		return cm.run(null);
 	}
 
 	public CinciaObject __or__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__or__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __and__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__and__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __lt__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__lt__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __gt__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__gt__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __lte__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__lte__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __gte__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__gte__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __eq__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__eq__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __ne__(CinciaObject other) {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__ne__);
+		return cm.run(Arrays.asList(other));
 	}
 
 	public CinciaObject __not__() {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__not__);
+		return cm.run(null);
 	}
 
 	public CinciaObject __str__() {
-
+		CinciaMethod cm = (CinciaMethod)get(Magic.__str__);
+		return cm.run(null);
 	}
 
 	public CinciaObject __init__(List<CinciaObject> args) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__init__);
 		return cm.run(args);
 	}
-
-
-
+	
 	// .as(ClassName) //TODO: cast/conversion to other class
 	public CinciaObject as(CinciaClass clazz) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.as);
-
+		return cm.run(Arrays.asList(clazz));
 	}
-	
+
 	// return a deep (I believe) copy of this object
 	public CinciaObject copy(List<CinciaObject> args) {
 		CinciaObject obj = new CinciaObject(this.type);
@@ -187,11 +200,9 @@ public class CinciaObject implements Cincia{
 		return o;
 	}
 
-
 	@Override
 	public Object getValue() {
 		return this;
 	}
-
 
 }
