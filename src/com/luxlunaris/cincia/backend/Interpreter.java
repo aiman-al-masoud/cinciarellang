@@ -437,7 +437,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalDotExpression(DotExpression dotex, Enviro enviro) {
-		CinciaObject o = (CinciaObject)eval(dotex.left, enviro);
+		CinciaObject o = eval(dotex.left, enviro);
 		return o.get(dotex.right.value);		
 	}
 
