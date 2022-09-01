@@ -270,11 +270,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return null;
 	}
 
-
-
-
-	// TODO: generalize for operator overloading
-
+	
 	@Override
 	public CinciaObject evalMulExpression(MulExpression mulex, Enviro enviro) {
 		// TODO Auto-generated method stub
