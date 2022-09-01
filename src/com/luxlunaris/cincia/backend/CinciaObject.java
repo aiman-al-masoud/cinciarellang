@@ -23,37 +23,37 @@ public class CinciaObject {
 		immutable = false;
 		set("this", this, type); //TODO: extract into keywords
 	}
-	
+
 	public CinciaObject(int value) {
 		type = new PrimitiveType(PrimitiveType.INT);
 		immutable = true;
 		this.value = value;
 	}
-	
+
 	public CinciaObject(double value) {
 		type = new PrimitiveType(PrimitiveType.FLOAT);
 		immutable = true;
 		this.value = value;
 	}
-	
+
 	public CinciaObject(boolean value) {
 		type = new PrimitiveType(PrimitiveType.BOOL);
 		immutable = true;
 		this.value = value;
 	}
-	
-	
+
+
 	public CinciaObject(String value) {
 		type = new PrimitiveType(PrimitiveType.STRING);
 		immutable = true;
 		this.value = value;
 	}
-	
+
 
 	public CinciaObject get(String key) {
 		return enviro.get(key);
 	}
-	
+
 	public Type getType(String key) {
 		return enviro.getType(key);
 	}
@@ -68,7 +68,7 @@ public class CinciaObject {
 	}
 
 	public void remove(String key) {
-		
+
 		if(!immutable) {
 			enviro.remove(key);
 		}else {
@@ -79,41 +79,80 @@ public class CinciaObject {
 	public void setImmutable() {
 		immutable = true;
 	}
-	
+
 	public Enviro getEnviro() {
 		return enviro;
 	}
-	
-	
+
+
 	public boolean __bool__(){
-		
-		
+
+
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == PrimitiveType.BOOL) {
 			return (boolean)value;
 		}
-			
+
 		//retrieve __bool__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get("__bool__");
 		return (boolean)cm.run(null).value;
-		
+
 	}
-	
-	
+
+
 	public CinciaObject __add__(CinciaObject other) {
-		
+
 		//TODO: add all cases
 		if(type instanceof PrimitiveType && other.type instanceof PrimitiveType) {
 			return new CinciaObject((int)value + (int)other.value);
 		}
-		
+
 		// retrieve __add__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get("__add__");
 		return cm.run(Arrays.asList(other));
-		
+
 	}
-	
+
+
+	public CinciaObject __sub__(CinciaObject other) {
+
+	}
+
+	public CinciaObject __mul__(CinciaObject other) {
+
+	}
+
+	public CinciaObject __div__(CinciaObject other) {
+
+	}
+
+	public CinciaObject __neg__() {
+
+	}
+
+	public CinciaObject __or__(CinciaObject other) {
+
+	}
+
+	public CinciaObject __and__(CinciaObject other) {
+
+	}
+
+	public CinciaObject __not__() {
+
+	}
+
+	public CinciaObject __str__() {
+
+	}
+
+
 	// .as(ClassName) //TODO: cast/conversion to other class
-	
+	public CinciaObject as(CinciaClass clazz) {
+
+	}
+
+
+
 
 
 }
