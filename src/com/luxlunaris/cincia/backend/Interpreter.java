@@ -196,7 +196,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				return new CinciaObject(Keywords.CONTINUE);
 			}else {
 				eval(s, enviro);
-
 			}
 
 		}
