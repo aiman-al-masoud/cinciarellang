@@ -33,7 +33,7 @@ public class CinciaClass extends AbstractCinciaObject{
 
 	//TODO: remove method duplication (all instances should refer to same func objects)
 	//TODO: deal with modifiers such as static
-	public AbstractCinciaObject constructor(List<AbstractCinciaObject> args) {
+	public AbstractCinciaObject constructor(List<CinciaObject> args) {
 		Enviro newEnv = this.getEnviro().newChild(); 
 		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);  
 		obj.myClass = this;

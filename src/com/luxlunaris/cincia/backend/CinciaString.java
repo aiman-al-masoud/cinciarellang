@@ -17,7 +17,7 @@ public class CinciaString extends AbstractCinciaObject {
 	}
 	
 	@Override
-	public AbstractCinciaObject __add__(AbstractCinciaObject other) {
+	public CinciaObject __add__(CinciaObject other) {
 		
 		try {
 			CinciaString otherStr =  (CinciaString)other;
