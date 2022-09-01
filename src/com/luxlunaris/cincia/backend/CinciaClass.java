@@ -55,7 +55,6 @@ public class CinciaClass extends CinciaObject{
 		obj.enviro = newEnv;
 		obj.__init__(args);
 		return obj;
-		
 	}
 
 
