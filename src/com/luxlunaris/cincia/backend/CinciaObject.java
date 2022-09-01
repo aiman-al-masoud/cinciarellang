@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.backend;
 
 
 import java.util.Arrays;
+import java.util.List;
 
 import com.luxlunaris.cincia.backend.Interpreter.Eval;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
@@ -171,8 +172,9 @@ public class CinciaObject {
 
 	}
 	
-	public CinciaObject __init__() {
-		
+	public CinciaObject __init__(List<CinciaObject> args) {
+		CinciaMethod cm = (CinciaMethod)get("__init__");
+		return cm.run(args);
 	}
 
 
