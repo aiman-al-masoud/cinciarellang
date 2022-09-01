@@ -25,19 +25,28 @@ public class AbstractCinciaObject implements CinciaObject{
 		set(Magic.as, new CinciaMethod(this::as));
 	}
 
-	public AbstractCinciaObject get(String key) {
+	public CinciaObject get(String key) {
 		return enviro.get(key);
 	}
 
-	public AbstractCinciaObject get(Magic key) {
+	public CinciaObject get(Magic key) {
 		return get(key.toString());
 	}
 
 	public Type getType(String key) {
 		return enviro.getType(key);
 	}
+	
+	public Type getType() {
+		return type;
+	}
+	
+	@Override
+	public Object getValue() {
+		return this;
+	}
 
-	public void set(String key, AbstractCinciaObject val, Type type) {
+	public void set(String key, CinciaObject val, Type type) {
 
 		if(!immutable) {
 			enviro.set(key, val, type);
@@ -46,12 +55,12 @@ public class AbstractCinciaObject implements CinciaObject{
 		}
 	}
 
-	public void set(String key, AbstractCinciaObject val) {
-		set(key, val, val.type);
+	public void set(String key, CinciaObject val) {
+		set(key, val, val.getType());
 	}
 
-	public void set(Magic key, AbstractCinciaObject val) {
-		set(key.toString(), val, val.type);
+	public void set(Magic key, CinciaObject val) {
+		set(key.toString(), val, val.getType());
 	}
 
 
@@ -92,114 +101,130 @@ public class AbstractCinciaObject implements CinciaObject{
 		return (boolean)cm.run(null).getValue();
 	}
 
-	public AbstractCinciaObject __add__(AbstractCinciaObject other) {
+	@Override
+	public CinciaObject __add__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__add__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __sub__(AbstractCinciaObject other) {
+	
+	@Override
+	public CinciaObject __sub__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__sub__);
 		return cm.run(Arrays.asList(other));
 	}
 
-	public AbstractCinciaObject __mul__(AbstractCinciaObject other) {
+	@Override
+	public CinciaObject __mul__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__mul__);
 		return cm.run(Arrays.asList(other));
 	}
 
-	public AbstractCinciaObject __mod__(AbstractCinciaObject other) {
+	@Override
+	public CinciaObject __mod__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__mod__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __div__(AbstractCinciaObject other) {
+	
+	@Override
+	public CinciaObject __div__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__div__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __neg__() {
+	
+	@Override
+	public CinciaObject __neg__() {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__neg__);
 		return cm.run(null);
 	}
 
-	public AbstractCinciaObject __or__(AbstractCinciaObject other) {
+	@Override
+	public CinciaObject __or__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__or__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __and__(AbstractCinciaObject other) {
+	
+	@Override
+	public CinciaObject __and__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__and__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __lt__(AbstractCinciaObject other) {
+	
+	@Override
+	public CinciaObject __lt__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__lt__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __gt__(AbstractCinciaObject other) {
+	
+	@Override
+	public CinciaObject __gt__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__gt__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __lte__(AbstractCinciaObject other) {
+	
+	@Override
+	public CinciaObject __lte__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__lte__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __gte__(AbstractCinciaObject other) {
+	
+	@Override
+	public CinciaObject __gte__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__gte__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __eq__(AbstractCinciaObject other) {
+	
+	@Override
+	public CinciaObject __eq__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__eq__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __ne__(AbstractCinciaObject other) {
+	
+	@Override
+	public CinciaObject __ne__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__ne__);
 		return cm.run(Arrays.asList(other));
 	}
-
-	public AbstractCinciaObject __not__() {
+	
+	@Override
+	public CinciaObject __not__() {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__not__);
 		return cm.run(null);
 	}
-
-	public AbstractCinciaObject __str__() {
+	
+	@Override
+	public CinciaObject __str__() {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__str__);
 		return cm.run(null);
 	}
 
-	public AbstractCinciaObject __init__(List<AbstractCinciaObject> args) {
+	public CinciaObject __init__(List<CinciaObject> args) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__init__);
 		return cm.run(args);
 	}
 	
 	// .as(ClassName) //TODO: cast/conversion to other class
-	public AbstractCinciaObject as(List<AbstractCinciaObject> args) {
+	@Override
+	public CinciaObject as(List<CinciaObject> args) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.as);
 		return cm.run(args);
 	}
 
 	// return a deep (I believe) copy of this object
-	public AbstractCinciaObject copy(List<AbstractCinciaObject> args) {
+	@Override
+	public CinciaObject copy(List<CinciaObject> args) {
 		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);
 		obj.enviro = new Enviro(this.enviro);
 		return obj;
 	}
 
 	// return an immutable copy of this object
-	public AbstractCinciaObject freeze(List<AbstractCinciaObject> args) {
-		AbstractCinciaObject o = copy(args);
+	@Override
+	public CinciaObject freeze(List<CinciaObject> args) {
+		CinciaObject o = copy(args);
 		o.setImmutable();
 		return o;
 	}
 
-	@Override
-	public Object getValue() {
-		return this;
-	}
+	
 
 }

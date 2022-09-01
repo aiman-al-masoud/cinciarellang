@@ -6,7 +6,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 interface CinciaObject {
 
 
-	static AbstractCinciaObject create(Object object) {
+	static CinciaObject create(Object object) {
 
 		if(object instanceof Boolean) {
 			return new CinciaBool((boolean)object);
@@ -22,36 +22,37 @@ interface CinciaObject {
 	}
 
 	Object getValue();
-	AbstractCinciaObject get(String key);
-	AbstractCinciaObject get(Magic key);
+	Type getType();
+	CinciaObject get(String key);
+	CinciaObject get(Magic key);
 	Type getType(String key);
-	void set(String key, AbstractCinciaObject val, Type type);
-	void set(String key, AbstractCinciaObject val);
-	void set(Magic key, AbstractCinciaObject val);
+	void set(String key, CinciaObject val, Type type);
+	void set(String key, CinciaObject val);
+	void set(Magic key, CinciaObject val);
 	void remove(String key);
 	void setImmutable(); // recursively make the object immutable.
 	Enviro getEnviro();
 	boolean __bool__();
-	AbstractCinciaObject __add__(AbstractCinciaObject other);
-	AbstractCinciaObject __sub__(AbstractCinciaObject other);
-	AbstractCinciaObject __mul__(AbstractCinciaObject other);
-	AbstractCinciaObject __mod__(AbstractCinciaObject other);
-	AbstractCinciaObject __div__(AbstractCinciaObject other);
-	AbstractCinciaObject __or__(AbstractCinciaObject other) ;
-	AbstractCinciaObject __and__(AbstractCinciaObject other) ;
-	AbstractCinciaObject __lt__(AbstractCinciaObject other) ;
-	AbstractCinciaObject __gt__(AbstractCinciaObject other);
-	AbstractCinciaObject __lte__(AbstractCinciaObject other);
-	AbstractCinciaObject __gte__(AbstractCinciaObject other);
-	AbstractCinciaObject __eq__(AbstractCinciaObject other) ;
-	AbstractCinciaObject __ne__(AbstractCinciaObject other) ;
-	AbstractCinciaObject __not__() ;
-	AbstractCinciaObject __str__() ;
-	AbstractCinciaObject __neg__() ;
-	AbstractCinciaObject __init__(List<AbstractCinciaObject> args);
-	AbstractCinciaObject as(List<AbstractCinciaObject> args); //cast/conversion to other class	
-	AbstractCinciaObject copy(List<AbstractCinciaObject> args); // return a deep (I believe) copy of this object
-	AbstractCinciaObject freeze(List<AbstractCinciaObject> args);// return an immutable copy of this object
+	CinciaObject __add__(CinciaObject other);
+	CinciaObject __sub__(CinciaObject other);
+	CinciaObject __mul__(CinciaObject other);
+	CinciaObject __mod__(CinciaObject other);
+	CinciaObject __div__(CinciaObject other);
+	CinciaObject __or__(CinciaObject other) ;
+	CinciaObject __and__(CinciaObject other) ;
+	CinciaObject __lt__(CinciaObject other) ;
+	CinciaObject __gt__(CinciaObject other);
+	CinciaObject __lte__(CinciaObject other);
+	CinciaObject __gte__(CinciaObject other);
+	CinciaObject __eq__(CinciaObject other) ;
+	CinciaObject __ne__(CinciaObject other) ;
+	CinciaObject __not__() ;
+	CinciaObject __str__() ;
+	CinciaObject __neg__() ;
+	CinciaObject __init__(List<CinciaObject> args);
+	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	
+	CinciaObject copy(List<CinciaObject> args); // return a deep (I believe) copy of this object
+	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
 
 
 }

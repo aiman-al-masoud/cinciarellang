@@ -4,9 +4,6 @@ import java.util.List;
 
 import com.luxlunaris.cincia.backend.Interpreter.Eval;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
-import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
-import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 
 public class CinciaMethod extends CinciaFunction{
 	
@@ -36,7 +33,7 @@ public class CinciaMethod extends CinciaFunction{
 	 * @param eval
 	 * @return
 	 */
-	public AbstractCinciaObject run(List<AbstractCinciaObject> args) {
+	public CinciaObject run(List<CinciaObject> args) {
 		//TODO PROBLEM: this overwrites also stuff in this given how this was implemented
 		return super.run(args, parent.getEnviro());
 	}

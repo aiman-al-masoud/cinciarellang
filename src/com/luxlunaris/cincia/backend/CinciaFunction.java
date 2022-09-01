@@ -27,7 +27,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	
 	@FunctionalInterface
 	interface WrappedFunction{
-		AbstractCinciaObject run(List<AbstractCinciaObject> args);
+		CinciaObject run(List<CinciaObject> args);
 	}
 
 	private CompoundStatement block;
@@ -49,9 +49,9 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		this.wrappedFunction = wrappedFunction;
 	}
 
-	public AbstractCinciaObject run(List<AbstractCinciaObject> args, Enviro enviro) {
+	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 
-		if(args !=null) {
+		if(args != null) {
 
 			// bind args to env, TODO: check matching types
 			for(int i=0; i < args.size(); i++) {
