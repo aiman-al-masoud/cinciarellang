@@ -153,10 +153,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			// run one iteration
 			CinciaObject o = eval(whileStatement.block, enviro); 
-			
-			
+
+
 			//check iteration exit value to determine what to do next
-			
+
 			if(o == null) {
 				continue;
 			}
@@ -346,11 +346,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
 
 		CinciaObject rval =  eval(assex.right, enviro);
-		
+
 		if(assex.left instanceof Identifier) {
 			enviro.set(((Identifier)assex.left).value, rval, rval.type);
 		}
-		
+
 		//TODO: if indexed expresson or dot expression ... 
 
 		return rval;
@@ -452,7 +452,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
-		
+
 		throw new RuntimeException("Unsupported callable type!");
 	}
 
