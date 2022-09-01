@@ -352,6 +352,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		//TODO: if indexed expresson  
+		
 
 		return rval;
 	}
