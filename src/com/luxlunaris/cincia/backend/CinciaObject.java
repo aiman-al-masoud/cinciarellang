@@ -4,7 +4,6 @@ package com.luxlunaris.cincia.backend;
 import java.util.Arrays;
 import java.util.List;
 
-import com.luxlunaris.cincia.backend.Interpreter.Eval;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
