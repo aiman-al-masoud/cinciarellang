@@ -37,7 +37,6 @@ public enum Keywords {
 	 SET,
 	 SINGLETON,
 	 POOLED,
-	 IMMUTABLE,
 	 IS,
 	 IN,
 	 INT,
