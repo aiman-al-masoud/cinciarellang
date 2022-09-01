@@ -154,9 +154,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			// run one iteration
 			CinciaObject o = eval(whileStatement.block, enviro); 
 
-
 			//check iteration exit value to determine what to do next
-
 			if(o == null) {
 				continue;
 			}
