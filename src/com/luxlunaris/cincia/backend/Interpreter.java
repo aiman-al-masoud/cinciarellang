@@ -453,7 +453,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			return o.get((String)index.value);
 		}
 
-		return null;
+		throw new RuntimeException("Unknown index type!");
 	}
 
 	@Override
