@@ -273,8 +273,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	
 	@Override
 	public CinciaObject evalMulExpression(MulExpression mulex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return eval(mulex.left, enviro).__mul__(eval(mulex.right, enviro));
 	}
 
 	@Override
