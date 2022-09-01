@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend;
 import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -24,6 +25,8 @@ public class CinciaClass extends CinciaObject{
 	public CinciaClass() {
 		super(new IdentifierType(new Identifier("Class")));
 	}
+	
+	
 
 
 	public void declareAttribute(String name, Type type) {

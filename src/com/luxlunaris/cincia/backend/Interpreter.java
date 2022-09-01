@@ -355,7 +355,18 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
-		// TODO Auto-generated method stub
+		
+		CinciaClass c = new CinciaClass();
+		
+		for(AssignmentExpression assign : classex.assignments) {
+			String key = ((Identifier)assign.left).value;
+			CinciaObject value = eval(assign.right, enviro);
+			c.set(key, value, value.type);
+		}
+		
+		
+		
+		
 		return null;
 	}
 
