@@ -112,7 +112,7 @@ public class CinciaObject {
 		
 	}
 	
-	// .as(ClassName)
+	// .as(ClassName) //TODO: cast/conversion to other class
 	
 
 
