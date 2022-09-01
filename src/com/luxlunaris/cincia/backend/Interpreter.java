@@ -70,8 +70,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	interface Eval{
 		CinciaObject eval(Ast ast, Enviro enviro);
 	}
-
-	Stack<Enviro> scopes;
+	
+	
 
 	public Interpreter() {
 		scopes = new Stack<Enviro>();
