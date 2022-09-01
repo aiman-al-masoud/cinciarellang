@@ -25,6 +25,7 @@ public class CinciaObject {
 		set("this", this, type); //TODO: extract into keywords
 		set(Magic.copy, new CinciaMethod(this::copy));
 		set(Magic.freeze, new CinciaMethod(this::freeze));
+		//TODO .as()
 	}
 
 
