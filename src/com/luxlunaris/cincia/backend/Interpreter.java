@@ -167,7 +167,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				break;
 			}
 			
-			if(o!=null) { //return statement
+			//return statement
+			if(o!=null) { 
 				return o;
 			}
 
