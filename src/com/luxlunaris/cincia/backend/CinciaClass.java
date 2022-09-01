@@ -20,9 +20,9 @@ public class CinciaClass extends CinciaObject{
 		super(new IdentifierType(new Identifier("Class")));
 	}
 	
-	public String getClassName() {
-		return ((IdentifierType)type).value;
-	}
+//	public String getClassName() {
+//		return ((IdentifierType)type).value;
+//	}
 
 	public void declareAttribute(String name, Type type) {
 		set(name, null, type);
