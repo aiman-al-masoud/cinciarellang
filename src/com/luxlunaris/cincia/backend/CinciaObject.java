@@ -102,7 +102,7 @@ public class CinciaObject {
 		}
 
 		//retrieve __bool__ from object's attributes and call it 
-		CinciaMethod cm = (CinciaMethod)get("__bool__");
+		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__.toString());
 		return (boolean)cm.run(null).value;
 
 	}
@@ -116,7 +116,7 @@ public class CinciaObject {
 		}
 
 		// retrieve __add__ from object's attributes and call it 
-		CinciaMethod cm = (CinciaMethod)get("__add__");
+		CinciaMethod cm = (CinciaMethod)get(Magic.__add__.toString());
 		return cm.run(Arrays.asList(other));
 
 	}
@@ -191,7 +191,7 @@ public class CinciaObject {
 
 	// .as(ClassName) //TODO: cast/conversion to other class
 	public CinciaObject as(CinciaClass clazz) {
-		CinciaMethod cm = (CinciaMethod)get("as");
+		CinciaMethod cm = (CinciaMethod)get(Magic.as.toString());
 
 	}
 
