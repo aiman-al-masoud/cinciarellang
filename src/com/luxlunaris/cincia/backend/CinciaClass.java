@@ -18,6 +18,10 @@ public class CinciaClass extends CinciaObject{
 		set(name, method, method.type);
 	}	
 	
+	public void addAttribute(String name, CinciaObject value) {
+		set(name, value, value.type);
+	}	
+	
 	public void declareAttribute(String name, Type type) {
 		set(name, null, type);
 	}	
