@@ -61,6 +61,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
+import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 
 public class Interpreter extends AbstractTraversal<CinciaObject> {
@@ -274,6 +275,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalMulExpression(MulExpression mulex, Enviro enviro) {
 		
+		
+		
 		return eval(mulex.left, enviro).__mul__(eval(mulex.right, enviro));
 	}
 
@@ -282,7 +285,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject left = eval(addex.left, enviro);
 		CinciaObject right = eval(addex.right, enviro);
-		return left.__add__(right);
+		
+		if(addex.op == Operators.PLUS) {
+			return left.__add__(right);
+		}else if(addex.op == Operators.MINUS) {
+			return left.__sub__(right);
+		}
+		
 	}
 
 	@Override
