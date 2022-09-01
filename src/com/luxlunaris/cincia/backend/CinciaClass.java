@@ -11,23 +11,9 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
 public class CinciaClass extends CinciaObject{
 
-	
-	//TODO: nope, all classes are unfortunately anonymous
-//	public CinciaClass(String className) {
-//		super(new IdentifierType(new Identifier(className)));
-//	}
-	
-	
-//	public String getClassName() {
-//	return ((IdentifierType)type).value;
-//}
-	
 	public CinciaClass() {
 		super(new IdentifierType(new Identifier("Class")));
 	}
-	
-	
-
 
 	public void declareAttribute(String name, Type type) {
 		set(name, null, type);
@@ -37,7 +23,6 @@ public class CinciaClass extends CinciaObject{
 		set(name, null, type);
 	}	
 
-
 	public void addMethod(String name, CinciaMethod method) {
 		set(name, method, method.type);
 	}	
@@ -45,7 +30,6 @@ public class CinciaClass extends CinciaObject{
 	public void addAttribute(String name, CinciaObject value) {
 		set(name, value, value.type);
 	}	
-
 
 	//TODO: remove method duplication (all instances should refer to same func objects)
 	//TODO: deal with modifiers such as static
