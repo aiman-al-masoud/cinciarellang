@@ -341,9 +341,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
 
-		//		eval(assex.left, enviro);
-		//		eval(assex.right, enviro);
-		
 		CinciaObject rval =  eval(assex.right, enviro);
 		
 		if(assex.left instanceof Identifier) {
