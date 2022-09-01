@@ -88,9 +88,14 @@ public class CinciaObject {
 		}
 	}
 
+	// recursively make the object immutable.
 	public void setImmutable() {
 
 		immutable = true;
+		
+		if(enviro.values().size()==0) {//TODO: maybe unnecessary?
+			return;
+		}
 
 		enviro.values().stream().forEach(o->{
 			if(o!=null) {
