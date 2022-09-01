@@ -467,12 +467,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalMinusExpression(MinusExpression minex, Enviro enviro) {
-		return -(double)eval(minex.arg, enviro);
+		return eval(minex.arg, enviro).__neg__();
 	}
 
 	@Override
 	public CinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
-		return !(boolean)eval(negex.arg, enviro);
+		return eval(negex.arg, enviro).__not__();
 	}
 
 
