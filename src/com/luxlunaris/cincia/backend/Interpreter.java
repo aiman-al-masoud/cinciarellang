@@ -357,9 +357,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
 
 		CinciaClass c = new CinciaClass();
-
-
-		for(Declaration dec : classex.declarations) {
+		
+		for(Declaration dec : classex.declarations) {	
 			
 		}
 
