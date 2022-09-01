@@ -8,13 +8,12 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
-//TODO: subclass for Primitive object
 public class CinciaObject implements Cincia{
 
 	private boolean immutable;	
 	public Enviro enviro; //object's internal environment 
 	Type type; // object's type
-	CinciaClass myClass; // for class types
+	CinciaClass myClass; // object's class
 
 	public CinciaObject(Type type) {
 		this.type = type;
