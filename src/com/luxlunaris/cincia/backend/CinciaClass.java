@@ -23,6 +23,7 @@ public class CinciaClass extends CinciaObject{
 		Enviro newEnv = this.getEnviro().newChild(); //TODO: remove method duplication
 		CinciaObject obj = new CinciaObject(this.type);
 		obj.enviro = newEnv;
+		obj.__init__();
 		return obj;
 	}
 
