@@ -474,12 +474,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject o = eval(indexex.indexable, enviro);
 		CinciaObject index = eval(indexex.index , enviro);
-
-		// TODO: check if index is int or iterable (fancy index)
-
-		if( index.value instanceof String ) {
-			return o.get((String)index.value);
+		
+		
+		if( index instanceof CinciaString ) {
+			return o.get((String)index.getValue());
 		}
+		
+		// TODO: check if index is int or iterable (fancy index)
 
 		throw new RuntimeException("Unsupported index type!");
 	}
