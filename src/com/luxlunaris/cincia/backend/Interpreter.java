@@ -490,23 +490,23 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public AbstractCinciaObject evalBracketedExpression(BracketedExpression brackex, Enviro enviro) {
+	public CinciaObject evalBracketedExpression(BracketedExpression brackex, Enviro enviro) {
 		return eval(brackex.expression, enviro);
 	}
 
 	@Override
-	public AbstractCinciaObject evalDestructuringExpression(DestructuringExpression destex, Enviro enviro) {
+	public CinciaObject evalDestructuringExpression(DestructuringExpression destex, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AbstractCinciaObject evalMinusExpression(MinusExpression minex, Enviro enviro) {
+	public CinciaObject evalMinusExpression(MinusExpression minex, Enviro enviro) {
 		return eval(minex.arg, enviro).__neg__();
 	}
 
 	@Override
-	public AbstractCinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
+	public CinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
 		return eval(negex.arg, enviro).__not__();
 	}
 
