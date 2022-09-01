@@ -33,7 +33,7 @@ public class CinciaClass extends CinciaObject{
 	}	
 
 
-	//TODO: remove method duplication (all instances refer to same func objects)
+	//TODO: remove method duplication (all instances should refer to same func objects)
 	//TODO: deal with modifiers such as static
 	public CinciaObject constructor(List<CinciaObject> args) {
 		Enviro newEnv = this.getEnviro().newChild(); 
