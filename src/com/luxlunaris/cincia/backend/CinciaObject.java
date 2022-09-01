@@ -87,7 +87,7 @@ public class CinciaObject implements Cincia{
 
 
 	public boolean __bool__(){
-		//retrieve __bool__ from object's attributes and call it 
+		//TODO: handle keyerror exception, check if cm null
 		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__);
 		return (boolean)cm.run(null).getValue();
 	}
