@@ -363,9 +363,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		for(AssignmentExpression assign : classex.assignments) {
-//			String key = ((Identifier)assign.left).value;
-//			CinciaObject value = eval(assign.right, enviro);
-//			c.set(key, value, value.type);
 			eval(assign, c.getEnviro());
 		}
 		
