@@ -174,9 +174,7 @@ public class CinciaObject {
 	public CinciaObject as(CinciaClass clazz) {
 
 	}
-
-
-
+	
 
 
 }
