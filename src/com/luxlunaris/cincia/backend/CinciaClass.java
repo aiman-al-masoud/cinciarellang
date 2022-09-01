@@ -11,9 +11,13 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 public class CinciaClass extends CinciaObject{
 
 	
+	//TODO: nope, all classes are unfortunately anonymous
+//	public CinciaClass(String className) {
+//		super(new IdentifierType(new Identifier(className)));
+//	}
 	
-	public CinciaClass(String className) {
-		super(new IdentifierType(new Identifier(className)));
+	public CinciaClass() {
+		super(new IdentifierType(new Identifier("Class")));
 	}
 	
 	public String getClassName() {
