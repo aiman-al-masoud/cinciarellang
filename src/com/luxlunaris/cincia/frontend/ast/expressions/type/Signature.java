@@ -25,7 +25,7 @@ public class Signature implements Type{
 	}
 	
 	@Override
-	public Signature simplify() { 
+	public Signature simplify() { //TODO: how does THIS work? Auto upcast?
 		this.params = params.simplify();
 		this.returnType = (Type) returnType.simplify();
 		return this;
