@@ -13,7 +13,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 public class CinciaObject {
 
 	private boolean immutable;	
-	public Enviro enviro; //internal environment of the object
+	public Enviro enviro; //object's internal environment 
 	Type type; // object's type
 	CinciaClass myClass; // object's class
 	Object value; //for primitive types
