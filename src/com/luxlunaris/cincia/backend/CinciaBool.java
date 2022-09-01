@@ -136,7 +136,7 @@ public class CinciaBool extends CinciaObject {
 	}
 
 	@Override
-	public CinciaObject as(CinciaClass clazz) {
+	public CinciaObject as(CinciaClass clazz) {//TODO:!!!
 		return null;
 	}
 
