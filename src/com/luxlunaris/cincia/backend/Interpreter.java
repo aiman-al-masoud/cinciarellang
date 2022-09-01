@@ -77,21 +77,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		scopes.push(new Enviro(null));
 	}
 
-//	public void enterEnv(Enviro env) {
-//		scopes.push(env);
-//	}
-//
-//	public void exitEnv() {
-//
-//		if(scopes.size() > 1) {
-//			scopes.pop();
-//		}
-//	}
-//
-//	public Enviro getEnv() {
-//		return scopes.peek();
-//	}
-
 	@Override
 	public CinciaObject evalInt(Int intex, Enviro enviro) {
 		return new CinciaObject((int)intex.getValue());
