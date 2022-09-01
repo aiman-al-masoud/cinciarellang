@@ -332,16 +332,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalOrExpression(OrExpression orex, Enviro enviro) {
-		boolean left = (boolean)eval(orex.left, enviro);
-		boolean right = (boolean)eval(orex.right, enviro);
-		return left || right;
+		CinciaObject left = eval(orex.left, enviro);
+		CinciaObject right = eval(orex.right, enviro);
+		return left.__or__(right);
 	}
 
 	@Override
 	public CinciaObject evalAndExpression(AndExpression andex, Enviro enviro) {
-		boolean left = (boolean)eval(andex.left, enviro);
-		boolean right = (boolean)eval(andex.right, enviro);
-		return left && right;
+		CinciaObject left = eval(andex.left, enviro);
+		CinciaObject right = eval(andex.right, enviro);
+		return left.__and__(right);
 	}
 
 	@Override
