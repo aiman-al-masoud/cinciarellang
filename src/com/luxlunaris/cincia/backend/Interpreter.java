@@ -343,8 +343,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		//		eval(assex.left, enviro);
 		//		eval(assex.right, enviro);
+		
+		CinciaObject rval =  eval(assex.right, enviro);
+		
+		if(assex.left instanceof Identifier) {
+			enviro.set(((Identifier)assex.left).value, rval, rval.type);
+		}
+		
+		//TODO: if indexed expresson or dot expression ... 
 
-		return null;
+		return rval;
 	}
 
 	@Override
