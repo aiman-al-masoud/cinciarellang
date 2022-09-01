@@ -446,6 +446,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 		
 		
+		throw new RuntimeException("Unsupported callable type!");
 
 	}
 
