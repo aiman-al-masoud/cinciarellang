@@ -416,12 +416,28 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 
-		// get function 
-		CinciaFunction f = (CinciaFunction)eval(callex.callable, enviro);
-		
-		
-		
-		
+		// get called expression
+		CinciaObject f = eval(callex.callable, enviro);
+
+
+		// if class, call constructor and reference to new object
+		try {
+			CinciaClass c = (CinciaClass)f;
+			return c.constructor(args);
+		}catch (ClassCastException e) {
+
+		}
+
+		// if function, call on parent object's ORIGINAL env
+		try {
+			CinciaMethod cm = (CinciaMethod)f;
+			return cm.run(args);
+		}catch (ClassCastException e) {
+
+		}
+
+
+
 
 		// if method, call on parent object's ORIGINAL env
 		try {
