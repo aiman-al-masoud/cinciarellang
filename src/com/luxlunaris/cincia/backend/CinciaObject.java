@@ -207,6 +207,8 @@ public class CinciaObject {
 	}
 
 	
+	//TODO: make CinciaMethod wrapper for these methods:
+	
 	// return a deep (I believe) copy of this object
 	public CinciaObject copy() {
 		Enviro env = new Enviro(enviro);
