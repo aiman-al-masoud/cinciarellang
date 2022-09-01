@@ -10,16 +10,4 @@ public class SingleType implements Type{
 		return this;
 	}
 
-	
-//	@Override
-//	public Object getValue() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Expression simplify() {
-//		return this;
-//	}
-
 }
