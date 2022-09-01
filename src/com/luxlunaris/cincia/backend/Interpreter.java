@@ -56,7 +56,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 
-public class Interpreter extends AbstractTraversal<AbstractCinciaObject> {
+public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@FunctionalInterface
 	interface Eval{
@@ -64,31 +64,27 @@ public class Interpreter extends AbstractTraversal<AbstractCinciaObject> {
 	}
 
 	@Override
-	public AbstractCinciaObject evalInt(Int intex, Enviro enviro) {
+	public CinciaObject evalInt(Int intex, Enviro enviro) {
 		return CinciaObject.create(intex.getValue());
-//		return new CinciaObject((int)intex.getValue());
 	}
 
 	@Override
-	public AbstractCinciaObject evalFloat(Float floatex, Enviro enviro) {
-//		return new CinciaObject((double)floatex.getValue());
+	public CinciaObject evalFloat(Float floatex, Enviro enviro) {
 		return CinciaObject.create(floatex.getValue());
 	}
 
 	@Override
-	public AbstractCinciaObject evalStr(Str strex, Enviro enviro) {
-//		return new CinciaObject((String)strex.getValue());
+	public CinciaObject evalStr(Str strex, Enviro enviro) {
 		return CinciaObject.create(strex.getValue());
 	}
 
 	@Override
-	public AbstractCinciaObject evalBool(Bool boolex, Enviro enviro) {
-//		return new CinciaObject((boolean)boolex.getValue());	
+	public CinciaObject evalBool(Bool boolex, Enviro enviro) {
 		return CinciaObject.create(boolex.getValue());
 	}
 
 	@Override
-	public AbstractCinciaObject evalIdentifier(Identifier identex, Enviro enviro) {
+	public CinciaObject evalIdentifier(Identifier identex, Enviro enviro) {
 		return enviro.get(identex.value);
 	}
 
