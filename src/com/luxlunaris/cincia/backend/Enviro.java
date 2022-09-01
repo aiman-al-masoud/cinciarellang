@@ -1,6 +1,9 @@
 package com.luxlunaris.cincia.backend;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -39,7 +42,6 @@ public class Enviro {
 		return types.get(key);
 	}
 	
-
 	public void set(String key, CinciaObject val, Type type) {
 		vars.put(key, val);
 		types.put(key, type);
@@ -52,6 +54,10 @@ public class Enviro {
 	
 	public Enviro getParent() {
 		return parent;
+	}
+	
+	public List<CinciaObject> values(){
+		return new ArrayList<CinciaObject>(vars.values());
 	}
 
 

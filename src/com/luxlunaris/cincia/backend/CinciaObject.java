@@ -56,12 +56,12 @@ public class CinciaObject {
 		immutable = true;
 		this.value = value;
 	}
-	
+
 
 	public CinciaObject get(String key) {
 		return enviro.get(key);
 	}
-	
+
 	public CinciaObject get(Magic key) {
 		return get(key.toString());
 	}
@@ -89,7 +89,15 @@ public class CinciaObject {
 	}
 
 	public void setImmutable() {
+
 		immutable = true;
+
+		enviro.values().stream().forEach(o->{
+			if(o!=null) {
+				o.setImmutable();
+			}
+		});
+
 	}
 
 	public Enviro getEnviro() {
@@ -198,6 +206,21 @@ public class CinciaObject {
 
 	}
 
+	
+	// return a deep (I believe) copy of this object
+	public CinciaObject copy() {
+		Enviro env = new Enviro(enviro);
+		CinciaObject obj = new CinciaObject(this.type);
+		obj.enviro = env;
+		return obj;
+	}
+
+	// return an immutable copy of this object
+	public CinciaObject freeze() {
+		CinciaObject o = copy();
+		o.setImmutable();
+		return o;
+	}
 
 
 }
