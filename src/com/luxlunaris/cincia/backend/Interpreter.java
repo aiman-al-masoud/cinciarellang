@@ -151,17 +151,17 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		while(eval(whileStatement.cond, enviro).__bool__()) {
 
-			Object o = eval(whileStatement.block, enviro);
+			CinciaObject o = eval(whileStatement.block, enviro);
 
 			if(o == null) {
 				continue;
 			}
 
-			if(o.equals(Keywords.CONTINUE)) {
+			if(o.value.equals(Keywords.CONTINUE)) {
 				continue;
 			}
 
-			if(o.equals(Keywords.BREAK)) {
+			if(o.value.equals(Keywords.BREAK)) {
 				break;
 			}
 
@@ -185,10 +185,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				return eval( (ReturnStatement)s , enviro);
 
 			}else if(s instanceof BreakStatement) {
-				return Keywords.BREAK;
+				return new CinciaObject(Keywords.BREAK);
 
 			}else if(s instanceof ContinueStatement) {
-				return Keywords.CONTINUE;
+				return new CinciaObject(Keywords.CONTINUE);
 
 			}else {
 				eval(s, enviro);

@@ -25,8 +25,8 @@ public class CinciaObject {
 		enviro = new Enviro(null); //TODO: parent null?
 		set("this", this, type); //TODO: extract into keywords
 	}
-	
-	
+
+
 	public CinciaObject(int value) {
 		type = new PrimitiveType(PrimitiveType.INT);
 		immutable = true;
@@ -50,6 +50,14 @@ public class CinciaObject {
 		immutable = true;
 		this.value = value;
 	}
+
+	//TODO: tmp fix, read Interpreter.evalCompoundStatement()
+	public CinciaObject(Keywords value) {
+		type =  null;
+		immutable = true;
+		this.value = value;
+	}
+	
 
 
 	public CinciaObject get(String key) {
@@ -122,7 +130,7 @@ public class CinciaObject {
 	public CinciaObject __mul__(CinciaObject other) {
 
 	}
-	
+
 	public CinciaObject __mod__(CinciaObject other) {
 
 	}
@@ -142,31 +150,31 @@ public class CinciaObject {
 	public CinciaObject __and__(CinciaObject other) {
 
 	}
-	
+
 	public CinciaObject __lt__(CinciaObject other) {
 
 	}
-	
+
 	public CinciaObject __gt__(CinciaObject other) {
 
 	}
-	
+
 	public CinciaObject __lte__(CinciaObject other) {
 
 	}
-	
+
 	public CinciaObject __gte__(CinciaObject other) {
 
 	}
-	
+
 	public CinciaObject __eq__(CinciaObject other) {
 
 	}
-	
+
 	public CinciaObject __ne__(CinciaObject other) {
 
 	}
-	
+
 	public CinciaObject __not__() {
 
 	}
@@ -174,7 +182,7 @@ public class CinciaObject {
 	public CinciaObject __str__() {
 
 	}
-	
+
 	public CinciaObject __init__(List<CinciaObject> args) {
 		CinciaMethod cm = (CinciaMethod)get("__init__");
 		return cm.run(args);
@@ -187,7 +195,7 @@ public class CinciaObject {
 		CinciaMethod cm = (CinciaMethod)get("as");
 
 	}
-	
+
 
 
 }
