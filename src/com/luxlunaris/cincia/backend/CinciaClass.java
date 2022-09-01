@@ -36,6 +36,7 @@ public class CinciaClass extends CinciaObject{
 	public CinciaObject constructor(List<CinciaObject> args) {
 		Enviro newEnv = this.getEnviro().newChild(); 
 		CinciaObject obj = new CinciaObject(this.type);  
+		obj.myClass = this;
 		obj.enviro = newEnv;
 		obj.__init__(args);
 		return obj;
