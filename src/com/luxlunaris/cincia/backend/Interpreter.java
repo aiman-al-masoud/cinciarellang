@@ -271,13 +271,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return null;
 	}
 
-	
+
 	@Override
 	public CinciaObject evalMulExpression(MulExpression mulex, Enviro enviro) {
-		
+
 		CinciaObject left = eval(mulex.left, enviro);
 		CinciaObject right = eval(mulex.right, enviro);
-		
+
 		if(mulex.op == Operators.ASTERISK) {
 			return left.__mul__(right);
 		}else if(mulex.op == Operators.DIV) {
@@ -285,7 +285,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else if(mulex.op == Operators.MOD) {
 			return left.__mod__(right);
 		}
-		
+
 		throw new RuntimeException("Unknown multiplication operator!");
 	}
 
@@ -294,15 +294,15 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject left = eval(addex.left, enviro);
 		CinciaObject right = eval(addex.right, enviro);
-		
+
 		if(addex.op == Operators.PLUS) {
 			return left.__add__(right);
 		}else if(addex.op == Operators.MINUS) {
 			return left.__sub__(right);
 		}
-		
+
 		throw new RuntimeException("Unknown addition operator!");
-		
+
 	}
 
 	@Override
@@ -358,7 +358,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
 
 		CinciaClass c = new CinciaClass();
-		
+
 		for(Declaration dec : classex.declarations) {	
 			eval(dec, c.getEnviro());
 		}
@@ -366,7 +366,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		for(AssignmentExpression assign : classex.assignments) {
 			eval(assign, c.getEnviro());
 		}
-		
+
 		return c;
 	}
 
