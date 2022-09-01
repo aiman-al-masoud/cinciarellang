@@ -15,7 +15,7 @@ public class CinciaObject {
 	private boolean immutable;	
 	public Enviro enviro; //object's internal environment 
 	Type type; // object's type
-	CinciaClass myClass; // object's class
+	CinciaClass myClass; // for class types
 	Object value; //for primitive types
 
 
