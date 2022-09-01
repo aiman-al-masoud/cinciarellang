@@ -420,7 +420,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		CinciaObject f = eval(callex.callable, enviro);
 
 
-		// if class, call constructor and reference to new object
+		// if class, call constructor and return reference to new object
 		try {
 			CinciaClass c = (CinciaClass)f;
 			return c.constructor(args);
