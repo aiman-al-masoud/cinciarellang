@@ -427,17 +427,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
-
-		// if function, call on parent object's ORIGINAL env
-		try {
-			CinciaMethod cm = (CinciaMethod)f;
-			return cm.run(args);
-		}catch (ClassCastException e) {
-
-		}
-
-
-
+		
 
 		// if method, call on parent object's ORIGINAL env
 		try {
@@ -447,8 +437,15 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		// else it's a top level function, call on COPY of whatever environment was passed in
-		return f.run(args, enviro.newChild());
+		// else it's a top level function, call on COPY of whatever environment was passed in		
+		try {
+			CinciaFunction l = (CinciaFunction)f;
+			return l.run(args, enviro.newChild());
+		}catch (ClassCastException e) {
+
+		}
+		
+		
 
 	}
 
