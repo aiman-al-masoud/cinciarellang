@@ -180,9 +180,9 @@ public class CinciaObject implements Cincia{
 	}
 	
 	// .as(ClassName) //TODO: cast/conversion to other class
-	public CinciaObject as(CinciaClass clazz) {
+	public CinciaObject as(List<CinciaObject> args) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.as);
-		return cm.run(Arrays.asList(clazz));
+		return cm.run(args);
 	}
 
 	// return a deep (I believe) copy of this object

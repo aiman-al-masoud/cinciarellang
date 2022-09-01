@@ -49,7 +49,7 @@ interface Cincia {
 	CinciaObject __str__() ;
 	CinciaObject __neg__() ;
 	CinciaObject __init__(List<CinciaObject> args);
-	CinciaObject as(CinciaClass clazz); //cast/conversion to other class	
+	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	
 	CinciaObject copy(List<CinciaObject> args); // return a deep (I believe) copy of this object
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
 
