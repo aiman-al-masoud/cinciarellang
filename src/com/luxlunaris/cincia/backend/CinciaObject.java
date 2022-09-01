@@ -185,6 +185,7 @@ public class CinciaObject {
 
 	// .as(ClassName) //TODO: cast/conversion to other class
 	public CinciaObject as(CinciaClass clazz) {
+		CinciaMethod cm = (CinciaMethod)get("as");
 
 	}
 	
