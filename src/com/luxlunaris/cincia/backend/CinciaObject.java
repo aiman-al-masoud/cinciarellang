@@ -88,30 +88,15 @@ public class CinciaObject implements Cincia{
 
 
 	public boolean __bool__(){
-
-
-//		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == PrimitiveType.BOOL) {
-//			return (boolean)value;
-//		}
-
 		//retrieve __bool__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__);
-		return (boolean)cm.run(null).value;
-
+		return (boolean)cm.run(null).getValue();
 	}
 
-
 	public CinciaObject __add__(CinciaObject other) {
-
-//		//TODO: add all cases
-//		if(type instanceof PrimitiveType && other.type instanceof PrimitiveType) {
-//			return new CinciaObject((int)value + (int)other.value);
-//		}
-
 		// retrieve __add__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get(Magic.__add__);
 		return cm.run(Arrays.asList(other));
-
 	}
 
 
