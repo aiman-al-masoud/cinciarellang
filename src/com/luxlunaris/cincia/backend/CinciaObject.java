@@ -93,11 +93,9 @@ public class CinciaObject implements Cincia{
 	}
 
 	public CinciaObject __add__(CinciaObject other) {
-		// retrieve __add__ from object's attributes and call it 
 		CinciaMethod cm = (CinciaMethod)get(Magic.__add__);
 		return cm.run(Arrays.asList(other));
 	}
-
 
 	public CinciaObject __sub__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__sub__);
