@@ -415,7 +415,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			args.add(eval(callex.args, enviro));
 		}
 
-
 		// get called expression
 		CinciaObject f = eval(callex.callable, enviro);
 
@@ -427,7 +426,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
-		
 
 		// if method, call on parent object's ORIGINAL env
 		try {
