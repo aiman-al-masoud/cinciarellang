@@ -275,9 +275,18 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalMulExpression(MulExpression mulex, Enviro enviro) {
 		
+		CinciaObject left = eval(mulex.left, enviro);
+		CinciaObject right = eval(mulex.right, enviro);
 		
+		if(mulex.op == Operators.ASTERISK) {
+			return left.__mul__(right);
+		}else if(mulex.op == Operators.DIV) {
+			return left.__div__(right);
+		}else if(mulex.op == Operators.MOD) {
+			return left.__mod__(right);
+		}
 		
-		return eval(mulex.left, enviro).__mul__(eval(mulex.right, enviro));
+		throw new RuntimeException("Unknown multiplication operator!");
 	}
 
 	@Override
@@ -291,6 +300,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else if(addex.op == Operators.MINUS) {
 			return left.__sub__(right);
 		}
+		
+		throw new RuntimeException("Unknown addition operator!");
 		
 	}
 

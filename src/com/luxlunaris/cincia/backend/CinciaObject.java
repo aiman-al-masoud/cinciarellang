@@ -123,6 +123,10 @@ public class CinciaObject {
 	public CinciaObject __mul__(CinciaObject other) {
 
 	}
+	
+	public CinciaObject __mod__(CinciaObject other) {
+
+	}
 
 	public CinciaObject __div__(CinciaObject other) {
 
