@@ -29,15 +29,5 @@ public class CinciaString extends CinciaObject {
 		throw new RuntimeException("Operator + undefined ...");
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 
 }
