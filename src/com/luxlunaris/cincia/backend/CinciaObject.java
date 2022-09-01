@@ -62,6 +62,10 @@ public class CinciaObject {
 	public CinciaObject get(String key) {
 		return enviro.get(key);
 	}
+	
+	public CinciaObject get(Magic key) {
+		return get(key.toString());
+	}
 
 	public Type getType(String key) {
 		return enviro.getType(key);
@@ -102,7 +106,7 @@ public class CinciaObject {
 		}
 
 		//retrieve __bool__ from object's attributes and call it 
-		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__.toString());
+		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__);
 		return (boolean)cm.run(null).value;
 
 	}
@@ -116,7 +120,7 @@ public class CinciaObject {
 		}
 
 		// retrieve __add__ from object's attributes and call it 
-		CinciaMethod cm = (CinciaMethod)get(Magic.__add__.toString());
+		CinciaMethod cm = (CinciaMethod)get(Magic.__add__);
 		return cm.run(Arrays.asList(other));
 
 	}
@@ -183,7 +187,7 @@ public class CinciaObject {
 	}
 
 	public CinciaObject __init__(List<CinciaObject> args) {
-		CinciaMethod cm = (CinciaMethod)get("__init__");
+		CinciaMethod cm = (CinciaMethod)get(Magic.__init__);
 		return cm.run(args);
 	}
 
@@ -191,7 +195,7 @@ public class CinciaObject {
 
 	// .as(ClassName) //TODO: cast/conversion to other class
 	public CinciaObject as(CinciaClass clazz) {
-		CinciaMethod cm = (CinciaMethod)get(Magic.as.toString());
+		CinciaMethod cm = (CinciaMethod)get(Magic.as);
 
 	}
 
