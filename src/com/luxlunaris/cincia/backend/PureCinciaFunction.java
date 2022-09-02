@@ -9,7 +9,8 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
  * 
  * Doesn't even read from the global env, its only input are its arguments.
  * And (like regular functions), it can't write to the gloal env.
- *
+ * 
+ * TODO: make sure it can't be passed args by reference.
  */
 public class PureCinciaFunction extends CinciaFunction {
 
