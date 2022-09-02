@@ -99,8 +99,10 @@ public abstract class AbstractTraversal<T> {
 		}else if(ast instanceof ThrowStatement) {
 			return evalThrowStatement((ThrowStatement)ast, enviro);
 			
+		}else if (ast == null) { //TODO: really?
+			return null;
 		}
-
+		
 		throw new RuntimeException("No such AST class!");
 
 	}
