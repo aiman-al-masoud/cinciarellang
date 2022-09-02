@@ -340,6 +340,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
 
+		
+		
 		CinciaObject rval =  eval(assex.right, enviro);
 
 		if(assex.left instanceof Identifier) {
@@ -423,7 +425,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 
-
+		
 		// TODO: do some of this stuff in evalMultiExpression ! 
 		// get arguments 
 		List<CinciaObject> args = new ArrayList<CinciaObject>();
