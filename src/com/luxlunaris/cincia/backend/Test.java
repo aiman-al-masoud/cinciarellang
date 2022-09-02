@@ -17,8 +17,9 @@ public class Test {
 		
 		String source = "x = 1+1+2+1*3;";
 		source = "x = class { y = 1; };"; //TODO?
+		source = "x = (\\x->1)();";
 		
-		source = "x = (\\x->x)(1);";
+//		source = "x = (\\x->x)(1);";
 				
 		Preprocessor preprocessor = new Preprocessor(source);
 		CharStream charStream = new CharStream(preprocessor.process());
