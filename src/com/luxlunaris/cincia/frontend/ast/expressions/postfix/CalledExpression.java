@@ -15,7 +15,11 @@ public class CalledExpression implements PostfixExpression {
 	public Expression simplify() {
 		CalledExpression cE = new CalledExpression();
 		cE.callable = (PostfixExpression) callable.simplify();
-		cE.args = args.simplify();
+		
+		if(cE.args != null) {
+			cE.args = args.simplify();
+		}
+		
 		return cE;
 	}
 	

@@ -16,7 +16,10 @@ public class Test {
 		
 		
 		String source = "x = 1+1+2+1*3;";
-		source = "x = class {};";
+		source = "x = class { y = 1; };"; //TODO?
+		
+		source = "x = (\\x->4)();";
+				
 		Preprocessor preprocessor = new Preprocessor(source);
 		CharStream charStream = new CharStream(preprocessor.process());
 		TokenStream tokenStream = new TokenStream(charStream);

@@ -196,6 +196,8 @@ public abstract class AbstractTraversal<T> {
 			return evalInterfaceExpression((InterfaceExpression)objex, enviro);
 		}else if (objex instanceof ClassExpression) {
 			return evalClassExpression((ClassExpression)objex, enviro);
+		}else if (objex instanceof LambdaExpression) {
+			return evalLambdaExpression((LambdaExpression)objex, enviro);
 		}
 
 		throw new RuntimeException("No such object expression!");

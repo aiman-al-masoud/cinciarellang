@@ -428,11 +428,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// get arguments 
 		List<CinciaObject> args = new ArrayList<CinciaObject>();
 
-		try {
-			MultiExpression mE = (MultiExpression)callex.args;
-			args.addAll(mE.expressions.stream().map(e-> eval(e, enviro)).collect(Collectors.toList()) );
-		}catch (ClassCastException e) {
-			args.add(eval(callex.args, enviro));
+		if(callex.args!=null) {
+			try {
+				MultiExpression mE = (MultiExpression)callex.args;
+				args.addAll(mE.expressions.stream().map(e-> eval(e, enviro)).collect(Collectors.toList()) );
+			}catch (ClassCastException e) {
+				args.add(eval(callex.args, enviro));
+			}
 		}
 
 		// get called expression
