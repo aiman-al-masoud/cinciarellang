@@ -12,7 +12,7 @@ public class CinciaString extends AbstractCinciaObject {
 	}
 
 	@Override
-	public Object getValue() {
+	public String getValue() {
 		return value;
 	}
 	

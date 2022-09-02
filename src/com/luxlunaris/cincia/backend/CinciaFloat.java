@@ -12,5 +12,10 @@ public class CinciaFloat extends AbstractCinciaObject {
 		super(new PrimitiveType(PrimitiveType.FLOAT));
 		this.value = value;		
 	}
+	
+	@Override
+	public Double getValue() {
+		return value;
+	}
 
 }
