@@ -128,19 +128,20 @@ public class CinciaFloat extends AbstractCinciaObject {
 		
 		try {
 
-			CinciaInt otherInt = (CinciaInt)other;
-			return new CinciaInt(value%otherInt.value);
-		}catch (ClassCastException e) {
-
-		}
-
-		try {
-
 			CinciaFloat otherFloat = (CinciaFloat)other;
 			return new CinciaFloat(value%otherFloat.getValue());
 		}catch (ClassCastException e) {
 
 		}
+		
+		try {
+
+			CinciaInt otherInt = (CinciaInt)other;
+			return new CinciaFloat(value%otherInt.getValue());
+		}catch (ClassCastException e) {
+
+		}
+		
 		
 		throw new RuntimeException("Unsupported modulo!");
 	}
