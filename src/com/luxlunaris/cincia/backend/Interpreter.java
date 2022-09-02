@@ -53,6 +53,8 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 
@@ -397,6 +399,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 
 		// TODO: check if env is class, in that return a method.
+		if(lambdex.modifiers.contains(Modifiers.PURE)) {
+			
+		}
 
 		return new CinciaFunction(lambdex, this::eval);
 	}
