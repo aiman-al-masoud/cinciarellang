@@ -239,6 +239,8 @@ public abstract class AbstractTraversal<T> {
 			return evalBracketedExpression((BracketedExpression)primex, enviro);
 		}else if(primex instanceof Identifier) {
 			return evalIdentifier((Identifier)primex, enviro);
+		}else if(primex instanceof Constant) {
+			return evalConstant((Constant)primex, enviro);
 		}
 
 		throw new RuntimeException("No such primary expression!");
