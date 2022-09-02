@@ -15,7 +15,7 @@ public class Test {
 	public static void main(String[] args) {
 		
 		
-		String source = "x = 1;";
+		String source = "x = 1+1+2;";
 		Preprocessor preprocessor = new Preprocessor(source);
 		CharStream charStream = new CharStream(preprocessor.process());
 		TokenStream tokenStream = new TokenStream(charStream);
