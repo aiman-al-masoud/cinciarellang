@@ -399,8 +399,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 
 		// TODO: check if env is class, in that return a method.
+		
+		
 		if(lambdex.modifiers.contains(Modifiers.PURE)) {
-			
+			return new PureCinciaFunction(lambdex, this::eval);
 		}
 
 		return new CinciaFunction(lambdex, this::eval);
