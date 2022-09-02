@@ -19,7 +19,7 @@ public class Test {
 		source = "x = class { y = 1; };"; //TODO?
 		source = "x = (\\x->1)();";
 		
-		source = "x = (\\x->2*x)(1);";
+		source = "x = (\\x, y->2*x + y)(1, 2);";
 				
 		Preprocessor preprocessor = new Preprocessor(source);
 		CharStream charStream = new CharStream(preprocessor.process());
