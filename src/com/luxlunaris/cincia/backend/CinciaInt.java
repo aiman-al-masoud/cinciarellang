@@ -68,7 +68,7 @@ public class CinciaInt extends AbstractCinciaObject {
 
 		}
 		
-		throw new RuntimeException("Unsupported addition!");
+		throw new RuntimeException("Unsupported subtraction!");
 	}
 	
 	
@@ -91,7 +91,7 @@ public class CinciaInt extends AbstractCinciaObject {
 
 		}
 		
-		throw new RuntimeException("Unsupported addition!");
+		throw new RuntimeException("Unsupported multiplication!");
 	}
 	
 	@Override
@@ -113,7 +113,7 @@ public class CinciaInt extends AbstractCinciaObject {
 
 		}
 		
-		throw new RuntimeException("Unsupported addition!");
+		throw new RuntimeException("Unsupported division!");
 	}
 	
 	@Override
@@ -135,7 +135,7 @@ public class CinciaInt extends AbstractCinciaObject {
 
 		}
 		
-		throw new RuntimeException("Unsupported addition!");
+		throw new RuntimeException("Unsupported modulo!");
 	}
 	
 	
