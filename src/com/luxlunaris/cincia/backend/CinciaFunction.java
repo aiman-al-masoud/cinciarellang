@@ -95,7 +95,6 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 			if (d instanceof VariableDeclaration) {
 				
 				VariableDeclaration vD = (VariableDeclaration)d;
-				
 				return Map.entry(vD.name.value, vD.type==null? new IdentifierType("Any") : vD.type);
 			}
 
