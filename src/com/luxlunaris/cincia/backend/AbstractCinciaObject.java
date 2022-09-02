@@ -228,6 +228,11 @@ public class AbstractCinciaObject implements CinciaObject{
 		o.setImmutable();
 		return o;
 	}
+	
+	@Override
+	public String toString() {
+		return getValue()+"";
+	}
 
 
 
