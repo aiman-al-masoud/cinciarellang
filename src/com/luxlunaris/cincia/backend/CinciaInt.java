@@ -94,7 +94,49 @@ public class CinciaInt extends AbstractCinciaObject {
 		throw new RuntimeException("Unsupported addition!");
 	}
 	
+	@Override
+	public CinciaObject __div__(CinciaObject other) {
+		
+		try {
+
+			CinciaInt otherInt = (CinciaInt)other;
+			return new CinciaInt(value/otherInt.value);
+		}catch (ClassCastException e) {
+
+		}
+
+		try {
+
+			CinciaFloat otherFloat = (CinciaFloat)other;
+			return new CinciaFloat(value/otherFloat.getValue());
+		}catch (ClassCastException e) {
+
+		}
+		
+		throw new RuntimeException("Unsupported addition!");
+	}
 	
+	@Override
+	public CinciaObject __mod__(CinciaObject other) {
+		
+		try {
+
+			CinciaInt otherInt = (CinciaInt)other;
+			return new CinciaInt(value%otherInt.value);
+		}catch (ClassCastException e) {
+
+		}
+
+		try {
+
+			CinciaFloat otherFloat = (CinciaFloat)other;
+			return new CinciaFloat(value%otherFloat.getValue());
+		}catch (ClassCastException e) {
+
+		}
+		
+		throw new RuntimeException("Unsupported addition!");
+	}
 	
 	
 
