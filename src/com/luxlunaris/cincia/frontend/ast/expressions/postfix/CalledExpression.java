@@ -16,7 +16,7 @@ public class CalledExpression implements PostfixExpression {
 		CalledExpression cE = new CalledExpression();
 		cE.callable = (PostfixExpression) callable.simplify();
 		
-		if(cE.args != null) {
+		if(args != null) {
 			cE.args = args.simplify();
 		}
 		
