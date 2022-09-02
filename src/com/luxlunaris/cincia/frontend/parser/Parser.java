@@ -422,14 +422,14 @@ public class Parser {
 		return Map.entry(dE, alias);
 	}
 
-	private List<Modifier> parseModifiers(){
+	private List<Modifiers> parseModifiers(){
 
-		ArrayList<Modifier> res = new ArrayList<Modifier>();
+		ArrayList<Modifiers> res = new ArrayList<Modifiers>();
 
 		while (!tStream.isEnd()){
 
 			try {
-				res.add((Modifier)tStream.peek());
+				res.add(((Modifier)tStream.peek()).value);
 				tStream.next();
 			}catch (ClassCastException e) {
 				break;
@@ -467,7 +467,7 @@ public class Parser {
 
 	private SingleDeclaration parseSingleDeclaration() {
 
-		List<Modifier> modifiers = new ArrayList<Modifier>();
+		List<Modifiers> modifiers = new ArrayList<Modifiers>();
 
 		if(tStream.peek() instanceof Modifier) {
 			modifiers = parseModifiers();
@@ -882,7 +882,7 @@ public class Parser {
 		}
 
 		// get through the list of modifiers then check if class or interface or \ (lambda)
-		List<Modifier> modifiers = parseModifiers();
+		List<Modifiers> modifiers = parseModifiers();
 
 		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
 			return parseLambdaExpression(modifiers);
@@ -900,7 +900,7 @@ public class Parser {
 		return null;
 	}
 
-	private LambdaExpression parseLambdaExpression(List<Modifier> modifiers) {
+	private LambdaExpression parseLambdaExpression(List<Modifiers> modifiers) {
 
 
 		LambdaExpression lE = new LambdaExpression();
@@ -918,7 +918,7 @@ public class Parser {
 		return lE;
 	}
 
-	private ClassExpression parseClassExpression(List<Modifier> modifiers) {
+	private ClassExpression parseClassExpression(List<Modifiers> modifiers) {
 
 		ClassExpression cE = new ClassExpression();
 		cE.modifiersList = modifiers;
@@ -968,7 +968,7 @@ public class Parser {
 
 
 
-	private InterfaceExpression parseInterfaceExpression(List<Modifier> modifiers) {
+	private InterfaceExpression parseInterfaceExpression(List<Modifiers> modifiers) {
 
 		InterfaceExpression iE = new InterfaceExpression();
 		iE.modifiers = modifiers;

@@ -8,11 +8,12 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 //example: // public \ x:int:int -> 2*x
 public class LambdaExpression implements ObjectExpression{
 	
-	public List<Modifier> modifiers;
+	public List<Modifiers> modifiers;
 	public Signature signature;
 	
 	//either block or expression:
@@ -21,7 +22,7 @@ public class LambdaExpression implements ObjectExpression{
 	
 	
 	public LambdaExpression() {
-		modifiers = new ArrayList<Modifier>();
+		modifiers = new ArrayList<Modifiers>();
 	}
 
 

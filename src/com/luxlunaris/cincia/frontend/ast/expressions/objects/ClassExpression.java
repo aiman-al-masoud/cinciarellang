@@ -13,10 +13,11 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class ClassExpression implements ObjectExpression{
 
-	public List<Modifier> modifiersList; // can be empty
+	public List<Modifiers> modifiersList; // can be empty
 	public Identifier superclass;
 	public List<Identifier> interfaces;
 	public List<Identifier> observables;
@@ -26,7 +27,7 @@ public class ClassExpression implements ObjectExpression{
 	
 	public ClassExpression() {
 		
-		modifiersList = new ArrayList<Modifier>();
+		modifiersList = new ArrayList<Modifiers>();
 		interfaces = new ArrayList<Identifier>();
 		observables = new ArrayList<Identifier>();
 		assignments = new ArrayList<AssignmentExpression>();

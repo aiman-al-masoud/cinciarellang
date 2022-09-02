@@ -8,6 +8,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 /**
  * 
@@ -17,16 +18,16 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
  */
 public class VariableDeclaration extends SingleDeclaration{
 	
-	public List<Modifier> modifiers;
+	public List<Modifiers> modifiers;
 	public Identifier name;
 	public Type type; 
 	
 	public VariableDeclaration() {
-		modifiers = new ArrayList<Modifier>();
+		modifiers = new ArrayList<Modifiers>();
 	}
 	
 	public void addModifier(Modifier modifier) {
-		modifiers.add(modifier);
+		modifiers.add(modifier.value);
 	}
 	
 	@Override

@@ -28,7 +28,7 @@ public class DeclarationTester extends AbstractTester{
 		add("x:int", pr.toString());
 		
 		// primitive type variable w/ modifiers
-		pr.modifiers = Arrays.asList(new Modifier(Modifiers.STATIC), new Modifier(Modifiers.FINAL));
+		pr.modifiers = Arrays.asList(Modifiers.STATIC, Modifiers.FINAL);
 		add("static final x:int", pr.toString());
 		
 		// union type

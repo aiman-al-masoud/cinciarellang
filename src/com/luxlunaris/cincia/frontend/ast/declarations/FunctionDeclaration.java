@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 /**
  * A named function declaration, such as those in interfaces.
@@ -14,12 +15,12 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
  */
 public class FunctionDeclaration extends SingleDeclaration {
 	
-	public List<Modifier> modifiers;
+	public List<Modifiers> modifiers;
 	public Identifier name;
 	public Signature signature;
 	
 	public FunctionDeclaration() {
-		this.modifiers = new ArrayList<Modifier>();
+		this.modifiers = new ArrayList<Modifiers>();
 	}
 	
 	@Override
