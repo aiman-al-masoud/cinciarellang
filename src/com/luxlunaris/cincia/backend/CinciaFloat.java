@@ -115,12 +115,10 @@ public class CinciaFloat extends AbstractCinciaObject {
 		try {
 
 			CinciaInt otherInt = (CinciaInt)other;
-			return new CinciaInt(value/otherInt.value);
+			return new CinciaFloat(value/otherInt.getValue());
 		}catch (ClassCastException e) {
 
 		}
-
-		
 		
 		throw new RuntimeException("Unsupported division!");
 	}
