@@ -76,7 +76,25 @@ public abstract class AbstractTraversal<T> {
 
 		}else if(ast instanceof MatchStatement) {
 			return evalMatchStatement((MatchStatement)ast, enviro);
-
+		
+		}else if(ast instanceof TryStatement) {
+			return evalTryStatement((TryStatement)ast, enviro);
+		
+		}else if(ast instanceof CompoundStatement) {
+			return evalCompoundStatement((CompoundStatement)ast, enviro);
+		
+		}else if(ast instanceof ForStatement) {
+			return evalForStatement((ForStatement)ast, enviro);
+			
+		}else if(ast instanceof ImportStatement) {
+			return evalImportStatement((ImportStatement)ast, enviro);
+			
+		}else if(ast instanceof WhileStatement) {
+			return evalWhileStatement((WhileStatement)ast, enviro);
+			
+		}else if(ast instanceof ThrowStatement) {
+			return evalThrowStatement((ThrowStatement)ast, enviro);
+			
 		}
 
 		throw new RuntimeException("No such AST class!");

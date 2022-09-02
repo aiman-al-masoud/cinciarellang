@@ -20,7 +20,7 @@ public class Enviro {
 
 		this.parent = parent;
 
-		if(parent.vars != null ) {
+		if(parent != null ) {
 			this.vars = new HashMap<String, CinciaObject>(parent.vars);
 			this.types = new HashMap<String, Type>(parent.types);
 			//TODO: deep not shallow copy!
