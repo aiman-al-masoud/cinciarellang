@@ -275,6 +275,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else if(mulex.op == Operators.MOD) {
 			return left.__mod__(right);
 		}
+		
+//		System.out.println(mulex);
 
 		throw new RuntimeException("Unknown multiplication operator!");
 	}

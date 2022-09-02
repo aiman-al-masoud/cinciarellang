@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.backend;
 
 import java.util.List;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
 import com.luxlunaris.cincia.frontend.parser.Parser;
@@ -22,7 +23,10 @@ public class Test {
 		List<Statement> statements = parser.parse();
 		Enviro enviro = new Enviro(null);
 		Interpreter interpreter = new Interpreter();
-		interpreter.eval(statements.get(0), enviro);		
+		
+		Ast ast = statements.get(0).simplify();
+		
+		interpreter.eval(ast, enviro);		
 		
 		System.out.println(enviro.get("x"));
 		
