@@ -185,10 +185,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			if(s instanceof ReturnStatement) {
 				return eval( (ReturnStatement)s , enviro);
 			}else if(s instanceof BreakStatement) {
-//				return new CinciaObject(Keywords.BREAK);
 				return new CinciaKeyword(Keywords.BREAK);
 			}else if(s instanceof ContinueStatement) {
-//				return new CinciaObject(Keywords.CONTINUE);
 				return new CinciaKeyword(Keywords.CONTINUE);
 			}else {
 				eval(s, enviro);
