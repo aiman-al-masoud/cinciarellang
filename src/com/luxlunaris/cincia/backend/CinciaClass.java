@@ -41,6 +41,11 @@ public class CinciaClass extends AbstractCinciaObject{
 		obj.__init__(args);
 		return obj;
 	}
+	
+	@Override
+	public String toString() {
+		return "class{}";
+	}
 
 
 }

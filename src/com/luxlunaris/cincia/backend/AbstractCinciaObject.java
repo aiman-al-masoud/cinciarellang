@@ -231,7 +231,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	
 	@Override
 	public String toString() {
-		return getValue()+"";
+		return (getValue()==this? super.toString() : getValue())+"";
 	}
 
 
