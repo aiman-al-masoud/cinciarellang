@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.frontend.ast.declarations;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -24,6 +25,7 @@ public class VariableDeclaration extends SingleDeclaration{
 	
 	public VariableDeclaration() {
 		modifiers = new ArrayList<Modifiers>();
+		type = new IdentifierType("Any"); //type is Any by default
 	}
 	
 	public void addModifier(Modifier modifier) {
