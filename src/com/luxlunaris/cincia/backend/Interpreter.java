@@ -454,6 +454,14 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
+		
+		// if pure function, run with args as ONLY input, don't let it even read the global env.
+		try {
+			PureCinciaFunction cm = (PureCinciaFunction)f;
+			return cm.run(args);
+		}catch (ClassCastException e) {
+
+		}
 
 		// else it's a top level function, call on COPY of whatever environment was passed in		
 		try {
