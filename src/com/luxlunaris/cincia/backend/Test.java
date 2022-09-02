@@ -34,7 +34,8 @@ public class Test {
 		interpreter.eval(ast, enviro);		
 		
 		System.out.println(enviro.get("x"));
-		
+		System.out.println(enviro.getType("x"));
+
 		
 	}
 	
