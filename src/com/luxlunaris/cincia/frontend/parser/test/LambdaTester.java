@@ -10,6 +10,8 @@ import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 public class LambdaTester extends AbstractTester {
@@ -46,7 +48,8 @@ public class LambdaTester extends AbstractTester {
 		co.add(new ExpressionStatement(two));
 		co.add(three);
 		lex.block =co;
-		add("\\x->{ x = 1;y=x+1;return y; };", lex.toString());
+		lex.modifiers.add(new Modifier(Modifiers.PURE));
+		add("pure \\x->{ x = 1;y=x+1;return y; };", lex.toString());
 
 	}
 

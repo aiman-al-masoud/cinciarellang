@@ -9,7 +9,8 @@ public enum Modifiers {
 	SET, 
 	SINGLETON, 
 	POOLED, 
-	CONS;
+	CONS,
+	PURE;
 
 	public static Modifiers fromString(String string) {
 		try {
