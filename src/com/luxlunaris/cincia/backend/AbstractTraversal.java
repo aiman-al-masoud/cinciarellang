@@ -43,6 +43,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.interfaces.UnaryExpression;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
@@ -67,6 +68,9 @@ public abstract class AbstractTraversal<T> {
 
 		if(ast instanceof Expression) {
 			return evalExpression((Expression)ast, enviro);
+
+		}else if (ast instanceof ExpressionStatement) {
+			return evalExpression(((ExpressionStatement)ast).expression, enviro);
 
 		}else if (ast instanceof Declaration) {
 			return evalDeclaration((Declaration)ast, enviro);
