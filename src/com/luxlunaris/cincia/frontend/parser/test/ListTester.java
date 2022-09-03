@@ -23,13 +23,13 @@ public class ListTester extends AbstractTester {
 		
 		// empty list 
 		muEx.expressions = Arrays.asList();
+		lE.elements = muEx;
 		add("[];", lE.toString());
 		
 		// one element list
-		muEx.expressions = Arrays.asList(new Int(1));
+		lE.elements = new Int(1);
 		add("[1];", lE.toString());
 		
-
 
 		// list comprehension
 		ListComprehension lC = new ListComprehension();
