@@ -294,8 +294,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			return left.__mod__(right);
 		}
 
-		//		System.out.println(mulex);
-
 		throw new RuntimeException("Unknown multiplication operator!");
 	}
 
