@@ -81,15 +81,21 @@ public class AbstractCinciaObject implements CinciaObject{
 	public void setImmutable() {
 
 		immutable = true;
+//		System.out.println(enviro.values());
 
-		if(enviro.values().size()==0) {//TODO: maybe unnecessary?
-			return;
-		}
-
+//		System.out.println(enviro.values().size());
+//		if(enviro.values().size()==0) {//TODO: maybe unnecessary?
+////			System.out.println("entered");
+//			return;
+//		}
+//
 		enviro.values().stream().forEach(o->{
-			if(o!=null) {
+			
+			if(o!=null && o!=this) {
+//				System.out.println(o);
 				o.setImmutable();
 			}
+			
 		});
 
 	}
