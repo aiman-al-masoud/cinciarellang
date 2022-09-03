@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 //TODO: implement comparison operators!!!!
 //TODO: better error messages
+//TODO: implement into() cast method 
 public class CinciaInt extends PrimitiveCinciaObject {
 
 	private int value;
