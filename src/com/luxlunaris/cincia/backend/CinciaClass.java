@@ -34,7 +34,6 @@ public class CinciaClass extends AbstractCinciaObject{
 		set(name, value, value.type);
 	}	
 
-	//TODO: remove method duplication (all instances should refer to same func objects)
 	//TODO: deal with modifiers such as static
 	public CinciaObject constructor(List<CinciaObject> args) {
 		
