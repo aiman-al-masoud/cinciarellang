@@ -3,11 +3,7 @@ package com.luxlunaris.cincia.backend;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-
-import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
-import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 public class AbstractCinciaObject implements CinciaObject{
 
