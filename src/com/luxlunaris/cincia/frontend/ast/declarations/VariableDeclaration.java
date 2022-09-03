@@ -25,7 +25,7 @@ public class VariableDeclaration extends SingleDeclaration{
 	
 	public VariableDeclaration() {
 		modifiers = new ArrayList<Modifiers>();
-		type = new IdentifierType("Any"); //type is Any by default
+		type = Type.Any; //type is Any by default
 	}
 	
 	public void addModifier(Modifier modifier) {

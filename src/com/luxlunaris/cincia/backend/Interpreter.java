@@ -438,7 +438,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 		
 		List<CinciaObject> objects = elements.stream().map(e->eval(e, enviro)).collect(Collectors.toList());
-		CinciaList cL = new CinciaList(new IdentifierType("Any"));
+		CinciaList cL = new CinciaList(Type.Any);
 		
 		objects.forEach(o->{
 			cL.add(o);

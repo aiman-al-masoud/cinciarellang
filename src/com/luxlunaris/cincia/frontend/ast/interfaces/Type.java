@@ -1,5 +1,9 @@
 package com.luxlunaris.cincia.frontend.ast.interfaces;
 
-public interface Type extends Expression{
+import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 
+public interface Type extends Expression{
+	
+	public static Type Any = new IdentifierType("Any");
+	
 }
