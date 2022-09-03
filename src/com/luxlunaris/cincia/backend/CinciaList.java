@@ -9,7 +9,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class CinciaList extends AbstractCinciaObject implements Iterable<CinciaObject> {
 	
-	private ArrayList<CinciaObject> list;
+	protected ArrayList<CinciaObject> list;
 
 	public CinciaList(Type type) {
 		super(new ListType(type));

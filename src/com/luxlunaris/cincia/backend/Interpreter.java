@@ -464,12 +464,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else {
 			elements.add(listex.elements);
 		}
+		
 
 		List<CinciaObject> objects = elements.stream().map(e->eval(e, enviro)).collect(Collectors.toList());
 		CinciaList cL = new CinciaList(Type.Any);
 
 		objects.forEach(o->{
-			cL.add(o);
+			
+			if(o instanceof DestructuredList) {
+				((DestructuredList) o).forEach(e-> cL.add(e));
+			}else {
+				cL.add(o);
+			}
+			
+//			
+			
 		});
 
 		return cL;
@@ -577,7 +586,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalDestructuringExpression(DestructuringExpression destex, Enviro enviro) {
 		// TODO Auto-generated method stub
-		return null;
+//		return null;
+		
+		// TODO: if dict evaluate to list of lists 
+		return new DestructuredList((CinciaList)eval(destex.arg, enviro));
 	}
 
 	@Override
