@@ -219,10 +219,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);
 		obj.enviro = new Enviro(this.enviro); 
 		
-//		System.out.println("assigned the same freaking environment");
-//		obj.enviro = enviro;
-		
-//		System.out.println("copy of env "+obj.enviro.get);
+
 		return obj;
 	}
 
