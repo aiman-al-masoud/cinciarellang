@@ -52,10 +52,7 @@ public class CinciaClass extends AbstractCinciaObject{
 		AbstractCinciaObject obj = new AbstractCinciaObject(new IdentifierType("Object"));  
 		obj.myClass = this;
 		obj.enviro = newEnv;
-		set("this", obj, type); 
-		set(Magic.copy, new CinciaMethod(obj::copy));
-		set(Magic.freeze, new CinciaMethod(obj::freeze));
-		set(Magic.as, new CinciaMethod(obj::as));
+		
 		
 		
 		this.getEnviro().items().forEach(e->{
@@ -64,6 +61,14 @@ public class CinciaClass extends AbstractCinciaObject{
 				obj.set(e.getKey(), cm);
 			}
 		});		
+		
+		obj.set("this", obj, type); 
+		
+		CinciaMethod m1 = new CinciaMethod(obj::copy);
+		m1.parent = obj;
+		obj.set(Magic.copy, m1);
+		obj.set(Magic.freeze, new CinciaMethod(obj::freeze));
+		obj.set(Magic.as, new CinciaMethod(obj::as));
 		
 		obj.__init__(args);
 		return obj;
