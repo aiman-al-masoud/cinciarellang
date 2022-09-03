@@ -28,6 +28,11 @@ public class CinciaString extends PrimitiveCinciaObject {
 		
 		throw new RuntimeException("Operator + undefined ...");
 	}
+	
+	@Override
+	public String toString() {
+		return "\""+value+"\"";
+	}
 
 
 }
