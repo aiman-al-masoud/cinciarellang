@@ -2,6 +2,8 @@ package com.luxlunaris.cincia.backend;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
+
+//TODO: implement comparison operators!!!!
 //TODO: better error messages
 public class CinciaInt extends AbstractCinciaObject {
 
@@ -136,6 +138,26 @@ public class CinciaInt extends AbstractCinciaObject {
 		}
 		
 		throw new RuntimeException("Unsupported modulo!");
+	}
+	
+	@Override
+	public CinciaObject __lt__(CinciaObject other) {
+		
+		try {
+			CinciaInt otherInt = (CinciaInt)other;
+			return new CinciaBool(value < otherInt.getValue());
+		}catch (ClassCastException e) {
+		
+		}
+		
+		try {
+			CinciaFloat otherFloat = (CinciaFloat)other;
+			return new CinciaBool(value < otherFloat.getValue());
+		}catch (ClassCastException e) {
+		
+		}
+		
+		throw new RuntimeException();
 	}
 	
 	
