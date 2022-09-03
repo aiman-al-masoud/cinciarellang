@@ -8,7 +8,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 public class CinciaMethod extends CinciaFunction{
 	
 	
-	private AbstractCinciaObject parent;
+	private CinciaObject parent;
 	
 	public CinciaMethod(LambdaExpression lambdex, Eval eval) {
 		super(lambdex, eval);
@@ -35,6 +35,8 @@ public class CinciaMethod extends CinciaFunction{
 	 */
 	public CinciaObject run(List<CinciaObject> args) {
 		//TODO PROBLEM: this overwrites also stuff in this given how this was implemented
+		System.out.println(args);
+		System.out.println(parent);
 		return super.run(args, parent.getEnviro());
 	}
 	
