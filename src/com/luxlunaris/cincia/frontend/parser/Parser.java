@@ -153,7 +153,7 @@ public class Parser {
 	private DeclarationStatement parseDeclStatement() {
 
 		eat(Keywords.DEC);
-		DeclarationStatement dS = new DeclarationStatement(parseDeclaration());
+		DeclarationStatement dS = new DeclarationStatement(parseDeclaration(true));
 		return dS;
 	}
 
@@ -258,7 +258,7 @@ public class Parser {
 		eat(Keywords.CATCH);
 		CatchClause cc = new CatchClause();
 		//		cc.throwable = parseSingleExpression();
-		cc.throwable = parseSingleDeclaration();
+		cc.throwable = parseSingleDeclaration(true);
 		cc.block = parseCompStatement();
 		return cc;
 	}
@@ -439,23 +439,23 @@ public class Parser {
 		return res;
 	}
 
-	private Declaration parseDeclaration() {
+	private Declaration parseDeclaration(boolean requireType) {
 
-		MultiDeclaration mD = parseMultiDeclaration();
+		MultiDeclaration mD = parseMultiDeclaration(requireType);
 		return mD.declarations.size()==1? mD.declarations.get(0) : mD;
 	}
 
 
-	private MultiDeclaration parseMultiDeclaration() {
+	private MultiDeclaration parseMultiDeclaration(boolean requireType) {
 
 		MultiDeclaration mD = new MultiDeclaration();
-		mD.addDeclaration(parseSingleDeclaration());
+		mD.addDeclaration(parseSingleDeclaration(requireType));
 
 		while(!tStream.isEnd()) {	
 
 			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
 				eat(Punctuations.COMMA);
-				mD.addDeclaration(parseSingleDeclaration());
+				mD.addDeclaration(parseSingleDeclaration(requireType));
 				continue;
 			}
 
@@ -465,7 +465,7 @@ public class Parser {
 		return mD;
 	}
 
-	private SingleDeclaration parseSingleDeclaration() {
+	private SingleDeclaration parseSingleDeclaration(boolean requireType) {
 
 		List<Modifiers> modifiers = new ArrayList<Modifiers>();
 
@@ -475,16 +475,20 @@ public class Parser {
 
 		Identifier id = parseIdentifier();
 
-		// unspecified type declarations serve in function definitions/declarations where you may have parameter type inference.
-		if(!tStream.peek().getValue().equals(Punctuations.COL)) {
+		// if 'type is not required'
+		// unspecified type declarations may make sense in function definitions/declarations where you may have parameter type inference.
+		if( !requireType && !tStream.peek().getValue().equals(Punctuations.COL)) {
 			VariableDeclaration vD = new VariableDeclaration();
 			vD.name = id;
 			vD.modifiers = modifiers;
 			return vD; //unspecified type
 		}
 
+		
+		// with type
 		eat(Punctuations.COL);
-
+		
+		// if func
 		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
 			FunctionDeclaration fD = new FunctionDeclaration();
 			fD.modifiers = modifiers;
@@ -493,6 +497,7 @@ public class Parser {
 			return fD;
 		}
 
+		// if variable
 		VariableDeclaration sD = new VariableDeclaration();
 		sD.modifiers = modifiers;
 		sD.name = id;
@@ -504,7 +509,7 @@ public class Parser {
 
 		Signature sg = new Signature();
 		eat(Punctuations.SLASH_BCK);
-		sg.params = parseDeclaration();
+		sg.params = parseDeclaration(false);
 
 		if(tStream.peek().getValue().equals(Punctuations.COL)) {
 			eat(Punctuations.COL);
