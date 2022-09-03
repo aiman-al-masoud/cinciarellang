@@ -219,11 +219,13 @@ public class AbstractCinciaObject implements CinciaObject{
 		return cm.run(args);
 	}
 
-	// return a deep (I believe) copy of this object
+	// TODO: make it deep
+	// return a copy of this object
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
 		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);
 		obj.enviro = new Enviro(this.enviro);
+//		System.out.println("copy of env "+obj.enviro.get);
 		return obj;
 	}
 
