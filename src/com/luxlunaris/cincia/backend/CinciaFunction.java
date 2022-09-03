@@ -52,8 +52,10 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	}
 
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
-
-		if(args != null) {
+		
+//		System.out.println(args);
+		
+		if(args != null && wrappedFunction ==null) {
 
 			// bind args to env, TODO: check matching types
 			for(int i=0; i < args.size(); i++) {
