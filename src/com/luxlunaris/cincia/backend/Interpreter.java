@@ -400,7 +400,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 
-		// Check if env is class, in that case return a method.
+		// Check if env belongs to class, in that case return a method.
 		CinciaBool b = (CinciaBool)enviro.get(CinciaClass.IS_CLASS);
 		if(b!=null && b.__bool__()) {
 			return new CinciaMethod(lambdex, this::eval);
