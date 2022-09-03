@@ -4,6 +4,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.TernaryExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
@@ -141,6 +142,8 @@ public abstract class AbstractTraversal<T> {
 		}else if(expression instanceof RangeExpression) {
 			return evalRangeExpression((RangeExpression)expression, enviro);
 
+		}else if(expression instanceof PipeExpression) {
+			return evalPipeExpression((PipeExpression)expression, enviro);
 		}
 
 		throw new RuntimeException("No such expression class!");
@@ -314,6 +317,6 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalDestructuringExpression(DestructuringExpression destex, Enviro enviro);
 	public abstract T evalMinusExpression(MinusExpression minex, Enviro enviro);
 	public abstract T evalNegationExpression(NegationExpression negex, Enviro enviro);
-	
+	public abstract T evalPipeExpression(PipeExpression expression, Enviro enviro);
 
 }

@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.backend;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.TernaryExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
@@ -61,6 +63,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
+
 
 
 public class Interpreter extends AbstractTraversal<CinciaObject> {
@@ -585,6 +588,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
 		return eval(negex.arg, enviro).__not__();
+	}
+
+	@Override
+	public CinciaObject evalPipeExpression(PipeExpression expression, Enviro enviro) {
+		
+		Enviro envCopy =  enviro.newChild();
+		CinciaObject arg = eval(expression.expressions.get(0), envCopy);
+//		envCopy.set("x", o);
+		
+		for(int i=1; i<expression.expressions.size(); i++) {
+			CinciaFunction f = (CinciaFunction)eval(expression.expressions.get(i), envCopy); 
+			arg = f.run(Arrays.asList(arg), envCopy);
+		}
+		
+		return arg;
 	}
 
 

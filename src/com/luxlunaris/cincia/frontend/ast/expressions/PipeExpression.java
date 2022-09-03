@@ -9,7 +9,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 public class PipeExpression implements Expression {
 	
 	
-	List<Expression> expressions;
+	public List<Expression> expressions;
 	
 	public PipeExpression() {
 		expressions = new ArrayList<Expression>();
