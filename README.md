@@ -1,3 +1,3 @@
-# Cinciarellang 2
+# Cinciarellang
 
 <img src="./docs/res/cinciarella.jpg" width="500"/>
