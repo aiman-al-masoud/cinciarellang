@@ -60,9 +60,9 @@ public class Enviro {
 		types.remove(key);
 	}
 	
-	public Enviro getParent() {
-		return parent;
-	}
+//	public Enviro getParent() {
+//		return parent;
+//	}
 	
 	public List<CinciaObject> values(){
 		return new ArrayList<CinciaObject>(vars.values());
