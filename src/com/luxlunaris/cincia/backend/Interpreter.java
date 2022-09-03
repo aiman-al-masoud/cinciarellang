@@ -411,6 +411,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			return new PureCinciaFunction(lambdex, this::eval);
 		}
 
+		// ... else return standard top level function
 		return new CinciaFunction(lambdex, this::eval);
 	}
 
