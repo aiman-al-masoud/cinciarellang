@@ -475,6 +475,7 @@ public class Parser {
 
 		Identifier id = parseIdentifier();
 
+		// unspecified type declarations serve in function definitions/declarations where you may have parameter type inference.
 		if(!tStream.peek().getValue().equals(Punctuations.COL)) {
 			VariableDeclaration vD = new VariableDeclaration();
 			vD.name = id;
