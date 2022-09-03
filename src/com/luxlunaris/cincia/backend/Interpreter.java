@@ -442,7 +442,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			envCopy.set(((Identifier)listcompex.source).value, e);
 
-			if( eval(listcompex.where, enviro).__bool__() ) {
+			if( eval(listcompex.where, envCopy).__bool__() ) {
 				results.add(eval(listcompex.element, envCopy));
 			}
 
