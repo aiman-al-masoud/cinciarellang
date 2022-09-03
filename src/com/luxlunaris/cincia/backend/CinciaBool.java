@@ -87,7 +87,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 
 	
 	@Override
-	public CinciaObject as(List<CinciaObject> args) {//TODO:!!!
+	public CinciaObject asa(List<CinciaObject> args) {//TODO:!!!
 		return null;
 	}
 
