@@ -30,6 +30,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -239,8 +240,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalRangeExpression(RangeExpression rangex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+
+		CinciaObject from = eval(rangex.from, enviro);
+		CinciaObject to = eval(rangex.to, enviro);
+
+		CinciaList cinciaList = new CinciaList(new PrimitiveType(PrimitiveType.INT));
+
+		if(from instanceof CinciaInt && to instanceof CinciaInt) {
+
+			for(int i=(int)from.getValue(); i<=(int)to.getValue(); i++) {
+				cinciaList.add(new CinciaInt(i));
+			}
+
+		}
+
+		return cinciaList;
 	}
 
 	@Override
@@ -421,7 +435,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalListComprehension(ListComprehension listcompex, Enviro enviro) {
-		
+
 		CinciaList results = new CinciaList(Type.Any);
 		Iterable<CinciaObject> iterable = (Iterable)eval(listcompex.iterable, enviro);
 		Enviro envCopy = enviro.newChild();
@@ -435,7 +449,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			}
 
 		});
-		
+
 		return results;
 	}
 
