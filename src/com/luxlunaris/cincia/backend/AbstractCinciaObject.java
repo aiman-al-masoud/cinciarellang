@@ -231,12 +231,13 @@ public class AbstractCinciaObject implements CinciaObject{
 		return copy;
 	}
 
-	// return an immutable copy of this object
+	/**
+	 * Return an immutable copy of this object
+	 */
 	@Override
 	public CinciaObject freeze(List<CinciaObject> args) {
 		CinciaObject o = this.copy(args);
 		o.setImmutable();
-//		this.setImmutable(); //TODO: ACTUALLY RETURN A COPY once I figure out how to efficiently deep copy an object.
 		return o;
 	}
 	
