@@ -48,9 +48,13 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	public void set(String key, CinciaObject val, Type type) {
+		
 
-		if(!immutable) {
+		if(!immutable) {	
+			
 			enviro.set(key, val, type);
+			
+			
 		}else {
 			throw new RuntimeException("Cannot mutate immutable object!");
 		}
@@ -224,6 +228,14 @@ public class AbstractCinciaObject implements CinciaObject{
 		//y.a.r = 2
 		//b.a.r // 2 WROOOONG unless attrib is static
 		
+		//TEST
+		//c = class{ __init__ = \x -> 1; }
+		//x.a = 3
+		//y = x.copy()
+		//y.a = 4
+		//x.a //4 WROOONG
+		
+		
 		
 		//TODO: circular references could cause problems
 		
@@ -232,8 +244,21 @@ public class AbstractCinciaObject implements CinciaObject{
 		enviro.items().forEach(e->{
 			
 			CinciaObject o =e.getValue();
-			copy.set(e.getKey(), o==this? copy : o.copy(args));			
+			CinciaObject co;;
+			
+			if(o == this) {
+				co = copy;
+			}else {				
+				co = o.copy(args);
+			}
+			
+			if(co instanceof CinciaMethod) {
+				((CinciaMethod) co).parent = copy;
+			}
+			
+			copy.set(e.getKey(), co);			
 		});
+		
 		
 		return copy;
 	}
