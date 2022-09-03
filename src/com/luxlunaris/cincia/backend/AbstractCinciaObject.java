@@ -215,9 +215,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	// return a copy of this object
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
-		
-		System.out.println(enviro.get("a"));
-		
+				
 		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);
 		obj.enviro = new Enviro(this.enviro);
 		
