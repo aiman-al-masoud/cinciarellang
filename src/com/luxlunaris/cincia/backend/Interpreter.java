@@ -421,9 +421,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalListComprehension(ListComprehension listcompex, Enviro enviro) {
-		// TODO Auto-generated method stub
 		
-//		List<CinciaObject> results = new ArrayList<CinciaObject>();
 		CinciaList results = new CinciaList(Type.Any);
 		Iterable<CinciaObject> iterable = (Iterable)eval(listcompex.iterable, enviro);
 
@@ -435,12 +433,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				results.add(eval(listcompex.element, enviro));
 			}
 
-//			System.out.println(e);
 		});
-		//		System.out.println(listcompex.source.getClass());
-
-//		System.out.println("not implemented");
-
+		
 		return results;
 	}
 
