@@ -10,10 +10,12 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
 public class CinciaClass extends AbstractCinciaObject{
+	
+	public static String IS_CLASS = "isClass";
 
 	public CinciaClass() {
 		super(new IdentifierType("Class"));
-		enviro.set("isClass", new CinciaBool(true));
+		enviro.set(IS_CLASS, new CinciaBool(true));
 	}
 
 	public void declareAttribute(String name, Type type) {
