@@ -54,7 +54,7 @@ interface CinciaObject {
 	CinciaObject __str__() ;
 	CinciaObject __neg__() ;
 	CinciaObject __init__(List<CinciaObject> args);
-	CinciaObject asa(List<CinciaObject> args); //cast/conversion to other class	
+	CinciaObject into(List<CinciaObject> args); //cast/conversion to other class	
 	CinciaObject copy(List<CinciaObject> args); 
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
 

@@ -25,7 +25,7 @@ public enum Magic {
 	__not__,
 	__str__,
 	__init__,
-	as,
+	into,
 	copy, 
 	freeze;
 	
