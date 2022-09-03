@@ -8,7 +8,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 public class CinciaMethod extends CinciaFunction{
 	
 	
-	private CinciaObject parent;
+	public CinciaObject parent;
 	
 	public CinciaMethod(LambdaExpression lambdex, Eval eval) {
 		super(lambdex, eval);

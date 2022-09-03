@@ -41,6 +41,15 @@ public class CinciaClass extends AbstractCinciaObject{
 		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);  
 		obj.myClass = this;
 		obj.enviro = newEnv;
+		
+		// bind methods to new instance's environment.
+		newEnv.values().forEach(o->{
+			if(o instanceof CinciaMethod) {
+				CinciaMethod cm = (CinciaMethod)o;
+				cm.parent = obj;
+			}
+		});
+		
 		obj.__init__(args);
 		return obj;
 	}
