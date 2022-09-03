@@ -66,6 +66,7 @@ public class Enviro {
 	
 	public List<CinciaObject> values(){
 		return new ArrayList<CinciaObject>(vars.values());
+//		return vars.values().;
 	}
 
 
