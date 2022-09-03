@@ -595,7 +595,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// double = \x -> 2*x
 		// 1 | double | double | double 
-		//	f = \x-> ( x | double | double | double )
+		// f = \x-> ( x | double | double | double )
+		// 3 | f
 		
 		Enviro envCopy =  enviro.newChild();
 		CinciaObject arg = eval(expression.expressions.get(0), envCopy);
