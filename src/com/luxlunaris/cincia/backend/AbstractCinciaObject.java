@@ -228,7 +228,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	public CinciaObject freeze(List<CinciaObject> args) {
 //		CinciaObject o = copy(args);
 //		o.setImmutable();
-		this.setImmutable();
+		this.setImmutable(); //TODO: ACTUALLY RETURN A COPY once I figure out how to efficiently deep copy an object.
 		return null;
 	}
 	
