@@ -22,11 +22,7 @@ public class ListComprehension implements ObjectExpression{
 		this.element = element.simplify();
 		this.source = source.simplify();
 		this.iterable = iterable.simplify();
-
-//		if(where!=null) {
-			this.where = where.simplify();
-//		}
-
+		this.where = where.simplify();
 		return this;
 	}
 
