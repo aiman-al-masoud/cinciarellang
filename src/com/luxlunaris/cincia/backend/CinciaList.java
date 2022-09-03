@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.backend;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -38,5 +39,13 @@ public class CinciaList extends AbstractCinciaObject implements Iterable<CinciaO
 	public String toString() {
 		return list.toString();
 	}
+	
+	@Override
+	public CinciaObject copy(List<CinciaObject> args) {
+		CinciaList c = new CinciaList(type);
+		c.list = new ArrayList<CinciaObject>(list);
+		return c;
+	}
+	
 
 }
