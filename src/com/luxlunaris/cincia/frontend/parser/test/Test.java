@@ -87,6 +87,7 @@ public class Test {
 		add(new ImportTester());
 		add(new RangeExpTester());
 		add("f | g | h", "[f, g, h]");
+		add(" (\\x -> 1) | g | h", "");
 
 		for(Entry<String, String> e : tests) {
 

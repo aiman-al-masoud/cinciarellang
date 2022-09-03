@@ -9,16 +9,21 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
  *
  */
 public class BracketedExpression implements PrimaryExpression {
-	
+
 	public Expression expression;
-	
+
 	public BracketedExpression(Expression expression) {
 		this.expression = expression;
 	}
-	
+
 	@Override
-		public Expression simplify() {
-			return new BracketedExpression(expression.simplify());
-		}
-	
+	public Expression simplify() {
+		return new BracketedExpression(expression.simplify());
+	}
+
+	@Override
+	public String toString() {
+		return "("+expression+")";
+	}
+
 }
