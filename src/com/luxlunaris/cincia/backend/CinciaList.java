@@ -21,14 +21,24 @@ public class CinciaList extends AbstractCinciaObject implements Iterable<CinciaO
 	}
 	
 	@Override
-	public CinciaObject get(String key) {
-		return list.get(Integer.parseInt(key)); //TODO: fix this stupid solution
+	public CinciaObject get(int key) {
+		return list.get(key);
 	}
 	
 	@Override
-	public void set(String key, CinciaObject val, Type type) {
-		list.set(Integer.parseInt(key), val);  //TODO: fix this stupid solution
+	public void set(int key, CinciaObject val, Type type) {
+		list.set(key, val);
 	}
+	
+//	@Override
+//	public CinciaObject get(String key) {
+//		return list.get(Integer.parseInt(key)); //TODO: fix this stupid solution
+//	}
+	
+//	@Override
+//	public void set(String key, CinciaObject val, Type type) {
+//		list.set(Integer.parseInt(key), val);  //TODO: fix this stupid solution
+//	}
 		
 
 }

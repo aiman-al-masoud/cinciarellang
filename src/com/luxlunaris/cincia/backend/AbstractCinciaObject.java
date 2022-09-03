@@ -234,6 +234,21 @@ public class AbstractCinciaObject implements CinciaObject{
 		return (getValue()==this? super.toString() : getValue())+"";
 	}
 
+	@Override
+	public CinciaObject get(int key) {
+		return get(key+"");
+	}
+
+	@Override
+	public void set(int key, CinciaObject val, Type type) {		
+		set(key+"", val, type);
+	}
+
+	@Override
+	public void set(int key, CinciaObject val) {
+		set(key, val);
+	}
+
 
 
 }

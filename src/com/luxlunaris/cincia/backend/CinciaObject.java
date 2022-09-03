@@ -24,10 +24,13 @@ interface CinciaObject {
 	Object getValue();
 	Type getType();
 	CinciaObject get(String key);
+	CinciaObject get(int key);
 	CinciaObject get(Magic key);
 	Type getType(String key);
 	void set(String key, CinciaObject val, Type type);
+	void set(int key, CinciaObject val, Type type);
 	void set(String key, CinciaObject val);
+	void set(int key, CinciaObject val);
 	void set(Magic key, CinciaObject val);
 	void remove(String key);
 	void setImmutable(); // recursively make the object immutable.
