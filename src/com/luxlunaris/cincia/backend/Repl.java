@@ -23,7 +23,7 @@ public class Repl {
 		while(true) {
 			System.out.print(">");
 			scanner = new Scanner(System.in);
-			String source = scanner.nextLine();
+			String source = scanner.nextLine()+";";
 			Preprocessor preprocessor = new Preprocessor(source);
 			CharStream charStream = new CharStream(preprocessor.process());
 			TokenStream tokenStream = new TokenStream(charStream);
