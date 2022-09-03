@@ -8,6 +8,7 @@ import com.luxlunaris.cincia.frontend.charstream.CharStream;
 import com.luxlunaris.cincia.frontend.parser.Parser;
 import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
+import com.sun.tools.classfile.StackMapTable_attribute.chop_frame;
 
 public class Test {
 	
@@ -19,6 +20,12 @@ public class Test {
 		source = "x = class { y = 1; };"; //TODO?
 		source = "x = (\\x->1)();";
 		source = "x = (\\x, y->2*x + y)(1, 2) + 1;";
+		
+//		c = class{ __init__ = \x -> 1; crap = 1; }
+//		x = c()
+//		x.crap // 1
+//		x.crap = 2
+//		x.crap // 2
 				
 		Preprocessor preprocessor = new Preprocessor(source);
 		CharStream charStream = new CharStream(preprocessor.process());
