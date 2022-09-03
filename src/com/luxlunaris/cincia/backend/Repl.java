@@ -21,7 +21,7 @@ public class Repl {
 		Interpreter interpreter = new Interpreter();
 		Scanner scanner;
 		
-		enviro.set("integer", new CinciaClass());
+//		enviro.set("integer", new CinciaClass());
 
 		while(true) {
 			System.out.print(">");
