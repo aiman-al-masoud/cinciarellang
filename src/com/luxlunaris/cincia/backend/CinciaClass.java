@@ -54,6 +54,9 @@ public class CinciaClass extends AbstractCinciaObject{
 		obj.enviro = newEnv;
 		
 		
+		// methods should keep the same code but change the 
+		// environment to the new object's
+		
 		
 		this.getEnviro().items().forEach(e->{
 			if(e.getValue() instanceof CinciaMethod) {
@@ -61,6 +64,10 @@ public class CinciaClass extends AbstractCinciaObject{
 				obj.set(e.getKey(), cm);
 			}
 		});		
+		
+		
+		// java-code wrappers need to point to the original
+		// instance of the java object
 		
 		obj.set("this", obj, type); 
 		
