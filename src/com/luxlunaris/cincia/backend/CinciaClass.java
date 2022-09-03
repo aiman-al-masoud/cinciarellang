@@ -38,6 +38,8 @@ public class CinciaClass extends AbstractCinciaObject{
 	//TODO: deal with modifiers such as static
 	public AbstractCinciaObject constructor(List<CinciaObject> args) {
 		
+		// TODO: vars (other than methods) aren't copied and point to "static" attributes in class?
+		
 		Enviro newEnv = this.getEnviro().newChild(); 
 		AbstractCinciaObject obj = new AbstractCinciaObject(new IdentifierType("Object"));  
 		obj.myClass = this;
