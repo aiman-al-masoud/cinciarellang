@@ -42,6 +42,8 @@ public class CinciaClass extends AbstractCinciaObject{
 		obj.myClass = this;
 		obj.enviro = newEnv;
 		
+		// TODO: WROOOOOOOOOOONG doesn't even work, and you're not supposed 
+		// to modify the original methods.
 		// bind methods to new instance's environment.
 		newEnv.values().forEach(o->{
 			if(o instanceof CinciaMethod) {
