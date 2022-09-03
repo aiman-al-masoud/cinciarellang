@@ -246,7 +246,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public void set(int key, CinciaObject val) {
-		set(key, val);
+		set(key, val, val.getType());
 	}
 
 

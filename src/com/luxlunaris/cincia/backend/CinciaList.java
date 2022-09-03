@@ -30,6 +30,12 @@ public class CinciaList extends AbstractCinciaObject implements Iterable<CinciaO
 		list.set(key, val);
 	}
 	
+	public void add(CinciaObject val) {
+		list.add(val);
+	}
+	
+	
+	
 //	@Override
 //	public CinciaObject get(String key) {
 //		return list.get(Integer.parseInt(key)); //TODO: fix this stupid solution

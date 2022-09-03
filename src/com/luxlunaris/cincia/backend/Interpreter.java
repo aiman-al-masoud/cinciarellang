@@ -437,12 +437,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 		
 		List<CinciaObject> objects = elements.stream().map(e->eval(e, enviro)).collect(Collectors.toList());
-		
 		CinciaList cL = new CinciaList(new IdentifierType("Any"));
 		
-		for(int i =0; i < objects.size(); i++) {
-			cL.set(i+"", objects.get(i));
-		}
+		objects.forEach(o->{
+			cL.add(o);
+		});
 		
 		return cL;
 	}
