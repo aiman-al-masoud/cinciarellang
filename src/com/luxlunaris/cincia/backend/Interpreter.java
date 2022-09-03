@@ -448,7 +448,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			CinciaClass c = (CinciaClass)f;
 			return c.constructor(args);
 		}catch (ClassCastException e) {
-
+			e.printStackTrace();
+			System.exit(1);
 		}
 
 		// if method, call on parent object's ORIGINAL env
@@ -474,7 +475,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
-
+		
+		
 		throw new RuntimeException("Unsupported callable type!");
 	}
 
