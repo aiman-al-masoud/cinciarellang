@@ -8,6 +8,10 @@ public class ListType  extends CollectionType{
 	
 	public Type value;
 	
+	public ListType() {
+		
+	}
+	
 	public ListType(Type value) {
 		this.value = value;
 	}
