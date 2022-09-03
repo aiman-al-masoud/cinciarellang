@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -215,12 +216,16 @@ public class AbstractCinciaObject implements CinciaObject{
 	// return a copy of this object
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
-				
-		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);
-		obj.enviro = new Enviro(this.enviro); 
-		//TODO: wroooong
-
-		return obj;
+		
+		CinciaObject res = new AbstractCinciaObject(this.type);
+		
+		enviro.items().forEach(e->{
+			
+			CinciaObject o =e.getValue();
+			res.set(e.getKey(), o==this? this : o.copy(args));			
+		});
+		
+		return res;
 	}
 
 	// return an immutable copy of this object

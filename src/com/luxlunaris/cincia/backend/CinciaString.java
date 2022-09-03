@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.backend;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
-public class CinciaString extends AbstractCinciaObject {
+public class CinciaString extends PrimitiveCinciaObject {
 
 	private String value;
 

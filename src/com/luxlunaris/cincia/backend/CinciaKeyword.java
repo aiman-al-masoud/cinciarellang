@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.backend;
 
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
-public class CinciaKeyword extends AbstractCinciaObject{
+public class CinciaKeyword extends PrimitiveCinciaObject{
 
 	private Keywords keyword;
 

@@ -57,5 +57,4 @@ interface CinciaObject {
 	CinciaObject copy(List<CinciaObject> args); // return a deep (I believe) copy of this object
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
 
-
 }

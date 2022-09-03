@@ -5,7 +5,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 //TODO: implement comparison operators!!!!
 //TODO: better error messages
-public class CinciaInt extends AbstractCinciaObject {
+public class CinciaInt extends PrimitiveCinciaObject {
 
 	private int value;
 

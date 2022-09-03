@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
-public class CinciaBool extends AbstractCinciaObject {
+public class CinciaBool extends PrimitiveCinciaObject {
 
 	private boolean value;
 

@@ -41,8 +41,10 @@ public class CinciaClass extends AbstractCinciaObject{
 		//TODO: vars (other than methods) aren't copied and point to "static" attributes in class
 //		c = class{ __init__ = \x -> 1; }
 //		b = class{ __init__ = \x -> 1; }
+//		b.a = c()
 //		b.a.r = 1
 //		y = b()
+//		y.a = c()
 //		y.a.r = 2
 //		b.a.r // 2 WROOOONG unless attrib is static
 

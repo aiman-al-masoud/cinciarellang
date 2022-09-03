@@ -4,7 +4,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 //TODO: better error messages
-public class CinciaFloat extends AbstractCinciaObject {
+public class CinciaFloat extends PrimitiveCinciaObject {
 	
 	private double value;
 
