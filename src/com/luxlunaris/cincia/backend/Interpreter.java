@@ -427,7 +427,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
-		// TODO Auto-generated method stub
 		
 		// TODO: move this c... into evalMultiExpression
 		List<Expression> elements = new ArrayList<Expression>();
