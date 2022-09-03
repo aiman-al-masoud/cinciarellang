@@ -44,7 +44,7 @@ public class CinciaClass extends AbstractCinciaObject{
 //		b.a.r = 1
 //		y = b()
 //		y.a.r = 2
-//		b.a.r // 2 WROOOONG
+//		b.a.r // 2 WROOOONG unless attrib is static
 
 		
 		
