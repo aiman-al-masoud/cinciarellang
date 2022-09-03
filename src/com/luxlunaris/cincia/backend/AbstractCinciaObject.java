@@ -220,15 +220,15 @@ public class AbstractCinciaObject implements CinciaObject{
 		
 		//TODO: circular references could cause problems
 		
-		CinciaObject res = new AbstractCinciaObject(this.type);
+		CinciaObject copy = new AbstractCinciaObject(this.type);
 		
 		enviro.items().forEach(e->{
 			
 			CinciaObject o =e.getValue();
-			res.set(e.getKey(), o==this? this : o.copy(args));			
+			copy.set(e.getKey(), o==this? copy : o.copy(args));			
 		});
 		
-		return res;
+		return copy;
 	}
 
 	// return an immutable copy of this object
