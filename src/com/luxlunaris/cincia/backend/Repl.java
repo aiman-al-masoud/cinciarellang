@@ -16,7 +16,7 @@ public class Repl {
 	public static void main(String[] args) {
 
 
-		Enviro enviro = new Enviro(null);
+		Enviro enviro = new Enviro(null);	
 		Interpreter interpreter = new Interpreter();
 		Scanner scanner;
 
