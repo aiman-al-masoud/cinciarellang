@@ -25,7 +25,7 @@ public class Enviro {
 			this.types = new HashMap<String, Type>(parent.types);
 			//TODO: deep not shallow copy!
 //			this.vars = parent.vars.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> List.copyOf(e.getValue())));
-			System.out.println(parent.vars);
+//			System.out.println(parent.vars);
 		}else {
 			this.vars = new HashMap<String, CinciaObject>();
 			this.types = new HashMap<String, Type>();
