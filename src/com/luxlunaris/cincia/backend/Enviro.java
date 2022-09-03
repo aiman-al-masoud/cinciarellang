@@ -50,6 +50,11 @@ public class Enviro {
 		vars.put(key, val);
 		types.put(key, type);
 	}
+	
+	
+	public void set(String key, CinciaObject val) {
+		set(key, val, val.getType());
+	}
 
 	public void remove(String key) {
 		vars.remove(key);

@@ -13,6 +13,7 @@ public class CinciaClass extends AbstractCinciaObject{
 
 	public CinciaClass() {
 		super(new IdentifierType("Class"));
+		enviro.set("isClass", new CinciaBool(true));
 	}
 
 	public void declareAttribute(String name, Type type) {
