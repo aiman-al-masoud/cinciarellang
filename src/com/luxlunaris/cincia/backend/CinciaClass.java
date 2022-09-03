@@ -43,6 +43,13 @@ public class CinciaClass extends AbstractCinciaObject{
 		obj.myClass = this;
 		obj.enviro = newEnv;
 		
+		this.getEnviro().items().forEach(e->{
+			if(e.getValue() instanceof CinciaMethod) {
+				CinciaMethod cm = ((CinciaMethod)e.getValue()).copy(obj);
+				obj.set(e.getKey(), cm);
+			}
+		});
+		
 		
 		// TODO: WROOOOOOOOOOONG doesn't even work, and you're not supposed 
 		// to modify the original methods.

@@ -68,6 +68,10 @@ public class Enviro {
 		return new ArrayList<CinciaObject>(vars.values());
 //		return vars.values().;
 	}
+	
+	public List<Map.Entry<String, CinciaObject>> items(){
+		return new ArrayList<Map.Entry<String,CinciaObject>>(vars.entrySet());
+	}
 
 
 }
