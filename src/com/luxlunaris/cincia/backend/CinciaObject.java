@@ -7,11 +7,12 @@ interface CinciaObject {
 
 
 	static CinciaObject create(Object object) {
+		
 
 		if(object instanceof Boolean) {
 			return new CinciaBool((boolean)object);
 		}else if(object instanceof String) {
-			new CinciaString((String)object);
+			return new CinciaString((String)object);
 		}else if(object instanceof Float) {
 			return new CinciaFloat((double)object);
 		}else if(object instanceof Integer) {
