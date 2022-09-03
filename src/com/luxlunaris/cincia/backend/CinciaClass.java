@@ -38,27 +38,6 @@ public class CinciaClass extends AbstractCinciaObject{
 	//TODO: deal with modifiers such as static
 	public CinciaObject constructor(List<CinciaObject> args) {
 		
-		//TODO: vars (other than methods) aren't copied and point to "static" attributes in class
-
-	
-//		Enviro newEnv = this.getEnviro().newChild(); 
-//		AbstractCinciaObject obj = new AbstractCinciaObject(new IdentifierType("Object"));  
-//		obj.myClass = this;
-//		obj.enviro = newEnv;
-		
-		
-		// methods should keep the same code but change the 
-		// environment to the new object's
-		
-//		
-//		this.getEnviro().items().forEach(e->{
-//			if(e.getValue() instanceof CinciaMethod) {
-//				CinciaMethod cm = ((CinciaMethod)e.getValue()).copy(obj);
-//				obj.set(e.getKey(), cm);
-//			}
-//		});		
-		
-		
 		
 		CinciaObject obj = this.copy(args);
 		
