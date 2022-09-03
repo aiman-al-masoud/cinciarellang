@@ -11,6 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.TernaryExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
@@ -620,9 +621,35 @@ public class Parser {
 			rE.to = parseSingleExpression();
 			return rE;
 		}
+		
+		
+		//pipe
+		if(tStream.peek().getValue().equals(Operators.SINGLE_OR)) {
+			return parsePipeExpression(oE);
+		}
 
 
 		return oE;
+	}
+	
+	private PipeExpression parsePipeExpression(Expression first) {
+		
+		eat(Operators.SINGLE_OR);
+		PipeExpression pipe = new PipeExpression();
+		pipe.add(first);
+		pipe.add(parseOrExpression());
+		
+		while(!tStream.isEnd()) {
+			
+			if(!tStream.peek().getValue().equals(Operators.SINGLE_OR)) {
+				break;
+			}
+			
+			eat(Operators.SINGLE_OR);
+			pipe.add(parseOrExpression());
+		}
+		
+		return pipe;
 	}
 
 

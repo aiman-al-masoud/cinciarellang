@@ -86,6 +86,7 @@ public class Test {
 		add(new JumpTester());
 		add(new ImportTester());
 		add(new RangeExpTester());
+		add("f | g | h", "[f, g, h]");
 
 		for(Entry<String, String> e : tests) {
 
