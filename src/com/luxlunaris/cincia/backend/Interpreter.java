@@ -602,6 +602,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		CinciaObject arg = eval(expression.expressions.get(0), envCopy);
 //		envCopy.set("x", o);
 		
+		//TODO: can this be parallelized like in bash?
 		for(int i=1; i<expression.expressions.size(); i++) {
 			CinciaFunction f = (CinciaFunction)eval(expression.expressions.get(i), envCopy); 
 			arg = f.run(Arrays.asList(arg), envCopy);
