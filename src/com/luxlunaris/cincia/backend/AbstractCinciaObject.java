@@ -218,7 +218,7 @@ public class AbstractCinciaObject implements CinciaObject{
 				
 		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);
 		obj.enviro = new Enviro(this.enviro); 
-		
+		//TODO: wroooong
 
 		return obj;
 	}
