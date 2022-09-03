@@ -22,9 +22,32 @@ public class CinciaMethod extends CinciaFunction{
 		this.parent = parent;
 	}
 	
-	public AbstractCinciaObject getParent(AbstractCinciaObject parent) {
-		return parent;
+	
+	/**
+	 * Return a copy of this method that points to the same code, 
+	 * but to a different object (bound to a different object).
+	 * @param parent
+	 * @return
+	 */
+	public CinciaMethod copy(CinciaObject parent) {
+		
+		CinciaMethod copy;
+		
+		if( wrappedFunction!=null ) {
+			copy = new CinciaMethod(wrappedFunction);
+		}else {
+			copy = new CinciaMethod(lambdex, eval);
+		}
+		
+		copy.parent = parent;
+		
+		return copy;
 	}
+	
+	
+//	public AbstractCinciaObject getParent(AbstractCinciaObject parent) {
+//		return parent;
+//	}
 	
 	/**
 	 * Runs on the ORIGINAL parent object's environment,

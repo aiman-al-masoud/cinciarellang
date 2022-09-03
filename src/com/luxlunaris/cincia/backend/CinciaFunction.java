@@ -30,17 +30,19 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		CinciaObject run(List<CinciaObject> args);
 	}
 
-	private CompoundStatement block;
-	private Expression expression;	
-	private List<Entry<String, ? extends Type>> params;
-	private Eval eval;
-	private WrappedFunction wrappedFunction;
+	protected LambdaExpression lambdex;
+	protected CompoundStatement block;
+	protected Expression expression;	
+	protected List<Entry<String, ? extends Type>> params;
+	protected Eval eval;
+	protected WrappedFunction wrappedFunction;
 
 	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
 		super(lambdex.signature);
 		this.expression = lambdex.expression;
 		this.block = lambdex.block;
 		this.eval = eval;
+		this.lambdex = lambdex;
 		parseParams();
 	}
 	

@@ -37,20 +37,24 @@ public class CinciaClass extends AbstractCinciaObject{
 	//TODO: remove method duplication (all instances should refer to same func objects)
 	//TODO: deal with modifiers such as static
 	public AbstractCinciaObject constructor(List<CinciaObject> args) {
+		
 		Enviro newEnv = this.getEnviro().newChild(); 
 		AbstractCinciaObject obj = new AbstractCinciaObject(new IdentifierType("Object"));  
 		obj.myClass = this;
 		obj.enviro = newEnv;
 		
+		
 		// TODO: WROOOOOOOOOOONG doesn't even work, and you're not supposed 
 		// to modify the original methods.
 		// bind methods to new instance's environment.
-		newEnv.values().forEach(o->{
-			if(o instanceof CinciaMethod) {
-				CinciaMethod cm = (CinciaMethod)o;
-				cm.parent = obj;
-			}
-		});
+//		newEnv.values().forEach(o->{
+//			if(o instanceof CinciaMethod) {
+//				CinciaMethod cm = (CinciaMethod)o;
+//				cm.parent = obj;
+//			}
+//		});
+		
+		
 		
 		obj.__init__(args);
 		return obj;
