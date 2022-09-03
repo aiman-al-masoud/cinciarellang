@@ -279,8 +279,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else if(mulex.op == Operators.MOD) {
 			return left.__mod__(right);
 		}
-		
-//		System.out.println(mulex);
+
+		//		System.out.println(mulex);
 
 		throw new RuntimeException("Unknown multiplication operator!");
 	}
@@ -344,8 +344,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
 
-		
-		
+
+
 		CinciaObject rval =  eval(assex.right, enviro);
 
 		if(assex.left instanceof Identifier) {
@@ -362,7 +362,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		//TODO: if indexed expresson  
-		
+
 
 		return rval;
 	}
@@ -409,7 +409,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		if(b != null) {
 			return new CinciaMethod(lambdex, this::eval);
 		}
-		
+
 		// Check if function is pure, in that case return a pure function.
 		if(lambdex.modifiers.contains(Modifiers.PURE)) {
 			return new PureCinciaFunction(lambdex, this::eval);
@@ -422,12 +422,31 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalListComprehension(ListComprehension listcompex, Enviro enviro) {
 		// TODO Auto-generated method stub
-		return null;
+		
+//		List<CinciaObject> results = new ArrayList<CinciaObject>();
+		CinciaList results = new CinciaList(Type.Any);
+		Iterable<CinciaObject> iterable = (Iterable)eval(listcompex.iterable, enviro);
+
+		iterable.forEach(e->{
+
+			enviro.set(((Identifier)listcompex.source).value, e);
+
+			if( eval(listcompex.where, enviro).__bool__() ) {
+				results.add(eval(listcompex.element, enviro));
+			}
+
+//			System.out.println(e);
+		});
+		//		System.out.println(listcompex.source.getClass());
+
+//		System.out.println("not implemented");
+
+		return results;
 	}
 
 	@Override
 	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
-		
+
 		// TODO: move this c... into evalMultiExpression
 		List<Expression> elements = new ArrayList<Expression>();
 		if(listex.elements instanceof MultiExpression) {
@@ -435,21 +454,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else {
 			elements.add(listex.elements);
 		}
-		
+
 		List<CinciaObject> objects = elements.stream().map(e->eval(e, enviro)).collect(Collectors.toList());
 		CinciaList cL = new CinciaList(Type.Any);
-		
+
 		objects.forEach(o->{
 			cL.add(o);
 		});
-		
+
 		return cL;
 	}
 
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 
-		
+
 		// TODO: do some of this stuff in evalMultiExpression ! 
 		// get arguments 
 		List<CinciaObject> args = new ArrayList<CinciaObject>();
@@ -472,8 +491,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			CinciaClass c = (CinciaClass)f;
 			return c.constructor(args);
 		}catch (ClassCastException e) {
-//			e.printStackTrace();
-//			System.exit(1); //TODO: remove
+			//			e.printStackTrace();
+			//			System.exit(1); //TODO: remove
 		}
 
 		// if method, call on parent object's ORIGINAL env
@@ -483,7 +502,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
-		
+
 		// if pure function, run with args as ONLY input, don't let it even read the global env.
 		try {
 			PureCinciaFunction cm = (PureCinciaFunction)f;
@@ -499,8 +518,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
-		
-		
+
+
 		throw new RuntimeException("Unsupported callable type!");
 	}
 
@@ -515,18 +534,18 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject o = eval(indexex.indexable, enviro);
 		CinciaObject index = eval(indexex.index , enviro);
-		
-		
+
+
 		if( index instanceof CinciaString ) {
 			return o.get((String)index.getValue());
 		}
-		
-		
+
+
 		if(index instanceof CinciaInt) {
 			return o.get(((CinciaInt)index).getValue());
 		}
-		
-		
+
+
 		// TODO: check if index iterable (fancy index)
 
 		throw new RuntimeException("Unsupported index type!");
