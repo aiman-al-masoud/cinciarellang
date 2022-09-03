@@ -17,36 +17,18 @@ public class CinciaMethod extends CinciaFunction{
 	public CinciaMethod(WrappedFunction wrappedFunction) {
 		super(wrappedFunction);
 	}
+	
+	
+	public CinciaMethod(WrappedFunction wrappedFunction, CinciaObject parent) {
+		super(wrappedFunction);
+		this.parent = parent;
+	}
 
 	public void setParent(AbstractCinciaObject parent) {
 		this.parent = parent;
 	}
 
 
-	/**
-	 * Return a copy of this method that points to the same code, 
-	 * but to a different object (bound to a different object).
-	 * @param parent
-	 * @return
-	 */
-	public CinciaMethod copy(CinciaObject parent) {
-
-		CinciaMethod copy;
-
-		if( wrappedFunction!=null ) {
-			copy = new CinciaMethod(wrappedFunction);
-		}else {
-			copy = new CinciaMethod(lambdex, eval);
-		}
-
-		copy.parent = parent;
-
-		return copy;
-	}
-
-
-	
-	//TODO: eliminate duplicated method
 	@Override
 	public CinciaMethod copy(List<CinciaObject> args) {
 
@@ -60,12 +42,6 @@ public class CinciaMethod extends CinciaFunction{
 
 		return copy;
 	}
-
-
-
-	//	public AbstractCinciaObject getParent(AbstractCinciaObject parent) {
-	//		return parent;
-	//	}
 
 	/**
 	 * Runs on the ORIGINAL parent object's environment,

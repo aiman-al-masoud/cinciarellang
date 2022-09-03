@@ -19,9 +19,9 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		if(! (this instanceof CinciaFunction) ) {
 			set("this", this, type); //TODO: extract into keywords
-			set(Magic.copy, new CinciaMethod(this::copy));
-			set(Magic.freeze, new CinciaMethod(this::freeze));
-			set(Magic.as, new CinciaMethod(this::as));
+			set(Magic.copy, new CinciaMethod(this::copy, this));
+			set(Magic.freeze, new CinciaMethod(this::freeze, this));
+			set(Magic.as, new CinciaMethod(this::as, this));
 		}
 
 	}
