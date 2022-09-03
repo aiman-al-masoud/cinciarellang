@@ -8,7 +8,6 @@ import com.luxlunaris.cincia.frontend.charstream.CharStream;
 import com.luxlunaris.cincia.frontend.parser.Parser;
 import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
-import com.sun.tools.classfile.StackMapTable_attribute.chop_frame;
 
 public class Test {
 	
