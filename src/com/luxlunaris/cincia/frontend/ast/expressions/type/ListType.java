@@ -8,6 +8,10 @@ public class ListType  extends CollectionType{
 	
 	public Type value;
 	
+	public ListType(Type value) {
+		this.value = value;
+	}
+	
 	@Override
 	public String toString() {
 		return value+"[]";
