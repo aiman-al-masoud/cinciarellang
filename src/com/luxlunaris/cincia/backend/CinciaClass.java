@@ -42,26 +42,18 @@ public class CinciaClass extends AbstractCinciaObject{
 		AbstractCinciaObject obj = new AbstractCinciaObject(new IdentifierType("Object"));  
 		obj.myClass = this;
 		obj.enviro = newEnv;
+		set("this", obj, type); 
+		set(Magic.copy, new CinciaMethod(obj::copy));
+		set(Magic.freeze, new CinciaMethod(obj::freeze));
+		set(Magic.as, new CinciaMethod(obj::as));
+		
 		
 		this.getEnviro().items().forEach(e->{
 			if(e.getValue() instanceof CinciaMethod) {
 				CinciaMethod cm = ((CinciaMethod)e.getValue()).copy(obj);
 				obj.set(e.getKey(), cm);
 			}
-		});
-		
-		
-		// TODO: WROOOOOOOOOOONG doesn't even work, and you're not supposed 
-		// to modify the original methods.
-		// bind methods to new instance's environment.
-//		newEnv.values().forEach(o->{
-//			if(o instanceof CinciaMethod) {
-//				CinciaMethod cm = (CinciaMethod)o;
-//				cm.parent = obj;
-//			}
-//		});
-		
-		
+		});		
 		
 		obj.__init__(args);
 		return obj;
