@@ -38,7 +38,7 @@ public class CinciaClass extends AbstractCinciaObject{
 	//TODO: deal with modifiers such as static
 	public AbstractCinciaObject constructor(List<CinciaObject> args) {
 		Enviro newEnv = this.getEnviro().newChild(); 
-		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);  
+		AbstractCinciaObject obj = new AbstractCinciaObject(new IdentifierType("Object"));  
 		obj.myClass = this;
 		obj.enviro = newEnv;
 		
