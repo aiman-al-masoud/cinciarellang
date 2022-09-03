@@ -212,10 +212,13 @@ public class AbstractCinciaObject implements CinciaObject{
 		return cm.run(args);
 	}
 
-	// TODO: make it deep
-	// return a copy of this object
+	/**
+	 * Return a copy of this object.
+	 */
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
+		
+		//TODO: circular references could cause problems
 		
 		CinciaObject res = new AbstractCinciaObject(this.type);
 		
