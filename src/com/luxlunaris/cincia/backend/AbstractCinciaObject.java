@@ -81,18 +81,10 @@ public class AbstractCinciaObject implements CinciaObject{
 	public void setImmutable() {
 
 		immutable = true;
-//		System.out.println(enviro.values());
-
-//		System.out.println(enviro.values().size());
-//		if(enviro.values().size()==0) {//TODO: maybe unnecessary?
-////			System.out.println("entered");
-//			return;
-//		}
-//
+		
 		enviro.values().stream().forEach(o->{
 			
 			if(o!=null && o!=this) {
-//				System.out.println(o);
 				o.setImmutable();
 			}
 			
@@ -223,8 +215,12 @@ public class AbstractCinciaObject implements CinciaObject{
 	// return a copy of this object
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
+		
+		System.out.println(enviro.get("a"));
+		
 		AbstractCinciaObject obj = new AbstractCinciaObject(this.type);
 		obj.enviro = new Enviro(this.enviro);
+		
 //		System.out.println("copy of env "+obj.enviro.get);
 		return obj;
 	}
