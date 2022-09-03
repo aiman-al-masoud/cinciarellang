@@ -33,18 +33,5 @@ public class CinciaList extends AbstractCinciaObject implements Iterable<CinciaO
 	public void add(CinciaObject val) {
 		list.add(val);
 	}
-	
-	
-	
-//	@Override
-//	public CinciaObject get(String key) {
-//		return list.get(Integer.parseInt(key)); //TODO: fix this stupid solution
-//	}
-	
-//	@Override
-//	public void set(String key, CinciaObject val, Type type) {
-//		list.set(Integer.parseInt(key), val);  //TODO: fix this stupid solution
-//	}
-		
 
 }
