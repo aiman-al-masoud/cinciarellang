@@ -20,6 +20,15 @@ public class ListTester extends AbstractTester {
 		muEx.expressions = Arrays.asList(new Int(1), new Int(2), new Int(3), new Int(4));
 		lE.elements = muEx;
 		add("[1,2,3,4];", lE.toString());
+		
+		// empty list 
+		muEx.expressions = Arrays.asList();
+		add("[];", lE.toString());
+		
+		// one element list
+		muEx.expressions = Arrays.asList(new Int(1));
+		add("[1];", lE.toString());
+		
 
 
 		// list comprehension

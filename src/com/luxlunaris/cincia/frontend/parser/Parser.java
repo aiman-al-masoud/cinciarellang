@@ -1027,16 +1027,34 @@ public class Parser {
 	private ObjectExpression parseList() {
 
 		eat(Punctuations.SQBR_OPN);
+		ListExpression lE = new ListExpression();
+		
+		// empty list
+		if(tStream.peek().getValue().equals(Punctuations.SQBR_CLS)) {
+			eat(Punctuations.SQBR_CLS);
+			lE.elements = new MultiExpression();
+			return lE;
+		}
+		
+		// first element
 		Expression exp = parseSingleExpression();
 
+		// comprehension
 		if(tStream.peek().getValue().equals(Keywords.FOR)) {
 			return parseListComprehension(exp);
+		}
+		
+		// one element list
+		if(tStream.peek().getValue().equals(Punctuations.SQBR_CLS)) {
+			eat(Punctuations.SQBR_CLS);
+			lE.elements = exp;
+			return lE;
 		}
 
 		eat(Punctuations.COMMA);
 		MultiExpression mE = parseMultiExpression();
 		mE.expressions.add(0, exp);
-		ListExpression lE = new ListExpression();
+//		ListExpression lE = new ListExpression();
 		lE.elements = mE;
 		eat(Punctuations.SQBR_CLS);
 		return lE;
