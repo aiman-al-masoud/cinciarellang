@@ -1,5 +1,7 @@
 package com.luxlunaris.cincia.backend;
 
+import java.util.List;
+
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 
@@ -161,6 +163,10 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		throw new RuntimeException();
 	}
 	
+	@Override
+	public CinciaObject into(List<CinciaObject> args) {
+		return this;
+	}
 	
 
 
