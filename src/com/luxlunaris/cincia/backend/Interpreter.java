@@ -424,13 +424,14 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		
 		CinciaList results = new CinciaList(Type.Any);
 		Iterable<CinciaObject> iterable = (Iterable)eval(listcompex.iterable, enviro);
+		Enviro envCopy = enviro.newChild();
 
 		iterable.forEach(e->{
 
-			enviro.set(((Identifier)listcompex.source).value, e);
+			envCopy.set(((Identifier)listcompex.source).value, e);
 
 			if( eval(listcompex.where, enviro).__bool__() ) {
-				results.add(eval(listcompex.element, enviro));
+				results.add(eval(listcompex.element, envCopy));
 			}
 
 		});
