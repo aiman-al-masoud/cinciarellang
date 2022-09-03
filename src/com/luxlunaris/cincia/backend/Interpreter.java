@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
@@ -521,7 +522,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			return o.get((String)index.getValue());
 		}
 		
-		// TODO: check if index is int or iterable (fancy index)
+		
+		if(index instanceof CinciaInt) {
+			return o.get(((CinciaInt)index).getValue());
+		}
+		
+		
+		// TODO: check if index iterable (fancy index)
 
 		throw new RuntimeException("Unsupported index type!");
 	}
