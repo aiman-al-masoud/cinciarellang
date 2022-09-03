@@ -33,6 +33,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
@@ -424,6 +425,18 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
 		// TODO Auto-generated method stub
+		
+		// TODO: move this c... into evalMultiExpression
+		List<Expression> elements = new ArrayList<Expression>();
+		if(listex.elements instanceof MultiExpression) {
+			elements.addAll(((MultiExpression)listex.elements).expressions);
+		}else {
+			elements.add(listex.elements);
+		}
+		
+		
+//		mE.expressions.stream().
+		
 		return null;
 	}
 
