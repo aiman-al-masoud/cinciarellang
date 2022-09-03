@@ -37,7 +37,7 @@ public class CinciaClass extends AbstractCinciaObject{
 	//TODO: deal with modifiers such as static
 	public CinciaObject constructor(List<CinciaObject> args) {
 		
-		
+		// basically prototypal inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
 		
 		// java-code wrappers need to point to the original instance of the new 
