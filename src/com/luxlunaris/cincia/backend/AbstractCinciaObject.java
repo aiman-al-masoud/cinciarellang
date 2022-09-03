@@ -226,9 +226,10 @@ public class AbstractCinciaObject implements CinciaObject{
 	// return an immutable copy of this object
 	@Override
 	public CinciaObject freeze(List<CinciaObject> args) {
-		CinciaObject o = copy(args);
-		o.setImmutable();
-		return o;
+//		CinciaObject o = copy(args);
+//		o.setImmutable();
+		this.setImmutable();
+		return null;
 	}
 	
 	@Override

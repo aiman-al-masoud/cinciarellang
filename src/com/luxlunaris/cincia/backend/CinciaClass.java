@@ -67,8 +67,16 @@ public class CinciaClass extends AbstractCinciaObject{
 		CinciaMethod m1 = new CinciaMethod(obj::copy);
 		m1.parent = obj;
 		obj.set(Magic.copy, m1);
-		obj.set(Magic.freeze, new CinciaMethod(obj::freeze));
-		obj.set(Magic.as, new CinciaMethod(obj::as));
+		
+		CinciaMethod m2 = new CinciaMethod(obj::freeze);
+		m2.parent = obj;
+		
+		obj.set(Magic.freeze, m2);
+		
+		CinciaMethod m3 = new CinciaMethod(obj::as);
+		m3.parent = obj;
+		
+		obj.set(Magic.as, m3);
 		
 		obj.__init__(args);
 		return obj;
