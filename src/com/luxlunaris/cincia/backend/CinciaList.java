@@ -27,7 +27,7 @@ public class CinciaList extends AbstractCinciaObject implements Iterable<CinciaO
 	
 	@Override
 	public void set(String key, CinciaObject val, Type type) {
-		list.set(Integer.parseInt(key), val);
+		list.set(Integer.parseInt(key), val);  //TODO: fix this stupid solution
 	}
 		
 
