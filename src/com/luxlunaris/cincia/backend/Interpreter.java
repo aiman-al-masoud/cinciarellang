@@ -142,8 +142,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return null; //useless
 	}
 
-	
-	
+
+
 	// for x, y, i in [[1,2],[3,4],[5,6],[7,8]]{ print(x, y, i);  }
 	// for x, y, i, a in [[1,2],[3,4],[5,6],[7,8]]{ print(x, y, i);  } SHOULD BE MARKED AS WRONG
 	// for x,y in [[1,2,3],[3,4,5],[5,6,7],[7,8,9]]{ print(x);  } SHOULD BE MARKED AS WRONG
@@ -152,53 +152,53 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaIterable iterable = (CinciaIterable)eval(forStatement.iterable, enviro);		
 		List<String> loopVars = forStatement.loopVars.stream().map(v-> ((Identifier)v).value ).collect(Collectors.toList());
-		
+
 		int index = 0;
 		for(CinciaObject x : iterable) {
-			
+
 			// 1 set loop vars
-			
+
 			// 1.1 if there are >1 loop vars and x is an iterable, unpack it into the vars
 			if(loopVars.size()>1 && x instanceof CinciaIterable) {
-				
+
 				CinciaIterable itx = (CinciaIterable)x;
-				
+
 				if(loopVars.size() < itx.size()) {
 					throw new RuntimeException("Too few loop vars!");
 				}// TODO: extra var (if present) for index
-				
+
 				if(loopVars.size() > itx.size() + 1) {
 					throw new RuntimeException("Too many loop vars!");
 				}// TODO: extra var (if present) for index
-				
+
 				for(int i=0; i<itx.size(); i++) {
 					enviro.set(loopVars.get(i), itx.get(i));
 				}
-				
-				
+
+
 			}else {
-			// 1.2 if x isn't an iterable, or there's just one loop var, don't unpack
+				// 1.2 if x isn't an iterable, or there's just one loop var, don't unpack
 				enviro.set(loopVars.get(0), x);
 			}
-			
-			
+
+
 			// 2 if there's an extra loop var, assign it to the index
 			try {
-				
+
 				long unpackedElemSize = ((CinciaIterable)iterable.get(0)).size();
 				if(loopVars.size() > unpackedElemSize) {
 					enviro.set(loopVars.get(loopVars.size()-1), new CinciaInt(index));
 				}
-				
+
 			}catch (ClassCastException e) {
 				enviro.set(loopVars.get(loopVars.size()-1), new CinciaInt(index));
 			}
-			
-			
+
+
 			// 3 execute block
 			eval(forStatement.block, enviro);
 			index++; //4 increment iteration index
-			
+
 		}
 
 		return null;
@@ -241,7 +241,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	// import x.y as u from "./docs/examples/nested.ci"
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
-		
+
 		//1 if fromPath is path to text file, load code into string
 		String source = "";		
 		try {
@@ -250,10 +250,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		//2 create a new isolated env
 		Enviro envCopy = enviro.newChild();
-		
+
 		//3 evaluate the code in the string into the env //TODO: abstract this away in some other class
 		Preprocessor preprocessor = new Preprocessor(source);
 		CharStream charStream = new CharStream(preprocessor.process());
@@ -262,17 +262,17 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		List<Statement> statements = parser.parse();
 		statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
 		statements.forEach(s -> eval(s, envCopy) );
-		
+
 		//4 put the env in a "module" object
 		AbstractCinciaObject module = new AbstractCinciaObject(Type.Module);
 		module.enviro = envCopy;
-		
+
 		//5 import the desired pieces of the module into the current env	
 		importStatement.imports.forEach(i->{
-			
+
 			CinciaObject desired = eval(i.getKey(), envCopy);
 			String alias = i.getValue().value;
-			
+
 			if(alias != Identifier.NULL.value) {
 				enviro.set(alias, desired);
 			}else if(i.getKey() instanceof DotExpression){
@@ -281,11 +281,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			}else if(i.getKey() instanceof Identifier){
 				enviro.set(((Identifier)i.getKey()).value, desired);
 			}
-			
+
 		});
-		
+
 		return null;
-		
+
 	}
 
 	@Override
@@ -526,20 +526,20 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalDictExpression(DictExpression dictex, Enviro enviro) {
 
 		CinciaDict d = new CinciaDict(Type.Any, Type.Any);
-		
+
 		dictex.entries.forEach(e->{
-			
+
 			CinciaObject key = eval(e.getKey(), enviro);
 			CinciaObject val = eval(e.getValue(), enviro);
-			
+
 			if(key instanceof CinciaString) {
 				d.set(((CinciaString)key).getValue(), val);
 			}
-			
+
 			if(key instanceof CinciaInt) {
 				d.set(((CinciaInt)key).getValue(), val);
 			}
-			
+
 		});
 
 		return d;
@@ -633,13 +633,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// get called expression
 		CinciaObject f = eval(callex.callable, enviro);
 
-		
+
 		//TODO: problem: recursive functions in nested imported modules can't resolve their own name!!!!
-        // when a function refers to itself, the code block where it does so
+		// when a function refers to itself, the code block where it does so
 		// is evaluated in the current environment, and if the name is not 
 		// on the top level, the function name isn't resolved!
 		// System.out.println("callable: "+f);
-		
+
 
 		// if class, call constructor and return reference to new object
 		try {
@@ -759,14 +759,15 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return eval(negex.arg, enviro).__not__();
 	}
 
+
+	// TEST
+	// double = \x -> 2*x
+	// 1 | double | double | double 
+	// f = \x-> ( x | double | double | double )
+	// 3 | f
+	// x | \x->4*5 | \x->x<1
 	@Override
 	public CinciaObject evalPipeExpression(PipeExpression pipex, Enviro enviro) {
-
-		// double = \x -> 2*x
-		// 1 | double | double | double 
-		// f = \x-> ( x | double | double | double )
-		// 3 | f
-		// x | \x->4*5 | \x->x<1
 
 		Enviro envCopy =  enviro.newChild();
 		CinciaObject arg = eval(pipex.expressions.get(0), envCopy);
