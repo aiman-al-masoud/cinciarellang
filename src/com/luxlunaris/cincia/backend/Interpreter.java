@@ -141,7 +141,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalForStatement(ForStatement forStatement, Enviro enviro) {
 
 		CinciaIterable iterable = (CinciaIterable)eval(forStatement.iterable, enviro);
-		List<Identifier> loopVars = forStatement.loopVars.stream().map(v->(Identifier)eval(v, enviro)).collect(Collectors.toList());
+		List<String> loopVars = forStatement.loopVars.stream().map(v->((Identifier)eval(v, enviro)).value ).collect(Collectors.toList());
 		
 		
 		for(CinciaObject x : iterable) {
@@ -149,10 +149,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			// 1 set loop vars
 			
 			// 1.1 if there are >1 loop vars and x is an iterable, unpack it into the vars
-			
-			
-			// 1.2 if x isn't an iterable don't unpack
-			
+			if(loopVars.size()>1 && x instanceof CinciaIterable) {
+				
+			}else {
+			// 1.2 if x isn't an iterable, or there's just one loop var, don't unpack
+
+				
+			}
 			
 			// 2 execute block
 			eval(forStatement.block, enviro);
