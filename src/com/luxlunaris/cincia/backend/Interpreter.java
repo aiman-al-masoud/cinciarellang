@@ -272,7 +272,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			
 			CinciaObject desired = eval(i.getKey(), envCopy);
 			String alias = i.getValue().value;
-			enviro.set(alias, desired);
+			
+			if(alias != Identifier.NULL.value) {
+				enviro.set(alias, desired);
+			}
+			
 		});
 		
 		return null;
