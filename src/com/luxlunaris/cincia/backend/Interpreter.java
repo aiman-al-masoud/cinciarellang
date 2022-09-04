@@ -152,6 +152,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				
 				CinciaIterable itx = (CinciaIterable)x;
 				
+				if(loopVars.size() != itx.size()) {
+					throw new RuntimeException("Unpacking failed!");
+				}
+				
 				for(int i=0; i<loopVars.size(); i++) {
 					enviro.set(loopVars.get(i), itx.get(i));
 				}

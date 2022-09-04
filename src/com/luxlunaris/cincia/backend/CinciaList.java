@@ -74,5 +74,10 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return null;
 	}
 	
+	@Override
+	public long size() {
+		return list.size();
+	}
+	
 
 }
