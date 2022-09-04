@@ -438,51 +438,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalListComprehension(ListComprehension listcompex, Enviro enviro) {
 
-//		CinciaList results = new CinciaList(Type.Any);
-//		Iterable<CinciaObject> iterable = (Iterable)eval(listcompex.iterable, enviro);
-//		Enviro envCopy = enviro.newChild();
-
-//		iterable.forEach(e->{
-//
-//			envCopy.set(((Identifier)listcompex.source).value, e);
-//
-//			if( eval(listcompex.where, envCopy).__bool__() ) {
-//				results.add(eval(listcompex.element, envCopy));
-//			}
-//
-//		});
-
-//		return results;
-		
-		
-//		LambdaExpression element = new LambdaExpression();
-//		element.expression = listcompex.element; // body
-//		element.modifiers.add(Modifiers.PURE); 
-//		Signature s1 = new Signature();
-//		VariableDeclaration i = new VariableDeclaration();
-//		i.name = (Identifier)listcompex.source; // input
-//		s1.params = i;
-//		s1.returnType = Type.Any; //return type
-//		element.signature = s1;
-//		PureCinciaFunction map = (PureCinciaFunction)eval(element, enviro);
-//		
-//		
-//		LambdaExpression where = new LambdaExpression();
-//		where.expression = listcompex.where;
-//		where.modifiers.add(Modifiers.PURE);
-//		Signature s2 = new Signature();
-//		s2.params = i;
-//		s2.returnType = new PrimitiveType(PrimitiveType.BOOL);
-//		where.signature = s2;
-//		PureCinciaFunction filter = (PureCinciaFunction)eval(where, enviro);
-//		
-//		
-//		CinciaIterable iterable = (CinciaIterable)eval(listcompex.iterable, enviro);
-//
-//		return iterable.filter(filter).map(map);
-		
-		
-		
 		PureCinciaFunction map = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)listcompex.source, listcompex.element, Type.Any), enviro);
 		PureCinciaFunction filter = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)listcompex.source, listcompex.where, new PrimitiveType(PrimitiveType.BOOL)), enviro);
 		CinciaIterable iterable = (CinciaIterable)eval(listcompex.iterable, enviro);
