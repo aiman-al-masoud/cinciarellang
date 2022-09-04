@@ -410,7 +410,6 @@ public class Parser {
 
 	private Entry<PostfixExpression, Identifier> parseImported(){
 
-		//		DotExpression dEx = parseDotExpression(null);//TODO:: buruf????
 		PostfixExpression  dE  = parsePostfixExpression();
 
 		Identifier alias = null; // can be null
