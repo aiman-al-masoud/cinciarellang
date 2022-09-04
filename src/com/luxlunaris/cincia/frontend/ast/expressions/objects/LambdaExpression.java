@@ -52,17 +52,17 @@ public class LambdaExpression implements ObjectExpression{
 	
 	public static LambdaExpression fromExpression(Identifier input, Expression body, Type returnType) {
 		
-		LambdaExpression element = new LambdaExpression();
-		element.expression = body; // body
-		element.modifiers.add(Modifiers.PURE); 
+		LambdaExpression lambdex = new LambdaExpression();
+		lambdex.expression = body; // body
+		lambdex.modifiers.add(Modifiers.PURE); 
 		Signature s1 = new Signature();
 		VariableDeclaration i = new VariableDeclaration();
 		i.name = input; // input
 		s1.params = i;
 		s1.returnType = returnType; //return type
-		element.signature = s1;
+		lambdex.signature = s1;
 		
-		return element;
+		return lambdex;
 	}
 	
 	
