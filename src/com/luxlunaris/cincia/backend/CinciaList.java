@@ -7,7 +7,7 @@ import java.util.List;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-public class CinciaList extends AbstractCinciaObject implements Iterable<CinciaObject> {
+public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	
 	protected ArrayList<CinciaObject> list;
 
