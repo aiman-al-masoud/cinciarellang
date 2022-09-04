@@ -17,9 +17,10 @@ public class CinciaDict extends AbstractCinciaObject {
 		
 		Optional<String> d =  enviro.items().stream()
 											.filter(e->e.getValue()!=this)
-				 	                        .map(e->e.getKey()+" : "+e.getValue())
+											.filter(e-> ! (e.getValue() instanceof CinciaMethod))
+				 	                        .map(e->e.getKey()+": "+e.getValue())
 				                        	.reduce((e1,e2)->e1+", "+e2);
-		return "{ "+d.get()+" }";
+		return "{"+d.get()+"}";
 	}
 
 }
