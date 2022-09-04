@@ -28,15 +28,4 @@ public class DotExpression implements PostfixExpression, LeftValue {
 		return this;
 	}
 	
-	public String getLeftmost() {
-		
-		if(left instanceof DotExpression) {
-			return ((DotExpression)left).getLeftmost();
-		}else if(left instanceof Identifier){
-			return ((Identifier)left).value;
-		}
-		
-		throw new RuntimeException("DotExpression.getLeftmost() failed!");
-	}
-	
 }
