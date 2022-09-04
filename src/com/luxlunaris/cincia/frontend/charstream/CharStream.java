@@ -9,7 +9,9 @@ public class CharStream {
 	
 	public CharStream(String source) {
 		this.source = source;
-		pos = row = col = 0;
+//		pos = row = col = 0;
+		pos = 0;
+		row  = col = 1;
 	}
 	
 	public void next() {

@@ -110,8 +110,11 @@ public abstract class AbstractTraversal<T> {
 		
 		}else if (ast == null) { //TODO: really?
 			return null;
+		}else if (ast instanceof ReturnStatement) {
+			return evalReturnStatement((ReturnStatement)ast, enviro);
 		}
 		
+//		System.out.println(ast.getClass());
 		throw new RuntimeException("No such AST class!");
 	}
 

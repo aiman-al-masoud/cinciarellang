@@ -1,17 +1,24 @@
 Fib = class {
 
 	__init__ = \x->{
-
+		this.name = "ciao";
 	};
 
     // there is a problem in object-func env recursive var reassignment
 	run = \n-> n <= 1 ? 1 : run(n-2) + run(n-1);
 	
 	
-	setX = \x -> {this.x = x;}; 
+	setX = \x -> {
+		this.x = x;
+	};
+	
 	
 	setXNotWorking = \h -> {
-			x = h;
-	}; 
+		x = h;
+	};
+	
+	getName = \x->{
+		return this.name;
+	}
 
 }
