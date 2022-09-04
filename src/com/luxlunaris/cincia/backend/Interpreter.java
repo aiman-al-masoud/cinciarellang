@@ -267,9 +267,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		AbstractCinciaObject module = new AbstractCinciaObject(Type.Module);
 		module.enviro = envCopy;
 		
-		//5 set the module object
-		enviro.set(importStatement.imports.get(0).getValue().value, module);
-		
+		//5 set the module object		
 		importStatement.imports.forEach(i->{
 			
 			CinciaObject desired = eval(i.getKey(), envCopy);
