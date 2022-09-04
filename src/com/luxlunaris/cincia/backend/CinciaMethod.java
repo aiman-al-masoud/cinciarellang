@@ -53,7 +53,7 @@ public class CinciaMethod extends CinciaFunction{
 	public CinciaObject run(List<CinciaObject> args) {
 		//TODO PROBLEM: this overwrites also stuff in this given how this was implemented
 		//TODO: PROBLEM: recursive methods are broken, because all calls on the stack refer to the same environment!!
-		return super.run(args, parent.getEnviro());
+		return super.run(args, parent.getEnviro().newChild());
 	}
 
 

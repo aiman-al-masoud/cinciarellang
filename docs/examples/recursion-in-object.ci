@@ -6,5 +6,8 @@ Fib = class {
 
     // there is a problem in object-func env recursive var reassignment
 	run = \n-> n <= 1 ? 1 : run(n-2) + run(n-1);
+	
+	
+	setMe = \x -> {this.x = x;}; 
 
 }
