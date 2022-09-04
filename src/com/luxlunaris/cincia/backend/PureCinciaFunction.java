@@ -18,7 +18,7 @@ public class PureCinciaFunction extends CinciaFunction {
 	public PureCinciaFunction(LambdaExpression lambdex, Eval eval) {
 		super(lambdex, eval);
 	}
-	
+
 	public CinciaObject run(List<CinciaObject> args) {
 		Enviro enviro = new Enviro(null);
 		// Make sure it can't be passed args by reference:
