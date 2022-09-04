@@ -152,7 +152,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			// 1.2 if x isn't an iterable don't unpack
 			
 			
-			
 			// 2 execute block
 			eval(forStatement.block, enviro);
 		}
