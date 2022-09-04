@@ -8,7 +8,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 
 /**
  * 
- * They DON'T EVEN READ from the global env, its only input are its arguments.
+ * They DON'T EVEN READ from the global env, their only inputs are their arguments.
  * They DON'T EVER modify their arguments, even objects are passed by value (for real).
  * And (like regular functions), it can't write to the gloal env.
  * 
