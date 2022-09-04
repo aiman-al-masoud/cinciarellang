@@ -644,7 +644,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		Enviro envCopy =  enviro.newChild();
 		CinciaObject arg = eval(pipex.expressions.get(0), envCopy);
-		//		envCopy.set("x", o);
 
 		//TODO: can this be parallelized like in bash?
 		for(int i=1; i<pipex.expressions.size(); i++) {
