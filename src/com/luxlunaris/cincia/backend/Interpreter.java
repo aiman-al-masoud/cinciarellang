@@ -153,8 +153,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				
 			}else {
 			// 1.2 if x isn't an iterable, or there's just one loop var, don't unpack
-
-				
+				enviro.set(loopVars.get(0), x);
 			}
 			
 			// 2 execute block
