@@ -197,6 +197,28 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	public boolean __bool__() {
 		return value!=0;
 	}
+	
+	@Override
+	public CinciaObject __eq__(CinciaObject other) {
+		
+		try {
+
+			CinciaInt otherInt = (CinciaInt)other;
+			return new CinciaBool(value == otherInt.value);
+		}catch (ClassCastException e) {
+			
+		}
+		
+		try {
+
+			CinciaFloat otherFloat = (CinciaFloat)other;
+			return new CinciaBool(value == otherFloat.getValue());
+		}catch (ClassCastException e) {
+			
+		}
+		
+		throw new RuntimeException();
+	}
 
 
 }
