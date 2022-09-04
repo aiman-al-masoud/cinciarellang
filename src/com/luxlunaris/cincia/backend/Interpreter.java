@@ -276,9 +276,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			
 			if(alias != Identifier.NULL.value) {
 				enviro.set(alias, desired);
-			}else {
+			}else if(i.getKey() instanceof DotExpression){
 				DotExpression dotExpression = (DotExpression)i.getKey();
-				//TODO::!!!!!
+				enviro.set(dotExpression.getLeftmost(), desired);
+			}else if(i.getKey() instanceof Identifier){
+				enviro.set(((Identifier)i.getKey()).value, desired);
 			}
 			
 		});
