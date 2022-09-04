@@ -40,9 +40,7 @@ public class CinciaClass extends AbstractCinciaObject{
 		// basically Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
 		
-		// java-code wrappers need to point to the original instance of the new 
-		// java object
-		
+		// java-code wrappers need to point to the original instance of the new java object
 		obj.set("this", obj, type); 
 		CinciaMethod m1 = new CinciaMethod(obj::copy);
 		m1.parent = obj;
@@ -50,12 +48,12 @@ public class CinciaClass extends AbstractCinciaObject{
 		CinciaMethod m2 = new CinciaMethod(obj::freeze);
 		m2.parent = obj;
 		obj.set(Magic.freeze, m2);
-		CinciaMethod m3 = new CinciaMethod(obj::into);
+		//TODO: probably wrong for the into method, since it can be overridden:
+		CinciaMethod m3 = new CinciaMethod(obj::into); 
 		m3.parent = obj;
 		obj.set(Magic.into, m3);
 		
 		obj.__init__(args);
-		
 		return obj;
 	}
 	
