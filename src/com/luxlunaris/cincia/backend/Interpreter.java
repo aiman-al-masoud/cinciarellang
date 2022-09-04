@@ -391,9 +391,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			if(index instanceof CinciaString) {
 				indexable.set(((CinciaString)index).getValue(), rval);
 			}
-			
+
 			// TODO: fancy index
-			
+
 
 		}catch (ClassCastException e) {
 
@@ -572,33 +572,33 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		if(index instanceof CinciaInt) {
 			return o.get(((CinciaInt)index).getValue());
 		}
-		
+
 		// If index is an iterable treat as fancy index
 		//[1,2,3,4][0 to 2] // [1, 2, 3]
 		//[1,2,3][[0,1]] // [1, 2]
 		if(index instanceof CinciaIterable) {
-			
+
 			CinciaList l = new CinciaList(Type.Any);
-			
+
 			for(CinciaObject i : ((CinciaIterable)index)) {
-				
+
 				try {
 					l.add(o.get((int)i.getValue()));
 				}catch (ClassCastException e) {
-				
+
 				}
-				
+
 				try {
 					l.add(o.get((String)i.getValue()));
 				}catch (ClassCastException e) {
-				
+
 				}
-				
+
 			}
-			
+
 			return l;
 		}
-		
+
 
 		throw new RuntimeException("Unsupported index type!");
 	}
