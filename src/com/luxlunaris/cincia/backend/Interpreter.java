@@ -572,8 +572,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		if(index instanceof CinciaInt) {
 			return o.get(((CinciaInt)index).getValue());
 		}
-
-
 		
 		// If index is an iterable treat as fancy index
 		//[1,2,3,4][0 to 2] // [1, 2, 3]
