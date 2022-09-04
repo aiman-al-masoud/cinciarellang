@@ -20,5 +20,9 @@ Fib = class {
 	getName = \x->{
 		return this.name;
 	}
+	
+	getName2 = \x->{
+		return name;
+	}
 
 }
