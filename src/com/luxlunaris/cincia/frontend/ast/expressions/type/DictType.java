@@ -14,6 +14,10 @@ public class DictType extends CollectionType{
 		this.valType  =valType;
 	}
 	
+	public DictType() {
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "{"+keyType+" : "+valType+"}";

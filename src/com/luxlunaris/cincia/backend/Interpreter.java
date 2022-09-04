@@ -31,6 +31,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
@@ -472,8 +473,25 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalDictExpression(DictExpression dictex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+
+		CinciaDict d = new CinciaDict(Type.Any, Type.Any);
+		
+		dictex.entries.forEach(e->{
+			
+			CinciaObject key = eval(e.getKey(), enviro);
+			CinciaObject val = eval(e.getValue(), enviro);
+			
+			if(key instanceof CinciaString) {
+				d.set(((CinciaString)key).getValue(), val);
+			}
+			
+			if(key instanceof CinciaInt) {
+				d.set(((CinciaInt)key).getValue(), val);
+			}
+			
+		});
+
+		return d;
 	}
 
 	@Override
