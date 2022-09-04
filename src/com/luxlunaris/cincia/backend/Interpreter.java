@@ -239,6 +239,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return null;
 	}
 
+	// import fib as f from "./docs/examples/fib.ci"
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
 		
