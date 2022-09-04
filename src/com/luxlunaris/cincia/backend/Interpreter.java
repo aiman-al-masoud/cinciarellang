@@ -362,11 +362,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject rval =  eval(assex.right, enviro);
 
+		// if l-value is an identifier
 		if(assex.left instanceof Identifier) {
 			enviro.set(((Identifier)assex.left).value, rval, rval.getType());
 		}
 
-		// if dot expression
+		// if l-value is a dot expression
 		try {
 			DotExpression dotex = (DotExpression)assex.left;
 			CinciaObject dottable = eval(dotex.left, enviro);
@@ -375,7 +376,29 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		//TODO: if indexed expresson  
+		// if l-value is an indexed expresson 
+		try {
+			IndexedExpression indexex = (IndexedExpression)assex.left;
+			CinciaObject indexable = eval(indexex.indexable, enviro);
+			CinciaObject index = eval(indexex.index, enviro);
+
+			// if index is an int
+			if(index instanceof CinciaInt) {
+				indexable.set(((CinciaInt)index).getValue(), rval);
+			}
+
+			// if index is a string
+			if(index instanceof CinciaString) {
+				indexable.set(((CinciaString)index).getValue(), rval);
+			}
+			
+			// TODO: fancy index
+			
+
+		}catch (ClassCastException e) {
+
+		}
+
 
 
 		return rval;
@@ -440,7 +463,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		PureCinciaFunction filter = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)listcompex.source, listcompex.where, new PrimitiveType(PrimitiveType.BOOL)), enviro);
 		CinciaIterable iterable = (CinciaIterable)eval(listcompex.iterable, enviro);
 		return iterable.filter(filter).map(map);
-		
+
 	}
 
 	@Override
@@ -453,19 +476,19 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else {
 			elements.add(listex.elements);
 		}
-		
+
 
 		List<CinciaObject> objects = elements.stream().map(e->eval(e, enviro)).collect(Collectors.toList());
 		CinciaList cL = new CinciaList(Type.Any);
 
 		objects.forEach(o->{
-			
+
 			if(o instanceof DestructuredList) {
 				((DestructuredList) o).forEach(e-> cL.add(e));
 			}else {
 				cL.add(o);
 			}
-			
+
 		});
 
 		return cL;
@@ -497,7 +520,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			CinciaClass c = (CinciaClass)f;
 			return c.constructor(args);
 		}catch (ClassCastException e) {
-			
+
 		}
 
 		// if method, call on parent object's ORIGINAL env
@@ -571,7 +594,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalDestructuringExpression(DestructuringExpression destex, Enviro enviro) {
-		
+
 		// TODO: if dict evaluate to list of lists 
 		return new DestructuredList((CinciaList)eval(destex.arg, enviro));
 	}
@@ -594,17 +617,17 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// f = \x-> ( x | double | double | double )
 		// 3 | f
 		// x | \x->4*5 | \x->x<1
-		
+
 		Enviro envCopy =  enviro.newChild();
 		CinciaObject arg = eval(expression.expressions.get(0), envCopy);
-//		envCopy.set("x", o);
-		
+		//		envCopy.set("x", o);
+
 		//TODO: can this be parallelized like in bash?
 		for(int i=1; i<expression.expressions.size(); i++) {
 			CinciaFunction f = (CinciaFunction)eval(expression.expressions.get(i), envCopy); 
 			arg = f.run(Arrays.asList(arg), envCopy);
 		}
-		
+
 		return arg;
 	}
 
