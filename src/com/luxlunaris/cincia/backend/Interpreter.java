@@ -574,7 +574,31 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 
-		// TODO: check if index iterable (fancy index)
+		
+		// If index is an iterable treat as fancy index
+		if(index instanceof CinciaIterable) {
+			
+			CinciaList l = new CinciaList(Type.Any);
+			
+			for(CinciaObject i : ((CinciaIterable)index)) {
+				
+				try {
+					l.add(o.get((int)i.getValue()));
+				}catch (ClassCastException e) {
+				
+				}
+				
+				try {
+					l.add(o.get((String)i.getValue()));
+				}catch (ClassCastException e) {
+				
+				}
+				
+			}
+			
+			return l;
+		}
+		
 
 		throw new RuntimeException("Unsupported index type!");
 	}
