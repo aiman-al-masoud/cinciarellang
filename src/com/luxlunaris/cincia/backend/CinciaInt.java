@@ -192,6 +192,11 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		return this;
 	}
 	
+	
+	@Override
+	public boolean __bool__() {
+		return value!=0;
+	}
 
 
 }
