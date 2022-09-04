@@ -21,7 +21,7 @@ public class PureCinciaFunction extends CinciaFunction {
 
 	public CinciaObject run(List<CinciaObject> args) {
 		Enviro enviro = new Enviro(null);
-		// Make sure it can't be passed args by reference:
+		// Make sure args can't ever be passed args by reference:
 		List<CinciaObject> argsCopy = args.stream().map(o->o.copy(null)).collect(Collectors.toList());
 		return super.run(argsCopy, enviro);
 	}
