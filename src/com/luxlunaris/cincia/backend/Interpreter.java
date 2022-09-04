@@ -1,5 +1,9 @@
 package com.luxlunaris.cincia.backend;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -65,6 +69,10 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
+import com.luxlunaris.cincia.frontend.charstream.CharStream;
+import com.luxlunaris.cincia.frontend.parser.Parser;
+import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
+import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 
 
@@ -234,17 +242,36 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
 		
-		//1 if fromPath is to a text file, load code into string
+		//1 if fromPath is path to text file, load code into string
+		String source = "";		
+		try {
+			List<String> lines = Files.readAllLines(Paths.get(importStatement.fromPath.value), StandardCharsets.UTF_8);
+			source = lines.stream().reduce((l1,l2)->l1+"\n"+l2).get();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		//2 create a new isolated env
+		Enviro envCopy = enviro.newChild();
 		
 		//3 evaluate the code in the string into the env
+		Preprocessor preprocessor = new Preprocessor(source);
+		CharStream charStream = new CharStream(preprocessor.process());
+		TokenStream tokenStream = new TokenStream(charStream);
+		Parser parser = new Parser(tokenStream);
+		List<Statement> statements = parser.parse();
+		statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
+		statements.forEach(s -> eval(s, envCopy) );
 		
 		//4 put the env in a "module" object
+		AbstractCinciaObject module = new AbstractCinciaObject(Type.Module);
+		module.enviro = envCopy;
 		
-		//5 return the module object
+		//5 set the module object
+		enviro.set(importStatement.imports.get(0).getValue().value, module);
 		
 		return null;
+		
 	}
 
 	@Override
@@ -592,6 +619,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// get called expression
 		CinciaObject f = eval(callex.callable, enviro);
 
+//		System.out.println("callable: "+f);
+		//TODO: problem: recursive functions in DIFFERENT modules can't eval their own name!!!!
 
 		// if class, call constructor and return reference to new object
 		try {
