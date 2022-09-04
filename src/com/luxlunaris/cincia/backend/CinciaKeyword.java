@@ -5,7 +5,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 public class CinciaKeyword extends PrimitiveCinciaObject{
 
-	private Keywords keyword;
+	public Keywords keyword;
 
 	public CinciaKeyword(Keywords keyword) {
 		super(new PrimitiveType(keyword));

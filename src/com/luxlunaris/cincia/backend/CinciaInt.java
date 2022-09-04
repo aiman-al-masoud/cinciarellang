@@ -166,6 +166,29 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	
 	@Override
 	public CinciaObject into(List<CinciaObject> args) {
+		
+		CinciaObject type = args.get(0);
+		
+		try {
+			CinciaKeyword kw = (CinciaKeyword)type;
+			
+			switch (kw.keyword) {
+			case INT:
+				return this;
+			case FLOAT:
+				return new CinciaFloat(this.value);
+			case STRING:
+				return new CinciaString(this.value+"");
+			case BOOL:
+				return new CinciaBool(__bool__());
+			default:
+				throw new RuntimeException("Type conversion not supported!");
+			}
+			
+		}catch (ClassCastException e) {
+			
+		}
+		
 		return this;
 	}
 	
