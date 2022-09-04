@@ -49,7 +49,6 @@ public class Repl {
 	protected static CinciaObject printWrapper(List<CinciaObject> args) {
 		args.forEach(e->{System.out.print(e);});
 		System.out.println();
-//		System.out.println(args.get(0));
 		return null;
 	}
 	
