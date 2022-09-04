@@ -1,6 +1,5 @@
 package com.luxlunaris.cincia.backend;
 
-import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
 public interface CinciaIterable extends Iterable<CinciaObject>, CinciaObject{
 	
