@@ -10,7 +10,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
  * 
  * They DON'T EVER READ from the global env, their only inputs are their arguments.
  * They DON'T EVER modify their arguments, even objects are passed by value (for real).
- * And (like regular functions), they can't write to the gloal env.
+ * And (like regular functions), they can't write to the gloal env (of course).
  * 
  */
 public class PureCinciaFunction extends CinciaFunction {
