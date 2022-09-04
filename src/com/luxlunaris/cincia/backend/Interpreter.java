@@ -233,7 +233,18 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
+		
+
+		//1 if fromPath is to a text file, load code into string
+		
+		//2 create a new isolated env
+		
+		//3 evaluate the code in the string into the env
+		
+		//4 put the env in a "module" object
+		
+		//5 return the module object
+		
 		return null;
 	}
 
