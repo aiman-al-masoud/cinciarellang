@@ -172,12 +172,22 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			}
 			
 			
-			// if there's an extra loop var, assign it to the index
+			// 2 if there's an extra loop var, assign it to the index
+			try {
+				
+				long unpackedElemSize = ((CinciaIterable)iterable.get(0)).size();
+				if(loopVars.size() > unpackedElemSize) {
+					enviro.set(loopVars.get(loopVars.size()-1), new CinciaInt(index));
+				}
+				
+			}catch (ClassCastException e) {
+				enviro.set(loopVars.get(loopVars.size()-1), new CinciaInt(index));
+			}
 			
 			
-			// 2 execute block
+			// 3 execute block
 			eval(forStatement.block, enviro);
-			index++; //3 increment iteration index
+			index++; //4 increment iteration index
 			
 		}
 
