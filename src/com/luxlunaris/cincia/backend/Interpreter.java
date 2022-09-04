@@ -150,6 +150,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			// 1.1 if there are >1 loop vars and x is an iterable, unpack it into the vars
 			if(loopVars.size()>1 && x instanceof CinciaIterable) {
 				
+				CinciaIterable itx = (CinciaIterable)x;
+				
+				for(int i=0; i<loopVars.size(); i++) {
+					enviro.set(loopVars.get(i), itx.get(i));
+				}
+				
 			}else {
 			// 1.2 if x isn't an iterable, or there's just one loop var, don't unpack
 				enviro.set(loopVars.get(0), x);
