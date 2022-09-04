@@ -62,11 +62,15 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 
 public abstract class AbstractTraversal<T> {
 
 	public T eval(Ast ast, Enviro enviro) {
+		
+		
 
 		if(ast instanceof Expression) {
 			return evalExpression((Expression)ast, enviro);
@@ -103,7 +107,7 @@ public abstract class AbstractTraversal<T> {
 			
 		}else if(ast instanceof ThrowStatement) {
 			return evalThrowStatement((ThrowStatement)ast, enviro);
-			
+		
 		}else if (ast == null) { //TODO: really?
 			return null;
 		}
@@ -144,6 +148,7 @@ public abstract class AbstractTraversal<T> {
 
 		}else if(expression instanceof PipeExpression) {
 			return evalPipeExpression((PipeExpression)expression, enviro);
+		
 		}
 
 		throw new RuntimeException("No such expression class!");
@@ -251,6 +256,10 @@ public abstract class AbstractTraversal<T> {
 			return evalIdentifier((Identifier)primex, enviro);
 		}else if(primex instanceof Constant) {
 			return evalConstant((Constant)primex, enviro);
+		
+		}else if(primex instanceof Keyword) {
+			return (T) new CinciaKeyword( ((Keyword)primex).value );
+//			return (T) new CinciaClass();
 		}
 
 		throw new RuntimeException("No such primary expression!");

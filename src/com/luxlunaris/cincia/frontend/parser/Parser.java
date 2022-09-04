@@ -888,6 +888,13 @@ public class Parser {
 		if(tStream.peek() instanceof Identifier) {
 			return parseIdentifier();
 		}
+		
+		// TODO: ????????????????????
+		if(tStream.peek() instanceof Keyword) {
+			Keyword k = (Keyword)tStream.peek();
+			tStream.next();
+			return k;
+		}
 
 		// constant values
 		return parseConstant();
