@@ -219,6 +219,28 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		
 		throw new RuntimeException();
 	}
+	
+	@Override
+	public CinciaObject __lte__(CinciaObject other) {
+		
+		try {
+
+			CinciaInt otherInt = (CinciaInt)other;
+			return new CinciaBool(value <= otherInt.value);
+		}catch (ClassCastException e) {
+			
+		}
+		
+		try {
+
+			CinciaFloat otherFloat = (CinciaFloat)other;
+			return new CinciaBool(value <= otherFloat.getValue());
+		}catch (ClassCastException e) {
+			
+		}
+		
+		throw new RuntimeException();
+	}
 
 
 }
