@@ -141,8 +141,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalForStatement(ForStatement forStatement, Enviro enviro) {
 
 		CinciaIterable iterable = (CinciaIterable)eval(forStatement.iterable, enviro);
-		List<String> loopVars = forStatement.loopVars.stream().map(v->((Identifier)eval(v, enviro)).value ).collect(Collectors.toList());
 		
+//		System.out.println(forStatement.loopVars);
+		List<String> loopVars = forStatement.loopVars.stream().map(v-> ((Identifier)v).value ).collect(Collectors.toList());
+//		System.out.println(loopVars);
 		
 		for(CinciaObject x : iterable) {
 			
