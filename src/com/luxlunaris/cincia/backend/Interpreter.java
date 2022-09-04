@@ -634,7 +634,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalPipeExpression(PipeExpression expression, Enviro enviro) {
+	public CinciaObject evalPipeExpression(PipeExpression pipex, Enviro enviro) {
 
 		// double = \x -> 2*x
 		// 1 | double | double | double 
@@ -643,12 +643,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// x | \x->4*5 | \x->x<1
 
 		Enviro envCopy =  enviro.newChild();
-		CinciaObject arg = eval(expression.expressions.get(0), envCopy);
+		CinciaObject arg = eval(pipex.expressions.get(0), envCopy);
 		//		envCopy.set("x", o);
 
 		//TODO: can this be parallelized like in bash?
-		for(int i=1; i<expression.expressions.size(); i++) {
-			CinciaFunction f = (CinciaFunction)eval(expression.expressions.get(i), envCopy); 
+		for(int i=1; i<pipex.expressions.size(); i++) {
+			CinciaFunction f = (CinciaFunction)eval(pipex.expressions.get(i), envCopy); 
 			arg = f.run(Arrays.asList(arg), envCopy);
 		}
 
