@@ -412,7 +412,7 @@ public class Parser {
 
 		PostfixExpression  dE  = parsePostfixExpression();
 
-		Identifier alias = null; // can be null
+		Identifier alias = Identifier.NULL; // can be null
 
 		if(tStream.peek().getValue().equals(Keywords.AS)) {
 			eat(Keywords.AS);

@@ -5,6 +5,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
 public class Identifier extends AbstractToken implements LeftValue{
 	
 	public final String value;
+	public static final Identifier NULL = new Identifier("");
 	
 	public Identifier(String value) {
 		this.value = value;
