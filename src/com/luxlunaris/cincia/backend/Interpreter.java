@@ -634,8 +634,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		CinciaObject f = eval(callex.callable, enviro);
 
 		
-		//TODO: problem: recursive functions in DIFFERENT modules can't eval their own name!!!!
-        // System.out.println("callable: "+f);
+		//TODO: problem: recursive functions in nested imported modules can't eval their own name!!!!
+        // when a function refers to itself, the code block where it does so
+		// is evaluated in the current environment, and if the name is not 
+		// on the top level, the function isn't resolved!
+		// System.out.println("callable: "+f);
 		
 
 		// if class, call constructor and return reference to new object
