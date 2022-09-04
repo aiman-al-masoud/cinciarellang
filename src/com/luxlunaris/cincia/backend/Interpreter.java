@@ -276,6 +276,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			
 			if(alias != Identifier.NULL.value) {
 				enviro.set(alias, desired);
+			}else {
+				DotExpression dotExpression = (DotExpression)i.getKey();
+				//TODO::!!!!!
 			}
 			
 		});
