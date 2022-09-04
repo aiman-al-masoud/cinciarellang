@@ -33,6 +33,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpres
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -437,21 +438,49 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalListComprehension(ListComprehension listcompex, Enviro enviro) {
 
-		CinciaList results = new CinciaList(Type.Any);
-		Iterable<CinciaObject> iterable = (Iterable)eval(listcompex.iterable, enviro);
-		Enviro envCopy = enviro.newChild();
+//		CinciaList results = new CinciaList(Type.Any);
+//		Iterable<CinciaObject> iterable = (Iterable)eval(listcompex.iterable, enviro);
+//		Enviro envCopy = enviro.newChild();
 
-		iterable.forEach(e->{
+//		iterable.forEach(e->{
+//
+//			envCopy.set(((Identifier)listcompex.source).value, e);
+//
+//			if( eval(listcompex.where, envCopy).__bool__() ) {
+//				results.add(eval(listcompex.element, envCopy));
+//			}
+//
+//		});
 
-			envCopy.set(((Identifier)listcompex.source).value, e);
+//		return results;
+		
+		
+		LambdaExpression element = new LambdaExpression();
+		element.expression = listcompex.element;
+		element.modifiers.add(Modifiers.PURE);
+		Signature s1 = new Signature();
+		VariableDeclaration i = new VariableDeclaration();
+		i.name = (Identifier)listcompex.source;
+		s1.params = i;
+		s1.returnType = Type.Any;
+		element.signature = s1;
+		PureCinciaFunction map = (PureCinciaFunction)eval(element, enviro);
+		
+		
+		LambdaExpression where = new LambdaExpression();
+		where.expression = listcompex.where;
+		where.modifiers.add(Modifiers.PURE);
+		Signature s2 = new Signature();
+		s2.params = i;
+		s2.returnType = new PrimitiveType(PrimitiveType.BOOL);
+		where.signature = s2;
+		PureCinciaFunction filter = (PureCinciaFunction)eval(where, enviro);
+		
+		
+		CinciaIterable iterable = (CinciaIterable)eval(listcompex.iterable, enviro);
 
-			if( eval(listcompex.where, envCopy).__bool__() ) {
-				results.add(eval(listcompex.element, envCopy));
-			}
-
-		});
-
-		return results;
+		return iterable.filter(filter).map(map);
+		
 	}
 
 	@Override

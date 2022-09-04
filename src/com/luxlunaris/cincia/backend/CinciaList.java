@@ -1,15 +1,18 @@
 package com.luxlunaris.cincia.backend;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	
-	protected ArrayList<CinciaObject> list;
+	protected List<CinciaObject> list;
 
 	public CinciaList(Type type) {
 		super(new ListType(type));
@@ -45,6 +48,31 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		CinciaList c = new CinciaList(type);
 		c.list = new ArrayList<CinciaObject>(list);
 		return c;
+	}
+
+	@Override
+	public CinciaIterable filter(PureCinciaFunction f) {
+		
+		List<CinciaObject> list = this.list.stream().filter( o -> f.run(Arrays.asList(o)).__bool__() ).collect(Collectors.toList());
+		CinciaList res = new CinciaList(this.type);
+		res.list = list;
+		return res;
+		
+	}
+
+	@Override
+	public CinciaIterable map(PureCinciaFunction f) {
+		
+		List<CinciaObject> list = this.list.stream().map( o -> f.run(Arrays.asList(o))).collect(Collectors.toList());
+		CinciaList res = new CinciaList(this.type); //TODO: type may not be the same
+		res.list = list;
+		return res;
+	}
+
+	@Override
+	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
