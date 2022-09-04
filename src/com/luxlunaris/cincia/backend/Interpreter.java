@@ -270,6 +270,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		//5 set the module object
 		enviro.set(importStatement.imports.get(0).getValue().value, module);
 		
+		importStatement.imports.forEach(i->{
+//			i.getKey();
+//			i.getValue();
+			System.out.println(i);
+		});
+		
 		return null;
 		
 	}
