@@ -456,13 +456,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		
 		
 		LambdaExpression element = new LambdaExpression();
-		element.expression = listcompex.element;
-		element.modifiers.add(Modifiers.PURE);
+		element.expression = listcompex.element; // body
+		element.modifiers.add(Modifiers.PURE); 
 		Signature s1 = new Signature();
 		VariableDeclaration i = new VariableDeclaration();
-		i.name = (Identifier)listcompex.source;
+		i.name = (Identifier)listcompex.source; // input
 		s1.params = i;
-		s1.returnType = Type.Any;
+		s1.returnType = Type.Any; //return type
 		element.signature = s1;
 		PureCinciaFunction map = (PureCinciaFunction)eval(element, enviro);
 		
