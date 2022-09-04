@@ -9,6 +9,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 /**
  * 
  * Doesn't even read from the global env, its only input are its arguments.
+ * They DON'T EVER modify their arguments, even objects are passed by value (for real).
  * And (like regular functions), it can't write to the gloal env.
  * 
  */
