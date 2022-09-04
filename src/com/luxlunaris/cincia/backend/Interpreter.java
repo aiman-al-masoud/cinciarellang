@@ -144,10 +144,17 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		
 		for(CinciaObject x : iterable) {
 			
-			// set loop vars
+			// 1 set loop vars
 			
-			// execute block
+			// 1.1 if there are >1 loop vars and x is an iterable, unpack it into the vars
 			
+			
+			// 1.2 if x isn't an iterable don't unpack
+			
+			
+			
+			// 2 execute block
+			eval(forStatement.block, enviro);
 		}
 
 		return null;
