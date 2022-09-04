@@ -9,6 +9,11 @@ public class DictType extends CollectionType{
 	public Type keyType;
 	public Type valType;
 	
+	public DictType(Type keyType, Type valType) {
+		this.keyType  =keyType;
+		this.valType  =valType;
+	}
+	
 	@Override
 	public String toString() {
 		return "{"+keyType+" : "+valType+"}";
