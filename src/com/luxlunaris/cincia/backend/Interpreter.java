@@ -468,8 +468,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				cL.add(o);
 			}
 			
-//			
-			
 		});
 
 		return cL;
