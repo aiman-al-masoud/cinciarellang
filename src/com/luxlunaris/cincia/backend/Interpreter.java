@@ -700,6 +700,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		// If index is an iterable treat as fancy index
+		// TEST
 		//[1,2,3,4][0 to 2] // [1, 2, 3]
 		//[1,2,3][[0,1]] // [1, 2]
 		if(index instanceof CinciaIterable) {
