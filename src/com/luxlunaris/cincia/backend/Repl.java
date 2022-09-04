@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.backend;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -19,6 +20,9 @@ public class Repl {
 		Enviro enviro = new Enviro(null);	
 		Interpreter interpreter = new Interpreter();
 		Scanner scanner;
+		enviro.set("print", new CinciaFunction(Repl::printWrapper));
+		
+	
 		
 		while(true) {
 			System.out.print(">");
@@ -32,10 +36,20 @@ public class Repl {
 			statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
 			statements.forEach(s -> {
 				CinciaObject out = interpreter.eval(s, enviro);	
-				System.out.println(out);
+				
+				if(out!=null) {
+					System.out.println(out);
+				}
+				
 			});
 		}
 		
 	}
+	
+	protected static CinciaObject printWrapper(List<CinciaObject> args) {
+		System.out.println(args.get(0));
+		return null;
+	}
+	
 
 }
