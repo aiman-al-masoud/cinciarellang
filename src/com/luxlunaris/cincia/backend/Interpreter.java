@@ -499,8 +499,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			CinciaClass c = (CinciaClass)f;
 			return c.constructor(args);
 		}catch (ClassCastException e) {
-			//			e.printStackTrace();
-			//			System.exit(1); //TODO: remove
+			
 		}
 
 		// if method, call on parent object's ORIGINAL env
