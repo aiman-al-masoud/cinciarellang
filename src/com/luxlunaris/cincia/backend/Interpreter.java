@@ -140,11 +140,15 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalForStatement(ForStatement forStatement, Enviro enviro) {
 
-		Object iterable = eval(forStatement.iterable, enviro);
-
-		//		for(Object x : iterable) {
-		//			
-		//		}
+		CinciaIterable iterable = (CinciaIterable)eval(forStatement.iterable, enviro);
+		
+		for(CinciaObject x : iterable) {
+			
+			// set loop vars
+			
+			// execute block
+			
+		}
 
 		return null;
 	}
