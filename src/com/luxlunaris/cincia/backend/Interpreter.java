@@ -234,7 +234,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
 		
-
 		//1 if fromPath is to a text file, load code into string
 		
 		//2 create a new isolated env
