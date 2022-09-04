@@ -1,5 +1,7 @@
 Fib = class {
 
+
+    // Parser problem: can't have functions without args
 	__init__ = \x->{
 		this.name = "ciao";
 	};
