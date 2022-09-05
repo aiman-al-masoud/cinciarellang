@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.frontend.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -870,6 +871,11 @@ public class Parser {
 		}
 
 		eat(rE.op);
+		
+		if(Arrays.asList(Operators.PLUSPLUS, Operators.MINUSMINUS).contains(rE.op)) {
+			return rE;
+		}
+		
 		rE.right =  parseExpression();
 		return rE;
 	}

@@ -10,22 +10,26 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
  *
  */
 public class ReassignmentExpression implements PostfixExpression{
-	
+
 	public Operators op;
 	public PostfixExpression left;
 	public Expression right; //could be null (x++, x--)
-	
+
 	@Override
 	public Expression simplify() {
 		this.left = (PostfixExpression) left.simplify();
-		this.right = right.simplify();
+
+		if(right!=null) {
+			this.right = right.simplify();
+		}
+
 		return this;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "("+left+" "+op+" "+right+")";
 	}
-	
-	
+
+
 }

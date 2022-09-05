@@ -399,6 +399,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject left = eval(addex.left, enviro);
 		CinciaObject right = eval(addex.right, enviro);
+		
 
 		if(addex.op == Operators.PLUS) {
 			return left.__add__(right);
@@ -750,6 +751,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		switch(reassex.op) {
 		case PLUSPLUS:
 			AddExpression addex = new AddExpression();
+			addex.op = Operators.PLUS;
 			addex.left = assex.left;
 			addex.right = new Int(1);
 			assex.right = addex;
