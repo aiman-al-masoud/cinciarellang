@@ -35,6 +35,7 @@ public interface BinaryExpression extends Expression{
 		binexp.op = op;
 		binexp.left = left;
 		binexp.right =right;
+		
 
 		return binexp;
 	}

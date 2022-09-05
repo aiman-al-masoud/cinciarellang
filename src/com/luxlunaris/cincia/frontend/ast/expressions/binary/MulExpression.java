@@ -8,7 +8,7 @@ public class MulExpression extends AddExpression{
 	
 //	public Operators op;
 //	public Expression left;
-	public UnaryExpression right;
+//	public UnaryExpression right;
 	
 	
 	@Override

@@ -49,7 +49,7 @@ public class LambdaTester extends AbstractTester {
 		co.add(three);
 		lex.block =co;
 		lex.modifiers.add(Modifiers.PURE);
-		add("pure \\x->{ x = 1;y=x+1;return y; };", lex.toString());
+		add("rdout \\x->{ x = 1;y=x+1;return y; };", lex.toString());
 
 	}
 
