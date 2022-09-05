@@ -65,10 +65,6 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
-import com.luxlunaris.cincia.frontend.charstream.CharStream;
-import com.luxlunaris.cincia.frontend.parser.Parser;
-import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
-import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 
 
@@ -541,8 +537,32 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalDictComprehension(DictComprehension dictcompex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		CinciaIterable iterable = (CinciaIterable)eval(dictcompex.iterable, enviro);
+		
+		PureCinciaFunction mapKey = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)dictcompex.source, dictcompex.key, Type.Any), enviro);
+		PureCinciaFunction mapValue = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)dictcompex.source, dictcompex.val, Type.Any), enviro);
+		PureCinciaFunction filter = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)dictcompex.source, dictcompex.where, new PrimitiveType(PrimitiveType.BOOL)), enviro);
+
+		CinciaIterable filtered = iterable.filter(filter);
+		CinciaIterable keys = filtered.map(mapKey);
+		CinciaIterable vals = filtered.map(mapValue);
+		
+		CinciaDict result = new CinciaDict(Type.Any, Type.Any); //TODO: specify types
+		
+		for(int i=0; i < keys.size(); i++) {
+			
+			if(keys.get(i) instanceof CinciaString) {
+				result.set(((CinciaString)keys.get(i)).getValue(), vals.get(i));
+			}
+
+			if(keys.get(i) instanceof CinciaInt) {
+				result.set(((CinciaInt)keys.get(i)).getValue(), vals.get(i));
+			}
+
+		}
+		
+		return result;
 	}
 
 	@Override
