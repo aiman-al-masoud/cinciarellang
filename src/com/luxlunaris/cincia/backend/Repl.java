@@ -45,7 +45,7 @@ public class Repl {
 	protected void eval(String source, Enviro enviro) {
 
 		List<Ast> statements = new Compiler().compile(source);
-		
+
 		statements.forEach(s -> {
 			CinciaObject out = interpreter.eval(s, enviro);	
 
