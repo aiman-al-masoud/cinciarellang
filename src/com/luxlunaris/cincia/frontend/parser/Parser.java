@@ -866,7 +866,7 @@ public class Parser {
 		try {
 			rE.op = (Operators)tStream.peek().getValue();
 		}catch (ClassCastException e) {
-			tStream.croak("Expected postfix operator");
+			tStream.croak("Expected postfix operator!");
 		}
 
 		eat(rE.op);
