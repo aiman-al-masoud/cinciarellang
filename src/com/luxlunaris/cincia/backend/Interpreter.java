@@ -254,14 +254,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		//2 create a new isolated env
 		Enviro envCopy = enviro.newChild();
 
-		//3 evaluate the code in the string into the env //TODO: abstract this away in some other class
-//		Preprocessor preprocessor = new Preprocessor(source);
-//		CharStream charStream = new CharStream(preprocessor.process());
-//		TokenStream tokenStream = new TokenStream(charStream);
-//		Parser parser = new Parser(tokenStream);
-//		List<Statement> statements = parser.parse();
-//		statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
-
+		//3 evaluate the code in the string into the env 
 		List<Ast> statements = new Compiler().compile(source);
 		statements.forEach(s -> eval(s, envCopy) );
 
