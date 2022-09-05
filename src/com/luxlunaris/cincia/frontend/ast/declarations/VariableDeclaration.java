@@ -42,5 +42,20 @@ public class VariableDeclaration extends SingleDeclaration{
 		this.type = (Type) type.simplify();
 		return this;
 	}
+
+	@Override
+	public String getName() {
+		return name.value;
+	}
+
+	@Override
+	public Type getType() {
+		return type;
+	}
+
+	@Override
+	public List<Modifiers> getModifiers() {
+		return modifiers;
+	}
 	
 }
