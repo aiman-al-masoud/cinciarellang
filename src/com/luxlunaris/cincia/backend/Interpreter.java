@@ -195,8 +195,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			}
 
 
-			// 3 execute block
-			eval(forStatement.block, enviro);
+			eval(forStatement.block, enviro); // 3 execute block
 			index++; //4 increment iteration index
 
 		}
