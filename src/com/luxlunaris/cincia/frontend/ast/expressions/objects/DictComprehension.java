@@ -15,7 +15,7 @@ public class DictComprehension implements ObjectExpression{
 	public Expression where; 
 
 	public DictComprehension() {
-		this.where = new Bool(true);
+		this.where = new Bool(true); // all elements by default
 	}
 
 	@Override
