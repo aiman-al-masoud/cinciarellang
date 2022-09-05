@@ -45,9 +45,8 @@ public enum Keywords {
 	DEC,// decalaration	
 	TO,
 	STRING,
-	PURE,
 	REF,
-	RDOUT;;
+	RDOUT;
 
 	public static Keywords fromString(String value){
 
