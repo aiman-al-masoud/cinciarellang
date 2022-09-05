@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.Interpreter.Eval;
@@ -12,16 +11,11 @@ import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
-import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
-import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
-import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
-import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
-import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
 public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	
@@ -31,16 +25,12 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	}
 
 	protected LambdaExpression lambdex;
-	protected CompoundStatement block;
-	protected Expression expression;	
 	protected List<Entry<String, ? extends Type>> params;
 	protected Eval eval;
 	protected WrappedFunction wrappedFunction;
 
 	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
 		super(lambdex.signature);
-		this.expression = lambdex.expression;
-		this.block = lambdex.block;
 		this.eval = eval;
 		this.lambdex = lambdex;
 		parseParams();
@@ -63,10 +53,10 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 		}
 
-		if(block != null) {
-			return eval.eval(this.block, enviro);
-		}else if(expression != null){
-			return eval.eval(this.expression, enviro);
+		if(lambdex.block != null) {
+			return eval.eval(lambdex.block, enviro);
+		}else if(lambdex.expression != null){
+			return eval.eval(lambdex.expression, enviro);
 		}else if(wrappedFunction != null){
 			return wrappedFunction.run(args);
 		}
