@@ -761,7 +761,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			throw new RuntimeException("No such reassignment expression!");
 		}
 		
-		
 	}
 
 	@Override
