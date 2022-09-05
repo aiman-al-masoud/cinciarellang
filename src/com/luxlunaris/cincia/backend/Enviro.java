@@ -49,7 +49,6 @@ public class Enviro {
 		types.put(key, type);
 	}
 	
-	
 	public void set(String key, CinciaObject val) {
 		set(key, val, val.getType());
 	}
