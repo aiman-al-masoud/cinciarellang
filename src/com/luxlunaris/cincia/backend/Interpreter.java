@@ -40,6 +40,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpress
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
+import com.luxlunaris.cincia.frontend.ast.interfaces.BinaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
@@ -399,7 +400,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject left = eval(addex.left, enviro);
 		CinciaObject right = eval(addex.right, enviro);
-		
+
 
 		if(addex.op == Operators.PLUS) {
 			return left.__add__(right);
@@ -744,19 +745,19 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
-		
+
 		AssignmentExpression assex = new AssignmentExpression();
 		assex.left = reassex.left;
 
 		switch(reassex.op) {
 		case PLUSPLUS:
-			assex.right = AddExpression.make(Operators.PLUS, assex.left, new Int(1));
+			assex.right = BinaryExpression.make(Operators.PLUS, assex.left, new Int(1));
 			return eval(assex, enviro);
-			
+
 		default:
 			throw new RuntimeException("No such reassignment expression!");
 		}
-		
+
 	}
 
 	@Override
