@@ -2,14 +2,11 @@ package com.luxlunaris.cincia.backend;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import com.luxlunaris.cincia.backend.Interpreter.Eval;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
-import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class CinciaFunction extends AbstractCinciaObject implements Callable{
@@ -28,8 +25,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		super(lambdex.signature);
 		this.eval = eval;
 		this.lambdex = lambdex;
-		params = new ArrayList<Parameter>();
-		parseParams();
+		params = parseParams(lambdex);	
 	}
 
 	public CinciaFunction(WrappedFunction wrappedFunction) {
@@ -43,24 +39,20 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		if(args != null && wrappedFunction ==null) {
 
 			// TODO: check param/args number
-			
+
 			// Bind args to environment
 			for(int i=0; i < params.size(); i++) {
-				
+
 				Parameter p = params.get(i);
 				CinciaObject arg = args.get(i);
-				
+
 				// TODO: check matching types
-				
-				
+
 				if(!p.modifiers.contains(Modifiers.REF)) { // NOT by reference, by value (copy)
 					arg = arg.copy(null);
-				}//else 
-//				{
-//					System.out.println("ref is present!");
-//				}
-				
-				
+				}
+
+
 				enviro.set(p.name, arg, p.type);	
 			}
 
@@ -78,10 +70,12 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		throw new RuntimeException("Lambda without expression nor block!");
 	}
 
-	public void parseParams() {
+	public static List<Parameter> parseParams(LambdaExpression lambdex) {
+
+		List<Parameter> result = new ArrayList<Parameter>();
 
 		if(lambdex==null) {
-			return;
+			return result;
 		}
 
 		List<SingleDeclaration> declarations = new ArrayList<SingleDeclaration>();
@@ -94,11 +88,29 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 			declarations.addAll(mD.declarations);
 		}
 
+
 		declarations.forEach(d->{
-			params.add(new Parameter(d.getName(), d.getType(), d.getModifiers()));
+			result.add(new Parameter(d.getName(), d.getType(), d.getModifiers()));
 		});
 
+		return result;
 	}
+
+	public static CinciaFunction factory(LambdaExpression lambdex, Eval eval) {
+
+		List<Parameter> params = parseParams(lambdex);
+
+		boolean takesArgByRef = params.stream().anyMatch(p->p.modifiers.contains(Modifiers.REF));
+		boolean readsFromExtScope = lambdex.modifiers.contains(Modifiers.RDOUT);
+
+		if(takesArgByRef || readsFromExtScope) {
+			return new CinciaFunction(lambdex, eval);
+		}
+
+		//... else it's a pure function by default
+		return new PureCinciaFunction(lambdex, eval);
+	}
+
 
 
 

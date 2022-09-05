@@ -591,14 +591,14 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		
 		// Check if function can read from outer/external scope...
 		// CHECK ALSO FOR REF KEYWORD!!
-		if(lambdex.modifiers.contains(Modifiers.RDOUT)) {
-			return new CinciaFunction(lambdex, this::eval);
-		}
+//		if(lambdex.modifiers.contains(Modifiers.RDOUT)) {
+//			return new CinciaFunction(lambdex, this::eval);
+//		}
+//		// ... else return a pure function
+//		return new PureCinciaFunction(lambdex, this::eval);
 		
 		
-		
-		// ... else return a pure function
-		return new PureCinciaFunction(lambdex, this::eval);
+		return CinciaFunction.factory(lambdex, this::eval);
 		
 	}
 
@@ -695,8 +695,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// else it's a regular top level function, call on COPY of whatever environment was passed in		
 		try {
 			CinciaFunction l = (CinciaFunction)f;
-//			return l.run(args, enviro.newChild());
-			return l.run(args, enviro); //TODO OOOOOoo!!
+			return l.run(args, enviro.newChild());
+//			return l.run(args, enviro); //TODO OOOOOoo!!
 
 		}catch (ClassCastException e) {
 
