@@ -4,10 +4,6 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
 public class AndExpression extends OrExpression{
 	
-//	public Expression left;
-//	public ComparisonExpression right;
-//	public Expression right;
-	
 	@Override
 	public String toString() {
 		return "("+left+" && "+right+")";
@@ -20,9 +16,7 @@ public class AndExpression extends OrExpression{
 		if(right==null) {
 			return left;
 		}
-		
-		
-//		this.right = (ComparisonExpression) right.simplify();
+				
 		this.right = right.simplify();
 		return this;
 	}
