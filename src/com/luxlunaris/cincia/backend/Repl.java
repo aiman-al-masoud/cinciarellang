@@ -11,6 +11,11 @@ public class Repl {
 	protected Interpreter interpreter;
 	protected Scanner scanner;
 
+	public static void main(String[] args) {
+		Repl r = new Repl();
+		r.mainLoop();
+	}
+
 	public Repl() {
 		enviro = new Enviro(null);	
 		interpreter = new Interpreter();
@@ -28,10 +33,7 @@ public class Repl {
 
 	}
 
-	public static void main(String[] args) {
-		Repl r = new Repl();
-		r.mainLoop();
-	}
+
 
 	protected static CinciaObject printWrapper(List<CinciaObject> args) {
 		args.forEach(e->{System.out.print(e);});
@@ -44,7 +46,7 @@ public class Repl {
 		List<Ast> statements = new Compiler().compile(source);
 
 		statements.forEach(s -> {
-			
+
 			CinciaObject out = interpreter.eval(s, enviro);	
 
 			if(out!=null) {
