@@ -47,7 +47,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	}
 	
 	public CinciaFunction(WrappedFunction wrappedFunction) {
-		super(new IdentifierType("WrappedFunction"));
+		super(new IdentifierType("WrappedFunction")); //TODO: extract Id, NativeType
 		this.wrappedFunction = wrappedFunction;
 	}
 
