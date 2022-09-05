@@ -753,15 +753,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			addex.left = assex.left;
 			addex.right = new Int(1);
 			assex.right = addex;
-			eval(assex, enviro);
-			break;
+			return eval(assex, enviro);
 			
 		default:
 			throw new RuntimeException("No such reassignment expression!");
 		}
 		
-		return null;
-
+		
 	}
 
 	@Override
