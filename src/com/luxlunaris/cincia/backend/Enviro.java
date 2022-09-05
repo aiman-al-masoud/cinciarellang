@@ -23,7 +23,6 @@ public class Enviro {
 		if(parent != null ) {
 			this.vars = new HashMap<String, CinciaObject>(parent.vars);
 			this.types = new HashMap<String, Type>(parent.types);
-			
 		}else {
 			this.vars = new HashMap<String, CinciaObject>();
 			this.types = new HashMap<String, Type>();
