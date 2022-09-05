@@ -24,12 +24,7 @@ public class DictComprehension implements ObjectExpression{
 		this.val = val.simplify();
 		this.source = source.simplify();
 		this.iterable = iterable.simplify();
-
-
-		//		if(where!=null) {
 		this.where = where.simplify();
-		//		}
-
 		return this;
 	}
 
