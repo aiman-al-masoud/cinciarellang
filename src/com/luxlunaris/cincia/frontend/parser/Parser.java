@@ -509,7 +509,10 @@ public class Parser {
 
 		Signature sg = new Signature();
 		eat(Punctuations.SLASH_BCK);
-		sg.params = parseDeclaration(false);
+		
+		if(tStream.peek() instanceof Identifier) {
+			sg.params = parseDeclaration(false);
+		}
 
 		if(tStream.peek().getValue().equals(Punctuations.COL)) {
 			eat(Punctuations.COL);

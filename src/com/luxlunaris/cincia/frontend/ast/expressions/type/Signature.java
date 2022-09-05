@@ -9,20 +9,24 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
  * signature ::= '\' [multi_declaration] [':' type]  
  */
 public class Signature implements Type{
-	
+
 	public Declaration params;// can be null if func takes no args
 	public Type returnType;
-	
+
 	@Override
 	public String toString() {
 		return "\\" + params +" : "+returnType;
 	}
-	
+
 	@Override
 	public Signature simplify() { //TODO: how does THIS work? Auto upcast?
-		this.params = params.simplify();
+
+		if(params!=null) {
+			this.params = params.simplify();
+		}
+
 		this.returnType = (Type) returnType.simplify();
 		return this;
 	}
-	
+
 }

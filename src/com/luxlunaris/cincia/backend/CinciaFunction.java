@@ -74,7 +74,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 		List<Parameter> result = new ArrayList<Parameter>();
 
-		if(lambdex==null) {
+		if(lambdex==null || lambdex.signature.params == null) {
 			return result;
 		}
 
