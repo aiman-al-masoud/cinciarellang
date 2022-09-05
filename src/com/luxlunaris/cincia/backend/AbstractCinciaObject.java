@@ -48,13 +48,13 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	public void set(String key, CinciaObject val, Type type) {
-		
+
 
 		if(!immutable) {	
-			
+
 			enviro.set(key, val, type);
-			
-			
+
+
 		}else {
 			throw new RuntimeException("Cannot mutate immutable object!");
 		}
@@ -82,13 +82,13 @@ public class AbstractCinciaObject implements CinciaObject{
 	public void setImmutable() {
 
 		immutable = true;
-		
+
 		enviro.values().stream().forEach(o->{
-			
+
 			if(o!=null && o!=this) {
 				o.setImmutable();
 			}
-			
+
 		});
 
 	}
@@ -202,7 +202,13 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	public CinciaObject __init__(List<CinciaObject> args) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__init__);
-		return cm.run(args);
+
+		if(cm!=null) {
+			return cm.run(args);
+		}else {
+			return this;
+		}
+
 	}
 
 	// .as(ClassName) //TODO: cast/conversion to other class
@@ -217,7 +223,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	 */
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
-		
+
 		// TEST
 		// c = class{ __init__ = \x -> 1; }
 		// b = class{ __init__ = \x -> 1; }
@@ -227,41 +233,41 @@ public class AbstractCinciaObject implements CinciaObject{
 		//y.a = c()
 		//y.a.r = 2
 		//b.a.r // 2 WROOOONG unless attrib is static
-		
+
 		//TEST
 		//c = class{ __init__ = \x -> 1; }
 		//x.a = 3
 		//y = x.copy()
 		//y.a = 4
 		//x.a //4 WROOONG
-		
-		
-		
+
+
+
 		//TODO: circular references could cause problems
-		
+
 		CinciaObject copy = new AbstractCinciaObject(this.type);
-		
+
 		enviro.items().forEach(e->{
-			
+
 			CinciaObject o =e.getValue();
 			CinciaObject co;;
-			
+
 			if(o == this) {
 				co = copy;
 			}else {				
 				co = o.copy(args);
 			}
-			
+
 			// methods should keep the same code but change the 
 			// environment to the new object's
 			if(co instanceof CinciaMethod) {
 				((CinciaMethod) co).parent = copy;
 			}
-			
+
 			copy.set(e.getKey(), co);			
 		});
-		
-		
+
+
 		return copy;
 	}
 
@@ -274,7 +280,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		o.setImmutable();
 		return o;
 	}
-	
+
 	@Override
 	public String toString() {
 		return (getValue()==this? super.toString() : getValue())+"";
