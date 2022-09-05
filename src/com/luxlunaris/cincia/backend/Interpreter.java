@@ -745,6 +745,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
+		
 
 		AssignmentExpression assex = new AssignmentExpression();
 		assex.left = reassex.left;
@@ -775,7 +776,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		default:
 			throw new RuntimeException("No such reassignment expression!");
 		}
-		
 		
 		return eval(assex, enviro);
 
