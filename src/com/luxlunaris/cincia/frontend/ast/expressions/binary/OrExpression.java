@@ -1,15 +1,8 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.binary;
 
-import java.util.List;
-
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
 public class OrExpression extends AssignmentExpression{
-
-
-//	public Expression left;
-//	public AndExpression right;
-//	public Expression right;
 	
 	@Override
 	public String toString() {
