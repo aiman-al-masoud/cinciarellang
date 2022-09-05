@@ -5,9 +5,9 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 public class AddExpression extends ComparisonExpression{
 
-	public Operators op;
-	public Expression left;
-	public Expression right;
+//	public Operators op;
+//	public Expression left;
+//	public Expression right;
 
 	@Override
 	public String toString() {

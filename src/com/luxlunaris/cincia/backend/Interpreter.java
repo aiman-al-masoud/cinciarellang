@@ -752,11 +752,32 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		switch(reassex.op) {
 		case PLUSPLUS:
 			assex.right = BinaryExpression.make(Operators.PLUS, assex.left, new Int(1));
-			return eval(assex, enviro);
-
+			break;
+		case MINUSMINUS:
+			assex.right = BinaryExpression.make(Operators.MINUS, assex.left, new Int(1));
+			break;
+		case PLUS_ASSIGN:
+			assex.right = BinaryExpression.make(Operators.PLUS, assex.left, reassex.right);
+			break;
+		case MINUS_ASSIGN:
+			assex.right = BinaryExpression.make(Operators.MINUS, assex.left, reassex.right);
+			break;
+		case MUL_ASSIGN:
+			assex.right = BinaryExpression.make(Operators.ASTERISK, assex.left, reassex.right);
+			break;
+		case DIV_ASSIGN:
+			assex.right = BinaryExpression.make(Operators.DIV, assex.left, reassex.right);
+			break;
+		case MOD_ASSIGN:
+			assex.right = BinaryExpression.make(Operators.MOD, assex.left, reassex.right);
+			break;
+			
 		default:
 			throw new RuntimeException("No such reassignment expression!");
 		}
+		
+		
+		return eval(assex, enviro);
 
 	}
 

@@ -6,8 +6,8 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 public class MulExpression extends AddExpression{
 	
-	public Operators op;
-	public Expression left;
+//	public Operators op;
+//	public Expression left;
 	public UnaryExpression right;
 	
 	

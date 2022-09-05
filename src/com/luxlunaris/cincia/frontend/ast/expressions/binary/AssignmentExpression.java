@@ -10,12 +10,12 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
  * Right associative
  *
  */
-public class AssignmentExpression implements BinaryExpression{
+public class AssignmentExpression extends AbstractBinaryExpression{
 	
 	//TODO: fix this
 //	public LeftValue left;
-	public Expression left;
-	public Expression right; //other assignment expression or conditional expression or object
+//	public Expression left;
+//	public Expression right; //other assignment expression or conditional expression or object
 	
 	@Override
 	public String toString() {

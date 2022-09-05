@@ -7,9 +7,9 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 public class OrExpression extends AssignmentExpression{
 
 
-	public Expression left;
+//	public Expression left;
 //	public AndExpression right;
-	public Expression right;
+//	public Expression right;
 	
 	@Override
 	public String toString() {

@@ -4,9 +4,9 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
 public class AndExpression extends OrExpression{
 	
-	public Expression left;
+//	public Expression left;
 //	public ComparisonExpression right;
-	public Expression right;
+//	public Expression right;
 	
 	@Override
 	public String toString() {
