@@ -60,13 +60,8 @@ public class Enviro {
 		types.remove(key);
 	}
 	
-//	public Enviro getParent() {
-//		return parent;
-//	}
-	
 	public List<CinciaObject> values(){
 		return new ArrayList<CinciaObject>(vars.values());
-//		return vars.values().;
 	}
 	
 	public List<Map.Entry<String, CinciaObject>> items(){
