@@ -35,7 +35,6 @@ public class Enviro {
 		return new Enviro(this);
 	}
 
-
 	public CinciaObject get(String key) {
 		return vars.get(key);
 	}
