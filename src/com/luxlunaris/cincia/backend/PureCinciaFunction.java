@@ -25,5 +25,10 @@ public class PureCinciaFunction extends CinciaFunction {
 		List<CinciaObject> argsCopy = args.stream().map(o->o.copy(null)).collect(Collectors.toList());
 		return super.run(argsCopy, enviro);
 	}
+	
+	@Override
+	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
+		throw new RuntimeException("Can't bind pure function to externally supplied environment!");
+	}
 
 }

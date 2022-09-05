@@ -42,19 +42,26 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 		if(args != null && wrappedFunction ==null) {
 
+			// TODO: check param/args number
 			
-			// TODO: check matching types
-			// TODO: check (to be added) ref keyword to determine whether to pass by reference or value
-			
-			// bind args to env
+			// Bind args to environment
 			for(int i=0; i < params.size(); i++) {
 				
 				Parameter p = params.get(i);
 				CinciaObject arg = args.get(i);
 				
-				enviro.set(p.name, arg, p.type);
+				// TODO: check matching types
+				
+				
+				if(!p.modifiers.contains(Modifiers.REF)) { // NOT by reference, by value (copy)
+					arg = arg.copy(null);
+				}else {
+					System.out.println("ref is present!");
+				}
+				
+				
+				enviro.set(p.name, arg, p.type);	
 			}
-
 
 		}
 
@@ -91,8 +98,6 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		});
 
 	}
-
-
 
 
 
