@@ -510,6 +510,7 @@ public class Parser {
 		Signature sg = new Signature();
 		eat(Punctuations.SLASH_BCK);
 
+		// function may not take any parameters
 		if(tStream.peek() instanceof Identifier) {
 			sg.params = parseDeclaration(false);
 		}
