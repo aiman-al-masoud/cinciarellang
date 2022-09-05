@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
@@ -255,12 +255,14 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		Enviro envCopy = enviro.newChild();
 
 		//3 evaluate the code in the string into the env //TODO: abstract this away in some other class
-		Preprocessor preprocessor = new Preprocessor(source);
-		CharStream charStream = new CharStream(preprocessor.process());
-		TokenStream tokenStream = new TokenStream(charStream);
-		Parser parser = new Parser(tokenStream);
-		List<Statement> statements = parser.parse();
-		statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
+//		Preprocessor preprocessor = new Preprocessor(source);
+//		CharStream charStream = new CharStream(preprocessor.process());
+//		TokenStream tokenStream = new TokenStream(charStream);
+//		Parser parser = new Parser(tokenStream);
+//		List<Statement> statements = parser.parse();
+//		statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
+
+		List<Ast> statements = new Compiler().compile(source);
 		statements.forEach(s -> eval(s, envCopy) );
 
 		//4 put the env in a "module" object
