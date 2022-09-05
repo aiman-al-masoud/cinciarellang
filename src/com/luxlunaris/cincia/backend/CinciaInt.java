@@ -7,7 +7,8 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 //TODO: implement comparison operators!!!!
 //TODO: better error messages
-//TODO: implement into() cast method 
+//TODO: implement into() cast method
+//TODO: consider making true division the default, ie: i=1;i/=2;i==0.5
 public class CinciaInt extends PrimitiveCinciaObject {
 
 	private int value;
