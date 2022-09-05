@@ -68,6 +68,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 
 
+
 public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@FunctionalInterface
@@ -254,8 +255,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		statements.forEach(s -> eval(s, envCopy) );
 
 		//4 put the env in a "module" object
-//		AbstractCinciaObject module = new AbstractCinciaObject(Type.Module);
-//		module.enviro = envCopy;
+		//		AbstractCinciaObject module = new AbstractCinciaObject(Type.Module);
+		//		module.enviro = envCopy;
 
 		//5 import the desired pieces of the module into the current env	
 		importStatement.imports.forEach(i->{
@@ -529,7 +530,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			}
 
 		});
-		
+
 		//TODO: destructuring 
 
 		return d;
@@ -537,9 +538,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalDictComprehension(DictComprehension dictcompex, Enviro enviro) {
-		
+
 		CinciaIterable iterable = (CinciaIterable)eval(dictcompex.iterable, enviro);
-		
+
 		PureCinciaFunction mapKey = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)dictcompex.source, dictcompex.key, Type.Any), enviro);
 		PureCinciaFunction mapValue = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)dictcompex.source, dictcompex.val, Type.Any), enviro);
 		PureCinciaFunction filter = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)dictcompex.source, dictcompex.where, new PrimitiveType(PrimitiveType.BOOL)), enviro);
@@ -547,11 +548,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		CinciaIterable filtered = iterable.filter(filter);
 		CinciaIterable keys = filtered.map(mapKey);
 		CinciaIterable vals = filtered.map(mapValue);
-		
+
 		CinciaDict result = new CinciaDict(Type.Any, Type.Any); //TODO: specify types
-		
+
 		for(int i=0; i < keys.size(); i++) {
-			
+
 			if(keys.get(i) instanceof CinciaString) {
 				result.set(((CinciaString)keys.get(i)).getValue(), vals.get(i));
 			}
@@ -561,7 +562,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			}
 
 		}
-		
+
 		return result;
 	}
 
@@ -581,7 +582,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		return CinciaFunction.factory(lambdex, this::eval);
-		
+
 	}
 
 	@Override
@@ -742,10 +743,25 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		//		CinciaObject o = eval(reassex.left, enviro);
+		
+		AssignmentExpression assex = new AssignmentExpression();
+		assex.left = reassex.left;
 
+		switch(reassex.op) {
+		case PLUSPLUS:
+			AddExpression addex = new AddExpression();
+			addex.left = assex.left;
+			addex.right = new Int(1);
+			assex.right = addex;
+			eval(assex, enviro);
+			break;
+			
+		default:
+			throw new RuntimeException("No such reassignment expression!");
+		}
+		
 		return null;
+
 	}
 
 	@Override
