@@ -533,6 +533,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			}
 
 		});
+		
+		//TODO: destructuring 
 
 		return d;
 	}
