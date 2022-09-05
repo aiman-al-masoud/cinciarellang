@@ -254,7 +254,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		//2 create a new isolated env
 		Enviro envCopy = enviro.newChild();
 
-		//3 evaluate the code in the string in the new isolated env 
+		//3 evaluate the source-code in the new isolated env 
 		List<Ast> statements = new Compiler().compile(source);
 		statements.forEach(s -> eval(s, envCopy) );
 
