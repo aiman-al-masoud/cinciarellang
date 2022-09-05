@@ -55,7 +55,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 				
 				if(!p.modifiers.contains(Modifiers.REF)) { // NOT by reference, by value (copy)
 					arg = arg.copy(null);
-				}else 
+				}//else 
 //				{
 //					System.out.println("ref is present!");
 //				}
