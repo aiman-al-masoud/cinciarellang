@@ -47,6 +47,7 @@ public class Repl {
 		List<Ast> statements = new Compiler().compile(source);
 
 		statements.forEach(s -> {
+			
 			CinciaObject out = interpreter.eval(s, enviro);	
 
 			if(out!=null) {
