@@ -484,10 +484,10 @@ public class Parser {
 			return vD; //unspecified type
 		}
 
-		
+
 		// with type
 		eat(Punctuations.COL);
-		
+
 		// if func
 		if(tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
 			FunctionDeclaration fD = new FunctionDeclaration();
@@ -509,7 +509,7 @@ public class Parser {
 
 		Signature sg = new Signature();
 		eat(Punctuations.SLASH_BCK);
-		
+
 		if(tStream.peek() instanceof Identifier) {
 			sg.params = parseDeclaration(false);
 		}
@@ -623,8 +623,8 @@ public class Parser {
 			rE.to = parseSingleExpression();
 			return rE;
 		}
-		
-		
+
+
 		//pipe
 		if(tStream.peek().getValue().equals(Operators.SINGLE_OR)) {
 			return parsePipeExpression(oE);
@@ -633,24 +633,24 @@ public class Parser {
 
 		return oE;
 	}
-	
+
 	private PipeExpression parsePipeExpression(Expression first) {
-		
+
 		eat(Operators.SINGLE_OR);
 		PipeExpression pipe = new PipeExpression();
 		pipe.add(first);
 		pipe.add(parseOrExpression());
-		
+
 		while(!tStream.isEnd()) {
-			
+
 			if(!tStream.peek().getValue().equals(Operators.SINGLE_OR)) {
 				break;
 			}
-			
+
 			eat(Operators.SINGLE_OR);
 			pipe.add(parseOrExpression());
 		}
-		
+
 		return pipe;
 	}
 
@@ -890,7 +890,7 @@ public class Parser {
 		if(tStream.peek() instanceof Identifier) {
 			return parseIdentifier();
 		}
-		
+
 		// TODO: ????????????????????
 		if(tStream.peek() instanceof Keyword) {
 			Keyword k = (Keyword)tStream.peek();
@@ -991,17 +991,17 @@ public class Parser {
 			}
 
 			Statement s = parseStatement();
-			
+
 			try {
 				ExpressionStatement ex = (ExpressionStatement)s;
 				cE.addAssignment((AssignmentExpression)ex.expression);
-				
+
 			}catch (ClassCastException e) {
 				DeclarationStatement dec = (DeclarationStatement)s;
 				cE.addDeclaration(dec.declaration);				
-				
+
 			}
-			
+
 		}
 
 		eat(Punctuations.CURLY_CLS);
@@ -1064,14 +1064,14 @@ public class Parser {
 
 		eat(Punctuations.SQBR_OPN);
 		ListExpression lE = new ListExpression();
-		
+
 		// empty list
 		if(tStream.peek().getValue().equals(Punctuations.SQBR_CLS)) {
 			eat(Punctuations.SQBR_CLS);
 			lE.elements = new MultiExpression();
 			return lE;
 		}
-		
+
 		// first element
 		Expression exp = parseSingleExpression();
 
@@ -1079,7 +1079,7 @@ public class Parser {
 		if(tStream.peek().getValue().equals(Keywords.FOR)) {
 			return parseListComprehension(exp);
 		}
-		
+
 		// one element list
 		if(tStream.peek().getValue().equals(Punctuations.SQBR_CLS)) {
 			eat(Punctuations.SQBR_CLS);
@@ -1090,7 +1090,7 @@ public class Parser {
 		eat(Punctuations.COMMA);
 		MultiExpression mE = parseMultiExpression();
 		mE.expressions.add(0, exp);
-//		ListExpression lE = new ListExpression();
+		//		ListExpression lE = new ListExpression();
 		lE.elements = mE;
 		eat(Punctuations.SQBR_CLS);
 		return lE;
