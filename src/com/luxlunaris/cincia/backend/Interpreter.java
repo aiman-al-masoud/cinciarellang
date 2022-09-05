@@ -580,24 +580,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			return new CinciaMethod(lambdex, this::eval);
 		}
 
-//		// Check if function is pure, in that case return a pure function.
-//		if(lambdex.modifiers.contains(Modifiers.PURE)) {
-//			return new PureCinciaFunction(lambdex, this::eval);
-//		}
-//
-//		// ... else return a standard top level function
-//		return new CinciaFunction(lambdex, this::eval);
-		
-		
-		// Check if function can read from outer/external scope...
-		// CHECK ALSO FOR REF KEYWORD!!
-//		if(lambdex.modifiers.contains(Modifiers.RDOUT)) {
-//			return new CinciaFunction(lambdex, this::eval);
-//		}
-//		// ... else return a pure function
-//		return new PureCinciaFunction(lambdex, this::eval);
-		
-		
 		return CinciaFunction.factory(lambdex, this::eval);
 		
 	}
