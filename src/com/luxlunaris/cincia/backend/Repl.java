@@ -45,10 +45,16 @@ public class Repl {
 
 		statements.forEach(s -> {
 
-			CinciaObject out = interpreter.eval(s, enviro);	
+			try {
 
-			if(out!=null) {
-				System.out.println(out);
+				CinciaObject out = interpreter.eval(s, enviro);	
+
+				if(out!=null) {
+					System.out.println(out);
+				}
+
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
 
 		});
