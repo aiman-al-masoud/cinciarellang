@@ -20,7 +20,8 @@ public class CinciaDict extends AbstractCinciaObject {
 											.filter(e-> ! (e.getValue() instanceof CinciaMethod))
 				 	                        .map(e->e.getKey()+": "+e.getValue())
 				                        	.reduce((e1,e2)->e1+", "+e2);
-		return "{"+d.get()+"}";
+	
+		return "{"+(d.isPresent()?d.get():"")+"}";
 	}
 
 }
