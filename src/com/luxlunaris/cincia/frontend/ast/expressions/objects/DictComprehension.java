@@ -12,10 +12,10 @@ public class DictComprehension implements ObjectExpression{
 	public Expression val;
 	public Expression source;
 	public Expression iterable;
-	public Expression where; //optional
+	public Expression where; 
 
 	public DictComprehension() {
-		this.where = new Bool(true)	;
+		this.where = new Bool(true);
 	}
 
 	@Override
