@@ -751,11 +751,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		switch(reassex.op) {
 		case PLUSPLUS:
 			assex.right = AddExpression.make(Operators.PLUS, assex.left, new Int(1));
-//			AddExpression addex = new AddExpression();
-//			addex.op = Operators.PLUS;
-//			addex.left = assex.left;
-//			addex.right = new Int(1);
-//			assex.right = addex;
 			return eval(assex, enviro);
 			
 		default:
