@@ -7,9 +7,9 @@ import com.luxlunaris.cincia.frontend.Compiler;
 
 public class Repl {
 
-	Enviro enviro;
-	Interpreter interpreter;
-	Scanner scanner;
+	protected Enviro enviro;
+	protected Interpreter interpreter;
+	protected Scanner scanner;
 
 	public Repl() {
 		enviro = new Enviro(null);	
