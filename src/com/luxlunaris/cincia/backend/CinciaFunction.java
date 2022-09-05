@@ -20,8 +20,9 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	}
 
 	protected LambdaExpression lambdex;
-	protected List<Entry<String, Type>> paramTypes; //TODO: Parameter class
-	protected List<Entry<String, List<Modifiers>>> paramMods;
+	//	protected List<Entry<String, Type>> paramTypes; //TODO: Parameter class
+	//	protected List<Entry<String, List<Modifiers>>> paramMods;
+	protected List<Parameter> params;
 	protected Eval eval;
 	protected WrappedFunction wrappedFunction;
 
@@ -29,8 +30,9 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		super(lambdex.signature);
 		this.eval = eval;
 		this.lambdex = lambdex;
-		paramTypes = new ArrayList<Map.Entry<String, Type>>();
-		paramMods = new ArrayList<Map.Entry<String,List<Modifiers>>>();
+		//		paramTypes = new ArrayList<Map.Entry<String, Type>>();
+		//		paramMods = new ArrayList<Map.Entry<String,List<Modifiers>>>();
+		params = new ArrayList<Parameter>();
 		parseParams();
 	}
 
@@ -47,13 +49,23 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 			// bind args to env
 			// TODO: check matching types
 			// TODO: check (to be added) ref keyword to determine whether to pass by reference or value
-			for(int i=0; i < args.size(); i++) {
-				enviro.set(paramTypes.get(i).getKey(), args.get(i), paramTypes.get(i).getValue());
+			//			for(int i=0; i < args.size(); i++) {
+			//				enviro.set(paramTypes.get(i).getKey(), args.get(i), paramTypes.get(i).getValue());
+			//			}
+
+
+			for(int i=0; i < params.size(); i++) {
+				
+				Parameter p = params.get(i);
+				CinciaObject arg = args.get(i);
+				
+				enviro.set(p.name, arg, p.type);
 			}
 
+
 		}
-		
-		
+
+
 		if(lambdex == null && wrappedFunction != null) {
 			return wrappedFunction.run(args);
 		}else if(lambdex != null && lambdex.block != null) {
@@ -66,11 +78,11 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	}
 
 	public void parseParams() {
-		
+
 		if(lambdex==null) {
 			return;
 		}
-		
+
 		List<SingleDeclaration> declarations = new ArrayList<SingleDeclaration>();
 
 		try {
@@ -80,10 +92,11 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 			MultiDeclaration mD =(MultiDeclaration)lambdex.signature.params;
 			declarations.addAll(mD.declarations);
 		}
-		
+
 		declarations.forEach(d->{
-			paramTypes.add(Map.entry(d.getName(), d.getType()));
-			paramMods.add(Map.entry(d.getName(), d.getModifiers()));
+			//			paramTypes.add(Map.entry(d.getName(), d.getType()));
+			//			paramMods.add(Map.entry(d.getName(), d.getModifiers()));
+			params.add(new Parameter(d.getName(), d.getType(), d.getModifiers()));
 		});
 
 	}
