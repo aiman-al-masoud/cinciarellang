@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
 import com.luxlunaris.cincia.frontend.parser.Parser;
 import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
+import com.luxlunaris.cincia.frontend.Compiler;
 
 public class Repl {
 
@@ -49,12 +51,16 @@ public class Repl {
 
 	protected void eval(String source, Enviro enviro) {
 
-		Preprocessor preprocessor = new Preprocessor(source);
-		CharStream charStream = new CharStream(preprocessor.process());
-		TokenStream tokenStream = new TokenStream(charStream);
-		Parser parser = new Parser(tokenStream);
-		List<Statement> statements = parser.parse();
-		statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
+//		Preprocessor preprocessor = new Preprocessor(source);
+//		CharStream charStream = new CharStream(preprocessor.process());
+//		TokenStream tokenStream = new TokenStream(charStream);
+//		Parser parser = new Parser(tokenStream);
+//		List<Statement> statements = parser.parse();
+//		statements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
+		
+		
+		List<Ast> statements = new Compiler().compile(source);
+		
 		statements.forEach(s -> {
 			CinciaObject out = interpreter.eval(s, enviro);	
 
@@ -65,11 +71,5 @@ public class Repl {
 		});
 
 	}
-
-//	protected CinciaObject evalWrapper(List<CinciaObject> args) {
-//		eval(source, enviro, interpreter);
-//	}
-
-
 
 }
