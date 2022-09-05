@@ -165,11 +165,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 				if(loopVars.size() < itx.size()) {
 					throw new RuntimeException("Too few loop vars!");
-				}// TODO: extra var (if present) for index
+				}
 
 				if(loopVars.size() > itx.size() + 1) {
 					throw new RuntimeException("Too many loop vars!");
-				}// TODO: extra var (if present) for index
+				}
 
 				for(int i=0; i<itx.size(); i++) {
 					enviro.set(loopVars.get(i), itx.get(i));
