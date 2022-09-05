@@ -1,0 +1,7 @@
+Falsy = class {
+
+	__bool__ = \-> {
+		return false;
+	};
+	
+}
