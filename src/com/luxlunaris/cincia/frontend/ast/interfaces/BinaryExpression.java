@@ -6,7 +6,6 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 public interface BinaryExpression extends Expression{
 
 	static BinaryExpression make(Operators op, Expression left, Expression right) {
-
 		
 		switch (op) {
 		
