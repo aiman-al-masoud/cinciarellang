@@ -46,14 +46,16 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	@Override
 	public CinciaObject __and__(CinciaObject other) {
 
-		try {
-			CinciaBool o = (CinciaBool)other;
-			return new CinciaBool(value && o.value);
-		}catch (ClassCastException e) {
-
-		}
-
-		throw new RuntimeException("");
+//		try {
+//			CinciaBool o = (CinciaBool)other;
+//			return new CinciaBool(value && o.value);
+//		}catch (ClassCastException e) {
+//
+//		}
+//
+//		throw new RuntimeException("");
+		
+		return new CinciaBool(value && other.__bool__());
 	}
 	
 	@Override
