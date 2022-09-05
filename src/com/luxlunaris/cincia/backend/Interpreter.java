@@ -495,8 +495,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-
-
 		return rval;
 	}
 
