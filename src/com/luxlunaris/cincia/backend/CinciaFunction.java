@@ -20,7 +20,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	}
 
 	protected LambdaExpression lambdex;
-	protected List<Entry<String, Type>> paramTypes;
+	protected List<Entry<String, Type>> paramTypes; //TODO: Parameter class
 	protected List<Entry<String, List<Modifiers>>> paramMods;
 	protected Eval eval;
 	protected WrappedFunction wrappedFunction;
@@ -44,7 +44,9 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 		if(args != null && wrappedFunction ==null) {
 
-			// bind args to env, TODO: check matching types
+			// bind args to env
+			// TODO: check matching types
+			// TODO: check (to be added) ref keyword to determine whether to pass by reference or value
 			for(int i=0; i < args.size(); i++) {
 				enviro.set(paramTypes.get(i).getKey(), args.get(i), paramTypes.get(i).getValue());
 			}
