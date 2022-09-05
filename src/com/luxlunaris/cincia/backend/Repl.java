@@ -41,11 +41,11 @@ public class Repl {
 
 	protected void eval(String source, Enviro enviro) {
 
-		List<Ast> statements = new Compiler().compile(source);
+		try {
 
-		statements.forEach(s -> {
+			List<Ast> statements = new Compiler().compile(source);
 
-			try {
+			statements.forEach(s -> {
 
 				CinciaObject out = interpreter.eval(s, enviro);	
 
@@ -53,12 +53,12 @@ public class Repl {
 					System.out.println(out);
 				}
 
-			}catch (Exception e) {
-				System.out.println(e.getClass().getSimpleName()+": "+e.getMessage());
-				e.printStackTrace();
-			}
+			});
 
-		});
+		}catch (Exception e) {
+			System.out.println(e.getClass().getSimpleName()+": "+e.getMessage());
+			e.printStackTrace();
+		}
 
 	}
 
