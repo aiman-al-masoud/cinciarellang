@@ -36,7 +36,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 
 
-		if(args != null && wrappedFunction ==null) {
+		if(args != null && wrappedFunction == null) {
 
 			// TODO: check param/args number
 
