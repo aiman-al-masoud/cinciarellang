@@ -696,7 +696,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		try {
 			CinciaFunction l = (CinciaFunction)f;
 			return l.run(args, enviro.newChild());
-//			return l.run(args, enviro); //TODO OOOOOoo!!
 
 		}catch (ClassCastException e) {
 
