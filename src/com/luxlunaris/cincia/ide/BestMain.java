@@ -21,6 +21,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
+import com.luxlunaris.cincia.backend.Enviro;
+import com.luxlunaris.cincia.backend.Interpreter;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
@@ -129,7 +131,8 @@ public class BestMain extends JFrame{
 					@Override
 					public void run() {
 						tokenColorize(doc);
-						compileCheck(doc);
+						List<Ast> statements = compileCheck(doc);
+						runtimeCheck(statements);
 					}
 				});
 
@@ -245,8 +248,19 @@ public class BestMain extends JFrame{
 	}
 
 	public void runtimeCheck(List<Ast> statements){
+		
+		Enviro enviro = new Enviro(null);
+		Interpreter interpreter = new Interpreter();
+		
+		statements.forEach(ast->{
+			
+			try {
+				interpreter.eval(ast, enviro);
+			}catch (Exception e) {
+				setTitle(e.getClass() +" "+e.getMessage());
+			}
 
-
+		});
 
 	}
 
