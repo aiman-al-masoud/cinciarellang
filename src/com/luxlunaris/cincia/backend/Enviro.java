@@ -43,7 +43,7 @@ public class Enviro {
 	}
 	
 	public void set(String key, CinciaObject val, Type type) {
-		//TODO: check if val exists and check type with Type.matches before assigment
+		//TODO: check if val exists (or is declared) and check type with Type.matches before assigment
 		vars.put(key, val);
 		types.put(key, type);
 	}
