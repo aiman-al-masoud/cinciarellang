@@ -210,7 +210,6 @@ public class BestMain extends JFrame{
 	public void compileCheck(StyledDocument doc) {
 
 		String text = "";
-		int okTillHerePos = 0;
 
 		try {
 			text = doc.getText(0, doc.getLength());
@@ -223,7 +222,7 @@ public class BestMain extends JFrame{
 
 			Compiler compiler = new Compiler();
 			compiler.compile(text);
-			
+
 			//TODO: test run with interpreter!
 			setTitle("");
 		}catch (CinciaSytnaxException e) {
@@ -238,7 +237,8 @@ public class BestMain extends JFrame{
 
 
 	}
-	
+
+
 
 
 	public static void main(String[] args){
