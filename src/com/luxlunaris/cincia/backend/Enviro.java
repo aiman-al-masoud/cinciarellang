@@ -48,6 +48,16 @@ public class Enviro {
 		
 //		System.out.println(key+" exists: "+vars.containsKey(key));
 		
+		// variable already exists/declared, need to check type:
+		if(vars.containsKey(key)) {
+			
+			// if no match, error!
+			if(!types.get(key).matches(val.getType())) {
+				throw new RuntimeException("incompatible types!");
+			}
+			
+		}
+		
 		vars.put(key, val);
 		types.put(key, type);
 	}
