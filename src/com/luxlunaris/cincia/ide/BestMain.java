@@ -231,7 +231,7 @@ public class BestMain extends JFrame{
 			setTitle("");
 			return compiler.compile(text);
 			//TODO: test run with interpreter!
-			
+
 		}catch (CinciaSytnaxException e) {
 
 			System.out.println(e.getMessage());
@@ -240,14 +240,14 @@ public class BestMain extends JFrame{
 			doc.setCharacterAttributes(e.rowStartPos, e.pos , getErrorStyle(), true);
 			return null;
 		}
-		
-		
+
+
 	}
-	
+
 	public void runtimeCheck(List<Ast> statements){
-		
-		
-		
+
+
+
 	}
 
 
