@@ -29,4 +29,9 @@ public class Signature implements Type{
 		return this;
 	}
 
+	@Override
+	public boolean matches(Type other) {
+		return true; //TODO:!!!!
+	}
+
 }

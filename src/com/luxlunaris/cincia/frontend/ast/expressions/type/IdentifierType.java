@@ -1,5 +1,8 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+
+
 public class IdentifierType extends OneNameType{
 	
 	public String value;
@@ -11,6 +14,14 @@ public class IdentifierType extends OneNameType{
 	@Override
 	public String toString() {
 		return value+"";
+	}
+
+	
+	//TODO: handle Any, and class/interface hierarchies
+	@Override
+	public boolean matches(Type other) {
+		
+		return value.equals(other);
 	}
 
 }

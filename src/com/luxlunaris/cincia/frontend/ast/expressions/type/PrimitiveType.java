@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 public class PrimitiveType extends OneNameType{
@@ -18,6 +19,20 @@ public class PrimitiveType extends OneNameType{
 	@Override
 	public String toString() {
 		return value+"";
+	}
+
+	@Override
+	public boolean matches(Type other) {
+
+		
+		try {
+			return value.equals(((PrimitiveType)other).value);
+		}catch (ClassCastException e) {
+			
+		}
+		
+		return false;
+		
 	}
 	
 }

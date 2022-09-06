@@ -1,5 +1,5 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
-public class CollectionType extends SingleType {
+public abstract class CollectionType extends SingleType {
 	
 }
