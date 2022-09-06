@@ -41,7 +41,9 @@ public class BestMain extends JFrame{
 		textPane.setMargin(new Insets(5, 5, 5, 5));		
 		textPane.setCharacterAttributes(getStyle(Color.RED), false);
 		add(textPane);
+		setPreferredSize(new Dimension(600, 600));
 		pack();
+		setLocationRelativeTo(null);
 		setVisible(true);   
 		setTitle("filename.txt");
 
