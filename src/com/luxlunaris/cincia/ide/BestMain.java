@@ -175,9 +175,7 @@ public class BestMain extends JFrame{
 			e.printStackTrace();
 		}
 
-//		Preprocessor preprocessor = new Preprocessor(text);
-//		System.out.println("preprocessed: "+preprocessor.process());
-//		CharStream cStream  =new CharStream(preprocessor.process());
+
 		CharStream cStream = new CharStream(text);
 		TokenStream tokenStream = new TokenStream(cStream);
 		tokenStream.next();
