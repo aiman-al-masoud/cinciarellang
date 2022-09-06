@@ -488,6 +488,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			}
 
 			// TODO: fancy index
+			//TODO: move multi assign (set) and get into CinciaObject
 
 
 		}catch (ClassCastException e) {
