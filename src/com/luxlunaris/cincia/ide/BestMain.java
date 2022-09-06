@@ -188,7 +188,7 @@ public class BestMain extends JFrame{
 			doc.setCharacterAttributes(start, end, getStyle(tokenToColor(tokenStream.peek())), true);
 			
 			start=end;
-			tokenStream.next(); //TODO: throw exception with faulty row:col nums
+			tokenStream.next(); //TODO: throw and catch exception with faulty row:col nums
 			end = cStream.getPos();
 			
 		}
