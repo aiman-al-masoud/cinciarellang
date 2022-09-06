@@ -244,7 +244,7 @@ public class BestMain extends JFrame{
 		
 	}
 	
-	public List<Ast> runtimeCheck(List<Ast> statements){
+	public void runtimeCheck(List<Ast> statements){
 		
 		
 		
