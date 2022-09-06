@@ -1,5 +1,7 @@
 package com.luxlunaris.cincia.frontend.charstream;
 
+import com.luxlunaris.cincia.frontend.charstream.CinciaSytnaxException;
+
 public class CharStream {
 	
 	public static final char EOF = (char)-1;
@@ -41,8 +43,9 @@ public class CharStream {
 		return isEnd() ? EOF : source.charAt(pos);
 	}
 	
-	public void croak(String message) throws RuntimeException{
-		throw new RuntimeException(message+" at "+row+":"+col);
+	public void croak(String message) throws CinciaSytnaxException{
+//		throw new RuntimeException(message+" at "+row+":"+col);
+		throw new CinciaSytnaxException(message, pos, row, col);
 	}
 	
 	public boolean isEnd() {
