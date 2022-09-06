@@ -8,6 +8,7 @@ public class CharStream {
 	
 	String source;
 	int pos, row, col;
+	int rowStartPos; // starting position of current row
 	
 	public CharStream(String source) {
 		this.source = source;
@@ -22,6 +23,7 @@ public class CharStream {
 		if(peek() == '\n') {
 			row++;
 			col = 0;
+			rowStartPos = pos;
 		}else {
 			col++;
 		}
@@ -46,7 +48,7 @@ public class CharStream {
 	
 	public void croak(String message) throws CinciaSytnaxException{
 //		throw new RuntimeException(message+" at "+row+":"+col);
-		throw new CinciaSytnaxException(message, pos, row, col);
+		throw new CinciaSytnaxException(message, pos, row, col, rowStartPos);
 	}
 	
 	public boolean isEnd() {

@@ -230,7 +230,7 @@ public class BestMain extends JFrame{
 			System.out.println(e.getMessage());
 			System.out.println(e.pos);
 			setTitle(e.msg);
-			doc.setCharacterAttributes(0, e.pos , getErrorStyle(), true);
+			doc.setCharacterAttributes(e.rowStartPos, e.pos , getErrorStyle(), true);
 
 		}
 
