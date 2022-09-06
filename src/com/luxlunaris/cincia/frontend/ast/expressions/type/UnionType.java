@@ -29,5 +29,13 @@ public class UnionType implements Type{
 	public String toString() {
 		return types.stream().map(x->x+"").reduce((x1,x2)->x1+" | "+x2).get();
 	}
+
+	@Override
+	public boolean matches(Type other) {
+		
+		//TODO!!!!!!!!
+		
+		return false;
+	}
 	
 }
