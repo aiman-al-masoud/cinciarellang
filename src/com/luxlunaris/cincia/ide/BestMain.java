@@ -117,6 +117,7 @@ public class BestMain extends JFrame{
 					@Override
 					public void run() {
 						reColorizeDocument(doc);
+						testRun(doc);
 					}
 				});
 
@@ -193,6 +194,10 @@ public class BestMain extends JFrame{
 			
 		}
 
+	}
+	
+	public void testRun(StyledDocument doc) {
+		
 	}
 
 
