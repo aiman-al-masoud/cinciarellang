@@ -46,17 +46,10 @@ public class Enviro {
 		//TODO: maybe add final property in another map to check if reassignment is permitted
 		//TODO: check if val exists (or is declared) and check type with Type.matches before assigment
 		
-//		System.out.println(key+" exists: "+vars.containsKey(key));
 		
 		// variable already exists/declared, need to check type:
 		if(vars.containsKey(key)) {
-			
-//			System.out.println( "in Enviro.set() got: "+ val.getType() +" expected: "+ getType(key));
 
-//			System.out.println("in Enviro.set() got: "+val.getType()+" expected: "+types.get(key));
-			
-//			System.out.println(types.get(key).matches(val.getType()));
-			
 			// if no match, error!
 			if(!types.get(key).matches(val.getType())) {
 				throw new RuntimeException("incompatible types!");
