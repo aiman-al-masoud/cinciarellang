@@ -43,6 +43,7 @@ public class Enviro {
 	}
 	
 	public void set(String key, CinciaObject val, Type type) {
+		//TODO: maybe add final property in another map to check if reassignment is permitted
 		//TODO: check if val exists (or is declared) and check type with Type.matches before assigment
 		
 //		System.out.println(key+" exists: "+vars.containsKey(key));
