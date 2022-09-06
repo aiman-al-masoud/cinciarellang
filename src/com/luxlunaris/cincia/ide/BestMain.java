@@ -222,13 +222,17 @@ public class BestMain extends JFrame{
 			
 			Compiler compiler = new Compiler();
 			compiler.compile(text);
+			setTitle("");
 		}catch (CinciaSytnaxException e) {
 			
 			System.out.println(e.getMessage());
 			System.out.println(e.pos);
+			setTitle(e.msg);
 			doc.setCharacterAttributes(0, e.pos , getErrorStyle(), true);
 
 		}
+		
+		
 
 	}
 
