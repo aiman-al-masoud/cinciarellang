@@ -160,7 +160,7 @@ public class BestMain extends JFrame{
 		}else if(token instanceof Operator) {
 			return Color.MAGENTA;
 		}else if(token instanceof Keyword) {
-			return Color.RED;
+			return Color.GREEN;
 		}
 
 		return Color.BLACK;
