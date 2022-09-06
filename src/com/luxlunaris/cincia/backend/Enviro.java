@@ -14,7 +14,7 @@ public class Enviro {
 	private Enviro parent;
 	private Map<String, CinciaObject> vars;
 	private Map<String, Type> types;
-	
+
 
 	public Enviro(Enviro parent) {
 
@@ -37,16 +37,14 @@ public class Enviro {
 	public CinciaObject get(String key) {
 		return vars.get(key);
 	}
-	
+
 	public Type getType(String key) {
 		return types.get(key);
 	}
-	
+
 	public void set(String key, CinciaObject val, Type type) {
 		//TODO: maybe add final property in another map to check if reassignment is permitted
-		//TODO: check if val exists (or is declared) and check type with Type.matches before assigment
-		
-		
+
 		// variable already exists/declared, need to check type:
 		if(vars.containsKey(key)) {
 
@@ -54,13 +52,13 @@ public class Enviro {
 			if(!types.get(key).matches(val.getType())) {
 				throw new RuntimeException("incompatible types!");
 			}
-			
+
 		}
-		
+
 		vars.put(key, val);
 		types.put(key, type);
 	}
-	
+
 	public void set(String key, CinciaObject val) {
 		set(key, val, val.getType());
 	}
@@ -69,11 +67,11 @@ public class Enviro {
 		vars.remove(key);
 		types.remove(key);
 	}
-	
+
 	public List<CinciaObject> values(){
 		return new ArrayList<CinciaObject>(vars.values());
 	}
-	
+
 	public List<Map.Entry<String, CinciaObject>> items(){
 		return new ArrayList<Map.Entry<String,CinciaObject>>(vars.entrySet());
 	}
