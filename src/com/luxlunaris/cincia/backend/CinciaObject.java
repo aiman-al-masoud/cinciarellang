@@ -3,7 +3,7 @@ package com.luxlunaris.cincia.backend;
 import java.util.List;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-interface CinciaObject {
+public interface CinciaObject {
 
 
 	static CinciaObject create(Object object) {
