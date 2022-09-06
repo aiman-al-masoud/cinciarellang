@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Insets;
+import java.awt.TextArea;
 //import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
