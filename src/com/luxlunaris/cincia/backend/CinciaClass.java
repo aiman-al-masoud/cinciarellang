@@ -76,20 +76,19 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 	@Override
 	public boolean matches(Type other) {
 
-//		try {
-//			return this == ((CinciaClass)other); // matches in RAM
-//			
-//			
-//			//TODO: check extends etc...
-//			
-//			
-//		} catch (ClassCastException e) {
-//
-//		}
-//
-//		return false;
+		try {
+			return this == ((CinciaClass)other); // matches in RAM
+			
+			
+			//TODO: check extends etc...
+			
+			
+		} catch (ClassCastException e) {
+
+		}
+
+		return false;
 		
-		return true;
 	}
 
 
