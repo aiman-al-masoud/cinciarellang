@@ -24,6 +24,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operator;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuation;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
+import com.luxlunaris.cincia.frontend.charstream.CinciaSytnaxException;
 import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
@@ -214,8 +215,11 @@ public class BestMain extends JFrame{
 		try {
 			Compiler compiler = new Compiler();
 			compiler.compile(text);
-		}catch (Exception e) {
+		}catch (CinciaSytnaxException e) {
+			
 			System.out.println(e.getMessage());
+			
+			
 		}
 
 	}
