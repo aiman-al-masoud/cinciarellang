@@ -48,6 +48,8 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	public void set(String key, CinciaObject val, Type type) {
+		
+//		System.out.println( "3) got: "+ val.getType() +" expected: "+ getType(key));
 
 
 		if(!immutable) {	
@@ -61,6 +63,8 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	public void set(String key, CinciaObject val) {
+//		System.out.println( "2) got: "+ val.getType() +" expected: "+ getType(key));
+
 		set(key, val, val.getType());
 	}
 
@@ -223,6 +227,9 @@ public class AbstractCinciaObject implements CinciaObject{
 	 */
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
+		
+//		System.out.println("got here!");
+
 
 		// TEST
 		// c = class{ __init__ = \x -> 1; }
@@ -263,7 +270,9 @@ public class AbstractCinciaObject implements CinciaObject{
 			if(co instanceof CinciaMethod) {
 				((CinciaMethod) co).parent = copy;
 			}
-
+			
+//			System.out.println("also got here!");
+//			System.out.println( "got: "+e.getValue().getType() +" expected: "+ copy.getType(e.getKey()) );
 			copy.set(e.getKey(), co);			
 		});
 

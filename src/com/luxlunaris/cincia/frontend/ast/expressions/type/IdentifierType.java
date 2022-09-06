@@ -21,7 +21,14 @@ public class IdentifierType extends OneNameType{
 	@Override
 	public boolean matches(Type other) {
 		
-		return value.equals(other);
+		try {
+			
+			return value.equals(((IdentifierType)other).value);
+		} catch (ClassCastException e) {
+			// TODO: handle exception
+		}
+		
+		return false;
 	}
 
 }

@@ -42,6 +42,9 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 		// basically Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
 
+		
+
+		
 		// java-code wrappers need to point to the original instance of the new java object
 		obj.set("this", obj, type); 
 		CinciaMethod m1 = new CinciaMethod(obj::copy);
@@ -73,18 +76,20 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 	@Override
 	public boolean matches(Type other) {
 
-		try {
-			return this == ((CinciaClass)other); // matches in RAM
-			
-			
-			//TODO: check extends etc...
-			
-			
-		} catch (ClassCastException e) {
-
-		}
-
-		return false;
+//		try {
+//			return this == ((CinciaClass)other); // matches in RAM
+//			
+//			
+//			//TODO: check extends etc...
+//			
+//			
+//		} catch (ClassCastException e) {
+//
+//		}
+//
+//		return false;
+		
+		return true;
 	}
 
 

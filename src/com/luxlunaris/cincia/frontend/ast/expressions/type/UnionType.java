@@ -6,6 +6,7 @@ import java.util.List;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
+import com.sun.source.tree.Tree;
 
 //TODO: add in EBNF
 public class UnionType implements Type{
@@ -35,7 +36,7 @@ public class UnionType implements Type{
 		
 		//TODO!!!!!!!!
 		
-		return false;
+		return true;
 	}
 	
 }
