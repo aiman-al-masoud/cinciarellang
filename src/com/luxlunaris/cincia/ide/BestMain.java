@@ -15,6 +15,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
+import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
@@ -133,10 +134,10 @@ public class BestMain extends JFrame{
 		});
 
 	}
-	
-	
+
+
 	public Color tokenToColor(Token token) {
-		
+
 		if(token instanceof Constant) {
 			return Color.ORANGE;
 		}else if(token instanceof Punctuation) {
@@ -148,7 +149,7 @@ public class BestMain extends JFrame{
 		}else if(token instanceof Keyword) {
 			return Color.RED;
 		}
-		
+
 		return Color.BLACK;
 	}
 
@@ -182,25 +183,41 @@ public class BestMain extends JFrame{
 		int start = 0;
 		int end = cStream.getPos();
 
-//		System.out.println("tokens:");
-		
+		//		System.out.println("tokens:");
+
 		while(!tokenStream.isEnd()) {
-			
-			
+
+
 			//TODO: deal with comments (maybe turn comments into Tokens)
-//			System.out.println(tokenStream.peek()+" from: "+start+" to: "+end);
+			//			System.out.println(tokenStream.peek()+" from: "+start+" to: "+end);
 			doc.setCharacterAttributes(start, end, getStyle(tokenToColor(tokenStream.peek())), true);
-			
+
 			start=end;
 			tokenStream.next(); //TODO: throw and catch exception with faulty row:col nums
 			end = cStream.getPos();
-			
+
 		}
 
 	}
-	
+
 	public void testRun(StyledDocument doc) {
-		
+
+		String text = "";
+
+		try {
+			text = doc.getText(0, doc.getLength());
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+
+
+		try {
+			Compiler compiler = new Compiler();
+			compiler.compile(text);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 

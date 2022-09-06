@@ -500,6 +500,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
 
+		
+		
+		
 		CinciaClass c = new CinciaClass();
 
 		for(Declaration dec : classex.declarations) {	

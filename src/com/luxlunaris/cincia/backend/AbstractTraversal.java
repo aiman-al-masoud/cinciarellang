@@ -71,6 +71,7 @@ public abstract class AbstractTraversal<T> {
 	public T eval(Ast ast, Enviro enviro) {
 		
 		
+		
 
 		if(ast instanceof Expression) {
 			return evalExpression((Expression)ast, enviro);
@@ -132,6 +133,7 @@ public abstract class AbstractTraversal<T> {
 			return evalMultiExpression((MultiExpression)expression, enviro);
 
 		}else if(expression instanceof ObjectExpression) {
+			
 			return evalObjectExpression((ObjectExpression)expression, enviro);
 
 		}else if(expression instanceof PostfixExpression) {

@@ -871,11 +871,11 @@ public class Parser {
 		}
 
 		eat(rE.op);
-		
+
 		if(Arrays.asList(Operators.PLUSPLUS, Operators.MINUSMINUS).contains(rE.op)) {
 			return rE;
 		}
-		
+
 		rE.right =  parseExpression();
 		return rE;
 	}
@@ -885,6 +885,7 @@ public class Parser {
 		// TODO: change EBNF, objects expressions are now primary expressions (does that make sense?)
 		// if it starts with modifer, or 'class' or 'interface' or '{' or '[' it's an object
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS)|| tStream.peek().getValue().equals(Keywords.INTERFACE) || tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
+
 			return parseObjectExpression();
 		}
 
@@ -938,6 +939,7 @@ public class Parser {
 		}
 
 		if(tStream.peek().getValue().equals(Keywords.CLASS)) {
+
 			return parseClassExpression(modifiers);
 		}
 
@@ -978,14 +980,12 @@ public class Parser {
 
 			if(tStream.peek().getValue().equals(Keywords.LISTENSTO)) {
 				cE.observables = parseIdList();
-			}
-
-			if(tStream.peek().getValue().equals(Keywords.IMPLEMENTS)) {
+			}else if(tStream.peek().getValue().equals(Keywords.IMPLEMENTS)) {
 				cE.interfaces = parseIdList();
-			}
-
-			if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {
+			}else if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {
 				cE.superclass = parseIdentifier();
+			}else {
+				break;
 			}
 		}
 

@@ -44,6 +44,8 @@ public class Repl {
 		try {
 
 			List<Ast> statements = new Compiler().compile(source);
+			
+			
 
 			statements.forEach(s -> {
 
