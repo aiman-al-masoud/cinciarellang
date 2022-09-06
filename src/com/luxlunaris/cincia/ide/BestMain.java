@@ -182,13 +182,13 @@ public class BestMain extends JFrame{
 		int start = 0;
 		int end = cStream.getPos();
 
-		System.out.println("tokens:");
+//		System.out.println("tokens:");
 		
 		while(!tokenStream.isEnd()) {
 			
 			
 			//TODO: deal with comments (maybe turn comments into Tokens)
-			System.out.println(tokenStream.peek()+" from: "+start+" to: "+end);
+//			System.out.println(tokenStream.peek()+" from: "+start+" to: "+end);
 			doc.setCharacterAttributes(start, end, getStyle(tokenToColor(tokenStream.peek())), true);
 			
 			start=end;
