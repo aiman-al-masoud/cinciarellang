@@ -1,8 +1,14 @@
 package com.luxlunaris.cincia.ide;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Insets;
+//import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Arrays;
+import java.util.List;
+
 import javax.swing.*;
 
 import javax.swing.border.*;
@@ -208,7 +214,7 @@ public class BestMain extends JFrame{
 
 	}
 
-	public java.util.List<Ast> compileCheck(StyledDocument doc) {
+	public List<Ast> compileCheck(StyledDocument doc) {
 
 		String text = "";
 
@@ -234,6 +240,12 @@ public class BestMain extends JFrame{
 			doc.setCharacterAttributes(e.rowStartPos, e.pos , getErrorStyle(), true);
 			return null;
 		}
+		
+		
+	}
+	
+	public List<Ast> runtimeCheck(List<Ast> statements){
+		
 		
 		
 	}
