@@ -454,6 +454,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
+		
+		//TODO: check type
 
 		CinciaObject rval =  eval(assex.right, enviro);
 
