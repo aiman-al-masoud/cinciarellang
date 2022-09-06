@@ -19,6 +19,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operator;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuation;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
@@ -174,9 +175,10 @@ public class BestMain extends JFrame{
 			e.printStackTrace();
 		}
 
-		Preprocessor preprocessor = new Preprocessor(text);
-		System.out.println("preprocessed: "+text);
-		CharStream cStream  =new CharStream(preprocessor.process());
+//		Preprocessor preprocessor = new Preprocessor(text);
+//		System.out.println("preprocessed: "+preprocessor.process());
+//		CharStream cStream  =new CharStream(preprocessor.process());
+		CharStream cStream = new CharStream(text);
 		TokenStream tokenStream = new TokenStream(cStream);
 		tokenStream.next();
 		int start = 0;
@@ -185,6 +187,7 @@ public class BestMain extends JFrame{
 		System.out.println("tokens:");
 		
 		while(!tokenStream.isEnd()) {
+			
 			
 			//TODO: deal with comments (maybe turn comments into Tokens)
 			System.out.println(tokenStream.peek()+" from: "+start+" to: "+end);
