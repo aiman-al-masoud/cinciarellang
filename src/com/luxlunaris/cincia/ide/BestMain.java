@@ -210,6 +210,7 @@ public class BestMain extends JFrame{
 	public void compileCheck(StyledDocument doc) {
 
 		String text = "";
+		int okTillHerePos = 0;
 
 		try {
 			text = doc.getText(0, doc.getLength());
