@@ -30,6 +30,7 @@ public class CharStream {
 	
 	public void prev() {
 		
+		//TODO
 //		if(peek() == '\n') {
 //			row--;
 //		}else {
