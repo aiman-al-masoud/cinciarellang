@@ -121,8 +121,8 @@ public class BestMain extends JFrame{
 				EventQueue.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						reColorizeDocument(doc);
-						testRun(doc);
+						tokenColorize(doc);
+						compileCheck(doc);
 					}
 				});
 
@@ -173,7 +173,7 @@ public class BestMain extends JFrame{
 	}
 
 
-	public void reColorizeDocument(StyledDocument doc) {
+	public void tokenColorize(StyledDocument doc) {
 
 		String text = "";
 
@@ -207,7 +207,7 @@ public class BestMain extends JFrame{
 
 	}
 
-	public void testRun(StyledDocument doc) {
+	public void compileCheck(StyledDocument doc) {
 
 		String text = "";
 
@@ -222,6 +222,8 @@ public class BestMain extends JFrame{
 
 			Compiler compiler = new Compiler();
 			compiler.compile(text);
+			
+			//TODO: test run with interpreter!
 			setTitle("");
 		}catch (CinciaSytnaxException e) {
 
@@ -235,6 +237,7 @@ public class BestMain extends JFrame{
 
 
 	}
+	
 
 
 	public static void main(String[] args){
