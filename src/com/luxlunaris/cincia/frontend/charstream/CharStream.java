@@ -50,7 +50,9 @@ public class CharStream {
 	}
 	
 	
-	
+	public int getPos() {
+		return pos;
+	}
 	
 	
 	
