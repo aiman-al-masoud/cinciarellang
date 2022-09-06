@@ -48,7 +48,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	public void set(String key, CinciaObject val, Type type) {
-		
+
 		if(!immutable) {	
 
 			enviro.set(key, val, type);
@@ -261,7 +261,7 @@ public class AbstractCinciaObject implements CinciaObject{
 			if(co instanceof CinciaMethod) {
 				((CinciaMethod) co).parent = copy;
 			}
-			
+
 			copy.set(e.getKey(), co);			
 		});
 
