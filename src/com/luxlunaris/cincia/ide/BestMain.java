@@ -162,7 +162,13 @@ public class BestMain extends JFrame{
 		aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Lucida Console");
 		aset = sc.addAttribute(aset, StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
 		aset = sc.addAttribute(aset, StyleConstants.FontSize, 50);
-		//		aset =sc.addAttribute(aset, StyleConstants.Underline, true);
+		return aset;
+	}
+	
+	public AttributeSet getErrorStyle() {
+		AttributeSet aset = getStyle(Color.RED);
+		StyleContext sc = StyleContext.getDefaultStyleContext();
+		aset =sc.addAttribute(aset, StyleConstants.Underline, true);
 		return aset;
 	}
 
@@ -213,13 +219,15 @@ public class BestMain extends JFrame{
 
 
 		try {
+			
 			Compiler compiler = new Compiler();
 			compiler.compile(text);
 		}catch (CinciaSytnaxException e) {
 			
 			System.out.println(e.getMessage());
-			
-			
+			System.out.println(e.pos);
+			doc.setCharacterAttributes(0, e.pos , getErrorStyle(), true);
+
 		}
 
 	}
