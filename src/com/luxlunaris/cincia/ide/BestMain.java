@@ -16,6 +16,7 @@ import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
 import com.luxlunaris.cincia.frontend.Compiler;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
@@ -207,7 +208,7 @@ public class BestMain extends JFrame{
 
 	}
 
-	public void compileCheck(StyledDocument doc) {
+	public java.util.List<Ast> compileCheck(StyledDocument doc) {
 
 		String text = "";
 
@@ -221,21 +222,20 @@ public class BestMain extends JFrame{
 		try {
 
 			Compiler compiler = new Compiler();
-			compiler.compile(text);
-
-			//TODO: test run with interpreter!
 			setTitle("");
+			return compiler.compile(text);
+			//TODO: test run with interpreter!
+			
 		}catch (CinciaSytnaxException e) {
 
 			System.out.println(e.getMessage());
 			System.out.println(e.pos);
 			setTitle(e.msg);
 			doc.setCharacterAttributes(e.rowStartPos, e.pos , getErrorStyle(), true);
-
+			return null;
 		}
-
-
-
+		
+		
 	}
 
 
