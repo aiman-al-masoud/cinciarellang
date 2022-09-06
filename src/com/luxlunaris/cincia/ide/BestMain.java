@@ -164,7 +164,7 @@ public class BestMain extends JFrame{
 		aset = sc.addAttribute(aset, StyleConstants.FontSize, 50);
 		return aset;
 	}
-	
+
 	public AttributeSet getErrorStyle() {
 		AttributeSet aset = getStyle(Color.RED);
 		StyleContext sc = StyleContext.getDefaultStyleContext();
@@ -219,20 +219,20 @@ public class BestMain extends JFrame{
 
 
 		try {
-			
+
 			Compiler compiler = new Compiler();
 			compiler.compile(text);
 			setTitle("");
 		}catch (CinciaSytnaxException e) {
-			
+
 			System.out.println(e.getMessage());
 			System.out.println(e.pos);
 			setTitle(e.msg);
 			doc.setCharacterAttributes(0, e.pos , getErrorStyle(), true);
 
 		}
-		
-		
+
+
 
 	}
 
