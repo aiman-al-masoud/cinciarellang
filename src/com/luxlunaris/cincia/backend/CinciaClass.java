@@ -6,15 +6,17 @@ import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
-public class CinciaClass extends AbstractCinciaObject{
-	
+public class CinciaClass extends AbstractCinciaObject implements Type{
+
 	public static String CLASS = "class";
 
 	public CinciaClass() {
 		super(new IdentifierType("Class"));
+		type =this;
 		enviro.set(CLASS, this);
 	}
 
@@ -36,10 +38,10 @@ public class CinciaClass extends AbstractCinciaObject{
 
 	//TODO: deal with modifiers such as static
 	public CinciaObject constructor(List<CinciaObject> args) {
-		
+
 		// basically Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
-		
+
 		// java-code wrappers need to point to the original instance of the new java object
 		obj.set("this", obj, type); 
 		CinciaMethod m1 = new CinciaMethod(obj::copy);
@@ -52,14 +54,37 @@ public class CinciaClass extends AbstractCinciaObject{
 		CinciaMethod m3 = new CinciaMethod(obj::into); 
 		m3.parent = obj;
 		obj.set(Magic.into, m3);
-		
+
 		obj.__init__(args);
 		return obj;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "class{}";
+	}
+
+	@Override
+	public Expression simplify() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean matches(Type other) {
+
+		try {
+			return this == ((CinciaClass)other); // matches in RAM
+			
+			
+			//TODO: check extends etc...
+			
+			
+		} catch (ClassCastException e) {
+
+		}
+
+		return false;
 	}
 
 
