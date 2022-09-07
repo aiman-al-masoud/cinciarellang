@@ -38,9 +38,17 @@ public class Enviro {
 
 		CinciaObject o = vars.get(key);
 		
+		
+		if(o==null && vars.containsKey(key)) {
+			throw new RuntimeException(key+" is declared but undefined!");
+		}
+		
 		if(o==null) {
 			throw new RuntimeException(key+" is undefined!");
 		}
+		
+		
+		
 
 		return o;
 
