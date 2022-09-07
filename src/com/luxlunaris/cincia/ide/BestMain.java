@@ -96,7 +96,6 @@ public class BestMain extends JFrame{
 						try {
 
 							CinciaObject c = interpreter.eval(ast, enviro);//TODO: throw and catch specialized exception for undefined variables
-//							JOptionPane.showMessageDialog(textPane, c+"");
 							consoleDisplay.setText(c+"");
 							consoleDisplay.setVisible(true);
 
