@@ -1,0 +1,3 @@
+//import x from "./docs/examples/fib-good.ci";
+// x.lib.fib(10)
+x = {"lib" : {"fib" :  \n-> n <= 1? 1 : this(n-2) + this(n-1) }}

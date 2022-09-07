@@ -140,6 +140,7 @@ public class Parser {
 		}else {
 			res = parseExpressionStatement();
 		}
+		
 
 		eat(Punctuations.STM_SEP);
 		return res;

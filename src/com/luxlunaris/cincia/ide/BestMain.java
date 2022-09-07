@@ -215,7 +215,7 @@ public class BestMain extends JFrame{
 		AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
 		aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Lucida Console");
 		aset = sc.addAttribute(aset, StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
-		aset = sc.addAttribute(aset, StyleConstants.FontSize, 50);
+		aset = sc.addAttribute(aset, StyleConstants.FontSize, 40);
 		return aset;
 	}
 
