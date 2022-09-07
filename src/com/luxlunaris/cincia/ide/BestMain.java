@@ -303,16 +303,6 @@ public class BestMain extends JFrame{
 
 		}
 
-		//		statements.forEach(ast->{
-		//
-		//			try {
-		//				interpreter.eval(ast, enviro);//TODO: throw and catch specialized exception for undefined variables
-		//			}catch (Exception e) { 
-		//				setTitle(e.getClass() +" "+e.getMessage());
-		//			}
-		//
-		//		});
-
 	}
 
 
