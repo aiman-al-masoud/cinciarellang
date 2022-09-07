@@ -575,9 +575,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalInterfaceExpression(InterfaceExpression interex, Enviro enviro) {
-		// TODO Auto-generated method stub
 		return new CinciaInterface(interex);
-//		return null;
 	}
 
 	@Override

@@ -32,6 +32,23 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 	public void addAttribute(String name, AbstractCinciaObject value) {
 		set(name, value, value.type);
 	}	
+	
+	public void addInterface(CinciaInterface cincinterface) {
+		
+		cincinterface.getDeclarations().forEach(d->{
+			
+			try {
+				
+				get(d.getName());
+				
+			} catch (Exception e) {
+				throw new RuntimeException("Required field from interface missing!");
+			}
+			
+		});
+		
+	}
+	
 
 	//TODO: deal with modifiers such as static
 	public CinciaObject constructor(List<CinciaObject> args) {
