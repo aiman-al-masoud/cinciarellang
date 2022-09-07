@@ -105,7 +105,7 @@ public class Parser {
 	}
 
 
-	private Statement parseStatement() {
+	public Statement parseStatement() {
 
 		Statement res = null;
 

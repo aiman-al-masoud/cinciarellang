@@ -1,6 +1,9 @@
 package com.luxlunaris.cincia.frontend;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
@@ -20,7 +23,7 @@ public class Compiler {
 	 * @return
 	 */
 	public List<Ast> compile(String source) throws CinciaSytnaxException{
-		
+
 		Preprocessor preprocessor = new Preprocessor(source);
 		CharStream charStream = new CharStream(preprocessor.process());
 		TokenStream tokenStream = new TokenStream(charStream);
@@ -28,7 +31,32 @@ public class Compiler {
 		List<Statement> statements = parser.parse();
 		List<Ast> simplifiedStatements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
 		return simplifiedStatements;
-		
+
 	}
-	
+
+
+	public List<Entry<Integer, Integer>> getStatmentBounds(String source){
+
+		List<Entry<Integer, Integer>> results = new ArrayList<Map.Entry<Integer,Integer>>();
+		Preprocessor preprocessor = new Preprocessor(source);
+		CharStream charStream = new CharStream(preprocessor.process());
+		TokenStream tokenStream = new TokenStream(charStream);
+		Parser parser = new Parser(tokenStream);
+
+		parser.parseStatement();
+		int start = 0;
+		int end = charStream.getPos();
+		results.add(Map.entry(start, end));
+
+		while (!tokenStream.isEnd()) {
+			parser.parseStatement();
+			start = end;
+			end = charStream.getPos();
+			results.add(Map.entry(start, end));
+		}
+
+		return results;
+	}
+
+
 }

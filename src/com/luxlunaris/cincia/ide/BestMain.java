@@ -6,6 +6,7 @@ import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.swing.*;
 
@@ -153,7 +154,7 @@ public class BestMain extends JFrame{
 						tokenColorize(doc);
 						List<Ast> statements = compileCheck(doc);
 						//TODO: statements could be null
-						runtimeCheck(statements);
+						runtimeCheck(statements, doc);
 					}
 				});
 
@@ -266,22 +267,51 @@ public class BestMain extends JFrame{
 		}
 
 
+
+
+
+
 	}
 
-	public void runtimeCheck(List<Ast> statements){
+	public void runtimeCheck(List<Ast> statements, StyledDocument doc){
 
 		Enviro enviro = new Enviro(null);
 		Interpreter interpreter = new Interpreter();
 
-		statements.forEach(ast->{
+		String text = "";
+
+		try {
+			text = doc.getText(0, doc.getLength());
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+
+		List<Entry<Integer, Integer>> bounds = new Compiler().getStatmentBounds(text);
+
+
+		System.out.println("bounds: "+bounds);
+
+		for(int i=0; i<statements.size(); i++) {
 
 			try {
-				interpreter.eval(ast, enviro);//TODO: throw and catch specialized exception for undefined variables
+				interpreter.eval(statements.get(i), enviro);//TODO: throw and catch specialized exception for undefined variables
 			}catch (Exception e) { 
 				setTitle(e.getClass() +" "+e.getMessage());
+				doc.setCharacterAttributes(bounds.get(i).getKey(), bounds.get(i).getValue(), getErrorStyle(), true);
+
 			}
 
-		});
+		}
+
+		//		statements.forEach(ast->{
+		//
+		//			try {
+		//				interpreter.eval(ast, enviro);//TODO: throw and catch specialized exception for undefined variables
+		//			}catch (Exception e) { 
+		//				setTitle(e.getClass() +" "+e.getMessage());
+		//			}
+		//
+		//		});
 
 	}
 
