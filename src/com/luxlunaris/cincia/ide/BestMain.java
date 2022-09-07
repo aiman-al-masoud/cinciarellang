@@ -58,7 +58,6 @@ public class BestMain extends JFrame{
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);   
-		//		setTitle("filename.txt");
 
 
 		KeyListener kl = new KeyListener() {
