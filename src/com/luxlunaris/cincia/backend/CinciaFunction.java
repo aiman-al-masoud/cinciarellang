@@ -26,6 +26,8 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		this.eval = eval;
 		this.lambdex = lambdex;
 		params = parseParams(lambdex);	
+		
+		set("this", this, type);
 	}
 
 	public CinciaFunction(WrappedFunction wrappedFunction) {

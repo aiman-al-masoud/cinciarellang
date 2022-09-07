@@ -512,7 +512,7 @@ public class Parser {
 		eat(Punctuations.SLASH_BCK);
 
 		// function may not take any parameters
-		if(tStream.peek() instanceof Identifier) {
+		if(tStream.peek() instanceof Identifier || tStream.peek() instanceof Modifier) {
 			sg.params = parseDeclaration(false);
 		}
 
@@ -957,6 +957,7 @@ public class Parser {
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
 		lE.signature = parseSignature();
+		
 		eat(Operators.ARROW);
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
