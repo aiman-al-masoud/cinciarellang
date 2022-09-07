@@ -47,9 +47,6 @@ public class Enviro {
 			throw new RuntimeException(key+" is undefined!");
 		}
 		
-		
-		
-
 		return o;
 
 	}
