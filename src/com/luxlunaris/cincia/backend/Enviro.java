@@ -55,7 +55,7 @@ public class Enviro {
 
 		// variable already exists/declared, need to check type:
 		if(vars.containsKey(key)) {
-
+			
 			// if types don't match, error!
 			if(!types.get(key).matches(val.getType())) {
 				throw new RuntimeException("incompatible types!");
