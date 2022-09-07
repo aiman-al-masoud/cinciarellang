@@ -51,12 +51,12 @@ public class BestMain extends JFrame{
 		textPane.setMargin(new Insets(5, 5, 5, 5));		
 		textPane.setCharacterAttributes(getStyle(Color.RED), false);
 		add(new JScrollPane(textPane));
-		
+
 		setPreferredSize(new Dimension(600, 600));
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);   
-//		setTitle("filename.txt");
+		//		setTitle("filename.txt");
 
 
 		KeyListener kl = new KeyListener() {
@@ -68,28 +68,28 @@ public class BestMain extends JFrame{
 
 				// Ctrl+Enter
 				if(arg0.getKeyCode() == 10 && arg0.getModifiersEx()==128 ) {
-//					JOptionPane.showConfirmDialog(null, "control+enter!");
+					//					JOptionPane.showConfirmDialog(null, "control+enter!");
 					String source = textPane.getText();
 					Compiler compiler = new Compiler();
 					List<Ast> statements = compiler.compile(source);
-					
-					
+
+
 					Enviro enviro = new Enviro(null);
 					Interpreter interpreter = new Interpreter();
-					
+
 					statements.forEach(ast->{
-						
+
 						try {
-							
+
 							CinciaObject c = interpreter.eval(ast, enviro);//TODO: throw and catch specialized exception for undefined variables
 							JOptionPane.showMessageDialog(textPane, c+"");
-							
+
 						}catch (Exception e) { 
 							setTitle(e.getClass() +" "+e.getMessage());
 						}
 
 					});
-					
+
 				}
 
 				// Ctrl+L
@@ -269,12 +269,12 @@ public class BestMain extends JFrame{
 	}
 
 	public void runtimeCheck(List<Ast> statements){
-		
+
 		Enviro enviro = new Enviro(null);
 		Interpreter interpreter = new Interpreter();
-		
+
 		statements.forEach(ast->{
-			
+
 			try {
 				interpreter.eval(ast, enviro);//TODO: throw and catch specialized exception for undefined variables
 			}catch (Exception e) { 
