@@ -700,9 +700,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalDotExpression(DotExpression dotex, Enviro enviro) {
-		//		System.out.println("hellO! I wazzz called!");
-		//		System.out.println(dotex);
-
+	
 		try {
 			CinciaObject dottable = eval(dotex.left, enviro);
 			return dottable.get(dotex.right.value);					
