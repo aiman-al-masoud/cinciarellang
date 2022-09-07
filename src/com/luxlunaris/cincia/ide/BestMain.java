@@ -254,7 +254,6 @@ public class BestMain extends JFrame{
 			Compiler compiler = new Compiler();
 			setTitle("");
 			return compiler.compile(text);
-			//TODO: test run with interpreter!
 
 		}catch (CinciaSytnaxException e) {
 
