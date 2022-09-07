@@ -59,6 +59,7 @@ public class BestMain extends JFrame{
 		consoleDisplay = new JTextPane();
 		consoleDisplay.setVisible(false);
 		consoleDisplay.setCharacterAttributes(getStyle(Color.BLACK), false);
+		consoleDisplay.setPreferredSize(new Dimension(50, 100));
 		
 		
 		setLayout(new BorderLayout());
