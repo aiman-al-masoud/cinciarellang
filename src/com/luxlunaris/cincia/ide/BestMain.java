@@ -135,6 +135,11 @@ public class BestMain extends JFrame{
 				if(arg0.getKeyCode() == 73 && arg0.getModifiersEx()==128 ) {
 					textPane.setText(new Indenter(textPane.getText()).getIndented());
 				}
+				
+				//Ctrl+P
+				if(arg0.getKeyCode() == 80 && arg0.getModifiersEx()==128 ) {
+					consoleDisplay.setVisible(!consoleDisplay.isVisible());
+				}
 
 			}
 
