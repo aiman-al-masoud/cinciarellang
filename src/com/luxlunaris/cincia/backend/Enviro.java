@@ -35,7 +35,16 @@ public class Enviro {
 	}
 
 	public CinciaObject get(String key) {
-		return vars.get(key);
+		
+		// TODO: problem, if "class" is null that's not a problem
+//		if(o==null) {
+//			throw new RuntimeException(key+" is undefined!");
+//		}
+		
+//		System.out.println(key);
+		CinciaObject o = vars.get(key);
+		return o;
+		
 	}
 
 	public Type getType(String key) {
