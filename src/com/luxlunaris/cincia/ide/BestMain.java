@@ -252,8 +252,9 @@ public class BestMain extends JFrame{
 		try {
 
 			Compiler compiler = new Compiler();
+			List<Ast> statements = compiler.compile(text);
 			setTitle("");
-			return compiler.compile(text);
+			return statements;
 
 		}catch (CinciaSytnaxException e) {
 
