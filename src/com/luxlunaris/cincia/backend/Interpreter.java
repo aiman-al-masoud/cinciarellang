@@ -64,7 +64,6 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
-import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 
