@@ -658,6 +658,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// is evaluated in the current environment, and if the name is not 
 		// on the top level, the function name isn't resolved!
 		// System.out.println("callable: "+f);
+		
+		// TODO: same problem for pure functions, they can't resolve their own
+		// name because it's in their enclosing env to which they have no 
+		// access!
 
 
 		// if class, call constructor and return reference to new object
