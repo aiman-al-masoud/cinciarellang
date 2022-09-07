@@ -575,6 +575,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalInterfaceExpression(InterfaceExpression interex, Enviro enviro) {
+		//TODO: superinterfaces
 		return new CinciaInterface(interex);
 	}
 
