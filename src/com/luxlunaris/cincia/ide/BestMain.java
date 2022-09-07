@@ -1,7 +1,9 @@
 package com.luxlunaris.cincia.ide;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -41,6 +43,7 @@ import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 public class BestMain extends JFrame{
 
 	private JTextPane textPane;
+	private JTextPane consoleDisplay;
 
 	public BestMain(){
 
@@ -50,8 +53,17 @@ public class BestMain extends JFrame{
 		textPane = new JTextPane();                
 		textPane.setBorder(eb);
 		textPane.setMargin(new Insets(5, 5, 5, 5));		
-		textPane.setCharacterAttributes(getStyle(Color.RED), false);
+		textPane.setCharacterAttributes(getStyle(Color.BLACK), false);
+		
+		
+		consoleDisplay = new JTextPane();
+		consoleDisplay.setVisible(false);
+		consoleDisplay.setCharacterAttributes(getStyle(Color.BLACK), false);
+		
+		
+		setLayout(new BorderLayout());
 		add(new JScrollPane(textPane));
+		add(consoleDisplay, BorderLayout.SOUTH);
 		
 
 		setPreferredSize(new Dimension(600, 600));
@@ -83,10 +95,15 @@ public class BestMain extends JFrame{
 						try {
 
 							CinciaObject c = interpreter.eval(ast, enviro);//TODO: throw and catch specialized exception for undefined variables
-							JOptionPane.showMessageDialog(textPane, c+"");
+//							JOptionPane.showMessageDialog(textPane, c+"");
+							consoleDisplay.setText(c+"");
+							consoleDisplay.setVisible(true);
 
 						}catch (Exception e) { 
-							setTitle(e.getClass() +" "+e.getMessage());
+							String msg =e.getClass() +" "+e.getMessage(); 
+							setTitle(msg);
+							consoleDisplay.setText(msg);
+							consoleDisplay.setVisible(true);
 						}
 
 					});
