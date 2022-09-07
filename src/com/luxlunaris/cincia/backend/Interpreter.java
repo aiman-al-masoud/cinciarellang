@@ -583,10 +583,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 
-		// Check if env belongs to class, in that case return a method.
-		CinciaClass b = (CinciaClass)enviro.get(CinciaClass.CLASS);
-		if(b != null) {
-			return new CinciaMethod(lambdex, this::eval);
+		try {
+			// Check if env belongs to class, in that case return a method.
+			CinciaClass b = (CinciaClass)enviro.get(CinciaClass.CLASS);
+			return new CinciaMethod(lambdex, this::eval);			
+		} catch (Exception e) {
+			
 		}
 
 		return CinciaFunction.factory(lambdex, this::eval);
@@ -824,8 +826,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		//TODO: can this be parallelized like in bash?
 		for(int i=1; i<pipex.expressions.size(); i++) {
-			CinciaFunction f = (CinciaFunction)eval(pipex.expressions.get(i), envCopy); 
-			arg = f.run(Arrays.asList(arg), envCopy);
+			//TODO: only pure functions in pipes?
+			PureCinciaFunction f = (PureCinciaFunction)eval(pipex.expressions.get(i), envCopy); 
+			arg = f.run(Arrays.asList(arg));//, envCopy);
 		}
 
 		return arg;

@@ -52,6 +52,7 @@ public class BestMain extends JFrame{
 		textPane.setMargin(new Insets(5, 5, 5, 5));		
 		textPane.setCharacterAttributes(getStyle(Color.RED), false);
 		add(new JScrollPane(textPane));
+		
 
 		setPreferredSize(new Dimension(600, 600));
 		pack();

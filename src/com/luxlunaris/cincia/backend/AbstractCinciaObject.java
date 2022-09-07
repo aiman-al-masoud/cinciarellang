@@ -199,14 +199,16 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	public CinciaObject __init__(List<CinciaObject> args) {
-		CinciaMethod cm = (CinciaMethod)get(Magic.__init__);
 
-		if(cm!=null) {
+		try {
+
+			CinciaMethod cm = (CinciaMethod)get(Magic.__init__);
 			return cm.run(args);
-		}else {
-			return this;
+		} catch (Exception e) {
+
 		}
 
+		return this;
 	}
 
 	// .as(ClassName) //TODO: cast/conversion to other class
