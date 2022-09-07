@@ -114,7 +114,6 @@ public class BestMain extends JFrame{
 
 				//Ctrl+I
 				if(arg0.getKeyCode() == 73 && arg0.getModifiersEx()==128 ) {
-//					JOptionPane.showConfirmDialog(null, "control+I!");
 					textPane.setText(new Indenter(textPane.getText()).getIndented());
 				}
 
