@@ -7,7 +7,7 @@ public interface CinciaObject {
 
 
 	static CinciaObject create(Object object) {
-		
+
 
 		if(object instanceof Boolean) {
 			return new CinciaBool((boolean)object);
