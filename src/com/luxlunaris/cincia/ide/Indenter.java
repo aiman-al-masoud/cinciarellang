@@ -22,7 +22,6 @@ public class Indenter {
 				indentation = indentation.length()>0? indentation.charAt(0)+"" : indentation;
 			}
 
-
 		}
 
 		return result;
