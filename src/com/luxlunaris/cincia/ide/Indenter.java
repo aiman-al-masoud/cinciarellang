@@ -17,7 +17,7 @@ public class Indenter {
 		String indentation = "";
 		
 		for(String line : source.split("\n")) {
-			result+=indentation+line+"\n";
+			result+=indentation+line.trim()+"\n";
 			
 			if(line.contains("{")) {
 				indentation+="\t";
