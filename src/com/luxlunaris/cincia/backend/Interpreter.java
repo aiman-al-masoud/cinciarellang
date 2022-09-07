@@ -454,7 +454,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
-		
+
 		//TODO: check type before assigning 
 
 		CinciaObject rval =  eval(assex.right, enviro);
@@ -503,9 +503,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
 
-		
-		
-		
+
+
+
 		CinciaClass c = new CinciaClass();
 
 		for(Declaration dec : classex.declarations) {	
@@ -588,7 +588,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			CinciaClass b = (CinciaClass)enviro.get(CinciaClass.CLASS);
 			return new CinciaMethod(lambdex, this::eval);			
 		} catch (Exception e) {
-			
+
 		}
 
 		return CinciaFunction.factory(lambdex, this::eval);
@@ -753,7 +753,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
-		
+
 
 		AssignmentExpression assex = new AssignmentExpression();
 		assex.left = reassex.left;
@@ -780,11 +780,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		case MOD_ASSIGN:
 			assex.right = BinaryExpression.make(Operators.MOD, assex.left, reassex.right);
 			break;
-			
+
 		default:
 			throw new RuntimeException("No such reassignment expression!");
 		}
-		
+
 		return eval(assex, enviro);
 
 	}
