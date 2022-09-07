@@ -280,6 +280,8 @@ public class BestMain extends JFrame{
 			System.out.println(e.getMessage());
 			System.out.println(e.pos);
 			setTitle(e.msg);
+			consoleDisplay.setText(e.msg);
+			consoleDisplay.setVisible(true);
 			doc.setCharacterAttributes(e.rowStartPos, e.pos , getErrorStyle(), true);
 			return null;
 		}
@@ -314,7 +316,10 @@ public class BestMain extends JFrame{
 			try {
 				interpreter.eval(statements.get(i), enviro);//TODO: throw and catch specialized exception for undefined variables
 			}catch (Exception e) { 
-				setTitle(e.getClass() +" "+e.getMessage());
+				String msg  =e.getClass() +" "+e.getMessage();
+				setTitle(msg);
+				consoleDisplay.setText(msg);
+				consoleDisplay.setVisible(true);
 				doc.setCharacterAttributes(bounds.get(i).getKey(), bounds.get(i).getValue(), getErrorStyle(), true);
 
 			}
