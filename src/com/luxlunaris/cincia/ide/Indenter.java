@@ -1,11 +1,8 @@
 package com.luxlunaris.cincia.ide;
 
-import java.util.Arrays;
-
 public class Indenter {
 	
 	protected String source;
-	
 	
 	public Indenter(String source) {
 		this.source = source;
