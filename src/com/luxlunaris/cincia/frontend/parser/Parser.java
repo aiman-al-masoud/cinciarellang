@@ -980,10 +980,13 @@ public class Parser {
 		while( !tStream.isEnd() && !tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {  
 
 			if(tStream.peek().getValue().equals(Keywords.LISTENSTO)) {
+				eat(Keywords.LISTENSTO);
 				cE.observables = parseIdList();
 			}else if(tStream.peek().getValue().equals(Keywords.IMPLEMENTS)) {
+				eat(Keywords.IMPLEMENTS);
 				cE.interfaces = parseIdList();
 			}else if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {
+				eat(Keywords.EXTENDS);
 				cE.superclass = parseIdentifier();
 			}else {
 				break;

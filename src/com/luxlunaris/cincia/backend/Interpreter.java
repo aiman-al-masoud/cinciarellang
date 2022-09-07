@@ -511,6 +511,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		for(AssignmentExpression assign : classex.assignments) {
 			eval(assign, c.getEnviro());
 		}
+		
+		for(Identifier inter : classex.interfaces) {
+			c.addInterface((CinciaInterface)eval(inter, enviro)); //TODO: handle classcast exception
+		}
 
 		return c;
 	}
