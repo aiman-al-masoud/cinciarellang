@@ -62,7 +62,7 @@ public class Tester {
 	}
 	
 	public static SingleTestResult printResult(SingleTestResult result) {
-		System.out.println(result.filename+" "+result.outcome);
+		System.out.println(result);
 		return result;
 	}
 

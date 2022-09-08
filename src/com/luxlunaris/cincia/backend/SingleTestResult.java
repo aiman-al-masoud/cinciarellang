@@ -13,5 +13,10 @@ public class SingleTestResult {
 		this.filename = filename;
 		this.outcome = outcome;
 	}
+	
+	@Override
+	public String toString() {
+		return filename+" "+(outcome==0?"PASS": outcome>0? "FAIL" : "BROKEN");
+	}
 
 }
