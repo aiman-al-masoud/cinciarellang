@@ -17,8 +17,8 @@ public class Tester {
 		ListDir.listDir(ROOT)
 		.stream()
 		.map(f->ROOT+"/"+f)
-		.map(f->Tester.readFile(f))
-		.map(s->Tester.run(s))
+		.map(f->new SingleTest(f, Tester.readFile(f)))
+		.map(t->Tester.runTest(t))
 		.collect(Collectors.toList());
 
 	}
@@ -35,21 +35,22 @@ public class Tester {
 		return null;
 	}
 
-	public static CinciaObject run(String source) {
+	public static boolean runTest(SingleTest test) {
 
 		Compiler compiler = new Compiler();
 		Enviro enviro = new Enviro(null);
 		Interpreter interpreter = new Interpreter();
 		CinciaObject out = null;
 
-		for(Ast stm : compiler.compile(source)) {
+		for(Ast stm : compiler.compile(test.source)) {
 			out = interpreter.eval(stm, enviro);
 		}
 
-		System.out.println(out);
-		return out;
+		System.out.println(test.filename+" "+out);
+		return false;
 	}
-
+	
+	
 
 
 
