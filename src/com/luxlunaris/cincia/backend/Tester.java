@@ -19,6 +19,7 @@ public class Tester {
 		.map(f->ROOT+"/"+f)
 		.map(f->new SingleTest(f, Tester.readFile(f)))
 		.map(t->Tester.runTest(t))
+		.map(r->Tester.printResult(r))
 		.collect(Collectors.toList());
 
 	}
@@ -56,11 +57,14 @@ public class Tester {
 		}
 
 		boolean success = out!=null && out.__eq__(new CinciaBool(true)).__bool__();
-		System.out.println(test.filename+" "+success);
 		return new SingleTestResult(test.filename, success? SingleTestResult.SUCCESS : SingleTestResult.FAIL);
 		
 	}
-
+	
+	public static SingleTestResult printResult(SingleTestResult result) {
+		System.out.println(result.filename+" "+result.outcome);
+		return result;
+	}
 
 
 
