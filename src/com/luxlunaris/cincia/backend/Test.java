@@ -24,8 +24,9 @@ public class Test {
 		t.addTest("1==1;", new CinciaBool(true));
 		t.addTest("1!=1;", new CinciaBool(false));
 		t.addTest("2 | \\x->2*x | \\x->3*x;", new CinciaInt(12));
-		
-		
+		t.addTest("x = [1,2,3,4]; x[1];", new CinciaInt(2));
+		t.addTest("x = [1,2,3,4]; y = x[[1,3]]; y[1];", new CinciaInt(4));
+		t.addTest("cat = {'x':1}; cat['x'] == cat.x;", new CinciaBool(true));
 		
 		t.runAll();
 		
