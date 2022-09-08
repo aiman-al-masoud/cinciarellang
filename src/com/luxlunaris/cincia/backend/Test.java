@@ -23,7 +23,7 @@ public class Test {
 		t.addTest("1;", new CinciaInt(1));
 		t.addTest("1==1;", new CinciaBool(true));
 		t.addTest("1!=1;", new CinciaBool(false));
-		t.addTest("1| \\x->2*x | \\x->3*x;", new CinciaInt(6));
+		t.addTest("2 | \\x->2*x | \\x->3*x;", new CinciaInt(12));
 		
 		
 		
