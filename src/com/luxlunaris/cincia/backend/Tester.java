@@ -8,11 +8,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 
 public class Tester {
 
-	final static int SUCCESS = 0;
-	final static int FAIL = 1;
-	final static int BROKEN = -1;
-
-
+	
 	public static void main(String[] args) throws IOException{
 
 
@@ -39,7 +35,7 @@ public class Tester {
 		return null;
 	}
 
-	public static int runTest(SingleTest test) {
+	public static SingleTestResult runTest(SingleTest test) {
 
 		CinciaObject out = null;
 		
@@ -56,12 +52,13 @@ public class Tester {
 			}
 
 		} catch (Exception e) {
-			return BROKEN;
+			return new SingleTestResult(test.filename, SingleTestResult.BROKEN);
 		}
 
 		boolean success = out!=null && out.__eq__(new CinciaBool(true)).__bool__();
 		System.out.println(test.filename+" "+success);
-		return success? SUCCESS : FAIL;
+		return new SingleTestResult(test.filename, success? SingleTestResult.SUCCESS : SingleTestResult.FAIL);
+		
 	}
 
 
