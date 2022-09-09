@@ -50,16 +50,24 @@ public class AbstractCinciaObject implements CinciaObject{
 	public Object getValue() {
 		return this;
 	}
+	
+	protected void checkImmutable() {
+		
+		if(immutable) {	
+			throw new RuntimeException("Cannot mutate immutable object!");
+		}
+		
+	}
 
 	public void set(String key, CinciaObject val, Type type) {
 
-		if(!immutable) {	
+//		if(!immutable) {	
+		checkImmutable();
+		enviro.set(key, val, type);
 
-			enviro.set(key, val, type);
-
-		}else {
-			throw new RuntimeException("Cannot mutate immutable object!");
-		}
+//		}else {
+//			throw new RuntimeException("Cannot mutate immutable object!");
+//		}
 	}
 
 	public void set(String key, CinciaObject val) {
@@ -221,6 +229,11 @@ public class AbstractCinciaObject implements CinciaObject{
 		CinciaMethod cm = (CinciaMethod)get(Magic.into);
 		return cm.run(args);
 	}
+	
+	
+	public CinciaObject getCopy() {
+		return new AbstractCinciaObject(this.type);
+	}
 
 	/**
 	 * Return a recursive copy of this object.
@@ -249,7 +262,9 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		//TODO: circular references could cause problems
 
-		CinciaObject copy = new AbstractCinciaObject(this.type); //TODO: create dicts and lists!
+//		CinciaObject copy = new AbstractCinciaObject(this.type); //TODO: create dicts and lists!
+		CinciaObject copy = getCopy();
+
 
 		enviro.items().forEach(e->{
 

@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend.iterables;
 import java.util.Optional;
 
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -24,6 +25,12 @@ public class CinciaDict extends AbstractCinciaObject {
 				                        	.reduce((e1,e2)->e1+", "+e2);
 	
 		return "{"+(d.isPresent()?d.get():"")+"}";
+	}
+	
+	
+	@Override
+	public CinciaObject getCopy() {
+		return new CinciaDict(((DictType)getType()).keyType,((DictType)getType()).valType);
 	}
 
 }

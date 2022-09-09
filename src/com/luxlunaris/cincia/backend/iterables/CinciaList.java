@@ -34,6 +34,8 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	
 	@Override
 	public void set(int key, CinciaObject val, Type type) {
+		
+		checkImmutable();
 		list.set(key, val);
 	}
 	
@@ -81,6 +83,10 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	@Override
 	public long size() {
 		return list.size();
+	}
+	
+	public CinciaObject getCopy() {
+		return new CinciaList(getType());
 	}
 	
 
