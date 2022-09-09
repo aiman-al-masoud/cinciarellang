@@ -53,7 +53,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 	
 	/**
-	 * Throw an exception if this object is immutable.
+	 * Throws an exception if this object is immutable.
 	 */
 	protected void checkImmutable() {
 		
