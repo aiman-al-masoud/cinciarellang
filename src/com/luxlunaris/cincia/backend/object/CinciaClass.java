@@ -57,7 +57,7 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 
 		//TODO: deal with modifiers such as static
 
-		// basically Prototypal Inheritance (like Javascript)
+		// Basically Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
 
 
