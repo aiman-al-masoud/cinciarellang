@@ -33,9 +33,12 @@ public class Repl {
 		
 		try {
 //			enviro.set("obj", new JavaObject("java.lang.Object"));
-//			enviro.set("obj", new JavaObject("java.util.ArrayList"));
-			enviro.set("rand", new JavaObject("java.util.Random"));
+//			enviro.set("rand", new JavaObject("java.util.Random"));
 //			System.out.println(enviro.get("obj").getEnviro().items());
+//			enviro.set("arr", new JavaObject("java.util.ArrayList"));
+			enviro.set("sb", new JavaObject("java.lang.StringBuilder"));
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

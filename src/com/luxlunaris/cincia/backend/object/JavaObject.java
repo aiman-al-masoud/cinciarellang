@@ -3,10 +3,12 @@ package com.luxlunaris.cincia.backend.object;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
@@ -37,12 +39,15 @@ public class JavaObject extends AbstractCinciaObject {
 		super(Type.Any);
 		this.object = object;
 		
+		
+		
 		getAccessibleMethods(object.getClass())
 		.stream()
 		.map(m->new JavaMethod(m, this))
 		.forEach(m->{
 			set(m.getName(), m, Type.Any);
 		});
+		
 		
 		getAccessibleAttributes(object.getClass())
 		.stream()
@@ -68,7 +73,10 @@ public class JavaObject extends AbstractCinciaObject {
 		public CinciaObject run(List<CinciaObject> args) {
 
 			try {
-				return CinciaObject.create(method.invoke(  ((JavaObject)parent).object , args.stream().map(a->a.toJava()).toArray()  ));
+				
+				List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
+//				System.out.println(javargs);
+				return CinciaObject.create(method.invoke(  ((JavaObject)parent).object ,   javargs.toArray()));
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
 				System.out.println("as I predicted!!!");
 				e.printStackTrace();
@@ -105,7 +113,7 @@ public class JavaObject extends AbstractCinciaObject {
 	}
 	
 	public static List<Field> getAccessibleAttributes(Class clazz) {
-		return Arrays.asList(clazz.getDeclaredFields());
+		return Arrays.asList(clazz.getDeclaredFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList());
 	}
 	
 	
@@ -115,6 +123,7 @@ public class JavaObject extends AbstractCinciaObject {
 			return Map.entry(field.getName(), CinciaObject.create(field.get(object)));
 		} catch (IllegalArgumentException | IllegalAccessException e) {
 //			e.printStackTrace();
+			System.out.println(field.getName());
 		}
 		
 		return Map.entry(field.getName(), new CinciaInt(-1));
