@@ -238,7 +238,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	/**
-	 * Return a recursive copy of this object.
+	 * Returns a recursive copy of this object.
 	 */
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
