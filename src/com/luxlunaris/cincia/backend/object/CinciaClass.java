@@ -63,7 +63,8 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 		// Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
 
-
+		
+		//TODO: refactor this mess
 		// java-code wrappers need to point to the original instance of the new java object
 		obj.set("this", obj, type); 
 		CinciaMethod m1 = new CinciaMethod(obj::copy);
