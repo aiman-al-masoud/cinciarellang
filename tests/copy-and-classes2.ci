@@ -1,0 +1,6 @@
+c = class{};
+x = c();
+x.a = 3;
+y = x.copy();
+y.a = 4;
+x.a == 3 /* 4 WROOONG unless static */

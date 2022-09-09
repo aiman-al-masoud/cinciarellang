@@ -254,14 +254,6 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
 		
-		//TEST
-		//c = class{}
-		//x.a = 3
-		//y = x.copy()
-		//y.a = 4
-		//x.a //4 WROOONG
-		
-
 		//TODO: circular references could cause problems
 
 		CinciaObject copy = getBlank(); // get a new (blank) object
