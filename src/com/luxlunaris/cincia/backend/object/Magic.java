@@ -4,6 +4,8 @@ package com.luxlunaris.cincia.backend.object;
 /**
  * A set of standard CinciaObject methods, most of which overridable.
  * 
+ * @author aiman
+ *
  */
 public enum Magic {
 
