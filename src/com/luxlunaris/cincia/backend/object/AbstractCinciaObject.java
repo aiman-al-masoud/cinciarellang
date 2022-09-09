@@ -274,9 +274,9 @@ public class AbstractCinciaObject implements CinciaObject{
 			CinciaObject o = e.getValue(); // child object
 			CinciaObject co; // copy of the object
 
-			if(o == this) { 
+			if(o == this) { // in case of self references
 				co = copy;
-			}else {				
+			}else {	// otherwise, copy the child recursively
 				co = o.copy(args);
 			}
 
