@@ -1,23 +1,39 @@
 package com.luxlunaris.cincia.backend.object;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class JavaObject extends AbstractCinciaObject {
 
 	Object object;
-
-	public JavaObject(String javaClass) throws Exception{
-		this(JavaObject.class.getClassLoader().loadClass(javaClass).newInstance());
+	
+	public static Object instantiate(String javaClass) {
+		
+		try {
+			return JavaObject.class.getClassLoader().loadClass(javaClass).newInstance();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
-	public JavaObject(Object object) {
+	public JavaObject(String javaClass){
+		this(instantiate(javaClass));
+	}
+
+	public JavaObject(Object object){
+		
 		super(Type.Any);
 		this.object = object;
 		
@@ -26,6 +42,13 @@ public class JavaObject extends AbstractCinciaObject {
 		.map(m->new JavaMethod(m, this))
 		.forEach(m->{
 			set(m.getName(), m, Type.Any);
+		});
+		
+		getAccessibleAttributes(object.getClass())
+		.stream()
+		.map(a -> convertField(a, object))
+		.forEach(e->{
+			set(e.getKey(), e.getValue());
 		});
 
 	}
@@ -45,7 +68,7 @@ public class JavaObject extends AbstractCinciaObject {
 		public CinciaObject run(List<CinciaObject> args) {
 
 			try {
-				return CinciaObject.create(method.invoke(parent, args.toArray()));
+				return CinciaObject.create(method.invoke(  ((JavaObject)parent).object , args.stream().map(a->a.toJava()).toArray()  ));
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
 				System.out.println("as I predicted!!!");
 				e.printStackTrace();
@@ -68,10 +91,37 @@ public class JavaObject extends AbstractCinciaObject {
 		}
 
 		List<Method> ms = Arrays.asList(clazz.getDeclaredMethods());
-		ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
+		
+		try {
+			
+			ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
 		return ms;
 
 	}
+	
+	public static List<Field> getAccessibleAttributes(Class clazz) {
+		return Arrays.asList(clazz.getDeclaredFields());
+	}
+	
+	
+	public static Entry<String, CinciaObject> convertField(Field field, Object object){
+		
+		try {
+			return Map.entry(field.getName(), CinciaObject.create(field.get(object)));
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+//			e.printStackTrace();
+		}
+		
+		return Map.entry(field.getName(), new CinciaInt(-1));
+	}
+	
+	
+	
 
 	@Override
 	public Object toJava() {
