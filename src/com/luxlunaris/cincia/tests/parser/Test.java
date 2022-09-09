@@ -36,14 +36,12 @@ import com.luxlunaris.cincia.frontend.charstream.CharStream;
 import com.luxlunaris.cincia.frontend.parser.Parser;
 import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
+import com.luxlunaris.cincia.tests.AnsiColors;
 
 
 public class Test {
 
-	static final String OKGREEN = "\033[92m";
-	static final String WARNING = "\033[93m";
-	static final String FAIL = "\033[91m";
-	static final String ENDC = "\033[0m";
+
 	static final List<Entry<String, String>> tests = new ArrayList<Map.Entry<String,String>>();
 
 
@@ -98,10 +96,10 @@ public class Test {
 
 			try {
 				Statement s = p.parse().get(0).simplify();
-				System.out.println(e.getKey()+" "+ ( e.getValue().equals(s.toString()) ? ok("OK") : fail("FAIL") ) );
+				System.out.println(e.getKey()+" "+ ( e.getValue().equals(s.toString()) ? AnsiColors.ok("OK") : AnsiColors.fail("FAIL") ) );
 				System.out.println(s+"");
 			}catch (Exception exception) {
-				System.out.println(fail(e.getKey()+" "+exception.getMessage()+" FAIL"));;
+				System.out.println( AnsiColors.fail(e.getKey()+" "+exception.getMessage()+" FAIL"));;
 				exception.printStackTrace();
 			}
 
@@ -112,15 +110,7 @@ public class Test {
 
 
 	}
-
-	public static String ok(String s) {
-		return OKGREEN+s+ENDC;
-	}
-
-	public static String fail(String s) {
-		return FAIL+s+ENDC;
-	}
-
+	
 	public static void add(String s1, String s2) {
 		tests.add(Map.entry(s1, s2));
 	}
