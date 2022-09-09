@@ -39,8 +39,6 @@ public class JavaObject extends AbstractCinciaObject {
 		super(Type.Any);
 		this.object = object;
 		
-		
-		
 		getAccessibleMethods(object.getClass())
 		.stream()
 		.map(m->new JavaMethod(m, this))
