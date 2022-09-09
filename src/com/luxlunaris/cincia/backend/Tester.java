@@ -8,17 +8,18 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 
 public class Tester {
 
-	
+	final static boolean ONLY_FIRST_BROKEN = false; // only show the first failing stacktrace and stop
+	final static String ROOT = "./tests";
+
 	public static void main(String[] args) throws IOException{
 
-
-		final String ROOT = "./tests";
 
 		ListDir.listDir(ROOT)
 		.stream()
 		.map(f->ROOT+"/"+f)
 		.map(f->new SingleTest(f, Tester.readFile(f)))
 		.map(t->Tester.runTest(t))
+		.sorted((t1,t2)->t1.outcome -t2.outcome) //BROKEN first
 		.map(r->Tester.printResult(r))
 		.collect(Collectors.toList());
 
@@ -39,7 +40,7 @@ public class Tester {
 	public static SingleTestResult runTest(SingleTest test) {
 
 		CinciaObject out = null;
-		
+
 		try {
 			Compiler compiler = new Compiler();
 			Enviro enviro = new Enviro(null);
@@ -53,15 +54,23 @@ public class Tester {
 			}
 
 		} catch (Exception e) {
-			return new SingleTestResult(test.filename, SingleTestResult.BROKEN);
+
+			return new SingleTestResult(test.filename, SingleTestResult.BROKEN, e);
 		}
 
 		boolean success = out!=null && out.__eq__(new CinciaBool(true)).__bool__();
 		return new SingleTestResult(test.filename, success? SingleTestResult.SUCCESS : SingleTestResult.FAIL);
-		
+
 	}
-	
+
 	public static SingleTestResult printResult(SingleTestResult result) {
+		
+		if( ONLY_FIRST_BROKEN && (result.outcome == SingleTestResult.BROKEN) ) {
+			System.out.println(result.filename);
+			result.exception.printStackTrace();
+			System.exit(1);
+		}
+
 		System.out.println(result);
 		return result;
 	}

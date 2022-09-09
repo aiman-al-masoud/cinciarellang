@@ -8,10 +8,18 @@ public class SingleTestResult {
 
 	public String filename;
 	public int outcome;
+	public Exception exception;
 
 	public SingleTestResult(String filename, int outcome) {
 		this.filename = filename;
 		this.outcome = outcome;
+	}
+	
+	
+	public SingleTestResult(String filename, int outcome, Exception exception) {
+		this.filename = filename;
+		this.outcome = outcome;
+		this.exception = exception;
 	}
 	
 	@Override
