@@ -234,7 +234,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	
 	/**
-	 * Returns a blank new object of this kind.
+	 * Returns a blank new object of this's kind.
 	 */
 	protected CinciaObject getBlank() {
 		return new AbstractCinciaObject(this.type);
