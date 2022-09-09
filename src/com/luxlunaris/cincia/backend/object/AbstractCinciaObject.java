@@ -271,22 +271,22 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		enviro.items().forEach(e->{
 
-			CinciaObject o = e.getValue(); // child object
-			CinciaObject co; // copy of the object
+			CinciaObject childo = e.getValue(); // child object
+			CinciaObject childco; // copy of the child object
 
-			if(o == this) { // in case of self references
-				co = copy;
+			if(childo == this) { // in case of self references
+				childco = copy;
 			}else {	// otherwise, copy the child recursively
-				co = o.copy(args);
+				childco = childo.copy(args);
 			}
 
 			// methods should keep the same code but change their environment to the 
 			// new object's
-			if(co instanceof CinciaMethod) {
-				((CinciaMethod) co).parent = copy;
+			if(childco instanceof CinciaMethod) {
+				((CinciaMethod) childco).parent = copy;
 			}
 
-			copy.set(e.getKey(), co);			
+			copy.set(e.getKey(), childco);			
 		});
 
 
