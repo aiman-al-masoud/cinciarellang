@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.parser.test;
+package com.luxlunaris.cincia.tests.parser;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;

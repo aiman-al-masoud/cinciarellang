@@ -1,4 +1,6 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.tests.interpreter;
+
+import com.luxlunaris.cincia.tests.AnsiColors;
 
 public class SingleTestResult {
 

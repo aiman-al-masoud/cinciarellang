@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.parser.test;
+package com.luxlunaris.cincia.tests.parser;
 
 import java.util.Arrays;
 import java.util.Collections;

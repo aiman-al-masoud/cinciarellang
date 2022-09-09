@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.tests;
 
 public class AnsiColors {
 

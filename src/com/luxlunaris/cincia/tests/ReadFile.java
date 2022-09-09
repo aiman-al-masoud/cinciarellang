@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.tests;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

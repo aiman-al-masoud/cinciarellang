@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.parser.test;
+package com.luxlunaris.cincia.tests.parser;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
