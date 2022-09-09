@@ -280,8 +280,8 @@ public class AbstractCinciaObject implements CinciaObject{
 				co = o.copy(args);
 			}
 
-			// methods should keep the same code but change the 
-			// environment to the new object's
+			// methods should keep the same code but change the environment to the 
+			// new object's
 			if(co instanceof CinciaMethod) {
 				((CinciaMethod) co).parent = copy;
 			}
