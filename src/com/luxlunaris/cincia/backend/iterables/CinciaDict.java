@@ -29,7 +29,7 @@ public class CinciaDict extends AbstractCinciaObject {
 	
 	
 	@Override
-	protected CinciaObject getCopy() {
+	protected CinciaObject getBlank() {
 		return new CinciaDict(((DictType)getType()).keyType,((DictType)getType()).valType);
 	}
 

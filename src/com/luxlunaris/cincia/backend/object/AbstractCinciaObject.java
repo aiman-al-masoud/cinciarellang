@@ -232,8 +232,12 @@ public class AbstractCinciaObject implements CinciaObject{
 		return cm.run(args);
 	}
 
-
-	protected CinciaObject getCopy() {
+	
+	/**
+	 * Returns a blank new object of this kind.
+	 * @return
+	 */
+	protected CinciaObject getBlank() {
 		return new AbstractCinciaObject(this.type);
 	}
 
@@ -264,7 +268,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		//TODO: circular references could cause problems
 
-		CinciaObject copy = getCopy();
+		CinciaObject copy = getBlank();
 
 		enviro.items().forEach(e->{
 
