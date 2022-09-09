@@ -271,7 +271,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		enviro.items().forEach(e->{
 
-			CinciaObject o =e.getValue();
+			CinciaObject o = e.getValue();
 			CinciaObject co;
 
 			if(o == this) {
