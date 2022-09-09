@@ -24,7 +24,7 @@ public class SingleTestResult {
 	
 	@Override
 	public String toString() {
-		return filename+" "+(outcome==0?"PASS": outcome>0? "FAIL" : "BROKEN");
+		return filename+" "+(outcome==0? AnsiColors.ok("PASS") : outcome>0? AnsiColors.fail("FAIL") : AnsiColors.warn("BROKEN"));
 	}
 
 }
