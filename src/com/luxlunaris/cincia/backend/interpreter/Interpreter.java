@@ -315,15 +315,14 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalTryStatement(TryStatement tryStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 
-		try {
-
-			eval(tryStatement.tryBlock, enviro);
-		} catch (Exception e) { //TODO: make a cinciaexception class that extends exception or implements throwable
-			
-			
-			
-		}
-
+//		try {
+//
+//			eval(tryStatement.tryBlock, enviro);
+//		} catch (Exception e) { //TODO: make a cinciaexception class that extends exception or implements throwable
+//			
+//			
+//			
+//		}
 
 
 		return null;
