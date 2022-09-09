@@ -76,7 +76,7 @@ public class JavaObject extends AbstractCinciaObject {
 //				System.out.println(javargs);
 				return CinciaObject.create(method.invoke(  ((JavaObject)parent).object ,   javargs.toArray()));
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
-				System.out.println("as I predicted!!!");
+//				System.out.println("as I predicted!!!");
 				e.printStackTrace();
 			}
 
@@ -121,7 +121,7 @@ public class JavaObject extends AbstractCinciaObject {
 			return Map.entry(field.getName(), CinciaObject.create(field.get(object)));
 		} catch (IllegalArgumentException | IllegalAccessException e) {
 //			e.printStackTrace();
-			System.out.println(field.getName());
+//			System.out.println(field.getName());
 		}
 		
 		return Map.entry(field.getName(), new CinciaInt(-1));
