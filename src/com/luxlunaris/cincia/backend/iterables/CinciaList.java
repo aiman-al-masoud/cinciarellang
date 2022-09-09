@@ -85,7 +85,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return list.size();
 	}
 	
-	public CinciaObject getCopy() {
+	protected CinciaObject getCopy() {
 		return new CinciaList(getType());
 	}
 	

@@ -233,7 +233,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 
-	public CinciaObject getCopy() {
+	protected CinciaObject getCopy() {
 		return new AbstractCinciaObject(this.type);
 	}
 
