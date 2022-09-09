@@ -34,10 +34,10 @@ public class JavaClass extends JavaObject {
 
 	public CinciaObject newInstance(List<CinciaObject> args) {
 		
-		System.out.println(args);
+//		System.out.println(args);
 		
 //		try {
-			System.out.println("trying to instantiate "+clazz);
+//			System.out.println("trying to instantiate "+clazz);
 //			@SuppressWarnings("unchecked")
 //			clazz.getClasses()
 //			System.out.println(   Arrays.asList(clazz.getDeclaredConstructors()) );
