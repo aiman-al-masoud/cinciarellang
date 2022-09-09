@@ -88,7 +88,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	/**
-	 * Recursively make this object and all of its contents immutable.
+	 * Recursively makes this object and all of its contents immutable.
 	 */
 	public void setImmutable() {
 
