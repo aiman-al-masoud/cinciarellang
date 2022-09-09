@@ -60,14 +60,9 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	public void set(String key, CinciaObject val, Type type) {
-
-//		if(!immutable) {	
+		
 		checkImmutable();
 		enviro.set(key, val, type);
-
-//		}else {
-//			throw new RuntimeException("Cannot mutate immutable object!");
-//		}
 	}
 
 	public void set(String key, CinciaObject val) {
