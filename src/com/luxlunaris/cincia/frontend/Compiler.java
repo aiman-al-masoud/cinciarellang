@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.charstream.CharStream;
-import com.luxlunaris.cincia.frontend.charstream.CinciaSytnaxException;
+import com.luxlunaris.cincia.frontend.charstream.CinciaSyntaxException;
 import com.luxlunaris.cincia.frontend.parser.Parser;
 import com.luxlunaris.cincia.frontend.preprocessor.Preprocessor;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
@@ -22,7 +22,7 @@ public class Compiler {
 	 * @param source
 	 * @return
 	 */
-	public List<Ast> compile(String source) throws CinciaSytnaxException{
+	public List<Ast> compile(String source) throws CinciaSyntaxException{
 
 		Preprocessor preprocessor = new Preprocessor(source);
 		CharStream charStream = new CharStream(preprocessor.process());
