@@ -4,9 +4,9 @@ import com.luxlunaris.cincia.tests.AnsiColors;
 
 public class SingleTestResult {
 
-	final static int SUCCESS = 0;
-	final static int FAIL = 1;
-	final static int BROKEN = -1;
+	final static int SUCCESS = 0; // end condition satisfied
+	final static int FAIL = 1; // end condition not satisfied
+	final static int BROKEN = -1; // running the source throws an exception
 
 	public String filename;
 	public int outcome;

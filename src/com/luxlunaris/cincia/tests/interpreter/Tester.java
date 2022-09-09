@@ -14,6 +14,14 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.tests.ListDir;
 import com.luxlunaris.cincia.tests.ReadFile;
 
+/**
+ * 
+ * These tests operate on a set of cinciarellang files, and assume that the last 
+ * statement of each file contains a boolean expression, which evaluates to true 
+ * iff that test is considered passed.
+ * 
+ * @author aiman
+ */
 public class Tester {
 
 	final static boolean ONLY_FIRST_BROKEN = false; // only show the first failing stacktrace and stop
@@ -31,7 +39,7 @@ public class Tester {
 		.map(f->new SingleTest(f, Tester.readFile(f)))
 		.filter(t -> hasTag(tags, t.filename) )
 		.map(t->Tester.runTest(t))
-		.sorted((t1,t2)->t1.outcome -t2.outcome) //BROKEN first
+		.sorted((t1,t2)->t1.outcome -t2.outcome) //BROKEN tests first
 		.map(r->Tester.printResult(r))
 		.collect(Collectors.toList());
 
