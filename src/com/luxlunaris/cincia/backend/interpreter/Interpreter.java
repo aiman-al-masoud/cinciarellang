@@ -321,18 +321,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			eval(tryStatement.tryBlock, enviro);
 		} catch (CinciaException e) { 
 			
-//			System.out.println("CATCH ME if u CAN!");
-
 			for(CatchClause c :  tryStatement.catchClausesList) {
-				
-//				System.out.println("catch block: "+c);
-			
+							
 				SingleDeclaration sD = ((SingleDeclaration)c.throwable);
 				String name = sD.getName();
 				Type type = sD.getType();
 				
-				
-
 				if(e.matches(type)) {
 					enviro.set(name, e);
 					eval(c.block, enviro);
