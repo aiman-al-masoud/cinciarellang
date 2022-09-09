@@ -7,6 +7,7 @@ import java.util.List;
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class AbstractCinciaObject implements CinciaObject{
@@ -57,7 +58,8 @@ public class AbstractCinciaObject implements CinciaObject{
 	protected void checkImmutable() {
 		
 		if(immutable) {	
-			throw new RuntimeException("Cannot mutate immutable object!");
+//			throw new RuntimeException("Cannot mutate immutable object!");
+			throw new CannotMutateException();
 		}
 		
 	}

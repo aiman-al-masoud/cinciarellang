@@ -1,0 +1,10 @@
+x = [1,2,3].freeze();
+
+try{ 
+	x[0] = 1; 
+	y=0; 
+} catch e : CannotMutateException{ 
+	y =1;
+}
+
+y==1;

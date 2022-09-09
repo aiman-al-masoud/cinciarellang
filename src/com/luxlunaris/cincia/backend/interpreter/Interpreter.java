@@ -23,9 +23,11 @@ import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
+import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
+import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
@@ -61,6 +63,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.exception.CatchClause;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.iteration.ForStatement;
@@ -313,17 +316,33 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalTryStatement(TryStatement tryStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
 
-//		try {
-//
-//			eval(tryStatement.tryBlock, enviro);
-//		} catch (Exception e) { //TODO: make a cinciaexception class that extends exception or implements throwable
-//			
-//			
-//			
-//		}
+		try {
+			eval(tryStatement.tryBlock, enviro);
+		} catch (CinciaException e) { 
+			
+//			System.out.println("CATCH ME if u CAN!");
 
+			for(CatchClause c :  tryStatement.catchClausesList) {
+				
+//				System.out.println("catch block: "+c);
+			
+				SingleDeclaration sD = ((SingleDeclaration)c.throwable);
+				String name = sD.getName();
+				Type type = sD.getType();
+				
+				
+
+				if(e.matches(type)) {
+					enviro.set(name, e);
+					eval(c.block, enviro);
+					return null;
+				}
+				
+			}
+			
+			throw e;
+		}
 
 		return null;
 	}

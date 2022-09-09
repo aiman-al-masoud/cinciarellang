@@ -23,6 +23,11 @@ public class UnionType implements Type{
 	
 	@Override
 	public Expression simplify() {
+		
+		if(types.size()==1) {
+			return types.get(0);
+		}
+		
 		return this;
 	}
 	
@@ -35,6 +40,7 @@ public class UnionType implements Type{
 	public boolean matches(Type other) {
 		
 		//TODO!!!!!!!!
+//		types.size() == 1
 		
 		return true;
 	}
