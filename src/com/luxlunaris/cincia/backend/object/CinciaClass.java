@@ -34,32 +34,32 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 	public void addAttribute(String name, AbstractCinciaObject value) {
 		set(name, value, value.type);
 	}	
-	
+
 	public void addInterface(CinciaInterface cincinterface) {
-		
+
 		cincinterface.getDeclarations().forEach(d->{
-			
+
 			try {
-				
+
 				get(d.getName());
-				
+
 			} catch (Exception e) {
 				throw new RuntimeException("Required field from interface missing!");
 			}
-			
-		});
-		
-	}
-	
 
-	
+		});
+
+	}
+
+
+
 	public CinciaObject constructor(List<CinciaObject> args) {
-		
+
 		//TODO: deal with modifiers such as static
 
 		// basically Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
-		
+
 
 		// java-code wrappers need to point to the original instance of the new java object
 		obj.set("this", obj, type); 
