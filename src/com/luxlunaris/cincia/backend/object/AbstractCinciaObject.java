@@ -58,7 +58,6 @@ public class AbstractCinciaObject implements CinciaObject{
 	protected void checkImmutable() {
 		
 		if(immutable) {	
-//			throw new RuntimeException("Cannot mutate immutable object!");
 			throw new CannotMutateException();
 		}
 		
