@@ -1,6 +1,8 @@
 package com.luxlunaris.cincia.backend.object;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
@@ -34,18 +36,38 @@ public class JavaClass extends JavaObject {
 		
 		System.out.println(args);
 		
-		try {
+//		try {
 			System.out.println("trying to instantiate "+clazz);
-			@SuppressWarnings("unchecked")
+//			@SuppressWarnings("unchecked")
 //			clazz.getClasses()
-			Object newInst = clazz.getDeclaredConstructor().newInstance( args.stream().map(a-> a.toJava()).toArray()  );
+//			System.out.println(   Arrays.asList(clazz.getDeclaredConstructors()) );
+			
+			for(Constructor cons : clazz.getDeclaredConstructors()) {
+				
+				try {
+					Object newInst = cons.newInstance(args.stream().map(a-> a.toJava()).toArray());
+					return new JavaObject(newInst);					
+				} catch (Exception e) {
+					
+				}
+				
+			}
+			
+			return null;
+			
+//			Arrays.asList(clazz.getDeclaredConstructors())
+			
+//			.forEach(c->{
+//			});
+			
+//			Object newInst = clazz.getDeclaredConstructor().newInstance( args.stream().map(a-> a.toJava()).toArray()  );
 //			return new JavaObject(clazz.newInstance());
-			return new JavaObject(newInst);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-		}
+//			return new JavaObject(newInst);
+//		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+//			e.printStackTrace();
+//		}
 		
-		return null;
+//		return null;
 	}
 
 
