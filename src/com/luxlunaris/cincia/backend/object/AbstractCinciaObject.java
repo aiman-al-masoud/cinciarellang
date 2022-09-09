@@ -291,7 +291,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	/**
-	 * Returns an immutable copy of this object
+	 * Returns an immutable recursive copy of this object
 	 */
 	@Override
 	public CinciaObject freeze(List<CinciaObject> args) {
