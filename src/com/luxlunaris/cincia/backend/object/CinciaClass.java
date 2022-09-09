@@ -1,7 +1,9 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.object;
 
 import java.util.List;
 
+import com.luxlunaris.cincia.backend.callables.CinciaMethod;
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;

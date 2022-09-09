@@ -22,9 +22,9 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
-import com.luxlunaris.cincia.backend.CinciaObject;
-import com.luxlunaris.cincia.backend.Enviro;
-import com.luxlunaris.cincia.backend.Interpreter;
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interpreter.Interpreter;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;

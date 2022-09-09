@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.iterables;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,6 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
+import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 

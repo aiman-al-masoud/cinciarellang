@@ -1,15 +1,19 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.object;
 
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.luxlunaris.cincia.backend.callables.CinciaFunction;
+import com.luxlunaris.cincia.backend.callables.CinciaMethod;
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class AbstractCinciaObject implements CinciaObject{
 
-	private boolean immutable;	
+	protected boolean immutable;	
 	public Enviro enviro; //object's internal environment 
-	Type type; // object's type
+	protected Type type; // object's type
 	CinciaClass myClass; // object's class
 
 	public AbstractCinciaObject(Type type) {

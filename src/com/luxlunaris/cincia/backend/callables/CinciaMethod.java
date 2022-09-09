@@ -1,8 +1,11 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.callables;
 
 import java.util.List;
 
-import com.luxlunaris.cincia.backend.Interpreter.Eval;
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.Eval;
+import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
+import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 
 public class CinciaMethod extends CinciaFunction{

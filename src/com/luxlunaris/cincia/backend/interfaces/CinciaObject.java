@@ -1,6 +1,13 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.interfaces;
 
 import java.util.List;
+
+import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.object.Magic;
+import com.luxlunaris.cincia.backend.primitives.CinciaBool;
+import com.luxlunaris.cincia.backend.primitives.CinciaFloat;
+import com.luxlunaris.cincia.backend.primitives.CinciaInt;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public interface CinciaObject {

@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.interpreter;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -9,6 +9,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.backend.callables.CinciaFunction;
+import com.luxlunaris.cincia.backend.callables.CinciaMethod;
+import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
+import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.iterables.CinciaDict;
+import com.luxlunaris.cincia.backend.iterables.CinciaList;
+import com.luxlunaris.cincia.backend.iterables.DestructuredList;
+import com.luxlunaris.cincia.backend.object.CinciaClass;
+import com.luxlunaris.cincia.backend.object.CinciaInterface;
+import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.primitives.CinciaInt;
+import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -65,16 +79,13 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
-
+import com.luxlunaris.cincia.backend.interfaces.Eval;
 
 
 
 public class Interpreter extends AbstractTraversal<CinciaObject> {
 
-	@FunctionalInterface
-	interface Eval{
-		CinciaObject eval(Ast ast, Enviro enviro);
-	}
+
 
 	@Override
 	public CinciaObject evalInt(Int intex, Enviro enviro) {

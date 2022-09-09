@@ -3,7 +3,7 @@ package com.luxlunaris.cincia.frontend.ast.expressions.objects;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.luxlunaris.cincia.backend.PureCinciaFunction;
+import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;

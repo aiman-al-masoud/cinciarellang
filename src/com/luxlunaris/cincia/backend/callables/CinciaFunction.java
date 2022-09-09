@@ -1,8 +1,14 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.callables;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.luxlunaris.cincia.backend.Interpreter.Eval;
+
+import com.luxlunaris.cincia.backend.interfaces.Callable;
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.Eval;
+import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
+import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
@@ -11,10 +17,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
-	@FunctionalInterface
-	interface WrappedFunction{
-		CinciaObject run(List<CinciaObject> args);
-	}
+	
 
 	protected LambdaExpression lambdex;
 	protected List<Parameter> params;

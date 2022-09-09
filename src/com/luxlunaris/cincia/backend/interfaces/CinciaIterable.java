@@ -1,5 +1,6 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.interfaces;
 
+import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 
 public interface CinciaIterable extends Iterable<CinciaObject>, CinciaObject{
 	

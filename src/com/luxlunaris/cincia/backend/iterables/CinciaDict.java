@@ -1,7 +1,9 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.iterables;
 
 import java.util.Optional;
 
+import com.luxlunaris.cincia.backend.callables.CinciaMethod;
+import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 

@@ -1,9 +1,11 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.callables;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.luxlunaris.cincia.backend.Interpreter.Eval;
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.Eval;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 
 /**

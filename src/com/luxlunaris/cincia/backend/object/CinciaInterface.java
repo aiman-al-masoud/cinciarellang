@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.object;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,11 @@
-package com.luxlunaris.cincia.backend;
+package com.luxlunaris.cincia.backend.iterables;
 
-import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class DestructuredList extends CinciaList {
 
 	public DestructuredList(CinciaList list) {
-		super(list.type);
+//		super(list.type);
+		super(list.getType()); //TODO: check
 		this.list = list.list;
 	}
 
