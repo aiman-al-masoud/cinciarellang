@@ -274,7 +274,7 @@ public class AbstractCinciaObject implements CinciaObject{
 			CinciaObject o = e.getValue();
 			CinciaObject co;
 
-			if(o == this) {
+			if(o == this) { 
 				co = copy;
 			}else {				
 				co = o.copy(args);
