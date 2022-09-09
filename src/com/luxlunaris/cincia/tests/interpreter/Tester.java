@@ -16,9 +16,10 @@ import com.luxlunaris.cincia.tests.ReadFile;
 
 public class Tester {
 
-	final static boolean ONLY_FIRST_BROKEN = true; // only show the first failing stacktrace and stop
+	final static boolean ONLY_FIRST_BROKEN = false; // only show the first failing stacktrace and stop
 	final static String ROOT = "./tests";
-	final static List<String> tags = Arrays.asList("ref", "pipes", "minus", "immutable");
+	final static String ALL = "*"; 
+	final static List<String> tags = Arrays.asList(ALL);//"ref", "pipes", "minus", "immutable");
 
 	public static void main(String[] args) throws IOException{
 
@@ -86,7 +87,7 @@ public class Tester {
 	}
 	
 	public static boolean hasTag(List<String> tags, String filename) {
-		return tags.stream().anyMatch(tag->filename.contains(tag));
+		return tags.stream().anyMatch(tag->filename.contains(tag) || tag.equals(ALL));
 	}
 
 
