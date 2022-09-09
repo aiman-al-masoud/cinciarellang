@@ -210,7 +210,8 @@ public class AbstractCinciaObject implements CinciaObject{
 		CinciaMethod cm = (CinciaMethod)get(Magic.__str__);
 		return cm.run(null);
 	}
-
+	
+	@Override
 	public CinciaObject __init__(List<CinciaObject> args) {
 
 		try {
