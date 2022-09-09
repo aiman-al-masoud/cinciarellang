@@ -7,6 +7,7 @@ import java.util.List;
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -189,8 +190,15 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaObject __eq__(CinciaObject other) {
-		CinciaMethod cm = (CinciaMethod)get(Magic.__eq__);
-		return cm.run(Arrays.asList(other));
+
+		try {
+			CinciaMethod cm = (CinciaMethod)get(Magic.__eq__);
+			return cm.run(Arrays.asList(other));
+		} catch (Exception e) {
+
+		}
+
+		return new CinciaBool(this == other); //default is identity comparison
 	}
 
 	@Override
@@ -210,7 +218,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		CinciaMethod cm = (CinciaMethod)get(Magic.__str__);
 		return cm.run(null);
 	}
-	
+
 	@Override
 	public CinciaObject __init__(List<CinciaObject> args) {
 
@@ -232,7 +240,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		return cm.run(args);
 	}
 
-	
+
 	/**
 	 * Returns a blank new object of this's kind.
 	 */
@@ -245,25 +253,14 @@ public class AbstractCinciaObject implements CinciaObject{
 	 */
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
-
-		// TEST
-		// c = class{ __init__ = \x -> 1; }
-		// b = class{ __init__ = \x -> 1; }
-		//b.a = c()
-		//b.a.r = 1
-		//y = b()
-		//y.a = c()
-		//y.a.r = 2
-		//b.a.r // 2 WROOOONG unless attrib is static
-
+		
 		//TEST
-		//c = class{ __init__ = \x -> 1; }
+		//c = class{}
 		//x.a = 3
 		//y = x.copy()
 		//y.a = 4
 		//x.a //4 WROOONG
-
-
+		
 
 		//TODO: circular references could cause problems
 

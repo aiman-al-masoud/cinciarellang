@@ -1,0 +1,8 @@
+c = class{};
+b = class{};
+b.a = c();
+b.a.r = 1;
+y = b();
+y.a = c();
+y.a.r = 2;
+b.a.r == 1 /* ==2 is WROOOONG unless attrib is static*/
