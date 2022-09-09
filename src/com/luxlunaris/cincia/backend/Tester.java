@@ -12,7 +12,7 @@ public class Tester {
 
 	final static boolean ONLY_FIRST_BROKEN = false; // only show the first failing stacktrace and stop
 	final static String ROOT = "./tests";
-	final static List<String> tags = Arrays.asList("ref", "pipes");
+	final static List<String> tags = Arrays.asList("ref", "pipes", "minus");
 
 	public static void main(String[] args) throws IOException{
 
