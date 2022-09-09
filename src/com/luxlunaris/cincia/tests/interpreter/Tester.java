@@ -24,7 +24,7 @@ import com.luxlunaris.cincia.tests.ReadFile;
  */
 public class Tester {
 
-	final static boolean ONLY_FIRST_BROKEN = false; // only show the first failing stacktrace and stop
+	final static boolean ONLY_FIRST_BROKEN = true; // only show the first failing stacktrace and stop
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);//"ref", "pipes", "minus", "immutable");
@@ -78,6 +78,8 @@ public class Tester {
 			return new SingleTestResult(test.filename, SingleTestResult.BROKEN, e);
 		}
 
+//		System.out.println();
+		System.out.println("in Tester() "+test.filename+" "+out);
 		boolean success = out!=null && out.__eq__(new CinciaBool(true)).__bool__();
 		return new SingleTestResult(test.filename, success? SingleTestResult.SUCCESS : SingleTestResult.FAIL);
 
