@@ -21,8 +21,8 @@ public class Tester {
 		.stream()
 		.map(f->ROOT+"/"+f)
 		.map(f->new SingleTest(f, Tester.readFile(f)))
-		.map(t->Tester.runTest(t))
 		.filter(t -> tags.stream().anyMatch(tag->t.filename.contains(tag)) )
+		.map(t->Tester.runTest(t))
 		.sorted((t1,t2)->t1.outcome -t2.outcome) //BROKEN first
 		.map(r->Tester.printResult(r))
 		.collect(Collectors.toList());
@@ -78,6 +78,8 @@ public class Tester {
 		System.out.println(result);
 		return result;
 	}
+	
+//	public static List<String> filter
 
 
 
