@@ -78,8 +78,6 @@ public class Tester {
 			return new SingleTestResult(test.filename, SingleTestResult.BROKEN, e);
 		}
 
-//		System.out.println();
-		System.out.println("in Tester() "+test.filename+" "+out);
 		boolean success = out!=null && out.__eq__(new CinciaBool(true)).__bool__();
 		return new SingleTestResult(test.filename, success? SingleTestResult.SUCCESS : SingleTestResult.FAIL);
 
