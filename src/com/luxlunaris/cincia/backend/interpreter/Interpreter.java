@@ -93,22 +93,22 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalInt(Int intex, Enviro enviro) {
-		return CinciaObject.create(intex.getValue());
+		return CinciaObject.wrap(intex.getValue());
 	}
 
 	@Override
 	public CinciaObject evalFloat(Float floatex, Enviro enviro) {
-		return CinciaObject.create(floatex.getValue());
+		return CinciaObject.wrap(floatex.getValue());
 	}
 
 	@Override
 	public CinciaObject evalStr(Str strex, Enviro enviro) {
-		return CinciaObject.create(strex.getValue());
+		return CinciaObject.wrap(strex.getValue());
 	}
 
 	@Override
 	public CinciaObject evalBool(Bool boolex, Enviro enviro) {
-		return CinciaObject.create(boolex.getValue());
+		return CinciaObject.wrap(boolex.getValue());
 	}
 
 	@Override

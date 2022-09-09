@@ -18,7 +18,7 @@ public interface CinciaObject {
 	 * @param object
 	 * @return
 	 */
-	static CinciaObject create(Object object) {
+	static CinciaObject wrap(Object object) {
 
 
 		if(object instanceof Boolean) {
