@@ -243,6 +243,11 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		
 		throw new RuntimeException();
 	}
+	
+	@Override
+	public Integer toJava() {
+		return value;
+	}
 
 
 }

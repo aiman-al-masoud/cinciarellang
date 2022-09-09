@@ -311,6 +311,11 @@ public class AbstractCinciaObject implements CinciaObject{
 		set(key, val, val.getType());
 	}
 
+	@Override
+	public Object toJava() {
+		return this;
+	}
+
 
 
 }

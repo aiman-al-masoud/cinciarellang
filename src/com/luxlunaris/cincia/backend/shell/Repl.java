@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.object.JavaObject;
 import com.luxlunaris.cincia.frontend.Compiler;
 
 public class Repl {
@@ -14,6 +15,9 @@ public class Repl {
 	protected Enviro enviro;
 	protected Interpreter interpreter;
 	protected Scanner scanner;
+	
+	
+	
 
 	public static void main(String[] args) {
 		Repl r = new Repl();
@@ -25,6 +29,14 @@ public class Repl {
 		interpreter = new Interpreter();
 		scanner = new Scanner(System.in);
 		enviro.set("print", new CinciaFunction(Repl::printWrapper));
+		
+		
+		try {
+			enviro.set("obj", new JavaObject("java.lang.Object"));
+//			System.out.println(enviro.get("obj").getEnviro().items());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void mainLoop() {

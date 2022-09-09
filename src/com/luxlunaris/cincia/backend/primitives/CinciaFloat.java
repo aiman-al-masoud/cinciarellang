@@ -147,6 +147,10 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 		throw new RuntimeException("Unsupported modulo!");
 	}
 	
+	@Override
+	public Double toJava() {
+		return value;
+	}
 	
 
 

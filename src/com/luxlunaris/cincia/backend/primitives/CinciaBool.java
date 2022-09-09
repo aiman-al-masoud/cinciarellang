@@ -77,5 +77,9 @@ public class CinciaBool extends PrimitiveCinciaObject {
 		return null;
 	}
 
+	@Override
+	public Boolean toJava() {
+		return value;
+	}
 
 }

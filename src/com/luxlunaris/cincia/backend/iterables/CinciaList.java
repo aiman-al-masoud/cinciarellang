@@ -89,5 +89,10 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return new CinciaList(getType());
 	}
 	
+	@Override
+	public List<Object> toJava() {
+		return list.stream().map(o->o.toJava()).collect(Collectors.toList());
+	}
+	
 
 }

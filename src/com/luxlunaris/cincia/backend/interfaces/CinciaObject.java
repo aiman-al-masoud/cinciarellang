@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend.interfaces;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.object.JavaObject;
 import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaFloat;
@@ -11,8 +12,12 @@ import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public interface CinciaObject {
-
-
+	
+	/**
+	 * Creates a CinciaObject wrapper from a java object. 
+	 * @param object
+	 * @return
+	 */
 	static CinciaObject create(Object object) {
 
 
@@ -24,9 +29,11 @@ public interface CinciaObject {
 			return new CinciaFloat((double)object);
 		}else if(object instanceof Integer) {
 			return new CinciaInt((int)object);
+		}else {
+			return new JavaObject(object);
 		}
 
-		throw new RuntimeException("Unknown CinciaObject type wrapper");	
+//		throw new RuntimeException("Unknown CinciaObject type wrapper");	
 	}
 
 	Object getValue();
@@ -64,5 +71,7 @@ public interface CinciaObject {
 	CinciaObject into(List<CinciaObject> args); //cast/conversion to other class	
 	CinciaObject copy(List<CinciaObject> args); 
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
+	
+	Object toJava(); //returns a Java-object equivalent
 
 }

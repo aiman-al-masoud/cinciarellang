@@ -233,6 +233,13 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 		return null;
 	}
 
+
+
+	@Override
+	public Object toJava() {
+		return this;
+	}
+
 	
 
 }
