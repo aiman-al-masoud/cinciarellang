@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.tests.parser;
+package com.luxlunaris.cincia.tests.parser.classes;
 
 public class ExceptionTester extends AbstractTester {
 	

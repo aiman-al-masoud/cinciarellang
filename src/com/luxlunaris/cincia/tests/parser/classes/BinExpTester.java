@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.tests.parser;
+package com.luxlunaris.cincia.tests.parser.classes;
 
 
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;

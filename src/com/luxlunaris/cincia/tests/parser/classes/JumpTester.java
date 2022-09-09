@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.tests.parser;
+package com.luxlunaris.cincia.tests.parser.classes;
 
 public class JumpTester extends AbstractTester {
 
