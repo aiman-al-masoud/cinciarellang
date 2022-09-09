@@ -1,0 +1,3 @@
+x = [1,2,3,4];
+y = x.freeze();
+y[0] = 1 /*change this once implemented try so as not to make it seem like mistake in tester*/
