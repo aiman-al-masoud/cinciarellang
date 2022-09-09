@@ -15,17 +15,19 @@ public class Preprocessor {
 	
 	public String process() {		
 		
-		// add semicols automatically where possible
+		// auto-add semicols (where possible)
 		String processedSource = AddSemicols.apply(source);
 		
 		// split statements
 		String[] statements = processedSource.split(";");
-		
+				
 		// apply per-statement transformation
 		processedSource = Arrays.stream(statements)
-				.map(s->s+";")
-				.map(AddDecKeyword::apply)
-				.reduce((s1, s2)->s1+s2).get();  
+				.filter(s->!s.isBlank()) // remove blank statements
+				.map(s->s+";") // re-add semicols
+				.map(AddDecKeyword::apply) // auto-add dec keyword
+				.reduce((s1, s2)->s1+s2) // rejoin into a string
+				.get();  
 		
 		return processedSource;
 	}

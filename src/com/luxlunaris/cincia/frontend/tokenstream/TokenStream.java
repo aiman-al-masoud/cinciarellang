@@ -94,8 +94,17 @@ public class TokenStream {
 
 
 		if(Punctuations.isPunctuation(curr)) {
+			
 			currTok = new Punctuation(Punctuations.fromChar(curr));
 			cStream.next();
+			
+			
+			// ignore multiple contiguous ;
+			// while peek() is equal to ; AND current is ; keep on skipping to the next
+			while( Punctuations.STM_SEP.toString().equals(cStream.peek()+"") && currTok.getValue().equals(Punctuations.STM_SEP)) {
+				cStream.next();
+			}
+
 			return;
 		}
 
@@ -124,7 +133,7 @@ public class TokenStream {
 		eat('/');
 
 		switch (cStream.peek()) {
-		
+
 		case '/':
 			return skipSingleLineComment();
 		case '*':
@@ -133,7 +142,7 @@ public class TokenStream {
 		default: // not a comment
 			cStream.prev();
 			return null;
-			
+
 		}
 
 	}
