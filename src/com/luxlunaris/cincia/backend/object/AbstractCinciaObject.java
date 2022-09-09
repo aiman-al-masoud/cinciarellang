@@ -267,7 +267,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		//TODO: circular references could cause problems
 
-		CinciaObject copy = getBlank(); // get a new (blank) copy
+		CinciaObject copy = getBlank(); // get a new (blank) object
 
 		enviro.items().forEach(e->{
 
