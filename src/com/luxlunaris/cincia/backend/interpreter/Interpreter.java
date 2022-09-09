@@ -314,6 +314,18 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalTryStatement(TryStatement tryStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
+
+		try {
+
+			eval(tryStatement.tryBlock, enviro);
+		} catch (Exception e) { //TODO: make a cinciaexception class that extends exception or implements throwable
+			
+			
+			
+		}
+
+
+
 		return null;
 	}
 
@@ -522,7 +534,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		for(AssignmentExpression assign : classex.assignments) {
 			eval(assign, c.getEnviro());
 		}
-		
+
 		for(Identifier inter : classex.interfaces) {
 			c.addInterface((CinciaInterface)eval(inter, enviro)); //TODO: handle classcast exception
 		}
@@ -670,7 +682,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// is evaluated in the current environment, and if the name is not 
 		// on the top level, the function name isn't resolved!
 		// System.out.println("callable: "+f);
-		
+
 		// TODO: same problem for pure functions, they can't resolve their own
 		// name because it's in their enclosing env to which they have no 
 		// access!
@@ -715,7 +727,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalDotExpression(DotExpression dotex, Enviro enviro) {
-	
+
 		try {
 			CinciaObject dottable = eval(dotex.left, enviro);
 			return dottable.get(dotex.right.value);					
