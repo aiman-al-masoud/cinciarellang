@@ -21,7 +21,7 @@ public class Tester {
 		.stream()
 		.map(f->ROOT+"/"+f)
 		.map(f->new SingleTest(f, Tester.readFile(f)))
-		.filter(t -> tags.stream().anyMatch(tag->t.filename.contains(tag)) )
+		.filter(t -> hasTag(tags, t.filename) )
 		.map(t->Tester.runTest(t))
 		.sorted((t1,t2)->t1.outcome -t2.outcome) //BROKEN first
 		.map(r->Tester.printResult(r))
@@ -79,7 +79,9 @@ public class Tester {
 		return result;
 	}
 	
-//	public static List<String> filter
+	public static boolean hasTag(List<String> tags, String filename) {
+		return tags.stream().anyMatch(tag->filename.contains(tag));
+	}
 
 
 
