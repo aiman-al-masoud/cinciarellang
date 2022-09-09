@@ -1,6 +1,8 @@
 package com.luxlunaris.cincia.backend;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.Compiler;
@@ -10,6 +12,7 @@ public class Tester {
 
 	final static boolean ONLY_FIRST_BROKEN = false; // only show the first failing stacktrace and stop
 	final static String ROOT = "./tests";
+	final static List<String> tags = Arrays.asList("ref", "pipes");
 
 	public static void main(String[] args) throws IOException{
 
@@ -19,6 +22,7 @@ public class Tester {
 		.map(f->ROOT+"/"+f)
 		.map(f->new SingleTest(f, Tester.readFile(f)))
 		.map(t->Tester.runTest(t))
+		.filter(t -> tags.stream().anyMatch(tag->t.filename.contains(tag)) )
 		.sorted((t1,t2)->t1.outcome -t2.outcome) //BROKEN first
 		.map(r->Tester.printResult(r))
 		.collect(Collectors.toList());
