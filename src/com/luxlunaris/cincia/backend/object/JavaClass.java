@@ -1,5 +1,8 @@
 package com.luxlunaris.cincia.backend.object;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 
 public class JavaClass extends JavaObject {
@@ -27,12 +30,18 @@ public class JavaClass extends JavaObject {
 	}
 	
 
-	public CinciaObject newInstance() {
+	public CinciaObject newInstance(List<CinciaObject> args) {
+		
+		System.out.println(args);
 		
 		try {
 			System.out.println("trying to instantiate "+clazz);
-			return new JavaObject(clazz.newInstance());
-		} catch (InstantiationException | IllegalAccessException e) {
+			@SuppressWarnings("unchecked")
+//			clazz.getClasses()
+			Object newInst = clazz.getDeclaredConstructor().newInstance( args.stream().map(a-> a.toJava()).toArray()  );
+//			return new JavaObject(clazz.newInstance());
+			return new JavaObject(newInst);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}
 		

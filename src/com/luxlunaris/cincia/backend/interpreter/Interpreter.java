@@ -752,7 +752,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		try {
 //			System.out.println(f);
 			JavaClass clazz = (JavaClass)f;
-			return clazz.newInstance();
+			return clazz.newInstance(args);
 		} catch (ClassCastException e) {
 			e.printStackTrace();
 		}
