@@ -20,6 +20,7 @@ import com.luxlunaris.cincia.backend.iterables.DestructuredList;
 import com.luxlunaris.cincia.backend.object.CinciaClass;
 import com.luxlunaris.cincia.backend.object.CinciaInterface;
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
@@ -732,6 +733,15 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}catch (ClassCastException e) {
 
+		}
+		
+		
+		try {
+			System.out.println(f);
+			JavaClass clazz = (JavaClass)f;
+			return clazz.newInstance();
+		} catch (ClassCastException e) {
+			e.printStackTrace();
 		}
 
 

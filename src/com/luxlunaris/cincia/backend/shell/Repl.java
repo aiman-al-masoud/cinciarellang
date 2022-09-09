@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.object.JavaObject;
 import com.luxlunaris.cincia.frontend.Compiler;
 
@@ -36,8 +37,9 @@ public class Repl {
 //			enviro.set("rand", new JavaObject("java.util.Random"));
 //			System.out.println(enviro.get("obj").getEnviro().items());
 //			enviro.set("arr", new JavaObject("java.util.ArrayList"));
-			enviro.set("sb", new JavaObject("java.lang.StringBuilder"));
-			
+//			enviro.set("sb", new JavaObject("java.lang.StringBuilder"));
+			System.out.println("in repl "+this.getClass());
+			enviro.set("c", new JavaClass(this.getClass()));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
