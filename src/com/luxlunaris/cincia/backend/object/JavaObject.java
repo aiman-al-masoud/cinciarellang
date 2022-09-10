@@ -91,7 +91,11 @@ public class JavaObject extends AbstractCinciaObject {
 
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
-
+		return new JavaObject(deepCopy(object));
+	}
+	
+	public static Object deepCopy(Object object) {
+		
 		try {
 
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -103,13 +107,16 @@ public class JavaObject extends AbstractCinciaObject {
 			byte[] byteData = bos.toByteArray();
 			ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
 			Object copy = new ObjectInputStream(bais).readObject();
-			return new JavaObject(copy);
+			return copy;
+//			return new JavaObject(copy);
 
 		} catch (Exception e) {
 
 		}
 
 		throw new RuntimeException("Couldn't deep-copy java object!");
+		
+		
 	}
 
 
