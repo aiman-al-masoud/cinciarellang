@@ -13,13 +13,13 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 public class JavaClass extends JavaObject implements CinciaClass{
 
 	Class clazz;
-	
+
 
 	public JavaClass(Class clazz) {
 		super(clazz);
 		this.clazz = clazz;
 	}
-	
+
 	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
 
@@ -42,7 +42,19 @@ public class JavaClass extends JavaObject implements CinciaClass{
 
 	@Override
 	public boolean matches(Type other) {
-		return other==this; //TODO: improve
+
+		try {
+
+			JavaClass jclass =  (JavaClass)other;
+			boolean otherIsSuper = jclass.clazz.isAssignableFrom(clazz);
+			boolean otherIsSame = jclass.clazz.equals(clazz);
+			return otherIsSame | otherIsSuper;
+
+		} catch (ClassCastException e) {
+
+		}
+
+		return false;
 	}
 
 
