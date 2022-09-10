@@ -19,23 +19,9 @@ public class JavaObject extends AbstractCinciaObject {
 
 	Object object;
 
-	//	public static Object instantiate(String javaClass) {
-	//		
-	//		try {
-	//			return JavaObject.class.getClassLoader().loadClass(javaClass).newInstance();
-	//		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-	//			e.printStackTrace();
-	//		}
-	//		
-	//		return null;
-	//	}
-
-	//	public JavaObject(String javaClass){
-	//		this(instantiate(javaClass));
-	//	}
-
 	public JavaObject(Object object){
 
+		//		super(new JavaClass(object.getClass()));
 		super(Type.Any);
 		this.object = object;
 
@@ -72,10 +58,8 @@ public class JavaObject extends AbstractCinciaObject {
 			try {
 
 				List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
-				//				System.out.println(javargs);
 				return CinciaObject.wrap(method.invoke(  ((JavaObject)parent).object ,   javargs.toArray()));
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
-				//				System.out.println("as I predicted!!!");
 				e.printStackTrace();
 			}
 

@@ -6,8 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-public class JavaClass extends JavaObject {
+public class JavaClass extends JavaObject implements Type{
 
 	Class clazz;
 
@@ -28,6 +30,7 @@ public class JavaClass extends JavaObject {
 
 	public JavaClass(Class clazz) {
 		super(clazz);
+		
 		this.clazz = clazz;
 	}
 
@@ -45,12 +48,22 @@ public class JavaClass extends JavaObject {
 			}
 
 		}
-		
+
 		// ... if no cons matches the args
 		return null;
 	}
 
 
+	@Override
+	public boolean matches(Type other) {
+		return other==this; //TODO: improve
+	}
+
+
+	@Override
+	public Expression simplify() {
+		return null;
+	}
 
 
 
