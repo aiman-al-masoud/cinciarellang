@@ -27,7 +27,7 @@ public class JavaMethod extends CinciaMethod{
 			// convert cincia-args into java-args
 			List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
 
-			// store a copy of the object before method call
+			// store a copy of the object before method call //TODO: make this conditional if parent is immutable to avoid unneccessary overhead
 			Object copy = JavaObject.deepCopy(((JavaObject)parent).object);
 
 			// invoke method on object and arguments
