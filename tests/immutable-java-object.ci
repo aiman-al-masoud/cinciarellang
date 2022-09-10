@@ -1,9 +1,3 @@
-/**
-* Well, this is more of a hack, in this case it works because 
-* the setTime method is void. Read JavaMethod for more info.
-*
-*/
-
 import Date from "java.util.Date";
 d = Date();
 d.setTime(10000);
