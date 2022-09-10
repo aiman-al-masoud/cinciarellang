@@ -10,4 +10,4 @@ try{
 	mutated = false;
 }
 
-mutated == false;
+mutated == false  &&  z.peek() == 101210;
