@@ -1,2 +1,3 @@
 fib = \n-> n<=1? 1 : this(n-1) + this(n-2);
+x = {"y" : fib}; //for other test
 fib(10) == 89

@@ -150,8 +150,8 @@ public class TokenStream {
 
 	private String skipSingleLineComment() {
 		String com = readWhile(c->c!='\n');
-		System.out.println(com);
-		System.out.println(cStream.peek());
+//		System.out.println(com);
+//		System.out.println(cStream.peek());
 		eat('\n');
 		return com;
 	}
