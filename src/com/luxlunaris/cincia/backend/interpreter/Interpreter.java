@@ -718,7 +718,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// if class, call constructor and return reference to new object
 		try {
 			CinciaClass c = (CinciaClass)f;
-			return c.constructor(args);
+			return c.newInstance(args);
 		}catch (ClassCastException e) {
 
 		}

@@ -56,7 +56,7 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 	 * @param args
 	 * @return
 	 */
-	public CinciaObject constructor(List<CinciaObject> args) {
+	public CinciaObject newInstance(List<CinciaObject> args) {
 
 		//TODO: deal with modifiers such as static
 
