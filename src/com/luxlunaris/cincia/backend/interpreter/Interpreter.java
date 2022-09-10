@@ -266,7 +266,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 		
 		
-
 		//1 if fromPath is path to text file, load code into string
 		String source = "";		
 		try {
