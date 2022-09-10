@@ -46,7 +46,6 @@ public class JavaClass extends JavaObject {
 		}
 
 		return null;
-
 	}
 
 
