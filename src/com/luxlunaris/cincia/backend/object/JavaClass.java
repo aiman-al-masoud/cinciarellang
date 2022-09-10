@@ -13,20 +13,20 @@ public class JavaClass extends JavaObject implements Type{
 
 	Class clazz;
 
-	public static Class loadClass(String javaClass) {
+//	public static Class loadClass(String javaClass) {
+//
+//		try {
+//			return JavaClass.class.getClassLoader().loadClass(javaClass);
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return null;
+//	}
 
-		try {
-			return JavaClass.class.getClassLoader().loadClass(javaClass);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	public JavaClass(String javaClass) throws ClassNotFoundException {
-		super(loadClass(javaClass));
-	}
+//	public JavaClass(String javaClass) throws ClassNotFoundException {
+//		super(loadClass(javaClass));
+//	}
 
 	public JavaClass(Class clazz) {
 		super(clazz);
