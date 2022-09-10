@@ -18,6 +18,7 @@ public class JavaClass extends JavaObject implements CinciaClass{
 	public JavaClass(Class clazz) {
 		super(clazz);
 		this.clazz = clazz;
+		this.type = this;
 	}
 
 	@Override
@@ -46,9 +47,8 @@ public class JavaClass extends JavaObject implements CinciaClass{
 		try {
 
 			JavaClass jclass =  (JavaClass)other;
-			boolean otherIsSuper = jclass.clazz.isAssignableFrom(clazz);
-			boolean otherIsSame = jclass.clazz.equals(clazz);
-			return otherIsSame | otherIsSuper;
+			boolean thisIsSameOrSuper = clazz.isAssignableFrom(jclass.clazz);			
+			return thisIsSameOrSuper;
 
 		} catch (ClassCastException e) {
 

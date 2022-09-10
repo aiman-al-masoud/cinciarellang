@@ -253,19 +253,19 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	// import x.y as u from "./docs/examples/nested.ci"
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
-		
+
 		//0.1 try loading a java class
 		try {
-			
+
 			Class clazz =  Interpreter.class.getClassLoader().loadClass(importStatement.fromPath.value);
 			Identifier id = (Identifier)importStatement.imports.get(0).getKey();
 			enviro.set( id.value, new JavaClass(clazz));
 			return null;
 		} catch (ClassNotFoundException e1) {
-//			e1.printStackTrace();
+			//			e1.printStackTrace();
 		}
-		
-		
+
+
 		//1 if fromPath is path to text file, load code into string
 		String source = "";		
 		try {
@@ -334,22 +334,22 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		try {
 			eval(tryStatement.tryBlock, enviro);
 		} catch (CinciaException e) { 
-			
+
 			for(CatchClause c :  tryStatement.catchClausesList) {
-							
+
 				SingleDeclaration sD = ((SingleDeclaration)c.throwable);
 				String name = sD.getName();
 				Type type = sD.getType();
-				
+
 				if(e.matches(type)) {
 					enviro.set(name, e);
 					eval(c.block, enviro);
 					return null;
 				}
-				
+
 				//TODO: finally
 			}
-			
+
 			throw e;
 		}
 
@@ -700,7 +700,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// get called expression
 		CinciaObject f = eval(callex.callable, enviro);
-		
+
 		// if class, call constructor and return reference to new object		
 		try {
 			CinciaClass c = (CinciaClass)f;
@@ -732,7 +732,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
-		
+
 		throw new RuntimeException("Unsupported callable type!");
 	}
 

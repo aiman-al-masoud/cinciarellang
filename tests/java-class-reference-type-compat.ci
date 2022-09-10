@@ -1,0 +1,6 @@
+import Object from "java.lang.Object";
+import Random from "java.util.Random";
+x = Object();
+y = x;
+x = Random();
+x != y;

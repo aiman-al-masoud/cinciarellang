@@ -38,16 +38,16 @@ public class Enviro {
 	public CinciaObject get(String key) {
 
 		CinciaObject o = vars.get(key);
-		
-		
+
+
 		if(o==null && vars.containsKey(key)) {
 			throw new RuntimeException(key+" is declared but undefined!");
 		}
-		
+
 		if(o==null) {
 			throw new RuntimeException(key+" is undefined!");
 		}
-		
+
 		return o;
 
 	}
@@ -61,7 +61,7 @@ public class Enviro {
 
 		// variable already exists/declared, need to check type:
 		if(vars.containsKey(key)) {
-			
+
 			// if types don't match, error!
 			if(!types.get(key).matches(val.getType())) {
 				throw new RuntimeException("incompatible types!");
