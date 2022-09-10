@@ -22,7 +22,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
  */
 public class JavaObject extends AbstractCinciaObject {
 
-	public Object object;
+	public Object object; // wrapped Java object
 
 	public JavaObject(Object object){
 
