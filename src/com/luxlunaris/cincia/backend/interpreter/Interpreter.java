@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
+import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.iterables.CinciaDict;
@@ -715,13 +716,20 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// access!
 
 
-		// if class, call constructor and return reference to new object
+		// if class, call constructor and return reference to new object		
 		try {
-			CinciaCinciaClass c = (CinciaCinciaClass)f;
+			CinciaClass c = (CinciaClass)f;
 			return c.newInstance(args);
 		}catch (ClassCastException e) {
 
 		}
+		
+//		try {
+//			CinciaCinciaClass c = (CinciaCinciaClass)f;
+//			return c.newInstance(args);
+//		}catch (ClassCastException e) {
+//
+//		}
 
 		// if method, call on parent object's ORIGINAL env
 		try {
@@ -749,13 +757,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 		
 		
-		try {
-//			System.out.println(f);
-			JavaClass clazz = (JavaClass)f;
-			return clazz.newInstance(args);
-		} catch (ClassCastException e) {
-			e.printStackTrace();
-		}
+//		try {
+////			System.out.println(f);
+//			JavaClass clazz = (JavaClass)f;
+//			return clazz.newInstance(args);
+//		} catch (ClassCastException e) {
+//			e.printStackTrace();
+//		}
 
 
 		throw new RuntimeException("Unsupported callable type!");
