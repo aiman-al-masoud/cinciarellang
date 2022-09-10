@@ -34,7 +34,7 @@ public class JavaClass extends JavaObject {
 
 	public CinciaObject newInstance(List<CinciaObject> args) {
 
-		// try every cons until it works with the supplyied args ...
+		// try every cons until it works with the supplied args ...
 		for(Constructor cons : clazz.getDeclaredConstructors()) {
 
 			try {
