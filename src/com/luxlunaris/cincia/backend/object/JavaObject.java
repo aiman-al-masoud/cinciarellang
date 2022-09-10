@@ -61,7 +61,6 @@ public class JavaObject extends AbstractCinciaObject {
 			
 		}
 
-
 		return ms;
 
 	}
