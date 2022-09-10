@@ -3,8 +3,8 @@ y = x.freeze();
 
 try{
 	y[0] = 1;
-	check = 10;
+	wasMutated = true;
 }catch e:CannotMutateException {
-	check = 20;
+	wasMutated = false;
 }
-check==20;
+wasMutated==false;
