@@ -41,8 +41,17 @@ public class JavaMethod extends CinciaMethod{
 
 			// convert cincia-args into java-args
 			List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
+			
+			//store hash code of object
+			int hashBefore = ((JavaObject)parent).object.hashCode();
+ 			
 			// invoke method on object and arguments
 			Object res = method.invoke(  ((JavaObject)parent).object, javargs.toArray());
+			
+			// if hash code of object changed, it means it mutated, if it was supposed to be immutable, throw an exception
+			if( parent.isImmutable() &&  ((JavaObject)parent).object.hashCode()!=hashBefore ) {
+				throw new CannotMutateException();
+			}
 
 			if(res ==null) {
 				return null;
