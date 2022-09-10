@@ -254,12 +254,11 @@ public class AbstractCinciaObject implements CinciaObject{
 	 */
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
-
+		
 		//TODO: circular references could cause problems
 
 		CinciaObject copy = getBlank(); // get a new (blank) object
 
-		//		enviro.items().forEach(e->{
 		for (Entry<String, CinciaObject> e : enviro.items()) {
 
 			CinciaObject childo = e.getValue(); // child object
@@ -283,10 +282,7 @@ public class AbstractCinciaObject implements CinciaObject{
 				methco.parent = copy;
 			}
 
-
 			copy.set(e.getKey(), childco);			
-			//		});
-
 		}
 
 		return copy;
