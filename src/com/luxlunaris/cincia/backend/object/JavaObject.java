@@ -55,7 +55,6 @@ public class JavaObject extends AbstractCinciaObject {
 		List<Method> ms = Arrays.asList(clazz.getDeclaredMethods());
 
 		try {
-
 			ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
 		} catch (Exception e) {
 			
