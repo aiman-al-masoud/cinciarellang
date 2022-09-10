@@ -15,6 +15,11 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
+/**
+ * A cicia-accessible wrapper for a generic Java object.
+ * 
+ * @author aiman
+ */
 public class JavaObject extends AbstractCinciaObject {
 
 	public Object object;
