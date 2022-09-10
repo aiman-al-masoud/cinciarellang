@@ -59,7 +59,7 @@ public class JavaMethod extends CinciaMethod{
 
 	@Override
 	public CinciaMethod copy(List<CinciaObject> args) {
-		return new JavaMethod(method, parent);
+		return new JavaMethod(method, null);
 	}
 
 }
