@@ -687,7 +687,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 
-
 		// TODO: move this c... into evalMultiExpression 
 		// get arguments 
 		List<CinciaObject> args = new ArrayList<CinciaObject>();
@@ -703,19 +702,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// get called expression
 		CinciaObject f = eval(callex.callable, enviro);
-
-
-		// TODO: problem: recursive functions in nested imported modules can't resolve their own name!!!!
-		// when a function refers to itself, the code block where it does so
-		// is evaluated in the current environment, and if the name is not 
-		// on the top level, the function name isn't resolved!
-		// System.out.println("callable: "+f);
-
-		// TODO: same problem for pure functions, they can't resolve their own
-		// name because it's in their enclosing env to which they have no 
-		// access!
-
-
+		
 		// if class, call constructor and return reference to new object		
 		try {
 			CinciaClass c = (CinciaClass)f;
