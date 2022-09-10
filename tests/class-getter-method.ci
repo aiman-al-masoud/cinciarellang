@@ -11,4 +11,5 @@ cat = class{
 }
 
 x = cat(22);
-x.sayMeow() == 22; 
+y=  cat(44);
+x.sayMeow() == 22   &&  y.sayMeow()==44; 

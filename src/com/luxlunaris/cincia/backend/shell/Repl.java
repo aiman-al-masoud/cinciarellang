@@ -38,7 +38,7 @@ public class Repl {
 //			System.out.println(enviro.get("obj").getEnviro().items());
 //			enviro.set("arr", new JavaObject("java.util.ArrayList"));
 //			enviro.set("sb", new JavaObject("java.lang.StringBuilder"));
-			System.out.println("in repl "+this.getClass());
+//			System.out.println("in repl "+this.getClass());
 			enviro.set("c", new JavaClass(this.getClass()));
 			
 		} catch (Exception e) {
