@@ -33,7 +33,7 @@ public class JavaMethod extends CinciaMethod{
 			// invoke method on object and arguments
 			Object res = method.invoke(  ((JavaObject)parent).object, javargs.toArray());
 
-			// if hash code of object changed, it means it mutated as a result of the method call, 
+			//if hash code of object changed, it means it mutated as a result of the method call, 
 			//if it was supposed to be immutable, throw an exception and revert back to previous state
 			if(parent.isImmutable() &&  ((JavaObject)parent).object.hashCode() != copy.hashCode() ) {
 				((JavaObject)parent).object = copy;
