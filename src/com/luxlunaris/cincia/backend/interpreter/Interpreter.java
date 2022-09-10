@@ -740,7 +740,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		// else it's a regular top level function, call on COPY of whatever environment was passed in		
+		// else it's a top level function that reads from ext scope, call on COPY of whatever environment was passed in		
 		try {
 			CinciaFunction l = (CinciaFunction)f;
 			return l.run(args, enviro.newChild());
