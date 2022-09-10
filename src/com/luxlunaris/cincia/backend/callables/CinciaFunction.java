@@ -102,7 +102,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		return result;
 	}
 
-	public static CinciaFunction factory(LambdaExpression lambdex, Eval eval) {
+	public static CinciaFunction make(LambdaExpression lambdex, Eval eval) {
 
 		List<Parameter> params = parseParams(lambdex);
 

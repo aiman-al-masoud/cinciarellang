@@ -641,7 +641,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		return CinciaFunction.factory(lambdex, this::eval);
+		return CinciaFunction.make(lambdex, this::eval);
 
 	}
 
