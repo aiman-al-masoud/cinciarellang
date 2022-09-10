@@ -3,17 +3,18 @@ package com.luxlunaris.cincia.backend.object;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
+import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-public class CinciaClass extends AbstractCinciaObject implements Type{
+public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaClass{
 
 	public static String CLASS = "class";
 
-	public CinciaClass() {
+	public CinciaCinciaClass() {
 		super(new IdentifierType("Class"));
 		type = this; // a class is its own type
 		enviro.set(CLASS, this); // mark the env as belonging to a class
@@ -82,7 +83,7 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 	public boolean matches(Type other) {
 
 		try {
-			return this == ((CinciaClass)other); // matches in RAM
+			return this == ((CinciaCinciaClass)other); // matches in RAM
 
 
 			//TODO: check extends etc...

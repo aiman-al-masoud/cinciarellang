@@ -17,7 +17,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	protected boolean immutable;	
 	public Enviro enviro; //object's internal environment 
 	protected Type type; // object's type
-	CinciaClass myClass; // object's class
+	CinciaCinciaClass myClass; // object's class
 
 	public AbstractCinciaObject(Type type) {
 		this.type = type;

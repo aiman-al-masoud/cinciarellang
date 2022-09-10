@@ -17,7 +17,7 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.iterables.CinciaDict;
 import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.iterables.DestructuredList;
-import com.luxlunaris.cincia.backend.object.CinciaClass;
+import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
 import com.luxlunaris.cincia.backend.object.CinciaInterface;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaClass;
@@ -552,7 +552,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
 
-		CinciaClass c = new CinciaClass();
+		CinciaCinciaClass c = new CinciaCinciaClass();
 
 		for(Declaration dec : classex.declarations) {	
 			eval(dec, c.getEnviro());
@@ -635,7 +635,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		try {
 			// Check if env belongs to class, in that case return a method.
-			CinciaClass b = (CinciaClass)enviro.get(CinciaClass.CLASS);
+			CinciaCinciaClass b = (CinciaCinciaClass)enviro.get(CinciaCinciaClass.CLASS);
 			return new CinciaMethod(lambdex, this::eval);			
 		} catch (Exception e) {
 
@@ -717,7 +717,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// if class, call constructor and return reference to new object
 		try {
-			CinciaClass c = (CinciaClass)f;
+			CinciaCinciaClass c = (CinciaCinciaClass)f;
 			return c.newInstance(args);
 		}catch (ClassCastException e) {
 
