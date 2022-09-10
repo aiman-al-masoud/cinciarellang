@@ -38,18 +38,18 @@ public class JavaMethod extends CinciaMethod{
 
 
 		try {
-			
+
 			// convert cincia-args into java-args
 			List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
 			// invoke method on object and arguments
 			Object res = method.invoke(  ((JavaObject)parent).object ,   javargs.toArray());
-			
+
 			if(res ==null) {
 				return null;
 			}
-			
+
 			return CinciaObject.wrap(res);
-			
+
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
 			e.printStackTrace();
 		}
@@ -60,13 +60,13 @@ public class JavaMethod extends CinciaMethod{
 	public String getName() {
 		return method.getName();
 	}
-	
-	
+
+
 	@Override
 	public CinciaMethod copy(List<CinciaObject> args) {
 		return new JavaMethod(method, parent);
 	}
-	
-	
+
+
 
 }
