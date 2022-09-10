@@ -262,7 +262,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			enviro.set( id.value, new JavaClass(clazz));
 			return null;
 		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
+//			e1.printStackTrace();
 		}
 		
 		

@@ -1,0 +1,3 @@
+import x from './tests/recursion-fib.ci';
+g = x.y(10);
+g == 89;
