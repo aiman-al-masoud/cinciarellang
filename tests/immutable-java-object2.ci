@@ -1,0 +1,13 @@
+import Stack from "java.util.Stack";
+s = Stack();
+s.push(101210);
+z = s.freeze();
+
+try{
+	z.push(3);
+	mutated = true;
+}catch e : CannotMutateException{
+	mutated = false;
+}
+
+mutated == false;
