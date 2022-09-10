@@ -66,7 +66,7 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 		
 		//TODO: refactor this mess
 		// java-code wrappers need to point to the original instance of the new java object
-		obj.set("this", obj, type); 
+		obj.set(Magic.THIS, obj); 
 		CinciaMethod m1 = new CinciaMethod(obj::copy);
 		m1.parent = obj;
 		obj.set(Magic.copy, m1);

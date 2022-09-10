@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.backend.object;
 
 
 /**
- * A set of standard CinciaObject methods, most of which overridable.
+ * A set of standard CinciaObject methods/fields, most of which overridable.
  * 
  * @author aiman
  *
@@ -29,7 +29,8 @@ public enum Magic {
 	__init__,
 	into,
 	copy, 
-	freeze;
+	freeze,
+	THIS;
 	
 	@Override
 	public String toString() {
