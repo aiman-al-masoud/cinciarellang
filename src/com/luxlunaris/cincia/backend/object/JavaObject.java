@@ -84,5 +84,10 @@ public class JavaObject extends AbstractCinciaObject {
 	public Object toJava() {
 		return object;
 	}
+	
+	@Override
+	protected CinciaObject getBlank() {
+		return new JavaObject(object); //TODO: problem, this is not a neep copy
+	}
 
 }

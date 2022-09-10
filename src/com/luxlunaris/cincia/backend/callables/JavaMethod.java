@@ -50,5 +50,13 @@ public class JavaMethod extends CinciaMethod{
 	public String getName() {
 		return method.getName();
 	}
+	
+	
+	@Override
+	public CinciaMethod copy(List<CinciaObject> args) {
+		return new JavaMethod(method, parent);
+	}
+	
+	
 
 }
