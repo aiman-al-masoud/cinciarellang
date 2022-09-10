@@ -50,7 +50,7 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 		});
 
 	}
-	
+
 	/**
 	 * Creates and returns a new object of the same type as this class.
 	 * @param args
