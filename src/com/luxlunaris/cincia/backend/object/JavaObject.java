@@ -26,7 +26,7 @@ public class JavaObject extends AbstractCinciaObject {
 
 	public JavaObject(Object object){
 
-		//		super(new JavaClass(object.getClass()));
+		//		super(new JavaClass(object.getClass())); //TODO!
 		super(Type.Any);
 		this.object = object;
 
