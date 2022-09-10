@@ -39,7 +39,7 @@ public class JavaClass extends JavaObject implements CinciaClass{
 		// ... if no cons matches the args
 		return null;
 	}
-	
+
 	/**
 	 * This class matches the other if this is a superclass of the other,
 	 * or they are the same class.
