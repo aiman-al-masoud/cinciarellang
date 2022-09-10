@@ -46,7 +46,6 @@ public class JavaObject extends AbstractCinciaObject {
 			set(m.getName(), m, Type.Any);
 		});
 		
-		
 		getAccessibleAttributes(object.getClass())
 		.stream()
 		.map(a -> convertField(a, object))
