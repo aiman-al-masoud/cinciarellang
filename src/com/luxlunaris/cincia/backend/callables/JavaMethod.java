@@ -38,8 +38,10 @@ public class JavaMethod extends CinciaMethod{
 
 
 		try {
+			
+			// convert cincia-args into java-args
 			List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
-//			return CinciaObject.wrap(method.invoke(  ((JavaObject)parent).object ,   javargs.toArray()));
+			// invoke method on object and arguments
 			Object res = method.invoke(  ((JavaObject)parent).object ,   javargs.toArray());
 			
 			if(res ==null) {
