@@ -58,7 +58,7 @@ public class JavaObject extends AbstractCinciaObject {
 
 			ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 		}
 
 
