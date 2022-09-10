@@ -57,6 +57,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	 * @param args
 	 * @return
 	 */
+	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
 
 		//TODO: deal with modifiers such as static

@@ -19,8 +19,8 @@ public class JavaClass extends JavaObject implements CinciaClass{
 		super(clazz);
 		this.clazz = clazz;
 	}
-
-
+	
+	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
 
 		// try every cons until it works with the supplied args ...
