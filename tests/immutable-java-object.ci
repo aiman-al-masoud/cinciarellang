@@ -1,6 +1,6 @@
 /**
 * Well, this is more of a hack, in this case it works because 
-* the setTime method is void.
+* the setTime method is void. Read JavaMethod for more info.
 *
 */
 
