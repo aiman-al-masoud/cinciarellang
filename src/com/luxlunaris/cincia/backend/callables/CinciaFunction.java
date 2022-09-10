@@ -20,6 +20,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 	//TODO: make an interface and a better abstract class, add option to use 
 	// java.reflect.Method in place of lambdex or wrappedFunction.
+	// fix CinciaMethod's broken copy when lambdex and wrappedFunction both null.
 
 	protected LambdaExpression lambdex;
 	protected List<Parameter> params;
