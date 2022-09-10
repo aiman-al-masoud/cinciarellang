@@ -17,9 +17,6 @@ public class Repl {
 	protected Interpreter interpreter;
 	protected Scanner scanner;
 	
-	
-	
-
 	public static void main(String[] args) {
 		Repl r = new Repl();
 		r.mainLoop();
@@ -30,20 +27,6 @@ public class Repl {
 		interpreter = new Interpreter();
 		scanner = new Scanner(System.in);
 		enviro.set("print", new CinciaFunction(Repl::printWrapper));
-		
-		
-		try {
-//			enviro.set("obj", new JavaObject("java.lang.Object"));
-//			enviro.set("rand", new JavaObject("java.util.Random"));
-//			System.out.println(enviro.get("obj").getEnviro().items());
-//			enviro.set("arr", new JavaObject("java.util.ArrayList"));
-//			enviro.set("sb", new JavaObject("java.lang.StringBuilder"));
-//			System.out.println("in repl "+this.getClass());
-//			enviro.set("c", new JavaClass(this.getClass()));
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void mainLoop() {
@@ -68,8 +51,6 @@ public class Repl {
 
 			List<Ast> statements = new Compiler().compile(source);
 			
-			
-
 			statements.forEach(s -> {
 
 				CinciaObject out = interpreter.eval(s, enviro);	
