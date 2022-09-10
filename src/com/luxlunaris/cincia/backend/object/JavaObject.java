@@ -19,20 +19,20 @@ public class JavaObject extends AbstractCinciaObject {
 
 	Object object;
 	
-	public static Object instantiate(String javaClass) {
-		
-		try {
-			return JavaObject.class.getClassLoader().loadClass(javaClass).newInstance();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
+//	public static Object instantiate(String javaClass) {
+//		
+//		try {
+//			return JavaObject.class.getClassLoader().loadClass(javaClass).newInstance();
+//		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return null;
+//	}
 
-	public JavaObject(String javaClass){
-		this(instantiate(javaClass));
-	}
+//	public JavaObject(String javaClass){
+//		this(instantiate(javaClass));
+//	}
 
 	public JavaObject(Object object){
 		
