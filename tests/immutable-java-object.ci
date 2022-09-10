@@ -1,0 +1,19 @@
+/**
+* Well this is more of a hack, in this case it works because 
+* the setTime method is void.
+*
+*/
+
+import Date from "java.util.Date";
+d = Date();
+d.setTime(10000);
+d2 = d.freeze();
+
+try{
+	d2.setTime(1);
+	mutated = true;
+}catch e : CannotMutateException{
+	mutated = false;
+}
+
+mutated == false;

@@ -39,7 +39,15 @@ public class JavaMethod extends CinciaMethod{
 
 		try {
 			List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
-			return CinciaObject.wrap(method.invoke(  ((JavaObject)parent).object ,   javargs.toArray()));
+//			return CinciaObject.wrap(method.invoke(  ((JavaObject)parent).object ,   javargs.toArray()));
+			Object res = method.invoke(  ((JavaObject)parent).object ,   javargs.toArray());
+			
+			if(res ==null) {
+				return null;
+			}
+			
+			return CinciaObject.wrap(res);
+			
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
 			e.printStackTrace();
 		}
