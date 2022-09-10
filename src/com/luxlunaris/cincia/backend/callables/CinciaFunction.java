@@ -116,6 +116,11 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		//... else it's a pure function by default
 		return new PureCinciaFunction(lambdex, eval);
 	}
+	
+	
+	public boolean isNativeCode() {
+		return wrappedFunction != null;
+	}
 
 
 

@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend.object;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
@@ -258,7 +259,8 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		CinciaObject copy = getBlank(); // get a new (blank) object
 
-		enviro.items().forEach(e->{
+		//		enviro.items().forEach(e->{
+		for (Entry<String, CinciaObject> e : enviro.items()) {
 
 			CinciaObject childo = e.getValue(); // child object
 			CinciaObject childco; // copy of the child object
@@ -271,12 +273,21 @@ public class AbstractCinciaObject implements CinciaObject{
 
 			// methods should keep the same code but change their environment to the new object's
 			if(childco instanceof CinciaMethod) {
-				((CinciaMethod) childco).parent = copy;
+
+				CinciaMethod methco = (CinciaMethod)childco;
+
+				if(methco.isNativeCode()) {
+					continue;
+				}
+
+				methco.parent = copy;
 			}
 
-			copy.set(e.getKey(), childco);			
-		});
 
+			copy.set(e.getKey(), childco);			
+			//		});
+
+		}
 
 		return copy;
 	}
