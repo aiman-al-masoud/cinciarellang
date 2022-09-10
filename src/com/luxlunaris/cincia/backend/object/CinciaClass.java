@@ -15,7 +15,7 @@ public class CinciaClass extends AbstractCinciaObject implements Type{
 
 	public CinciaClass() {
 		super(new IdentifierType("Class"));
-		type =this;
+		type = this;
 		enviro.set(CLASS, this);
 	}
 
