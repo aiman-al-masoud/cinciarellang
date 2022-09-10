@@ -77,7 +77,7 @@ public class JavaObject extends AbstractCinciaObject {
 
 		}
 
-		return Map.entry(field.getName(), new CinciaInt(-1));
+		return Map.entry(field.getName(), new CinciaInt(-1));//TODO: fix!!!
 	}
 
 	@Override
