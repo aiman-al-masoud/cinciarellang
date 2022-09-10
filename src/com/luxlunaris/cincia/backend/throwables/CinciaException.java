@@ -240,6 +240,13 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 		return this;
 	}
 
+
+
+	@Override
+	public boolean isImmutable() {
+		return object.isImmutable();
+	}
+
 	
 
 }

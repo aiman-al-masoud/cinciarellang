@@ -49,6 +49,7 @@ public interface CinciaObject {
 	void set(Magic key, CinciaObject val);
 	void remove(String key);
 	void setImmutable(); // recursively make the object immutable.
+	boolean isImmutable();
 	Enviro getEnviro();
 	boolean __bool__();
 	CinciaObject __add__(CinciaObject other);

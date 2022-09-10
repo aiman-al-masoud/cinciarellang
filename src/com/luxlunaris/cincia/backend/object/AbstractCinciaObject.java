@@ -330,6 +330,11 @@ public class AbstractCinciaObject implements CinciaObject{
 		return this;
 	}
 
+	@Override
+	public boolean isImmutable() {
+		return immutable;
+	}
+
 
 
 }

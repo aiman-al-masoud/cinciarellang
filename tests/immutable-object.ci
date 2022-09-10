@@ -1,0 +1,24 @@
+Person = class {
+
+	__init__ = \ age ->{
+		this.age = age;
+	}
+	
+	happyBirthday = \->{
+		this.age++;
+	}
+
+}
+
+p = Person(99);
+pcopy = p.freeze();
+
+
+try{
+	pcopy.happyBirthday();
+	mutated = true;
+} catch e : CannotMutateException{ 
+	mutated = false;
+}
+
+mutated == false;
