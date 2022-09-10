@@ -7,4 +7,5 @@ try{
 }catch e:CannotMutateException {
 	wasMutated = false;
 }
+
 wasMutated==false;
