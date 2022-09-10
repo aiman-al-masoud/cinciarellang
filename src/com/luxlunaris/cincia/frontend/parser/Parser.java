@@ -140,7 +140,7 @@ public class Parser {
 		}else {
 			res = parseExpressionStatement();
 		}
-		
+
 
 		eat(Punctuations.STM_SEP);
 		return res;
@@ -958,7 +958,7 @@ public class Parser {
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
 		lE.signature = parseSignature();
-		
+
 		eat(Operators.ARROW);
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
