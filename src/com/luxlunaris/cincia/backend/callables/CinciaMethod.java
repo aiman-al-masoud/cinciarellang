@@ -8,6 +8,7 @@ import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 
+
 public class CinciaMethod extends CinciaFunction{
 
 
