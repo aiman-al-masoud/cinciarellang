@@ -1,0 +1,14 @@
+cat = class{
+
+	__init__ = \ num ->{
+		this.num = num;
+	}
+
+	sayMeow = \->{
+		return num;
+	}
+
+}
+
+x = cat(22);
+x.sayMeow() == 22; 
