@@ -1,5 +1,5 @@
 /**
-* Well this is more of a hack, in this case it works because 
+* Well, this is more of a hack, in this case it works because 
 * the setTime method is void.
 *
 */
