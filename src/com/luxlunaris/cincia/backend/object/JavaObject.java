@@ -1,5 +1,9 @@
 package com.luxlunaris.cincia.backend.object;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -57,7 +61,7 @@ public class JavaObject extends AbstractCinciaObject {
 		try {
 			ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
 		} catch (Exception e) {
-			
+
 		}
 
 		return ms;
@@ -84,10 +88,41 @@ public class JavaObject extends AbstractCinciaObject {
 	public Object toJava() {
 		return object;
 	}
-	
+
+//	@Override
+//	protected CinciaObject getBlank() {
+//		return new JavaObject(object); //TODO: problem, this is not a neep copy
+//	}
+
 	@Override
-	protected CinciaObject getBlank() {
-		return new JavaObject(object); //TODO: problem, this is not a neep copy
+	public CinciaObject copy(List<CinciaObject> args) {
+
+		try {
+
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(bos);
+			oos.writeObject(object);
+			oos.flush();
+			oos.close();
+			bos.close();
+			byte[] byteData = bos.toByteArray();
+			ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
+			Object copy = new ObjectInputStream(bais).readObject();
+			return new JavaObject(copy);
+
+		} catch (Exception e) {
+
+		}
+
+		throw new RuntimeException("Couldn't deep-copy java object!");
 	}
+
+
+
+
+
+
+
+
 
 }
