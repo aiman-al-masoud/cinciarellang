@@ -275,7 +275,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 				CinciaMethod methco = (CinciaMethod)childco;
 
-				if(methco.isNativeCode()) {
+				if(methco.isNativeCode()) { // skip if method is already on object blank copy
 					continue;
 				}
 
