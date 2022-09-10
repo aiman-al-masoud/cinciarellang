@@ -22,40 +22,16 @@ public class JavaMethod extends CinciaMethod{
 	@Override
 	public CinciaObject run(List<CinciaObject> args) {
 
-		// if the object this method is called on is immutable, 
-		// prevent void and no-arg methods from running, 
-		// because they're almost certainly side-effect laden.
-		//		if(parent.isImmutable()) {
-		//
-		//			boolean isVoid = method.getReturnType().equals(Void.TYPE);
-		//			boolean isNoArgs =  method.getParameters().length==0;
-		//
-		//			if(isVoid || isNoArgs) {
-		//				throw new CannotMutateException();
-		//			}
-		//
-		//		}
-
-
 		try {
 
 			// convert cincia-args into java-args
 			List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
 
-			// store a copy of the object
+			// store a copy of the object before method call
 			Object copy = JavaObject.deepCopy(((JavaObject)parent).object);
-
-
-			//store hash code of object
-			//			int hashBefore = ((JavaObject)parent).object.hashCode();
 
 			// invoke method on object and arguments
 			Object res = method.invoke(  ((JavaObject)parent).object, javargs.toArray());
-
-			// if hash code of object changed, it means it mutated, if it was supposed to be immutable, throw an exception
-			//			if( parent.isImmutable() &&  ((JavaObject)parent).object.hashCode()!=hashBefore ) {
-			//				throw new CannotMutateException();
-			//			}
 
 			// if hash code of object changed, it means it mutated, if it was supposed 
 			// to be immutable, throw an exception and revert back to previous state
@@ -86,7 +62,6 @@ public class JavaMethod extends CinciaMethod{
 	public CinciaMethod copy(List<CinciaObject> args) {
 		return new JavaMethod(method, parent);
 	}
-
 
 
 }
