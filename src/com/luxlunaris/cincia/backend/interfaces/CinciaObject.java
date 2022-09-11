@@ -40,6 +40,7 @@ public interface CinciaObject {
 	CinciaObject get(String key);
 	CinciaObject get(int key);
 	CinciaObject get(Magic key);
+	CinciaObject get(CinciaObject key);
 	Type getType(String key);
 	void set(String key, CinciaObject val, Type type);
 	void set(int key, CinciaObject val, Type type);

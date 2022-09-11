@@ -770,46 +770,46 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject o = eval(indexex.indexable, enviro);
 		CinciaObject index = eval(indexex.index , enviro);
+		return o.get(index);
+
+//		if( index instanceof CinciaString ) {
+//			return o.get((String)index.getValue());
+//		}
+//
+//
+//		if(index instanceof CinciaInt) {
+//			return o.get(((CinciaInt)index).getValue());
+//		}
+//
+//		// If index is an iterable treat as fancy index
+//		// TEST
+//		//[1,2,3,4][0 to 2] // [1, 2, 3]
+//		//[1,2,3][[0,1]] // [1, 2]
+//		if(index instanceof CinciaIterable) {
+//
+//			CinciaList l = new CinciaList(Type.Any);
+//
+//			for(CinciaObject i : ((CinciaIterable)index)) {
+//
+//				try {
+//					l.add(o.get((int)i.getValue()));
+//				}catch (ClassCastException e) {
+//
+//				}
+//
+//				try {
+//					l.add(o.get((String)i.getValue()));
+//				}catch (ClassCastException e) {
+//
+//				}
+//
+//			}
+//
+//			return l;
+//		}
 
 
-		if( index instanceof CinciaString ) {
-			return o.get((String)index.getValue());
-		}
-
-
-		if(index instanceof CinciaInt) {
-			return o.get(((CinciaInt)index).getValue());
-		}
-
-		// If index is an iterable treat as fancy index
-		// TEST
-		//[1,2,3,4][0 to 2] // [1, 2, 3]
-		//[1,2,3][[0,1]] // [1, 2]
-		if(index instanceof CinciaIterable) {
-
-			CinciaList l = new CinciaList(Type.Any);
-
-			for(CinciaObject i : ((CinciaIterable)index)) {
-
-				try {
-					l.add(o.get((int)i.getValue()));
-				}catch (ClassCastException e) {
-
-				}
-
-				try {
-					l.add(o.get((String)i.getValue()));
-				}catch (ClassCastException e) {
-
-				}
-
-			}
-
-			return l;
-		}
-
-
-		throw new RuntimeException("Unsupported index type!");
+//		throw new RuntimeException("Unsupported index type!");
 	}
 
 	@Override

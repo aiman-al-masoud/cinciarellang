@@ -254,6 +254,13 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 		object.set(key, val);
 	}
 
+
+
+	@Override
+	public CinciaObject get(CinciaObject key) {
+		return object.get(key);
+	}
+
 	
 
 	

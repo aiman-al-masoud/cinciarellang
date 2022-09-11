@@ -7,7 +7,9 @@ import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
+import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
@@ -352,6 +354,50 @@ public class AbstractCinciaObject implements CinciaObject{
 			return;
 		}
 
+		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
+	}
+
+	@Override
+	public CinciaObject get(CinciaObject key) {
+
+		if( key instanceof CinciaString ) {
+			return get(((CinciaString)key).getValue());
+		}
+
+		if(key instanceof CinciaInt) {
+			return get(((CinciaInt)key).getValue());
+		}
+
+		// If index is an iterable treat as fancy index
+		// TEST
+		//[1,2,3,4][0 to 2] // [1, 2, 3]
+		//[1,2,3][[0,1]] // [1, 2]
+		if(key instanceof CinciaIterable) {
+
+			CinciaList l = new CinciaList(Type.Any);
+
+			for(CinciaObject i : ((CinciaIterable)key)) {
+				
+				l.add(get(i));
+
+//				try {
+//					l.add(o.get((int)i.getValue()));
+//				}catch (ClassCastException e) {
+//
+//				}
+//
+//				try {
+//					l.add(o.get((String)i.getValue()));
+//				}catch (ClassCastException e) {
+//
+//				}
+
+			}
+
+			return l;
+		}
+
+		
 		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
 	}
 
