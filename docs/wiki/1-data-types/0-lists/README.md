@@ -5,3 +5,11 @@ A list is an ordered set of potentially heterogenous elements. You can create a 
 ```
 x = [0, 1.0, true, []]
 ```
+
+You can use the `to` operator to quickly create a list from the specified range of integers:
+
+```
+x = 0 to 10
+```
+
+This will create a list that goes from 0 to 10 included.
