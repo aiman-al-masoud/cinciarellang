@@ -525,7 +525,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		// if l-value is a dot expression
+		// if l-value is contained in a dot expression
 		try {
 			DotExpression dotex = (DotExpression)assex.left;
 			CinciaObject dottable = eval(dotex.left, enviro);
@@ -534,7 +534,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		// if l-value is an indexed expresson 
+		// if l-value is contained in an indexed expresson 
 		try {
 			IndexedExpression indexex = (IndexedExpression)assex.left;
 			CinciaObject indexable = eval(indexex.indexable, enviro);
