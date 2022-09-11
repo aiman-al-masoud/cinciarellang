@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.throwables.IncompatibleTypesException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class Enviro {
@@ -64,7 +65,8 @@ public class Enviro {
 			
 			// if types don't match, error!
 			if(!types.get(key).matches(val.getType())) {
-				throw new RuntimeException("incompatible types!");
+//				throw new RuntimeException("incompatible types!");
+				throw new IncompatibleTypesException();
 			}
 
 		}

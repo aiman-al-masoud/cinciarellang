@@ -1,2 +1,9 @@
 x:int;
-x = "sdkks";
+
+try{
+	x = "sdkks";
+}catch e : IncompatibleTypesException {
+	caught = true;
+}
+
+caught == true;
