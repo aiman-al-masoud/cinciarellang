@@ -1,7 +1,7 @@
-x:int;
+x:int; /*declared as an int*/
 
 try{
-	x = "sdkks";
+	x = "sdkks"; /*try to assign a string to int var x*/
 }catch e : IncompatibleTypesException {
 	caught = true;
 }
