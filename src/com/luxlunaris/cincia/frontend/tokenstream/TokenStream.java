@@ -49,7 +49,8 @@ public class TokenStream {
 			Keywords kw = Keywords.fromString(val);
 			Boolean b = Bool.stringToBool(val);
 			Modifiers mod = Modifiers.fromString(val);
-
+			
+			// second condition to allow for methods with same name as keywords.
 			if(kw==null  || currTok!=null && currTok.getValue().equals(Punctuations.DOT)) {
 				currTok = new Identifier(val);
 				return;
