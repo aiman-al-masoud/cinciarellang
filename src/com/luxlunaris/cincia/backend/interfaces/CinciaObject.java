@@ -47,6 +47,7 @@ public interface CinciaObject {
 	void set(String key, CinciaObject val);
 	void set(int key, CinciaObject val);
 	void set(Magic key, CinciaObject val);
+	void set(CinciaObject key, CinciaObject val);
 	void remove(String key);
 	void setImmutable(); // recursively make the object immutable.
 	boolean isImmutable();

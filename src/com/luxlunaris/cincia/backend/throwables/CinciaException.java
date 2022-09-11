@@ -247,6 +247,15 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 		return object.isImmutable();
 	}
 
+
+
+	@Override
+	public void set(CinciaObject key, CinciaObject val) {
+		object.set(key, val);
+	}
+
+	
+
 	
 
 }

@@ -539,16 +539,18 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			IndexedExpression indexex = (IndexedExpression)assex.left;
 			CinciaObject indexable = eval(indexex.indexable, enviro);
 			CinciaObject index = eval(indexex.index, enviro);
+			
+			indexable.set(index, rval);
 
-			// if index is an int
-			if(index instanceof CinciaInt) {
-				indexable.set(((CinciaInt)index).getValue(), rval);
-			}
-
-			// if index is a string
-			if(index instanceof CinciaString) {
-				indexable.set(((CinciaString)index).getValue(), rval);
-			}
+//			// if index is an int
+//			if(index instanceof CinciaInt) {
+//				indexable.set(((CinciaInt)index).getValue(), rval);
+//			}
+//
+//			// if index is a string
+//			if(index instanceof CinciaString) {
+//				indexable.set(((CinciaString)index).getValue(), rval);
+//			}
 
 			// TODO: fancy index
 			//TODO: move multi assign (set) and get into CinciaObject

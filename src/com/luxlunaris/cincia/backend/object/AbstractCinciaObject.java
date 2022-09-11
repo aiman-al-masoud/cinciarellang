@@ -9,6 +9,8 @@ import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
+import com.luxlunaris.cincia.backend.primitives.CinciaInt;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -333,6 +335,24 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public boolean isImmutable() {
 		return immutable;
+	}
+
+	@Override
+	public void set(CinciaObject key, CinciaObject val) {
+
+		// if index is an int
+		if(key instanceof CinciaInt) {
+			set(((CinciaInt)key).getValue(), val);
+			return;
+		}
+
+		// if index is a string
+		if(key instanceof CinciaString) {
+			set(((CinciaString)key).getValue(), val);
+			return;
+		}
+
+		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
 	}
 
 
