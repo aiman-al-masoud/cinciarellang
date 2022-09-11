@@ -9,7 +9,7 @@ x[0] == 1 // true
 
 # Fancy Indexing
 
-If you index a list using another list, you can select multiple elements of the list, placing them in a shallow copy of the original:
+If you index a list using another list, you can select multiple elements thereof, placing them in a shallow copy of the original:
 
 ```
 x = [1,2,3,4]
