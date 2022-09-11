@@ -14,7 +14,7 @@ If you index a list using another list, you can select multiple elements thereof
 ```
 x = [1,2,3,4]
 y = x[[2,1]]
-y == [3, 2]
+y == [3, 2] //true
 ```
 
 
