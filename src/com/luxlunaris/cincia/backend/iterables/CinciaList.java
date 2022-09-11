@@ -10,6 +10,8 @@ import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.primitives.CinciaInt;
+import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -92,6 +94,23 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	@Override
 	public List<Object> toJava() {
 		return list.stream().map(o->o.toJava()).collect(Collectors.toList());
+	}
+	
+	
+	@Override
+	public CinciaObject __mul__(CinciaObject other) {
+		
+		try {
+			CinciaInt cincint = (CinciaInt)other;
+			List<CinciaObject> li = list.stream().map(x->x.__mul__(cincint)).collect(Collectors.toList());
+			CinciaList res = new CinciaList(Type.Any); //specify type
+			res.list = li;
+			return res;
+		} catch (Exception e) {
+			
+		}
+		
+		throw new RuntimeException("Operation: 'list times "+other.getType()+"' not supported!");
 	}
 	
 
