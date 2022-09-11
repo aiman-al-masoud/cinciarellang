@@ -10,4 +10,7 @@ Its main features include:
 * Sugary and addictive high-level syntax.
 * Support for Java classes and objects.
 
+Coding in it should feel like coding in a statically typed dialect of Python with functional overtones and full support for the wealth of libraries written in Java.
+
+
 
