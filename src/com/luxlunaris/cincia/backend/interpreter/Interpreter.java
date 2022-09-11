@@ -26,6 +26,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
+import com.luxlunaris.cincia.backend.throwables.IncompatibleTypesException;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -509,7 +510,19 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// if l-value is an identifier
 		if(assex.left instanceof Identifier) {
-			enviro.set(((Identifier)assex.left).value, rval, rval.getType());
+
+			String id = ((Identifier)assex.left).value;
+
+			try {
+				enviro.set(id, rval, rval.getType());
+
+			} catch (IncompatibleTypesException e) {
+				e.lvalue = id;
+				e.expected = enviro.getType(id);
+				e.got = rval.getType();
+				throw e;
+			}
+
 		}
 
 		// if l-value is a dot expression
