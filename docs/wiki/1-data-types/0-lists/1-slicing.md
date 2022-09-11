@@ -1,6 +1,7 @@
 # Slicing 
 
-Slicing can be achieved by combining fancy indexing with the `to` operator:
+
+Slicing can be achieved by combining (fancy indexing)[./0-indexing] with the `to` operator:
 
 ```
 x = [1,2,3,4,5]
