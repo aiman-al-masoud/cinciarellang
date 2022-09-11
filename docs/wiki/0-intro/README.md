@@ -4,7 +4,7 @@ Cinciarellang is a high-level, statically typed, multi-paradigm general purpose 
 
 Its main features include:
 
-* First class support for deep and immutable copies.
+* First class support for deep and immutable copies of objects.
 * Pure functions, with optionally impure features.
 * Static typing and type inference.
 * Sugary and addictive high-level syntax.
