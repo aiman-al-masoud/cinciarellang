@@ -1,0 +1,3 @@
+x = {'cat' : 'meow!', 'dog' : 'woof!', 'tiger' : 'chuff!'};
+felidae = x[['cat', 'tiger']];
+felidae[0] == 'meow!' && felidae[1] == 'chuff!';
