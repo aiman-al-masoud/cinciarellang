@@ -406,6 +406,17 @@ public class AbstractCinciaObject implements CinciaObject{
 	public CinciaBool is(List<CinciaObject> args) {
 		return new CinciaBool(this == args.get(0));// this == other
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		try {
+			return __eq__((CinciaObject)obj).__bool__();
+		} catch (ClassCastException e) {
+			throw new RuntimeException("Tried comparing cincia object with non-cincia object");
+		}
+		
+	}
 
 
 

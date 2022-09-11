@@ -10,6 +10,7 @@ import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
@@ -111,6 +112,20 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		}
 		
 		throw new RuntimeException("Operation: 'list times "+other.getType()+"' not supported!");
+	}
+	
+	@Override
+	public CinciaObject __eq__(CinciaObject other) {
+		
+		try {
+			CinciaList otheriter = (CinciaList)other;
+		
+			return new CinciaBool( otheriter.list.equals(this.list) );
+		} catch (ClassCastException e) {
+			
+		}
+		
+		return new CinciaBool(false);
 	}
 	
 
