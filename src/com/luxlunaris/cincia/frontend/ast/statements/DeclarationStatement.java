@@ -19,6 +19,7 @@ public class DeclarationStatement implements Statement{
 
 	@Override
 	public Statement simplify() {
+		this.declaration = declaration.simplify();
 		return this;
 	}
 	

@@ -504,6 +504,7 @@ public class Parser {
 		sD.modifiers = modifiers;
 		sD.name = id;
 		sD.type = parseType();
+//		System.out.println(sD.type.getClass());
 		return sD;
 	}
 

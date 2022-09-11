@@ -14,6 +14,7 @@ public class UnionType implements Type{
 	public List<SingleType> types;
 	
 	public UnionType() {
+//		System.out.println("creating union type");
 		types = new ArrayList<SingleType>();
 	}
 	
@@ -23,6 +24,8 @@ public class UnionType implements Type{
 	
 	@Override
 	public Expression simplify() {
+		
+		System.out.println("simplfiying union type");
 		
 		if(types.size()==1) {
 			return types.get(0);

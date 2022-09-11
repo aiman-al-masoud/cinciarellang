@@ -58,9 +58,16 @@ public class Enviro {
 
 	public void set(String key, CinciaObject val, Type type) {
 		//TODO: maybe add final property in another map to check if reassignment is permitted
+		
+		
 
 		// variable already exists/declared, need to check type:
 		if(vars.containsKey(key)) {
+			
+			System.out.println("for key: "+key+" expected type: "+types.get(key));
+			System.out.println("for key: "+key+" got type: "+val.getType());
+			System.out.println("expected: "+types.get(key).getClass()+"  got: "+val.getType().getClass());
+			System.out.println(types.get(key).matches(val.getType()));
 
 			// if types don't match, error!
 			if(!types.get(key).matches(val.getType())) {
