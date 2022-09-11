@@ -74,5 +74,6 @@ public interface CinciaObject {
 	CinciaObject copy(List<CinciaObject> args); 
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
 	Object toJava(); //returns a Java-object equivalent
+	CinciaBool is(List<CinciaObject> args);
 
 }

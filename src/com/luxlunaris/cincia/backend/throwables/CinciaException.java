@@ -6,6 +6,7 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.Magic;
+import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.OneNameType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.SingleType;
@@ -259,6 +260,13 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public CinciaObject get(CinciaObject key) {
 		return object.get(key);
+	}
+
+
+
+	@Override
+	public CinciaBool is(List<CinciaObject> args) {
+		return new CinciaBool(this == args.get(0)); // this == other
 	}
 
 	

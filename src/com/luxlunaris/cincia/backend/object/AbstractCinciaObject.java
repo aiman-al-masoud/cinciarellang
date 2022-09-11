@@ -33,6 +33,7 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(Magic.copy, new CinciaMethod(this::copy, this));
 			set(Magic.freeze, new CinciaMethod(this::freeze, this));
 			set(Magic.as, new CinciaMethod(this::as, this));
+			set(Magic.is, new CinciaMethod(this::is, this));
 		}
 
 	}
@@ -399,6 +400,11 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		
 		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
+	}
+
+	@Override
+	public CinciaBool is(List<CinciaObject> args) {
+		return new CinciaBool(this == args.get(0));// this == other
 	}
 
 

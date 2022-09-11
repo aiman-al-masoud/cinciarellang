@@ -30,7 +30,8 @@ public enum Magic {
 	as,
 	copy, 
 	freeze,
-	THIS;
+	THIS,
+	is;
 	
 	@Override
 	public String toString() {
