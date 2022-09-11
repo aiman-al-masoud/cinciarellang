@@ -17,7 +17,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
-	
+
 	protected List<CinciaObject> list;
 
 	public CinciaList(Type type) {
@@ -29,28 +29,28 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	public Iterator<CinciaObject> iterator() {
 		return list.iterator();
 	}
-	
+
 	@Override
 	public CinciaObject get(int key) {
 		return list.get(key);
 	}
-	
+
 	@Override
 	public void set(int key, CinciaObject val, Type type) {
-		
+
 		checkImmutable();
 		list.set(key, val);
 	}
-	
+
 	public void add(CinciaObject val) {
 		list.add(val);
 	}
-	
+
 	@Override
 	public String toString() {
 		return list.toString();
 	}
-	
+
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
 		CinciaList c = new CinciaList(type);
@@ -60,17 +60,17 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public CinciaIterable filter(PureCinciaFunction f) {
-		
+
 		List<CinciaObject> list = this.list.stream().filter( o -> f.run(Arrays.asList(o)).__bool__() ).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type);
 		res.list = list;
 		return res;
-		
+
 	}
 
 	@Override
 	public CinciaIterable map(PureCinciaFunction f) {
-		
+
 		List<CinciaObject> list = this.list.stream().map( o -> f.run(Arrays.asList(o))).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type); //TODO: type may not be the same
 		res.list = list;
@@ -82,25 +82,25 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public long size() {
 		return list.size();
 	}
-	
+
 	protected CinciaObject getBlank() {
 		return new CinciaList(getType());
 	}
-	
+
 	@Override
 	public List<Object> toJava() {
 		return list.stream().map(o->o.toJava()).collect(Collectors.toList());
 	}
-	
-	
+
+
 	@Override
 	public CinciaObject __mul__(CinciaObject other) {
-		
+
 		try {
 			CinciaInt cincint = (CinciaInt)other;
 			List<CinciaObject> li = list.stream().map(x->x.__mul__(cincint)).collect(Collectors.toList());
@@ -108,25 +108,25 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 			res.list = li;
 			return res;
 		} catch (Exception e) {
-			
+
 		}
-		
+
 		throw new RuntimeException("Operation: 'list times "+other.getType()+"' not supported!");
 	}
-	
+
 	@Override
 	public CinciaObject __eq__(CinciaObject other) {
-		
+
 		try {
 			CinciaList otheriter = (CinciaList)other;
-		
+
 			return new CinciaBool( otheriter.list.equals(this.list) );
 		} catch (ClassCastException e) {
-			
+
 		}
-		
+
 		return new CinciaBool(false);
 	}
-	
+
 
 }
