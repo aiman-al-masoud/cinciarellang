@@ -65,7 +65,6 @@ public class Enviro {
 			
 			// if types don't match, error!
 			if(!types.get(key).matches(val.getType())) {
-//				throw new RuntimeException("incompatible types!");
 				throw new IncompatibleTypesException();
 			}
 
