@@ -1,6 +1,6 @@
 # Cinciarellang!
 
-Cinciarellang is a high-level, statically typed, multi-paradigm general purpose programming language.
+Cinciarellang is a high-level, statically typed, multi-paradigm general purpose programming language running on the JVM.
 
 Its main features include:
 
