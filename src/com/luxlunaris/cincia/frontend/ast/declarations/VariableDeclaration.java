@@ -26,7 +26,6 @@ public class VariableDeclaration extends SingleDeclaration{
 	public VariableDeclaration() {
 		modifiers = new ArrayList<Modifiers>();
 		type = Type.Any; //type is Any by default
-		System.out.println("creating var dec");
 	}
 	
 	public void addModifier(Modifier modifier) {
@@ -40,7 +39,6 @@ public class VariableDeclaration extends SingleDeclaration{
 
 	@Override
 	public Declaration simplify() {
-		System.out.println("simplifying var dec");
 		this.type = (Type) type.simplify();
 		return this;
 	}

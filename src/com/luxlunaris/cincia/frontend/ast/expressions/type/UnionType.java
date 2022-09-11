@@ -24,9 +24,7 @@ public class UnionType implements Type{
 	
 	@Override
 	public Expression simplify() {
-		
-		System.out.println("simplfiying union type");
-		
+				
 		if(types.size()==1) {
 			return types.get(0);
 		}
