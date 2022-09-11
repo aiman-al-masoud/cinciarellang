@@ -167,7 +167,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	}
 	
 	@Override
-	public CinciaObject into(List<CinciaObject> args) {
+	public CinciaObject as(List<CinciaObject> args) {
 		
 		CinciaObject type = args.get(0);
 		

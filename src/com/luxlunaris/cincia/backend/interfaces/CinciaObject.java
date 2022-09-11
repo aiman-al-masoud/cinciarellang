@@ -70,7 +70,7 @@ public interface CinciaObject {
 	CinciaObject __str__() ;
 	CinciaObject __neg__() ;
 	CinciaObject __init__(List<CinciaObject> args);
-	CinciaObject into(List<CinciaObject> args); //cast/conversion to other class	
+	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	
 	CinciaObject copy(List<CinciaObject> args); 
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
 	Object toJava(); //returns a Java-object equivalent

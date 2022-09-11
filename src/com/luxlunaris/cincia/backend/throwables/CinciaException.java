@@ -216,7 +216,7 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	}
 
 	@Override
-	public CinciaObject into(List<CinciaObject> args) {
+	public CinciaObject as(List<CinciaObject> args) {
 		// TODO Auto-generated method stub
 		return null;
 	}
