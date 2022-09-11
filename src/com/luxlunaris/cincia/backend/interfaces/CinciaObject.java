@@ -33,7 +33,6 @@ public interface CinciaObject {
 			return new JavaObject(object);
 		}
 
-//		throw new RuntimeException("Unknown CinciaObject type wrapper");	
 	}
 
 	Object getValue();
