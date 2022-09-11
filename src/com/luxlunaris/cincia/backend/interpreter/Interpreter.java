@@ -753,15 +753,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	}
 	
-	//TODO: generalize get method on CinciaObject like set,
-	// add multi get and multi set for fancy indexing  
+	
 	@Override
 	public CinciaObject evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
-
 		CinciaObject o = eval(indexex.indexable, enviro);
 		CinciaObject index = eval(indexex.index , enviro);
-		return o.get(index);
-		
+		return o.get(index);	
 	}
 
 	@Override
