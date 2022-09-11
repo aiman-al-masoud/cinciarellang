@@ -50,7 +50,7 @@ public class TokenStream {
 			Boolean b = Bool.stringToBool(val);
 			Modifiers mod = Modifiers.fromString(val);
 
-			if(kw==null) {
+			if(kw==null  || currTok!=null && currTok.getValue().equals(Punctuations.DOT)) {
 				currTok = new Identifier(val);
 				return;
 			} 

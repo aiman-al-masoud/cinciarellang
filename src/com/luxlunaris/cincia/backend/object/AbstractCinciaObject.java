@@ -30,7 +30,7 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(Magic.THIS, this); //TODO: extract into keywords
 			set(Magic.copy, new CinciaMethod(this::copy, this));
 			set(Magic.freeze, new CinciaMethod(this::freeze, this));
-			set(Magic.into, new CinciaMethod(this::into, this));
+			set(Magic.as, new CinciaMethod(this::into, this));
 		}
 
 	}
@@ -246,7 +246,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	// .as(ClassName) //TODO: cast/conversion to other class
 	@Override
 	public CinciaObject into(List<CinciaObject> args) {
-		CinciaMethod cm = (CinciaMethod)get(Magic.into);
+		CinciaMethod cm = (CinciaMethod)get(Magic.as);
 		return cm.run(args);
 	}
 
