@@ -378,27 +378,13 @@ public class AbstractCinciaObject implements CinciaObject{
 			CinciaList l = new CinciaList(Type.Any);
 
 			for(CinciaObject i : ((CinciaIterable)key)) {
-				
 				l.add(get(i));
-
-//				try {
-//					l.add(o.get((int)i.getValue()));
-//				}catch (ClassCastException e) {
-//
-//				}
-//
-//				try {
-//					l.add(o.get((String)i.getValue()));
-//				}catch (ClassCastException e) {
-//
-//				}
-
 			}
 
 			return l;
 		}
 
-		
+
 		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
 	}
 
@@ -406,16 +392,16 @@ public class AbstractCinciaObject implements CinciaObject{
 	public CinciaBool is(List<CinciaObject> args) {
 		return new CinciaBool(this == args.get(0));// this == other
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		
+
 		try {
 			return __eq__((CinciaObject)obj).__bool__();
 		} catch (ClassCastException e) {
 			throw new RuntimeException("Tried comparing cincia object with non-cincia object");
 		}
-		
+
 	}
 
 
