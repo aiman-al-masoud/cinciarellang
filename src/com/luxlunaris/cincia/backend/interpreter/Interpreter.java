@@ -313,12 +313,22 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
 
 		for (Statement s : cS.statements) {
+			
+			
+			if (s instanceof ReturnStatement) {
+				return evalReturnStatement((ReturnStatement)s, enviro);
+			}
 
 			CinciaObject o = eval(s, enviro);
 
-			if (o!=null && o instanceof CinciaKeyword) {
+			if (o!=null && o.getValue().equals(Keywords.BREAK) ) {
 				return o;
 			}
+
+			if (o!=null && o.getValue().equals(Keywords.CONTINUE) ) {
+				return o;
+			}
+		
 
 		}
 
