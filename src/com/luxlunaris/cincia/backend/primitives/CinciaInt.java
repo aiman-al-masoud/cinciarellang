@@ -262,6 +262,29 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	public CinciaObject __neg__() {
 		return new CinciaInt(-value);
 	}
+	
+	@Override
+	public CinciaObject __gt__(CinciaObject other) {
+		
+		
+		try {
+
+			CinciaInt otherInt = (CinciaInt)other;
+			return new CinciaBool(value > otherInt.value);
+		}catch (ClassCastException e) {
+			
+		}
+		
+		try {
+
+			CinciaFloat otherFloat = (CinciaFloat)other;
+			return new CinciaBool(value > otherFloat.getValue());
+		}catch (ClassCastException e) {
+			
+		}
+		
+		throw new RuntimeException();
+	}
 
 
 }
