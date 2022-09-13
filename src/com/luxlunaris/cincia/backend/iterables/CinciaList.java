@@ -24,6 +24,11 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		super(new ListType(type));
 		list = new ArrayList<CinciaObject>();
 	}
+	
+	public CinciaList(Type type, List<CinciaObject> list) {
+		super(new ListType(type));
+		this.list = list;
+	}
 
 	@Override
 	public Iterator<CinciaObject> iterator() {
@@ -95,6 +100,10 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	@Override
 	public List<Object> toJava() {
 		return list.stream().map(o->o.toJava()).collect(Collectors.toList());
+	}
+	
+	public List<CinciaObject> getList(){
+		return list;
 	}
 
 

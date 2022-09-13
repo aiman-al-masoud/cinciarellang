@@ -7,7 +7,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
@@ -60,6 +62,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.BinaryExpression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
@@ -90,9 +93,8 @@ import com.luxlunaris.cincia.backend.interfaces.Eval;
 
 
 public class Interpreter extends AbstractTraversal<CinciaObject> {
-
-
-
+	
+	
 	@Override
 	public CinciaObject evalInt(Int intex, Enviro enviro) {
 		return CinciaObject.wrap(intex.getValue());
@@ -155,9 +157,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalContinueStatement(ContinueStatement continueStatement, Enviro enviro) {
 		return null; //useless
 	}
-
-
-
+	
+	
 	// for x, y, i in [[1,2],[3,4],[5,6],[7,8]]{ print(x, y, i);  }
 	// for x, y, i, a in [[1,2],[3,4],[5,6],[7,8]]{ print(x, y, i);  } SHOULD BE MARKED AS WRONG
 	// for x,y in [[1,2,3],[3,4,5],[5,6,7],[7,8,9]]{ print(x);  } SHOULD BE MARKED AS WRONG
@@ -380,10 +381,19 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return null;
 	}
 
+	/**
+	 * Retutns a CinciaList with an element for each single expression in the multi expression.
+	 */
 	@Override
 	public CinciaObject evalMultiExpression(MultiExpression multex, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<CinciaObject> elems = multex.expressions
+				.stream()
+				.map(e-> eval(e, enviro)) 
+				.flatMap( e -> e instanceof DestructuredList? ((DestructuredList)e).getList().stream() : Stream.of(e) ) // flatten out values to be unpacked
+				.collect(Collectors.toList());
+
+		return new CinciaList(Type.Any, elems); //TODO: specify type
 	}
 
 	@Override
@@ -662,45 +672,34 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
 
-		// TODO: move this c... into evalMultiExpression
-		List<Expression> elements = new ArrayList<Expression>();
-		if(listex.elements instanceof MultiExpression) {
-			elements.addAll(((MultiExpression)listex.elements).expressions);
-		}else {
-			elements.add(listex.elements);
+		CinciaObject o = eval(listex.elements, enviro);
+
+		// list ready
+		if(o instanceof CinciaList) {
+			return o;
 		}
 
+		// single destrutured element
+		if(o instanceof DestructuredList) {
+			return new CinciaList(Type.Any, ((DestructuredList)o).getList());
+		}
+		
+		// single element
+		return new CinciaList(Type.Any, Arrays.asList(o));
 
-		List<CinciaObject> objects = elements.stream().map(e->eval(e, enviro)).collect(Collectors.toList());
-		CinciaList cL = new CinciaList(Type.Any);
-
-		objects.forEach(o->{
-
-			if(o instanceof DestructuredList) {
-				((DestructuredList) o).forEach(e-> cL.add(e));
-			}else {
-				cL.add(o);
-			}
-
-		});
-
-		return cL;
 	}
 
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 
-		// TODO: move this c... into evalMultiExpression 
-		// get arguments 
-		List<CinciaObject> args = new ArrayList<CinciaObject>();
+		// get args
+		List<CinciaObject> args;
+		CinciaObject o = eval(callex.args, enviro);	
 
-		if(callex.args!=null) {
-			try {
-				MultiExpression mE = (MultiExpression)callex.args;
-				args.addAll(mE.expressions.stream().map(e-> eval(e, enviro)).collect(Collectors.toList()) );
-			}catch (ClassCastException e) {
-				args.add(eval(callex.args, enviro));
-			}
+		if(callex.args instanceof MultiExpression) { // multiple args
+			args = ((CinciaList)o).getList();
+		}else { // one single arg
+			args = o==null? Arrays.asList() : Arrays.asList(o) ;
 		}
 
 		// get called expression
