@@ -27,9 +27,9 @@ public class AbstractCinciaObject implements CinciaObject{
 		this.type = type;
 		immutable = false;
 		enviro = new Enviro(null); //TODO: parent null?
+		set(Magic.THIS, this); 
 
 		if(! (this instanceof CinciaFunction) ) {
-			set(Magic.THIS, this); 
 			set(Magic.copy, new CinciaMethod(this::copy, this));
 			set(Magic.freeze, new CinciaMethod(this::freeze, this));
 			set(Magic.as, new CinciaMethod(this::as, this));
@@ -354,8 +354,8 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(((CinciaString)key).getValue(), val);
 			return;
 		}
-		
-		
+
+
 		// if index is an iterable
 		if(key instanceof CinciaIterable) {
 
