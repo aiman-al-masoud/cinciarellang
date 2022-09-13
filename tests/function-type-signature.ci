@@ -1,0 +1,11 @@
+f:\x:int:int; 
+f = \x:int:int -> 2*x;
+f = \x:int:int -> 3*x;
+
+try{
+	f = \x:float:int -> 4*x;
+}catch e: IncompatibleTypesException{
+
+}
+
+f(1) == 3;

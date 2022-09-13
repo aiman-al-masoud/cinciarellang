@@ -25,7 +25,10 @@ public class Signature implements Type{
 			this.params = params.simplify();
 		}
 
-		this.returnType = (Type) returnType.simplify();
+		if(returnType!=null) {
+			this.returnType = (Type) returnType.simplify();
+		}
+
 		return this;
 	}
 
