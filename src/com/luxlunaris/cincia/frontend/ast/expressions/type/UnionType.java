@@ -42,7 +42,6 @@ public class UnionType implements Type{
 		
 		//TODO!!!!!!!!
 //		types.size() == 1
-		System.out.println(types);
 		return types.stream().anyMatch(t->t.matches(other));
 //		return true;
 	}
