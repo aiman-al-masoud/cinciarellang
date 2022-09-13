@@ -8,10 +8,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.throwables.IncompatibleTypesException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-public class Enviro {
+public class Enviro implements Stateful{
 
 	private Enviro parent;
 	private Map<String, CinciaObject> vars;
@@ -35,7 +36,8 @@ public class Enviro {
 	public Enviro newChild() {
 		return new Enviro(this);
 	}
-
+	
+	@Override
 	public CinciaObject get(String key) {
 
 		CinciaObject o = vars.get(key);
@@ -53,10 +55,12 @@ public class Enviro {
 
 	}
 
+	@Override
 	public Type getType(String key) {
 		return types.get(key);
 	}
 
+	@Override
 	public void set(String key, CinciaObject val, Type type) {
 		//TODO: maybe add final property in another map to check if reassignment is permitted
 		
@@ -74,10 +78,12 @@ public class Enviro {
 		types.put(key, type);
 	}
 
+	@Override
 	public void set(String key, CinciaObject val) {
 		set(key, val, val.getType());
 	}
 
+	@Override
 	public void remove(String key) {
 		vars.remove(key);
 		types.remove(key);
