@@ -41,6 +41,10 @@ public class LambdaExpression implements ObjectExpression{
 			this.block = (CompoundStatement) block.simplify();
 		}
 		
+		if(signature !=null) {
+			this.signature  = signature.simplify();
+		}
+		
 		return this;
 	}
 	

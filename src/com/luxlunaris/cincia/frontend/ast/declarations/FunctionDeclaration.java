@@ -27,6 +27,7 @@ public class FunctionDeclaration extends SingleDeclaration {
 	
 	@Override
 	public Declaration simplify() {
+		this.signature = signature.simplify();
 		return this;
 	}
 	
