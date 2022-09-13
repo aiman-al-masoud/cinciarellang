@@ -29,7 +29,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		enviro = new Enviro(null); //TODO: parent null?
 
 		if(! (this instanceof CinciaFunction) ) {
-			set(Magic.THIS, this); //TODO: extract into keywords
+			set(Magic.THIS, this); 
 			set(Magic.copy, new CinciaMethod(this::copy, this));
 			set(Magic.freeze, new CinciaMethod(this::freeze, this));
 			set(Magic.as, new CinciaMethod(this::as, this));
