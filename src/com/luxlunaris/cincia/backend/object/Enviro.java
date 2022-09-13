@@ -76,7 +76,7 @@ public class Enviro implements Stateful{
 		}
 
 		vars.put(key, val);
-		types.put(key, type);
+		types.put(key, getType(key)==null? type : getType(key)); // if there's an old type, keep it! (for union types to work)
 	}
 
 	@Override
