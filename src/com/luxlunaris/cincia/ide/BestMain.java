@@ -176,7 +176,7 @@ public class BestMain extends JFrame{
 						tokenColorize(doc);
 						List<Ast> statements = compileCheck(doc);
 						//TODO: statements could be null
-						runtimeCheck(statements, doc);
+//						runtimeCheck(statements, doc);
 					}
 				});
 
