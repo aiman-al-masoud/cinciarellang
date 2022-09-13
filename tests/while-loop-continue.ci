@@ -1,10 +1,10 @@
-/*
 y = 0;
 acc = 0;
 
 while y < 10 {
-	
+
 	if y == 5{
+		y++;
 		continue;
 	}
 
@@ -13,6 +13,3 @@ while y < 10 {
 }
 
 acc == 40;
-*/
-
-true;
