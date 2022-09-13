@@ -822,8 +822,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
 		return eval(negex.arg, enviro).__not__();
 	}
-	
-	
+
+
 	@Override
 	public CinciaObject evalPipeExpression(PipeExpression pipex, Enviro enviro) {
 
@@ -832,9 +832,15 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		//TODO: can this be parallelized like in bash?
 		for(int i=1; i<pipex.expressions.size(); i++) {
-			//TODO: only pure functions in pipes?
-			PureCinciaFunction f = (PureCinciaFunction)eval(pipex.expressions.get(i), envCopy); 
-			arg = f.run(Arrays.asList(arg));//, envCopy);
+
+			CinciaFunction f = (CinciaFunction)eval(pipex.expressions.get(i), envCopy); 
+
+			try {
+				arg = ((PureCinciaFunction)f).run(Arrays.asList(arg));//, envCopy);
+			} catch (ClassCastException e) {
+				arg = f.run(Arrays.asList(arg), envCopy);
+			}
+
 		}
 
 		return arg;
