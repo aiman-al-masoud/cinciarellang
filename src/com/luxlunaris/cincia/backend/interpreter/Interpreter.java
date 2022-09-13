@@ -264,9 +264,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			enviro.set( id.value, new JavaClass(clazz));
 			return null;
 		} catch (ClassNotFoundException e1) {
-			//			e1.printStackTrace();
-		}
 
+		}
 
 		//1 if fromPath is path to text file, load code into string
 		String source = "";		
@@ -274,7 +273,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			List<String> lines = Files.readAllLines(Paths.get(importStatement.fromPath.value), StandardCharsets.UTF_8);
 			source = lines.stream().reduce((l1,l2)->l1+"\n"+l2).get();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException("Wrong import!");//TODO: make class.
 		}
 
 		//2 create a new isolated env
