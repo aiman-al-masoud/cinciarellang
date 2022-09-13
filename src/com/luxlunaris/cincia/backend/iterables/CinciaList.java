@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
@@ -21,13 +22,13 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	protected List<CinciaObject> list;
 
 	public CinciaList(Type type) {
-		super(new ListType(type));
-		list = new ArrayList<CinciaObject>();
+		this(type, new ArrayList<CinciaObject>());
 	}
 	
 	public CinciaList(Type type, List<CinciaObject> list) {
 		super(new ListType(type));
 		this.list = list;
+		set("map",  new CinciaMethod(this::map, this));
 	}
 
 	@Override
@@ -81,6 +82,14 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		res.list = list;
 		return res;
 	}
+	
+	public CinciaIterable map(List<CinciaObject> args) {
+		return map((PureCinciaFunction)args.get(0)); 
+	}
+	
+	
+	
+	
 
 	@Override
 	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
