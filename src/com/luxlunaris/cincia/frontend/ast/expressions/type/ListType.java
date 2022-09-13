@@ -28,7 +28,7 @@ public class ListType  extends CollectionType{
 		try {
 
 			ListType otherl = (ListType)other;
-			return otherl.value.matches(value);
+			return value.matches(otherl.value);
 
 		} catch (ClassCastException e) {
 
