@@ -554,12 +554,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			IndexedExpression indexex = (IndexedExpression)assex.left;
 			CinciaObject indexable = eval(indexex.indexable, enviro);
 			CinciaObject index = eval(indexex.index, enviro);
-
 			indexable.set(index, rval);
-
-			// TODO: fancy index
-			//TODO: move multi assign (set) and get into CinciaObject
-
 
 		}catch (ClassCastException e) {
 
