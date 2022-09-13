@@ -63,6 +63,7 @@ public class Enviro implements Stateful{
 	@Override
 	public void set(String key, CinciaObject val, Type type) {
 		//TODO: maybe add final property in another map to check if reassignment is permitted
+		//TODO: add modifiers list in params 
 		
 		// variable already exists/declared, need to check type:
 		if(vars.containsKey(key)) {
