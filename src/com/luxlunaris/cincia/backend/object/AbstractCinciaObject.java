@@ -354,6 +354,17 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(((CinciaString)key).getValue(), val);
 			return;
 		}
+		
+		
+		// if index is an iterable
+		if(key instanceof CinciaIterable) {
+
+			for(CinciaObject i : ((CinciaIterable)key)) {
+				set(i, val instanceof CinciaIterable ? val.get(i) : val ); // if val is not another list, assign all keys to same single value of val.
+			}
+
+			return;
+		}
 
 		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
 	}
