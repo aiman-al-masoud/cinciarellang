@@ -33,4 +33,9 @@ public class MultiDeclaration implements Declaration{
 		return this;
 	}
 
+	@Override
+	public List<SingleDeclaration> toList() {
+		return declarations;
+	}
+
 }

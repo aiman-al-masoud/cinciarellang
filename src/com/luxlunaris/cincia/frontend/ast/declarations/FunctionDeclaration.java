@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.frontend.ast.declarations;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
@@ -47,6 +48,11 @@ public class FunctionDeclaration extends SingleDeclaration {
 	@Override
 	public List<Modifiers> getModifiers() {
 		return modifiers;
+	}
+
+	@Override
+	public List<SingleDeclaration> toList() {
+		return Arrays.asList(this);
 	}
 	
 }

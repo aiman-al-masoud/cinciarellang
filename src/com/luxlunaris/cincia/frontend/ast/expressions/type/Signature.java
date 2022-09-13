@@ -31,7 +31,32 @@ public class Signature implements Type{
 
 	@Override
 	public boolean matches(Type other) {
-		return true; //TODO:!!!!
+
+		try {
+
+			Signature otherSig = (Signature)other;
+
+			// unequal number of params
+			if(params.toList().size() != otherSig.params.toList().size()) {
+				return false;
+			}
+
+			// all positional param types must match
+			for(int i=0; i<params.toList().size(); i++) {
+				Type thisType = params.toList().get(0).getType();
+				Type otherType = otherSig.params.toList().get(i).getType();
+				if (!thisType.matches(otherType)) return false; // order matters, reference can be more general than assigned value
+			}
+
+			// lastly check return type
+			return returnType.matches(otherSig.returnType);
+
+		} catch (ClassCastException e) {
+
+		}
+
+		return false;
+
 	}
 
 }
