@@ -142,11 +142,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	}
 
-	@Override
-	public CinciaObject evalMatchStatement(MatchStatement ifStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public CinciaObject evalBreakStatement(BreakStatement breakStatement, Enviro enviro) {
@@ -368,7 +363,19 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
+	public CinciaObject evalMatchStatement(MatchStatement ifStatement, Enviro enviro) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public CinciaObject evalDefaultStatement(DefaultStatement defaultStatement, Enviro enviro) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CinciaObject evalCaseStatement(CaseStatement caseStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -378,11 +385,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return eval(returnStatement.expression, enviro);
 	}
 
-	@Override
-	public CinciaObject evalCaseStatement(CaseStatement caseStatement, Enviro enviro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	/**
 	 * Retutns a CinciaList with an element for each single expression in the multi expression.
