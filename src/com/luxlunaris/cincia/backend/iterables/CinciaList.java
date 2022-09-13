@@ -10,6 +10,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.IterMethods;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
@@ -28,7 +29,9 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	public CinciaList(Type type, List<CinciaObject> list) {
 		super(new ListType(type));
 		this.list = list;
-		set("map",  new CinciaMethod(this::map, this));
+		set(IterMethods.map.toString(),  new CinciaMethod(this::map, this));
+		set(IterMethods.filter.toString(),  new CinciaMethod(this::filter, this));
+
 	}
 
 	@Override
@@ -66,17 +69,18 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public CinciaIterable filter(PureCinciaFunction f) {
-
 		List<CinciaObject> list = this.list.stream().filter( o -> f.run(Arrays.asList(o)).__bool__() ).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type);
 		res.list = list;
 		return res;
-
+	}
+	
+	public CinciaIterable filter(List<CinciaObject> args) {
+		return filter((PureCinciaFunction)args.get(0)); 
 	}
 
 	@Override
 	public CinciaIterable map(PureCinciaFunction f) {
-
 		List<CinciaObject> list = this.list.stream().map( o -> f.run(Arrays.asList(o))).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type); //TODO: type may not be the same
 		res.list = list;
