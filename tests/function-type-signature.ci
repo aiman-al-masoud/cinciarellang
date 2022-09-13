@@ -5,7 +5,7 @@ f = \x:int:int -> 3*x;
 try{
 	f = \x:float:int -> 4*x;
 }catch e: IncompatibleTypesException{
-
+	caught = true;
 }
 
-f(1) == 3;
+f(1) == 3 && caught;
