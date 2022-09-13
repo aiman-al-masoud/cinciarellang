@@ -32,9 +32,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		super(lambdex.signature);
 		this.eval = eval;
 		this.lambdex = lambdex;
-		params = parseParams(lambdex);	
-		
-		set(Magic.THIS, this);
+		params = parseParams(lambdex);			
 	}
 
 	public CinciaFunction(WrappedFunction wrappedFunction) {
