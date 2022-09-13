@@ -822,14 +822,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
 		return eval(negex.arg, enviro).__not__();
 	}
-
-
-	// TEST
-	// double = \x -> 2*x
-	// 1 | double | double | double 
-	// f = \x-> ( x | double | double | double )
-	// 3 | f
-	// x | \x->4*5 | \x->x<1
+	
+	
 	@Override
 	public CinciaObject evalPipeExpression(PipeExpression pipex, Enviro enviro) {
 
