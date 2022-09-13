@@ -93,8 +93,8 @@ import com.luxlunaris.cincia.backend.interfaces.Eval;
 
 
 public class Interpreter extends AbstractTraversal<CinciaObject> {
-	
-	
+
+
 	@Override
 	public CinciaObject evalInt(Int intex, Enviro enviro) {
 		return CinciaObject.wrap(intex.getValue());
@@ -157,8 +157,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalContinueStatement(ContinueStatement continueStatement, Enviro enviro) {
 		return new CinciaKeyword(Keywords.CONTINUE);
 	}
-	
-	
+
+
 	// for x, y, i in [[1,2],[3,4],[5,6],[7,8]]{ print(x, y, i);  }
 	// for x, y, i, a in [[1,2],[3,4],[5,6],[7,8]]{ print(x, y, i);  } SHOULD BE MARKED AS WRONG
 	// for x,y in [[1,2,3],[3,4,5],[5,6,7],[7,8,9]]{ print(x);  } SHOULD BE MARKED AS WRONG
@@ -313,31 +313,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
 
 		for (Statement s : cS.statements) {
-			
+
 			CinciaObject o = eval(s, enviro);
-			
+
 			if (o!=null && o instanceof CinciaKeyword) {
-//				System.out.println(o);
 				return o;
 			}
-			
-//			if(o!=null && o.getValue().equals(Keywords.BREAK)) {
-//				return o;
-//			}
-//			
-//			if(o!=null && o.getValue().equals(Keywords.CONTINUE)) {
-//				return o;
-//			}
-
-//			if(s instanceof ReturnStatement) {
-//				return eval( (ReturnStatement)s , enviro);
-//			}else if(s instanceof BreakStatement) {
-//				return new CinciaKeyword(Keywords.BREAK);
-//			}else if(s instanceof ContinueStatement) {
-//				return new CinciaKeyword(Keywords.CONTINUE);
-//			}else {
-//				eval(s, enviro);
-//			}
 
 		}
 
@@ -698,7 +679,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		if(o instanceof DestructuredList) {
 			return new CinciaList(Type.Any, ((DestructuredList)o).getList());
 		}
-		
+
 		// single element
 		return new CinciaList(Type.Any, Arrays.asList(o));
 
