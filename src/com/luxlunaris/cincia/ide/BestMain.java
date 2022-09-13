@@ -38,7 +38,9 @@ import com.luxlunaris.cincia.frontend.charstream.CinciaSyntaxException;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
 
-
+// TODO: try new stategy: keep displaying runtime errors "persistently" but after
+// running, don't re-run automatically at every keystroke,
+// because that's sloooooow!!!
 
 public class BestMain extends JFrame{
 
