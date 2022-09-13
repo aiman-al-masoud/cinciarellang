@@ -38,12 +38,8 @@ public class UnionType implements Type{
 	}
 
 	@Override
-	public boolean matches(Type other) {
-		
-		//TODO!!!!!!!!
-//		types.size() == 1
+	public boolean matches(Type other) {		
 		return types.stream().anyMatch(t->t.matches(other));
-//		return true;
 	}
 	
 }
