@@ -31,8 +31,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		this.list = list;
 		set(IterMethods.map.toString(),  new CinciaMethod(this::map, this));
 		set(IterMethods.filter.toString(),  new CinciaMethod(this::filter, this));
-		set(IterMethods.size.toString(),  new CinciaMethod(this::size, this));
-
 	}
 
 	@Override
@@ -92,10 +90,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return map((PureCinciaFunction)args.get(0)); 
 	}
 	
-	
-	
-	
-
 	@Override
 	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
 		// TODO Auto-generated method stub
@@ -105,10 +99,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	@Override
 	public long size() {
 		return list.size();
-	}
-	
-	public CinciaInt size(List<CinciaObject> args) {
-		return new CinciaInt((int)size());
 	}
 
 	protected CinciaObject getBlank() {
@@ -154,6 +144,18 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 		return new CinciaBool(false);
 	}
+	
+	
+	@Override
+	public CinciaObject get(String key) {
+		
+		if(key.equals(IterMethods.size.toString()) ) {
+			return new CinciaInt((int)size());
+		}
+		
+		return super.get(key);
+	}
+	
 
 
 }
