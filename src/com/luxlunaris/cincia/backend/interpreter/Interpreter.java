@@ -398,7 +398,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				.flatMap( e -> e instanceof DestructuredList? ((DestructuredList)e).getList().stream() : Stream.of(e) ) // flatten out values to be unpacked
 				.collect(Collectors.toList());
 
-		return new CinciaList(Type.Any, elems); //TODO: specify type
+		return new CinciaList(elems); //TODO: specify type
 	}
 
 	@Override
@@ -681,11 +681,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// single destrutured element
 		if(o instanceof DestructuredList) {
-			return new CinciaList(Type.Any, ((DestructuredList)o).getList());
+			return new CinciaList( ((DestructuredList)o).getList());
 		}
 
 		// single element
-		return new CinciaList(Type.Any, Arrays.asList(o));
+		return new CinciaList(Arrays.asList(o));
 
 	}
 

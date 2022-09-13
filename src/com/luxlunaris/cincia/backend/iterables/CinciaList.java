@@ -25,12 +25,22 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	public CinciaList(Type type) {
 		this(type, new ArrayList<CinciaObject>());
 	}
-	
+
 	public CinciaList(Type type, List<CinciaObject> list) {
 		super(new ListType(type));
 		this.list = list;
 		set(IterMethods.map.toString(),  new CinciaMethod(this::map, this));
 		set(IterMethods.filter.toString(),  new CinciaMethod(this::filter, this));
+	}
+
+
+	public CinciaList(List<CinciaObject> list) {
+		this(inferType(list), list);
+	}
+
+	static protected Type inferType(List<CinciaObject> list) {
+		boolean singleType = list.stream().allMatch(e->list.get(0).getType().matches(e.getType()));
+		return singleType? list.get(0).getType() : Type.Any;
 	}
 
 	@Override
@@ -73,7 +83,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		res.list = list;
 		return res;
 	}
-	
+
 	public CinciaIterable filter(List<CinciaObject> args) {
 		return filter((PureCinciaFunction)args.get(0)); 
 	}
@@ -85,11 +95,11 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		res.list = list;
 		return res;
 	}
-	
+
 	public CinciaIterable map(List<CinciaObject> args) {
 		return map((PureCinciaFunction)args.get(0)); 
 	}
-	
+
 	@Override
 	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
 		// TODO Auto-generated method stub
@@ -109,7 +119,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	public List<Object> toJava() {
 		return list.stream().map(o->o.toJava()).collect(Collectors.toList());
 	}
-	
+
 	public List<CinciaObject> getList(){
 		return list;
 	}
@@ -144,18 +154,18 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 		return new CinciaBool(false);
 	}
-	
-	
+
+
 	@Override
 	public CinciaObject get(String key) {
-		
+
 		if(key.equals(IterMethods.size.toString()) ) {
 			return new CinciaInt((int)size());
 		}
-		
+
 		return super.get(key);
 	}
-	
+
 
 
 }
