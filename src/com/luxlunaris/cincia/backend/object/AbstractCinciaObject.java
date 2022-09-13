@@ -29,7 +29,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		enviro = new Enviro(null); //TODO: parent null?
 		set(Magic.THIS, this); 
 
-		if(! (this instanceof CinciaFunction) ) {
+		if(! (this instanceof CinciaFunction) ) { //else inf recursion upon creating CinciaMethods
 			set(Magic.copy, new CinciaMethod(this::copy, this));
 			set(Magic.freeze, new CinciaMethod(this::freeze, this));
 			set(Magic.as, new CinciaMethod(this::as, this));
