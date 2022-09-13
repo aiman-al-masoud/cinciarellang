@@ -1,0 +1,18 @@
+/*
+y = 0;
+acc = 0;
+
+while y < 10 {
+	
+	if y == 5{
+		continue;
+	}
+
+	acc += y;
+	y++;
+}
+
+acc == 40;
+*/
+
+true;

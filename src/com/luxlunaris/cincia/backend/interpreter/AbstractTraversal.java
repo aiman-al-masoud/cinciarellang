@@ -71,9 +71,6 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 public abstract class AbstractTraversal<T> {
 
 	public T eval(Ast ast, Enviro enviro) {
-		
-		
-		
 
 		if(ast instanceof Expression) {
 			return evalExpression((Expression)ast, enviro);
@@ -83,41 +80,49 @@ public abstract class AbstractTraversal<T> {
 
 		}else if (ast instanceof Declaration) {
 			return evalDeclaration((Declaration)ast, enviro);
-		
+
 		}else if (ast instanceof DeclarationStatement) {
-				return evalDeclaration(((DeclarationStatement)ast).declaration, enviro);
-			
+			return evalDeclaration(((DeclarationStatement)ast).declaration, enviro);
+
 		}else if( ast instanceof IfStatement ) {
 			return evalIfStatement((IfStatement)ast, enviro);
 
 		}else if(ast instanceof MatchStatement) {
 			return evalMatchStatement((MatchStatement)ast, enviro);
-		
+
 		}else if(ast instanceof TryStatement) {
 			return evalTryStatement((TryStatement)ast, enviro);
-		
+
 		}else if(ast instanceof CompoundStatement) {
 			return evalCompoundStatement((CompoundStatement)ast, enviro);
-		
+
 		}else if(ast instanceof ForStatement) {
 			return evalForStatement((ForStatement)ast, enviro);
-			
+
 		}else if(ast instanceof ImportStatement) {
 			return evalImportStatement((ImportStatement)ast, enviro);
-			
+
 		}else if(ast instanceof WhileStatement) {
 			return evalWhileStatement((WhileStatement)ast, enviro);
-			
+
 		}else if(ast instanceof ThrowStatement) {
 			return evalThrowStatement((ThrowStatement)ast, enviro);
-		
+			
 		}else if (ast == null) { //TODO: really?
 			return null;
+			
 		}else if (ast instanceof ReturnStatement) {
 			return evalReturnStatement((ReturnStatement)ast, enviro);
+			
+		}else if ( ast instanceof BreakStatement ) {
+			return evalBreakStatement((BreakStatement)ast, enviro);
+			
+		}else if ( ast instanceof ContinueStatement ) {
+			return evalContinueStatement((ContinueStatement)ast, enviro);
+			
 		}
-		
-//		System.out.println(ast.getClass());
+
+		//		System.out.println(ast.getClass());
 		throw new RuntimeException("No such AST class!");
 	}
 
@@ -135,7 +140,7 @@ public abstract class AbstractTraversal<T> {
 			return evalMultiExpression((MultiExpression)expression, enviro);
 
 		}else if(expression instanceof ObjectExpression) {
-			
+
 			return evalObjectExpression((ObjectExpression)expression, enviro);
 
 		}else if(expression instanceof PostfixExpression) {
@@ -155,7 +160,7 @@ public abstract class AbstractTraversal<T> {
 
 		}else if(expression instanceof PipeExpression) {
 			return evalPipeExpression((PipeExpression)expression, enviro);
-		
+
 		}
 
 		throw new RuntimeException("No such expression class!");
@@ -263,10 +268,10 @@ public abstract class AbstractTraversal<T> {
 			return evalIdentifier((Identifier)primex, enviro);
 		}else if(primex instanceof Constant) {
 			return evalConstant((Constant)primex, enviro);
-		
+
 		}else if(primex instanceof Keyword) {
 			return (T) new CinciaKeyword( ((Keyword)primex).value );
-//			return (T) new CinciaClass();
+			//			return (T) new CinciaClass();
 		}
 
 		throw new RuntimeException("No such primary expression!");

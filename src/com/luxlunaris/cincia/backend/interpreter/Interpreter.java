@@ -150,12 +150,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalBreakStatement(BreakStatement breakStatement, Enviro enviro) {
-		return null; //useless
+		return new CinciaKeyword(Keywords.BREAK);
 	}
 
 	@Override
 	public CinciaObject evalContinueStatement(ContinueStatement continueStatement, Enviro enviro) {
-		return null; //useless
+		return new CinciaKeyword(Keywords.CONTINUE);
 	}
 	
 	
@@ -313,16 +313,31 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
 
 		for (Statement s : cS.statements) {
-
-			if(s instanceof ReturnStatement) {
-				return eval( (ReturnStatement)s , enviro);
-			}else if(s instanceof BreakStatement) {
-				return new CinciaKeyword(Keywords.BREAK);
-			}else if(s instanceof ContinueStatement) {
-				return new CinciaKeyword(Keywords.CONTINUE);
-			}else {
-				eval(s, enviro);
+			
+			CinciaObject o = eval(s, enviro);
+			
+			if (o!=null && o instanceof CinciaKeyword) {
+//				System.out.println(o);
+				return o;
 			}
+			
+//			if(o!=null && o.getValue().equals(Keywords.BREAK)) {
+//				return o;
+//			}
+//			
+//			if(o!=null && o.getValue().equals(Keywords.CONTINUE)) {
+//				return o;
+//			}
+
+//			if(s instanceof ReturnStatement) {
+//				return eval( (ReturnStatement)s , enviro);
+//			}else if(s instanceof BreakStatement) {
+//				return new CinciaKeyword(Keywords.BREAK);
+//			}else if(s instanceof ContinueStatement) {
+//				return new CinciaKeyword(Keywords.CONTINUE);
+//			}else {
+//				eval(s, enviro);
+//			}
 
 		}
 
