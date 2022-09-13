@@ -56,6 +56,7 @@ public class Repl {
 				CinciaObject out = interpreter.eval(s, enviro);	
 
 				if(out!=null) {
+					System.out.println("type: "+out.getType());
 					System.out.println(out);
 				}
 
