@@ -151,9 +151,10 @@ public class TokenStream {
 
 	private String skipSingleLineComment() {
 		String com = readWhile(c->c!='\n');
-//		System.out.println(com);
-//		System.out.println(cStream.peek());
-		eat('\n');
+//		System.out.println("comment: '"+com+"'");
+//		System.out.println("current char: '"+cStream.peek()+"'");
+//		eat('\n');
+		cStream.next();
 		return com;
 	}
 
