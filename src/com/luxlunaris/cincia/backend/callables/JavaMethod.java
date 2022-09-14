@@ -14,7 +14,7 @@ public class JavaMethod extends CinciaMethod{
 	protected Method method;
 
 	public JavaMethod(Method method, JavaObject parent) {
-		super(null);
+		super(null, parent);
 		this.method = method;
 		this.parent = parent;
 	}

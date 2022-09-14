@@ -52,7 +52,11 @@ public class Signature implements Type{
 			}
 
 			// lastly check return type
-			return returnType.matches(otherSig.returnType);
+			
+			if(returnType!=null && otherSig.returnType!=null) {
+				return returnType.matches(otherSig.returnType);				
+			}
+			
 
 		} catch (ClassCastException e) {
 

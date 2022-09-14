@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.OneNameType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.SingleType;
@@ -200,7 +201,7 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	}
 
 	@Override
-	public CinciaObject __str__() {
+	public CinciaString __str__() {
 		// TODO Auto-generated method stub
 		return null;
 	}

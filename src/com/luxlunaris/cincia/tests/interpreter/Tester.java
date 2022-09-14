@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.backend.concurrency.Promise;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
@@ -65,6 +66,8 @@ public class Tester {
 			Compiler compiler = new Compiler();
 			Enviro enviro = new Enviro(null);
 			Interpreter interpreter = new Interpreter();
+			
+			enviro.set("Promise", new Promise()); //TODO: extract somewhere!
 
 
 			for(Ast stm : compiler.compile(test.source)) {

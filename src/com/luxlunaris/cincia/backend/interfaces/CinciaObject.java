@@ -64,7 +64,7 @@ public interface CinciaObject extends Stateful{
 	CinciaObject __eq__(CinciaObject other) ;
 	CinciaObject __ne__(CinciaObject other) ;
 	CinciaObject __not__() ;
-	CinciaObject __str__() ;
+	CinciaString __str__() ;
 	CinciaObject __neg__() ;
 	CinciaObject __init__(List<CinciaObject> args);
 	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	

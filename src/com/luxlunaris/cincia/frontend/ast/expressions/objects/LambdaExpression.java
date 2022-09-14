@@ -50,7 +50,7 @@ public class LambdaExpression implements ObjectExpression{
 	
 	@Override
 	public String toString() {
-		return modifiers+" "+signature+"->"+(block==null? expression :block);
+		return signature+"->"+(block==null? expression :block);
 	}
 	
 	

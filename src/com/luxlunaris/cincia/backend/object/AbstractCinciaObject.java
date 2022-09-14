@@ -227,9 +227,9 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	@Override
-	public CinciaObject __str__() {
+	public CinciaString __str__() {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__str__);
-		return cm.run(null);
+		return (CinciaString)cm.run(null);
 	}
 
 	@Override

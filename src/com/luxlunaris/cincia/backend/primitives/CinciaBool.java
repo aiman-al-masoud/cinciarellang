@@ -67,7 +67,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public AbstractCinciaObject __str__() {
+	public CinciaString __str__() {
 		return new CinciaString(value+"");
 	}
 

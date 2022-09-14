@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.Magic;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 
 /**
@@ -33,6 +34,16 @@ public class PureCinciaFunction extends CinciaFunction {
 	@Override
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 		throw new RuntimeException("Can't bind pure function to externally supplied environment!");
+	}
+	
+	@Override
+	public CinciaString __str__() {
+		return new CinciaString(toString());
+	}
+	
+	@Override
+	public String toString() {
+		return lambdex.toString();
 	}
 
 }

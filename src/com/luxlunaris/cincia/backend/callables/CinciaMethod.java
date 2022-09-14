@@ -18,10 +18,9 @@ public class CinciaMethod extends CinciaFunction{
 		super(lambdex, eval);
 	}
 
-	public CinciaMethod(WrappedFunction wrappedFunction) {
-		super(wrappedFunction);
-	}
-	
+//	public CinciaMethod(WrappedFunction wrappedFunction) {
+//		super(wrappedFunction);
+//	}
 	
 	public CinciaMethod(WrappedFunction wrappedFunction, CinciaObject parent) {
 		super(wrappedFunction);
@@ -39,7 +38,7 @@ public class CinciaMethod extends CinciaFunction{
 		CinciaMethod copy;
 
 		if( wrappedFunction!=null ) {
-			copy = new CinciaMethod(wrappedFunction);
+			copy = new CinciaMethod(wrappedFunction, null);
 		}else {
 			copy = new CinciaMethod(lambdex, eval);
 		}
