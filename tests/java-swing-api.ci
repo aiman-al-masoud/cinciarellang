@@ -4,5 +4,9 @@ f = JFrame();
 l = JLabel("ciao mondo!");
 f.add(l);
 f.setSize(500, 500);
+f.setDefaultCloseOperation(3); /*EXIT_ON_CLOSE*/
 f.setVisible(true);
+x = f.isVisible();
 f.setVisible(false);
+f.dispose();
+x;
