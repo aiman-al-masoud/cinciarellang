@@ -35,8 +35,10 @@ public class TokenStream {
 		char curr  = cStream.peek();
 
 		if(curr == '/') {
-
-			if(skipComment() != null) {
+			
+			String com = skipComment();
+			
+			if(com != null) { 
 				next();
 				return;
 			}
@@ -139,7 +141,8 @@ public class TokenStream {
 			return skipSingleLineComment();
 		case '*':
 			eat('*');
-			return skipMultilineComment();
+			String com = skipMultilineComment();
+			return com;
 		default: // not a comment
 			cStream.prev();
 			return null;
@@ -151,9 +154,6 @@ public class TokenStream {
 
 	private String skipSingleLineComment() {
 		String com = readWhile(c->c!='\n');
-//		System.out.println("comment: '"+com+"'");
-//		System.out.println("current char: '"+cStream.peek()+"'");
-//		eat('\n');
 		cStream.next();
 		return com;
 	}
@@ -164,9 +164,11 @@ public class TokenStream {
 	}
 
 	private String skipMultilineComment(String com) {
+		
 
 		com = com+readWhile(c->c!='*');
 		eat('*');
+		
 
 		if(cStream.peek()=='/') {
 			eat('/');

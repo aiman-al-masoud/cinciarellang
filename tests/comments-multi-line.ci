@@ -1,1 +1,4 @@
-x = 1; /*hello!*/
+x = 1; /*hello! problem with multi-line comments 
+as last thing, because semicol is auto-added!
+But ok everywhere else!*/ y = 1;
+y ==1;//sd
