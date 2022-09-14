@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 
 import com.luxlunaris.cincia.backend.callables.JavaMethod;
-import com.luxlunaris.cincia.backend.callables.JavaVirtualMethod;
+import com.luxlunaris.cincia.backend.callables.JavaOverloadedMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -47,15 +47,15 @@ public class JavaObject extends AbstractCinciaObject {
 				JavaMethod oldMethod = (JavaMethod)get(m.getName());
 
 				// if taken by a virtual method
-				if(oldMethod instanceof JavaVirtualMethod) {
+				if(oldMethod instanceof JavaOverloadedMethod) {
 
-					JavaVirtualMethod oldVm = (JavaVirtualMethod) oldMethod;
+					JavaOverloadedMethod oldVm = (JavaOverloadedMethod) oldMethod;
 					oldVm.add(m);
 					
 				}else {
 
 					// if taken by a regular method
-					JavaVirtualMethod vm = new JavaVirtualMethod(this);
+					JavaOverloadedMethod vm = new JavaOverloadedMethod(this);
 					vm.add(oldMethod);
 					vm.add(m);
 					set(m.getName(), vm, Type.Any); 

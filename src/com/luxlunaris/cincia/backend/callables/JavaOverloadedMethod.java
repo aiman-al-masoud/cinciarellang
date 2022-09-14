@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.JavaObject;
 
-public class JavaVirtualMethod extends JavaMethod{
+public class JavaOverloadedMethod extends JavaMethod{
 
 	protected List<JavaMethod> methods;
 
-	public JavaVirtualMethod(JavaObject parent) {
+	public JavaOverloadedMethod(JavaObject parent) {
 		super(null, parent);
 		methods = new ArrayList<>();
 	}
