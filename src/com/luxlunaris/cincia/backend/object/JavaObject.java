@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,7 @@ public class JavaObject extends AbstractCinciaObject {
 
 		getAccessibleMethods(object.getClass())
 		.stream()
+		//		.map(m->{ System.out.println(m); ;return m;})
 		.map(m -> new JavaMethod(m,  this))		
 		.forEach(m->{
 			set(m.getName(), m, Type.Any);
@@ -49,23 +51,18 @@ public class JavaObject extends AbstractCinciaObject {
 		});
 
 	}
-
+	
 	public static List<Method> getAccessibleMethods(Class clazz) {
 
 		if (clazz == null) {
 			return Arrays.asList();
 		}
-
-		List<Method> ms = Arrays.asList(clazz.getDeclaredMethods());
-
-		try {
-			ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
-		} catch (Exception e) {
-
-		}
-
+		
+		List<Method> ms = new ArrayList<>();
+		ms.addAll(Arrays.asList(clazz.getDeclaredMethods()));
+		ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
 		return ms;
-
+		
 	}
 
 	public static List<Field> getAccessibleAttributes(Class clazz) {
@@ -93,9 +90,9 @@ public class JavaObject extends AbstractCinciaObject {
 	public CinciaObject copy(List<CinciaObject> args) {
 		return new JavaObject(deepCopy(object));
 	}
-	
+
 	public static Object deepCopy(Object object) {
-		
+
 		try {
 
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -108,15 +105,15 @@ public class JavaObject extends AbstractCinciaObject {
 			ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
 			Object copy = new ObjectInputStream(bais).readObject();
 			return copy;
-//			return new JavaObject(copy);
+			//			return new JavaObject(copy);
 
 		} catch (Exception e) {
 
 		}
 
 		throw new RuntimeException("Couldn't deep-copy java object!");
-		
-		
+
+
 	}
 
 
