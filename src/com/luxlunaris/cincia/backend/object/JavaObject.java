@@ -46,8 +46,6 @@ public class JavaObject extends AbstractCinciaObject {
 				// if name was already taken
 				JavaMethod oldMethod = (JavaMethod)get(m.getName());
 				
-				System.out.println("name already taken: "+m.getName());
-
 				// if taken by a virtual method
 				if(oldMethod instanceof JavaVirtualMethod) {
 					((JavaVirtualMethod) oldMethod).add(m);
@@ -56,7 +54,6 @@ public class JavaObject extends AbstractCinciaObject {
 					JavaVirtualMethod vm = new JavaVirtualMethod(this);
 					vm.add(oldMethod);
 					set(m.getName(), vm, Type.Any); 
-					System.out.println("reset!");
 				}
 
 

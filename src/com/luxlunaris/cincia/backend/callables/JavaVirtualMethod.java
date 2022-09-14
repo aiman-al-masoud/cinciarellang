@@ -34,10 +34,5 @@ public class JavaVirtualMethod extends JavaMethod{
 		methods.add(method);
 	}
 	
-	@Override
-	public String toString() {
-		return "JavaVirtualMethod";
-	}
-
 
 }
