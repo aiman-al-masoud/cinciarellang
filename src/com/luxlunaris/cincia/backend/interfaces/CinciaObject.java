@@ -25,7 +25,7 @@ public interface CinciaObject extends Stateful{
 			return new CinciaBool((boolean)object);
 		}else if(object instanceof String) {
 			return new CinciaString((String)object);
-		}else if(object instanceof Double) {
+		}else if(object instanceof Double || object instanceof Float) {
 			return new CinciaFloat((double)object);
 		}else if(object instanceof Integer) {
 			return new CinciaInt((int)object);

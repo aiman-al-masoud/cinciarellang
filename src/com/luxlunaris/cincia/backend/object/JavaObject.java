@@ -95,12 +95,18 @@ public class JavaObject extends AbstractCinciaObject {
 	}
 
 	public static List<Field> getAccessibleAttributes(Class clazz) {
-		return Arrays.asList(clazz.getDeclaredFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList());
+		
+		List<Field> allFields = Arrays.asList(clazz.getDeclaredFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList());
+//		allFields.addAll(Arrays.asList(clazz.getFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList()));
+		return allFields;
+		
 	}
 
 
 	public static Entry<String, CinciaObject> convertField(Field field, Object object){
-
+		
+//		System.out.println(field+" "+(field==null));
+		
 		try {
 			return Map.entry(field.getName(), CinciaObject.wrap(field.get(object)));
 		} catch (IllegalArgumentException | IllegalAccessException e) {
