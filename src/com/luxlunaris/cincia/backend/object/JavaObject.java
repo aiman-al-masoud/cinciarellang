@@ -62,6 +62,7 @@ public class JavaObject extends AbstractCinciaObject {
 					// if taken by a regular method
 					JavaVirtualMethod vm = new JavaVirtualMethod(this);
 					vm.add(oldMethod);
+					vm.add(m);
 					set(m.getName(), vm, Type.Any); 
 					
 				}

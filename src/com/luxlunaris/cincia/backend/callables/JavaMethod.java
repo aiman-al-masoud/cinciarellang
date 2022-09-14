@@ -47,7 +47,7 @@ public class JavaMethod extends CinciaMethod{
 			return CinciaObject.wrap(res);
 
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 
 		return null;
