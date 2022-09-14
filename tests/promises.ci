@@ -1,2 +1,2 @@
-pro =  Promise(\->1).then(\x->{return x+" is the result.";}, \y->{return 2;});
+pro =  Promise(\->1).then(\x-> x+" is the result.", \y->2);
 true;

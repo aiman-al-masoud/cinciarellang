@@ -966,7 +966,7 @@ public class Parser {
 
 			lE.block = parseCompStatement();
 		}else {
-			lE.expression = parseExpression();
+			lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
 		}
 
 		return lE;
