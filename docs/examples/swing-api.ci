@@ -5,4 +5,3 @@ l = JLabel("ciao mondo!");
 f.add(l);
 f.setSize(500, 500);
 f.setVisible(true);
-f.setVisible(false);
