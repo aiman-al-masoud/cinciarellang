@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 
 import com.luxlunaris.cincia.backend.callables.JavaMethod;
+import com.luxlunaris.cincia.backend.callables.JavaVirtualMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -38,8 +39,35 @@ public class JavaObject extends AbstractCinciaObject {
 		getAccessibleMethods(object.getClass())
 		.stream()
 		.map(m -> new JavaMethod(m,  this))		
+
 		.forEach(m->{
-			set(m.getName(), m, Type.Any); //TODO: overloaded methods only get to keep the last inserted version!
+
+			try {
+				// if name was already taken
+				JavaMethod oldMethod = (JavaMethod)get(m.getName());
+				
+				System.out.println("name already taken: "+m.getName());
+
+				// if taken by a virtual method
+				if(oldMethod instanceof JavaVirtualMethod) {
+					((JavaVirtualMethod) oldMethod).add(m);
+				}else {
+					// if taken by a regular method
+					JavaVirtualMethod vm = new JavaVirtualMethod(this);
+					vm.add(oldMethod);
+					set(m.getName(), vm, Type.Any); 
+					System.out.println("reset!");
+				}
+
+
+			} catch (Exception e) {
+				
+				// if name was never taken
+				set(m.getName(), m, Type.Any); //TODO: overloaded methods only get to keep the last inserted version!
+
+			}
+
+
 		});
 
 		getAccessibleAttributes(object.getClass())
@@ -50,18 +78,18 @@ public class JavaObject extends AbstractCinciaObject {
 		});
 
 	}
-	
+
 	public static List<Method> getAccessibleMethods(Class clazz) {
 
 		if (clazz == null) {
 			return Arrays.asList();
 		}
-		
+
 		List<Method> ms = new ArrayList<>();
 		ms.addAll(Arrays.asList(clazz.getDeclaredMethods()));
 		ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
 		return ms;
-		
+
 	}
 
 	public static List<Field> getAccessibleAttributes(Class clazz) {
