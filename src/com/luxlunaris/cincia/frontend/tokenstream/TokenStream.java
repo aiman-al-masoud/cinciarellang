@@ -136,15 +136,14 @@ public class TokenStream {
 		eat('/');
 
 		switch (cStream.peek()) {
-
 		case '/':
 			return skipSingleLineComment();
 		case '*':
 			eat('*');
 			String com = skipMultilineComment();
 			return com;
-		default: // not a comment
-			cStream.prev();
+		default: // not a comment, it may be a division sign 
+			cStream.prev(); // restore division sign
 			return null;
 
 		}
