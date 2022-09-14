@@ -18,29 +18,18 @@ public class JavaVirtualMethod extends JavaMethod{
 
 	public CinciaObject run(List<CinciaObject> args) {
 
-//		System.out.println(args);
-//		System.out.println(methods.size());
-//		System.out.println(methods.stream().map(m->m.method).collect(Collectors.toList()));
-
 		CinciaObject res = null;
 
 		for(JavaMethod m : methods) {
 
-			//			try {
 			res  = m.run(args);
-			
+
 			if(res!=null) {
 				return res;
 			}
 
-
-			//			} catch (Exception e) {
-			//
-			//			}
-
 		}
 
-//		throw new RuntimeException("No such method!");
 		return res;
 	}
 
