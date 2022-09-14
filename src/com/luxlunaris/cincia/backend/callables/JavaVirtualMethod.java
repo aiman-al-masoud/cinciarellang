@@ -9,7 +9,7 @@ import com.luxlunaris.cincia.backend.object.JavaObject;
 
 public class JavaVirtualMethod extends JavaMethod{
 
-	public List<JavaMethod> methods;
+	protected List<JavaMethod> methods;
 
 	public JavaVirtualMethod(JavaObject parent) {
 		super(null, parent);
