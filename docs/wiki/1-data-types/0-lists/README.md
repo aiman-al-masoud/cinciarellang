@@ -17,5 +17,6 @@ This will create a list that goes from 0 to 10 included.
 
 1. [Indexing](./0-indexing.md)
 1. [Slicing](./1-slicing.md)
-1. [Comprehensions](./1-comprehensions.md)
+1. [Comprehensions](./2-comprehensions.md)
+1. [Broadcasting](./3-broadcasting.md)
 
