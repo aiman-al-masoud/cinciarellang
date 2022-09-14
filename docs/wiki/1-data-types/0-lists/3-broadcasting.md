@@ -1,6 +1,6 @@
 # Broadcasting
 
-Applying certain operations to a list, causes them to be applied elementwise, for instance, this is how you can multiply each element of a list by `5`:
+Applying certain operations to a list, causes them to be applied elementwise, thanks to [operator overloading](). For instance, this is how you can multiply each element of a list by `5`:
 
 ```
 l = 1 to 5;
