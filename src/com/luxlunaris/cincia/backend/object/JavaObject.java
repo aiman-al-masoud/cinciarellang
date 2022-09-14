@@ -36,6 +36,14 @@ public class JavaObject extends AbstractCinciaObject {
 		this.type = !object.getClass().equals(Class.class.getClass())? new JavaClass(object.getClass()) : type; 
 		this.object = object;
 
+		getAccessibleAttributes(object.getClass())
+		.stream()
+		.map(a -> convertField(a, object))
+		.forEach(e->{
+			set(e.getKey(), e.getValue());
+		});
+		
+		
 		getAccessibleMethods(object.getClass())
 		.stream()
 		.map(m -> new JavaMethod(m,  this))		
@@ -45,11 +53,20 @@ public class JavaObject extends AbstractCinciaObject {
 			try {
 				// if name was already taken
 				JavaMethod oldMethod = (JavaMethod)get(m.getName());
-				
+
 				// if taken by a virtual method
 				if(oldMethod instanceof JavaVirtualMethod) {
-					((JavaVirtualMethod) oldMethod).add(m);
+
+					JavaVirtualMethod oldVm = (JavaVirtualMethod) oldMethod;
+					oldVm.add(m);
+
 				}else {
+					
+					// TODO
+					if(m.getName().equals("nextInt")) {
+						System.out.println("creating new VirtualMethod for nextInt!!!!");
+					}
+					
 					// if taken by a regular method
 					JavaVirtualMethod vm = new JavaVirtualMethod(this);
 					vm.add(oldMethod);
@@ -58,21 +75,15 @@ public class JavaObject extends AbstractCinciaObject {
 
 
 			} catch (Exception e) {
-				
-				// if name was never taken
-				set(m.getName(), m, Type.Any); //TODO: overloaded methods only get to keep the last inserted version!
+
+				// if name was never taken before, add non-virtual method
+				set(m.getName(), m, Type.Any); 
 
 			}
 
 
 		});
 
-		getAccessibleAttributes(object.getClass())
-		.stream()
-		.map(a -> convertField(a, object))
-		.forEach(e->{
-			set(e.getKey(), e.getValue());
-		});
 
 	}
 

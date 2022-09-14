@@ -8,7 +8,7 @@ import com.luxlunaris.cincia.backend.object.JavaObject;
 
 public class JavaVirtualMethod extends JavaMethod{
 
-	List<JavaMethod> methods;
+	public List<JavaMethod> methods;
 
 	public JavaVirtualMethod(JavaObject parent) {
 		super(null, parent);
@@ -16,6 +16,9 @@ public class JavaVirtualMethod extends JavaMethod{
 	}
 
 	public CinciaObject run(List<CinciaObject> args) {
+		
+		System.out.println(args);
+		System.out.println(methods.size());
 
 		for(JavaMethod m : methods) {
 
@@ -32,6 +35,11 @@ public class JavaVirtualMethod extends JavaMethod{
 
 	public void add(JavaMethod method) {
 		methods.add(method);
+	}
+	
+	@Override
+	public String toString() {
+		return "VirtualMethod{ x"+methods.size()+" overloads }";
 	}
 	
 
