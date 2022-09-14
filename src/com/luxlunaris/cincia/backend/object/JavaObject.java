@@ -53,6 +53,9 @@ public class JavaObject extends AbstractCinciaObject {
 
 					JavaVirtualMethod oldVm = (JavaVirtualMethod) oldMethod;
 					oldVm.add(m);
+					
+					if(m.getName().equals("nextInt")) System.out.println(oldVm.methods.size());
+					if(m.getName().equals("add")) System.out.println(oldVm.methods.size());
 
 				}else {
 
@@ -60,6 +63,7 @@ public class JavaObject extends AbstractCinciaObject {
 					JavaVirtualMethod vm = new JavaVirtualMethod(this);
 					vm.add(oldMethod);
 					set(m.getName(), vm, Type.Any); 
+					
 				}
 
 
@@ -70,14 +74,14 @@ public class JavaObject extends AbstractCinciaObject {
 
 			}
 
-			getAccessibleAttributes(object.getClass())
-			.stream()
-			.map(a -> convertField(a, object))
-			.forEach(e->{
-				set(e.getKey(), e.getValue());
-			});
 		});
 
+		getAccessibleAttributes(object.getClass())
+		.stream()
+		.map(a -> convertField(a, object))
+		.forEach(e->{
+			set(e.getKey(), e.getValue());
+		});
 
 	}
 
