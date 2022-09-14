@@ -36,14 +36,8 @@ public class JavaObject extends AbstractCinciaObject {
 		this.type = !object.getClass().equals(Class.class.getClass())? new JavaClass(object.getClass()) : type; 
 		this.object = object;
 
-		getAccessibleAttributes(object.getClass())
-		.stream()
-		.map(a -> convertField(a, object))
-		.forEach(e->{
-			set(e.getKey(), e.getValue());
-		});
-		
-		
+
+
 		getAccessibleMethods(object.getClass())
 		.stream()
 		.map(m -> new JavaMethod(m,  this))		
@@ -61,12 +55,7 @@ public class JavaObject extends AbstractCinciaObject {
 					oldVm.add(m);
 
 				}else {
-					
-					// TODO
-					if(m.getName().equals("nextInt")) {
-						System.out.println("creating new VirtualMethod for nextInt!!!!");
-					}
-					
+
 					// if taken by a regular method
 					JavaVirtualMethod vm = new JavaVirtualMethod(this);
 					vm.add(oldMethod);
@@ -81,7 +70,12 @@ public class JavaObject extends AbstractCinciaObject {
 
 			}
 
-
+			getAccessibleAttributes(object.getClass())
+			.stream()
+			.map(a -> convertField(a, object))
+			.forEach(e->{
+				set(e.getKey(), e.getValue());
+			});
 		});
 
 
