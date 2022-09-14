@@ -29,7 +29,7 @@ public class Repl {
 		scanner = new Scanner(System.in);
 		enviro.set("print", new CinciaFunction(Repl::printWrapper));
 		
-		enviro.set("Promise", new Promise());
+		enviro.set("Promise", new Promise()); //TODO: extract to other namespace
 		
 	}
 
