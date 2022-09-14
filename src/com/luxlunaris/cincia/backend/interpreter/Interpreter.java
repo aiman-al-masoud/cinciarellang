@@ -488,7 +488,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		switch (compex.op) {
 
 		case COMPARE:
-			System.out.println(left+" / "+right);
 			return left.__eq__(right);
 		case NE:
 			return left.__ne__(right);
