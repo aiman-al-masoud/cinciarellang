@@ -54,8 +54,8 @@ public class JavaObject extends AbstractCinciaObject {
 					JavaVirtualMethod oldVm = (JavaVirtualMethod) oldMethod;
 					oldVm.add(m);
 					
-					if(m.getName().equals("nextInt")) System.out.println(oldVm.methods.size());
-					if(m.getName().equals("add")) System.out.println(oldVm.methods.size());
+//					if(m.getName().equals("nextInt")) System.out.println(oldVm.methods.size());
+//					if(m.getName().equals("add")) System.out.println(oldVm.methods.size());
 
 				}else {
 
