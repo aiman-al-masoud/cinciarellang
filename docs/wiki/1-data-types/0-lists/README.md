@@ -1,6 +1,6 @@
 # Lists
 
-A list is an ordered set of potentially heterogenous elements. You can create a list through the usual square-bracket literal notation:
+A list is an ordered set of potentially heterogenous elements. You can create a list through the commonplace square-bracket literal notation:
 
 ```
 x = [0, 1.0, true, []]
