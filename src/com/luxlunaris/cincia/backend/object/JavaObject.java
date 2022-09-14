@@ -39,7 +39,7 @@ public class JavaObject extends AbstractCinciaObject {
 		.stream()
 		.map(m -> new JavaMethod(m,  this))		
 		.forEach(m->{
-			set(m.getName(), m, Type.Any); //TODO: overloaded methods only keep the last inserted version!
+			set(m.getName(), m, Type.Any); //TODO: overloaded methods only get to keep the last inserted version!
 		});
 
 		getAccessibleAttributes(object.getClass())
