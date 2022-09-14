@@ -6,8 +6,8 @@ Its main features include:
 
 * First class support for deep and immutable copies of objects.📋🧊
 * Pure functions, with optionally impure features. λ x->x
-* Static typing and type inference. ❓
 * Terse and sugary high-level syntax! 🍭🍬
+* Static typing and type inference. ❓
 * Support for Java classes and objects. ☕
 * A little help with concurrency, through the Promise API. 🎁
 
