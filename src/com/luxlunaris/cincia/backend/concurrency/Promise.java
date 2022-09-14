@@ -51,6 +51,7 @@ public class Promise extends CinciaCinciaClass{
 		set("then", new CinciaMethod(this::then, this));
 		set("getResult", new CinciaMethod(this::getResult, this));
 		set("getError", new CinciaMethod(this::getError, this));
+		set("await", new CinciaMethod(this::await, this));
 	}
 
 
@@ -142,6 +143,26 @@ public class Promise extends CinciaCinciaClass{
 
 		PureCinciaFunction promiseBody = (PureCinciaFunction)args.get(0);		
 		return new Promise(promiseBody);
+	}
+
+
+	public Promise await() {
+
+		synchronized (this) {
+			while(!isSettled()) {
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return this;
+	}
+
+	public Promise await(List<CinciaObject> args) {
+		return await();
 	}
 
 
