@@ -104,7 +104,6 @@ public class JavaObject extends AbstractCinciaObject {
 			ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
 			Object copy = new ObjectInputStream(bais).readObject();
 			return copy;
-			//			return new JavaObject(copy);
 
 		} catch (Exception e) {
 
