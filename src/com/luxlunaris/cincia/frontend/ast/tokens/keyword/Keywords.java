@@ -29,7 +29,7 @@ public enum Keywords {
 	LISTENSTO,
 	IMPLEMENTS,
 	EXTENDS, 
-	WHERE,
+//	WHERE,
 	PRIVATE,
 	STATIC,
 	FINAL,

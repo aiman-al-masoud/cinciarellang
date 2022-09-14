@@ -1119,8 +1119,8 @@ public class Parser {
 		eat(Keywords.IN);
 		lC.iterable = parseSingleExpression();
 
-		if(tStream.peek().getValue().equals(Keywords.WHERE)) {
-			eat(Keywords.WHERE);
+		if(tStream.peek().getValue().equals(Keywords.IF)) {
+			eat(Keywords.IF);
 			lC.where = parseSingleExpression();
 		}
 
@@ -1194,8 +1194,8 @@ public class Parser {
 		eat(Keywords.IN);
 		dC.iterable = parseSingleExpression();
 
-		if(tStream.peek().getValue().equals(Keywords.WHERE)) {
-			eat(Keywords.WHERE);
+		if(tStream.peek().getValue().equals(Keywords.IF)) {
+			eat(Keywords.IF);
 			dC.where = parseExpression();
 		}
 
