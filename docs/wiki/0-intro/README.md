@@ -11,7 +11,7 @@ Its main features include:
 * Support for Java classes and objects. ☕
 * A little help with concurrency, through the Promise API. 🎁
 
-Coding in it should feel like coding in a statically typed dialect of Python with functional overtones and native support for the wealth of libraries written in Java.
+Coding in it should feel like coding in a statically typed  c-like looking dialect of Python with functional overtones and native support for the wealth of libraries written in Java.
 
 
 
