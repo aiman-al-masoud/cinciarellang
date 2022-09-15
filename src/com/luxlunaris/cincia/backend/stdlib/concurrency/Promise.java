@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.backend.concurrency;
+package com.luxlunaris.cincia.backend.stdlib.concurrency;
 
 import java.util.Arrays;
 import java.util.List;

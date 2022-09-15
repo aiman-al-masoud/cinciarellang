@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Scanner;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
-import com.luxlunaris.cincia.backend.concurrency.Promise;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.object.JavaObject;
+import com.luxlunaris.cincia.backend.stdlib.concurrency.Promise;
 import com.luxlunaris.cincia.frontend.Compiler;
 
 public class Repl {
