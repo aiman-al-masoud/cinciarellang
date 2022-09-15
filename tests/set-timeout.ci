@@ -1,5 +1,5 @@
 /**
-* For some yet unknown reason setTimeout doesn't work 
+*  For some yet unknown reason setTimeout doesn't work 
 *  from within a Promise. I made a sleep() function to 
 *  test setTimeout().
 */
