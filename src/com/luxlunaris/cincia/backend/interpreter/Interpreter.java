@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,6 +28,7 @@ import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
+import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.backend.throwables.IncompatibleTypesException;
 import com.luxlunaris.cincia.frontend.Compiler;
@@ -65,6 +67,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.BinaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
+import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
@@ -251,7 +254,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
 
-		//if from path is in the java standard library
+		//from Java standard lib
 		try {
 
 			Class clazz =  Interpreter.class.getClassLoader().loadClass(importStatement.fromPath.value);
@@ -261,13 +264,34 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		} catch (ClassNotFoundException e1) {
 
 		}
-		
-		// TODO if from path points to a location in the cincia standard libary...
-		
-		
-		
 
-		//if fromPath is path to text file, load code into string
+		// from Cincia standard lib
+		if(importStatement.fromPath.value.split("\\.")[0].equals(Stdlib.STDLIB)) {
+
+			CinciaObject importedObj;
+
+			if(importStatement.fromPath.value.split("\\.").length==1) {
+				importedObj =  new Stdlib();
+			}else {
+				importedObj = new Stdlib().get(importStatement.fromPath.value);
+			}
+
+			Entry<PostfixExpression, Identifier> importEntry = importStatement.imports.get(0);
+			String alias = importEntry.getValue().value;
+			
+			System.out.println(importEntry);
+
+			if(alias != Identifier.NULL.value) {
+				enviro.set(alias, importedObj);
+			}else if(importEntry.getKey() instanceof Identifier){
+				enviro.set( ((Identifier)importEntry.getKey()).value , importedObj);
+			}
+			
+			return null;
+
+		}
+
+		// from Cincia source file
 		String source = "";		
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(importStatement.fromPath.value), StandardCharsets.UTF_8);
@@ -396,8 +420,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	 */
 	@Override
 	public CinciaObject evalMultiExpression(MultiExpression multex, Enviro enviro) {
-		
-		
+
+
 
 		List<CinciaObject> elems = multex.expressions
 				.stream()
@@ -536,7 +560,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			String id = ((Identifier)assex.left).value;
 
 			try {
-//				System.out.println(id+" "+rval);
+				//				System.out.println(id+" "+rval);
 				enviro.set(id, rval, rval.getType());
 
 			} catch (IncompatibleTypesException e) {
@@ -709,8 +733,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else { // one single arg
 			args = o==null? Arrays.asList() : Arrays.asList(o) ;
 		}
-		
-//		System.out.println(args);
+
+		//		System.out.println(args);
 
 		// get called expression
 		CinciaObject f = eval(callex.callable, enviro);
