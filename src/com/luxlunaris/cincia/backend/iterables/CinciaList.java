@@ -70,14 +70,9 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	}
 
 	@Override
-	public CinciaObject copy(List<CinciaObject> args) {
-//		CinciaList c = new CinciaList(type);
-//		c.list = new ArrayList<CinciaObject>(list);
-//		return c;
-		
-		// this is a shallow copy!
-		return new CinciaList(new ArrayList<CinciaObject>(list));
-		
+	public CinciaObject copy(List<CinciaObject> args) {		
+		List<CinciaObject> copy = list.stream().map(e->e.copy(args)).collect(Collectors.toList());
+		return new CinciaList(copy);
 	}
 
 	@Override
