@@ -17,20 +17,17 @@ public class Repl {
 	protected Enviro enviro;
 	protected Interpreter interpreter;
 	protected Scanner scanner;
-	
+
 	public static void main(String[] args) {
 		Repl r = new Repl();
 		r.mainLoop();
 	}
 
 	public Repl() {
-//		enviro = new Enviro(null);	
 		enviro = Enviro.getTopLevelEnviro();
 		interpreter = new Interpreter();
 		scanner = new Scanner(System.in);
-		enviro.set("print", new CinciaFunction(Repl::printWrapper));
-//		enviro.set("Promise", new Promise()); //TODO: extract to other namespace
-		
+		enviro.set("print", new CinciaFunction(Repl::printWrapper));		
 	}
 
 	public void mainLoop() {
@@ -54,7 +51,7 @@ public class Repl {
 		try {
 
 			List<Ast> statements = new Compiler().compile(source);
-			
+
 			statements.forEach(s -> {
 
 				CinciaObject out = interpreter.eval(s, enviro);	
