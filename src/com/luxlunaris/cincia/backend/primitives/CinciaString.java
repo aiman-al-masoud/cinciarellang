@@ -54,6 +54,11 @@ public class CinciaString extends PrimitiveCinciaObject {
 	public String toJava() {
 		return value;
 	}
+	
+	@Override
+	public CinciaString get(int key) {
+		return new CinciaString(value.charAt(key)+"");
+	}
 
 
 }
