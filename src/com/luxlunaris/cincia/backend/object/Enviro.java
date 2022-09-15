@@ -22,7 +22,6 @@ public class Enviro implements Stateful{
 
 	public static Enviro getTopLevelEnviro() {
 		Enviro e = new Enviro(null);
-//		e.set("cincia", new Stdlib() );
 		return e;
 	}
 
