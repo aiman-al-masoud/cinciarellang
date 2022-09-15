@@ -1,24 +1,24 @@
-/*
-import setTimeout from "cincia.concurrency.setTimeout";
-import Promise from "cincia.concurrency.Promise";
 
-X = class{
+// import setTimeout from "cincia.concurrency.setTimeout";
+// import Promise from "cincia.concurrency.Promise";
 
-	setVal = \val->{
-		this.val = val;
-	}
+// X = class{
 
-}
+//	setVal = \val->{
+//		this.val = val;
+//	}
 
-x = X();
+//}
 
-setTimeout(\->x.setVal(1), 1000);
+//x = X();
 
-Promise( rdout \-> setTimeout(\->1, 1000) ).await();
+//setTimeout(\->x.setVal(1), 1000);
 
-x.val == 1;
+//Promise( rdout \-> setTimeout(\->1, 1000) ).await();
 
-*/ 
+//x.val == 1;
+
+
 
 false;
 
