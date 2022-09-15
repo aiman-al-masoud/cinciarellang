@@ -1,0 +1,2 @@
+x = "abcdefg";
+x[0 to 2] == "abc";
