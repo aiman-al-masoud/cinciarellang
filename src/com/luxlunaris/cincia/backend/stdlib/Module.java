@@ -31,8 +31,8 @@ public class Module extends AbstractCinciaObject {
 		if(!(obj instanceof Module)) {
 			throw new RuntimeException("You're treating a regular object like a module!");
 		}
-
-		String subpath = hierarchy.subList(2, hierarchy.size()-1).stream().reduce((p1,p2) -> p1+"."+p2).get();
+		
+		String subpath = hierarchy.subList(2, hierarchy.size()).stream().reduce((p1,p2) -> p1+"."+p2).get();
 		return obj.get(subpath);
 
 	}
