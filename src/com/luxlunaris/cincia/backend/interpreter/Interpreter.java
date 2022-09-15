@@ -251,7 +251,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
 
-		//0.1 try loading a java class
+		//if from path is in the java standard library
 		try {
 
 			Class clazz =  Interpreter.class.getClassLoader().loadClass(importStatement.fromPath.value);
@@ -261,8 +261,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		} catch (ClassNotFoundException e1) {
 
 		}
+		
+		// TODO if from path points to a location in the cincia standard libary...
+		
+		
+		
 
-		//1 if fromPath is path to text file, load code into string
+		//if fromPath is path to text file, load code into string
 		String source = "";		
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(importStatement.fromPath.value), StandardCharsets.UTF_8);
