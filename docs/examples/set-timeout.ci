@@ -1,0 +1,2 @@
+import setTimeout from "cincia.concurrency.setTimeout";
+setTimeout( rdout \->{print(1);}, 1000);
