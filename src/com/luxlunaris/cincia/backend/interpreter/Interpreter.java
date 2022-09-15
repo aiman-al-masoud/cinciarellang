@@ -279,7 +279,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			Entry<PostfixExpression, Identifier> importEntry = importStatement.imports.get(0);
 			String alias = importEntry.getValue().value;
 			
-			System.out.println(importEntry);
 
 			if(alias != Identifier.NULL.value) {
 				enviro.set(alias, importedObj);
