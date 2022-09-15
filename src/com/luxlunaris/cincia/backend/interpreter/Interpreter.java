@@ -246,13 +246,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		return null;
 	}
-
-	// import fib as f from "./docs/examples/fib.ci"
-	// import x from "./docs/examples/nested.ci"
-	// import x.y from "./docs/examples/nested.ci"
-	// import x.y as u from "./docs/examples/nested.ci"
+	
+	
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
+		
+		//TODO: refactor and standardize the behaviour of different kinds of imports!
 
 		//from Java standard lib
 		try {
