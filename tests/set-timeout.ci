@@ -1,3 +1,9 @@
+/**
+* setTimeout doesn't work from within a Promise.
+  make a sleep() function to test setTimeout().
+*/
+
+
 
 // import setTimeout from "cincia.concurrency.setTimeout";
 // import Promise from "cincia.concurrency.Promise";
