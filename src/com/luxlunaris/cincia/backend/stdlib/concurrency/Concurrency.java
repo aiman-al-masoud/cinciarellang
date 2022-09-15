@@ -1,12 +1,10 @@
 package com.luxlunaris.cincia.backend.stdlib.concurrency;
 
-import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
+import com.luxlunaris.cincia.backend.stdlib.Module;
 
-public class Concurrency extends AbstractCinciaObject{
+public class Concurrency extends Module{
 
 	public Concurrency() {
-		super(new IdentifierType("Module"));
 		set("Promise", new Promise());
 	}
 
