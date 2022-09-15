@@ -6,6 +6,7 @@ public class Concurrency extends Module{
 
 	public Concurrency() {
 		set("Promise", new Promise());
+		set("setTimeout", new SetTimeout());
 	}
 
 }

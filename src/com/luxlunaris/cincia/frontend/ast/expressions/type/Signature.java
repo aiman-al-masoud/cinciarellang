@@ -38,9 +38,14 @@ public class Signature implements Type{
 		try {
 
 			Signature otherSig = (Signature)other;
+			
+			// null check
+			if(otherSig==null  || params==null ) {
+				return false;
+			}
 
 			// unequal number of params
-			if(params.toList().size() != otherSig.params.toList().size()) {
+			if( params.toList().size() != otherSig.params.toList().size()) {
 				return false;
 			}
 

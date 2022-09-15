@@ -27,7 +27,9 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	protected WrappedFunction wrappedFunction;
 
 	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
-		super(lambdex.signature);
+//		super(lambdex.signature);
+		super(lambdex!=null? lambdex.signature : new IdentifierType("NativeCodeFunc"));
+
 		this.eval = eval;
 		this.lambdex = lambdex;
 		params = parseParams(lambdex);			
