@@ -1,10 +1,13 @@
 package com.luxlunaris.cincia.backend.primitives;
 
+import java.util.Iterator;
+
+import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
-public class CinciaString extends PrimitiveCinciaObject {
+public class CinciaString extends PrimitiveCinciaObject implements CinciaIterable{
 
 	private String value;
 
@@ -72,6 +75,35 @@ public class CinciaString extends PrimitiveCinciaObject {
 		}
 
 		return new CinciaString(sb.toString());
+	}
+
+	@Override
+	public Iterator<CinciaObject> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CinciaIterable filter(PureCinciaFunction f) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CinciaIterable map(PureCinciaFunction f) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long size() {
+		return value.length();
 	}
 
 
