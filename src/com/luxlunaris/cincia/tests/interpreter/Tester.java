@@ -64,10 +64,13 @@ public class Tester {
 
 		try {
 			Compiler compiler = new Compiler();
-			Enviro enviro = new Enviro(null);
+//			Enviro enviro = new Enviro(null);
+			
+			Enviro enviro  = Enviro.getTopLevelEnviro();
+			
 			Interpreter interpreter = new Interpreter();
 			
-			enviro.set("Promise", new Promise()); //TODO: extract somewhere!
+//			enviro.set("Promise", new Promise()); //TODO: extract somewhere!
 
 
 			for(Ast stm : compiler.compile(test.source)) {

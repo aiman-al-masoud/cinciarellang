@@ -24,12 +24,12 @@ public class Repl {
 	}
 
 	public Repl() {
-		enviro = new Enviro(null);	
+//		enviro = new Enviro(null);	
+		enviro = Enviro.getTopLevelEnviro();
 		interpreter = new Interpreter();
 		scanner = new Scanner(System.in);
 		enviro.set("print", new CinciaFunction(Repl::printWrapper));
-		
-		enviro.set("Promise", new Promise()); //TODO: extract to other namespace
+//		enviro.set("Promise", new Promise()); //TODO: extract to other namespace
 		
 	}
 

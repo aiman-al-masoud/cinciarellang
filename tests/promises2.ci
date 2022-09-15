@@ -1,2 +1,3 @@
+Promise  = cincia.concurrency.Promise;
 x = Promise(\->1).then(\x-> x+" is the result.", \y->2).await().getResult();
 x == "1 is the result.";

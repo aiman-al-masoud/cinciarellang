@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Stateful;
+import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.IncompatibleTypesException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -18,6 +19,12 @@ public class Enviro implements Stateful{
 	private Map<String, CinciaObject> vars;
 	private Map<String, Type> types;
 
+
+	public static Enviro getTopLevelEnviro() {
+		Enviro e = new Enviro(null);
+		e.set("cincia", new Stdlib() );
+		return e;
+	}
 
 	public Enviro(Enviro parent) {
 
@@ -36,7 +43,7 @@ public class Enviro implements Stateful{
 	public Enviro newChild() {
 		return new Enviro(this);
 	}
-	
+
 	@Override
 	public CinciaObject get(String key) {
 
@@ -64,10 +71,10 @@ public class Enviro implements Stateful{
 	public void set(String key, CinciaObject val, Type type) {
 		//TODO: maybe add final property in another map to check if reassignment is permitted
 		//TODO: add modifiers list in params 
-		
+
 		// variable already exists/declared, need to check type:
 		if(vars.containsKey(key)) {
-			
+
 			// if types don't match, error!
 			if(!types.get(key).matches(val.getType())) {
 				throw new IncompatibleTypesException();
