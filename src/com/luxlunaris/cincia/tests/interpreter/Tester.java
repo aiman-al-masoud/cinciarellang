@@ -29,7 +29,7 @@ public class Tester {
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);
-//	final static List<String> tags = Arrays.asList("multi-line");
+	//	final static List<String> tags = Arrays.asList("multi-line");
 
 	public static void main(String[] args) throws IOException{
 
@@ -63,24 +63,15 @@ public class Tester {
 		CinciaObject out = null;
 
 		try {
-			Compiler compiler = new Compiler();
-//			Enviro enviro = new Enviro(null);
-			
+			Compiler compiler = new Compiler();			
 			Enviro enviro  = Enviro.getTopLevelEnviro();
-			
 			Interpreter interpreter = new Interpreter();
-			
-//			enviro.set("Promise", new Promise()); //TODO: extract somewhere!
-
 
 			for(Ast stm : compiler.compile(test.source)) {
-
 				out = interpreter.eval(stm, enviro);
-
 			}
 
 		} catch (Exception e) {
-
 			return new SingleTestResult(test.filename, SingleTestResult.BROKEN, e);
 		}
 
@@ -90,7 +81,7 @@ public class Tester {
 	}
 
 	public static SingleTestResult printResult(SingleTestResult result) {
-		
+
 		if( ONLY_FIRST_BROKEN && (result.outcome == SingleTestResult.BROKEN) ) {
 			System.out.println(result.filename);
 			result.exception.printStackTrace();
@@ -100,7 +91,7 @@ public class Tester {
 		System.out.println(result);
 		return result;
 	}
-	
+
 	public static boolean hasTag(List<String> tags, String filename) {
 		return tags.stream().anyMatch(tag->filename.contains(tag) || tag.equals(ALL));
 	}
