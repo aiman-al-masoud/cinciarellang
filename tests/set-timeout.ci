@@ -1,30 +1,15 @@
 /**
-* setTimeout doesn't work from within a Promise.
-  make a sleep() function to test setTimeout().
+* For some yet unknown reason setTimeout doesn't work 
+*  from within a Promise. I made a sleep() function to 
+*  test setTimeout().
 */
 
+import setTimeout from "cincia.concurrency.setTimeout";
+import sleep from "cincia.concurrency.sleep";
 
+x = {};
 
-// import setTimeout from "cincia.concurrency.setTimeout";
-// import Promise from "cincia.concurrency.Promise";
+setTimeout( rdout \-> {x.ciao = true;}, 300 ); // this is an impure lambda 
+sleep(600);
 
-// X = class{
-
-//	setVal = \val->{
-//		this.val = val;
-//	}
-
-//}
-
-//x = X();
-
-//setTimeout(\->x.setVal(1), 1000);
-
-//Promise( rdout \-> setTimeout(\->1, 1000) ).await();
-
-//x.val == 1;
-
-
-
-false;
-
+x.ciao;
