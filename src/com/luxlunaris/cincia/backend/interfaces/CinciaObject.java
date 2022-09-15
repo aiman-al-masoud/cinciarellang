@@ -67,10 +67,10 @@ public interface CinciaObject extends Stateful{
 	CinciaString __str__() ;
 	CinciaObject __neg__() ;
 	CinciaObject __init__(List<CinciaObject> args);
-	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	
 	CinciaObject copy(List<CinciaObject> args); // returns a deep copy of the object
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
 	Object toJava(); //returns a Java-object equivalent
-	CinciaBool is(List<CinciaObject> args);
+	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	
+	CinciaBool is(List<CinciaObject> args); // in-memory identity for objects
 
 }
