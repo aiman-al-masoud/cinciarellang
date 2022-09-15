@@ -359,9 +359,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		// if index is an iterable
 		if(key instanceof CinciaIterable) {
 
-			for(CinciaObject i : ((CinciaIterable)key)) {
-				set(i, val instanceof CinciaIterable ? val.get(i) : val ); // if val is not another list, assign all keys to same single value of val.
-			}
+			set((CinciaIterable)key, val);
 
 			return;
 		}
@@ -382,19 +380,35 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		//[1,2,3,4][0 to 2] // [1, 2, 3]
 		if(key instanceof CinciaIterable) {
-
-			CinciaList l = new CinciaList(Type.Any);
-
-			for(CinciaObject i : ((CinciaIterable)key)) {
-				l.add(get(i));
-			}
-
-			return l;
+			return get((CinciaIterable)key);
 		}
 
 
 		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
 	}
+
+
+	@Override
+	public void set(CinciaIterable key, CinciaObject val) {
+
+		for(CinciaObject i : key) {
+			set(i, val instanceof CinciaIterable ? val.get(i) : val ); // if val is not another list, assign all keys to same single value of val.
+		}
+
+	}
+
+	@Override
+	public CinciaObject get(CinciaIterable key) {
+
+		CinciaList l = new CinciaList(Type.Any);
+
+		for(CinciaObject i : ((CinciaIterable)key)) {
+			l.add(get(i));
+		}
+
+		return l;
+	}
+
 
 	@Override
 	public CinciaBool is(List<CinciaObject> args) {

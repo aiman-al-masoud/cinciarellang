@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.backend.throwables;
 
 import java.util.List;
 
+import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
@@ -268,6 +269,20 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public CinciaBool is(List<CinciaObject> args) {
 		return new CinciaBool(this == args.get(0)); // this == other
+	}
+
+
+
+	@Override
+	public CinciaObject get(CinciaIterable key) {
+		return object.get(key);
+	}
+
+
+
+	@Override
+	public void set(CinciaIterable key, CinciaObject val) {
+		set(key, val);
 	}
 
 	

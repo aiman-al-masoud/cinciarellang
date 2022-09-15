@@ -37,8 +37,8 @@ public interface CinciaObject extends Stateful{
 	
 	
 	//TODO:
-//	CinciaObject get(CinciaIterable key);
-//	CinciaObject set(CinciaIterable key, CinciaObject val);
+	CinciaObject get(CinciaIterable key);
+	void set(CinciaIterable key, CinciaObject val);
 
 
 	Object getValue();

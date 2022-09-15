@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.backend.primitives;
 
+import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
@@ -54,11 +55,25 @@ public class CinciaString extends PrimitiveCinciaObject {
 	public String toJava() {
 		return value;
 	}
-	
+
 	@Override
 	public CinciaString get(int key) {
 		return new CinciaString(value.charAt(key)+"");
 	}
+
+	@Override
+	public CinciaString get(CinciaIterable key) {
+
+		StringBuilder sb = new StringBuilder();
+
+		for ( CinciaObject o :  key ) {
+			CinciaInt i  = (CinciaInt)o;
+			sb.append( get(i.getValue() ).getValue() );
+		}
+
+		return new CinciaString(sb.toString());
+	}
+
 
 
 }
