@@ -424,8 +424,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalMultiExpression(MultiExpression multex, Enviro enviro) {
 
-
-
 		List<CinciaObject> elems = multex.expressions
 				.stream()
 				.map(e-> eval(e, enviro)) 
@@ -708,19 +706,25 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
 
+		// get object (or objects in the form of a CinciaList) to be placed in new list
 		CinciaObject o = eval(listex.elements, enviro);
 
-		// list ready
+		// object is a list of size one
+		if(o instanceof CinciaList && ((CinciaList)o).size()==1) {
+			return new CinciaList(Arrays.asList(o));
+		}
+
+		// multiple objects, just return the list already
 		if(o instanceof CinciaList) {
 			return o;
 		}
 
-		// single destrutured element
+		// object is a single destrutured element
 		if(o instanceof DestructuredList) {
-			return new CinciaList( ((DestructuredList)o).getList());
+			return new CinciaList( ((DestructuredList)o).getList() );
 		}
 
-		// single element
+		// object is a single element
 		return new CinciaList(Arrays.asList(o));
 
 	}
