@@ -163,27 +163,46 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalForStatement(ForStatement forS, Enviro enviro) {
 
-
 		List<CinciaIterable> iterables = forS.generators.stream().map(g -> (CinciaIterable)eval(g.iterable, enviro)).collect(Collectors.toList());
-
 		List<List<Identifier>> loopVars = forS.generators.stream().map(g -> g.loopVars).collect(Collectors.toList());
-
-
 		CinciaIterable shortest = iterables.stream().sorted( (i1,i2)-> (int) ( i1.size() - i2.size()) ).findFirst().get();
 
 
 		for (int i=0; i < shortest.size(); i++) {
 
+			// set the loop vars for this iteration
 			for(int j=0; j< iterables.size(); j++) {
 
 				CinciaObject o = iterables.get(j).get(i);
-				String name =  loopVars.get(j).get(0).value;  // assuming no unpacking
-				enviro.set(name, o);
+
+				if(loopVars.get(j).size()>1 && o instanceof CinciaIterable) {
+
+					CinciaIterable itx = (CinciaIterable)o;
+
+					if(loopVars.get(j).size() < itx.size()) {
+						throw new RuntimeException("Too few loop vars!");
+					}
+
+					if(loopVars.get(j).size() > itx.size() + 1) {
+						throw new RuntimeException("Too many loop vars!");
+					}
+
+					for(int v=0; v<itx.size(); v++) {
+						enviro.set(loopVars.get(j).get(v).value, itx.get(v));
+					}
+
+
+				}else {
+					// if o isn't an iterable, or there's just one loop var, don't unpack
+					enviro.set(loopVars.get(j).get(0).value, o);
+				}
+
 			}
 
+			// run this iteration
 			eval(forS.block, enviro);
 		}
-		
+
 		return null;
 
 

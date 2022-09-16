@@ -1,0 +1,11 @@
+l1 = [ [-x, x] for x in 1 to 3  ];
+l2 = [ 2*x for x in l1 ];
+dict = {};
+
+for i, j in l1, 
+    x, y in l2,
+    index in 0 to l2.size 
+    { dict[index] = [i, j, x, y]; }
+
+
+dict[0] ==  [-1, 1, -2, 2]  && dict[1] == [-2, 2, -4, 4] && dict[2]== [-3, 3, -6, 6];
