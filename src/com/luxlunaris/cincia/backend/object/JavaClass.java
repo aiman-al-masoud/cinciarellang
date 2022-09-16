@@ -12,7 +12,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class JavaClass extends JavaObject implements CinciaClass{
 
-    private Class clazz;
+    protected Class clazz;
 
 
 	public JavaClass(Class clazz) {

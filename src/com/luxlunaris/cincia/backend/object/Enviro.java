@@ -15,9 +15,9 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class Enviro implements Stateful{
 
-	private Enviro parent;
-	private Map<String, CinciaObject> vars;
-	private Map<String, Type> types;
+	protected Enviro parent;
+	protected Map<String, CinciaObject> vars;
+	protected Map<String, Type> types;
 
 
 	public static Enviro getTopLevelEnviro() {
