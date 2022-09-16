@@ -29,7 +29,7 @@ public class Tester {
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);
-//		final static List<String> tags = Arrays.asList("while-loop-continue.ci");
+//	final static List<String> tags = Arrays.asList("java-class-reference-type-compat.ci");
 
 	public static void main(String[] args) throws IOException{
 
@@ -75,7 +75,7 @@ public class Tester {
 			return new SingleTestResult(test.filename, SingleTestResult.BROKEN, e);
 		}
 
-		boolean success = out!=null && out.__eq__(new CinciaBool(true)).__bool__();
+		boolean success = out!=null && out.__eq__(new CinciaBool(true)).__bool__().toJava();
 		return new SingleTestResult(test.filename, success? SingleTestResult.SUCCESS : SingleTestResult.FAIL);
 
 	}

@@ -126,7 +126,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
 
-		if(eval(terex.cond, enviro).__bool__()) {
+		if(eval(terex.cond, enviro).__bool__().toJava()) {
 			return eval(terex.thenExpression, enviro);
 		}else {
 			return eval(terex.elseExpression, enviro);
@@ -137,7 +137,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalIfStatement(IfStatement ifStatement, Enviro enviro) {
 
-		if(eval(ifStatement.cond, enviro).__bool__()) {
+		if(eval(ifStatement.cond, enviro).__bool__().toJava()) {
 			return eval(ifStatement.thenBlock, enviro);
 		}else {
 			return eval(ifStatement.elseBlock, enviro);
@@ -219,7 +219,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalWhileStatement(WhileStatement whileStatement, Enviro enviro) {
 
-		while(eval(whileStatement.cond, enviro).__bool__()) {
+		while(eval(whileStatement.cond, enviro).__bool__().toJava()) {
 
 			// run one iteration
 			CinciaObject o = eval(whileStatement.block, enviro); 

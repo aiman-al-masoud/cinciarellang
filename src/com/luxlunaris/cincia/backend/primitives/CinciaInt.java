@@ -186,7 +186,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 			case STRING:
 				return new CinciaString(this.value+"");
 			case BOOL:
-				return new CinciaBool(__bool__());
+				return __bool__();
 			default:
 				throw new RuntimeException("Type conversion not supported!");
 			}
@@ -200,8 +200,8 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 
 	@Override
-	public boolean __bool__() {
-		return value!=0;
+	public CinciaBool __bool__() {
+		return new CinciaBool(value!=0);
 	}
 
 	@Override

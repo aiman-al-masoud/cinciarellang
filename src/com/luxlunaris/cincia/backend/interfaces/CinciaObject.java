@@ -54,7 +54,7 @@ public interface CinciaObject extends Stateful{
 	void setImmutable(); // recursively make the object immutable.
 	boolean isImmutable();
 	Enviro getEnviro();
-	boolean __bool__();
+	CinciaBool __bool__();
 	CinciaObject __add__(CinciaObject other);
 	CinciaObject __sub__(CinciaObject other);
 	CinciaObject __mul__(CinciaObject other);

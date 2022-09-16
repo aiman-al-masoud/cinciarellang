@@ -87,7 +87,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public CinciaIterable filter(PureCinciaFunction f) {
-		return filter(o -> f.run(Arrays.asList(o)).__bool__());
+		return filter(o -> f.run(Arrays.asList(o)).__bool__().toJava());
 	}
 
 	public CinciaIterable filter(List<CinciaObject> args) {

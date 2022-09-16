@@ -101,9 +101,9 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	}
 
 	@Override
-	public boolean __bool__() {
+	public CinciaBool __bool__() {
 		// TODO Auto-generated method stub
-		return false;
+		return object.__bool__();
 	}
 
 	@Override

@@ -16,23 +16,23 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public boolean __bool__() {
-		return value;
+	public CinciaBool __bool__() {
+		return this;
 	}
 
 	@Override
 	public CinciaObject __neg__() {
-		throw new RuntimeException("");
+		return new CinciaBool(!value);
 	}
 
 	@Override
 	public CinciaObject __or__(CinciaObject other) {
-		return new CinciaBool(value || other.__bool__());
+		return new CinciaBool(  value || other.__bool__().toJava()  );
 	}
 
 	@Override
 	public CinciaObject __and__(CinciaObject other) {
-		return new CinciaBool(value && other.__bool__());
+		return new CinciaBool(value && other.__bool__().toJava());
 	}
 	
 	@Override

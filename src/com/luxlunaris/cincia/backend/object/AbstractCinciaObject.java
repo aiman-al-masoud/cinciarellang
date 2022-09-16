@@ -53,11 +53,6 @@ public class AbstractCinciaObject implements CinciaObject{
 		return type;
 	}
 
-//	@Override
-//	public Object toJava() {
-//		return this;
-//	}
-
 	/**
 	 * Throws an exception if this object is immutable.
 	 */
@@ -115,11 +110,10 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 
-	public boolean __bool__(){
+	public CinciaBool __bool__(){
 		//TODO: handle keyerror exception, check if cm null
 		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__);
-//		return (boolean)cm.run(null).toJava();
-		return (boolean)cm.run(null).toJava();
+		return (CinciaBool)cm.run(null);
 	}
 
 	@Override
@@ -217,7 +211,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		}
 
-		return new CinciaBool(!__eq__(other).__bool__());
+		return __eq__(other).__neg__();
 	}
 
 	@Override
@@ -409,7 +403,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	public boolean equals(Object obj) {
 		
 		try {
-			return __eq__((CinciaObject)obj).__bool__();
+			return __eq__((CinciaObject)obj).__bool__().toJava();
 		} catch (ClassCastException e) {
 			throw new RuntimeException("Tried comparing cincia object with non-cincia object");
 		}
