@@ -19,11 +19,6 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		this.value = value;
 	}
 
-	//	@Override
-	//	public String getValue() {
-	//		return value;
-	//	}
-
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
 
@@ -122,7 +117,6 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 
 }
