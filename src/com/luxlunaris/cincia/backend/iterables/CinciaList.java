@@ -41,7 +41,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	static protected Type inferType(List<CinciaObject> list) {
 		boolean singleType = list.stream().allMatch(e->list.get(0).getType().matches(e.getType()));
-		return singleType? list.get(0).getType() : Type.Any;
+		return list.size() == 0 ? Type.Any : singleType ? list.get(0).getType() : Type.Any;
 	}
 
 	@Override
