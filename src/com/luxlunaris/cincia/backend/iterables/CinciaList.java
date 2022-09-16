@@ -40,8 +40,14 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	}
 
 	static protected Type inferType(List<CinciaObject> list) {
+
+
+		if(list.size()==0) {
+			return Type.Any;
+		}
+
 		boolean singleType = list.stream().allMatch(e->list.get(0).getType().matches(e.getType()));
-		return list.size() == 0 ? Type.Any : singleType ? list.get(0).getType() : Type.Any;
+		return singleType ? list.get(0).getType() : Type.Any;
 	}
 
 	@Override
@@ -140,27 +146,27 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	public CinciaIterable __mul__(CinciaObject other) {
 		return map( x->x.__mul__(other) );
 	}
-	
+
 	@Override
 	public CinciaIterable __add__(CinciaObject other) {
 		return map( x->x.__add__(other) );
 	}
-	
+
 	@Override
 	public CinciaIterable __sub__(CinciaObject other) {
 		return map( x->x.__sub__(other) );
 	}
-	
+
 	@Override
 	public CinciaIterable __div__(CinciaObject other) {
 		return map( x->x.__div__(other) );
 	}
-	
+
 	@Override
 	public CinciaIterable __mod__(CinciaObject other) {
 		return map( x->x.__mod__(other) );
 	}
-	
+
 
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
@@ -179,7 +185,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public CinciaObject get(String key) {
-		
+
 		// size attribute 
 		if(key.equals(IterMethods.size.toString()) ) {
 			return new CinciaInt((int)size()); //TODO: long to int may cause problems
