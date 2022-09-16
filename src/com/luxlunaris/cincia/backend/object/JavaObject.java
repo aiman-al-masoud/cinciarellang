@@ -35,7 +35,7 @@ public class JavaObject extends AbstractCinciaObject {
 		super(Type.Any);
 		this.type = !object.getClass().equals(Class.class.getClass())? new JavaClass(object.getClass()) : type; 
 		this.object = object;
-		
+
 		getAccessibleMethods(object.getClass())
 		.stream()
 		.map(m -> new JavaMethod(m,  this))		
@@ -51,7 +51,7 @@ public class JavaObject extends AbstractCinciaObject {
 
 					JavaOverloadedMethod oldVm = (JavaOverloadedMethod) oldMethod;
 					oldVm.add(m);
-					
+
 				}else {
 
 					// if taken by a regular method
@@ -59,7 +59,7 @@ public class JavaObject extends AbstractCinciaObject {
 					vm.add(oldMethod);
 					vm.add(m);
 					set(m.getName(), vm, Type.Any); 
-					
+
 				}
 
 
@@ -95,18 +95,18 @@ public class JavaObject extends AbstractCinciaObject {
 	}
 
 	public static List<Field> getAccessibleAttributes(Class clazz) {
-		
+
 		List<Field> allFields = Arrays.asList(clazz.getDeclaredFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList());
-//		allFields.addAll(Arrays.asList(clazz.getFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList()));
+		//		allFields.addAll(Arrays.asList(clazz.getFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList()));
 		return allFields;
-		
+
 	}
 
 
 	public static Entry<String, CinciaObject> convertField(Field field, Object object){
-		
-//		System.out.println(field+" "+(field==null));
-		
+
+		//		System.out.println(field+" "+(field==null));
+
 		try {
 			return Map.entry(field.getName(), CinciaObject.wrap(field.get(object)));
 		} catch (IllegalArgumentException | IllegalAccessException e) {
@@ -149,13 +149,6 @@ public class JavaObject extends AbstractCinciaObject {
 
 
 	}
-
-
-
-
-
-
-
 
 
 }
