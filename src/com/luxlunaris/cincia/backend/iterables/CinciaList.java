@@ -138,9 +138,31 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 
 	@Override
-	public CinciaObject __mul__(CinciaObject other) {
+	public CinciaIterable __mul__(CinciaObject other) {
 		return map( x->x.__mul__(other) );
 	}
+	
+	@Override
+	public CinciaIterable __add__(CinciaObject other) {
+		return map( x->x.__add__(other) );
+	}
+	
+	@Override
+	public CinciaIterable __sub__(CinciaObject other) {
+		return map( x->x.__sub__(other) );
+	}
+	
+	
+	@Override
+	public CinciaIterable __div__(CinciaObject other) {
+		return map( x->x.__div__(other) );
+	}
+	
+	@Override
+	public CinciaIterable __mod__(CinciaObject other) {
+		return map( x->x.__mod__(other) );
+	}
+	
 
 	@Override
 	public CinciaObject __eq__(CinciaObject other) {
