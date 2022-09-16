@@ -87,10 +87,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public CinciaIterable filter(PureCinciaFunction f) {
-//		List<CinciaObject> list = this.list.stream().filter( o -> f.run(Arrays.asList(o)).__bool__() ).collect(Collectors.toList());
-//		CinciaList res = new CinciaList(this.type);
-//		res.list = list;
-//		return res;
 		return filter(o -> f.run(Arrays.asList(o)).__bool__());
 	}
 
@@ -108,10 +104,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public CinciaIterable map(PureCinciaFunction f) {
-//		List<CinciaObject> list = this.list.stream().map( o -> f.run(Arrays.asList(o)) ).collect(Collectors.toList());
-//		CinciaList res = new CinciaList(this.type); //TODO: type may not be the same
-//		res.list = list;
-//		return res;
 		return map(o -> f.run(Arrays.asList(o)));
 	}
 
