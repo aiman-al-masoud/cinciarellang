@@ -66,7 +66,7 @@ public interface CinciaObject extends Stateful{
 	CinciaObject __gt__(CinciaObject other);
 	CinciaObject __lte__(CinciaObject other);
 	CinciaObject __gte__(CinciaObject other);
-	CinciaObject __eq__(CinciaObject other) ;
+	CinciaBool __eq__(CinciaObject other) ;
 	CinciaObject __ne__(CinciaObject other) ;
 	CinciaObject __not__() ;
 	CinciaString __str__() ;

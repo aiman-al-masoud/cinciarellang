@@ -189,11 +189,11 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	@Override
-	public CinciaObject __eq__(CinciaObject other) {
+	public CinciaBool __eq__(CinciaObject other) {
 
 		try {
 			CinciaMethod cm = (CinciaMethod)get(Magic.__eq__);
-			return cm.run(Arrays.asList(other));
+			return  (CinciaBool) cm.run(Arrays.asList(other));
 		} catch (Exception e) {
 
 		}

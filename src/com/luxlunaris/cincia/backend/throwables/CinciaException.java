@@ -173,7 +173,7 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	}
 
 	@Override
-	public CinciaObject __eq__(CinciaObject other) {
+	public CinciaBool __eq__(CinciaObject other) {
 		// TODO Auto-generated method stub
 		return null;
 	}

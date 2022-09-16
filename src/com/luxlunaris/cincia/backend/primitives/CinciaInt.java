@@ -205,7 +205,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public CinciaObject __eq__(CinciaObject other) {
+	public CinciaBool __eq__(CinciaObject other) {
 
 		try {
 

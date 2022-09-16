@@ -34,7 +34,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 
 	@Override
-	public CinciaObject __eq__(CinciaObject other) {
+	public CinciaBool __eq__(CinciaObject other) {
 
 		try {
 			CinciaString otherStr = (CinciaString)other;

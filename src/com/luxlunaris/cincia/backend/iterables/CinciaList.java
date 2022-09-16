@@ -163,7 +163,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	
 
 	@Override
-	public CinciaObject __eq__(CinciaObject other) {
+	public CinciaBool __eq__(CinciaObject other) {
 
 		try {
 			CinciaList otheriter = (CinciaList)other;
