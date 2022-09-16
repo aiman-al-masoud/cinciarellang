@@ -77,7 +77,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	}
 
 
-	//	@Override
+	@Override
 	public CinciaIterable filter(Predicate<CinciaObject> f) {
 		List<CinciaObject> list = this.list.stream().filter( f::test ).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type);
@@ -95,6 +95,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	}
 
 
+	@Override
 	public CinciaIterable map(UnaryOperator<CinciaObject> f) {
 		List<CinciaObject> list = this.list.stream().map( f::apply  ).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type); //TODO: type may not be the same

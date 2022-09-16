@@ -1,6 +1,8 @@
 package com.luxlunaris.cincia.backend.primitives;
 
 import java.util.Iterator;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
@@ -104,6 +106,18 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	@Override
 	public long size() {
 		return value.length();
+	}
+
+	@Override
+	public CinciaIterable filter(Predicate<CinciaObject> f) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CinciaIterable map(UnaryOperator<CinciaObject> f) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
