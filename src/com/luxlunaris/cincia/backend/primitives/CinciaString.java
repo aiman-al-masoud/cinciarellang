@@ -49,7 +49,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public String toString() {
-		return "\""+value+"\"";
+		return "\""+value+"\""; //TODO: remove "s when using print
 	}
 
 	@Override
