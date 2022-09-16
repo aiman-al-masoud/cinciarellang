@@ -1,0 +1,5 @@
+import ArrayList from "java.util.ArrayList";
+a =  ArrayList();
+a.add(1);
+a.add(2);
+a.remove(1) && a.size()==1;
