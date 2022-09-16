@@ -47,6 +47,14 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 		}
 
+
+		// try the inverse
+		try {
+			return other.__add__(this);
+		} catch (Exception e) {
+
+		}
+
 		throw new RuntimeException("Unsupported addition!");
 
 	}
