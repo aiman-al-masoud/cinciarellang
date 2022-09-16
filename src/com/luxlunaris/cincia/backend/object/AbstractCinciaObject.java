@@ -355,12 +355,9 @@ public class AbstractCinciaObject implements CinciaObject{
 			return;
 		}
 
-
 		// if index is an iterable
 		if(key instanceof CinciaIterable) {
-
 			set((CinciaIterable)key, val);
-
 			return;
 		}
 
