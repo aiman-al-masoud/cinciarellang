@@ -35,7 +35,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		set(IterMethods.filter.toString(),  new CinciaMethod(this::filter, this));
 	}
 
-
 	public CinciaList(List<CinciaObject> list) {
 		this(inferType(list), list);
 	}
