@@ -37,7 +37,7 @@ public interface CinciaObject extends Stateful{
 
 
 	/**
-	 * "Unwraps" the Cincia object to obtain a Java-equivalent.
+	 * "Unwraps" the CinciaObject to get back a Java equivalent.
 	 * @return
 	 */
 	Object toJava(); 
