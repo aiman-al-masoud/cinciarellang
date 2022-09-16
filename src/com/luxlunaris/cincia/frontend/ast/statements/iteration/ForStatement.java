@@ -11,21 +11,15 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
 public class ForStatement implements Statement{
 
-
-	//	public List<Identifier> loopVars;
-	//	public Expression iterable;
 	public List<Generator> generators;
 	public CompoundStatement block;
 
 	public ForStatement() {
-		//		loopVars  = new ArrayList<Identifier>();
 		generators = new ArrayList<>();
 	}
 
 	@Override
 	public Statement simplify() {
-		//		this.iterable = iterable.simplify();
-
 		this.generators = generators.stream().map(g->  g.simplify() ).collect(Collectors.toList());
 		this.block = (CompoundStatement) block.simplify();
 		return this;
@@ -33,17 +27,7 @@ public class ForStatement implements Statement{
 
 	@Override
 	public String toString() {
-		//		return "for "+loopVars+" in "+iterable+""+block;
 		return "forloop: generators="+ generators+" block="+block;
 	}
-
-
-	
-
-
-
-
-
-
 
 }
