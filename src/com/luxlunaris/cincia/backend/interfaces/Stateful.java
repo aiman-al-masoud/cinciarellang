@@ -10,5 +10,4 @@ public interface Stateful {
 	void set(String key, CinciaObject val);
 	void remove(String key);
 	
-	
 }
