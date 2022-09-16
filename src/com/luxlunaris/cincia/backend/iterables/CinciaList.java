@@ -159,7 +159,8 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public CinciaObject get(String key) {
-
+		
+		// size attribute 
 		if(key.equals(IterMethods.size.toString()) ) {
 			return new CinciaInt((int)size());
 		}
