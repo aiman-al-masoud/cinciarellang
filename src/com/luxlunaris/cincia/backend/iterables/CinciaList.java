@@ -33,6 +33,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		this.list = list;
 		set(IterMethods.map.toString(),  new CinciaMethod(this::map, this));
 		set(IterMethods.filter.toString(),  new CinciaMethod(this::filter, this));
+		set("add", new CinciaMethod(this::add, this));
 	}
 
 	public CinciaList(List<CinciaObject> list) {
@@ -70,6 +71,12 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	public void add(CinciaObject val) {
 		list.add(val);
 	}
+
+	public CinciaObject add(List<CinciaObject> args) {		
+		args.forEach(a-> add(a));
+		return null;
+	}
+
 
 	@Override
 	public String toString() {
