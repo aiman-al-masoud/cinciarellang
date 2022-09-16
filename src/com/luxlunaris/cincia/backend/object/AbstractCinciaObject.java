@@ -1,7 +1,6 @@
 package com.luxlunaris.cincia.backend.object;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
@@ -10,7 +9,6 @@ import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
-import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
