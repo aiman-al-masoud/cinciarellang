@@ -27,7 +27,6 @@ public class CinciaMethod extends CinciaFunction{
 		this.parent = parent;
 	}
 
-
 	@Override
 	public CinciaMethod copy(List<CinciaObject> args) {
 
