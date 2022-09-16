@@ -1,0 +1,18 @@
+dict = {};
+l1 = [1,2,3,4,5,6];
+
+for x in l1,
+	index in 0 to l1.size { 
+	
+	if x ==2 {
+		continue;
+	}
+	
+	if x==6 {
+		break;
+	};
+	
+	dict[index] = x;
+};
+
+dict[0] == 1 && dict[2]==3 && dict[3]==4 && dict[4]==5;

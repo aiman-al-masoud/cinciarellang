@@ -156,10 +156,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return new CinciaKeyword(Keywords.CONTINUE);
 	}
 
-
-	// for x, y, i in [[1,2],[3,4],[5,6],[7,8]]{ print(x, y, i);  }
-	// for x, y, i, a in [[1,2],[3,4],[5,6],[7,8]]{ print(x, y, i);  } SHOULD BE MARKED AS WRONG
-	// for x,y in [[1,2,3],[3,4,5],[5,6,7],[7,8,9]]{ print(x);  } SHOULD BE MARKED AS WRONG
 	@Override
 	public CinciaObject evalForStatement(ForStatement forS, Enviro enviro) {
 
@@ -199,8 +195,27 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			}
 
-			// run this iteration
-			eval(forS.block, enviro);
+			// run this iteration			
+			CinciaObject o = eval(forS.block, enviro);
+
+			//check iteration exit value to determine what to do next
+			if(o == null) {
+				continue;
+			}
+
+			if(o.toJava().equals(Keywords.CONTINUE)) {
+				continue;
+			}
+
+			if(o.toJava().equals(Keywords.BREAK)) {
+				break;
+			}
+
+			//return statement
+			if(o != null) { 
+				return o;
+			}
+
 		}
 
 		return null;
