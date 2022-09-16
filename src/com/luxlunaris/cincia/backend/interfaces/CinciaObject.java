@@ -36,9 +36,6 @@ public interface CinciaObject extends Stateful{
 	}
 	
 	
-	
-
-
 	Object getValue();
 	Type getType();
 	CinciaObject get(int key);
