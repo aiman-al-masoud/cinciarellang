@@ -80,7 +80,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	//	@Override
 	public CinciaIterable filter(Predicate<CinciaObject> f) {
-		List<CinciaObject> list = this.list.stream().filter( o -> f.test(o) ).collect(Collectors.toList());
+		List<CinciaObject> list = this.list.stream().filter( f::test ).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type);
 		res.list = list;
 		return res;
