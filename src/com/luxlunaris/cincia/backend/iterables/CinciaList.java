@@ -15,9 +15,10 @@ import com.luxlunaris.cincia.backend.interfaces.IterMethods;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
-import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import java.util.function.UnaryOperator;
+
 
 public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
@@ -75,9 +76,9 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		List<CinciaObject> copy = list.stream().map(e->e.copy(args)).collect(Collectors.toList());
 		return new CinciaList(copy);
 	}
-	
-	
-//	@Override
+
+
+	//	@Override
 	public CinciaIterable filter(Predicate<CinciaObject> f) {
 		List<CinciaObject> list = this.list.stream().filter( o -> f.test(o) ).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type);
@@ -93,9 +94,9 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	public CinciaIterable filter(List<CinciaObject> args) {
 		return filter((PureCinciaFunction)args.get(0)); 
 	}
-	
-	
-	public CinciaIterable map(java.util.function.UnaryOperator<CinciaObject> f) {
+
+
+	public CinciaIterable map(UnaryOperator<CinciaObject> f) {
 		List<CinciaObject> list = this.list.stream().map( f::apply  ).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type); //TODO: type may not be the same
 		res.list = list;
