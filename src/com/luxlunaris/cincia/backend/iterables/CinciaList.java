@@ -136,7 +136,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return list;
 	}
 
-
 	@Override
 	public CinciaIterable __mul__(CinciaObject other) {
 		return map( x->x.__mul__(other) );
