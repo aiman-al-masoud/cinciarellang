@@ -272,7 +272,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaInt otherInt = (CinciaInt)other;
-			return new CinciaBool(value > otherInt.value);
+			return new CinciaBool(value > otherInt.toJava());
 		}catch (ClassCastException e) {
 
 		}
