@@ -9,6 +9,7 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
+//TODO: implement iterable methods
 public class CinciaString extends PrimitiveCinciaObject implements CinciaIterable{
 
 	private String value;
