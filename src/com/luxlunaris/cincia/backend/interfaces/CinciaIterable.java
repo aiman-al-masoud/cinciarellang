@@ -7,8 +7,6 @@ import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 
 public interface CinciaIterable extends Iterable<CinciaObject>, CinciaObject{
   	
-	
-	
 	CinciaIterable map(UnaryOperator<CinciaObject> f);
 	CinciaIterable map(PureCinciaFunction f);
 	CinciaIterable filter(Predicate<CinciaObject> f);
