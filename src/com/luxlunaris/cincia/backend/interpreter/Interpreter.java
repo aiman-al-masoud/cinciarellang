@@ -777,13 +777,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalDotExpression(DotExpression dotex, Enviro enviro) {
 
 		try {
-//			System.out.println(dotex);
 			CinciaObject dottable = eval(dotex.left, enviro);
 			return dottable.get(dotex.right.value);					
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();
-//			throw new RuntimeException(e.getMessage()+" on "+dotex);
 		}
 
 	}
