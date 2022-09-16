@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.backend.object;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
@@ -395,13 +396,13 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public CinciaObject get(CinciaIterable key) {
 
-		CinciaList l = new CinciaList(Type.Any);
+		List<CinciaObject> l = new ArrayList<>();
 
 		for(CinciaObject i : ((CinciaIterable)key)) {
 			l.add(get(i));
 		}
 
-		return l;
+		return new CinciaList(l);
 	}
 
 
