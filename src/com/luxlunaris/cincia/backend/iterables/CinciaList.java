@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
@@ -74,25 +75,44 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		List<CinciaObject> copy = list.stream().map(e->e.copy(args)).collect(Collectors.toList());
 		return new CinciaList(copy);
 	}
-
-	@Override
-	public CinciaIterable filter(PureCinciaFunction f) {
-		List<CinciaObject> list = this.list.stream().filter( o -> f.run(Arrays.asList(o)).__bool__() ).collect(Collectors.toList());
+	
+	
+//	@Override
+	public CinciaIterable filter(Predicate<CinciaObject> f) {
+		List<CinciaObject> list = this.list.stream().filter( o -> f.test(o) ).collect(Collectors.toList());
 		CinciaList res = new CinciaList(this.type);
 		res.list = list;
 		return res;
 	}
 
+	@Override
+	public CinciaIterable filter(PureCinciaFunction f) {
+//		List<CinciaObject> list = this.list.stream().filter( o -> f.run(Arrays.asList(o)).__bool__() ).collect(Collectors.toList());
+//		CinciaList res = new CinciaList(this.type);
+//		res.list = list;
+//		return res;
+		return filter(o -> f.run(Arrays.asList(o)).__bool__());
+	}
+
 	public CinciaIterable filter(List<CinciaObject> args) {
 		return filter((PureCinciaFunction)args.get(0)); 
+	}
+	
+	
+	public CinciaIterable map(java.util.function.UnaryOperator<CinciaObject> f) {
+		List<CinciaObject> list = this.list.stream().map( f::apply  ).collect(Collectors.toList());
+		CinciaList res = new CinciaList(this.type); //TODO: type may not be the same
+		res.list = list;
+		return res;
 	}
 
 	@Override
 	public CinciaIterable map(PureCinciaFunction f) {
-		List<CinciaObject> list = this.list.stream().map( o -> f.run(Arrays.asList(o))).collect(Collectors.toList());
-		CinciaList res = new CinciaList(this.type); //TODO: type may not be the same
-		res.list = list;
-		return res;
+//		List<CinciaObject> list = this.list.stream().map( o -> f.run(Arrays.asList(o)) ).collect(Collectors.toList());
+//		CinciaList res = new CinciaList(this.type); //TODO: type may not be the same
+//		res.list = list;
+//		return res;
+		return map(o -> f.run(Arrays.asList(o)));
 	}
 
 	public CinciaIterable map(List<CinciaObject> args) {
