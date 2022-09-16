@@ -182,7 +182,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		
 		// size attribute 
 		if(key.equals(IterMethods.size.toString()) ) {
-			return new CinciaInt((int)size());
+			return new CinciaInt((int)size()); //TODO: long to int may cause problems
 		}
 
 		return super.get(key);
