@@ -16,11 +16,6 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public Object getValue() {
-		return value;
-	}
-
-	@Override
 	public boolean __bool__() {
 		return value;
 	}
@@ -70,7 +65,6 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	public CinciaString __str__() {
 		return new CinciaString(value+"");
 	}
-
 	
 	@Override
 	public CinciaObject as(List<CinciaObject> args) {//TODO:!!!

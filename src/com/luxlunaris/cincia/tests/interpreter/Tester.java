@@ -29,7 +29,7 @@ public class Tester {
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);
-//		final static List<String> tags = Arrays.asList("set-timeout");
+//		final static List<String> tags = Arrays.asList("while-loop-continue.ci");
 
 	public static void main(String[] args) throws IOException{
 

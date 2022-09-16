@@ -16,34 +16,23 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class CinciaException extends RuntimeException implements CinciaObject, Type {
-	
+
 	protected AbstractCinciaObject object;
-	
-	
+
+
 	public CinciaException() {
 		object = new AbstractCinciaObject(null);
 	}
-	
-	
 
 	@Override
 	public boolean matches(Type other) {
-		
 		IdentifierType idt = (IdentifierType)other;
-//		System.out.println(idt.value);
-//		System.out.println(getClass().getSimpleName());
 		return idt.value.equals(getClass().getSimpleName()); //TODO: fix this!!!!!!!@
-		
-	}
-	
-	@Override
-	public Expression simplify() {
-		return this;
 	}
 
 	@Override
-	public Object getValue() {
-		return object;
+	public Expression simplify() {
+		return this;
 	}
 
 	@Override
@@ -236,57 +225,41 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 		return null;
 	}
 
-
-
 	@Override
 	public Object toJava() {
 		return this;
 	}
-
-
 
 	@Override
 	public boolean isImmutable() {
 		return object.isImmutable();
 	}
 
-
-
 	@Override
 	public void set(CinciaObject key, CinciaObject val) {
 		object.set(key, val);
 	}
-
-
 
 	@Override
 	public CinciaObject get(CinciaObject key) {
 		return object.get(key);
 	}
 
-
-
 	@Override
 	public CinciaBool is(List<CinciaObject> args) {
 		return new CinciaBool(this == args.get(0)); // this == other
 	}
-
-
 
 	@Override
 	public CinciaObject get(CinciaIterable key) {
 		return object.get(key);
 	}
 
-
-
 	@Override
 	public void set(CinciaIterable key, CinciaObject val) {
 		set(key, val);
-	}
+	}	
 
-	
 
-	
 
 }

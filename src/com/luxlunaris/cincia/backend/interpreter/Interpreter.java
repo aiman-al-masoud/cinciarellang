@@ -229,11 +229,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				continue;
 			}
 
-			if(o.getValue().equals(Keywords.CONTINUE)) {
+			if(o.toJava().equals(Keywords.CONTINUE)) {
 				continue;
 			}
 
-			if(o.getValue().equals(Keywords.BREAK)) {
+			if(o.toJava().equals(Keywords.BREAK)) {
 				break;
 			}
 
@@ -341,11 +341,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				return o;
 			}
 
-			if (o!=null && o.getValue().equals(Keywords.BREAK) ) {
+			if (o!=null && o.toJava().equals(Keywords.BREAK) ) {
 				return o;
 			}
 
-			if (o!=null && o.getValue().equals(Keywords.CONTINUE) ) {
+			if (o!=null && o.toJava().equals(Keywords.CONTINUE) ) {
 				return o;
 			}
 
@@ -440,7 +440,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		if(from instanceof CinciaInt && to instanceof CinciaInt) {
 
-			for(int i=(int)from.getValue(); i<=(int)to.getValue(); i++) {
+			for(int i=(int)from.toJava(); i<=(int)to.toJava(); i++) {
 				cinciaList.add(new CinciaInt(i));
 			}
 
@@ -624,11 +624,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			CinciaObject val = eval(e.getValue(), enviro);
 
 			if(key instanceof CinciaString) {
-				d.set(((CinciaString)key).getValue(), val);
+				d.set(((CinciaString)key).toJava(), val);
 			}
 
 			if(key instanceof CinciaInt) {
-				d.set(((CinciaInt)key).getValue(), val);
+				d.set(((CinciaInt)key).toJava(), val);
 			}
 
 		});
@@ -656,11 +656,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		for(int i=0; i < keys.size(); i++) {
 
 			if(keys.get(i) instanceof CinciaString) {
-				result.set(((CinciaString)keys.get(i)).getValue(), vals.get(i));
+				result.set(((CinciaString)keys.get(i)).toJava(), vals.get(i));
 			}
 
 			if(keys.get(i) instanceof CinciaInt) {
-				result.set(((CinciaInt)keys.get(i)).getValue(), vals.get(i));
+				result.set(((CinciaInt)keys.get(i)).toJava(), vals.get(i));
 			}
 
 		}

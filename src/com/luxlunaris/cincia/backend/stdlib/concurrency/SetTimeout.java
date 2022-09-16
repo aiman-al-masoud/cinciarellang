@@ -25,7 +25,7 @@ public class SetTimeout extends CinciaFunction {
 			public void run() {
 
 				try {
-					Thread.sleep(delayMillis.getValue());
+					Thread.sleep(delayMillis.toJava());
 					runnable.run(args, enviro);
 				} catch (InterruptedException e) {
 					throw new RuntimeException("Couldn't start timeout!");

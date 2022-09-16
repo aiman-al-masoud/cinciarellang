@@ -53,10 +53,10 @@ public class AbstractCinciaObject implements CinciaObject{
 		return type;
 	}
 
-	@Override
-	public Object getValue() {
-		return this;
-	}
+//	@Override
+//	public Object toJava() {
+//		return this;
+//	}
 
 	/**
 	 * Throws an exception if this object is immutable.
@@ -118,7 +118,8 @@ public class AbstractCinciaObject implements CinciaObject{
 	public boolean __bool__(){
 		//TODO: handle keyerror exception, check if cm null
 		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__);
-		return (boolean)cm.run(null).getValue();
+//		return (boolean)cm.run(null).toJava();
+		return (boolean)cm.run(null).toJava();
 	}
 
 	@Override
@@ -311,7 +312,9 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public String toString() {
-		return (getValue()==this? super.toString() : getValue())+"";
+//		return (toJava()==this? super.toString() : toJava())+"";
+		return (toJava()==this? super.toString() : toJava())+"";
+
 	}
 
 	@Override
@@ -344,13 +347,13 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		// if index is an int
 		if(key instanceof CinciaInt) {
-			set(((CinciaInt)key).getValue(), val);
+			set(((CinciaInt)key).toJava(), val);
 			return;
 		}
 
 		// if index is a string
 		if(key instanceof CinciaString) {
-			set(((CinciaString)key).getValue(), val);
+			set(((CinciaString)key).toJava(), val);
 			return;
 		}
 
@@ -367,11 +370,11 @@ public class AbstractCinciaObject implements CinciaObject{
 	public CinciaObject get(CinciaObject key) {
 
 		if(key instanceof CinciaString) {
-			return get(((CinciaString)key).getValue());
+			return get(((CinciaString)key).toJava());
 		}
 
 		if(key instanceof CinciaInt) {
-			return get(((CinciaInt)key).getValue());
+			return get(((CinciaInt)key).toJava());
 		}
 
 		if(key instanceof CinciaIterable) {
@@ -404,7 +407,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public boolean equals(Object obj) {
-
+		
 		try {
 			return __eq__((CinciaObject)obj).__bool__();
 		} catch (ClassCastException e) {

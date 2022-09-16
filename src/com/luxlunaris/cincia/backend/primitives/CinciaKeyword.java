@@ -11,15 +11,15 @@ public class CinciaKeyword extends PrimitiveCinciaObject{
 		super(new PrimitiveType(keyword));
 		this.keyword = keyword;
 	}
-
-	@Override
-	public Object getValue() {
-		return keyword;
-	}
 	
 	@Override
 	public String toString() {
 		return keyword.toString();
+	}
+	
+	@Override
+	public Object toJava() {
+		return keyword;
 	}
 
 }

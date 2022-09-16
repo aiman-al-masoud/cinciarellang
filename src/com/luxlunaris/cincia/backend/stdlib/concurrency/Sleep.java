@@ -20,7 +20,7 @@ public class Sleep extends CinciaFunction{
 
 
 		try {
-			Thread.sleep(delayMillis.getValue());
+			Thread.sleep(delayMillis.toJava());
 		} catch (InterruptedException e) {
 			throw new RuntimeException("Couldn't put current thread to sleep!");
 		}
