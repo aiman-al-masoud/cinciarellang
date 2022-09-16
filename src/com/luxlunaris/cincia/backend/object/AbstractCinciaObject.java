@@ -375,11 +375,9 @@ public class AbstractCinciaObject implements CinciaObject{
 			return get(((CinciaInt)key).getValue());
 		}
 
-		//[1,2,3,4][0 to 2] // [1, 2, 3]
 		if(key instanceof CinciaIterable) {
 			return get((CinciaIterable)key);
 		}
-
 
 		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
 	}
