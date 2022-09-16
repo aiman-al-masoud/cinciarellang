@@ -12,7 +12,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public interface CinciaObject extends Stateful{
-	
+
 	/**
 	 * Creates a CinciaObject wrapper from a java object. 
 	 * @param object
@@ -34,9 +34,8 @@ public interface CinciaObject extends Stateful{
 		}
 
 	}
-	
-	
-	Object getValue();
+
+
 	Type getType();
 	CinciaObject get(int key);
 	CinciaObject get(Magic key);
@@ -70,6 +69,7 @@ public interface CinciaObject extends Stateful{
 	CinciaObject __init__(List<CinciaObject> args);
 	CinciaObject copy(List<CinciaObject> args); // returns a deep copy of the object
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
+	Object getValue();
 	Object toJava(); //returns a Java-object equivalent
 	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	
 	CinciaBool is(List<CinciaObject> args); // in-memory identity for objects
