@@ -396,13 +396,16 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public CinciaObject get(CinciaIterable key) {
 
-		List<CinciaObject> l = new ArrayList<>();
-
-		for(CinciaObject i : ((CinciaIterable)key)) {
-			l.add(get(i));
-		}
-
-		return new CinciaList(l);
+//		List<CinciaObject> l = new ArrayList<>();
+//
+//		for(CinciaObject i : ((CinciaIterable)key)) {
+//			l.add(get(i));
+//		}
+//
+//		return new CinciaList(l);
+		
+		return key.map( k->get(k) );
+		
 	}
 
 
