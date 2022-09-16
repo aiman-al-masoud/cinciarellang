@@ -63,12 +63,12 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public void set(int key, CinciaObject val, Type type) {
-
 		checkImmutable();
 		list.set(key, val);
 	}
 
 	public void add(CinciaObject val) {
+		checkImmutable();
 		list.add(val);
 	}
 
