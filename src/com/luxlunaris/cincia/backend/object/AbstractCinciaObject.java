@@ -386,7 +386,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public void set(CinciaIterable key, CinciaObject val) {
 
-		for(CinciaObject i : key) {
+		for(CinciaObject i : key) { //TODO: len(val) may not be == to len(key)
 			set(i, val instanceof CinciaIterable ? val.get(i) : val ); // if val is not another list, assign all keys to same single value of val.
 		}
 
