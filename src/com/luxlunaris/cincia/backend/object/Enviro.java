@@ -39,6 +39,11 @@ public class Enviro implements Stateful{
 
 	}
 
+	/**
+	 * Returns a new shallow copy of this env,
+	 * ie: DIFFERENT structure, containing the SAME objects.
+	 * @return
+	 */
 	public Enviro newChild() {
 		return new Enviro(this);
 	}
