@@ -18,10 +18,6 @@ public class CinciaMethod extends CinciaFunction{
 		super(lambdex, eval);
 	}
 
-//	public CinciaMethod(WrappedFunction wrappedFunction) {
-//		super(wrappedFunction);
-//	}
-	
 	public CinciaMethod(WrappedFunction wrappedFunction, CinciaObject parent) {
 		super(wrappedFunction);
 		this.parent = parent;
