@@ -39,7 +39,7 @@ public class JavaOverloadedMethod extends JavaMethod{
 
 	@Override
 	public String toString() {
-		return "VirtualMethod{ x"+methods.size()+" overloads }";
+		return "OverloadedMethod{ x"+methods.size()+" overloads }";
 	}
 
 
