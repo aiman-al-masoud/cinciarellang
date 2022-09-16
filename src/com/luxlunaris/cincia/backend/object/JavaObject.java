@@ -124,6 +124,12 @@ public class JavaObject extends AbstractCinciaObject {
 		return new JavaObject(deepCopy(object));
 	}
 
+	/**
+	 * Returns a new deep copy of an object, the original
+	 * must be Serializable!
+	 * @param object
+	 * @return
+	 */
 	public static Object deepCopy(Object object) {
 
 		try {
