@@ -43,8 +43,8 @@ public class CinciaMethod extends CinciaFunction{
 	}
 
 	/**
-	 * Runs on the ORIGINAL parent object's environment,
-	 * has SIDE EFFECTS!
+	 * Can have side effects on the parent's env when using this
+	 * to access its vars.
 	 * @param args
 	 * @param eval
 	 * @return
