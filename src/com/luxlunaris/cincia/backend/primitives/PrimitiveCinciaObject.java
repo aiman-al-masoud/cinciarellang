@@ -17,6 +17,10 @@ public class PrimitiveCinciaObject extends AbstractCinciaObject{
 		setImmutable();
 	}
 	
+	/**
+	 * Primitives are immutable, so you can safely avoid copying.
+	 * This is the base case for AbstractCinciaObject's recursive copy.
+	 */
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
 		return this;
