@@ -27,9 +27,8 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	protected WrappedFunction wrappedFunction;
 
 	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
-//		super(lambdex.signature);
-		super(lambdex!=null? lambdex.signature : new IdentifierType("NativeCodeFunc"));
 
+		super(lambdex!=null? lambdex.signature : new IdentifierType("NativeCodeFunc"));
 		this.eval = eval;
 		this.lambdex = lambdex;
 		params = parseParams(lambdex);			
@@ -117,8 +116,8 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		//... else it's a pure function by default
 		return new PureCinciaFunction(lambdex, eval);
 	}
-	
-	
+
+
 	public boolean isNativeCode() {
 		return wrappedFunction != null;
 	}
