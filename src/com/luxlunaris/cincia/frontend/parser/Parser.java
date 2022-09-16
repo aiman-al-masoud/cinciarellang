@@ -63,6 +63,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.exception.CatchClause;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.iteration.ForStatement;
+import com.luxlunaris.cincia.frontend.ast.statements.iteration.Generator;
 import com.luxlunaris.cincia.frontend.ast.statements.iteration.WhileStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
@@ -205,7 +206,7 @@ public class Parser {
 		while(!tStream.isEnd()) {
 
 			if (tStream.peek() instanceof Identifier ) {
-				fS.loopVars.add( parseIdentifier() );
+				fS.generators.add(  parseGenerator()  );
 				continue;
 			}
 
@@ -214,14 +215,39 @@ public class Parser {
 				continue;
 			}
 
+			// not identifier nor comma
 			break;
 		}
 
-		eat(Keywords.IN); // TODO: or 'of' ?
-		fS.iterable = parseSingleExpression();
 		fS.block = parseCompStatement();
 		return fS;
 	}
+
+	private Generator parseGenerator(){
+
+		Generator g = new Generator();
+
+		while(!tStream.isEnd()) {
+
+			if (tStream.peek() instanceof Identifier ) {
+				g.loopVars.add( parseIdentifier() );
+				continue;
+			}
+
+			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {  
+				eat(Punctuations.COMMA);
+				continue;
+			}
+
+			// not identifier nor comma
+			break;
+		}
+
+		eat(Keywords.IN); 	
+		g.iterable = parseSingleExpression();
+		return g;
+	}
+
 
 	private WhileStatement parseWhileStatement() {
 
@@ -504,7 +530,7 @@ public class Parser {
 		sD.modifiers = modifiers;
 		sD.name = id;
 		sD.type = parseType();
-//		System.out.println(sD.type.getClass());
+		//		System.out.println(sD.type.getClass());
 		return sD;
 	}
 

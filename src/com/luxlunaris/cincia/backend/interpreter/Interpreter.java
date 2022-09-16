@@ -161,59 +161,86 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	// for x, y, i, a in [[1,2],[3,4],[5,6],[7,8]]{ print(x, y, i);  } SHOULD BE MARKED AS WRONG
 	// for x,y in [[1,2,3],[3,4,5],[5,6,7],[7,8,9]]{ print(x);  } SHOULD BE MARKED AS WRONG
 	@Override
-	public CinciaObject evalForStatement(ForStatement forStatement, Enviro enviro) {
-
-		CinciaIterable iterable = (CinciaIterable)eval(forStatement.iterable, enviro);		
-		List<String> loopVars = forStatement.loopVars.stream().map(v-> ((Identifier)v).value ).collect(Collectors.toList());
-
-		int index = 0;
-		for(CinciaObject x : iterable) {
-
-			// 1 set loop vars
-
-			// 1.1 if there are >1 loop vars and x is an iterable, unpack it into the vars
-			if(loopVars.size()>1 && x instanceof CinciaIterable) {
-
-				CinciaIterable itx = (CinciaIterable)x;
-
-				if(loopVars.size() < itx.size()) {
-					throw new RuntimeException("Too few loop vars!");
-				}
-
-				if(loopVars.size() > itx.size() + 1) {
-					throw new RuntimeException("Too many loop vars!");
-				}
-
-				for(int i=0; i<itx.size(); i++) {
-					enviro.set(loopVars.get(i), itx.get(i));
-				}
+	public CinciaObject evalForStatement(ForStatement forS, Enviro enviro) {
 
 
-			}else {
-				// 1.2 if x isn't an iterable, or there's just one loop var, don't unpack
-				enviro.set(loopVars.get(0), x);
+		List<CinciaIterable> iterables = forS.generators.stream().map(g -> (CinciaIterable)eval(g.iterable, enviro)).collect(Collectors.toList());
+
+		List<List<Identifier>> loopVars = forS.generators.stream().map(g -> g.loopVars).collect(Collectors.toList());
+
+
+		CinciaIterable shortest = iterables.stream().sorted( (i1,i2)-> (int) ( i1.size() - i2.size()) ).findFirst().get();
+
+
+		for (int i=0; i < shortest.size(); i++) {
+
+			for(int j=0; j< iterables.size(); j++) {
+
+				CinciaObject o = iterables.get(j).get(i);
+				String name =  loopVars.get(j).get(0).value;  // assuming no unpacking
+				enviro.set(name, o);
 			}
 
-
-			// 2 if there's an extra loop var, assign it to the index
-			try {
-
-				long unpackedElemSize = ((CinciaIterable)iterable.get(0)).size();
-				if(loopVars.size() > unpackedElemSize) {
-					enviro.set(loopVars.get(loopVars.size()-1), new CinciaInt(index));
-				}
-
-			}catch (ClassCastException e) {
-				enviro.set(loopVars.get(loopVars.size()-1), new CinciaInt(index));
-			}
-
-
-			eval(forStatement.block, enviro); // 3 execute block
-			index++; //4 increment iteration index
-
+			eval(forS.block, enviro);
 		}
-
+		
 		return null;
+
+
+		//		System.out.println(forStatement);
+		//		return null;
+
+		//		CinciaIterable iterable = (CinciaIterable)eval(forStatement.iterable, enviro);		
+		//		List<String> loopVars = forStatement.loopVars.stream().map(v-> ((Identifier)v).value ).collect(Collectors.toList());
+		//
+		//		int index = 0;
+		//		for(CinciaObject x : iterable) {
+		//
+		//			// 1 set loop vars
+		//
+		//			// 1.1 if there are >1 loop vars and x is an iterable, unpack it into the vars
+		//			if(loopVars.size()>1 && x instanceof CinciaIterable) {
+		//
+		//				CinciaIterable itx = (CinciaIterable)x;
+		//
+		//				if(loopVars.size() < itx.size()) {
+		//					throw new RuntimeException("Too few loop vars!");
+		//				}
+		//
+		//				if(loopVars.size() > itx.size() + 1) {
+		//					throw new RuntimeException("Too many loop vars!");
+		//				}
+		//
+		//				for(int i=0; i<itx.size(); i++) {
+		//					enviro.set(loopVars.get(i), itx.get(i));
+		//				}
+		//
+		//
+		//			}else {
+		//				// 1.2 if x isn't an iterable, or there's just one loop var, don't unpack
+		//				enviro.set(loopVars.get(0), x);
+		//			}
+		//
+		//
+		//			// 2 if there's an extra loop var, assign it to the index
+		//			try {
+		//
+		//				long unpackedElemSize = ((CinciaIterable)iterable.get(0)).size();
+		//				if(loopVars.size() > unpackedElemSize) {
+		//					enviro.set(loopVars.get(loopVars.size()-1), new CinciaInt(index));
+		//				}
+		//
+		//			}catch (ClassCastException e) {
+		//				enviro.set(loopVars.get(loopVars.size()-1), new CinciaInt(index));
+		//			}
+		//
+		//
+		//			eval(forStatement.block, enviro); // 3 execute block
+		//			index++; //4 increment iteration index
+		//
+		//		}
+		//
+		//		return null;
 	}
 
 	@Override
@@ -246,11 +273,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		return null;
 	}
-	
-	
+
+
 	@Override
 	public CinciaObject evalImportStatement(ImportStatement importStatement, Enviro enviro) {
-		
+
 		//TODO: refactor and standardize the behaviour of different kinds of imports!
 
 		//from Java standard lib
@@ -277,14 +304,14 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			Entry<PostfixExpression, Identifier> importEntry = importStatement.imports.get(0);
 			String alias = importEntry.getValue().value;
-			
+
 
 			if(alias != Identifier.NULL.value) {
 				enviro.set(alias, importedObj);
 			}else if(importEntry.getKey() instanceof Identifier){
 				enviro.set( ((Identifier)importEntry.getKey()).value , importedObj);
 			}
-			
+
 			return null;
 
 		}
@@ -684,7 +711,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		} catch (Exception e) {
 
 		}
-		
+
 		// ... else make a function w/ factory method
 		return CinciaFunction.make(lambdex, this::eval);
 
@@ -732,7 +759,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else { // one single arg
 			args = o==null? Arrays.asList() : Arrays.asList(o) ;
 		}
-		
+
 		// get called expression
 		CinciaObject f = eval(callex.callable, enviro);
 
