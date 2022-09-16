@@ -732,9 +732,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else { // one single arg
 			args = o==null? Arrays.asList() : Arrays.asList(o) ;
 		}
-
-		//		System.out.println(args);
-
+		
 		// get called expression
 		CinciaObject f = eval(callex.callable, enviro);
 
