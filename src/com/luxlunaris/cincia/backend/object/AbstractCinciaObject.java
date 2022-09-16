@@ -367,7 +367,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public CinciaObject get(CinciaObject key) {
 
-		if( key instanceof CinciaString ) {
+		if(key instanceof CinciaString) {
 			return get(((CinciaString)key).getValue());
 		}
 
