@@ -105,8 +105,6 @@ public class JavaObject extends AbstractCinciaObject {
 
 	public static Entry<String, CinciaObject> convertField(Field field, Object object){
 
-		//		System.out.println(field+" "+(field==null));
-
 		try {
 			return Map.entry(field.getName(), CinciaObject.wrap(field.get(object)));
 		} catch (IllegalArgumentException | IllegalAccessException e) {
