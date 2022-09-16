@@ -9,6 +9,7 @@ import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.object.JavaObject;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.stdlib.concurrency.Promise;
 import com.luxlunaris.cincia.frontend.Compiler;
 
@@ -41,7 +42,8 @@ public class Repl {
 	}
 
 	protected static CinciaObject printWrapper(List<CinciaObject> args) {
-		args.forEach(e->{System.out.print(e);});
+		// TODO: more elegant solution to removing "s when printing strings!
+		args.forEach(e->{System.out.print(   e instanceof CinciaString ? ((CinciaString)e).toJava()   :e ); System.out.print(" ");  });
 		System.out.println();
 		return null;
 	}
