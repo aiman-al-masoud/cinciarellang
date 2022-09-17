@@ -584,12 +584,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject rval =  eval(assex.right, enviro);
 		
-		try {
-//			System.out.println("assigning comment: "+assex.comment);
-			rval.set(Magic.__docstr__, new CinciaString(assex.comment));
-		} catch (CannotMutateException e) {
-			
-		}
+		rval.setDocstring(assex.comment);
+//		try {
+////			System.out.println("assigning comment: "+assex.comment);
+//			rval.set(Magic.__docstr__, new CinciaString(assex.comment));
+//		} catch (CannotMutateException e) {
+//			
+//		}
 		
 
 

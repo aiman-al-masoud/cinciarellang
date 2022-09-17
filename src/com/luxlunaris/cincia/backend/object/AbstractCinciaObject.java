@@ -22,6 +22,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	public Enviro enviro; //object's internal environment 
 	protected Type type; // object's type
 	CinciaCinciaClass myClass; // object's class
+	protected String docString;
 
 	public AbstractCinciaObject(Type type) {
 		this.type = type;
@@ -68,7 +69,6 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	public void set(String key, CinciaObject val, Type type) {
-
 		checkImmutable();
 		enviro.set(key, val, type);
 	}
@@ -415,16 +415,13 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaString help(List<CinciaObject> args) {
-		
-		String docString;
-		try {
-			docString = ((CinciaString)get(Magic.__docstr__)).toJava();
-		} catch ( RuntimeException  e) {
-			docString = "";
-		}
-		
 		String s = myClass!=null? myClass.help(args).toJava() : "";
 		return new CinciaString("About this object:\n"+docString+"\nAbout the class:\n"+s);
+	}
+
+	@Override
+	public void setDocstring(String docString) {
+		this.docString  = this.docString==null ? docString : this.docString;
 	}
 
 

@@ -263,6 +263,11 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public CinciaString help(List<CinciaObject> args) {
 		return object.help(args);
+	}
+
+	@Override
+	public void setDocstring(String docstring) {
+		object.setDocstring(docstring);
 	}	
 
 
