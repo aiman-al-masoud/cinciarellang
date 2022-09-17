@@ -1,4 +1,4 @@
-import javastring from "java.lang.String";
+import JavaString from "java.lang.String";
 
 /**
 * this is a random number 
@@ -13,8 +13,8 @@ x = 1;
 y = 1;
 
 
-javastring(x.help()).contains("this is a random number") &&
-javastring(y.help()).contains("this is another random number");
+JavaString(x.help()).contains("this is a random number") &&
+JavaString(y.help()).contains("this is another random number");
 
 
 
