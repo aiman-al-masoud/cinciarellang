@@ -1,20 +1,20 @@
 import JavaString from "java.lang.String";
 
 /**
-* this is a random number 
+* This is a random number 
 */
 
 x = 1;
 
 /**
-* this is another random number 
+* This is another random number 
 */
 
 y = 1;
 
 
-JavaString(x.help()).contains("this is a random number") &&
-JavaString(y.help()).contains("this is another random number");
+JavaString(x.help()).contains("This is a random number") &&
+JavaString(y.help()).contains("This is another random number");
 
 
 
