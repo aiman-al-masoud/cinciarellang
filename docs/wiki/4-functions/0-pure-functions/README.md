@@ -1,5 +1,8 @@
-# Functions
+# Pure Functions
 
-Functions are first class citizens, this means that they can be returned by other functions or passed in as variables, just like any other object.
+All Cinciarellang functions are *pure*, unless otherwise explicitly stated.
 
-All functions in Cinciarellang are anonymous, and pure by default.
+A *pure function* doesn't produce any side effects, and its output (return value) only depends on its input (parameters), this means that it **cannot** under any circumstance:
+
+* Read from (or write to) the outer scope.
+* Modify its input paramters.
