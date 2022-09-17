@@ -387,7 +387,7 @@ public class Parser {
 		//		}
 
 		//		cS.block = block;
-		System.out.println(cS.simplify());
+//		System.out.println(cS.simplify());
 		return cS;
 	}
 
