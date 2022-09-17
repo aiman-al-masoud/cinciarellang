@@ -67,10 +67,10 @@ public interface CinciaObject extends Stateful{
 	CinciaObject __lte__(CinciaObject other);
 	CinciaObject __gte__(CinciaObject other);
 	CinciaBool __eq__(CinciaObject other) ;
-	CinciaObject __ne__(CinciaObject other) ;
-	CinciaObject __not__() ;
-	CinciaString __str__() ;
-	CinciaObject __neg__() ;
+	CinciaObject __ne__(CinciaObject other);
+	CinciaObject __not__();
+	CinciaString __str__();
+	CinciaObject __neg__();
 	CinciaObject __init__(List<CinciaObject> args);
 	CinciaObject copy(List<CinciaObject> args); // returns a deep copy of the object
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
