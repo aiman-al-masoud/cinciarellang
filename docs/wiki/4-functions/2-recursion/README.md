@@ -6,4 +6,7 @@ This is because their name isn't defined in their inner scope, it's defined in t
 
 This is why the variable `this` should be used to refer to a function from within it:
 
-
+```
+fib = \n -> n <= 1 ? 1 : this(n-1) + this(n-2);
+fib(10); //89
+```
