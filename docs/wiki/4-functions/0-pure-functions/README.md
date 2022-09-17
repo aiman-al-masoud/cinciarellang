@@ -20,7 +20,7 @@ g = \ x, y -> x + y;
 g(1,2); // 3
 ```
 
-A function with a block body:
+A function with a block-body:
 ```
 h = \x -> {
     t = 3*x + 1;
