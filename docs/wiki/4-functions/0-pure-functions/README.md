@@ -1,6 +1,6 @@
 # Pure Functions
 
-All Cinciarellang functions are *pure*, unless explicitly made impure.
+All Cinciarellang functions are *pure*, unless explicitly 'contaminated'.
 
 A *pure function* doesn't produce any side effects, and its output (return value) depends entirely on its input (parameters), this means that it **cannot** under any circumstance:
 
