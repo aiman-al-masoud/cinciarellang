@@ -56,3 +56,6 @@ wrong =\ -> x;
 wrong(); // x is undefined
 ```
 
+All parameters are passed by value, even objects, for real:
+
+
