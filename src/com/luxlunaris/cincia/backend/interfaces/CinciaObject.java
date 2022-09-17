@@ -77,6 +77,6 @@ public interface CinciaObject extends Stateful{
 	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	
 	CinciaBool is(List<CinciaObject> args); // in-memory identity for objects
 	CinciaString help(List<CinciaObject> args);
-	void setDocstring(String docstring);
+	void setDocstring(String docstring); // changes object's docstring only if it was null
 
 }
