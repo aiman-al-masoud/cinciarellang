@@ -230,7 +230,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 		}
 
-		throw new RuntimeException();
+		return new CinciaBool(false);
 	}
 
 	@Override
