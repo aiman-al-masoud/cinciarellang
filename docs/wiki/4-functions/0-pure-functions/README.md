@@ -58,7 +58,7 @@ wrong =\ -> x;
 wrong(); // x is undefined
 ```
 
-All parameters are passed by value, even objects, for real:
+### 7) All parameters are passed by value, **even objects, for real**:
 
 ```
 dict = {"c" : 0};
