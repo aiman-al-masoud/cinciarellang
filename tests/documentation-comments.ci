@@ -13,7 +13,9 @@ x = 1;
 y = 1;
 
 
-javastring(x.help()).contains("this is a random number");
+javastring(x.help()).contains("this is a random number") &&
+javastring(y.help()).contains("this is another random number");
+
 
 
 
