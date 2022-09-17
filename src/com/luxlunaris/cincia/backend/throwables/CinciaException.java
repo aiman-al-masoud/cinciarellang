@@ -258,6 +258,11 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public void set(CinciaIterable key, CinciaObject val) {
 		set(key, val);
+	}
+
+	@Override
+	public CinciaString help(List<CinciaObject> args) {
+		return object.help(args);
 	}	
 
 

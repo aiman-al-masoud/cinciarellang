@@ -76,5 +76,6 @@ public interface CinciaObject extends Stateful{
 	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
 	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	
 	CinciaBool is(List<CinciaObject> args); // in-memory identity for objects
+	CinciaString help(List<CinciaObject> args);
 
 }

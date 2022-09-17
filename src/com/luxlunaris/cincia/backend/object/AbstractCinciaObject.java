@@ -33,6 +33,8 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(Magic.freeze, new CinciaMethod(this::freeze, this));
 			set(Magic.as, new CinciaMethod(this::as, this));
 			set(Magic.is, new CinciaMethod(this::is, this));
+			set(Magic.help, new CinciaMethod(this::help, this));
+
 		}
 
 	}
@@ -408,6 +410,11 @@ public class AbstractCinciaObject implements CinciaObject{
 			throw new RuntimeException("Tried comparing cincia object with non-cincia object");
 		}
 
+	}
+
+	@Override
+	public CinciaString help(List<CinciaObject> args) {
+		return new CinciaString("this is a help page");
 	}
 
 
