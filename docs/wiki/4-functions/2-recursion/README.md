@@ -10,3 +10,5 @@ This is why the variable `this` was chosen to refer to a function from within it
 fib = \n -> n <= 1 ? 1 : this(n-1) + this(n-2);
 fib(10); //89
 ```
+
+This has the added advantage of making it very explicit when a function is recursive.
