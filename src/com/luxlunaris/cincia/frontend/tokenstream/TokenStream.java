@@ -22,6 +22,7 @@ public class TokenStream {
 
 	CharStream cStream;
 	Token currTok;
+	String currentComment;
 
 	public TokenStream(CharStream cStream) {
 		this.cStream = cStream;
@@ -35,10 +36,10 @@ public class TokenStream {
 		char curr  = cStream.peek();
 
 		if(curr == '/') {
-			
-			String com = skipComment();
-			
-			if(com != null) { 
+
+			currentComment = skipComment();
+
+			if(currentComment != null) { 
 				next();
 				return;
 			}
@@ -51,7 +52,7 @@ public class TokenStream {
 			Keywords kw = Keywords.fromString(val);
 			Boolean b = Bool.stringToBool(val);
 			Modifiers mod = Modifiers.fromString(val);
-			
+
 			// second condition to allow for methods with same name as keywords.
 			if(kw==null  || currTok!=null && currTok.getValue().equals(Punctuations.DOT)) {
 				currTok = new Identifier(val);
@@ -97,11 +98,11 @@ public class TokenStream {
 
 
 		if(Punctuations.isPunctuation(curr)) {
-			
+
 			currTok = new Punctuation(Punctuations.fromChar(curr));
 			cStream.next();
-			
-			
+
+
 			// ignore multiple contiguous ;
 			// while peek() is equal to ; AND current is ; keep on skipping to the next
 			while( Punctuations.STM_SEP.toString().equals(cStream.peek()+"") && currTok.getValue().equals(Punctuations.STM_SEP)) {
@@ -163,11 +164,11 @@ public class TokenStream {
 	}
 
 	private String skipMultilineComment(String com) {
-		
+
 
 		com = com+readWhile(c->c!='*');
 		eat('*');
-		
+
 
 		if(cStream.peek()=='/') {
 			eat('/');
@@ -272,6 +273,10 @@ public class TokenStream {
 		return new Str(str);
 	}
 
+
+	public String getCurrentComment() {
+		return currentComment;
+	}
 
 
 
