@@ -28,13 +28,17 @@ public class MatchStatement implements Statement{
 	public Statement simplify() {
 		this.cond = cond.simplify();
 		this.casesList = casesList.stream().map(c->(CaseStatement)c.simplify()).collect(Collectors.toList());
-		this.defaultStatement = (DefaultStatement) defaultStatement.simplify();
+		
+		if(defaultStatement!=null) {
+			this.defaultStatement = (DefaultStatement) defaultStatement.simplify();
+		}
+		
 		return this;
 	}
 	
 	@Override
 	public String toString() {
-		return "match "+casesList+" "+defaultStatement;
+		return "match "+cond+" "+casesList+" "+defaultStatement;
 	}
 	
 }
