@@ -391,7 +391,20 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalThrowStatement(ThrowStatement throwStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
-		return null;
+//		System.out.println(throwStatement);
+		
+		CinciaObject throwable = eval(throwStatement.throwable, enviro);
+		
+		
+		if(throwable instanceof CinciaException) {
+			throw (CinciaException)throwable;
+		}else {
+			CinciaException exception = new CinciaException();
+			exception.set("value", throwable);
+			throw exception;
+		}
+		
+//		return null;
 	}
 
 	@Override
