@@ -308,7 +308,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public String toString() {
-//		return (toJava()==this? super.toString() : toJava())+"";
+		//		return (toJava()==this? super.toString() : toJava())+"";
 		return (toJava()==this? super.toString() : toJava())+"";
 
 	}
@@ -403,7 +403,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public boolean equals(Object obj) {
-		
+
 		try {
 			return __eq__((CinciaObject)obj).__bool__().toJava();
 		} catch (ClassCastException e) {
