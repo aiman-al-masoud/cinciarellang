@@ -13,8 +13,20 @@ x = 1;
 y = 1;
 
 
+/**
+* This is random function 
+*/
+
+f = \x -> {
+	return 2*x;
+}
+
+
 JavaString(x.help()).contains("This is a random number") &&
-JavaString(y.help()).contains("This is another random number");
+JavaString(y.help()).contains("This is another random number"); // &&
+// JavaString(f.help()).contains("This is random function");
+
+
 
 
 
