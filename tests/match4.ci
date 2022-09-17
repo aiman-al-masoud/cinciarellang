@@ -1,0 +1,7 @@
+f = \x -> match x {  
+	"capra" -> 2; 
+	"ciao" -> 1; 
+	"due" -> 3;  
+}
+
+f("ciao") == 1 && f("capra") == 2  && f("due") == 3;
