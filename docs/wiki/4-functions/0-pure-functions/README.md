@@ -9,16 +9,17 @@ A *pure function* doesn't produce any side effects, and its output (return value
 
 These are all examples of pure functions:
 
+A very simple function that takes one argument:
 ```
 f = \ x ->  2*x +1;
 f(10); // 21
 ```
-
+... two arguments:
 ```
 g = \ x, y -> x + y;
 g(1,2); // 3
 ```
-
+A function with a block body ()
 ```
 h = \x -> {
     t = 3*x + 1;
