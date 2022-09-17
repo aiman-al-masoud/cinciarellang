@@ -25,10 +25,12 @@ import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
 import com.luxlunaris.cincia.backend.object.CinciaInterface;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaClass;
+import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.stdlib.Stdlib;
+import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.backend.throwables.IncompatibleTypesException;
 import com.luxlunaris.cincia.frontend.Compiler;
@@ -576,8 +578,20 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
 
+		
+//		System.out.println(assex+"  "+assex.comment);
+//		System.out.println( System.identityHashCode(assex) );
 
 		CinciaObject rval =  eval(assex.right, enviro);
+		
+		try {
+//			System.out.println("assigning comment: "+assex.comment);
+			rval.set(Magic.__docstr__, new CinciaString(assex.comment));
+		} catch (CannotMutateException e) {
+			
+		}
+		
+
 
 		// if l-value is an identifier
 		if(assex.left instanceof Identifier) {

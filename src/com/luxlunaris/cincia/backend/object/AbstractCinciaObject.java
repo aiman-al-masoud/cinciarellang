@@ -13,6 +13,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
+import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class AbstractCinciaObject implements CinciaObject{
@@ -414,8 +415,16 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaString help(List<CinciaObject> args) {
+		
+		String docString;
+		try {
+			docString = ((CinciaString)get(Magic.__docstr__)).toJava();
+		} catch ( RuntimeException  e) {
+			docString = "";
+		}
+		
 		String s = myClass!=null? myClass.help(args).toJava() : "";
-		return new CinciaString("this is a help page "+s);
+		return new CinciaString("About this object:\n"+docString+"\nAbout the class:\n"+s);
 	}
 
 
