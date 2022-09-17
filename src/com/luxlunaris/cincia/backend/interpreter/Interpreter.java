@@ -397,8 +397,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalMatchExpression(MatchExpression mS, Enviro enviro) {
 
-		//		System.out.println(mS);
-
 		CinciaObject condition = eval(mS.cond, enviro);
 
 		for(CaseStatement c : mS.casesList  ) {

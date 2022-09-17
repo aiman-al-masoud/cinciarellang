@@ -113,8 +113,6 @@ public class Parser {
 
 		if(tStream.peek().getValue().equals(Keywords.IF)) {
 			res = parseIfStatement();
-			//		}else if(tStream.peek().getValue().equals(Keywords.MATCH)) {
-			//			res = parseMatchStatement();
 		}else if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			res = parseCompStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.FOR )) {
@@ -133,8 +131,6 @@ public class Parser {
 			res = parseBreakStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.CASE )) {
 			res = parseCaseStatement();
-			//		}else if(tStream.peek().getValue().equals( Keywords.DEFAULT )) {
-			//			res = parseDefaultStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
@@ -287,7 +283,6 @@ public class Parser {
 
 		eat(Keywords.CATCH);
 		CatchClause cc = new CatchClause();
-		//		cc.throwable = parseSingleExpression();
 		cc.throwable = parseSingleDeclaration(true);
 		cc.block = parseCompStatement();
 		return cc;
@@ -337,9 +332,7 @@ public class Parser {
 
 		while(!tStream.isEnd()) {
 
-			//			if(tStream.peek().getValue().equals(Keywords.CASE)) {
 			if(tStream.peek() instanceof Identifier ||  tStream.peek() instanceof Constant) {
-
 				mS.add(parseCaseStatement());
 			}else {
 				break;
@@ -347,23 +340,14 @@ public class Parser {
 
 		}
 
-
-		//		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
-		//			mS.defaultStatement = parseDefaultStatement();
-		//		}
-		
-//		System.out.println(tStream.peek());
 		eat(Punctuations.CURLY_CLS);
 		return mS;
 	}
 
 	private CaseStatement parseCaseStatement() {
 
-		//		eat(Keywords.CASE);
 		CaseStatement cS  = new CaseStatement();
-		//		CompoundStatement block = new CompoundStatement();
 		cS.cond = parseSingleExpression();
-		//		eat(Punctuations.COL);
 		eat(Operators.ARROW);
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
@@ -374,47 +358,8 @@ public class Parser {
 			eat(Punctuations.STM_SEP);
 		}
 
-		//		while(!tStream.isEnd()) {
-		//
-		//			//DOESN'T stop at break.
-		//			//stops at next case statement, or default statement, or closing curly brace
-		//			if(tStream.peek().getValue().equals(Keywords.CASE) || tStream.peek().getValue().equals(Keywords.DEFAULT) || tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
-		//				break;
-		//			}
-		//
-		//			block.add(parseStatement());
-		//
-		//		}
-
-		//		cS.block = block;
-//		System.out.println(cS.simplify());
 		return cS;
 	}
-
-
-	//	private DefaultStatement parseDefaultStatement() {
-	//
-	//		eat(Keywords.DEFAULT);
-	//		eat(Punctuations.COL);
-	//		DefaultStatement dS  = new DefaultStatement();
-	//		CompoundStatement block = new CompoundStatement();
-	//
-	//		while(!tStream.isEnd()) {
-	//
-	//			//DOESN'T stop at break.
-	//			//stops at closing curly brace
-	//			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
-	//				break;
-	//			}
-	//
-	//			block.add(parseStatement());
-	//
-	//		}
-	//
-	//		dS.block = block;
-	//		return dS;
-	//	}
-
 
 	private ImportStatement parseImportStatement() {
 
@@ -597,7 +542,7 @@ public class Parser {
 
 	private Expression parseSingleExpression() {
 
-		
+
 
 		return parseAsgnExpression();		
 	}
@@ -648,13 +593,13 @@ public class Parser {
 
 
 	private Expression parseCondExpression() { //OrExpression or TernaryExpression
-		
-		
-		
+
+
+
 		if( tStream.peek().getValue().equals(Keywords.MATCH)) {
 			return parseMatchExpression();
 		}
-		
+
 
 		Expression oE = parseOrExpression();
 
