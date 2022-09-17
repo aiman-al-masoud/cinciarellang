@@ -11,6 +11,46 @@ These are all examples of pure functions:
 
 ```
 f = \ x ->  2*x +1;
+f(10); // 21
 ```
+
+```
+g = \ x, y -> x + y;
+g(1,2); // 3
+```
+
+```
+h = \x -> {
+    t = 3*x + 1;
+    return t;
+}
+h(1); // 4
+```
+
+A (trivial) function that takes no arguments is bound to return a constant value:
+
+```
+j = \ -> 100;
+j(); // 100
+```
+
+Using the match expression to implement a "lookup table":
+
+```
+k = \x -> match x {
+    "two" -> 2;
+    "one" -> 1;
+    "three" -> 3;
+}
+
+k("one"); //1
+```
+
+Trying to read from the outer scope will result in 
+
+```
+
+```
+
 
 
