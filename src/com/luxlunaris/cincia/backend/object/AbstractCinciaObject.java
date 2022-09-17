@@ -414,7 +414,8 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaString help(List<CinciaObject> args) {
-		return new CinciaString("this is a help page");
+		String s = myClass!=null? myClass.help(args).toJava() : "";
+		return new CinciaString("this is a help page "+s);
 	}
 
 
