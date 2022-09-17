@@ -48,7 +48,7 @@ k = \x -> match x {
 k("one"); //1
 ```
 
-Trying to read from the outer scope will result in an error when running the function (undefined variable):
+Trying to read anything from the outer scope will result in an error when running the function (undefined variable):
 
 ```
 x = 100;
@@ -58,4 +58,11 @@ wrong(); // x is undefined
 
 All parameters are passed by value, even objects, for real:
 
+```
+dict = {"c" : 0};
 
+p = \ x -> {
+
+}
+
+```
