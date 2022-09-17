@@ -50,7 +50,7 @@ k = \x -> match x {
 k("one"); //1
 ```
 
-Trying to read anything from the outer scope will result in an error when running the function (undefined variable):
+### 6) Trying to read anything from the outer scope will result in an error when running the function **(undefined variable)**:
 
 ```
 x = 100;
