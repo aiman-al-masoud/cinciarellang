@@ -56,5 +56,3 @@ wrong =\ -> x;
 wrong(); // x is undefined
 ```
 
-
-
