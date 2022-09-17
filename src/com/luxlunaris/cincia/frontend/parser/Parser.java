@@ -351,7 +351,8 @@ public class Parser {
 		//		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
 		//			mS.defaultStatement = parseDefaultStatement();
 		//		}
-
+		
+//		System.out.println(tStream.peek());
 		eat(Punctuations.CURLY_CLS);
 		return mS;
 	}
@@ -367,6 +368,7 @@ public class Parser {
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			cS.block = parseCompStatement();
+			eat(Punctuations.STM_SEP);
 		}else {
 			cS.expression = parseSingleExpression();
 			eat(Punctuations.STM_SEP);
@@ -385,6 +387,7 @@ public class Parser {
 		//		}
 
 		//		cS.block = block;
+		System.out.println(cS.simplify());
 		return cS;
 	}
 
