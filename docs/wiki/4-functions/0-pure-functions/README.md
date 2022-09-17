@@ -48,7 +48,7 @@ k = \x -> match x {
 k("one"); //1
 ```
 
-Trying to read from the outer scope will result in 
+Trying to read from the outer scope will result in an error when running the function (variable not defined):
 
 ```
 
