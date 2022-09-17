@@ -490,7 +490,6 @@ public class Parser {
 		sD.modifiers = modifiers;
 		sD.name = id;
 		sD.type = parseType();
-		//		System.out.println(sD.type.getClass());
 		return sD;
 	}
 
@@ -587,9 +586,7 @@ public class Parser {
 		}
 		
 		
-//		System.out.println(tStream.getCurrentComment());
 		asgn1.comment = tStream.getCurrentComment();
-//		System.out.println( System.identityHashCode(asgn1) );
 		return asgn1;
 
 	}

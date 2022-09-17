@@ -192,7 +192,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 				}else {
 					// if o isn't an iterable, or there's just one loop var, don't unpack
-//					System.out.println(loopVars.get(j).get(0).value+" "+o);
+					//					System.out.println(loopVars.get(j).get(0).value+" "+o);
 					enviro.set(loopVars.get(j).get(0).value, o);
 				}
 
@@ -394,11 +394,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalThrowStatement(ThrowStatement throwStatement, Enviro enviro) {
 		// TODO Auto-generated method stub
-//		System.out.println(throwStatement);
-		
+		//		System.out.println(throwStatement);
+
 		CinciaObject throwable = eval(throwStatement.throwable, enviro);
-		
-		
+
+
 		if(throwable instanceof CinciaException) {
 			throw (CinciaException)throwable;
 		}else {
@@ -406,8 +406,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			exception.set("value", throwable);
 			throw exception;
 		}
-		
-//		return null;
+
+		//		return null;
 	}
 
 	@Override
@@ -578,20 +578,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
 
-		
-//		System.out.println(assex+"  "+assex.comment);
-//		System.out.println( System.identityHashCode(assex) );
-
 		CinciaObject rval =  eval(assex.right, enviro);
-		
 		rval.setDocstring(assex.comment);
-//		try {
-////			System.out.println("assigning comment: "+assex.comment);
-//			rval.set(Magic.__docstr__, new CinciaString(assex.comment));
-//		} catch (CannotMutateException e) {
-//			
-//		}
-		
 
 
 		// if l-value is an identifier
@@ -600,7 +588,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			String id = ((Identifier)assex.left).value;
 
 			try {
-				//				System.out.println(id+" "+rval);
 				enviro.set(id, rval, rval.getType());
 
 			} catch (IncompatibleTypesException e) {
