@@ -11,4 +11,4 @@ fib = \n -> n <= 1 ? 1 : this(n-1) + this(n-2);
 fib(10); //89
 ```
 
-This has the added benefit of making it very explicit when a function is recursive.
+Though it may look weird or too wordy, this has the added benefit of making it very explicit when a function is recursive.
