@@ -36,6 +36,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
@@ -83,7 +84,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
@@ -395,7 +395,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalMatchStatement(MatchStatement mS, Enviro enviro) {
+	public CinciaObject evalMatchExpression(MatchExpression mS, Enviro enviro) {
 
 		//		System.out.println(mS);
 

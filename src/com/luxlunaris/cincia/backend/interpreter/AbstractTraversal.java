@@ -5,6 +5,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
@@ -59,7 +60,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
@@ -87,8 +87,8 @@ public abstract class AbstractTraversal<T> {
 		}else if( ast instanceof IfStatement ) {
 			return evalIfStatement((IfStatement)ast, enviro);
 
-		}else if(ast instanceof MatchStatement) {
-			return evalMatchStatement((MatchStatement)ast, enviro);
+		}else if(ast instanceof MatchExpression) {
+			return evalMatchExpression((MatchExpression)ast, enviro);
 
 		}else if(ast instanceof TryStatement) {
 			return evalTryStatement((TryStatement)ast, enviro);
@@ -161,6 +161,8 @@ public abstract class AbstractTraversal<T> {
 		}else if(expression instanceof PipeExpression) {
 			return evalPipeExpression((PipeExpression)expression, enviro);
 
+		}else if (expression instanceof MatchExpression) {
+			return evalMatchExpression( (MatchExpression)expression, enviro);
 		}
 
 		throw new RuntimeException("No such expression class!");
@@ -300,7 +302,7 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalBool(Bool boolex, Enviro enviro);	
 	public abstract T evalTernaryExpression(TernaryExpression terex, Enviro enviro);
 	public abstract T evalIfStatement(IfStatement ifStatement, Enviro enviro);
-	public abstract T evalMatchStatement(MatchStatement ifStatement, Enviro enviro);
+	public abstract T evalMatchExpression(MatchExpression ifStatement, Enviro enviro);
 	public abstract T evalBreakStatement(BreakStatement breakStatement, Enviro enviro);
 	public abstract T evalContinueStatement(ContinueStatement continueStatement, Enviro enviro);
 	public abstract T evalForStatement(ForStatement forStatement, Enviro enviro);

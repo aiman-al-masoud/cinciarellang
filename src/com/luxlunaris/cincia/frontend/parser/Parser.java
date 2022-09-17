@@ -11,6 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
@@ -71,7 +72,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.selection.MatchStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
@@ -113,8 +113,8 @@ public class Parser {
 
 		if(tStream.peek().getValue().equals(Keywords.IF)) {
 			res = parseIfStatement();
-		}else if(tStream.peek().getValue().equals(Keywords.MATCH)) {
-			res = parseMatchStatement();
+			//		}else if(tStream.peek().getValue().equals(Keywords.MATCH)) {
+			//			res = parseMatchStatement();
 		}else if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			res = parseCompStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.FOR )) {
@@ -133,8 +133,8 @@ public class Parser {
 			res = parseBreakStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.CASE )) {
 			res = parseCaseStatement();
-//		}else if(tStream.peek().getValue().equals( Keywords.DEFAULT )) {
-//			res = parseDefaultStatement();
+			//		}else if(tStream.peek().getValue().equals( Keywords.DEFAULT )) {
+			//			res = parseDefaultStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
@@ -328,10 +328,10 @@ public class Parser {
 	}
 
 
-	private MatchStatement parseMatchStatement() {
+	private MatchExpression parseMatchExpression() {
 
 		eat(Keywords.MATCH);
-		MatchStatement mS = new MatchStatement();
+		MatchExpression mS = new MatchExpression();
 		mS.cond = parseSingleExpression();
 		eat(Punctuations.CURLY_OPN);
 
@@ -346,11 +346,11 @@ public class Parser {
 			}
 
 		}
-		
 
-//		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
-//			mS.defaultStatement = parseDefaultStatement();
-//		}
+
+		//		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
+		//			mS.defaultStatement = parseDefaultStatement();
+		//		}
 
 		eat(Punctuations.CURLY_CLS);
 		return mS;
@@ -358,13 +358,13 @@ public class Parser {
 
 	private CaseStatement parseCaseStatement() {
 
-//		eat(Keywords.CASE);
+		//		eat(Keywords.CASE);
 		CaseStatement cS  = new CaseStatement();
-//		CompoundStatement block = new CompoundStatement();
+		//		CompoundStatement block = new CompoundStatement();
 		cS.cond = parseSingleExpression();
-//		eat(Punctuations.COL);
+		//		eat(Punctuations.COL);
 		eat(Operators.ARROW);
-		
+
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			cS.block = parseCompStatement();
 		}else {
@@ -372,45 +372,45 @@ public class Parser {
 			eat(Punctuations.STM_SEP);
 		}
 
-//		while(!tStream.isEnd()) {
-//
-//			//DOESN'T stop at break.
-//			//stops at next case statement, or default statement, or closing curly brace
-//			if(tStream.peek().getValue().equals(Keywords.CASE) || tStream.peek().getValue().equals(Keywords.DEFAULT) || tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
-//				break;
-//			}
-//
-//			block.add(parseStatement());
-//
-//		}
+		//		while(!tStream.isEnd()) {
+		//
+		//			//DOESN'T stop at break.
+		//			//stops at next case statement, or default statement, or closing curly brace
+		//			if(tStream.peek().getValue().equals(Keywords.CASE) || tStream.peek().getValue().equals(Keywords.DEFAULT) || tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+		//				break;
+		//			}
+		//
+		//			block.add(parseStatement());
+		//
+		//		}
 
-//		cS.block = block;
+		//		cS.block = block;
 		return cS;
 	}
 
 
-//	private DefaultStatement parseDefaultStatement() {
-//
-//		eat(Keywords.DEFAULT);
-//		eat(Punctuations.COL);
-//		DefaultStatement dS  = new DefaultStatement();
-//		CompoundStatement block = new CompoundStatement();
-//
-//		while(!tStream.isEnd()) {
-//
-//			//DOESN'T stop at break.
-//			//stops at closing curly brace
-//			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
-//				break;
-//			}
-//
-//			block.add(parseStatement());
-//
-//		}
-//
-//		dS.block = block;
-//		return dS;
-//	}
+	//	private DefaultStatement parseDefaultStatement() {
+	//
+	//		eat(Keywords.DEFAULT);
+	//		eat(Punctuations.COL);
+	//		DefaultStatement dS  = new DefaultStatement();
+	//		CompoundStatement block = new CompoundStatement();
+	//
+	//		while(!tStream.isEnd()) {
+	//
+	//			//DOESN'T stop at break.
+	//			//stops at closing curly brace
+	//			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+	//				break;
+	//			}
+	//
+	//			block.add(parseStatement());
+	//
+	//		}
+	//
+	//		dS.block = block;
+	//		return dS;
+	//	}
 
 
 	private ImportStatement parseImportStatement() {
@@ -594,6 +594,8 @@ public class Parser {
 
 	private Expression parseSingleExpression() {
 
+		
+
 		return parseAsgnExpression();		
 	}
 
@@ -643,6 +645,13 @@ public class Parser {
 
 
 	private Expression parseCondExpression() { //OrExpression or TernaryExpression
+		
+		
+		
+		if( tStream.peek().getValue().equals(Keywords.MATCH)) {
+			return parseMatchExpression();
+		}
+		
 
 		Expression oE = parseOrExpression();
 

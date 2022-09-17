@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.ast.statements.selection;
+package com.luxlunaris.cincia.frontend.ast.expressions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,14 +9,14 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 
-public class MatchStatement implements Statement{
+public class MatchExpression implements Expression{
 	
 	public Expression cond;
 	public List<CaseStatement> casesList;
 	public DefaultStatement defaultStatement;
 	
 	
-	public MatchStatement() {
+	public MatchExpression() {
 		casesList = new ArrayList<CaseStatement>();
 	}
 	
@@ -25,7 +25,7 @@ public class MatchStatement implements Statement{
 	}
 
 	@Override
-	public Statement simplify() {
+	public Expression simplify() {
 		this.cond = cond.simplify();
 		this.casesList = casesList.stream().map(c->(CaseStatement)c.simplify()).collect(Collectors.toList());
 		
