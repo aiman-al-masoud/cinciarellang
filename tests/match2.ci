@@ -9,7 +9,7 @@ res = match 7 {
 			return x;
 		 }
 	
-	 8 -> 0;
+	8 -> 0;
 
 }
 
