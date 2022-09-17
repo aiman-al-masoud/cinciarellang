@@ -79,6 +79,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
+import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuation;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
@@ -132,8 +133,8 @@ public class Parser {
 			res = parseBreakStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.CASE )) {
 			res = parseCaseStatement();
-		}else if(tStream.peek().getValue().equals( Keywords.DEFAULT )) {
-			res = parseDefaultStatement();
+//		}else if(tStream.peek().getValue().equals( Keywords.DEFAULT )) {
+//			res = parseDefaultStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
@@ -336,17 +337,20 @@ public class Parser {
 
 		while(!tStream.isEnd()) {
 
-			if(tStream.peek().getValue().equals(Keywords.CASE)) {
+			//			if(tStream.peek().getValue().equals(Keywords.CASE)) {
+			if(tStream.peek() instanceof Identifier ||  tStream.peek() instanceof Constant) {
+
 				mS.add(parseCaseStatement());
 			}else {
 				break;
 			}
 
 		}
+		
 
-		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
-			mS.defaultStatement = parseDefaultStatement();
-		}
+//		if(tStream.peek().getValue().equals(Keywords.DEFAULT)) {
+//			mS.defaultStatement = parseDefaultStatement();
+//		}
 
 		eat(Punctuations.CURLY_CLS);
 		return mS;
@@ -354,51 +358,59 @@ public class Parser {
 
 	private CaseStatement parseCaseStatement() {
 
-		eat(Keywords.CASE);
+//		eat(Keywords.CASE);
 		CaseStatement cS  = new CaseStatement();
-		CompoundStatement block = new CompoundStatement();
+//		CompoundStatement block = new CompoundStatement();
 		cS.cond = parseSingleExpression();
-		eat(Punctuations.COL);
-
-		while(!tStream.isEnd()) {
-
-			//DOESN'T stop at break.
-			//stops at next case statement, or default statement, or closing curly brace
-			if(tStream.peek().getValue().equals(Keywords.CASE) || tStream.peek().getValue().equals(Keywords.DEFAULT) || tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
-				break;
-			}
-
-			block.add(parseStatement());
-
+//		eat(Punctuations.COL);
+		eat(Operators.ARROW);
+		
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+			cS.block = parseCompStatement();
+		}else {
+			cS.expression = parseSingleExpression();
+			eat(Punctuations.STM_SEP);
 		}
 
-		cS.block = block;
+//		while(!tStream.isEnd()) {
+//
+//			//DOESN'T stop at break.
+//			//stops at next case statement, or default statement, or closing curly brace
+//			if(tStream.peek().getValue().equals(Keywords.CASE) || tStream.peek().getValue().equals(Keywords.DEFAULT) || tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+//				break;
+//			}
+//
+//			block.add(parseStatement());
+//
+//		}
+
+//		cS.block = block;
 		return cS;
 	}
 
 
-	private DefaultStatement parseDefaultStatement() {
-
-		eat(Keywords.DEFAULT);
-		eat(Punctuations.COL);
-		DefaultStatement dS  = new DefaultStatement();
-		CompoundStatement block = new CompoundStatement();
-
-		while(!tStream.isEnd()) {
-
-			//DOESN'T stop at break.
-			//stops at closing curly brace
-			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
-				break;
-			}
-
-			block.add(parseStatement());
-
-		}
-
-		dS.block = block;
-		return dS;
-	}
+//	private DefaultStatement parseDefaultStatement() {
+//
+//		eat(Keywords.DEFAULT);
+//		eat(Punctuations.COL);
+//		DefaultStatement dS  = new DefaultStatement();
+//		CompoundStatement block = new CompoundStatement();
+//
+//		while(!tStream.isEnd()) {
+//
+//			//DOESN'T stop at break.
+//			//stops at closing curly brace
+//			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
+//				break;
+//			}
+//
+//			block.add(parseStatement());
+//
+//		}
+//
+//		dS.block = block;
+//		return dS;
+//	}
 
 
 	private ImportStatement parseImportStatement() {
