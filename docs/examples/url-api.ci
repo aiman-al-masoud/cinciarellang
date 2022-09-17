@@ -1,0 +1,10 @@
+import URL from "java.net.URL";
+import URLConnection from "java.net.URLConnection";
+import InputStreamReader from "java.io.InputStreamReader";
+import  BufferedReader from "java.io.BufferedReader";
+
+u = URL("https://www.javatpoint.com/java-tutorial");
+conn = u.openConnection(); 
+bufr = BufferedReader(InputStreamReader(conn.getInputStream()));
+x = bufr.readLine();
+print(x);  

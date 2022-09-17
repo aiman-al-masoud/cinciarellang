@@ -27,8 +27,11 @@ public class JavaMethod extends CinciaMethod{
 			// convert cincia-args into java-args
 			List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
 
-			// store a copy of the object before method call //TODO: make this conditional if parent is immutable to avoid unneccessary overhead
-			Object copy = JavaObject.deepCopy(((JavaObject)parent).object);
+			// store a copy of the object before method call. Made this conditional to "if parent is immutable" to avoid unneccessary overhead
+			Object copy = null; //TODO: don't keep it like this!!!!! 
+			if(parent.isImmutable()) {
+				copy = JavaObject.deepCopy(((JavaObject)parent).object);
+			}
 
 			// invoke method on object and arguments
 			Object res = method.invoke(  ((JavaObject)parent).object, javargs.toArray());
@@ -47,7 +50,7 @@ public class JavaMethod extends CinciaMethod{
 			return CinciaObject.wrap(res);
 
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
-//			e.printStackTrace();
+			//			e.printStackTrace();
 		}
 
 		return null;
