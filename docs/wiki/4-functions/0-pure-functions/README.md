@@ -7,20 +7,22 @@ A *pure function* doesn't produce any side effects, and its output (return value
 * Read from (or write to) the outer scope.
 * Modify its input paramters.
 
-These are all examples of pure functions:
+## These are all examples of pure functions:
 
-A very simple function that takes one argument:
+
+
+### 1) A very simple function that takes one argument:
 ```
 f = \ x ->  2*x +1;
 f(10); // 21
 ```
-... two arguments:
+### 2) ... two arguments:
 ```
 g = \ x, y -> x + y;
 g(1,2); // 3
 ```
 
-A function with a block-body (and requires a return statement):
+### 3) A function with a block-body (and requires a return statement):
 ```
 h = \x -> {
     t = 3*x + 1;
@@ -29,14 +31,14 @@ h = \x -> {
 h(1); // 4
 ```
 
-A (trivial) function that takes no arguments is bound to return a constant value:
+### 4) A (trivial) function that takes no arguments is bound to return a constant value:
 
 ```
 j = \ -> 100;
 j(); // 100
 ```
 
-Using the match expression to implement a "lookup table":
+### 5) Using the `match` expression to implement a "lookup table":
 
 ```
 k = \x -> match x {
