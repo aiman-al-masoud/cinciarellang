@@ -190,6 +190,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 				}else {
 					// if o isn't an iterable, or there's just one loop var, don't unpack
+//					System.out.println(loopVars.get(j).get(0).value+" "+o);
 					enviro.set(loopVars.get(j).get(0).value, o);
 				}
 

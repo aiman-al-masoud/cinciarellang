@@ -1,0 +1,8 @@
+x = {};
+
+for i in "ciao", 
+	j in 0 to "ciao".size-1 {
+		x[j] = i;
+}
+
+x[0] == "c" && x[1] == "i" && x[2] == "a" && x[3] == "o";

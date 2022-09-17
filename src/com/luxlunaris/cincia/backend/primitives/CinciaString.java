@@ -1,12 +1,15 @@
 package com.luxlunaris.cincia.backend.primitives;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.IterMethods;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 //TODO: implement iterable methods
@@ -80,7 +83,8 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	@Override
 	public Iterator<CinciaObject> iterator() {
 		// TODO Auto-generated method stub
-		return null;
+		return Arrays.asList(value.toCharArray()).stream().map(c-> (CinciaObject) new CinciaString(c+"") ).collect(Collectors.toList()).iterator();
+//		return null;
 	}
 
 	@Override
@@ -116,6 +120,16 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	public CinciaIterable map(UnaryOperator<CinciaObject> f) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public CinciaObject get(String key) {
+		
+		if(key.equals(IterMethods.size.toString())) {
+			return new CinciaInt((int)size()); //TODO: long to int
+		}
+		
+		return super.get(key);
 	}
 
 
