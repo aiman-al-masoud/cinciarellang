@@ -7,7 +7,7 @@ A *pure function* doesn't produce any side effects, and its output (return value
 * Read from (or write to) the outer scope.
 * Modify its input paramters.
 
-## These are all examples of pure functions:
+## The following are all examples of pure functions:
 
 
 
