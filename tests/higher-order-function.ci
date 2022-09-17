@@ -1,0 +1,3 @@
+hof = \f -> f(10);
+fib = \n -> n <= 1 ? 1 : this(n-1) + this(n-2);
+hof(fib ) == 89  &&  hof(\x -> 2*x) == 20;

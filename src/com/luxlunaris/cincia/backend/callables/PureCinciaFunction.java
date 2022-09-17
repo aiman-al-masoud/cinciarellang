@@ -21,6 +21,7 @@ public class PureCinciaFunction extends CinciaFunction {
 
 	public PureCinciaFunction(LambdaExpression lambdex, Eval eval) {
 		super(lambdex, eval);
+		setImmutable(); // a pure function will never change
 	}
 
 	public CinciaObject run(List<CinciaObject> args) {
@@ -30,20 +31,25 @@ public class PureCinciaFunction extends CinciaFunction {
 		List<CinciaObject> argsCopy = args.stream().map(o->o.copy(null)).collect(Collectors.toList());
 		return super.run(argsCopy, enviro);
 	}
-	
+
 	@Override
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 		throw new RuntimeException("Can't bind pure function to externally supplied environment!");
 	}
-	
+
 	@Override
 	public CinciaString __str__() {
 		return new CinciaString(toString());
 	}
-	
+
 	@Override
 	public String toString() {
 		return lambdex.toString();
+	}
+
+	@Override
+	public CinciaObject copy(List<CinciaObject> args) {
+		return this; // since pure functions are immutable...
 	}
 
 }
