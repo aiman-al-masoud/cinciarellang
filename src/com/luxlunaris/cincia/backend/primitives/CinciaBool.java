@@ -56,7 +56,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public AbstractCinciaObject __not__() {
+	public CinciaBool __not__() {
 		return new CinciaBool(!value);
 	}
 
