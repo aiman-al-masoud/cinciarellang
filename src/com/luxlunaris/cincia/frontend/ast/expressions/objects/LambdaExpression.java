@@ -58,7 +58,7 @@ public class LambdaExpression implements ObjectExpression{
 		
 		LambdaExpression lambdex = new LambdaExpression();
 		lambdex.expression = body; // body
-		lambdex.modifiers.add(Modifiers.PURE); 
+//		lambdex.modifiers.add(Modifiers.PURE); 
 		Signature s1 = new Signature();
 		VariableDeclaration i = new VariableDeclaration();
 		i.name = input; // input
