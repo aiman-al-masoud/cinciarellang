@@ -154,6 +154,13 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 		}
 
+		// try the inverse
+		try {
+			return other.__mod__(this);
+		} catch (Exception e) {
+
+		}
+
 		throw new RuntimeException("Unsupported modulo!");
 	}
 
