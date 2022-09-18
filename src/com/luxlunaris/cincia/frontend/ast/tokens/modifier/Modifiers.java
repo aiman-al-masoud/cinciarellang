@@ -5,12 +5,12 @@ public enum Modifiers {
 	PRIVATE, 
 	STATIC, 
 	FINAL, 
-//	GET, 
-//	SET, 
-//	SINGLETON, 
-//	POOLED, 
-//	CONS,
-//	PURE,
+	//	GET, 
+	//	SET, 
+	//	SINGLETON, 
+	//	POOLED, 
+	//	CONS,
+	//	PURE,
 	REF,
 	RDOUT;
 
@@ -18,7 +18,7 @@ public enum Modifiers {
 		try {
 			return valueOf(string.toUpperCase());
 		}catch (Exception e) {
-//			e.printStackTrace();
+			//			e.printStackTrace();
 			return null;
 		}
 	}
