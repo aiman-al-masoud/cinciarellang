@@ -593,9 +593,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// if l-value is contained in a dot expression
 		try {
 			DotExpression dotex = (DotExpression)assex.left;
+			key = new CinciaString(dotex.right.value);
 			container = eval(dotex.left, enviro);
 			containerName = dotex.left.toString();
-			key = new CinciaString(dotex.right.value);
 		}catch (ClassCastException e) {
 
 		}
@@ -603,9 +603,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// if l-value is contained in an indexed expresson 
 		try {
 			IndexedExpression indexex = (IndexedExpression)assex.left;
+			key = eval(indexex.index, enviro);
 			container = eval(indexex.indexable, enviro);
 			containerName = indexex.indexable.toString();
-			key = eval(indexex.index, enviro);
 		}catch (ClassCastException e) {
 
 		}
