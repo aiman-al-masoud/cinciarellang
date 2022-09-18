@@ -586,7 +586,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			String id = ((Identifier)assex.left).value;
 
 			try {
-				enviro.set(id, rval, rval.getType());
+				enviro.set(id, rval);
 			} catch (TypeError e) {
 				e.lvalue = id;
 				e.expected = enviro.getType(id);
