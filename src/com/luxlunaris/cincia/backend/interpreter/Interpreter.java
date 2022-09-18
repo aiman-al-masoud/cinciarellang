@@ -393,7 +393,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalThrowStatement(ThrowStatement throwStatement, Enviro enviro) {
-	
+
 
 		CinciaObject throwable = eval(throwStatement.throwable, enviro);
 
