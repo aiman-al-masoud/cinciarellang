@@ -18,17 +18,12 @@ public enum Modifiers {
 		try {
 			return valueOf(string.toUpperCase());
 		}catch (Exception e) {
-			//			e.printStackTrace();
 			return null;
 		}
 	}
 
-
 	public static boolean isModifier(String string) {
 		return fromString(string) !=null;
 	}
-
-
-
 
 }
