@@ -211,10 +211,11 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	
 	protected void checkType(Type type) {
 		
-//		System.out.println("expected: "+((ListType)this.type).value);
-//		System.out.println(type);
 		if(!((ListType)this.type).value.matches(type)) {
-			throw new TypeError();
+			TypeError  e = new TypeError();
+			e.expected = ((ListType)this.type).value;
+			e.got = type;
+			throw e;
 		}
 		
 	}
