@@ -279,11 +279,8 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public String toString() {
-		//		return (toJava()==this? super.toString() : toJava())+"";
 		return (toJava()==this? super.toString() : toJava())+"";
-
 	}
-
 
 	@Override
 	public Object toJava() {
@@ -311,21 +308,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	//getters
 
 	@Override
 	public CinciaObject get(int key) {
