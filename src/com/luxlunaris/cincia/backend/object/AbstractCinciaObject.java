@@ -15,6 +15,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class AbstractCinciaObject implements CinciaObject{
 
@@ -422,6 +423,11 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public void setDocstring(String docString) {
 		this.docString  = this.docString==null ? docString : this.docString;
+	}
+
+	@Override
+	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
+		enviro.set(key, val, type, modifiers);
 	}
 
 

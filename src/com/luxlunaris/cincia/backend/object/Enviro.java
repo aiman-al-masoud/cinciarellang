@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.backend.object;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -12,12 +13,15 @@ import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.IncompatibleTypesException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class Enviro implements Stateful{
 
 	protected Enviro parent;
 	protected Map<String, CinciaObject> vars;
 	protected Map<String, Type> types;
+	protected Map<String, List<Modifiers>> modifiers;
 
 
 	public static Enviro getTopLevelEnviro() {
@@ -32,9 +36,11 @@ public class Enviro implements Stateful{
 		if(parent != null ) {
 			this.vars = new HashMap<String, CinciaObject>(parent.vars);
 			this.types = new HashMap<String, Type>(parent.types);
+			this.modifiers = new HashMap<>(parent.modifiers);
 		}else {
 			this.vars = new HashMap<String, CinciaObject>();
 			this.types = new HashMap<String, Type>();
+			this.modifiers = new HashMap<>();
 		}
 
 	}
@@ -71,10 +77,14 @@ public class Enviro implements Stateful{
 		return types.get(key);
 	}
 
+
+	public List<Modifiers> getModifiers(String key){
+		return modifiers.get(key);
+	}
+
 	@Override
-	public void set(String key, CinciaObject val, Type type) {
-		//TODO: maybe add final property in another map to check if reassignment is permitted
-		//TODO: add modifiers list in params 
+	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
+
 
 		// variable already exists/declared, need to check type:
 		if(vars.containsKey(key)) {
@@ -84,11 +94,42 @@ public class Enviro implements Stateful{
 				throw new IncompatibleTypesException();
 			}
 
+//			// if variable is already defined and it is final, throw error!
+			if( vars.get(key)!=null && getModifiers(key).contains(Modifiers.FINAL)) {
+				throw new RuntimeException("Cannot reassign final reference!");
+			}
+
 		}
 
 		vars.put(key, val);
 		Type oldType = getType(key);
+		List<Modifiers> oldModifiers = getModifiers(key);
+
 		types.put(key, oldType==null? type : oldType); // if there's an old type, keep it! (for union types to work)
+		this.modifiers.put(key,   oldModifiers==null? modifiers : oldModifiers); // same for modifiers
+	}
+
+	@Override
+	public void set(String key, CinciaObject val, Type type) {
+
+		set(key, val, type, Arrays.asList());
+
+		//		//TODO: maybe add final property in another map to check if reassignment is permitted
+		//		//TODO: add modifiers list in params 
+		//
+		//		// variable already exists/declared, need to check type:
+		//		if(vars.containsKey(key)) {
+		//
+		//			// if types don't match, error!
+		//			if(!types.get(key).matches(val.getType())) {
+		//				throw new IncompatibleTypesException();
+		//			}
+		//
+		//		}
+		//
+		//		vars.put(key, val);
+		//		Type oldType = getType(key);
+		//		types.put(key, oldType==null? type : oldType); // if there's an old type, keep it! (for union types to work)
 	}
 
 	@Override

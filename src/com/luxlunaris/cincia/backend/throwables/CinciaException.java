@@ -14,6 +14,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.OneNameType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.SingleType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class CinciaException extends RuntimeException implements CinciaObject, Type {
 
@@ -268,6 +269,11 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public void setDocstring(String docstring) {
 		object.setDocstring(docstring);
+	}
+
+	@Override
+	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
+		
 	}	
 
 
