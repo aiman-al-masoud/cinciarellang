@@ -103,7 +103,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		}
 
 
-		// try the inverse
+		// try the inverse (multiplication is commutative)
 		try {
 			return other.__mul__(this);
 		} catch (Exception e) {
