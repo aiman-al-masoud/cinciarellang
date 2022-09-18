@@ -95,6 +95,8 @@ public class AbstractCinciaObject implements CinciaObject{
 		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__);
 		return (CinciaBool)cm.run(null);
 	}
+	
+	//TODO: commutative operations should try the inverse if one way fails
 
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
