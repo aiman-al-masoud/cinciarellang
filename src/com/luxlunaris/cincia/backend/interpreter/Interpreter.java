@@ -94,6 +94,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
+import com.luxlunaris.cincia.backend.interfaces.Stateful;
 
 
 
@@ -576,31 +577,22 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalAssignmentExpression(AssignmentExpression assex, Enviro enviro) {
 
-		CinciaObject rval =  eval(assex.right, enviro);
+		CinciaObject rval = eval(assex.right, enviro);
 		rval.setDocstring(assex.comment);
-
+		CinciaObject key = null;
+		Stateful container = null;
 
 		// if l-value is an identifier
 		if(assex.left instanceof Identifier) {
-
-			String id = ((Identifier)assex.left).value;
-
-			try {
-				enviro.set(id, rval);
-			} catch (TypeError e) {
-				e.lvalue = id;
-				e.expected = enviro.getType(id);
-				e.got = rval.getType();
-				throw e;
-			}
-
+			key = new CinciaString(((Identifier)assex.left).value);
+			container = enviro;
 		}
 
 		// if l-value is contained in a dot expression
 		try {
 			DotExpression dotex = (DotExpression)assex.left;
-			CinciaObject dottable = eval(dotex.left, enviro);
-			dottable.set(dotex.right.value, rval);
+			container = eval(dotex.left, enviro);
+			key = new CinciaString(dotex.right.value);
 		}catch (ClassCastException e) {
 
 		}
@@ -608,12 +600,20 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// if l-value is contained in an indexed expresson 
 		try {
 			IndexedExpression indexex = (IndexedExpression)assex.left;
-			CinciaObject indexable = eval(indexex.indexable, enviro);
-			CinciaObject index = eval(indexex.index, enviro);
-			indexable.set(index, rval);
-
+			container = eval(indexex.indexable, enviro);
+			key = eval(indexex.index, enviro);
 		}catch (ClassCastException e) {
 
+		}
+
+		// set 
+		try {
+			container.set(key, rval);
+		} catch (TypeError e) {
+			e.lvalue = key+"";
+			e.expected = container.getType(key+"");
+			e.got = rval.getType();
+			throw e;
 		}
 
 		return rval;

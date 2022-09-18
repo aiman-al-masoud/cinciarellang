@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Stateful;
+import com.luxlunaris.cincia.backend.primitives.CinciaInt;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -59,7 +62,6 @@ public class Enviro implements Stateful{
 
 		CinciaObject o = vars.get(key);
 
-
 		if(o==null && vars.containsKey(key)) {
 			throw new RuntimeException(key+" is declared but undefined!");
 		}
@@ -77,14 +79,12 @@ public class Enviro implements Stateful{
 		return types.get(key);
 	}
 
-
 	public List<Modifiers> getModifiers(String key){
 		return modifiers.get(key);
 	}
 
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
-
 
 		// variable already exists/declared, need to check type:
 		if(vars.containsKey(key)) {
@@ -111,25 +111,7 @@ public class Enviro implements Stateful{
 
 	@Override
 	public void set(String key, CinciaObject val, Type type) {
-
 		set(key, val, type, Arrays.asList());
-
-		//		//TODO: maybe add final property in another map to check if reassignment is permitted
-		//		//TODO: add modifiers list in params 
-		//
-		//		// variable already exists/declared, need to check type:
-		//		if(vars.containsKey(key)) {
-		//
-		//			// if types don't match, error!
-		//			if(!types.get(key).matches(val.getType())) {
-		//				throw new IncompatibleTypesException();
-		//			}
-		//
-		//		}
-		//
-		//		vars.put(key, val);
-		//		Type oldType = getType(key);
-		//		types.put(key, oldType==null? type : oldType); // if there's an old type, keep it! (for union types to work)
 	}
 
 	@Override
@@ -150,6 +132,93 @@ public class Enviro implements Stateful{
 	public List<Map.Entry<String, CinciaObject>> items(){
 		return new ArrayList<Map.Entry<String,CinciaObject>>(vars.entrySet());
 	}
+
+	@Override
+	public CinciaObject get(int key) {
+		return get(key+"");
+	}
+
+	@Override
+	public CinciaObject get(Magic key) {
+		return get(key.toString());
+	}
+
+	@Override
+	public CinciaObject get(CinciaObject key) {
+
+		if(key instanceof CinciaString) {
+			return get(((CinciaString)key).toJava());
+		}
+
+		if(key instanceof CinciaInt) {
+			return get(((CinciaInt)key).toJava());
+		}
+
+		if(key instanceof CinciaIterable) {
+			return get((CinciaIterable)key);
+		}
+
+		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
+	}
+
+	@Override
+	public CinciaObject get(CinciaIterable key) {
+		return key.map( k->get(k) );
+	}
+
+	@Override
+	public void set(int key, CinciaObject val, Type type) {
+		set(key+"", val, type);
+	}
+
+	@Override
+	public void set(int key, CinciaObject val) {
+		set(key, val, val.getType());
+	}
+
+	@Override
+	public void set(Magic key, CinciaObject val) {
+		set(key.toString(), val, val.getType());
+	}
+
+	@Override
+	public void set(CinciaObject key, CinciaObject val) {
+		
+		// if index is an int
+		if(key instanceof CinciaInt) {
+			set(((CinciaInt)key).toJava(), val);
+			return;
+		}
+
+		// if index is a string
+		if(key instanceof CinciaString) {
+			set(((CinciaString)key).toJava(), val);
+			return;
+		}
+
+		// if index is an iterable
+		if(key instanceof CinciaIterable) {
+			set((CinciaIterable)key, val);
+			return;
+		}
+
+		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
+
+	}
+
+	@Override
+	public void set(CinciaIterable key, CinciaObject val) {
+
+		for(CinciaObject i : key) { //TODO: len(val) may not be == to len(key)
+			set(i, val instanceof CinciaIterable ? val.get(i) : val ); // if val is not another list, assign all keys to same single value of val.
+		}
+
+	}
+
+//	@Override
+//	public void set(CinciaObject key, CinciaObject val, Type type, List<Modifiers> modifiers) {
+//		lsld
+//	}
 
 
 }

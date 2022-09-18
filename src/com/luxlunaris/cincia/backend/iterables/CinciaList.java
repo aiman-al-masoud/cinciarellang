@@ -15,6 +15,7 @@ import com.luxlunaris.cincia.backend.interfaces.IterMethods;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import java.util.function.UnaryOperator;
@@ -27,6 +28,10 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	public CinciaList(Type type) {
 		this(type, new ArrayList<CinciaObject>());
 	}
+	
+	public CinciaList(List<CinciaObject> list) {
+		this(inferType(list), list);
+	}
 
 	public CinciaList(Type type, List<CinciaObject> list) {
 		super(new ListType(type));
@@ -36,12 +41,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		set("add", new CinciaMethod(this::add, this));
 	}
 
-	public CinciaList(List<CinciaObject> list) {
-		this(inferType(list), list);
-	}
-
 	static protected Type inferType(List<CinciaObject> list) {
-
 
 		if(list.size()==0) {
 			return Type.Any;
@@ -54,17 +54,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	@Override
 	public Iterator<CinciaObject> iterator() {
 		return list.iterator();
-	}
-
-	@Override
-	public CinciaObject get(int key) {
-		return list.get(key);
-	}
-
-	@Override
-	public void set(int key, CinciaObject val, Type type) {
-		checkImmutable();
-		list.set(key, val);
 	}
 
 	public void add(CinciaObject val) {
@@ -189,6 +178,42 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return new CinciaBool(false);
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public CinciaObject get(int key) {
+		return list.get(key);
+	}
+
+	@Override
+	public void set(int key, CinciaObject val, Type type) {
+		checkImmutable();
+		list.set(key, val);
+	}
+	
+	
+	@Override
+	public void set(int key, CinciaObject val) {
+		checkImmutable();
+		list.set(key, val);
+	}
+	
 
 	@Override
 	public CinciaObject get(String key) {
@@ -200,6 +225,20 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 		return super.get(key);
 	}
+
+//	@Override
+//	public CinciaObject get(CinciaObject key) {
+//
+//		if(key instanceof CinciaString) {
+//			return get(  ((CinciaString)key).toJava() );
+//		}
+//
+//		if(key instanceof CinciaInt) {
+//			return get(  ((CinciaInt)key).toJava() );
+//		}
+//
+//		return super.get(key);
+//	}
 
 
 

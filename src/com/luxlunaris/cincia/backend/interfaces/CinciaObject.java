@@ -42,15 +42,15 @@ public interface CinciaObject extends Stateful{
 	 */
 	Object toJava(); 
 	Type getType();
-	CinciaObject get(int key);
-	CinciaObject get(Magic key);
-	CinciaObject get(CinciaObject key);
-	CinciaObject get(CinciaIterable key);
-	void set(int key, CinciaObject val, Type type);
-	void set(int key, CinciaObject val);
-	void set(Magic key, CinciaObject val);
-	void set(CinciaObject key, CinciaObject val);
-	void set(CinciaIterable key, CinciaObject val);
+//	CinciaObject get(int key);
+//	CinciaObject get(Magic key);
+//	CinciaObject get(CinciaObject key);
+//	CinciaObject get(CinciaIterable key);
+//	void set(int key, CinciaObject val, Type type);
+//	void set(int key, CinciaObject val);
+//	void set(Magic key, CinciaObject val);
+//	void set(CinciaObject key, CinciaObject val);
+//	void set(CinciaIterable key, CinciaObject val);
 	void setImmutable(); // recursively make the object immutable.
 	boolean isImmutable();
 	Enviro getEnviro();
