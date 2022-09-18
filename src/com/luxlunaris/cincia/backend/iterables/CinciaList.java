@@ -29,7 +29,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	public CinciaList(Type type) {
 		this(type, new ArrayList<CinciaObject>());
 	}
-	
+
 	public CinciaList(List<CinciaObject> list) {
 		this(inferType(list), list);
 	}
@@ -179,54 +179,47 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return new CinciaBool(false);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	@Override
 	public CinciaObject get(int key) {
 		return list.get(key);
 	}
 
-//	@Override
-//	public void set(int key, CinciaObject val, Type type) {
-//		checkImmutable();
-//		list.set(key, val);
-//	}
-	
-	
 	protected void checkType(Type type) {
-		
+
 		if(!((ListType)this.type).value.matches(type)) {
 			TypeError  e = new TypeError();
 			e.expected = ((ListType)this.type).value;
 			e.got = type;
 			throw e;
 		}
-		
+
 	}
-	
+
 	@Override
 	public void set(int key, CinciaObject val) {
 		checkImmutable();
 		checkType(val.getType());
 		list.set(key, val);
 	}
-	
+
 
 	@Override
 	public CinciaObject get(String key) {
@@ -239,19 +232,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return super.get(key);
 	}
 
-//	@Override
-//	public CinciaObject get(CinciaObject key) {
-//
-//		if(key instanceof CinciaString) {
-//			return get(  ((CinciaString)key).toJava() );
-//		}
-//
-//		if(key instanceof CinciaInt) {
-//			return get(  ((CinciaInt)key).toJava() );
-//		}
-//
-//		return super.get(key);
-//	}
+
 
 
 
