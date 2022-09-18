@@ -185,12 +185,12 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public CinciaObject __ne__(CinciaObject other) {
 
-		try {
-			CinciaMethod cm = (CinciaMethod)get(Magic.__ne__);
-			return cm.run(Arrays.asList(other));
-		} catch (Exception e) {
-
-		}
+//		try {
+//			CinciaMethod cm = (CinciaMethod)get(Magic.__ne__);
+//			return cm.run(Arrays.asList(other));
+//		} catch (Exception e) {
+//
+//		}
 
 		return __eq__(other).__neg__();
 	}
