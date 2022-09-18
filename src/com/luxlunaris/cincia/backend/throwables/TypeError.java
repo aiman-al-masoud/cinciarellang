@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.backend.throwables;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-public class IncompatibleTypesException extends CinciaException {
+public class TypeError extends CinciaException {
 	
 	public String lvalue;
 	public Type expected;

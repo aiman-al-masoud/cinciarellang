@@ -2,7 +2,7 @@ x:int; /*declared as an int*/
 
 try{
 	x = "sdkks"; /*try to assign a string to int var x*/
-}catch e : IncompatibleTypesException {
+}catch e : TypeError {
 	caught = true;
 }
 

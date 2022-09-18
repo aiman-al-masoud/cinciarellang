@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.stdlib.Stdlib;
-import com.luxlunaris.cincia.backend.throwables.IncompatibleTypesException;
+import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
@@ -91,7 +91,7 @@ public class Enviro implements Stateful{
 
 			// if types don't match, error!
 			if(!types.get(key).matches(val.getType())) {
-				throw new IncompatibleTypesException();
+				throw new TypeError();
 			}
 
 			// if variable is already defined and it is final, throw error!

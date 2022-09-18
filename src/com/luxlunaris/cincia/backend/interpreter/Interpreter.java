@@ -32,7 +32,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
-import com.luxlunaris.cincia.backend.throwables.IncompatibleTypesException;
+import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -590,7 +590,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			try {
 				enviro.set(id, rval, rval.getType());
 
-			} catch (IncompatibleTypesException e) {
+			} catch (TypeError e) {
 				e.lvalue = id;
 				e.expected = enviro.getType(id);
 				e.got = rval.getType();
