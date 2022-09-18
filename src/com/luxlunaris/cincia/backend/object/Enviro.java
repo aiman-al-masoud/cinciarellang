@@ -94,7 +94,7 @@ public class Enviro implements Stateful{
 				throw new IncompatibleTypesException();
 			}
 
-//			// if variable is already defined and it is final, throw error!
+			// if variable is already defined and it is final, throw error!
 			if( vars.get(key)!=null && getModifiers(key).contains(Modifiers.FINAL)) {
 				throw new RuntimeException("Cannot reassign final reference!");
 			}
