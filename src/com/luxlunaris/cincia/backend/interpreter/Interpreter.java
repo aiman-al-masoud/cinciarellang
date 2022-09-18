@@ -612,7 +612,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// set 
 		try {
-			container.set(key, rval);
+			container.set(key, rval); //TODO: also set modifiers
 		} catch (TypeError e) {
 			e.lvalue = key+" on "+containerName;
 			e.expected =  e.expected==null? container.getType(key+"") : e.expected;
