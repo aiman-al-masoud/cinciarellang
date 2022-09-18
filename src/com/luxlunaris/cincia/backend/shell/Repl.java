@@ -7,10 +7,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
-import com.luxlunaris.cincia.backend.object.JavaClass;
-import com.luxlunaris.cincia.backend.object.JavaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
-import com.luxlunaris.cincia.backend.stdlib.concurrency.Promise;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.frontend.Compiler;
 
