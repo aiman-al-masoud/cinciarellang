@@ -180,9 +180,8 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	}
 
 	@Override
-	public CinciaObject __ne__(CinciaObject other) {
-		// TODO Auto-generated method stub
-		return null;
+	public CinciaBool __ne__(CinciaObject other) {
+		return object.__ne__(other);
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public CinciaObject __neg__() {
+	public CinciaBool __neg__() {
 		return new CinciaBool(!value);
 	}
 
@@ -51,7 +51,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public CinciaObject __ne__(CinciaObject other) {
+	public CinciaBool __ne__(CinciaObject other) {
 		CinciaBool eq = (CinciaBool)this.__eq__(other);
 		return new CinciaBool(!eq.value);
 	}
