@@ -16,6 +16,7 @@ import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
+import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import java.util.function.UnaryOperator;
@@ -208,9 +209,20 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 //	}
 	
 	
+	protected void checkType(Type type) {
+		
+//		System.out.println("expected: "+((ListType)this.type).value);
+//		System.out.println(type);
+		if(!((ListType)this.type).value.matches(type)) {
+			throw new TypeError();
+		}
+		
+	}
+	
 	@Override
 	public void set(int key, CinciaObject val) {
 		checkImmutable();
+		checkType(val.getType());
 		list.set(key, val);
 	}
 	
