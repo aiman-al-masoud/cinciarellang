@@ -184,7 +184,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaObject __ne__(CinciaObject other) {
-		return __eq__(other).__neg__();
+		return __eq__(other).__neg__(); // always negation of __eq__
 	}
 
 	@Override
