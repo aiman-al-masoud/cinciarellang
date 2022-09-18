@@ -201,11 +201,11 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return list.get(key);
 	}
 
-	@Override
-	public void set(int key, CinciaObject val, Type type) {
-		checkImmutable();
-		list.set(key, val);
-	}
+//	@Override
+//	public void set(int key, CinciaObject val, Type type) {
+//		checkImmutable();
+//		list.set(key, val);
+//	}
 	
 	
 	@Override
