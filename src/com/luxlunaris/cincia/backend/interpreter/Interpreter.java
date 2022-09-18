@@ -581,17 +581,20 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		rval.setDocstring(assex.comment);
 		CinciaObject key = null;
 		Stateful container = null;
+		String containerName = null;
 
 		// if l-value is an identifier
 		if(assex.left instanceof Identifier) {
 			key = new CinciaString(((Identifier)assex.left).value);
 			container = enviro;
+			containerName = "";
 		}
 
 		// if l-value is contained in a dot expression
 		try {
 			DotExpression dotex = (DotExpression)assex.left;
 			container = eval(dotex.left, enviro);
+			containerName = dotex.left.toString();
 			key = new CinciaString(dotex.right.value);
 		}catch (ClassCastException e) {
 
@@ -601,6 +604,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		try {
 			IndexedExpression indexex = (IndexedExpression)assex.left;
 			container = eval(indexex.indexable, enviro);
+			containerName = indexex.indexable.toString();
 			key = eval(indexex.index, enviro);
 		}catch (ClassCastException e) {
 
@@ -610,7 +614,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		try {
 			container.set(key, rval);
 		} catch (TypeError e) {
-			e.lvalue = key+" on "+container;
+			e.lvalue = key+" on "+containerName;
 			e.expected =  e.expected==null? container.getType(key+"") : e.expected;
 			e.got =  e.expected==null? rval.getType() : e.got; //rval.getType();
 			throw e;
