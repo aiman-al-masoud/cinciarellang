@@ -52,8 +52,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 
 	@Override
 	public CinciaBool __ne__(CinciaObject other) {
-		CinciaBool eq = (CinciaBool)this.__eq__(other);
-		return new CinciaBool(!eq.value);
+		return new CinciaBool(!__eq__(other).toJava());
 	}
 
 	@Override
