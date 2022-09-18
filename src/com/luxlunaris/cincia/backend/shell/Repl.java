@@ -11,6 +11,7 @@ import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.object.JavaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.stdlib.concurrency.Promise;
+import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.frontend.Compiler;
 
 public class Repl {
@@ -65,8 +66,11 @@ public class Repl {
 
 			});
 
+		}catch (CinciaException e) {
+//			System.out.println(e.getClass().getSimpleName()+": "+e.getMessage());
+//			e.printStackTrace();
+			System.out.println(e.toString());
 		}catch (Exception e) {
-			System.out.println(e.getClass().getSimpleName()+": "+e.getMessage());
 			e.printStackTrace();
 		}
 
