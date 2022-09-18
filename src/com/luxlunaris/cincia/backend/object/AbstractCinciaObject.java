@@ -114,7 +114,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		CinciaMethod cm = (CinciaMethod)get(Magic.__mul__);
 		return cm.run(Arrays.asList(other));
 	}
-
+	
 	@Override
 	public CinciaObject __mod__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__mod__);
