@@ -17,5 +17,9 @@ public class Parameter {
 		this.type = type;
 		this.modifiers = modifiers;
 	}
+	
+	public boolean isByRef() {
+		return modifiers.contains(Modifiers.REF);
+	}
 
 }

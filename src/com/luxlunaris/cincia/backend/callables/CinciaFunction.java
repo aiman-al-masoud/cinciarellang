@@ -48,15 +48,10 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 			// Bind args to environment
 			for(int i=0; i < params.size(); i++) {
-
+				
 				Parameter p = params.get(i);
 				CinciaObject arg = args.get(i);
-
-				if(!p.modifiers.contains(Modifiers.REF)) { // NOT by reference, by value (copy)
-					arg = arg.copy(null);
-				}
-				
-				enviro.set(p.name, arg, p.type);	
+				enviro.set(p.name, p.isByRef()? arg : arg.copy(args), p.type);	
 			}
 
 		}
