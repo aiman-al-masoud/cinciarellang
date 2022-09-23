@@ -39,8 +39,6 @@ public class UnionType implements Type{
 	@Override
 	public boolean matches(Type other) {
 
-
-
 		// if other is another union
 		try {
 
