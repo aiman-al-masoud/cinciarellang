@@ -3,6 +3,9 @@
 * Pure functions shouldn't allow the impure functions
 * that they may call to modify global state.
 *
+* Guaranteeing this may become a problem with impure 
+* functions that do I/O ...
+*
 */
 
 x=[1,2,3];
