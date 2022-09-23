@@ -350,7 +350,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				return o;
 			}
 			
-//			System.out.println(o);
 			if (o!=null && o.toJava().equals(Keywords.BREAK) ) {
 				return o;
 			}
