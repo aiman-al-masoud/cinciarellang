@@ -113,7 +113,7 @@ public class Enviro implements Stateful{
 			expectedType = type;
 			gotType = type;
 		}else { // variable is being assigned
-			
+			expectedType = type;
 		}
 		
 		
