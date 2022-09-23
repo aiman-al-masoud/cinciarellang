@@ -18,6 +18,10 @@ public class Parameter {
 		this.modifiers = modifiers;
 	}
 	
+	/**
+	 * Should this parameter be passed by reference?
+	 * @return
+	 */
 	public boolean isByRef() {
 		return modifiers.contains(Modifiers.REF);
 	}
