@@ -304,7 +304,6 @@ public class AbstractCinciaObject implements CinciaObject{
 		try {
 			return __eq__((CinciaObject)obj).__bool__().toJava();
 		} catch (ClassCastException e) {
-//			System.out.println(obj);
 //			throw new RuntimeException("Tried comparing cincia object with non-cincia object");
 			return false;
 		}
