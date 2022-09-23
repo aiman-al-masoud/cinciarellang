@@ -57,8 +57,8 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 				if(!p.modifiers.contains(Modifiers.REF)) { // NOT by reference, by value (copy)
 					arg = arg.copy(null);
 				}
-
-
+				
+//				System.out.println("got: "+arg.getType()+" expected: "+  p.type);
 				enviro.set(p.name, arg, p.type);	
 			}
 

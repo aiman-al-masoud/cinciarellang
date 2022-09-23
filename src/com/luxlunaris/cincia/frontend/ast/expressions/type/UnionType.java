@@ -37,7 +37,29 @@ public class UnionType implements Type{
 	}
 
 	@Override
-	public boolean matches(Type other) {		
+	public boolean matches(Type other) {
+
+
+
+		// if other is another union
+		try {
+
+			UnionType otherUnion = (UnionType)other;
+
+			//TODO: make sure the 2 lists of simple types are sorted in the same order
+			for(int i=0; i < otherUnion.types.size(); i++) {
+				if (!otherUnion.types.get(i).matches(types.get(i))) {
+					return false;
+				}
+			}
+
+			return true;
+		} catch (ClassCastException e) {
+
+		}
+
+
+		// if other is a simple type
 		return types.stream().anyMatch(t->t.matches(other));
 	}
 

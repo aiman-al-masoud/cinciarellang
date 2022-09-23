@@ -85,38 +85,69 @@ public class Enviro implements Stateful{
 
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
+		
+//		System.out.println("Enviro2() key="+ key +" got: "+val.getType()+" expected: "+  type);
+		Type expectedType = Type.Any;
+		Type gotType = val==null? Type.Any : val.getType();
+//		boolean isFinal;
 
-		// variable already exists/declared, need to check type:
-		if(vars.containsKey(key)) {
+		if(types.containsKey(key)) { // variable already exists/declared
 
-			// if types don't match, error!
-			if(!types.get(key).matches(val.getType())) {
-				
-				TypeError te = new TypeError();
-				te.expected = types.get(key);
-				te.got = val.getType();
-//				te.lvalue = key;
-				
-				throw te;
-			}
+//			// if types don't match, error!
+//			if(!types.get(key).matches(val.getType())) {
+//				
+//				TypeError te = new TypeError();
+//				te.expected = types.get(key);
+//				te.got = val.getType();				
+//				throw te;
+//			}
+			
+			expectedType = types.get(key);
 
 			// if variable is already defined and it is final, throw error!
 			if( vars.get(key)!=null && getModifiers(key).contains(Modifiers.FINAL)) {
 				throw new RuntimeException("Cannot reassign final reference!");
 			}
 
+		}else if(val==null) {  // variable is being declared
+			expectedType = type;
+			gotType = type;
+		}else { // variable is being assigned
+			
 		}
-
+		
+		
+		expectedType = expectedType==null? Type.Any : expectedType;
+		
+		// if expected type doesn't match effective type, error!
+		if(!expectedType.matches(gotType)) {
+			
+//			System.out.println(expectedType.matches(gotType));
+//			System.out.println(expectedType);
+//			System.out.println(gotType);
+			
+			
+			TypeError te = new TypeError();
+			te.expected = expectedType;
+			te.got = gotType;		
+			
+//			System.out.println(te);
+			throw te;
+//			throw new RuntimeException("wrong assignment");
+		}
+		
+		
+		// set value, type and modifiers 
 		vars.put(key, val);
 		Type oldType = getType(key);
 		List<Modifiers> oldModifiers = getModifiers(key);
-
 		types.put(key, oldType==null? type : oldType); // if there's an old type, keep it! (for union types to work)
-		this.modifiers.put(key,   oldModifiers==null? modifiers : oldModifiers); // same for modifiers
+		this.modifiers.put(key, oldModifiers==null? modifiers : oldModifiers); // same for modifiers
 	}
 
 	@Override
 	public void set(String key, CinciaObject val, Type type) {
+//		System.out.println("Enviro() key="+ key +" got: "+val.getType()+" expected: "+  type);
 		set(key, val, type, Arrays.asList());
 	}
 
