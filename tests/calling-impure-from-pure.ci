@@ -1,3 +1,10 @@
+/**
+* 
+* Pure functions shouldn't allow the impure functions
+* that they may call to modify global state.
+*
+*/
+
 x=[1,2,3];
 impure = rdout \ ref x -> {x[0] = 100;};
 pure = \x,impure -> impure(x);
