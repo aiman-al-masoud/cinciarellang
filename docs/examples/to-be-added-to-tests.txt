@@ -1,0 +1,8 @@
+// should error out OR better return Try "wrapper"
+f = \g -> g(); g = rdout \ -> x; x=10; f(g)
+
+
+// should not modify x
+x=[1,2,3]; impure = rdout \ ref x -> {x[0] = 100;}; pure = \x,impure -> impure(x); pure(x,impure)
+
+
