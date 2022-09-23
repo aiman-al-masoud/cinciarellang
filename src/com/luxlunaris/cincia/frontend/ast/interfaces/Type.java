@@ -6,7 +6,9 @@ public interface Type extends Expression{
 	
 	public static Type Any = new IdentifierType("Any");
 	public static Type Module = new IdentifierType("Module");
+
 	
 	boolean matches(Type other);
+	
 	
 }

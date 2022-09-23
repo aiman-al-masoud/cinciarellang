@@ -91,7 +91,13 @@ public class Enviro implements Stateful{
 
 			// if types don't match, error!
 			if(!types.get(key).matches(val.getType())) {
-				throw new TypeError();
+				
+				TypeError te = new TypeError();
+				te.expected = types.get(key);
+				te.got = val.getType();
+//				te.lvalue = key;
+				
+				throw te;
 			}
 
 			// if variable is already defined and it is final, throw error!

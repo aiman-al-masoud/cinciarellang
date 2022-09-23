@@ -44,7 +44,7 @@ public class PureCinciaFunction extends CinciaFunction {
 
 	@Override
 	public String toString() {
-		return lambdex.toString();
+		return lambdex.signature.toString();
 	}
 
 	@Override

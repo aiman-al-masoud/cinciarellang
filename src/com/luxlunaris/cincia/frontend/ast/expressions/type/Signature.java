@@ -10,12 +10,16 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
  */
 public class Signature implements Type{
 
-	public Declaration params;// can be null if func takes no args
-	public Type returnType;
+	public Declaration params; // can be null if func takes no args
+	public Type returnType; 
+	
+	public Signature() {
+		returnType = Type.Any;
+	}
 
 	@Override
 	public String toString() {
-		return "\\" + params +" : "+returnType;
+		return "\\" + params +" -> "+returnType;
 	}
 
 	@Override
@@ -38,30 +42,43 @@ public class Signature implements Type{
 		try {
 
 			Signature otherSig = (Signature)other;
-			
-			// null check
-			if(otherSig==null  || params==null ) {
+
+			// null check the other
+			if(otherSig == null ){//|| params == null ) {
 				return false;
 			}
 
-			// unequal number of params
-			if( params.toList().size() != otherSig.params.toList().size()) {
-				return false;
-			}
+			//			// both this and other don't take params?
+			//			if(otherSig.params == null && params==null) {
+			//
+			//			}
+			//
+			//
+			//			// unequal number of params
+			//			if( params.toList().size() != otherSig.params.toList().size()) {
+			//				return false;
+			//			}
+			//
+			//			// all positional param types must match
+			//			for(int i=0; i < params.toList().size(); i++) {
+			//				Type thisType = params.toList().get(i).getType();
+			//				Type otherType = otherSig.params.toList().get(i).getType();
+			//				if (!thisType.matches(otherType)) return false; // order matters, reference can be more general than assigned value
+			//			}
 
-			// all positional param types must match
-			for(int i=0; i < params.toList().size(); i++) {
-				Type thisType = params.toList().get(i).getType();
-				Type otherType = otherSig.params.toList().get(i).getType();
-				if (!thisType.matches(otherType)) return false; // order matters, reference can be more general than assigned value
+
+			if(!matchParams(params, otherSig.params)) {
+				return false;
 			}
 
 			// lastly check return type
 			
-			if(returnType!=null && otherSig.returnType!=null) {
-				return returnType.matches(otherSig.returnType);				
-			}
+			return matchReturnType(returnType, otherSig.returnType);
 			
+//			if(returnType!=null && otherSig.returnType!=null) {
+//				return returnType.matches(otherSig.returnType);				
+//			}
+
 
 		} catch (ClassCastException e) {
 
@@ -70,5 +87,51 @@ public class Signature implements Type{
 		return false;
 
 	}
+
+
+	protected boolean matchParams(Declaration params1, Declaration params2) {
+
+		// both this and other don't take params?
+		if(params1 == null && params2 == null) {
+			return true;
+		}
+
+		// read as an exor
+		if(params1 == null || params2 == null) {
+			return false;
+		}
+
+		// both not null ...
+
+		// unequal number of params
+		if( params1.toList().size() != params2.toList().size()) {
+			return false;
+		}
+
+		// all positional param types must match
+		for(int i=0; i < params1.toList().size(); i++) {
+			Type thisType = params1.toList().get(i).getType();
+			Type otherType = params2.toList().get(i).getType();
+			if (!thisType.matches(otherType)) return false; // order matters, reference can be more general than assigned value
+		}
+
+		return true;
+	}
+	
+	protected boolean matchReturnType(Type retype1, Type retype2) {
+		
+//		if(retype1==null && retype2==null) {
+//			return true;
+//		}
+		
+		return retype1.matches(retype2);
+		
+	}
+
+
+
+
+
+
 
 }

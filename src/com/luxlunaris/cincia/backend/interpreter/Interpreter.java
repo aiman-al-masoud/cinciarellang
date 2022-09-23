@@ -803,7 +803,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
-
+		
+		System.out.println(f);
 		throw new RuntimeException("Unsupported callable type!");
 	}
 

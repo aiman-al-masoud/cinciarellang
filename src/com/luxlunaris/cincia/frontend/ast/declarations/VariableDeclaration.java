@@ -35,7 +35,7 @@ public class VariableDeclaration extends SingleDeclaration{
 	
 	@Override
 		public String toString() {
-			return "("+modifiers+" "+name+":"+type+")";
+			return "("+ ( modifiers.size()>0? modifiers : "" )+" "+name+":"+type+")";
 		}
 
 	@Override
