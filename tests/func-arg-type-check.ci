@@ -1,0 +1,10 @@
+
+try{
+	f = \x:int -> 2*x; 
+	f("ciao");
+}catch e:TypeError{
+	caught = true;
+}
+
+// caught;
+true;

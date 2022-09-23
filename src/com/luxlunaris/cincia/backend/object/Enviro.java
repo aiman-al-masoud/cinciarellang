@@ -86,21 +86,10 @@ public class Enviro implements Stateful{
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
 		
-//		System.out.println("Enviro2() key="+ key +" got: "+val.getType()+" expected: "+  type);
 		Type expectedType = Type.Any;
 		Type gotType = val==null? Type.Any : val.getType();
-//		boolean isFinal;
 
 		if(types.containsKey(key)) { // variable already exists/declared
-
-//			// if types don't match, error!
-//			if(!types.get(key).matches(val.getType())) {
-//				
-//				TypeError te = new TypeError();
-//				te.expected = types.get(key);
-//				te.got = val.getType();				
-//				throw te;
-//			}
 			
 			expectedType = types.get(key);
 
@@ -116,24 +105,14 @@ public class Enviro implements Stateful{
 			expectedType = type;
 		}
 		
-		
 		expectedType = expectedType==null? Type.Any : expectedType;
 		
 		// if expected type doesn't match effective type, error!
 		if(!expectedType.matches(gotType)) {
-			
-//			System.out.println(expectedType.matches(gotType));
-//			System.out.println(expectedType);
-//			System.out.println(gotType);
-			
-			
 			TypeError te = new TypeError();
 			te.expected = expectedType;
-			te.got = gotType;		
-			
-//			System.out.println(te);
+			te.got = gotType;					
 			throw te;
-//			throw new RuntimeException("wrong assignment");
 		}
 		
 		
@@ -147,7 +126,6 @@ public class Enviro implements Stateful{
 
 	@Override
 	public void set(String key, CinciaObject val, Type type) {
-//		System.out.println("Enviro() key="+ key +" got: "+val.getType()+" expected: "+  type);
 		set(key, val, type, Arrays.asList());
 	}
 
