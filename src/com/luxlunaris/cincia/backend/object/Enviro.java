@@ -230,10 +230,5 @@ public class Enviro implements Stateful{
 
 	}
 
-//	@Override
-//	public void set(CinciaObject key, CinciaObject val, Type type, List<Modifiers> modifiers) {
-//		lsld
-//	}
-
 
 }
