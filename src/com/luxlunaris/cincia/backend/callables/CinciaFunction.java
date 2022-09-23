@@ -121,6 +121,11 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	public boolean isNativeCode() {
 		return wrappedFunction != null;
 	}
+	
+	@Override
+	public CinciaObject copy(List<CinciaObject> args) {
+		return this; 
+	}
 
 
 
