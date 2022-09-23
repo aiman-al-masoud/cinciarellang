@@ -6,7 +6,7 @@
 */
 
 x=[1,2,3];
-impure = rdout \ ref x -> {x[0] = 100;};
+impure = \ ref x -> {x[0] = 100;};
 pure = \x,impure -> impure(x);
 pure(x,impure);
 x[0] == 1;
