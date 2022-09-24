@@ -144,9 +144,7 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 	
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
-
 		return new CinciaBool(toJava().equals(other.toJava()));
-		
 	}
 
 	@Override
