@@ -30,6 +30,8 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	@Override
 	void setup() {
 		set(IterMethods.filter.toString(), new CinciaMethod(this::filter, this));
+		set(IterMethods.map.toString(), new CinciaMethod(this::map, this));
+
 	}
 
 	@Override
@@ -119,11 +121,23 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	}
 	
 
+//	@Override
+//	public CinciaIterable map(PureCinciaFunction f) {
+//		return map(f);
+//	}
+	
 	@Override
 	public CinciaIterable map(PureCinciaFunction f) {
-		// TODO Auto-generated method stub
-		return null;
+		return map(o -> f.run(Arrays.asList(o)));
 	}
+
+	
+	
+	public CinciaIterable map(List<CinciaObject> args) {
+		return map((PureCinciaFunction)args.get(0)); 
+	}
+
+	
 
 	@Override
 	public long size() {
@@ -132,8 +146,12 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public CinciaIterable map(UnaryOperator<CinciaObject> f) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<CinciaObject> l =  this.value.chars()
+										  .mapToObj(c-> f.apply( new CinciaString(((char)c)+"") ))
+										  .collect(Collectors.toList());       
+								
+		return new CinciaList(l);
 	}
 	
 	@Override
