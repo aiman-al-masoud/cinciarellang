@@ -51,6 +51,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.OrExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.forexp.ForExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.forexp.Generator;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
@@ -165,13 +166,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		
 		
 		
-		List<Entry<CinciaIterable, Expression>> generators = forS.generators.stream().map(g ->    Map.entry(((CinciaIterable)eval(g.iterable, enviro) ),  g.filter)   ).collect(Collectors.toList());
+		List<Entry<CinciaIterable, Generator>> generators = forS.generators.stream().map(g ->    Map.entry(((CinciaIterable)eval(g.iterable, enviro) ),  g)   ).collect(Collectors.toList());
 		
 		
 		
 		
 		
-		List<CinciaIterable> iterables = generators.stream().map(  e->e.getKey().filter((PureCinciaFunction)  eval(LambdaExpression.fromExpression(new Identifier("i"), e.getValue(), Type.Any) , enviro))    ).collect(Collectors.toList()) ;
+		List<CinciaIterable> iterables = generators.stream().map(  e->e.getKey().filter((PureCinciaFunction)  eval(LambdaExpression.fromExpression(e.getValue().loopVars.get(0), e.getValue().filter, Type.Any) , enviro))    ).collect(Collectors.toList()) ;
 		
 				
 		List<List<Identifier>> loopVars = forS.generators.stream().map(g -> g.loopVars).collect(Collectors.toList());
