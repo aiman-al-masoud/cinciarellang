@@ -13,6 +13,7 @@ public class ForStatement implements Statement{
 
 	public List<Generator> generators;
 	public CompoundStatement block;
+	public Expression yield; // similar to Scala's yield
 
 	public ForStatement() {
 		generators = new ArrayList<>();
@@ -22,12 +23,17 @@ public class ForStatement implements Statement{
 	public Statement simplify() {
 		this.generators = generators.stream().map(g->  g.simplify() ).collect(Collectors.toList());
 		this.block = (CompoundStatement) block.simplify();
+		
+		if(yield!=null) {
+			yield = yield.simplify();
+		}
+		
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "forloop: generators="+ generators+" block="+block;
+		return "forloop: generators="+ generators+" block="+block+" yield="+yield;
 	}
 
 }

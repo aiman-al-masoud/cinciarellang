@@ -217,6 +217,15 @@ public class Parser {
 		}
 
 		fS.block = parseCompStatement();
+		
+		
+		// if arrow parse "yield" part for for expression
+		if(tStream.peek().getValue().equals(Operators.ARROW)) {
+			eat(Operators.ARROW);
+			fS.yield = parseSingleExpression();
+		}
+		
+		
 		return fS;
 	}
 

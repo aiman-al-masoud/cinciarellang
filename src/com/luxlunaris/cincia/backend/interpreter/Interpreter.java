@@ -161,10 +161,18 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalForStatement(ForStatement forS, Enviro enviro) {
+		
+//		System.out.println(forS);
 
 		List<CinciaIterable> iterables = forS.generators.stream().map(g -> (CinciaIterable)eval(g.iterable, enviro)).collect(Collectors.toList());
 		List<List<Identifier>> loopVars = forS.generators.stream().map(g -> g.loopVars).collect(Collectors.toList());
 		CinciaIterable shortest = iterables.stream().sorted( (i1,i2)-> (int) ( i1.size() - i2.size()) ).findFirst().get();
+		
+		
+		ArrayList<CinciaObject> yielded = new ArrayList<CinciaObject>();
+		
+		
+		
 
 
 		for (int i=0; i < shortest.size(); i++) {
@@ -201,6 +209,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			// run this iteration			
 			CinciaObject o = eval(forS.block, enviro);
+			
+			// add results to yield
+			if(forS.yield!=null) {
+				yielded.add(  eval(forS.yield, enviro) );
+			}
+			
 
 			//check iteration exit value to determine what to do next
 			if(o == null) {
@@ -222,7 +236,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		return null;
+		return new CinciaList(yielded);
 	}
 
 	@Override
