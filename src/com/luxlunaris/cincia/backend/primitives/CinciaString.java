@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
@@ -24,6 +25,11 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	public CinciaString(String value) {
 		super(new PrimitiveType(PrimitiveType.STRING));
 		this.value = value;
+	}
+	
+	@Override
+	void setup() {
+		set(IterMethods.filter.toString(), new CinciaMethod(this::filter, this));
 	}
 
 	@Override
@@ -106,6 +112,10 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 									
 		return filtered.orElse(this);// TODO: return copy instead?
 		
+	}
+	
+	public CinciaIterable filter(List<CinciaObject> args) {
+		return filter((PureCinciaFunction)args.get(0)); 
 	}
 	
 

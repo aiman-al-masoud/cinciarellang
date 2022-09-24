@@ -10,10 +10,11 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
  * Primitive objects are immutable (int, float, bool, string).
  *
  */
-public class PrimitiveCinciaObject extends AbstractCinciaObject{
+public abstract class PrimitiveCinciaObject extends AbstractCinciaObject{
 
 	public PrimitiveCinciaObject(Type type) {
 		super(type);
+		setup();
 		setImmutable();
 	}
 	
@@ -24,6 +25,14 @@ public class PrimitiveCinciaObject extends AbstractCinciaObject{
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
 		return this;
+	}
+	
+	/**
+	 * Extra initialization setup to be performed before making 
+	 * this object immutable.
+	 */
+	void setup() {
+		/*Nothing*/
 	}
 	
 

@@ -1,0 +1,2 @@
+isVowel = \c -> c =="a" || c=="e" || c=="i" || c=="o" || c=="u";
+"ciao mondo".filter(isVowel) == "iaooo";
