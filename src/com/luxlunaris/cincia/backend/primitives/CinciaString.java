@@ -31,7 +31,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	void setup() {
 		set(IterMethods.filter.toString(), new CinciaMethod(this::filter, this));
 		set(IterMethods.map.toString(), new CinciaMethod(this::map, this));
-
+		set(IterMethods.reduce.toString(), new CinciaMethod(this::reduce, this));
 	}
 
 	@Override
@@ -163,9 +163,23 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public CinciaObject reduce(BinaryOperator<CinciaObject> f) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Optional<CinciaObject> res = this.value.chars().mapToObj(c-> (CinciaObject)  new CinciaString(((char)c)+"")).reduce(f);
+
+		if(!res.isPresent()) {
+			throw new RuntimeException("Error in reducing list!");
+		}
+
+		return res.get(); //TODO: maybe make optional wrapper instead?!!!!!
 	}
+	
+//	@Override
+	public CinciaObject reduce(List<CinciaObject> args) {
+		PureCinciaFunction f = (PureCinciaFunction)args.get(0);
+		return reduce( (o1, o2)-> f.run(Arrays.asList(o1,o2)) );
+	}
+
+	
 
 
 }

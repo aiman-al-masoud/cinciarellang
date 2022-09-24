@@ -1,0 +1,1 @@
+"ciao".reduce(\x,y -> x+"|"+y) == 'c|i|a|o';
