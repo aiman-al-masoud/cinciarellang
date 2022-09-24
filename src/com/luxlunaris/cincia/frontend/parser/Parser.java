@@ -115,8 +115,6 @@ public class Parser {
 			res = parseIfStatement();
 		}else if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			res = parseCompStatement();
-//		}else if(tStream.peek().getValue().equals( Keywords.FOR )) {
-//			res = parseForStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.WHILE )) {
 			res = parseWhileStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.TRY )) {
