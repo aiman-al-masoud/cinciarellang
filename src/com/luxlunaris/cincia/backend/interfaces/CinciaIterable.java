@@ -11,10 +11,7 @@ public interface CinciaIterable extends Iterable<CinciaObject>, CinciaObject{
 	CinciaIterable map(UnaryOperator<CinciaObject> f);
 	CinciaIterable map(PureCinciaFunction f);
 	CinciaIterable filter(Predicate<CinciaObject> f);
-	CinciaIterable filter(PureCinciaFunction f);
-//	CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial);
-	
+	CinciaIterable filter(PureCinciaFunction f);	
 	public CinciaObject reduce(BinaryOperator<CinciaObject> f);
-	
 	long size();
 }
