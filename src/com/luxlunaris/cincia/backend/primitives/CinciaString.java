@@ -104,7 +104,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 											  .filter( f::test )
 											  .reduce( ( c1,c2 )-> c1.__add__(c2));
 									
-		return filtered.orElse(this);
+		return filtered.orElse(this);// TODO: return copy instead?
 		
 	}
 	
