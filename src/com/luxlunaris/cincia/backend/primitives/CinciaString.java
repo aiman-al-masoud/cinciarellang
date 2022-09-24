@@ -97,26 +97,13 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	
 	@Override
 	public CinciaIterable filter(Predicate<CinciaObject> f) {
-//		List<CinciaObject> list = this.list   .stream().filter( f::test ).collect(Collectors.toList());
-//		CinciaList res = new CinciaList(this.type);
-//		res.list = list;
-//		return res;
-		
-//		List<CinciaObject> list = this.list   .stream().filter( f::test ).collect(Collectors.toList());
-		
-		
-		Optional<CinciaString> filtered=
-				this.value.chars()
-				  .mapToObj( c-> new CinciaString(((char)c)+"")  )
-				  .filter( f::test )
-				  .reduce( ( c1,c2 )-> c1.__add__(c2));
-		
+
+		Optional<CinciaString> filtered = this.value.chars()
+											  .mapToObj( c-> new CinciaString(((char)c)+"")  )
+											  .filter( f::test )
+											  .reduce( ( c1,c2 )-> c1.__add__(c2));
+									
 		return filtered.orElse(this);
-		
-//		var x = Arrays.asList(this.value.toCharArray()).get(0);
-		
-		
-//		Arrays.asList().stream().map(c-> new CinciaString(c+""));
 		
 	}
 	
