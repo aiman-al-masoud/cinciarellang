@@ -165,11 +165,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		List<CinciaIterable> iterables = forS.generators.stream().map(g -> (CinciaIterable)eval(g.iterable, enviro)).collect(Collectors.toList());
 		List<List<Identifier>> loopVars = forS.generators.stream().map(g -> g.loopVars).collect(Collectors.toList());
 		CinciaIterable shortest = iterables.stream().sorted( (i1,i2)-> (int) ( i1.size() - i2.size()) ).findFirst().get();
-		
-		
 		ArrayList<CinciaObject> yielded = new ArrayList<CinciaObject>();
-		
-		
 		
 
 
