@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -130,7 +131,14 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 	
 	@Override
 	public CinciaObject reduce(BinaryOperator<CinciaObject> f) {
-		return list.stream().reduce(f).orElse(list.get(0)); //TODO: make optional wrapper!!!!!
+		
+		Optional<CinciaObject> res = list.stream().reduce(f);
+		
+		if(!res.isPresent()) {
+			throw new RuntimeException("Error in reducing list!");
+		}
+		
+		return res.get(); //TODO: maybe make optional wrapper instead?!!!!!
 	}
 	
 	
