@@ -195,7 +195,7 @@ public class Parser {
 	}	
 
 
-	private ForExpression parseForStatement() {
+	private ForExpression parseForExpression() {
 
 		eat(Keywords.FOR);
 		ForExpression fS = new ForExpression();
@@ -611,7 +611,7 @@ public class Parser {
 		}
 		
 		if(tStream.peek().getValue().equals(Keywords.FOR)) {
-			return parseForStatement();
+			return parseForExpression();
 		}
 
 
