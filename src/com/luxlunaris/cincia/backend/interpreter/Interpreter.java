@@ -163,24 +163,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalForExpression(ForExpression forS, Enviro enviro) {
-		
-		
-		
+
+
+		//TODO: filter condition doesn't work with unpacked variables after first variable
+
 		List<Entry<CinciaIterable, Generator>> generators = forS.generators.stream().map(g ->    Map.entry(((CinciaIterable)eval(g.iterable, enviro) ),  g)   ).collect(Collectors.toList());
-		
-		
-		
-		
-		
-		List<CinciaIterable> iterables = generators.stream().map(  e->e.getKey().filter((PureCinciaFunction)  eval(LambdaExpression.fromExpression(e.getValue().loopVars.get(0), e.getValue().filter, Type.Any) , enviro))    ).collect(Collectors.toList()) ;
-		
-				
+		List<CinciaIterable> iterables = generators.stream().map(  e->e.getKey().filter((PureCinciaFunction)  eval(LambdaExpression.fromExpression(e.getValue().loopVars.get(0), e.getValue().filter, Type.Any) , enviro)) ).collect(Collectors.toList()) ;
 		List<List<Identifier>> loopVars = forS.generators.stream().map(g -> g.loopVars).collect(Collectors.toList());
 		CinciaIterable shortest = iterables.stream().sorted( (i1,i2)-> (int) ( i1.size() - i2.size()) ).findFirst().get();
 		ArrayList<CinciaObject> yielded = new ArrayList<CinciaObject>();
-		
-		
-		
+
 
 		for (int i=0; i < shortest.size(); i++) {
 
@@ -208,7 +200,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 				}else {
 					// if o isn't an iterable, or there's just one loop var, don't unpack
-					//					System.out.println(loopVars.get(j).get(0).value+" "+o);
 					enviro.set(loopVars.get(j).get(0).value, o);
 				}
 
@@ -216,12 +207,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			// run this iteration			
 			CinciaObject o = eval(forS.block, enviro);
-			
+
 			// add results to yield
 			if(forS.yield!=null) {
 				yielded.add(  eval(forS.yield, enviro) );
 			}
-			
 
 			//check iteration exit value to determine what to do next
 			if(o == null) {
@@ -370,7 +360,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			if (s instanceof ReturnStatement) {
 				return o;
 			}
-			
+
 			if (o!=null && o.toJava().equals(Keywords.BREAK) ) {
 				return o;
 			}
@@ -824,7 +814,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}catch (ClassCastException e) {
 
 		}
-		
+
 		throw new RuntimeException("Unsupported callable type!");
 	}
 
