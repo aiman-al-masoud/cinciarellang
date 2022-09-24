@@ -49,6 +49,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.OrExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.forexp.ForExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
@@ -78,7 +79,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.CatchClause;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.iteration.ForStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.iteration.WhileStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
@@ -160,7 +160,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalForStatement(ForStatement forS, Enviro enviro) {
+	public CinciaObject evalForStatement(ForExpression forS, Enviro enviro) {
 		
 //		System.out.println(forS);
 

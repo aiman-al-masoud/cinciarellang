@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.frontend.ast.statements.iteration;
+package com.luxlunaris.cincia.frontend.ast.expressions.forexp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +9,18 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
-public class ForStatement implements Statement{
+public class ForExpression implements Expression{
 
 	public List<Generator> generators;
 	public CompoundStatement block;
 	public Expression yield; // similar to Scala's yield
 
-	public ForStatement() {
+	public ForExpression() {
 		generators = new ArrayList<>();
 	}
 
 	@Override
-	public Statement simplify() {
+	public Expression simplify() {
 		this.generators = generators.stream().map(g->  g.simplify() ).collect(Collectors.toList());
 		this.block = (CompoundStatement) block.simplify();
 		

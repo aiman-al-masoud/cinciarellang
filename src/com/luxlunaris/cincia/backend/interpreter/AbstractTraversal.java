@@ -16,6 +16,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.OrExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.forexp.ForExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
@@ -52,7 +53,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.iteration.ForStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.iteration.WhileStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
@@ -96,8 +96,8 @@ public abstract class AbstractTraversal<T> {
 		}else if(ast instanceof CompoundStatement) {
 			return evalCompoundStatement((CompoundStatement)ast, enviro);
 
-		}else if(ast instanceof ForStatement) {
-			return evalForStatement((ForStatement)ast, enviro);
+		}else if(ast instanceof ForExpression) {
+			return evalForStatement((ForExpression)ast, enviro);
 
 		}else if(ast instanceof ImportStatement) {
 			return evalImportStatement((ImportStatement)ast, enviro);
@@ -163,6 +163,10 @@ public abstract class AbstractTraversal<T> {
 
 		}else if (expression instanceof MatchExpression) {
 			return evalMatchExpression( (MatchExpression)expression, enviro);
+			
+		}else if (expression instanceof ForExpression) {
+			return evalForStatement((ForExpression)expression, enviro);
+			
 		}
 
 		throw new RuntimeException("No such expression class!");
@@ -305,7 +309,7 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalMatchExpression(MatchExpression ifStatement, Enviro enviro);
 	public abstract T evalBreakStatement(BreakStatement breakStatement, Enviro enviro);
 	public abstract T evalContinueStatement(ContinueStatement continueStatement, Enviro enviro);
-	public abstract T evalForStatement(ForStatement forStatement, Enviro enviro);
+	public abstract T evalForStatement(ForExpression forStatement, Enviro enviro);
 	public abstract T evalWhileStatement(WhileStatement whileStatement, Enviro enviro);
 	public abstract T evalImportStatement(ImportStatement importStatement, Enviro enviro);
 	public abstract T evalCompoundStatement(CompoundStatement compoundStatement, Enviro enviro);

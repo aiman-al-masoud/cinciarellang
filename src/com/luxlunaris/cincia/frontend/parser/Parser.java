@@ -22,6 +22,8 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpressio
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.ComparisonExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.OrExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.forexp.ForExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.forexp.Generator;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
@@ -63,8 +65,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.CatchClause;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.iteration.ForStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.iteration.Generator;
 import com.luxlunaris.cincia.frontend.ast.statements.iteration.WhileStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
@@ -115,8 +115,8 @@ public class Parser {
 			res = parseIfStatement();
 		}else if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			res = parseCompStatement();
-		}else if(tStream.peek().getValue().equals( Keywords.FOR )) {
-			res = parseForStatement();
+//		}else if(tStream.peek().getValue().equals( Keywords.FOR )) {
+//			res = parseForStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.WHILE )) {
 			res = parseWhileStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.TRY )) {
@@ -195,10 +195,10 @@ public class Parser {
 	}	
 
 
-	private ForStatement parseForStatement() {
+	private ForExpression parseForStatement() {
 
 		eat(Keywords.FOR);
-		ForStatement fS = new ForStatement();
+		ForExpression fS = new ForExpression();
 
 		while(!tStream.isEnd()) {
 
@@ -608,6 +608,10 @@ public class Parser {
 
 		if( tStream.peek().getValue().equals(Keywords.MATCH)) {
 			return parseMatchExpression();
+		}
+		
+		if(tStream.peek().getValue().equals(Keywords.FOR)) {
+			return parseForStatement();
 		}
 
 
