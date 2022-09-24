@@ -213,9 +213,12 @@ public class Parser {
 			// not identifier nor comma
 			break;
 		}
-
-		fS.block = parseCompStatement();
 		
+		
+		// if curly open eat block 
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {			
+			fS.block = parseCompStatement();
+		}
 		
 		// if arrow parse "yield" part for for expression
 		if(tStream.peek().getValue().equals(Operators.ARROW)) {

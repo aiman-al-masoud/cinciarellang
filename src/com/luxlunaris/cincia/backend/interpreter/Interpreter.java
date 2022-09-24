@@ -205,8 +205,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			}
 
-			// run this iteration			
-			CinciaObject o = eval(forS.block, enviro);
+			// run this iteration	
+			CinciaObject o = null;
+			if(forS.block!=null){
+				o = eval(forS.block, enviro);				
+			}
 
 			// add results to yield
 			if(forS.yield!=null) {

@@ -22,12 +22,15 @@ public class ForExpression implements Expression{
 	@Override
 	public Expression simplify() {
 		this.generators = generators.stream().map(g->  g.simplify() ).collect(Collectors.toList());
-		this.block = (CompoundStatement) block.simplify();
-		
+
+		if(block!=null) {
+			block = (CompoundStatement) block.simplify();
+		}
+
 		if(yield!=null) {
 			yield = yield.simplify();
 		}
-		
+
 		return this;
 	}
 
