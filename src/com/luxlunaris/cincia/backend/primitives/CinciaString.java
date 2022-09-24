@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
@@ -114,11 +115,11 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		return null;
 	}
 
-	@Override
-	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public long size() {
@@ -141,6 +142,12 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		}
 		
 		return super.get(key);
+	}
+
+	@Override
+	public CinciaObject reduce(BinaryOperator<CinciaObject> f) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

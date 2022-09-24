@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		this.list = list;
 		set(IterMethods.map.toString(),  new CinciaMethod(this::map, this));
 		set(IterMethods.filter.toString(),  new CinciaMethod(this::filter, this));
+		set(IterMethods.reduce.toString(),  new CinciaMethod(this::reduce, this));
 		set("add", new CinciaMethod(this::add, this));
 	}
 
@@ -115,11 +117,29 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return map((PureCinciaFunction)args.get(0)); 
 	}
 
+//	@Override
+//	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
+//		// TODO Auto-generated method stub
+//		
+//		
+//		
+//		return null;
+//	}
+	
+	
+	
 	@Override
-	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
-		// TODO Auto-generated method stub
-		return null;
+	public CinciaObject reduce(BinaryOperator<CinciaObject> f) {
+		return list.stream().reduce(f).orElse(list.get(0)); //TODO: make optional wrapper!!!!!
 	}
+	
+	
+//	@Override
+	public CinciaObject reduce(List<CinciaObject> args) {
+		PureCinciaFunction f = (PureCinciaFunction)args.get(0);
+		return reduce( (o1, o2)-> f.run(Arrays.asList(o1,o2)) );
+	}
+	
 
 	@Override
 	public long size() {
