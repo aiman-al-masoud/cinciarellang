@@ -96,8 +96,8 @@ public abstract class AbstractTraversal<T> {
 		}else if(ast instanceof CompoundStatement) {
 			return evalCompoundStatement((CompoundStatement)ast, enviro);
 
-		}else if(ast instanceof ForExpression) {
-			return evalForStatement((ForExpression)ast, enviro);
+//		}else if(ast instanceof ForExpression) {
+//			return evalForExpression((ForExpression)ast, enviro);
 
 		}else if(ast instanceof ImportStatement) {
 			return evalImportStatement((ImportStatement)ast, enviro);
@@ -165,7 +165,7 @@ public abstract class AbstractTraversal<T> {
 			return evalMatchExpression( (MatchExpression)expression, enviro);
 			
 		}else if (expression instanceof ForExpression) {
-			return evalForStatement((ForExpression)expression, enviro);
+			return evalForExpression((ForExpression)expression, enviro);
 			
 		}
 
@@ -309,7 +309,7 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalMatchExpression(MatchExpression ifStatement, Enviro enviro);
 	public abstract T evalBreakStatement(BreakStatement breakStatement, Enviro enviro);
 	public abstract T evalContinueStatement(ContinueStatement continueStatement, Enviro enviro);
-	public abstract T evalForStatement(ForExpression forStatement, Enviro enviro);
+	public abstract T evalForExpression(ForExpression forStatement, Enviro enviro);
 	public abstract T evalWhileStatement(WhileStatement whileStatement, Enviro enviro);
 	public abstract T evalImportStatement(ImportStatement importStatement, Enviro enviro);
 	public abstract T evalCompoundStatement(CompoundStatement compoundStatement, Enviro enviro);
