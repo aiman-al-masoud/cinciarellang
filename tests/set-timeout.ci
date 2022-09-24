@@ -9,7 +9,7 @@ import sleep from "cincia.concurrency.sleep";
 
 x = {};
 
-setTimeout( rdout \-> {x.ciao = true;}, 300 ); // this is an impure lambda 
+setTimeout( nonlocal \-> {x.ciao = true;} , 300 ); // this is an impure lambda 
 sleep(600); // force main thread to wait for timeout's thread for some millis
 
 x.ciao;

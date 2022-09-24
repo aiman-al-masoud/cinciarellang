@@ -99,7 +99,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		List<Parameter> params = parseParams(lambdex);
 
 		boolean takesArgByRef = params.stream().anyMatch(p->p.modifiers.contains(Modifiers.REF));
-		boolean readsFromExtScope = lambdex.modifiers.contains(Modifiers.RDOUT);
+		boolean readsFromExtScope = lambdex.modifiers.contains(Modifiers.NONLOCAL);
 
 		if(takesArgByRef || readsFromExtScope) {
 			return new CinciaFunction(lambdex, eval);

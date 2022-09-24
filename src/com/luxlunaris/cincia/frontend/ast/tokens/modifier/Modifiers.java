@@ -12,7 +12,7 @@ public enum Modifiers {
 	//	CONS,
 	//	PURE,
 	REF,
-	RDOUT;
+	NONLOCAL;
 
 	public static Modifiers fromString(String string) {
 		try {

@@ -46,7 +46,7 @@ public enum Keywords {
 	TO,
 	STRING,
 	REF,
-	RDOUT;
+	NONLOCAL;
 
 	public static Keywords fromString(String value){
 
