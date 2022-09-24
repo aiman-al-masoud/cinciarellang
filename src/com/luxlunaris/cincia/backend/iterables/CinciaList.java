@@ -70,7 +70,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return null;
 	}
 
-
 	@Override
 	public String toString() {
 		return list.toString();
@@ -118,36 +117,26 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 		return map((PureCinciaFunction)args.get(0)); 
 	}
 
-//	@Override
-//	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		
-//		return null;
-//	}
-	
-	
-	
+
 	@Override
 	public CinciaObject reduce(BinaryOperator<CinciaObject> f) {
-		
+
 		Optional<CinciaObject> res = list.stream().reduce(f);
-		
+
 		if(!res.isPresent()) {
 			throw new RuntimeException("Error in reducing list!");
 		}
-		
+
 		return res.get(); //TODO: maybe make optional wrapper instead?!!!!!
 	}
-	
-	
-//	@Override
+
+
+	//	@Override
 	public CinciaObject reduce(List<CinciaObject> args) {
 		PureCinciaFunction f = (PureCinciaFunction)args.get(0);
 		return reduce( (o1, o2)-> f.run(Arrays.asList(o1,o2)) );
 	}
-	
+
 
 	@Override
 	public long size() {
@@ -174,14 +163,14 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public CinciaIterable __add__(CinciaObject other) {
-		
+
 		// if other is list, concatenate lists 
 		if(other instanceof CinciaList) {
 			List<CinciaObject> l1 = new ArrayList<>(getList());
 			l1.addAll(((CinciaList)other).getList());
 			return new CinciaList(l1);
 		}
-		
+
 		// else apply add operation with other for each element of this list
 		return map( x->x.__add__(other) );
 	}
@@ -215,24 +204,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 		return new CinciaBool(false);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	@Override
 	public CinciaObject get(int key) {
@@ -268,9 +239,6 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 		return super.get(key);
 	}
-
-
-
 
 
 }
