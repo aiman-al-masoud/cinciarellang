@@ -220,24 +220,26 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
+		
+		return new CinciaBool(toJava().equals(other.toJava()));
 
-		try {
-
-			CinciaInt otherInt = (CinciaInt)other;
-			return new CinciaBool(value == otherInt.toJava());
-		}catch (ClassCastException e) {
-
-		}
-
-		try {
-
-			CinciaFloat otherFloat = (CinciaFloat)other;
-			return new CinciaBool(value == otherFloat.toJava());
-		}catch (ClassCastException e) {
-
-		}
-
-		return new CinciaBool(false);
+//		try {
+//
+//			CinciaInt otherInt = (CinciaInt)other;
+//			return new CinciaBool(value == otherInt.toJava());
+//		}catch (ClassCastException e) {
+//
+//		}
+//
+//		try {
+//
+//			CinciaFloat otherFloat = (CinciaFloat)other;
+//			return new CinciaBool(value == otherFloat.toJava());
+//		}catch (ClassCastException e) {
+//
+//		}
+//
+//		return new CinciaBool(false);
 	}
 
 	@Override
