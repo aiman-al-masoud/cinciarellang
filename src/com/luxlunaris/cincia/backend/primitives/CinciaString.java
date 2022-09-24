@@ -121,10 +121,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	}
 	
 
-//	@Override
-//	public CinciaIterable map(PureCinciaFunction f) {
-//		return map(f);
-//	}
+	
 	
 	@Override
 	public CinciaIterable map(PureCinciaFunction f) {
