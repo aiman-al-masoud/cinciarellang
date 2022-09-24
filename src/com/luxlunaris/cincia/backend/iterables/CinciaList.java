@@ -174,6 +174,15 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 	@Override
 	public CinciaIterable __add__(CinciaObject other) {
+		
+		// if other is list, concatenate lists 
+		if(other instanceof CinciaList) {
+			List<CinciaObject> l1 = new ArrayList<>(getList());
+			l1.addAll(((CinciaList)other).getList());
+			return new CinciaList(l1);
+		}
+		
+		// else apply add operation with other for each element of this list
 		return map( x->x.__add__(other) );
 	}
 
