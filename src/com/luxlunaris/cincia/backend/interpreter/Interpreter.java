@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -162,12 +163,23 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalForExpression(ForExpression forS, Enviro enviro) {
 		
-		List<CinciaIterable> iterables = forS.generators.stream().map(g -> (CinciaIterable)eval(g.iterable, enviro)).collect(Collectors.toList());
+		
+		
+		List<Entry<CinciaIterable, Expression>> generators = forS.generators.stream().map(g ->    Map.entry(((CinciaIterable)eval(g.iterable, enviro) ),  g.filter)   ).collect(Collectors.toList());
+		
+		
+		
+		
+		
+		List<CinciaIterable> iterables = generators.stream().map(  e->e.getKey().filter((PureCinciaFunction)  eval(LambdaExpression.fromExpression(new Identifier("i"), e.getValue(), Type.Any) , enviro))    ).collect(Collectors.toList()) ;
+		
+				
 		List<List<Identifier>> loopVars = forS.generators.stream().map(g -> g.loopVars).collect(Collectors.toList());
 		CinciaIterable shortest = iterables.stream().sorted( (i1,i2)-> (int) ( i1.size() - i2.size()) ).findFirst().get();
 		ArrayList<CinciaObject> yielded = new ArrayList<CinciaObject>();
 		
-
+		
+		
 
 		for (int i=0; i < shortest.size(); i++) {
 

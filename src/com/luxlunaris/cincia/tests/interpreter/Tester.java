@@ -29,7 +29,7 @@ public class Tester {
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);
-//		final static List<String> tags = Arrays.asList("func-arg");
+//		final static List<String> tags = Arrays.asList("for-loop-over-string");
 
 	public static void main(String[] args) throws IOException{
 

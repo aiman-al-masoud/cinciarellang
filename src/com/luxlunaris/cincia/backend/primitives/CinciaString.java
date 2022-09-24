@@ -2,6 +2,8 @@ package com.luxlunaris.cincia.backend.primitives;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
@@ -10,6 +12,7 @@ import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.IterMethods;
+import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 //TODO: implement iterable methods
@@ -23,7 +26,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	}
 
 	@Override
-	public CinciaObject __add__(CinciaObject other) {
+	public CinciaString __add__(CinciaObject other) {
 
 		try {
 			CinciaString otherStr =  (CinciaString)other;
@@ -89,9 +92,34 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public CinciaIterable filter(PureCinciaFunction f) {
-		// TODO Auto-generated method stub
-		return null;
+		return filter(o -> f.run(Arrays.asList(o)).__bool__().toJava());
 	}
+	
+	@Override
+	public CinciaIterable filter(Predicate<CinciaObject> f) {
+//		List<CinciaObject> list = this.list   .stream().filter( f::test ).collect(Collectors.toList());
+//		CinciaList res = new CinciaList(this.type);
+//		res.list = list;
+//		return res;
+		
+//		List<CinciaObject> list = this.list   .stream().filter( f::test ).collect(Collectors.toList());
+		
+		
+		Optional<CinciaString> filtered=
+				this.value.chars()
+				  .mapToObj( c-> new CinciaString(((char)c)+"")  )
+				  .filter( f::test )
+				  .reduce( ( c1,c2 )-> c1.__add__(c2));
+		
+		return filtered.orElse(this);
+		
+//		var x = Arrays.asList(this.value.toCharArray()).get(0);
+		
+		
+//		Arrays.asList().stream().map(c-> new CinciaString(c+""));
+		
+	}
+	
 
 	@Override
 	public CinciaIterable map(PureCinciaFunction f) {
@@ -110,11 +138,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		return value.length();
 	}
 
-	@Override
-	public CinciaIterable filter(Predicate<CinciaObject> f) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public CinciaIterable map(UnaryOperator<CinciaObject> f) {

@@ -249,6 +249,16 @@ public class Parser {
 
 		eat(Keywords.IN); 	
 		g.iterable = parseSingleExpression();
+		
+		
+		// parse filter
+		if (tStream.peek().getValue().equals(Keywords.IF)) {
+			eat(Keywords.IF);
+			g.filter = parseSingleExpression();
+			
+		}
+		
+		
 		return g;
 	}
 
