@@ -53,12 +53,19 @@ public class LambdaExpression implements ObjectExpression{
 		return signature+"->"+(block==null? expression :block);
 	}
 	
-	
+	/**
+	 * Factory method to convert an expression into a lambda 
+	 * expression (anonymous function).
+	 * @param input
+	 * @param body
+	 * @param returnType
+	 * @return
+	 */
 	public static LambdaExpression fromExpression(Identifier input, Expression body, Type returnType) {
+		//TODO: multiple input params!
 		
 		LambdaExpression lambdex = new LambdaExpression();
 		lambdex.expression = body; // body
-//		lambdex.modifiers.add(Modifiers.PURE); 
 		Signature s1 = new Signature();
 		VariableDeclaration i = new VariableDeclaration();
 		i.name = input; // input
