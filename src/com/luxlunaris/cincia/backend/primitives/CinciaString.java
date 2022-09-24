@@ -115,18 +115,10 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		return null;
 	}
 
-//	@Override
-//	public CinciaIterable reduce(PureCinciaFunction f, CinciaObject initial) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 	@Override
 	public long size() {
 		return value.length();
-	}
-
-	
+	}	
 
 	@Override
 	public CinciaIterable map(UnaryOperator<CinciaObject> f) {
