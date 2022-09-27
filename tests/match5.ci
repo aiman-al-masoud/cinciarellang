@@ -1,0 +1,9 @@
+f = \x -> match x { 
+	x < 10 -> "less than 10!"; 
+	x > 10 -> "greater than 10!"; 
+	x == 10 -> "equal to 10!";
+}
+
+f(1) == "less than 10!" &&
+f(10) == "equal to 10!" &&
+f(11) == "greater than 10!";
