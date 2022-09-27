@@ -41,6 +41,8 @@ public class JavaObject extends AbstractCinciaObject {
 		.map(m -> new JavaMethod(m,  this))		
 
 		.forEach(m->{
+			
+//			System.out.println(m.getName());
 
 			try {
 				// if name was already taken
@@ -88,7 +90,9 @@ public class JavaObject extends AbstractCinciaObject {
 		}
 
 		List<Method> ms = new ArrayList<>();
-		ms.addAll(Arrays.asList(clazz.getDeclaredMethods()));
+		//ms.addAll(Arrays.asList(clazz.getDeclaredMethods()));
+		ms.addAll(Arrays.asList(clazz.getMethods()));
+        //TODO just getMethods() no recursion?
 		ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
 		return ms;
 
