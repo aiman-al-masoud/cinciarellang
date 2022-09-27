@@ -434,6 +434,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		for(CaseStatement c : mS.casesList  ) {
 
 			try {
+				
+				// TODO: type matching with declarations
+//				if (c.cond instanceof Declaration) {
+//					System.out.println("declaration!");
+//				}
 
 				// comparison expression: just check if it's true
 				if (c.cond instanceof BinaryExpression && eval(c.cond, enviro).__bool__().toJava()) {
@@ -444,6 +449,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				if(eval(c.cond, enviro).__eq__(condition).__bool__().toJava()) {
 					return c.block!=null? eval(c.block, enviro) : eval(c.expression, enviro);
 				}
+				
 
 			}catch (RuntimeException e) {
 				//				e.printStackTrace();
