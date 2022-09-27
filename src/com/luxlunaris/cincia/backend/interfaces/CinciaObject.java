@@ -28,7 +28,7 @@ public interface CinciaObject extends Stateful{
 		}else if(object instanceof Double || object instanceof Float) {
 			return new CinciaFloat((double)object);
 		}else if(object instanceof Integer || object instanceof Long) {
-//			System.out.println(object);
+//			System.out.println(object); //TODO: CinciaInt MUST ALSO SUPPORT LOOOOONG
 			return new CinciaInt((int)object);
 		}else {
 			return new JavaObject(object);

@@ -5,7 +5,7 @@ import java.util.List;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
-
+//TODO: MAKE THIS ALSO A WRAPPER FOR LOOOOOOOONG
 //TODO: implement comparison operators!!!!
 //TODO: better error messages
 //TODO: consider making true division the default, ie: i=1;i/=2;i==0.5
