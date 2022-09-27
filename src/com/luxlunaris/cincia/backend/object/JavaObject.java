@@ -90,9 +90,9 @@ public class JavaObject extends AbstractCinciaObject {
 		}
 
 		List<Method> ms = new ArrayList<>();
-		//ms.addAll(Arrays.asList(clazz.getDeclaredMethods()));
-		ms.addAll(Arrays.asList(clazz.getMethods()));
-        //TODO just getMethods() no recursion?
+		ms.addAll(Arrays.asList(clazz.getDeclaredMethods()));
+//		ms.addAll(Arrays.asList(clazz.getMethods()));
+        //TODO just getMethods() no recursion? Nope only public
 		ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
 		return ms;
 
