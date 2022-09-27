@@ -429,7 +429,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		CinciaObject condition = eval(mS.cond, enviro);
 
 		for(CaseStatement c : mS.casesList  ) {
-
+			
+			// TODO: sometimes you have to check that CaseSatatement.cond is true, sometimes that 
+			// CaseSatatement.cond is equal to MatchExpression.cond
+			
 			if(eval(c.cond, enviro).__eq__(condition).__bool__().toJava()) {
 				return c.block!=null? eval(c.block, enviro) : eval(c.expression, enviro);
 			}
