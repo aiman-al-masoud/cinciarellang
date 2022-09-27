@@ -433,7 +433,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			try {
 
 				// comparison expression: just check if it's true
-				if (c.cond instanceof ComparisonExpression && eval(c.cond, enviro).__bool__().toJava()) {
+				if (c.cond instanceof BinaryExpression && eval(c.cond, enviro).__bool__().toJava()) {
 					return c.block!=null? eval(c.block, enviro) : eval(c.expression, enviro);
 				}
 
