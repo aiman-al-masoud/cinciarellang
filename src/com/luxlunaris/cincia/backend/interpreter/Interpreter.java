@@ -426,7 +426,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalMatchExpression(MatchExpression mS, Enviro enviro) {
 		
-		//TODO add coverage test...
+		//TODO: very important, else you risk nullpointer:
+		//TODO add coverage test, or return a default val!
 
 		CinciaObject condition = eval(mS.cond, enviro);
 
