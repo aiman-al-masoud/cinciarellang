@@ -281,6 +281,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			Class clazz =  Interpreter.class.getClassLoader().loadClass(importStatement.fromPath.value);
 			Identifier id = (Identifier)importStatement.imports.get(0).getKey();
+			
+			
+//			System.out.println("trying to import: "+clazz);
 			enviro.set( id.value, new JavaClass(clazz));
 			return null;
 		} catch (ClassNotFoundException e1) {

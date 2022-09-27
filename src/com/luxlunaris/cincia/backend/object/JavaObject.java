@@ -31,12 +31,18 @@ public class JavaObject extends AbstractCinciaObject {
 	public Object object; // wrapped Java object
 
 	public JavaObject(Object object){
+		
 
 		super(Type.Any);
 		this.type = !object.getClass().equals(Class.class.getClass())? new JavaClass(object.getClass()) : type; 
 		this.object = object;
 
-		getAccessibleMethods(object.getClass())
+//		System.out.println("JavaObject "+object);
+		
+		// if wrapped object is already a class, don't get its class (Class)...
+		Class clazz = object instanceof Class? (Class) object : object.getClass();
+		
+		getAccessibleMethods(clazz)
 		.stream()
 		.map(m -> new JavaMethod(m,  this))		
 
@@ -74,7 +80,7 @@ public class JavaObject extends AbstractCinciaObject {
 
 		});
 
-		getAccessibleAttributes(object.getClass())
+		getAccessibleAttributes(clazz)
 		.stream()
 		.map(a -> convertField(a, object))
 		.forEach(e->{
@@ -88,6 +94,8 @@ public class JavaObject extends AbstractCinciaObject {
 		if (clazz == null) {
 			return Arrays.asList();
 		}
+		
+//		System.out.println(clazz);
 
 		List<Method> ms = new ArrayList<>();
 		ms.addAll(Arrays.asList(clazz.getDeclaredMethods()));
