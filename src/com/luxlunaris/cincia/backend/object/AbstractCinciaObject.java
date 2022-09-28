@@ -429,15 +429,13 @@ public class AbstractCinciaObject implements CinciaObject{
 	public void set(CinciaIterable key, CinciaObject val) {
 
 		checkImmutable();
-
-		for(CinciaObject i : key) { //TODO: len(val) may not be == to len(key)
-			set(i, val instanceof CinciaIterable ? val.get(i) : val ); // if val is not another list, assign all keys to same single value of val.
-		}
-
+		// if val is not another list, assign all keys to same single value of val.
+		key.forEach(i -> set(i, val instanceof CinciaIterable ? val.get(i) : val ));
 	}
 
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
+		
 		checkImmutable();
 		enviro.set(key, val, type, modifiers);
 	}
