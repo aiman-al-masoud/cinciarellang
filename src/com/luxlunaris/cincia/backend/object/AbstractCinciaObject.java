@@ -255,9 +255,6 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		//TODO: circular references could cause problems
 		
-		//TODO: you are also copying the property that represents this 
-		// object's class! Do you realize how stupid that is?
-
 		CinciaObject copy = getBlank(); // get a new (blank) object
 
 		for (Entry<String, CinciaObject> e : enviro.items()) {
