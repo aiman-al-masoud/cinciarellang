@@ -327,7 +327,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaBool is(List<CinciaObject> args) {
-		return new CinciaBool(this == args.get(0));// this == other
+		return new CinciaBool(this == args.get(0)); // this == other (in RAM)
 	}
 
 	@Override
