@@ -1,0 +1,13 @@
+Capra =  class {
+
+	bela = \->{
+		return "beeeeh!";
+	}
+
+}
+
+Capra2 =  class {
+
+}
+
+Capra().values().size ==  Capra2().values().size +1; 
