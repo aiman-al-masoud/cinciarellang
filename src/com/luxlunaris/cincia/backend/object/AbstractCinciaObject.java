@@ -61,7 +61,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		String aboutClass = "";
 
-		// TODO: turn int, flat etc ... (primitive types) into CinciaClasses
+		// TODO: turn int, float etc ... (primitive types) into CinciaClasses
 		try {
 			CinciaClass myClass = (CinciaClass)type;  
 			aboutClass = myClass!=null? myClass.help(args).toJava() : "";
