@@ -30,7 +30,8 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		super(lambdex!=null? lambdex.signature : new IdentifierType("NativeCodeFunc"));
 		this.eval = eval;
 		this.lambdex = lambdex;
-		params = initParams(lambdex);			
+		params = initParams(lambdex);	
+		setImmutable();
 	}
 
 	public CinciaFunction(WrappedFunction wrappedFunction) {

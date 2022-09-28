@@ -23,7 +23,7 @@ public class PureCinciaFunction extends CinciaFunction {
 		super(lambdex, eval);
 		// make sure params are passed by copy, never by reference
 		params = params.stream().map(p->p.byCopy()).collect(Collectors.toList());
-		setImmutable(); // a pure function will never change
+//		setImmutable(); // a pure function will never change
 	}
 
 	public CinciaObject run(List<CinciaObject> args) {
@@ -47,9 +47,9 @@ public class PureCinciaFunction extends CinciaFunction {
 		return lambdex.signature.toString();
 	}
 
-	@Override
-	public CinciaObject copy(List<CinciaObject> args) {
-		return this; // since pure functions are immutable...
-	}
+//	@Override
+//	public CinciaObject copy(List<CinciaObject> args) {
+//		return this; // since pure functions are immutable...
+//	}
 
 }
