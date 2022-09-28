@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
+import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.iterables.CinciaList;
@@ -14,6 +15,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
@@ -38,14 +40,22 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(Magic.is, new CinciaMethod(this::is, this));
 			set(Magic.help, new CinciaMethod(this::help, this));
 			set("values", new CinciaMethod( this::values  , this)); //TODO: extract name
+
+		}
+		
+		// TODO: fiiiiiiiiiiiiiiiix!
+		if(type instanceof CinciaClass) {
+			set("type", (CinciaClass)type); //TODO: extract name			
 		}
 
+
+
 	}
-	
+
 	protected CinciaObject values(List<CinciaObject> args){
 		return new CinciaList(enviro.values());
 	}
-	
+
 
 
 	@Override
@@ -63,6 +73,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	public Type getType() {
 		return type;
 	}
+
 
 	/**
 	 * Throws an exception if this object is immutable.
@@ -102,7 +113,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		CinciaMethod cm = (CinciaMethod)get(Magic.__bool__);
 		return (CinciaBool)cm.run(null);
 	}
-	
+
 	//TODO: commutative operations should try the inverse if one way fails
 
 	@Override
@@ -122,7 +133,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		CinciaMethod cm = (CinciaMethod)get(Magic.__mul__);
 		return cm.run(Arrays.asList(other));
 	}
-	
+
 	@Override
 	public CinciaObject __mod__(CinciaObject other) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.__mod__);
@@ -311,7 +322,7 @@ public class AbstractCinciaObject implements CinciaObject{
 		try {
 			return __eq__((CinciaObject)obj).__bool__().toJava();
 		} catch (ClassCastException e) {
-//			throw new RuntimeException("Tried comparing cincia object with non-cincia object");
+			//			throw new RuntimeException("Tried comparing cincia object with non-cincia object");
 			return false;
 		}
 
