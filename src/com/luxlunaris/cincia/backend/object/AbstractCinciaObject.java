@@ -266,9 +266,14 @@ public class AbstractCinciaObject implements CinciaObject{
 			CinciaObject childco; // copy of the child object
 
 			if(childo == this) { // in case child is a self-reference
-				childco = copy;
+				childco = copy; //childco is the copied object's this, ie the copy itself
+				
+			}else if (childo == type && childo instanceof CinciaClass) { // if childco is a type 
+				childco = (CinciaClass)type; // type reference needs to point to the same type!
+				
 			}else {	// otherwise, copy the child recursively
 				childco = childo.copy(args);
+			
 			}
 
 			// methods should keep the same code but change their environment to the new object's
@@ -282,6 +287,8 @@ public class AbstractCinciaObject implements CinciaObject{
 
 				methco.parent = copy;
 			}
+			
+			
 			
 			
 

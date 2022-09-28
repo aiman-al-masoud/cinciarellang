@@ -1,0 +1,5 @@
+Cat = class{};
+c = Cat();
+c2 = c.copy();
+c3 = c2.copy();
+c.type == c2.type && c2.type == c3.type;
