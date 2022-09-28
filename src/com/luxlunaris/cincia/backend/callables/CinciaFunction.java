@@ -71,7 +71,8 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	public static List<Parameter> parseParams(LambdaExpression lambdex) {
 
 		List<Parameter> result = new ArrayList<Parameter>();
-
+		
+		// no params if no lambda expression or lambda exp without inputs
 		if(lambdex==null || lambdex.signature.params == null) {
 			return result;
 		}
