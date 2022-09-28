@@ -72,25 +72,17 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 	public static List<Parameter> parseParams(LambdaExpression lambdex) {
 
-//		List<Parameter> result = new ArrayList<Parameter>();
-		
 		// no params if no lambda expression or lambda exp without inputs
 		if(lambdex==null || lambdex.signature.params == null) {
 			return Arrays.asList(); // empty list
 		}
-		
+
 		List<SingleDeclaration> declarations = lambdex.signature.params.toList();
 
-//		declarations.forEach(d->{
-//			result.add(new Parameter(d.getName(), d.getType(), d.getModifiers()));
-//		});
-
-//		return result;
-		
 		return declarations.stream()
 				.map(d-> new Parameter(d.getName(), d.getType(), d.getModifiers()))
 				.collect(Collectors.toList());
-		
+
 	}
 
 	public static CinciaFunction make(LambdaExpression lambdex, Eval eval) {
