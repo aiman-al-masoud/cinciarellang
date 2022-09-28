@@ -22,8 +22,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	protected boolean immutable;	
 	public Enviro enviro; //object's internal environment 
-	protected Type type; // object's type
-//	protected CinciaCinciaClass myClass; // object's class
+	protected Type type; // object's type/class
 	protected String docString;
 
 	public AbstractCinciaObject(Type type) {
