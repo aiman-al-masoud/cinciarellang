@@ -254,6 +254,9 @@ public class AbstractCinciaObject implements CinciaObject{
 	public CinciaObject copy(List<CinciaObject> args) {
 
 		//TODO: circular references could cause problems
+		
+		//TODO: you are also copying the property that represents this 
+		// object's class! Do you realize how stupid that is?
 
 		CinciaObject copy = getBlank(); // get a new (blank) object
 
