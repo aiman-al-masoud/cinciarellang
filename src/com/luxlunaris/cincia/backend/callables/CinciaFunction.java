@@ -77,15 +77,18 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 			return result;
 		}
 
-		List<SingleDeclaration> declarations = new ArrayList<SingleDeclaration>();
+//		List<SingleDeclaration> declarations = new ArrayList<SingleDeclaration>();
+		
+		List<SingleDeclaration> declarations = 
+		lambdex.signature.params.toList();
 
-		try {
-			SingleDeclaration sD =(SingleDeclaration)lambdex.signature.params;
-			declarations.add(sD);
-		}catch (ClassCastException e) {
-			MultiDeclaration mD =(MultiDeclaration)lambdex.signature.params;
-			declarations.addAll(mD.declarations);
-		}
+//		try {
+//			SingleDeclaration sD =(SingleDeclaration)lambdex.signature.params;
+//			declarations.add(sD);
+//		}catch (ClassCastException e) {
+//			MultiDeclaration mD =(MultiDeclaration)lambdex.signature.params;
+//			declarations.addAll(mD.declarations);
+//		}
 
 
 		declarations.forEach(d->{
