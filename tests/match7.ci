@@ -1,0 +1,15 @@
+Cat = class{
+	meow = \-> "meow!";
+}
+
+Dog = class{
+	bark = \->"woof!";
+}
+
+f = nonlocal \x-> match x.type{
+
+	Cat -> "cat says "+x.meow();
+	Dog -> "dog says "+x.bark();
+}
+
+f(Cat()) == "cat says meow!" && f(Dog()) == "dog says woof!";
