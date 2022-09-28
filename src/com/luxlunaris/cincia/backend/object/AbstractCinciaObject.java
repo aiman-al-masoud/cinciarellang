@@ -23,7 +23,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	protected boolean immutable;	
 	public Enviro enviro; //object's internal environment 
 	protected Type type; // object's type
-	protected CinciaCinciaClass myClass; // object's class
+//	protected CinciaCinciaClass myClass; // object's class
 	protected String docString;
 
 	public AbstractCinciaObject(Type type) {
@@ -59,8 +59,18 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaString help(List<CinciaObject> args) {
-		String s = myClass!=null? myClass.help(args).toJava() : "";
-		return new CinciaString("About this object:\n"+docString+"\nAbout the class:\n"+s);
+		
+		String aboutClass = "";
+		
+		// TODO: turn int, flat etc ... (primitive types) into CinciaClasses
+		try {
+			CinciaClass myClass = (CinciaClass)type;  
+			aboutClass = myClass!=null? myClass.help(args).toJava() : "";
+		} catch (ClassCastException e) {
+			
+		}
+		
+		return new CinciaString("About this object:\n"+docString+"\nAbout the class:\n"+aboutClass);
 	}
 
 	@Override
