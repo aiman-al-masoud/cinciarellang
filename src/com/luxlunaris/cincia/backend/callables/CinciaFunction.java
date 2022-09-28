@@ -98,7 +98,6 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		return new PureCinciaFunction(lambdex, eval);
 	}
 
-
 	public boolean isNativeCode() {
 		return wrappedFunction != null;
 	}
@@ -110,7 +109,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 	@Override
 	public String toString() {
-		return lambdex ==null?  "NativeCode()"   :  lambdex.signature.toString();
+		return lambdex ==null?  "NativeCode()"  : lambdex.signature.toString();
 	}
 
 
