@@ -2,7 +2,9 @@ package com.luxlunaris.cincia.backend.callables;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
@@ -63,6 +65,17 @@ public class JavaMethod extends CinciaMethod{
 	@Override
 	public CinciaMethod copy(List<CinciaObject> args) {
 		return new JavaMethod(method, null);
+	}
+	
+	
+	@Override
+	public String toString() {
+		
+		Optional<String> params = Arrays.asList(method.getParameters()).stream()
+				.map(p->p.getName()+":"+p.getType())
+				.reduce((s1, s2)->s1+","+s2);
+		
+		return getName()+"("+params.orElse("")+") -> "+method.getReturnType();
 	}
 
 }
