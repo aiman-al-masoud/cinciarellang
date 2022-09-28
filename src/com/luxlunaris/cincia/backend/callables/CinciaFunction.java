@@ -31,7 +31,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		this.eval = eval;
 		this.lambdex = lambdex;
 		params = initParams(lambdex);	
-		setImmutable();
+		setImmutable(); // functions are immutable
 	}
 
 	public CinciaFunction(WrappedFunction wrappedFunction) {
@@ -105,7 +105,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
-		return this; 
+		return this; // since functions are immutable
 	}
 
 	@Override
