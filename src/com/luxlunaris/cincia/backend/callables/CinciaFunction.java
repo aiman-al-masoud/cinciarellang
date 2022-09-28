@@ -1,6 +1,5 @@
 package com.luxlunaris.cincia.backend.callables;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,8 +10,6 @@ import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
-import com.luxlunaris.cincia.backend.object.Magic;
-import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
@@ -110,13 +107,10 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		return this; 
 	}
 
-
 	@Override
 	public String toString() {
 		return lambdex ==null?  "NativeCode()"   :  lambdex.signature.toString();
 	}
-
-
 
 
 }
