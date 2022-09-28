@@ -29,8 +29,6 @@ public class PureCinciaFunction extends CinciaFunction {
 	public CinciaObject run(List<CinciaObject> args) {
 		Enviro enviro = new Enviro(null); // brand new empty env
 		enviro.set(Magic.THIS.toString(), this);//reference to self, required to write recursive pure functions
-		// Make sure args can't ever be passed by reference:
-//		List<CinciaObject> argsCopy = args.stream().map(o->o.copy(null)).collect(Collectors.toList());
 		return super.run(args, enviro);
 	}
 

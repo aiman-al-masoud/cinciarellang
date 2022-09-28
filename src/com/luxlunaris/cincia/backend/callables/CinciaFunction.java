@@ -48,7 +48,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 			// Bind args to environment
 			for(int i=0; i < params.size(); i++) {
-				
+
 				Parameter p = params.get(i);
 				CinciaObject arg = args.get(i);
 				enviro.set(p.name, p.isByRef()? arg : arg.copy(args), p.type);	
@@ -113,19 +113,17 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	public boolean isNativeCode() {
 		return wrappedFunction != null;
 	}
-	
+
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
 		return this; 
 	}
 
-	
+
 	@Override
 	public String toString() {
 		return lambdex ==null?  "NativeCode()"   :  lambdex.signature.toString();
 	}
-
-
 
 
 
