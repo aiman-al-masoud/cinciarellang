@@ -119,6 +119,12 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		return this; 
 	}
 
+	
+	@Override
+	public String toString() {
+		return lambdex ==null?  "NativeCode()"   :  lambdex.signature.toString();
+	}
+
 
 
 
