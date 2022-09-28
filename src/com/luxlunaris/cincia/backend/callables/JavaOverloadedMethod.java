@@ -43,8 +43,8 @@ public class JavaOverloadedMethod extends JavaMethod{
 	}
 
 	@Override
-	public String toString() {
-		return getName()+"{ x"+methods.size()+" overloads }";
+	public String toString() {		
+		return getName()+"( x"+methods.size()+" overloads ) -> "+methods.get(0).method.getReturnType();
 	}
 
 
