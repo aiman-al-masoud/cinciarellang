@@ -1,0 +1,3 @@
+Cat = class{}; //this is a new class / type
+c = Cat();
+c.type == Cat; 

@@ -279,6 +279,8 @@ public class AbstractCinciaObject implements CinciaObject{
 
 				methco.parent = copy;
 			}
+			
+			
 
 			copy.set(e.getKey(), childco);			
 		}
