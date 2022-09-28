@@ -21,6 +21,8 @@ public class PureCinciaFunction extends CinciaFunction {
 
 	public PureCinciaFunction(LambdaExpression lambdex, Eval eval) {
 		super(lambdex, eval);
+		// make sure params are passed by copy, never by reference
+		params = params.stream().map(p->p.byCopy()).collect(Collectors.toList());
 		setImmutable(); // a pure function will never change
 	}
 
@@ -28,8 +30,8 @@ public class PureCinciaFunction extends CinciaFunction {
 		Enviro enviro = new Enviro(null); // brand new empty env
 		enviro.set(Magic.THIS.toString(), this);//reference to self, required to write recursive pure functions
 		// Make sure args can't ever be passed by reference:
-		List<CinciaObject> argsCopy = args.stream().map(o->o.copy(null)).collect(Collectors.toList());
-		return super.run(argsCopy, enviro);
+//		List<CinciaObject> argsCopy = args.stream().map(o->o.copy(null)).collect(Collectors.toList());
+		return super.run(args, enviro);
 	}
 
 	@Override
