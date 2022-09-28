@@ -97,9 +97,6 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 		return false;
 
 	}
-	
-	
-	//TODO: need to implement getBlank
 
 
 }
