@@ -33,7 +33,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		super(lambdex!=null? lambdex.signature : new IdentifierType("NativeCodeFunc"));
 		this.eval = eval;
 		this.lambdex = lambdex;
-		params = parseParams(lambdex);			
+		params = initParams(lambdex);			
 	}
 
 	public CinciaFunction(WrappedFunction wrappedFunction) {
@@ -70,7 +70,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		throw new RuntimeException("Lambda without expression nor block!");
 	}
 
-	public static List<Parameter> parseParams(LambdaExpression lambdex) {
+	public static List<Parameter> initParams(LambdaExpression lambdex) {
 
 		// no params if no lambda expression or lambda exp without inputs
 		if(lambdex==null || lambdex.signature.params == null) {
@@ -87,7 +87,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 	public static CinciaFunction make(LambdaExpression lambdex, Eval eval) {
 
-		List<Parameter> params = parseParams(lambdex);
+		List<Parameter> params = initParams(lambdex);
 
 		boolean takesArgByRef = params.stream().anyMatch(p->p.modifiers.contains(Modifiers.REF));
 		boolean readsFromExtScope = lambdex.modifiers.contains(Modifiers.NONLOCAL);
