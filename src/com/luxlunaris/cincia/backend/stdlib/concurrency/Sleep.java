@@ -10,7 +10,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 public class Sleep extends CinciaFunction{
 
 	public Sleep() {
-		super(null, null);
+		super(null);
 	}
 
 	@Override

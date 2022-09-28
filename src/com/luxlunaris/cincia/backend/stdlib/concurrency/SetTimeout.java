@@ -10,7 +10,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 public class SetTimeout extends CinciaFunction {
 
 	public SetTimeout() {
-		super(null, null);
+		super(null);
 	}
 
 	@Override
