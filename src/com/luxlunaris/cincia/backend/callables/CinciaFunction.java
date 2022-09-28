@@ -35,7 +35,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	}
 
 	public CinciaFunction(WrappedFunction wrappedFunction) {
-		super(new IdentifierType("NativeCode")); //TODO: extract Id, NativeType
+		super(new IdentifierType("NativeCode")); //TODO: put an actual signature here
 		this.wrappedFunction = wrappedFunction;
 	}
 
