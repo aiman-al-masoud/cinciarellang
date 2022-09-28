@@ -32,7 +32,7 @@ public class PureCinciaFunction extends CinciaFunction {
 	}
 
 	@Override
-	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
+	public CinciaObject run(List<CinciaObject> args, Enviro enviro) { //TODO: stop breaking Liskov's Principle :-)
 		throw new RuntimeException("Can't bind pure function to externally supplied environment!");
 	}
 
