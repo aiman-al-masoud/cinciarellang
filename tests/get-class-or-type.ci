@@ -1,3 +1,4 @@
-Cat = class{}; //this is a new class / type
+Cat = class{}; // this is a new class/type
+Dog = class{}; // a different class
 c = Cat();
-c.type == Cat; 
+c.type == Cat  && c.type != Dog; 
