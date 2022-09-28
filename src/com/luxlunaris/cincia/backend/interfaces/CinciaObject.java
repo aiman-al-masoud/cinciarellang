@@ -20,6 +20,8 @@ public interface CinciaObject extends Stateful{
 	 */
 	static CinciaObject wrap(Object object) {
 
+		//TODO: problem with classes defining static members of the same class
+//		System.out.println(object.getClass()); //TODO: CinciaInt MUST ALSO SUPPORT LOOOOONG
 
 		if(object instanceof Boolean) {
 			return new CinciaBool((boolean)object);
@@ -27,8 +29,7 @@ public interface CinciaObject extends Stateful{
 			return new CinciaString((String)object);
 		}else if(object instanceof Double || object instanceof Float) {
 			return new CinciaFloat((double)object);
-		}else if(object instanceof Integer || object instanceof Long) {
-//			System.out.println(object); //TODO: CinciaInt MUST ALSO SUPPORT LOOOOONG
+		}else if(object instanceof Integer || object instanceof Long || object instanceof Short) {
 			return new CinciaInt((int)object);
 		}else {
 			return new JavaObject(object);
