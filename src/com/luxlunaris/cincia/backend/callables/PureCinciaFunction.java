@@ -21,7 +21,7 @@ public class PureCinciaFunction extends CinciaFunction {
 
 	public PureCinciaFunction(LambdaExpression lambdex, Eval eval) {
 		super(lambdex, eval);
-		// make sure params are passed by copy, never by reference
+		// Precaution: make sure params are passed by copy, never by reference
 		params = params.stream().map(p->p.byCopy()).collect(Collectors.toList());
 	}
 
