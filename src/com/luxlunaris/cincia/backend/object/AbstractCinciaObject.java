@@ -58,17 +58,17 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaString help(List<CinciaObject> args) {
-		
+
 		String aboutClass = "";
-		
+
 		// TODO: turn int, flat etc ... (primitive types) into CinciaClasses
 		try {
 			CinciaClass myClass = (CinciaClass)type;  
 			aboutClass = myClass!=null? myClass.help(args).toJava() : "";
 		} catch (ClassCastException e) {
-			
+
 		}
-		
+
 		return new CinciaString("About this object:\n"+docString+"\nAbout the class:\n"+aboutClass);
 	}
 
@@ -427,8 +427,8 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public void set(CinciaIterable key, CinciaObject val) {
+
 		checkImmutable();
-		//		enviro.set(key, val);
 
 		for(CinciaObject i : key) { //TODO: len(val) may not be == to len(key)
 			set(i, val instanceof CinciaIterable ? val.get(i) : val ); // if val is not another list, assign all keys to same single value of val.
