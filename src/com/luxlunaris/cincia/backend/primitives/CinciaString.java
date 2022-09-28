@@ -179,7 +179,10 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		return reduce( (o1, o2)-> f.run(Arrays.asList(o1,o2)) );
 	}
 
-	
+	@Override
+	public CinciaString __str__() {
+		return this;
+	}
 
 
 }

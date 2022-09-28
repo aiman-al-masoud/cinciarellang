@@ -22,6 +22,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
+import com.luxlunaris.cincia.backend.callables.CinciaFunction;
+import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
@@ -86,11 +88,20 @@ public class BestMain extends JFrame{
 				if(arg0.getKeyCode() == 10 && arg0.getModifiersEx()==128 ) {
 					//					JOptionPane.showConfirmDialog(null, "control+enter!");
 					String source = textPane.getText();
+					
+					
+					if(source.isBlank()) {
+						consoleDisplay.setText("");
+					}
+					
+					
 					Compiler compiler = new Compiler();
 					List<Ast> statements = compiler.compile(source);
 
 
-					Enviro enviro = new Enviro(null);
+					Enviro enviro = Enviro.getTopLevelEnviro();
+					enviro.set("print", new CinciaFunction( e->printOnConsole(e) ));
+					
 					Interpreter interpreter = new Interpreter();
 
 					statements.forEach(ast->{
@@ -98,8 +109,14 @@ public class BestMain extends JFrame{
 						try {
 
 							CinciaObject c = interpreter.eval(ast, enviro);//TODO: throw and catch specialized exception for undefined variables
-							consoleDisplay.setText(c+"");
-							consoleDisplay.setVisible(true);
+							
+							
+							if(c!=null) {
+								consoleDisplay.setText(c+"");
+								consoleDisplay.setVisible(true);
+								
+							}
+							
 
 						}catch (Exception e) { 
 							String msg =e.getClass() +" "+e.getMessage(); 
@@ -332,6 +349,11 @@ public class BestMain extends JFrame{
 
 		}
 
+	}
+	
+	protected CinciaObject  printOnConsole(List<CinciaObject> args) {
+		consoleDisplay.setText(consoleDisplay.getText()+args.get(0).__str__() );
+		return null;
 	}
 
 
