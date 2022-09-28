@@ -36,10 +36,15 @@ public class JavaOverloadedMethod extends JavaMethod{
 	public void add(JavaMethod method) {
 		methods.add(method);
 	}
+	
+	@Override
+	public String getName() {
+		return methods.get(0).getName();
+	}
 
 	@Override
 	public String toString() {
-		return "OverloadedMethod{ x"+methods.size()+" overloads }";
+		return getName()+"{ x"+methods.size()+" overloads }";
 	}
 
 
