@@ -23,7 +23,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	protected boolean immutable;	
 	public Enviro enviro; //object's internal environment 
 	protected Type type; // object's type
-	CinciaCinciaClass myClass; // object's class
+	protected CinciaCinciaClass myClass; // object's class
 	protected String docString;
 
 	public AbstractCinciaObject(Type type) {
@@ -41,7 +41,7 @@ public class AbstractCinciaObject implements CinciaObject{
 			set("values", new CinciaMethod( this::values  , this)); //TODO: extract name
 
 		}
-		
+
 		// TODO: fiiiiiiiiiiiiiiiix! and make this prop final
 		if(type instanceof CinciaClass) {
 			set("type", (CinciaClass)type); //TODO: extract name			
@@ -253,7 +253,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	public CinciaObject copy(List<CinciaObject> args) {
 
 		//TODO: circular references could cause problems
-		
+
 		CinciaObject copy = getBlank(); // get a new (blank) object
 
 		for (Entry<String, CinciaObject> e : enviro.items()) {
@@ -263,13 +263,13 @@ public class AbstractCinciaObject implements CinciaObject{
 
 			if(childo == this) { // in case child is a self-reference
 				childco = copy; //childco is the copied object's this, ie the copy itself
-				
+
 			}else if (childo == type && childo instanceof CinciaClass) { // if childco is a type 
 				childco = (CinciaClass)type; // type reference needs to point to the same type!
-				
+
 			}else {	// otherwise, copy the child recursively
 				childco = childo.copy(args);
-			
+
 			}
 
 			// methods should keep the same code but change their environment to the new object's
@@ -283,8 +283,8 @@ public class AbstractCinciaObject implements CinciaObject{
 
 				methco.parent = copy;
 			}
-			
-			
+
+
 			copy.set(e.getKey(), childco);			
 		}
 
