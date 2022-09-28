@@ -9,6 +9,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
@@ -36,9 +37,15 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(Magic.as, new CinciaMethod(this::as, this));
 			set(Magic.is, new CinciaMethod(this::is, this));
 			set(Magic.help, new CinciaMethod(this::help, this));
+			set("values", new CinciaMethod( this::values  , this)); //TODO: extract name
 		}
 
 	}
+	
+	protected CinciaObject values(List<CinciaObject> args){
+		return new CinciaList(enviro.values());
+	}
+	
 
 
 	@Override
