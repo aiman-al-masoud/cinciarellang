@@ -9,14 +9,14 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.InterfaceExpressio
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-public class CinciaInterface extends AbstractCinciaObject implements Type{
+public class CinciaInterface extends CinciaCinciaClass implements Type{
 
 	protected InterfaceExpression interex;
 	protected List<SingleDeclaration> declarations;
 	
 	public CinciaInterface(InterfaceExpression interex) {
 		
-		super(null);
+		super();
 		this.type = this;
 		this.interex = interex;
 		

@@ -63,8 +63,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
 
-		
-		
+
 		//TODO: deal with modifiers such as static
 
 		// Prototypal Inheritance (like Javascript)
@@ -110,19 +109,23 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
-		
+
 		//TODO: enviro.get broken for declared but undefined vals
-		
+
 
 		try {
 
-			CinciaCinciaClass otherClass = (CinciaCinciaClass)other; // TODO what about JavaClass?
+			var dontCare =  (Type)other; // TODO what about JavaClass?
+
+			var otherClass =  (CinciaObject)other;
+
+
 			CinciaCinciaClass c = new CinciaCinciaClass();
 
 
 			for( Entry<String, CinciaObject> entry : this.getEnviro().vars.entrySet() ) {
 
-//				System.out.println(entry);
+				//				System.out.println(entry);
 
 				if(entry.getKey().equals( Magic.THIS.toString())) {
 					continue;
@@ -139,7 +142,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 			for( Entry<String, CinciaObject> entry : otherClass.getEnviro().vars.entrySet() ) {
 
-//				System.out.println(entry);
+				//				System.out.println(entry);
 
 				if(entry.getKey().equals( Magic.THIS.toString())) {
 					continue;
