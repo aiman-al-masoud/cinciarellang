@@ -104,6 +104,8 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
+		
+		//TODO: enviro.get broken for declared but undefined vals
 
 		try {
 
