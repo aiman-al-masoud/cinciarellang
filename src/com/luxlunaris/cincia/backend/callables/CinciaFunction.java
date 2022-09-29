@@ -43,6 +43,12 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	}
 
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
+		
+//		System.out.println(this);
+//		System.out.println(args);
+		
+//		System.out.println("CinciaFunction.run() "+args.get(0).toJava());
+		
 
 
 		if(args != null && wrappedFunction == null) {
@@ -115,50 +121,52 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		return lambdex ==null?  "NativeCode()"  : lambdex.signature.toString();
 	}
 
-	@Override
-	public Object toJava(Object... args) {
+//	@Override
+//	public Object toJava(Object... args) {
+//
+//		// cast first arg to a (functional) interface
+//		Class<?> anInterface = (Class<?>)args[0];
+//		
+//		// cast second arg to an Enviro
+//		Enviro enviro = (Enviro)args[1];
+//
+//		// return a dynamic proxy for the interface
+//		return makeProxy(anInterface, enviro);
+//	}
 
-		// cast first arg to a (functional) interface
-		Class<?> anInterface = (Class<?>)args[0];
-		
-		// cast second arg to an Enviro
-		Enviro enviro = (Enviro)args[1];
-
-		// return a dynamic proxy for the interface
-		return makeProxy(anInterface, enviro);
-	}
-
-
-	public Object makeProxy(Class<?> anInterface, Enviro enviro) {
-
-		// build a dynamic proxy 
-		Object instance = Proxy.newProxyInstance(anInterface.getClassLoader(), new Class<?>[]{anInterface}, new InvocationHandler() {
-
-			@Override
-			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
-				// ... the proxy implements the first method in the (functional) interface
-				String methodName = anInterface.getMethods()[0].getName();
-
-				if(method.getName().equals(methodName)){
-					//					System.out.println("action performed! "+args[0]);
-
-					// convert java args into cincia objects
-					List<CinciaObject> cinciargs = Arrays.asList(args).stream().map(o->CinciaObject.wrap(o)).collect(Collectors.toList());
-
-					// run this function //TODO: fix enviro problem
-					return run(cinciargs,  enviro);
-
-				}else {
-					return null;
-				}
-
-			}
-		}); 
-
-		return instance;
-
-	}
+//
+//	public Object makeProxy(Class<?> anInterface, Enviro enviro) {
+//
+//		// build a dynamic proxy 
+//		Object instance = Proxy.newProxyInstance(anInterface.getClassLoader(), new Class<?>[]{anInterface}, new InvocationHandler() {
+//
+//			@Override
+//			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+//
+//				// ... the proxy implements the first method in the (functional) interface
+//				String methodName = anInterface.getMethods()[0].getName();
+//
+//				if(method.getName().equals(methodName)){
+//					//					System.out.println("action performed! "+args[0]);
+//
+//					// convert java args into cincia objects
+//					List<CinciaObject> cinciargs = Arrays.asList(args).stream().map(o->CinciaObject.wrap(o)).collect(Collectors.toList());
+//					
+////					System.out.println(cinciargs.get(0));
+//
+//					// run this function //TODO: fix enviro problem
+//					return run(cinciargs,  enviro);
+//
+//				}else {
+//					return null;
+//				}
+//
+//			}
+//		}); 
+//
+//		return instance;
+//
+//	}
 
 
 

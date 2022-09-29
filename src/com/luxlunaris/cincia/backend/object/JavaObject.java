@@ -142,6 +142,8 @@ public class JavaObject extends AbstractCinciaObject {
 	 * @return
 	 */
 	public static Object deepCopy(Object object) {
+		
+//		System.out.println("copying "+object);
 
 		try {
 
@@ -154,11 +156,16 @@ public class JavaObject extends AbstractCinciaObject {
 			byte[] byteData = bos.toByteArray();
 			ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
 			Object copy = new ObjectInputStream(bais).readObject();
+			
+//			System.out.println("copied: "+copy);
+			//TODO: check if copy if perfect by comparing hash codes, there could be trainsient attribs 
+
 			return copy;
 
 		} catch (Exception e) {
-
+			//System.out.println("tried copying java object");
 		}
+		
 
 		throw new RuntimeException("Couldn't deep-copy java object!");
 

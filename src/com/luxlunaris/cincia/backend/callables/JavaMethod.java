@@ -24,6 +24,8 @@ public class JavaMethod extends CinciaMethod{
 
 	@Override
 	public CinciaObject run(List<CinciaObject> args) {
+		
+		
 
 		try {
 
@@ -40,7 +42,7 @@ public class JavaMethod extends CinciaMethod{
 
 			if(args.size()>0) {
 				Class<?>[] paramTypes = method.getParameterTypes();
-
+				
 				for (int i=0; i < paramTypes.length; i++) {
 					Class<?> paramType = paramTypes[i];	
 					Object javaArg = args.get(i).toJava( new Object[] {paramType, parent.getEnviro() /* TODO: or copy?*/} ); // cincia -> java

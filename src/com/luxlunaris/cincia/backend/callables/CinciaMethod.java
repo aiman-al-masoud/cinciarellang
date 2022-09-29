@@ -1,11 +1,17 @@
 package com.luxlunaris.cincia.backend.callables;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 
 
@@ -47,12 +53,59 @@ public class CinciaMethod extends CinciaFunction{
 	 * @param eval
 	 * @return
 	 */
-	public CinciaObject run(List<CinciaObject> args) {
+	public CinciaObject run(List<CinciaObject> args) {	
+//		System.out.println("CinciaMethod.run() "+args);
 		//TODO  PROBLEM 1: this overwrites also stuff in this given how this was implemented
 		//TODO: PROBLEM 2: recursive methods are broken, because all calls on the stack refer to the same environment!!
 		//TODO: Fixed PROBLEM 3 by shallow-cloning env, but now you can't set instance vars without using this.
 		return super.run(args, parent.getEnviro().newChild());
 	}
+
+	@Override
+	public Object toJava(Object... args) {
+
+		// cast first arg to a (functional) interface
+		Class<?> anInterface = (Class<?>)args[0];
+
+		// env comes from parent object
+		return makeProxy(anInterface);
+
+	}
+
+
+	public Object makeProxy(Class<?> anInterface) {
+
+		// build a dynamic proxy 
+		Object instance = Proxy.newProxyInstance(anInterface.getClassLoader(), new Class<?>[]{anInterface}, new InvocationHandler() {
+
+			@Override
+			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+				// ... the proxy implements the first method in the (functional) interface
+				String methodName = anInterface.getMethods()[0].getName();
+
+				if(method.getName().equals(methodName)){
+					//					System.out.println("action performed! "+args[0]);
+
+					// convert java args into cincia objects
+					List<CinciaObject> cinciargs = Arrays.asList(args).stream().map(o->CinciaObject.wrap(o)).collect(Collectors.toList());
+
+					//					System.out.println(cinciargs.get(0));
+
+					// run this function //TODO: fix enviro problem
+					return run(cinciargs);
+
+				}else {
+					return null;
+				}
+
+			}
+		}); 
+
+		return instance;
+
+	}
+
 
 
 

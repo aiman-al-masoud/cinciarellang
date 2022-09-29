@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
@@ -28,8 +29,8 @@ public class Tester {
 	final static boolean ONLY_FIRST_BROKEN = true; // only show the first failing stacktrace and stop
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
-	final static List<String> tags = Arrays.asList(ALL);
-//		final static List<String> tags = Arrays.asList("for-loop-over-string");
+//	final static List<String> tags = Arrays.asList(ALL);
+		final static List<String> tags = Arrays.asList("maybe-maybe");
 
 	public static void main(String[] args) throws IOException{
 
@@ -66,6 +67,8 @@ public class Tester {
 			Compiler compiler = new Compiler();			
 			Enviro enviro  = Enviro.getTopLevelEnviro();
 			Interpreter interpreter = new Interpreter();
+			
+			enviro.set("print", new CinciaFunction(e->{System.out.print(e  ); return null;}));
 
 			for(Ast stm : compiler.compile(test.source)) {
 				out = interpreter.eval(stm, enviro);
