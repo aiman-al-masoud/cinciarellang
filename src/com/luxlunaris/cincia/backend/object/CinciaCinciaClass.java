@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.backend.object;
 
 import java.util.List;
+import java.util.Map.Entry;
 
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
@@ -96,6 +97,56 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 		return false;
 
+	}
+
+
+
+	@Override
+	public CinciaObject __add__(CinciaObject other) {
+
+		try {
+
+			CinciaCinciaClass otherClass = (CinciaCinciaClass)other; // TODO what about JavaClass?
+			CinciaCinciaClass c = new CinciaCinciaClass();
+
+
+			for( Entry<String, CinciaObject> entry : this.getEnviro().vars.entrySet() ) {
+				
+//				System.out.println(entry);
+				
+				if(entry.getKey().equals( Magic.THIS.toString())) {
+					continue;
+				}
+				
+				if(entry.getKey().equals( "class" )) {
+					continue;
+				}
+				
+				c.set(entry.getKey(), entry.getValue());
+			}
+
+			for( Entry<String, CinciaObject> entry : otherClass.getEnviro().vars.entrySet() ) {
+				
+//				System.out.println(entry);
+				
+				if(entry.getKey().equals( Magic.THIS.toString())) {
+					continue;
+				}
+				
+				if(entry.getKey().equals( "class" )) {
+					continue;
+				}
+				
+				c.set(entry.getKey(), entry.getValue());
+			}
+
+			return c;
+
+		} catch (ClassCastException e) {
+
+		}
+
+		throw new RuntimeException("Addition not implemented between class and non-class types!");
 	}
 
 

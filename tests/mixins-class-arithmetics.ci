@@ -1,0 +1,15 @@
+A = class {
+		quack = \ -> "quack!";
+}
+
+B = class {
+		fly = \ -> "flap... flap...";
+}
+
+
+C = A + B;
+
+
+x = C();
+
+x.quack() =="quack!" && x.fly() =="flap... flap...";
