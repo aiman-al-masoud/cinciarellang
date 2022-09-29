@@ -42,7 +42,7 @@ public class CinciaInterface extends AbstractCinciaObject implements Type{
 
 	@Override
 	public boolean matches(Type other) {
-		return false;//TODO: !!!!!!!!!!!!!!!!!!!!!!!
+		return this ==other;//TODO: !!!!!!!!!!!!!!!!!!!!!!!
 	}
 	
 	@Override
