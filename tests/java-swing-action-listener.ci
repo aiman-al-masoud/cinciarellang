@@ -3,11 +3,6 @@ import JFrame from "javax.swing.JFrame";
 
 
 Handler = class{
-
-	__init__ = \button, print->{
-		this.print = print;
-		this.events = [];
-	}
 	
 	/**
 	* Need to pass 'e' by reference because apparently eventSource 
@@ -23,7 +18,7 @@ Handler = class{
 
 f = JFrame();
 b = JButton("ciao");
-handler = Handler(b, print);
+handler = Handler();
 b.addActionListener( handler.handle  );
 f.add(b);
 f.setSize(200, 200);
