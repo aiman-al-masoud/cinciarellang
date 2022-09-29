@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend.object;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.InterfaceExpression;
@@ -52,6 +53,11 @@ public class CinciaInterface extends CinciaCinciaClass implements Type{
 	
 	public List<SingleDeclaration> getDeclarations(){
 		return declarations;
+	}
+	
+	@Override
+	public CinciaObject newInstance(List<CinciaObject> args) { //TODO: stop breaking Liskov! :-<
+		throw new RuntimeException("Cannot instantiate interface!");
 	}
 	
 	
