@@ -8,8 +8,5 @@ B = class {
 
 
 C = A + B;
-
-
 x = C();
-
 x.quack() =="quack!" && x.fly() =="flap... flap...";
