@@ -90,6 +90,9 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	@Override
 	public boolean matches(Type other) {
 
+		//TODO: how about an equality check based on actual fields and methods? Like
+		//a more "institutionalized" form of duck-typing?
+		
 		try {
 			return this == ((CinciaCinciaClass)other); // matches in RAM
 
