@@ -43,10 +43,12 @@ public class JavaMethod extends CinciaMethod{
 
 				for (int i=0; i < paramTypes.length; i++) {
 					Class<?> paramType = paramTypes[i];	
-					Object javaArg = args.get(i).toJava( new Object[] {paramType} ); // cincia -> java
+					Object javaArg = args.get(i).toJava( new Object[] {paramType, parent.getEnviro() /* TODO: or copy?*/} ); // cincia -> java
 					javargs.add(javaArg);
 				}
 			}
+			
+			
 
 
 

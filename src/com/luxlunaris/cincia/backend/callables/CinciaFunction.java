@@ -120,13 +120,16 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 		// cast first arg to a (functional) interface
 		Class<?> anInterface = (Class<?>)args[0];
+		
+		// cast second arg to an Enviro
+		Enviro enviro = (Enviro)args[1];
 
 		// return a dynamic proxy for the interface
-		return makeProxy(anInterface);
+		return makeProxy(anInterface, enviro);
 	}
 
 
-	public Object makeProxy(Class<?> anInterface) {
+	public Object makeProxy(Class<?> anInterface, Enviro enviro) {
 
 		// build a dynamic proxy 
 		Object instance = Proxy.newProxyInstance(anInterface.getClassLoader(), new Class<?>[]{anInterface}, new InvocationHandler() {
@@ -144,7 +147,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 					List<CinciaObject> cinciargs = Arrays.asList(args).stream().map(o->CinciaObject.wrap(o)).collect(Collectors.toList());
 
 					// run this function //TODO: fix enviro problem
-					return run(cinciargs,  new Enviro(null));
+					return run(cinciargs,  enviro);
 
 				}else {
 					return null;
