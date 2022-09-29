@@ -88,7 +88,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 			return this == ((CinciaCinciaClass)other); // matches in RAM
 
 
-			//TODO: check extends etc...
+			//TODO: check mixins, method names, interfaces, idk what I'm doing, etc...
 
 
 		} catch (ClassCastException e) {
