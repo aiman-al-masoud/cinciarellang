@@ -1,0 +1,5 @@
+C = class {};
+C.setX = \x -> { this.x = x; };
+obj = C();
+obj.setX(10);
+obj.x == 10;

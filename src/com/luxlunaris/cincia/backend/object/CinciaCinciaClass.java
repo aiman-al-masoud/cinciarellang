@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend.object;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
@@ -111,32 +112,32 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 
 			for( Entry<String, CinciaObject> entry : this.getEnviro().vars.entrySet() ) {
-				
-//				System.out.println(entry);
-				
+
+				//				System.out.println(entry);
+
 				if(entry.getKey().equals( Magic.THIS.toString())) {
 					continue;
 				}
-				
+
 				if(entry.getKey().equals( "class" )) {
 					continue;
 				}
-				
+
 				c.set(entry.getKey(), entry.getValue());
 			}
 
 			for( Entry<String, CinciaObject> entry : otherClass.getEnviro().vars.entrySet() ) {
-				
-//				System.out.println(entry);
-				
+
+				//				System.out.println(entry);
+
 				if(entry.getKey().equals( Magic.THIS.toString())) {
 					continue;
 				}
-				
+
 				if(entry.getKey().equals( "class" )) {
 					continue;
 				}
-				
+
 				c.set(entry.getKey(), entry.getValue());
 			}
 
@@ -148,6 +149,22 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 		throw new RuntimeException("Addition not implemented between class and non-class types!");
 	}
+
+
+	@Override
+	public void set(String key, CinciaObject val) {
+
+		// if you're assigning a function to a class-field, turn it into a method 
+		if(val instanceof CinciaFunction && ! (val instanceof CinciaMethod)) {
+			val = CinciaMethod.fromFunction((CinciaFunction)val, this);
+		}
+
+		super.set(key, val);
+	}
+
+
+
+
 
 
 }
