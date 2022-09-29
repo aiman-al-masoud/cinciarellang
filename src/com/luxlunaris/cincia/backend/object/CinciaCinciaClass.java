@@ -128,7 +128,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 				// TODO: entry.getValue() could be null, and so calling getType() on it
 				// throws a NullPointerEx...
-				c.set(entry.getKey(), entry.getValue());
+				c.set(entry.getKey(), entry.getValue(), otherClass.getEnviro().getType(entry.getKey()));
 			}
 
 			for( Entry<String, CinciaObject> entry : otherClass.getEnviro().vars.entrySet() ) {
@@ -145,7 +145,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 				// TODO: entry.getValue() could be null (interfaces), and so calling getType() on it
 				// throws a NullPointerEx...
-				c.set(entry.getKey(), entry.getValue());
+				c.set(entry.getKey(), entry.getValue(), otherClass.getEnviro().getType(entry.getKey()));
 			}
 
 			return c;
