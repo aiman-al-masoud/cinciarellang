@@ -14,7 +14,6 @@ public class JavaClass extends JavaObject implements CinciaClass{
 
     protected Class clazz;
 
-
 	public JavaClass(Class clazz) {
 		super(clazz);
 		this.clazz = clazz;
