@@ -460,5 +460,10 @@ public class AbstractCinciaObject implements CinciaObject{
 		enviro.remove(key);
 	}
 
+	@Override
+	public Object toJava(Object... args) {
+		return toJava();
+	}
+
 
 }

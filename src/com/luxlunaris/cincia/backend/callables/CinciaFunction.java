@@ -1,5 +1,8 @@
 package com.luxlunaris.cincia.backend.callables;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -111,6 +114,55 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	public String toString() {
 		return lambdex ==null?  "NativeCode()"  : lambdex.signature.toString();
 	}
+
+	@Override
+	public Object toJava(Object... args) {
+
+		// cast first arg to a (functional) interface
+		Class<?> anInterface = (Class<?>)args[0];
+
+		// return a dynamic proxy for the interface
+		return makeProxy(anInterface);
+	}
+
+
+	public Object makeProxy(Class<?> anInterface) {
+
+		// build a dynamic proxy 
+		Object instance = Proxy.newProxyInstance(anInterface.getClassLoader(), new Class<?>[]{anInterface}, new InvocationHandler() {
+
+			@Override
+			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+				// ... the proxy implements the first method in the (functional) interface
+				String methodName = anInterface.getMethods()[0].getName();
+
+				if(method.getName().equals(methodName)){
+					//					System.out.println("action performed! "+args[0]);
+
+					// convert java args into cincia objects
+					List<CinciaObject> cinciargs = Arrays.asList(args).stream().map(o->CinciaObject.wrap(o)).collect(Collectors.toList());
+
+					// run this function //TODO: fix enviro problem
+					return run(cinciargs,  new Enviro(null));
+
+				}else {
+					return null;
+				}
+
+			}
+		}); 
+
+		return instance;
+
+	}
+
+
+
+
+
+
+
 
 
 }

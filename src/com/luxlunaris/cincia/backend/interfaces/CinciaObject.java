@@ -43,6 +43,9 @@ public interface CinciaObject extends Stateful{
 	 * @return
 	 */
 	Object toJava(); 
+	
+	Object toJava(Object... args);
+	
 	Type getType();
 	void setImmutable(); // recursively make the object immutable.
 	boolean isImmutable();

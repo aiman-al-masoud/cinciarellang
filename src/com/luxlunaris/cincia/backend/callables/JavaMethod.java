@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.backend.callables;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +27,28 @@ public class JavaMethod extends CinciaMethod{
 
 		try {
 
+			//			System.out.println(Arrays.asList(method.getParameterTypes()));
+
 			// convert cincia-args into java-args
-			List<Object> javargs= args.stream().map(a->a.toJava()).collect(Collectors.toList());
+			//			List<Object> javargs= args.stream().map(a->a.toJava(        )).collect(Collectors.toList());
+
+
+
+
+			// convert cincia args to java objects
+			List<Object> javargs = new ArrayList<>();
+
+			if(args.size()>0) {
+				Class<?>[] paramTypes = method.getParameterTypes();
+
+				for (int i=0; i < paramTypes.length; i++) {
+					Class<?> paramType = paramTypes[i];	
+					Object javaArg = args.get(i).toJava( new Object[] {paramType} ); // cincia -> java
+					javargs.add(javaArg);
+				}
+			}
+
+
 
 			// store a copy of the object before method call. Made this conditional to "if parent is immutable" to avoid unneccessary overhead
 			Object copy = null; //TODO: don't keep it like this!!!!! 
@@ -66,15 +87,15 @@ public class JavaMethod extends CinciaMethod{
 	public CinciaMethod copy(List<CinciaObject> args) {
 		return new JavaMethod(method, null);
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
-		
+
 		Optional<String> params = Arrays.asList(method.getParameters()).stream()
 				.map(p->p.getName()+":"+p.getType())
 				.reduce((s1, s2)->s1+","+s2);
-		
+
 		return getName()+"("+params.orElse("")+") -> "+method.getReturnType();
 	}
 

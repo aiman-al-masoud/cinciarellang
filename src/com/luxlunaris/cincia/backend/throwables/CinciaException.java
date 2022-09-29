@@ -273,6 +273,11 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
 		object.set(key, val, type, modifiers);
+	}
+
+	@Override
+	public Object toJava(Object... args) {
+		return object.toJava(args);
 	}	
 
 
