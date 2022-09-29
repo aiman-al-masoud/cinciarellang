@@ -61,7 +61,7 @@ public class Enviro implements Stateful{
 	public CinciaObject get(String key) {
 
 		CinciaObject o = vars.get(key);
-
+		
 		if(o==null && vars.containsKey(key)) {
 			throw new RuntimeException(key+" is declared but undefined!");
 		}
@@ -73,6 +73,10 @@ public class Enviro implements Stateful{
 		return o;
 
 	}
+	
+	
+	
+	
 
 	@Override
 	public Type getType(String key) {
@@ -229,6 +233,9 @@ public class Enviro implements Stateful{
 		}
 
 	}
+	
+	
+	
 
 
 }

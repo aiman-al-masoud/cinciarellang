@@ -106,6 +106,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	public CinciaObject __add__(CinciaObject other) {
 		
 		//TODO: enviro.get broken for declared but undefined vals
+		
 
 		try {
 
@@ -115,7 +116,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 			for( Entry<String, CinciaObject> entry : this.getEnviro().vars.entrySet() ) {
 
-				//				System.out.println(entry);
+//				System.out.println(entry);
 
 				if(entry.getKey().equals( Magic.THIS.toString())) {
 					continue;
@@ -125,12 +126,14 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 					continue;
 				}
 
+				// TODO: entry.getValue() could be null, and so calling getType() on it
+				// throws a NullPointerEx...
 				c.set(entry.getKey(), entry.getValue());
 			}
 
 			for( Entry<String, CinciaObject> entry : otherClass.getEnviro().vars.entrySet() ) {
 
-				//				System.out.println(entry);
+//				System.out.println(entry);
 
 				if(entry.getKey().equals( Magic.THIS.toString())) {
 					continue;
@@ -140,6 +143,8 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 					continue;
 				}
 
+				// TODO: entry.getValue() could be null (interfaces), and so calling getType() on it
+				// throws a NullPointerEx...
 				c.set(entry.getKey(), entry.getValue());
 			}
 
