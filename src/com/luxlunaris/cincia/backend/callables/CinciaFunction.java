@@ -29,7 +29,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	protected WrappedFunction wrappedFunction;
 
 	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
-
+		
 		super(lambdex.signature);
 		this.eval = eval;
 		this.lambdex = lambdex;
