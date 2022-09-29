@@ -132,8 +132,6 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 					continue;
 				}
 
-				// TODO: entry.getValue() could be null, and so calling getType() on it
-				// throws a NullPointerEx...
 				c.set(entry.getKey(), entry.getValue(), otherClass.getEnviro().getType(entry.getKey()));
 			}
 
@@ -148,9 +146,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 				if(entry.getKey().equals( "class" )) {
 					continue;
 				}
-
-				// TODO: entry.getValue() could be null (interfaces), and so calling getType() on it
-				// throws a NullPointerEx...
+		
 				c.set(entry.getKey(), entry.getValue(), otherClass.getEnviro().getType(entry.getKey()));
 			}
 
