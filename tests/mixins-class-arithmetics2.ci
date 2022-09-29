@@ -1,0 +1,13 @@
+A = class {
+	timesTwo = \-> 2*this.value;
+}
+
+B = class {
+	timesThree = \-> 3*this.value;
+}
+
+
+C = A + B;
+x = C();
+x.value = 2;
+x.timesTwo() == 4 && x.timesThree() == 6;
