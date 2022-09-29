@@ -38,6 +38,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 		set(name, value, value.type);
 	}	
 
+	//TODO: useless!
 	public void addInterface(CinciaInterface cincinterface) {
 
 		cincinterface.getDeclarations().forEach(d->{
@@ -62,10 +63,15 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
 
+		
+		
 		//TODO: deal with modifiers such as static
 
 		// Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
+		//TODO: deal with null values, null values could be declared 
+		// attributes, or declared functions. Either way they could come
+		// from interfaces. 
 
 		obj.__init__(args);
 		return obj;
