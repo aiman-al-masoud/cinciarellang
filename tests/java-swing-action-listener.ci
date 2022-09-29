@@ -8,11 +8,14 @@ Handler = class{
 		this.print = print;
 		this.events = [];
 	}
-
+	
+	/**
+	* Need to pass 'e' by reference because apparently eventSource 
+	* is trainsient in event, so deep copying event object
+	* with ser/deser leads to losing eventSource
+	*/
 	handle = \ref e->{
-	
 		e.getSource().setText("capra");		
-	
 	}
 
 }
