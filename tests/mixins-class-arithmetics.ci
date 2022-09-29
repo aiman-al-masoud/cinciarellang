@@ -1,9 +1,9 @@
 A = class {
-		quack = \ -> "quack!";
+	quack = \ -> "quack!";
 }
 
 B = class {
-		fly = \ -> "flap... flap...";
+	fly = \ -> "flap... flap...";
 }
 
 
