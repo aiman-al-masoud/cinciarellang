@@ -116,10 +116,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 		try {
 
 			var dontCare =  (Type)other; // TODO what about JavaClass?
-
 			var otherClass =  (CinciaObject)other;
-
-
 			CinciaCinciaClass c = new CinciaCinciaClass();
 
 
