@@ -1,0 +1,9 @@
+/**
+*
+* Must properly catch errors when instantiating class
+* with undefined values. Must define what an undefined value is.
+*
+*/
+I = interface{ x:int; };
+C = I + class{  };
+true;
