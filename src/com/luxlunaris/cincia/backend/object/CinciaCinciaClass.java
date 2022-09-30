@@ -213,7 +213,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 					continue;
 				}
 
-				c.set(entry.getKey(), entry.getValue(), otherClass.getEnviro().getType(entry.getKey()));
+				c.set(entry.getKey(), entry.getValue(), this.getEnviro().getType(entry.getKey()));
 			}
 
 			for( Entry<String, CinciaObject> entry : otherClass.getEnviro().vars.entrySet() ) {

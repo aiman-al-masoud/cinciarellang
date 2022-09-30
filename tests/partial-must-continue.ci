@@ -4,6 +4,6 @@
 * with undefined values. Must define what an undefined value is.
 *
 */
-I = interface{ x:int; };
+I = class{ x:int; };
 C = I + class{  };
 true;
