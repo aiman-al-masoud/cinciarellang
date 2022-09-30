@@ -1,7 +1,7 @@
 /**
 *
 * Incomplete implementations of an interface can't
-* be instantiated.
+* be instantiated. All declared values MUST be initialized.
 *
 */
 
