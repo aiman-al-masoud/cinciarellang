@@ -4,7 +4,7 @@
 *
 */
 
-import GameLogic from "./tests/nested-relative-import/game-logic.ci";
+import GameLogic from "game-logic.ci";
 
 g = GameLogic();
 

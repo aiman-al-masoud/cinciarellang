@@ -317,6 +317,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			
 			try {
 				parentImporterDir = ((CinciaString)enviro.get(IMPORTER_DIR)).toJava() + "/";
+//				System.out.println("source file dir: "+parentImporterDir);
+//				System.out.println("relative import path: "+importStatement.fromPath.value);
+				
 			} catch (RuntimeException e) {
 				
 			}
@@ -327,16 +330,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			var importPath = parentImporterDir+importStatement.fromPath.value;
 //			System.out.println(parentImporterDir);
 //			System.out.println("current working dir: "+ System.getProperty("user.dir"));
-//			System.out.println("import path: "+importPath);
+//			System.out.println("absolute import path: "+importPath);
 			
 			
 			List<String> lines = Files.readAllLines(Paths.get(importPath), StandardCharsets.UTF_8);
 			source = lines.stream().reduce((l1,l2)->l1+"\n"+l2).get();
 			
 			
-			var parts = Arrays.asList(importStatement.fromPath.value.split("/"));
-			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null			
-			enviro.set(IMPORTER_DIR, new CinciaString(importerDir  ));
+//			var parts = Arrays.asList(importStatement.fromPath.value.split("/"));
+//			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null			
+//			enviro.set(IMPORTER_DIR, new CinciaString(importerDir  ));
 //			System.out.println(enviro.get(IMPORTER_DIR));
 			
 		} catch (IOException e) {

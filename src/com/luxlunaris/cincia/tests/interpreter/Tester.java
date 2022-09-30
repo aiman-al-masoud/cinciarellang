@@ -11,9 +11,11 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.stdlib.concurrency.Promise;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
+import com.luxlunaris.cincia.tests.AnsiColors;
 import com.luxlunaris.cincia.tests.ListDir;
 import com.luxlunaris.cincia.tests.ReadFile;
 
@@ -27,11 +29,11 @@ import com.luxlunaris.cincia.tests.ReadFile;
  */
 public class Tester {
 
-	final static boolean ONLY_FIRST_BROKEN = false; // only show the first failing stacktrace and stop
+	final static boolean ONLY_FIRST_BROKEN = true; // only show the first failing stacktrace and stop
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);
-//		final static List<String> tags = Arrays.asList("mixins-class-arithmetics.ci");
+//		final static List<String> tags = Arrays.asList("main.ci");
 
 	public static void main(String[] args) throws IOException{
 
@@ -72,6 +74,13 @@ public class Tester {
 			Enviro enviro  = Enviro.getTopLevelEnviro();
 			Interpreter interpreter = new Interpreter();
 			
+			
+			final String IMPORTER_DIR = "IMPORTER_DIR";
+			var parts = Arrays.asList( test.filename .split("/"));
+			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null			
+			enviro.set(IMPORTER_DIR, new CinciaString(importerDir  ));
+			
+			
 			enviro.set("print", new CinciaFunction(e->{System.out.print(e  ); return null;}));
 
 			for(Ast stm : compiler.compile(test.source)) {
@@ -90,7 +99,7 @@ public class Tester {
 	public static SingleTestResult printResult(SingleTestResult result) {
 
 		if( ONLY_FIRST_BROKEN && (result.outcome == SingleTestResult.BROKEN) ) {
-			System.out.println(result.filename);
+			System.out.println(AnsiColors.warn("broken: "+result.filename));
 			result.exception.printStackTrace();
 			System.exit(1);
 		}
