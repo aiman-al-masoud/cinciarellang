@@ -27,7 +27,7 @@ import com.luxlunaris.cincia.tests.ReadFile;
  */
 public class Tester {
 
-	final static boolean ONLY_FIRST_BROKEN = true; // only show the first failing stacktrace and stop
+	final static boolean ONLY_FIRST_BROKEN = false; // only show the first failing stacktrace and stop
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);
@@ -35,11 +35,13 @@ public class Tester {
 
 	public static void main(String[] args) throws IOException{
 
+		
+//		System.out.println(ListDir.listDir(ROOT));
 
 		ListDir.listDir(ROOT)
 		.stream()
-		.map(f->ROOT+"/"+f)
-		.filter(f-> new File(f).isFile() ) //skip dirs
+//		.map(f->ROOT+"/"+f)
+//		.filter(f-> new File(f).isFile() ) //skip dirs
 		.map(f->new SingleTest(f, Tester.readFile(f)))
 		.filter(t -> hasTag(tags, t.filename) )
 		.map(t->Tester.runTest(t))

@@ -1,3 +1,8 @@
+/**
+* 
+* 
+*/
+
 import GameState from "game-state.ci";
 
 
@@ -8,3 +13,7 @@ GameLogic = GameState + class{
 	
 	
 }
+
+gl = GameLogic();
+gl.myScore == 0;
+

@@ -326,7 +326,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			
 			var importPath = parentImporterDir+importStatement.fromPath.value;
 //			System.out.println(parentImporterDir);
-//			System.out.println(importPath);
+//			System.out.println("current working dir: "+ System.getProperty("user.dir"));
+//			System.out.println("import path: "+importPath);
 			
 			
 			List<String> lines = Files.readAllLines(Paths.get(importPath), StandardCharsets.UTF_8);

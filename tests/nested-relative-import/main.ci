@@ -1,0 +1,12 @@
+/**
+* Main must import with path relative to 
+* the interpreter's working directory.
+*
+*/
+
+import GameLogic from "./tests/nested-relative-import/game-logic.ci";
+
+g = GameLogic();
+
+g.myScore = 3;
+g.iWon();
