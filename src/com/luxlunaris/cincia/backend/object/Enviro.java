@@ -98,6 +98,8 @@ public class Enviro implements Stateful{
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
 
+		//TODO: fix this once and for all 
+		
 		Type expectedType = Type.Any;
 		Type gotType = val==null? Type.Any : val.getType();
 
