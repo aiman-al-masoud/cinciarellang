@@ -1,9 +1,3 @@
-/**
-* Main must import with path relative to 
-* the interpreter's working directory.
-*
-*/
-
 import GameLogic from "game-logic.ci";
 import Gui from 'gui/gui.ci';
 
