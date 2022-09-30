@@ -22,7 +22,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 public class Enviro implements Stateful{
 	
 	
-	public static final String IMPORTER_DIR = "IMPORTER_DIR";
+	public static final String WORKING_DIR = "WORKING_DIR";
 
 	protected Enviro parent;
 	protected Map<String, CinciaObject> vars;

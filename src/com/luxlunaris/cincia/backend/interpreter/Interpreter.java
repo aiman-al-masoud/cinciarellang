@@ -318,7 +318,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			String parentImporterDir="";
 
 			try {
-				parentImporterDir = ((CinciaString)envCopy.get(Enviro.IMPORTER_DIR)).toJava() + "/";
+				parentImporterDir = ((CinciaString)envCopy.get(Enviro.WORKING_DIR)).toJava() + "/";
 				//				System.out.println("source file dir: "+parentImporterDir);
 				//				System.out.println("relative import path: "+importStatement.fromPath.value);
 
@@ -363,7 +363,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			if(folders.size()>0) {
 				var newSourceFileDir = parentImporterDir+deeper;
 				//			System.out.println(newSourceFileDir);
-				envCopy.set(Enviro.IMPORTER_DIR, new CinciaString(newSourceFileDir ));
+				envCopy.set(Enviro.WORKING_DIR, new CinciaString(newSourceFileDir ));
 			}
 
 
