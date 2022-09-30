@@ -312,6 +312,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// from Cincia source file
 		String source = "";		
 		try {
+			//TODO: read relative-path import from file correctly
 			List<String> lines = Files.readAllLines(Paths.get(importStatement.fromPath.value), StandardCharsets.UTF_8);
 			source = lines.stream().reduce((l1,l2)->l1+"\n"+l2).get();
 		} catch (IOException e) {
