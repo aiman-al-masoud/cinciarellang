@@ -63,16 +63,26 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
 		
-		//TODO check for declared but undefined methods on this class
+		//Check for declared but undefined methods on this class
 		//before creating a copy (instance/object).
+		boolean undefinedMethods = this.getEnviro().vars.entrySet().stream().anyMatch( e-> e.getValue()==null && (this.getEnviro().getType(e.getKey()) instanceof Signature)  );
+	
+		if(undefinedMethods) {
+			throw new RuntimeException("Cannot instantiate class with undefined methods!");
+		}
 
 		// Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
 		
-		obj.__init__(args);
+		obj.__init__(args); //TODO: fix types and type-inference, maybe that's the problem
 		
-		//TODO check for declared but undefined attributes after 
+		//Check for declared but undefined attributes after 
 		//calling the object's constructor.
+		boolean undefinedAnything = this.getEnviro().vars.entrySet().stream().anyMatch( e-> e.getValue()==null);
+
+		if(undefinedAnything) {
+			throw new RuntimeException("Cannot instantiate class with undefined attributes!");
+		}
 		
 		return obj;
 	}

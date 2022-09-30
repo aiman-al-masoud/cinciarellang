@@ -275,7 +275,10 @@ public class AbstractCinciaObject implements CinciaObject{
 
 			}else if (childo == type && childo instanceof CinciaClass) { // if childco is a type 
 				childco = (CinciaClass)type; // type reference needs to point to the same type!
-
+				
+			}else if (childo == null) { //TODO?
+				childco = null;
+				
 			}else {	// otherwise, copy the child recursively
 				childco = childo.copy(args);
 
@@ -447,7 +450,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	public void set(String key, CinciaObject val) {
 		checkImmutable();
-		enviro.set(key, val, val.getType());
+		enviro.set(key, val, val ==null ? Type.Any: val.getType());//TODO::/!!!!
 	}
 
 	public void set(Magic key, CinciaObject val) {
