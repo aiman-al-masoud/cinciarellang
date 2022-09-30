@@ -26,7 +26,7 @@ public class Repl {
 		enviro = Enviro.getTopLevelEnviro();
 		interpreter = new Interpreter();
 		scanner = new Scanner(System.in);
-		enviro.set("print", new CinciaFunction(Repl::printWrapper));		
+		enviro.set("print", new CinciaFunction(Repl::printWrapper));
 	}
 
 	public void mainLoop() {
