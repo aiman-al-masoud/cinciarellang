@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListDir {
-	
+
 	/**
 	 * Recursively list (absolute paths of) files in dir.
 	 * @param dirpath
@@ -22,7 +22,9 @@ public class ListDir {
 		}
 
 		var files = new ArrayList<String>();
-		var newFiles = Arrays.asList(f.listFiles()).stream().map(fi->fi.getAbsolutePath()).collect(Collectors.toList());		
+		var newFiles = Arrays.asList(f.listFiles()).stream()
+						     .map(fi->fi.getAbsolutePath())
+						     .collect(Collectors.toList());		
 
 		for (String nf : newFiles) {	
 			files.addAll(listDir(nf));
