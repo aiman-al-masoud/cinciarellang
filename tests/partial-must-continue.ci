@@ -1,9 +1,23 @@
 /**
 *
-* Must properly catch errors when instantiating class
-* with undefined values. Must define what an undefined value is.
+* Incomplete implementations of an interface can't
+* be instantiated.
 *
 */
+
 I = class{ x:int; };
-C = I + class{  };
-true;
+
+Wrong = I + class{  };
+
+Good = I + class{
+	__init__ = \x-> this.x = x;
+}
+
+try{
+	Wrong();
+}catch e:TypeError{
+	caught = true;
+}
+
+
+Good(11).x == 11  && caught;

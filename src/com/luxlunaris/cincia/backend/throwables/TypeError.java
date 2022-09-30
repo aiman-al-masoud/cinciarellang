@@ -8,6 +8,15 @@ public class TypeError extends CinciaException {
 	public Type expected;
 	public Type got;
 	
+	public TypeError(String msg) {
+		super(msg);
+	}
+	
+	public TypeError() {
+		
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "left value: '"+lvalue+"', of expected type: '"+expected+"', got type: '"+got+"'";

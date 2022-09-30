@@ -8,6 +8,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
+import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
@@ -93,7 +94,10 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 		
 		if(undefinedAnything) {
-			throw new RuntimeException("Cannot instantiate class with undefined attributes!");
+			
+			TypeError error = new TypeError("Cannot instantiate class with undefined attributes!");
+			throw error;
+//			throw new RuntimeException("Cannot instantiate class with undefined attributes!");
 		}
 
 		return obj;

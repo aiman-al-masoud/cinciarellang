@@ -20,6 +20,11 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 
 	protected AbstractCinciaObject object;
 
+	
+	public CinciaException(String msg) {
+		super(msg);
+		object = new AbstractCinciaObject(null);
+	}
 
 	public CinciaException() {
 		object = new AbstractCinciaObject(null);
