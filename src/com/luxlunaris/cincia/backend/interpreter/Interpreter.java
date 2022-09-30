@@ -274,10 +274,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		try {
 
 			Class clazz =  Interpreter.class.getClassLoader().loadClass(importStatement.fromPath.value);
-			Identifier id = (Identifier)importStatement.imports.get(0).getKey();
-			
-			
-//			System.out.println("trying to import: "+clazz);
+			Identifier id = (Identifier)importStatement.imports.get(0).getKey();			
 			enviro.set( id.value, new JavaClass(clazz));
 			return null;
 		} catch (ClassNotFoundException e1) {
@@ -309,7 +306,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		// from Cincia source file
+		// from Cincia source file ...
 		String source = "";		
 		try {
 			//TODO: read relative-path import from source-file in a different directory than the cincia.jar correctly
@@ -319,18 +316,14 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			throw new RuntimeException("Wrong import!");//TODO: make class.
 		}
 
-		//2 create a new isolated env
+		// ... create a new isolated env
 		Enviro envCopy = enviro.newChild();
 
-		//3 evaluate the source-code in the new isolated env 
+		// ... evaluate the source-code in the new isolated env 
 		List<Ast> statements = new Compiler().compile(source);
 		statements.forEach(s -> eval(s, envCopy) );
-
-		//4 put the env in a "module" object
-		//		AbstractCinciaObject module = new AbstractCinciaObject(Type.Module);
-		//		module.enviro = envCopy;
-
-		//5 import the desired pieces of the module into the current env	
+		
+		// ... import the desired pieces of the module into the current env	
 		importStatement.imports.forEach(i->{
 
 			CinciaObject desired = eval(i.getKey(), envCopy);
