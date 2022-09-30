@@ -98,7 +98,7 @@ public class Enviro implements Stateful{
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
 
-		//TODO: fix this once and for all 
+		//TODO: fix this once and for all !
 		
 		
 		// (case 0) if key doesn't exist and value is null, it's a declaration
