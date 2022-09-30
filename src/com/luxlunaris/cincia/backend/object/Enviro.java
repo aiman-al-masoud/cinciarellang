@@ -20,6 +20,9 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class Enviro implements Stateful{
+	
+	
+	public static final String IMPORTER_DIR = "IMPORTER_DIR";
 
 	protected Enviro parent;
 	protected Map<String, CinciaObject> vars;

@@ -76,10 +76,10 @@ public class Tester {
 			
 			
 			//TODO: deduplicate in Interpreter.evalImportStatement
-			final String IMPORTER_DIR = "IMPORTER_DIR";
+//			final String IMPORTER_DIR = "IMPORTER_DIR";
 			var parts = Arrays.asList( test.filename .split("/"));
 			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null			
-			enviro.set(IMPORTER_DIR, new CinciaString(importerDir  ));
+			enviro.set(Enviro.IMPORTER_DIR, new CinciaString(importerDir  ));
 			
 			
 			enviro.set("print", new CinciaFunction(e->{System.out.print(e  ); return null;}));

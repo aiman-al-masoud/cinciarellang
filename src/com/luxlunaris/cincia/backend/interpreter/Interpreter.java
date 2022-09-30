@@ -314,11 +314,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			//TODO: read relative-path import from source-file in a different directory than the cincia.jar correctly
 			//TODO: store import directory in enviro for nested imports to resolve relative path
 
-			final String IMPORTER_DIR = "IMPORTER_DIR";
+//			final String IMPORTER_DIR = "IMPORTER_DIR";
 			String parentImporterDir="";
 
 			try {
-				parentImporterDir = ((CinciaString)envCopy.get(IMPORTER_DIR)).toJava() + "/";
+				parentImporterDir = ((CinciaString)envCopy.get(Enviro.IMPORTER_DIR)).toJava() + "/";
 				//				System.out.println("source file dir: "+parentImporterDir);
 				//				System.out.println("relative import path: "+importStatement.fromPath.value);
 
@@ -363,7 +363,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			if(folders.size()>0) {
 				var newSourceFileDir = parentImporterDir+deeper;
 				//			System.out.println(newSourceFileDir);
-				envCopy.set(IMPORTER_DIR, new CinciaString(newSourceFileDir ));
+				envCopy.set(Enviro.IMPORTER_DIR, new CinciaString(newSourceFileDir ));
 			}
 
 
