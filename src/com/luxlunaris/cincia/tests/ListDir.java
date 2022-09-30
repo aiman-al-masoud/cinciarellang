@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class ListDir {
 	
 	/**
-	 * Recursively list files in dir
+	 * Recursively list (absolute paths of) files in dir.
 	 * @param dirpath
 	 * @return
 	 */
