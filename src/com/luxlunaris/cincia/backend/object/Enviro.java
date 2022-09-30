@@ -102,10 +102,8 @@ public class Enviro implements Stateful{
 		// (case 0) if key doesn't exist and val is null, it's a declaration
 		// set the variable's type to type, and value to null (and modifiers if any)
 
-
 		// (case 1) if key doesn't exist and val is not null, it's an assignment with inferred type
 		// set the variable's type, value and modifiers if any.
-
 
 		// (case 2) if key does exist, it's an assignment/reassignment
 		// get expected type
@@ -117,16 +115,8 @@ public class Enviro implements Stateful{
 		// throw an error
 
 
-
-
-
 		// (case 0) declaration
 		if(!types.containsKey(key) && val==null  && type!=null) {
-
-			//			if(key.equals("x")) { //TODO: remove this !!!
-			//				System.out.println("declaration of x!");
-			//			}
-
 			vars.put(key, null);
 			types.put(key, type);
 			this.modifiers.put(key, modifiers);
@@ -136,14 +126,8 @@ public class Enviro implements Stateful{
 		// (case 0.1) declaration + assignment
 		if(!types.containsKey(key) && val!=null && type!=null) {
 
-			//			if(key.equals("x")) { //TODO: remove this !!!
-			//				System.out.println("declaration+assignment of x!");
-			//			}
-
-
 			if(!type.matches(val.getType())) {
-				//				throw new RuntimeException("Invalid declaration: declared type incompatible with assigned type!");
-				TypeError te = new TypeError();
+				TypeError te = new TypeError("Invalid declaration: declared type incompatible with assigned type!");
 				te.expected = type;
 				te.got = val.getType();					
 				throw te;
@@ -153,19 +137,11 @@ public class Enviro implements Stateful{
 			types.put(key, type);
 			this.modifiers.put(key, modifiers);
 			return;
-
-			//			return;
-
 		}
 
 
 		// (case 1) assignment with inferred type
 		if(!types.containsKey(key) && val!=null ) {
-
-			//			if(key.equals("x")) { //TODO: remove this !!!
-			//				System.out.println("assignment w/ inferred type of x!");
-			//			}
-
 
 			vars.put(key, val);
 			types.put(key, val.getType());
@@ -173,17 +149,8 @@ public class Enviro implements Stateful{
 			return;
 		}
 
-
-
-
 		// (case 2) reassignment/assignment after declaration
 		if(types.containsKey(key) && val!=null ) {
-
-
-			//			if(key.equals("x")) { //TODO: remove this !!!
-			//				System.out.println("reassignment/assignment of x! value: "+val);
-			//			}
-
 
 			var expectedType = types.get(key);
 			var givenType = val.getType();
@@ -206,8 +173,6 @@ public class Enviro implements Stateful{
 
 			//else ...
 			vars.put(key, val);
-
-			//			System.out.println("I did assign x!");
 			return;
 
 		}
@@ -215,16 +180,11 @@ public class Enviro implements Stateful{
 
 		// (case 3) redeclaration or setting back to null, always a mistake
 		if(types.containsKey(key) && val==null) {
-
-			//			if(key.equals("x")) { //TODO: remove this !!!
-			//				System.out.println("redeclaration of x!");
-			//			}
-
 			throw new RuntimeException("Cannot re-declare variable!");
 		}
 
 
-//		// (case 4) declaration of null variable with no type  ¯\_(ツ)_/¯ 
+		// (case 4) declaration of null variable with no type  ¯\_(ツ)_/¯ 
 		if(!types.containsKey(key) && val==null && type==null) {
 			throw new RuntimeException("Really? What are you trying to do? ¯\\_(ツ)_/¯ "+key+" has type and val == null");
 		}
