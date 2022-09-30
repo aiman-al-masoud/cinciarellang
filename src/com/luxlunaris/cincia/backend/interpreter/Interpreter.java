@@ -311,8 +311,33 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		try {
 			//TODO: read relative-path import from source-file in a different directory than the cincia.jar correctly
 			//TODO: store import directory in enviro for nested imports to resolve relative path
-			List<String> lines = Files.readAllLines(Paths.get(importStatement.fromPath.value), StandardCharsets.UTF_8);
+			
+			final String IMPORTER_DIR = "IMPORTER_DIR";
+			String parentImporterDir="";
+			
+			try {
+				parentImporterDir = ((CinciaString)enviro.get(IMPORTER_DIR)).toJava() + "/";
+			} catch (RuntimeException e) {
+				
+			}
+			
+			//TODO: if path is absolute DONT' prepend...
+			
+			
+			var importPath = parentImporterDir+importStatement.fromPath.value;
+//			System.out.println(parentImporterDir);
+//			System.out.println(importPath);
+			
+			
+			List<String> lines = Files.readAllLines(Paths.get(importPath), StandardCharsets.UTF_8);
 			source = lines.stream().reduce((l1,l2)->l1+"\n"+l2).get();
+			
+			
+			var parts = Arrays.asList(importStatement.fromPath.value.split("/"));
+			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null			
+			enviro.set(IMPORTER_DIR, new CinciaString(importerDir  ));
+//			System.out.println(enviro.get(IMPORTER_DIR));
+			
 		} catch (IOException e) {
 			throw new RuntimeException("Wrong import!");//TODO: make class.
 		}
