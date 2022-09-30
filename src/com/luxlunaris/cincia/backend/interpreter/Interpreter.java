@@ -310,6 +310,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		String source = "";		
 		try {
 			//TODO: read relative-path import from source-file in a different directory than the cincia.jar correctly
+			//TODO: store import directory in enviro for nested imports to resolve relative path
 			List<String> lines = Files.readAllLines(Paths.get(importStatement.fromPath.value), StandardCharsets.UTF_8);
 			source = lines.stream().reduce((l1,l2)->l1+"\n"+l2).get();
 		} catch (IOException e) {
