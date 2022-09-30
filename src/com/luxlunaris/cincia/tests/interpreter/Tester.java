@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.tests.interpreter;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +39,7 @@ public class Tester {
 		ListDir.listDir(ROOT)
 		.stream()
 		.map(f->ROOT+"/"+f)
+		.filter(f-> new File(f).isFile() ) //skip dirs
 		.map(f->new SingleTest(f, Tester.readFile(f)))
 		.filter(t -> hasTag(tags, t.filename) )
 		.map(t->Tester.runTest(t))

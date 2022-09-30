@@ -1,0 +1,9 @@
+GameState = class{
+
+
+	__init__ = \->{
+		this.myScore = 0;
+		this.theirScore = 0;
+	}
+	
+}

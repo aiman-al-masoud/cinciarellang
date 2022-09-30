@@ -1,0 +1,10 @@
+import GameState from "game-state.ci";
+
+
+GameLogic = GameState + class{
+
+	iWon = \-> this.myScore == 3;
+	theyWon = \-> this.theirScore == 3;
+	
+	
+}
