@@ -75,6 +75,7 @@ public class Tester {
 			Interpreter interpreter = new Interpreter();
 			
 			
+			//TODO: deduplicate in Interpreter.evalImportStatement
 			final String IMPORTER_DIR = "IMPORTER_DIR";
 			var parts = Arrays.asList( test.filename .split("/"));
 			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null			
