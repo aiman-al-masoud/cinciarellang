@@ -108,7 +108,7 @@ public class Enviro implements Stateful{
 		// 4 if they don't match, throw an exception.
 		// 5 check if reassigned variable is final and non-null.
 		// 6 if it is, throw an exception.
-		// 7 else assign the value, preserving the old type.
+		// 7 else assign the value, preserving the old type, unless it's Any.
 		
 		
 		
