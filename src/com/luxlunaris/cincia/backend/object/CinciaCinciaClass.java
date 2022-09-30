@@ -83,9 +83,8 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	}
 
 	@Override
-	public Expression simplify() {
-		// TODO Auto-generated method stub
-		return null;
+	public Expression simplify() {// poor Liskov :-<
+		throw new RuntimeException("Cannot simplify() class!");
 	}
 
 	@Override
