@@ -100,6 +100,20 @@ public class Enviro implements Stateful{
 
 		//TODO: fix this once and for all 
 		
+		
+		// 0 for undeclared variables, expected type is Any.
+		// 1 get expected type.
+		// 2 get actual type.
+		// 3 compare expected type and actual type.
+		// 4 if they don't match, throw an exception.
+		// 5 check if reassigned variable is final and non-null.
+		// 6 if it is, throw an exception.
+		// 7 else assign the value, preserving the old type.
+		
+		
+		
+		
+		
 		Type expectedType = Type.Any;
 		Type gotType = val==null? Type.Any : val.getType();
 
