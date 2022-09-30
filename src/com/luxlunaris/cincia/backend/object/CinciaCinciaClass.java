@@ -63,28 +63,36 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	 */
 	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
-		
+
 		//Check for declared but undefined methods on this class
 		//before creating a copy (instance/object).
 		boolean undefinedMethods = this.getEnviro().vars.entrySet().stream().anyMatch( e-> e.getValue()==null && (this.getEnviro().getType(e.getKey()) instanceof Signature)  );
-	
+
 		if(undefinedMethods) {
 			throw new RuntimeException("Cannot instantiate class with undefined methods!");
 		}
 
 		// Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
-		
+
+		//		System.out.println(args);
 		obj.__init__(args); //TODO: fix types and type-inference, maybe that's the problem
-		
+
+		//		System.out.println(obj.getEnviro().values());
+
 		//Check for declared but undefined attributes after 
 		//calling the object's constructor.
-		boolean undefinedAnything = this.getEnviro().vars.entrySet().stream().anyMatch( e-> e.getValue()==null);
+		boolean undefinedAnything = this.getEnviro().vars.entrySet()
+				.stream()
+				.anyMatch( e-> {
+//					System.out.println(e.getKey()+" "+(e.getValue()==null));
+					return e.getValue()==null;
+				});
 
 		if(undefinedAnything) {
 			throw new RuntimeException("Cannot instantiate class with undefined attributes!");
 		}
-		
+
 		return obj;
 	}
 
@@ -97,76 +105,76 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	public Expression simplify() {// poor Liskov :-<
 		throw new RuntimeException("Cannot simplify() class!");
 	}
-	
-	
+
+
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
-		
-//		System.out.println(((CinciaCinciaClass)other).getEnviro().vars  );
-		
-//		System.out.println("same object? "+ (this==other));
-		
+
+		//		System.out.println(((CinciaCinciaClass)other).getEnviro().vars  );
+
+		//		System.out.println("same object? "+ (this==other));
+
 		if(this==other) {
 			return new CinciaBool(true);
 		}
-		
+
 		var theseEntries = getEnviro().vars.entrySet();
-//		var otherEntries =  ((CinciaCinciaClass)other).getEnviro().vars.entrySet();
-		
+		//		var otherEntries =  ((CinciaCinciaClass)other).getEnviro().vars.entrySet();
+
 		boolean typesMatch = theseEntries.stream()
-										.filter( e-> ! e.getKey().equals(Magic.THIS.toString())    )
-										.filter( e-> ! e.getKey().equals("type")    )
-										.filter( e-> ! e.getKey().equals(CLASS)    )
-										.allMatch( e-> {
-											
-											var thisType =	getType(e.getKey());
-											var thatType =	other.getType(e.getKey() );
-											
-											if(thatType==null) {
-//												System.out.println(e.getKey()+" "+e.getValue());
-												return false;
-											}
-											
-											var b = thisType.matches( thatType  );
-//											System.out.println(e.getKey()+" "+b);
-											
-//											System.out.println(e.getKey()+" "+b);
-											
-											return b;
-										} );
-		
-		
-//		System.out.println("types match "+typesMatch+" this: "+this.hashCode()+" other: "+other.hashCode());
-		
+				.filter( e-> ! e.getKey().equals(Magic.THIS.toString())    )
+				.filter( e-> ! e.getKey().equals("type")    )
+				.filter( e-> ! e.getKey().equals(CLASS)    )
+				.allMatch( e-> {
+
+					var thisType =	getType(e.getKey());
+					var thatType =	other.getType(e.getKey() );
+
+					if(thatType==null) {
+						//												System.out.println(e.getKey()+" "+e.getValue());
+						return false;
+					}
+
+					var b = thisType.matches( thatType  );
+					//											System.out.println(e.getKey()+" "+b);
+
+					//											System.out.println(e.getKey()+" "+b);
+
+					return b;
+				} );
+
+
+		//		System.out.println("types match "+typesMatch+" this: "+this.hashCode()+" other: "+other.hashCode());
+
 		return new CinciaBool(typesMatch);
-//		for (int i=0; i<theseEntries.size(); i++) {
-//			
-//		}
-		
-//		return super.__eq__(other);
+		//		for (int i=0; i<theseEntries.size(); i++) {
+		//			
+		//		}
+
+		//		return super.__eq__(other);
 	}
 
 	@Override
 	public boolean matches(Type other) {
-		
-//		System.out.println(((CinciaCinciaClass)other).getEnviro().vars  );
+
+		//		System.out.println(((CinciaCinciaClass)other).getEnviro().vars  );
 
 		//TODO: how about an equality check based on actual fields and methods? Like
 		//a more "institutionalized" form of duck-typing?
-		
-//		try {
-//			return this == ((CinciaCinciaClass)other); // matches in RAM
-//
-//
-//			//TODO: check mixins, method names, interfaces, idk what I'm doing, etc...
-//
-//
-//		} catch (ClassCastException e) {
-//
-//		}
-//
-//		return false;
-		
+
+		//		try {
+		//			return this == ((CinciaCinciaClass)other); // matches in RAM
+		//
+		//
+		//			//TODO: check mixins, method names, interfaces, idk what I'm doing, etc...
+		//
+		//
+		//		} catch (ClassCastException e) {
+		//
+		//		}
+		//
+		//		return false;
+
 		return this.__eq__((CinciaObject)other).toJava();
 
 	}
@@ -197,7 +205,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 				if(entry.getKey().equals( "class" )) {
 					continue;
 				}
-				
+
 				if(entry.getKey().equals( "type" )) {
 					continue;
 				}
@@ -216,11 +224,11 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 				if(entry.getKey().equals( "class" )) {
 					continue;
 				}
-				
+
 				if(entry.getKey().equals( "type" )) {
 					continue;
 				}
-		
+
 				c.set(entry.getKey(), entry.getValue(), otherClass.getEnviro().getType(entry.getKey()));
 			}
 

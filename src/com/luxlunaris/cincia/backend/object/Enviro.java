@@ -20,7 +20,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class Enviro implements Stateful{
-	
+
 	/**
 	 * Key to set and get the working directory.
 	 * 
@@ -69,7 +69,7 @@ public class Enviro implements Stateful{
 	public CinciaObject get(String key) {
 
 		CinciaObject o = vars.get(key);
-		
+
 		if(o==null && vars.containsKey(key)) {
 			throw new RuntimeException(key+" is declared but undefined!");
 		}
@@ -81,10 +81,10 @@ public class Enviro implements Stateful{
 		return o;
 
 	}
-	
-	
-	
-	
+
+
+
+
 
 	@Override
 	public Type getType(String key) {
@@ -97,15 +97,19 @@ public class Enviro implements Stateful{
 
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
-		
+
 		Type expectedType = Type.Any;
 		Type gotType = val==null? Type.Any : val.getType();
+
+		//		System.out.println(key);
+
 		
 
 		if(types.containsKey(key)) { // variable already exists/declared
-			
-			expectedType = types.get(key);
 
+			expectedType = types.get(key);
+			
+			
 			// if variable is already defined and it is final, throw error!
 			if( vars.get(key)!=null && getModifiers(key).contains(Modifiers.FINAL)) {
 				throw new RuntimeException("Cannot reassign final reference!");
@@ -117,12 +121,12 @@ public class Enviro implements Stateful{
 		}else { // variable is being assigned
 			expectedType = type;
 		}
-		
+
 		expectedType = expectedType==null? Type.Any : expectedType;
-		
+
 		// if expected type doesn't match effective type, error!
 		if(!expectedType.matches(gotType)) {
-//			System.out.println(expectedType.hashCode()+" "+gotType.hashCode());
+			//			System.out.println(expectedType.hashCode()+" "+gotType.hashCode());
 			TypeError te = new TypeError();
 			te.expected = expectedType;
 			te.got = gotType;					
@@ -130,6 +134,12 @@ public class Enviro implements Stateful{
 		}
 		
 		
+//		if(key.equals("x")) {
+//			System.out.println(key+" "+val+" expected type: "+expectedType+" got type: "+gotType);
+//		}
+
+
+
 		// set value, type and modifiers 
 		vars.put(key, val);
 		Type oldType = getType(key);
@@ -212,7 +222,7 @@ public class Enviro implements Stateful{
 
 	@Override
 	public void set(CinciaObject key, CinciaObject val) {
-		
+
 		// if index is an int
 		if(key instanceof CinciaInt) {
 			set(((CinciaInt)key).toJava(), val);
@@ -243,9 +253,9 @@ public class Enviro implements Stateful{
 		}
 
 	}
-	
-	
-	
+
+
+
 
 
 }
