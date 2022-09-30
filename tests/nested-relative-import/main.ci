@@ -5,6 +5,7 @@
 */
 
 import GameLogic from "game-logic.ci";
+import Gui from 'gui/gui.ci';
 
 g = GameLogic();
 
