@@ -21,7 +21,12 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class Enviro implements Stateful{
 	
-	
+	/**
+	 * Key to set and get the working directory.
+	 * 
+	 * That is, the directory where import statements will look 
+	 * into for relative path imports.
+	 */
 	public static final String WORKING_DIR = "WORKING_DIR";
 
 	protected Enviro parent;
