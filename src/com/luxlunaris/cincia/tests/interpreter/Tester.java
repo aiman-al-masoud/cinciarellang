@@ -79,7 +79,7 @@ public class Tester {
 //			final String IMPORTER_DIR = "IMPORTER_DIR";
 			var parts = Arrays.asList( test.filename .split("/"));
 			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null			
-			enviro.set(Enviro.WORKING_DIR, new CinciaString(importerDir  ));
+			enviro.set(Enviro.WORKING_DIR, new CinciaString(importerDir));
 			
 			
 			enviro.set("print", new CinciaFunction(e->{System.out.print(e  ); return null;}));
