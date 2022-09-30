@@ -101,6 +101,22 @@ public class Enviro implements Stateful{
 		//TODO: fix this once and for all 
 		
 		
+		// 0 if key doesn't exist and value is null, it's a declaration
+			// set the variables type to type, and value to null (and modifiers if any)
+		
+		
+		// 1 if key doesn't exist and value is not null, it's an assignment with inferred type
+			
+		
+		// 2 if key does exist, it's an assignment/reassignment
+			// get expected type
+			// compare expected type with given type (error out if not a match)
+			// if variable is final and already non-null, error out.
+			// else set value, preserving old type
+		
+		
+		
+		
 		// 0 for undeclared variables, expected type is Any.
 		// 1 get expected type.
 		// 2 get actual type.
