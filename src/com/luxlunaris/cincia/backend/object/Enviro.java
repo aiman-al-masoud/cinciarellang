@@ -99,77 +99,162 @@ public class Enviro implements Stateful{
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
 
 		//TODO: fix this once and for all !
-		
-		
-		// (case 0) if key doesn't exist and value is null, it's a declaration
-			// set the variable's type to type, and value to null (and modifiers if any)
-		
-		
-		// (case 1) if key doesn't exist and value is not null, it's an assignment with inferred type
-			// set the variable's type, value and modifiers if any.
-		
-		
+
+
+		// (case 0) if key doesn't exist and val is null, it's a declaration
+		// set the variable's type to type, and value to null (and modifiers if any)
+
+
+		// (case 1) if key doesn't exist and val is not null, it's an assignment with inferred type
+		// set the variable's type, value and modifiers if any.
+
+
 		// (case 2) if key does exist, it's an assignment/reassignment
-			// get expected type
-			// compare expected type with given type (error out if not a match)
-			// if variable is final and already non-null, error out.
-			// else set value, preserving old type
-		
-		
-		
-		
-		
-		
-		
-		
-		Type expectedType = Type.Any;
-		Type gotType = val==null? Type.Any : val.getType();
+		// get expected type
+		// compare expected type with given type (error out if not a match)
+		// if variable is final and already non-null, error out.
+		// else set value, preserving old type
 
-		//		System.out.println(key);
+		// (case 3) redeclaration or setting back to null, always a mistake
+		// throw an error
 
-		
 
-		if(types.containsKey(key)) { // variable already exists/declared
+		// (case 0) declaration
+		if(!types.containsKey(key) && val==null) {
+			vars.put(key, null);
+			types.put(key, type);
+			this.modifiers.put(key, modifiers);
+			return;
+		}
 
-			expectedType = types.get(key);
+		// (case 0.1) declaration + assignment
+		if(!types.containsKey(key) && val!=null && type!=null) {
 			
 			
-			// if variable is already defined and it is final, throw error!
-			if( vars.get(key)!=null && getModifiers(key).contains(Modifiers.FINAL)) {
-				throw new RuntimeException("Cannot reassign final reference!");
+			if(!type.matches(val.getType())) {
+//				throw new RuntimeException("Invalid declaration: declared type incompatible with assigned type!");
+				TypeError te = new TypeError();
+				te.expected = type;
+				te.got = val.getType();					
+				throw te;
+			}
+			
+			vars.put(key, val);
+			types.put(key, type);
+			this.modifiers.put(key, modifiers);
+			return;
+			
+//			return;
+			
+		}
+		
+
+		// (case 1) assignment with inferred type
+		if(!types.containsKey(key) && val!=null ) {
+			vars.put(key, val);
+			types.put(key, val.getType());
+			this.modifiers.put(key, modifiers);
+			return;
+		}
+		
+
+
+
+		// (case 2) reassignment/assignment after declaration
+		if(types.containsKey(key) && val!=null ) {
+
+			var expectedType = types.get(key);
+			var givenType = val.getType();
+
+			// error: assignment with wrong type
+			if(!expectedType.matches(givenType)) {
+				TypeError te = new TypeError();
+				te.expected = expectedType;
+				te.got = givenType;					
+				throw te;
 			}
 
-		}else if(val==null) {  // variable is being declared
-			expectedType = type;
-			gotType = type;
-		}else { // variable is being assigned
-			expectedType = type;
+			// error: reassignment of final variable
+			if(vars.get(key)!=null && this.modifiers.get(key).contains(Modifiers.FINAL)) {
+				throw new RuntimeException("Cannot reassign final variable!");
+			}
+			
+			// TODO error on new modifiers ...
+			
+			
+			//else ...
+			vars.put(key, val);
+//			types.put(key, expectedType); //TODO no need
+			return;
+			
 		}
 
-		expectedType = expectedType==null? Type.Any : expectedType;
 
-		// if expected type doesn't match effective type, error!
-		if(!expectedType.matches(gotType)) {
-			//			System.out.println(expectedType.hashCode()+" "+gotType.hashCode());
-			TypeError te = new TypeError();
-			te.expected = expectedType;
-			te.got = gotType;					
-			throw te;
+		// (case 3) redeclaration or setting back to null, always a mistake
+		if(types.containsKey(key) && val==null) {
+			throw new RuntimeException("Cannot re-declare variable!");
 		}
-		
-		
-//		if(key.equals("x")) {
-//			System.out.println(key+" "+val+" expected type: "+expectedType+" got type: "+gotType);
-//		}
 
 
 
-		// set value, type and modifiers 
-		vars.put(key, val);
-		Type oldType = getType(key);
-		List<Modifiers> oldModifiers = getModifiers(key);
-		types.put(key, oldType==null? type : oldType); // if there's an old type, keep it! (for union types to work)
-		this.modifiers.put(key, oldModifiers==null? modifiers : oldModifiers); // same for modifiers
+
+
+
+
+
+
+
+
+		//		
+		//		
+		//		Type expectedType = Type.Any;
+		//		Type gotType = val==null? Type.Any : val.getType();
+		//
+		//		//		System.out.println(key);
+		//
+		//		
+		//
+		//		if(types.containsKey(key)) { // variable already exists/declared
+		//
+		//			expectedType = types.get(key);
+		//			
+		//			
+		//			// if variable is already defined and it is final, throw error!
+		//			if( vars.get(key)!=null && getModifiers(key).contains(Modifiers.FINAL)) {
+		//				throw new RuntimeException("Cannot reassign final reference!");
+		//			}
+		//
+		//		}else if(val==null) {  // variable is being declared
+		//			expectedType = type;
+		//			gotType = type;
+		//		}else { // variable is being assigned
+		//			expectedType = type;
+		//		}
+		//
+		//		expectedType = expectedType==null? Type.Any : expectedType;
+		//
+		//		// if expected type doesn't match effective type, error!
+		//		if(!expectedType.matches(gotType)) {
+		//			//			System.out.println(expectedType.hashCode()+" "+gotType.hashCode());
+		//			TypeError te = new TypeError();
+		//			te.expected = expectedType;
+		//			te.got = gotType;					
+		//			throw te;
+		//		}
+		//		
+		//		
+		////		if(key.equals("x")) {
+		////			System.out.println(key+" "+val+" expected type: "+expectedType+" got type: "+gotType);
+		////		}
+		//
+		//
+		//
+		//		// set value, type and modifiers 
+		//		vars.put(key, val);
+		//		Type oldType = getType(key);
+		//		List<Modifiers> oldModifiers = getModifiers(key);
+		//		types.put(key, oldType==null? type : oldType); // if there's an old type, keep it! (for union types to work)
+		//		this.modifiers.put(key, oldModifiers==null? modifiers : oldModifiers); // same for modifiers
 	}
 
 	@Override
