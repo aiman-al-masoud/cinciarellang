@@ -106,7 +106,8 @@ public class Enviro implements Stateful{
 		
 		
 		// 1 if key doesn't exist and value is not null, it's an assignment with inferred type
-			
+			// set the variable's type, value and modifiers if any.
+		
 		
 		// 2 if key does exist, it's an assignment/reassignment
 			// get expected type
