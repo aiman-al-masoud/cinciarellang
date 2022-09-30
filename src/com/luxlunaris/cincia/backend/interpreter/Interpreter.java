@@ -307,6 +307,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		// from Cincia source file ...
+		
+		Enviro envCopy = enviro.newChild();
 		String source = "";		
 		try {
 			//TODO: read relative-path import from source-file in a different directory than the cincia.jar correctly
@@ -316,7 +318,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			String parentImporterDir="";
 
 			try {
-				parentImporterDir = ((CinciaString)enviro.get(IMPORTER_DIR)).toJava() + "/";
+				parentImporterDir = ((CinciaString)envCopy.get(IMPORTER_DIR)).toJava() + "/";
 				//				System.out.println("source file dir: "+parentImporterDir);
 				//				System.out.println("relative import path: "+importStatement.fromPath.value);
 
@@ -361,8 +363,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			if(folders.size()>0) {
 				var newSourceFileDir = parentImporterDir+deeper;
 				//			System.out.println(newSourceFileDir);
-
-				enviro.set(IMPORTER_DIR, new CinciaString(newSourceFileDir ));
+				envCopy.set(IMPORTER_DIR, new CinciaString(newSourceFileDir ));
 			}
 
 
@@ -374,11 +375,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		// ... create a new isolated env
-		Enviro envCopy = enviro.newChild();
+//		Enviro envCopy = enviro.newChild();
 
 		// ... evaluate the source-code in the new isolated env 
 		List<Ast> statements = new Compiler().compile(source);
-
 
 		try {
 			statements.forEach(s -> eval(s, envCopy) );			

@@ -1,6 +1,6 @@
 import GameLogic from "game-logic.ci";
+import Gui from 'gui/gui.ci'; 
 import f from 'util.ci';
-import Gui from 'gui/gui.ci'; //PROBLEM: this goes down in hierarchy forever cannot swap with line above
 
 g = GameLogic();
 Gui == Gui;
