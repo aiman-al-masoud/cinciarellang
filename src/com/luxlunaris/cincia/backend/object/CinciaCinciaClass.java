@@ -74,6 +74,8 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 		// Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
+		
+//		System.out.println("created copy of this class: "+obj);
 
 		//		System.out.println(args);
 		obj.__init__(args); //TODO: fix types and type-inference, maybe that's the problem
@@ -82,13 +84,14 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 		//Check for declared but undefined attributes after 
 		//calling the object's constructor.
-		boolean undefinedAnything = this.getEnviro().vars.entrySet()
+		boolean undefinedAnything = obj.getEnviro().vars.entrySet()
 				.stream()
 				.anyMatch( e-> {
 //					System.out.println(e.getKey()+" "+(e.getValue()==null));
 					return e.getValue()==null;
 				});
 
+		
 		if(undefinedAnything) {
 			throw new RuntimeException("Cannot instantiate class with undefined attributes!");
 		}

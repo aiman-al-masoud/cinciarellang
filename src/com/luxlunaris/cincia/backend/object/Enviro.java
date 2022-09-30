@@ -115,10 +115,18 @@ public class Enviro implements Stateful{
 
 		// (case 3) redeclaration or setting back to null, always a mistake
 		// throw an error
+		
+		
+		
 
 
 		// (case 0) declaration
 		if(!types.containsKey(key) && val==null) {
+			
+//			if(key.equals("x")) { //TODO: remove this !!!
+//				System.out.println("declaration of x!");
+//			}
+			
 			vars.put(key, null);
 			types.put(key, type);
 			this.modifiers.put(key, modifiers);
@@ -127,6 +135,10 @@ public class Enviro implements Stateful{
 
 		// (case 0.1) declaration + assignment
 		if(!types.containsKey(key) && val!=null && type!=null) {
+			
+//			if(key.equals("x")) { //TODO: remove this !!!
+//				System.out.println("declaration+assignment of x!");
+//			}
 
 
 			if(!type.matches(val.getType())) {
@@ -149,6 +161,12 @@ public class Enviro implements Stateful{
 
 		// (case 1) assignment with inferred type
 		if(!types.containsKey(key) && val!=null ) {
+			
+//			if(key.equals("x")) { //TODO: remove this !!!
+//				System.out.println("assignment w/ inferred type of x!");
+//			}
+
+			
 			vars.put(key, val);
 			types.put(key, val.getType());
 			this.modifiers.put(key, modifiers);
@@ -160,6 +178,12 @@ public class Enviro implements Stateful{
 
 		// (case 2) reassignment/assignment after declaration
 		if(types.containsKey(key) && val!=null ) {
+			
+
+//			if(key.equals("x")) { //TODO: remove this !!!
+//				System.out.println("reassignment/assignment of x! value: "+val);
+//			}
+
 
 			var expectedType = types.get(key);
 			var givenType = val.getType();
@@ -182,6 +206,8 @@ public class Enviro implements Stateful{
 
 			//else ...
 			vars.put(key, val);
+			
+//			System.out.println("I did assign x!");
 			return;
 
 		}
@@ -189,6 +215,11 @@ public class Enviro implements Stateful{
 
 		// (case 3) redeclaration or setting back to null, always a mistake
 		if(types.containsKey(key) && val==null) {
+			
+//			if(key.equals("x")) { //TODO: remove this !!!
+//				System.out.println("redeclaration of x!");
+//			}
+			
 			throw new RuntimeException("Cannot re-declare variable!");
 		}
 
