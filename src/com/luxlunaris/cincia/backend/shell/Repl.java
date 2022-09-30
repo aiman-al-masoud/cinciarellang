@@ -32,7 +32,7 @@ public class Repl {
 	public void mainLoop() {
 
 		while(true) {
-			System.out.print(">");
+			System.out.print("> ");
 			String source = scanner.nextLine()+";";
 			eval(source, enviro);
 		}
