@@ -98,8 +98,6 @@ public class Enviro implements Stateful{
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
 
-		//TODO: fix this once and for all !
-
 
 		// (case 0) if key doesn't exist and val is null, it's a declaration
 		// set the variable's type to type, and value to null (and modifiers if any)
@@ -129,25 +127,25 @@ public class Enviro implements Stateful{
 
 		// (case 0.1) declaration + assignment
 		if(!types.containsKey(key) && val!=null && type!=null) {
-			
-			
+
+
 			if(!type.matches(val.getType())) {
-//				throw new RuntimeException("Invalid declaration: declared type incompatible with assigned type!");
+				//				throw new RuntimeException("Invalid declaration: declared type incompatible with assigned type!");
 				TypeError te = new TypeError();
 				te.expected = type;
 				te.got = val.getType();					
 				throw te;
 			}
-			
+
 			vars.put(key, val);
 			types.put(key, type);
 			this.modifiers.put(key, modifiers);
 			return;
-			
-//			return;
-			
+
+			//			return;
+
 		}
-		
+
 
 		// (case 1) assignment with inferred type
 		if(!types.containsKey(key) && val!=null ) {
@@ -156,7 +154,7 @@ public class Enviro implements Stateful{
 			this.modifiers.put(key, modifiers);
 			return;
 		}
-		
+
 
 
 
@@ -178,15 +176,15 @@ public class Enviro implements Stateful{
 			if(vars.get(key)!=null && this.modifiers.get(key).contains(Modifiers.FINAL)) {
 				throw new RuntimeException("Cannot reassign final variable!");
 			}
-			
+
 			// TODO error on new modifiers ...
-			
-			
+
+
 			//else ...
 			vars.put(key, val);
-//			types.put(key, expectedType); //TODO no need
+			//			types.put(key, expectedType); //TODO no need
 			return;
-			
+
 		}
 
 
@@ -196,65 +194,6 @@ public class Enviro implements Stateful{
 		}
 
 
-
-
-
-
-
-
-
-
-
-		//		
-		//		
-		//		Type expectedType = Type.Any;
-		//		Type gotType = val==null? Type.Any : val.getType();
-		//
-		//		//		System.out.println(key);
-		//
-		//		
-		//
-		//		if(types.containsKey(key)) { // variable already exists/declared
-		//
-		//			expectedType = types.get(key);
-		//			
-		//			
-		//			// if variable is already defined and it is final, throw error!
-		//			if( vars.get(key)!=null && getModifiers(key).contains(Modifiers.FINAL)) {
-		//				throw new RuntimeException("Cannot reassign final reference!");
-		//			}
-		//
-		//		}else if(val==null) {  // variable is being declared
-		//			expectedType = type;
-		//			gotType = type;
-		//		}else { // variable is being assigned
-		//			expectedType = type;
-		//		}
-		//
-		//		expectedType = expectedType==null? Type.Any : expectedType;
-		//
-		//		// if expected type doesn't match effective type, error!
-		//		if(!expectedType.matches(gotType)) {
-		//			//			System.out.println(expectedType.hashCode()+" "+gotType.hashCode());
-		//			TypeError te = new TypeError();
-		//			te.expected = expectedType;
-		//			te.got = gotType;					
-		//			throw te;
-		//		}
-		//		
-		//		
-		////		if(key.equals("x")) {
-		////			System.out.println(key+" "+val+" expected type: "+expectedType+" got type: "+gotType);
-		////		}
-		//
-		//
-		//
-		//		// set value, type and modifiers 
-		//		vars.put(key, val);
-		//		Type oldType = getType(key);
-		//		List<Modifiers> oldModifiers = getModifiers(key);
-		//		types.put(key, oldType==null? type : oldType); // if there's an old type, keep it! (for union types to work)
-		//		this.modifiers.put(key, oldModifiers==null? modifiers : oldModifiers); // same for modifiers
 	}
 
 	@Override
