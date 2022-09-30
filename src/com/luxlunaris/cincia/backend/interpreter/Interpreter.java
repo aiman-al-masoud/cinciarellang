@@ -318,10 +318,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			//TODO: store import directory in enviro for nested imports to resolve relative path
 
 //			final String IMPORTER_DIR = "IMPORTER_DIR";
-			String parentImporterDir="";
+			String workingDir="";
 
 			try {
-				parentImporterDir = ((CinciaString)envCopy.get(Enviro.WORKING_DIR)).toJava() + "/";
+				workingDir = ((CinciaString)envCopy.get(Enviro.WORKING_DIR)).toJava() + "/";
 				//				System.out.println("source file dir: "+parentImporterDir);
 				//				System.out.println("relative import path: "+importStatement.fromPath.value);
 
@@ -332,7 +332,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			//TODO: if path is absolute DONT' prepend...
 
 
-			var importPath = parentImporterDir+importStatement.fromPath.value;
+			var importPath = workingDir+importStatement.fromPath.value;
 			//			System.out.println(parentImporterDir);
 			//			System.out.println("current working dir: "+ System.getProperty("user.dir"));
 			//			System.out.println("absolute import path: "+importPath);
@@ -364,7 +364,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			var deeper= folders.stream().reduce((a,b)->a+"/"+b).orElse("");
 
 			if(folders.size()>0) {
-				var newSourceFileDir = parentImporterDir+deeper;
+				var newSourceFileDir = workingDir+deeper;
 				//			System.out.println(newSourceFileDir);
 				envCopy.set(Enviro.WORKING_DIR, new CinciaString(newSourceFileDir ));
 			}
