@@ -228,7 +228,9 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaObject __init__(List<CinciaObject> args) {
-
+		
+		// TODO this is really just a void method
+		
 		try {
 
 			CinciaMethod cm = (CinciaMethod)get(Magic.__init__);
