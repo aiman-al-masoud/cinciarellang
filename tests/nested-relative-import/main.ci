@@ -2,6 +2,7 @@ import GameLogic from "game-logic.ci";
 import Gui from 'gui/gui.ci';
 
 g = GameLogic();
+Gui == Gui;
 
 g.myScore = 3;
 g.iWon();
