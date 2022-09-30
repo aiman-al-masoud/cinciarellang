@@ -308,8 +308,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// from Cincia source file ...
 		
+		// ... create a new isolated env
 		Enviro envCopy = enviro.newChild();
+		
 		String source = "";		
+		
 		try {
 			//TODO: read relative-path import from source-file in a different directory than the cincia.jar correctly
 			//TODO: store import directory in enviro for nested imports to resolve relative path
