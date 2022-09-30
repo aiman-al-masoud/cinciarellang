@@ -33,17 +33,12 @@ public class Tester {
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);
-//		final static List<String> tags = Arrays.asList("main.ci");
+	//		final static List<String> tags = Arrays.asList("main.ci");
 
 	public static void main(String[] args) throws IOException{
 
-		
-//		System.out.println(ListDir.listDir(ROOT));
-
 		ListDir.listDir(ROOT)
 		.stream()
-//		.map(f->ROOT+"/"+f)
-//		.filter(f-> new File(f).isFile() ) //skip dirs
 		.map(f->new SingleTest(f, Tester.readFile(f)))
 		.filter(t -> hasTag(tags, t.filename) )
 		.map(t->Tester.runTest(t))
@@ -72,18 +67,10 @@ public class Tester {
 		try {
 			Compiler compiler = new Compiler();			
 			Enviro enviro  = Enviro.getTopLevelEnviro();
-			Interpreter interpreter = new Interpreter();
-			
-			
-			//TODO: deduplicate in Interpreter.evalImportStatement
-//			final String IMPORTER_DIR = "IMPORTER_DIR";
-//			var parts = Arrays.asList( test.filename .split("/"));
-//			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null	
 			var workingDir = new File(test.filename).getParent();
-			enviro.set(Enviro.WORKING_DIR, new CinciaString(workingDir));
-			
-			
+			enviro.set(Enviro.WORKING_DIR, new CinciaString(workingDir));			
 			enviro.set("print", new CinciaFunction(e->{System.out.print(e  ); return null;}));
+			Interpreter interpreter = new Interpreter();
 
 			for(Ast stm : compiler.compile(test.source)) {
 				out = interpreter.eval(stm, enviro);
@@ -113,10 +100,6 @@ public class Tester {
 	public static boolean hasTag(List<String> tags, String filename) {
 		return tags.stream().anyMatch(tag->filename.contains(tag) || tag.equals(ALL));
 	}
-
-
-
-
 
 
 
