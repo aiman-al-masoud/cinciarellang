@@ -333,6 +333,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 //			System.out.println("absolute import path: "+importPath);
 			
 			
+//			System.out.println("current working dir: "+ System.getProperty("user.dir"));
+//			System.out.println("relative import path: "+importStatement.fromPath.value);
+//			System.out.println("source file dir: "+parentImporterDir);
+//			System.out.println("absolute import path: "+importPath);
+			
+			
 			List<String> lines = Files.readAllLines(Paths.get(importPath), StandardCharsets.UTF_8);
 			source = lines.stream().reduce((l1,l2)->l1+"\n"+l2).get();
 			
@@ -341,6 +347,27 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 //			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null			
 //			enviro.set(IMPORTER_DIR, new CinciaString(importerDir  ));
 //			System.out.println(enviro.get(IMPORTER_DIR));
+			
+			//TODO: if relative import path contains directories, append the directories to the
+			// current source file dir
+			
+			var relativeImportPath = importStatement.fromPath.value;
+			var parts = Arrays.asList(relativeImportPath.split("/"));
+			var folders = parts.subList(0, parts.size()-1);
+//			System.out.println(folders);
+			
+			var deeper= folders.stream().reduce((a,b)->a+"/"+b).orElse("");
+			
+			if(folders.size()>0) {
+				var newSourceFileDir = parentImporterDir+deeper;
+//			System.out.println(newSourceFileDir);
+				
+				enviro.set(IMPORTER_DIR, new CinciaString(newSourceFileDir ));
+			}
+			
+			
+
+
 			
 		} catch (IOException e) {
 			throw new RuntimeException("Wrong import!");//TODO: make class.
@@ -351,7 +378,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// ... evaluate the source-code in the new isolated env 
 		List<Ast> statements = new Compiler().compile(source);
-		statements.forEach(s -> eval(s, envCopy) );
+		
+		
+		try {
+			statements.forEach(s -> eval(s, envCopy) );			
+		} catch (Exception e) {
+			// TODO: may catch redefinition (double import)
+		}
+		
+		
+		
 		
 		// ... import the desired pieces of the module into the current env	
 		importStatement.imports.forEach(i->{

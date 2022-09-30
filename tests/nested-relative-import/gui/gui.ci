@@ -1,3 +1,5 @@
-// import GameLogic from '../game-logic.ci';
+import GameLogic from '../game-logic.ci';
 
 Gui = {};
+
+true;
