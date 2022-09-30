@@ -7,7 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListDir {
-
+	
+	/**
+	 * Recursively list files in dir
+	 * @param dirpath
+	 * @return
+	 */
 	public static List<String> listDir(String dirpath){
 
 		var  f=  new File(dirpath);
