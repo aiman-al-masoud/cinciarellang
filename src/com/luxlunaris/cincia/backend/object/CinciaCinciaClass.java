@@ -62,17 +62,18 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	 */
 	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
-
-
-		//TODO: deal with modifiers such as static
+		
+		//TODO check for declared but undefined methods on this class
+		//before creating a copy (instance/object).
 
 		// Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
-		//TODO: deal with null values, null values could be declared 
-		// attributes, or declared functions. Either way they could come
-		// from interfaces. 
-
+		
 		obj.__init__(args);
+		
+		//TODO check for declared but undefined attributes after 
+		//calling the object's constructor.
+		
 		return obj;
 	}
 
