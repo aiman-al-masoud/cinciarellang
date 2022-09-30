@@ -182,7 +182,6 @@ public class Enviro implements Stateful{
 
 			//else ...
 			vars.put(key, val);
-			//			types.put(key, expectedType); //TODO no need
 			return;
 
 		}
