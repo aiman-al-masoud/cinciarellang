@@ -2,4 +2,5 @@ import GameLogic from '../game-logic.ci';
 
 Gui = {};
 
-true;
+// true;
+GameLogic == GameLogic;
