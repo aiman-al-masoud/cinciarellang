@@ -5,9 +5,14 @@
 *
 */
 
-I = class{ x:int; };
 
-Wrong = I + class{  };
+I = class{ 
+	x:int; 
+}
+
+Wrong = I + class{  
+
+}
 
 Good = I + class{
 	__init__ = \x-> this.x = x;
