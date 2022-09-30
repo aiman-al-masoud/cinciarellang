@@ -38,6 +38,8 @@ public class Signature implements Type{
 
 	@Override
 	public boolean matches(Type other) {
+		
+//		System.out.println("check signatures "+other);
 
 		try {
 

@@ -92,6 +92,7 @@ public class Enviro implements Stateful{
 		
 		Type expectedType = Type.Any;
 		Type gotType = val==null? Type.Any : val.getType();
+		
 
 		if(types.containsKey(key)) { // variable already exists/declared
 			
@@ -113,6 +114,7 @@ public class Enviro implements Stateful{
 		
 		// if expected type doesn't match effective type, error!
 		if(!expectedType.matches(gotType)) {
+//			System.out.println(expectedType.hashCode()+" "+gotType.hashCode());
 			TypeError te = new TypeError();
 			te.expected = expectedType;
 			te.got = gotType;					

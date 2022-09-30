@@ -1,0 +1,10 @@
+
+/**
+*
+* If two classes have the same attribute and method
+* names and types, they are considered equivalent.
+*
+*/
+
+class{ f = \x->1; } == class{ f= \x->1;  } &&
+class{ f = \x->1; } != class{ g= \x->1;  };

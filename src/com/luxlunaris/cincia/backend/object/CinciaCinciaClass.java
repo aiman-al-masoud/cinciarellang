@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
@@ -96,25 +97,77 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	public Expression simplify() {// poor Liskov :-<
 		throw new RuntimeException("Cannot simplify() class!");
 	}
+	
+	
+	@Override
+	public CinciaBool __eq__(CinciaObject other) {
+		
+//		System.out.println(((CinciaCinciaClass)other).getEnviro().vars  );
+		
+//		System.out.println("same object? "+ (this==other));
+		
+		if(this==other) {
+			return new CinciaBool(true);
+		}
+		
+		var theseEntries = getEnviro().vars.entrySet();
+//		var otherEntries =  ((CinciaCinciaClass)other).getEnviro().vars.entrySet();
+		
+		boolean typesMatch = theseEntries.stream()
+										.filter( e-> ! e.getKey().equals(Magic.THIS.toString())    )
+										.filter( e-> ! e.getKey().equals("type")    )
+										.filter( e-> ! e.getKey().equals(CLASS)    )
+										.allMatch( e-> {
+											
+											var thisType =	getType(e.getKey());
+											var thatType =	other.getType(e.getKey() );
+											
+											if(thatType==null) {
+//												System.out.println(e.getKey()+" "+e.getValue());
+												return false;
+											}
+											
+											var b = thisType.matches( thatType  );
+//											System.out.println(e.getKey()+" "+b);
+											
+//											System.out.println(e.getKey()+" "+b);
+											
+											return b;
+										} );
+		
+		
+//		System.out.println("types match "+typesMatch+" this: "+this.hashCode()+" other: "+other.hashCode());
+		
+		return new CinciaBool(typesMatch);
+//		for (int i=0; i<theseEntries.size(); i++) {
+//			
+//		}
+		
+//		return super.__eq__(other);
+	}
 
 	@Override
 	public boolean matches(Type other) {
+		
+//		System.out.println(((CinciaCinciaClass)other).getEnviro().vars  );
 
 		//TODO: how about an equality check based on actual fields and methods? Like
 		//a more "institutionalized" form of duck-typing?
 		
-		try {
-			return this == ((CinciaCinciaClass)other); // matches in RAM
-
-
-			//TODO: check mixins, method names, interfaces, idk what I'm doing, etc...
-
-
-		} catch (ClassCastException e) {
-
-		}
-
-		return false;
+//		try {
+//			return this == ((CinciaCinciaClass)other); // matches in RAM
+//
+//
+//			//TODO: check mixins, method names, interfaces, idk what I'm doing, etc...
+//
+//
+//		} catch (ClassCastException e) {
+//
+//		}
+//
+//		return false;
+		
+		return this.__eq__((CinciaObject)other).toJava();
 
 	}
 
@@ -144,6 +197,10 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 				if(entry.getKey().equals( "class" )) {
 					continue;
 				}
+				
+				if(entry.getKey().equals( "type" )) {
+					continue;
+				}
 
 				c.set(entry.getKey(), entry.getValue(), otherClass.getEnviro().getType(entry.getKey()));
 			}
@@ -157,6 +214,10 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 				}
 
 				if(entry.getKey().equals( "class" )) {
+					continue;
+				}
+				
+				if(entry.getKey().equals( "type" )) {
 					continue;
 				}
 		
