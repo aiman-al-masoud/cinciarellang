@@ -19,13 +19,8 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		this.value = value;	
 		setImmutable();
 	}
+
 	
-//	@Override
-//	void setup() {	
-//		set("type", (CinciaObject)type);
-//	}
-
-
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
 
