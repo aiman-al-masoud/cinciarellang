@@ -13,6 +13,7 @@ public class CinciaPrimitiveType extends AbstractCinciaObject implements Type {
 		super(null);
 		this.type = this;
 		this.primitiveType = primitiveType;
+		setImmutable();
 	}
 
 	@Override
