@@ -66,8 +66,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
 
-		//Check for declared but undefined methods on this class
-		//before creating a copy (instance/object).
+		//Check for declared but undefined methods on this class before creating a copy (instance/object).
 		boolean undefinedMethods = this.getEnviro().vars.entrySet().stream().anyMatch( e-> e.getValue()==null && (this.getEnviro().getType(e.getKey()) instanceof Signature)  );
 
 		if(undefinedMethods) {
@@ -76,29 +75,19 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 		// Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
-		
-//		System.out.println("created copy of this class: "+obj);
+		// call the constructor on the newly created object
+		obj.__init__(args); 
 
-		//		System.out.println(args);
-		obj.__init__(args); //TODO: fix types and type-inference, maybe that's the problem
 
-		//		System.out.println(obj.getEnviro().values());
-
-		//Check for declared but undefined attributes after 
-		//calling the object's constructor.
+		//Check for declared but undefined attributes after calling the object's constructor.
 		boolean undefinedAnything = obj.getEnviro().vars.entrySet()
 				.stream()
-				.anyMatch( e-> {
-//					System.out.println(e.getKey()+" "+(e.getValue()==null));
-					return e.getValue()==null;
-				});
+				.anyMatch( e-> e.getValue()==null);
 
-		
+
 		if(undefinedAnything) {
-			
 			TypeError error = new TypeError("Cannot instantiate class with undefined attributes!");
 			throw error;
-//			throw new RuntimeException("Cannot instantiate class with undefined attributes!");
 		}
 
 		return obj;
@@ -118,16 +107,12 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
 
-		//		System.out.println(((CinciaCinciaClass)other).getEnviro().vars  );
-
-		//		System.out.println("same object? "+ (this==other));
 
 		if(this==other) {
 			return new CinciaBool(true);
 		}
 
 		var theseEntries = getEnviro().vars.entrySet();
-		//		var otherEntries =  ((CinciaCinciaClass)other).getEnviro().vars.entrySet();
 
 		boolean typesMatch = theseEntries.stream()
 				.filter( e-> ! e.getKey().equals(Magic.THIS.toString())    )
@@ -139,36 +124,23 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 					var thatType =	other.getType(e.getKey() );
 
 					if(thatType==null) {
-						//												System.out.println(e.getKey()+" "+e.getValue());
 						return false;
 					}
 
-					var b = thisType.matches( thatType  );
-					//											System.out.println(e.getKey()+" "+b);
+					return thisType.matches( thatType  );
 
-					//											System.out.println(e.getKey()+" "+b);
-
-					return b;
 				} );
 
-
-		//		System.out.println("types match "+typesMatch+" this: "+this.hashCode()+" other: "+other.hashCode());
-
 		return new CinciaBool(typesMatch);
-		//		for (int i=0; i<theseEntries.size(); i++) {
-		//			
-		//		}
-
-		//		return super.__eq__(other);
 	}
 
 	@Override
 	public boolean matches(Type other) {
-		
+
 		if(!(other instanceof CinciaObject)) {
 			return false;
 		}
-		
+
 		return this.__eq__((CinciaObject)other).toJava();
 	}
 
