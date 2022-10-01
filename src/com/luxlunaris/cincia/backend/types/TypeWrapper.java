@@ -6,6 +6,12 @@ import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
+/**
+ * 
+ * Wraps a type from com.luxlunaris.cincia.frontend.ast.expressions.type
+ * into a CiciaObject envelope.
+ *
+ */
 public class TypeWrapper extends AbstractCinciaObject implements Type {
 
 	public TypeWrapper(Type type) {
@@ -20,29 +26,21 @@ public class TypeWrapper extends AbstractCinciaObject implements Type {
 	@Override
 	public boolean matches(Type other) {
 		
-//		System.out.println("in type wrapper");
-//		System.out.println("my type: "+type.getClass());
-//		System.out.println("other type: "+other.getClass());
+		other = other.unwrap();
 
-		
-		if(other instanceof TypeWrapper) {
-			other = ((TypeWrapper) other).type;
-		}
-		
-		
 		return type.matches(other);
 	}
-	
+
 	@Override
 	public String toString() {
 		return type+"";
 	}
-	
-	@Override
-	public Type getType() {
-		return type;
-	}
-	
+
+//	@Override
+//	public Type getType() {
+//		return type;
+//	}
+
 	@Override
 	public Type unwrap() {
 		return type;
