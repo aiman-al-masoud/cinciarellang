@@ -13,6 +13,9 @@ public class PrimitiveType extends OneNameType{
 	public static  final Keywords BOOL = Keywords.BOOL;
 	public static  final Keywords STRING = Keywords.STRING;
 	
+	public static  final Keywords MODULE = Keywords.MODULE;
+	public static  final Keywords ANY = Keywords.ANY;
+	
 	public Keywords value;
 	
 	public PrimitiveType(Keywords type) {
@@ -26,6 +29,12 @@ public class PrimitiveType extends OneNameType{
 
 	@Override
 	public boolean matches(Type other) {
+		
+		
+		if(this.equals(Type.Any)) {
+			return true;
+		}
+		
 		
 		
 		other =other.unwrap();

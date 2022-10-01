@@ -1027,9 +1027,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
 
 
-		if(type == Type.Any || type == Type.Module) {
-			return new TypeWrapper(type);
-		}
+//		if(type == Type.Any || type == Type.Module) {
+//			return new TypeWrapper(type);
+//		}
 
 		//TODO: implement resolve in collection types		
 		return new TypeWrapper(type.resolve(this::eval, enviro));

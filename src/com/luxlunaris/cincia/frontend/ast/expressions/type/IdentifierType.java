@@ -23,16 +23,20 @@ public class IdentifierType extends OneNameType{
 	@Override
 	public boolean matches(Type other) {
 		
-		// Type Any matches all other types (opposite is not true)
-		if(this.value.equals(((IdentifierType)Type.Any).value)) {
-			return true;
-		}
+//		// Type Any matches all other types (opposite is not true)
+//		if(this.value.equals(((IdentifierType)Type.Any).value)) {
+//			return true;
+//		}
+		
+//		if(this.equals(Type.Any)) {
+//			return true;
+//		}
 		
 		try {
 			
 			return value.equals(((IdentifierType)other).value);
 		} catch (ClassCastException e) {
-			// TODO: handle exception
+			
 		}
 		
 		return false;

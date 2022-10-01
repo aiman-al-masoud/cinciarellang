@@ -5,12 +5,14 @@ import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class Module extends AbstractCinciaObject {
 
 	public Module() {
-		super(new IdentifierType("Module"));
+		super(new TypeWrapper(Type.Module));
 	}
 
 	@Override
