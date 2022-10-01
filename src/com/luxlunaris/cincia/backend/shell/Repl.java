@@ -14,6 +14,7 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
+import com.luxlunaris.cincia.backend.stdlib.io.Print;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.frontend.Compiler;
 
@@ -32,17 +33,7 @@ public class Repl {
 		enviro = Enviro.getTopLevelEnviro();
 		interpreter = new Interpreter();
 		scanner = new Scanner(System.in);
-		
-		
-		Signature signature = new Signature();
-		
-		
-		VariableDeclaration vD = new VariableDeclaration();
-		vD.name = new Identifier("x");
-		vD.type = new PrimitiveType(PrimitiveType.STRING); 
-		signature.params =vD; //TODO: actually it's an unlimited number of args
-		signature.returnType = Type.Any; //TODO: actually it's void, or IO
-		enviro.set("print", new CinciaFunction(Repl::printWrapper , signature));
+		enviro.set("print", new Print());
 	}
 
 	public void mainLoop() {
@@ -53,13 +44,6 @@ public class Repl {
 			eval(source, enviro);
 		}
 
-	}
-
-	protected static CinciaObject printWrapper(List<CinciaObject> args) {
-		// TODO: more elegant solution to removing "s when printing strings!
-		args.forEach(e->{System.out.print(   e instanceof CinciaString ? ((CinciaString)e).toJava()   :e ); System.out.print(" ");  });
-		System.out.println();
-		return null;
 	}
 
 	protected void eval(String source, Enviro enviro) {
@@ -73,15 +57,14 @@ public class Repl {
 				CinciaObject out = interpreter.eval(s, enviro);	
 
 				if(out!=null) {
-//					System.out.println("type: "+out.getType());
 					System.out.println(out);
 				}
 
 			});
 
 		}catch (CinciaException e) {
-//			System.out.println(e.getClass().getSimpleName()+": "+e.getMessage());
-//			e.printStackTrace();
+			//			System.out.println(e.getClass().getSimpleName()+": "+e.getMessage());
+			//			e.printStackTrace();
 			System.out.println(e.toString());
 		}catch (Exception e) {
 			e.printStackTrace();
