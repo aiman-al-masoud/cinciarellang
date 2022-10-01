@@ -1031,12 +1031,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			return new TypeWrapper(type);
 		}
 
-//		if(type instanceof IdentifierType) {
-//			// fetch extant class from current scope
-//			return enviro.get(((IdentifierType)type).value);
-//		}
-
-
 		//TODO: implement resolve in collection types		
 		return new TypeWrapper(type.resolve(this::eval, enviro));
 
