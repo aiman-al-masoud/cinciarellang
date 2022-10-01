@@ -38,7 +38,8 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(Magic.is, new CinciaMethod(this::is, this));
 			set(Magic.help, new CinciaMethod(this::help, this));
 			set("values", new CinciaMethod( this::values  , this)); //TODO: extract name
-
+			
+			//TODO: add entries() 
 		}
 
 		// TODO: fiiiiiiiiiiiiiiiix! and make this prop final
