@@ -54,9 +54,6 @@ public class TypeWrapper extends AbstractCinciaObject implements Type {
 	
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
-//		System.out.println("hello? equals or no?");
-//		return this.type 
-//		return new CinciaBool(false);
 		return new CinciaBool(this.matches((Type) other)); //TODO
 	}
 
