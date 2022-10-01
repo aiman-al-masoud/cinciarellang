@@ -321,68 +321,36 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			//TODO: read relative-path import from source-file in a different directory than the cincia.jar correctly
 			//TODO: store import directory in enviro for nested imports to resolve relative path
 
-			//			final String IMPORTER_DIR = "IMPORTER_DIR";
 			String workingDir="";
 
 			try {
 				workingDir = ((CinciaString)envCopy.get(Enviro.WORKING_DIR)).toJava() + "/";
-				//				System.out.println("source file dir: "+parentImporterDir);
-				//				System.out.println("relative import path: "+importStatement.fromPath.value);
-
 			} catch (RuntimeException e) {
 
 			}
 
 			//TODO: if path is absolute DONT' prepend...
 
-
 			var importPath = workingDir+importStatement.fromPath.value;
-			//			System.out.println(parentImporterDir);
-			//			System.out.println("current working dir: "+ System.getProperty("user.dir"));
-			//			System.out.println("absolute import path: "+importPath);
-
-
-			//			System.out.println("current working dir: "+ System.getProperty("user.dir"));
-			//			System.out.println("relative import path: "+importStatement.fromPath.value);
-			//			System.out.println("source file dir: "+parentImporterDir);
-			//			System.out.println("absolute import path: "+importPath);
-
-
 			List<String> lines = Files.readAllLines(Paths.get(importPath), StandardCharsets.UTF_8);
 			source = lines.stream().reduce((l1,l2)->l1+"\n"+l2).get();
 
-
-			//			var parts = Arrays.asList(importStatement.fromPath.value.split("/"));
-			//			var importerDir =  parts.subList(0, parts.size()-1).stream().reduce((a,b)->a+"/"+b).orElse(""); //TODO: handle null			
-			//			enviro.set(IMPORTER_DIR, new CinciaString(importerDir  ));
-			//			System.out.println(enviro.get(IMPORTER_DIR));
-
-			//TODO: if relative import path contains directories, append the directories to the
-			// current source file dir
+			//if relative import path contains directories, append the directories to the current source file dir
 
 			var relativeImportPath = importStatement.fromPath.value;
 			var parts = Arrays.asList(relativeImportPath.split("/"));
 			var folders = parts.subList(0, parts.size()-1);
-			//			System.out.println(folders);
 
 			var deeper= folders.stream().reduce((a,b)->a+"/"+b).orElse("");
 
 			if(folders.size()>0) {
 				var newSourceFileDir = workingDir+deeper;
-				//			System.out.println(newSourceFileDir);
 				envCopy.set(Enviro.WORKING_DIR, new CinciaString(newSourceFileDir ));
 			}
-
-
-
-
 
 		} catch (IOException e) {
 			throw new RuntimeException("Wrong import!");//TODO: make class.
 		}
-
-		// ... create a new isolated env
-		//		Enviro envCopy = enviro.newChild();
 
 		// ... evaluate the source-code in the new isolated env 
 		List<Ast> statements = new Compiler().compile(source);
@@ -392,8 +360,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		} catch (Exception e) {
 			// TODO: may catch redefinition (double import)
 		}
-
-
 
 
 		// ... import the desired pieces of the module into the current env	
