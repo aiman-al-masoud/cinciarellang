@@ -15,7 +15,7 @@ public class Signature implements Type{
 
 	public Declaration params; // can be null if func takes no args
 	public Type returnType; 
-	
+
 	public Signature() {
 		returnType = Type.Any;
 	}
@@ -41,8 +41,6 @@ public class Signature implements Type{
 
 	@Override
 	public boolean matches(Type other) {
-		
-//		System.out.println("check signatures "+other);
 
 		try {
 
@@ -53,37 +51,12 @@ public class Signature implements Type{
 				return false;
 			}
 
-			//			// both this and other don't take params?
-			//			if(otherSig.params == null && params==null) {
-			//
-			//			}
-			//
-			//
-			//			// unequal number of params
-			//			if( params.toList().size() != otherSig.params.toList().size()) {
-			//				return false;
-			//			}
-			//
-			//			// all positional param types must match
-			//			for(int i=0; i < params.toList().size(); i++) {
-			//				Type thisType = params.toList().get(i).getType();
-			//				Type otherType = otherSig.params.toList().get(i).getType();
-			//				if (!thisType.matches(otherType)) return false; // order matters, reference can be more general than assigned value
-			//			}
-
-
 			if(!matchParams(params, otherSig.params)) {
 				return false;
 			}
 
-			// lastly check return type
-			
+			// last but not least, check return type
 			return matchReturnType(returnType, otherSig.returnType);
-			
-//			if(returnType!=null && otherSig.returnType!=null) {
-//				return returnType.matches(otherSig.returnType);				
-//			}
-
 
 		} catch (ClassCastException e) {
 
@@ -122,22 +95,16 @@ public class Signature implements Type{
 
 		return true;
 	}
-	
-	protected boolean matchReturnType(Type retype1, Type retype2) {
-		
-//		if(retype1==null && retype2==null) {
-//			return true;
-//		}
-		
+
+	protected boolean matchReturnType(Type retype1, Type retype2) {		
 		return retype1.matches(retype2);
-		
 	}
-	
+
 	//TODO: to type wrapper
 	//??? But now ast knows about backend? But only interfaces
-//	public Object toCincia(Eval eval, Stateful enviro) {
-//		
-//	}
+	//	public Object toCincia(Eval eval, Stateful enviro) {
+	//		
+	//	}
 
 
 
