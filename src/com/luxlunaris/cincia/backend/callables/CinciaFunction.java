@@ -1,8 +1,5 @@
 package com.luxlunaris.cincia.backend.callables;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +27,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	protected WrappedFunction wrappedFunction;
 
 	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
-		
+
 		super(lambdex.signature);
 		this.eval = eval;
 		this.lambdex = lambdex;
@@ -42,7 +39,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		super(signature);
 		this.wrappedFunction = wrappedFunction;
 	}
-	
+
 	public CinciaFunction(WrappedFunction wrappedFunction) { //TODO: phase out this constructor without a signature
 		super(new IdentifierType("NativeCode")); //TODO: put an actual signature here
 		this.wrappedFunction = wrappedFunction;
@@ -50,13 +47,6 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
-		
-//		System.out.println(this);
-//		System.out.println(args);
-		
-//		System.out.println("CinciaFunction.run() "+args.get(0).toJava());
-		
-
 
 		if(args != null && wrappedFunction == null) {
 
@@ -67,13 +57,6 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 				Parameter p = params.get(i);
 				CinciaObject arg = args.get(i);
-//				System.out.println(p+" val="+arg);
-				
-//				System.out.println(p.type.matches(arg.getType()));
-
-				
-//				System.out.println(p.type.getClass());
-//				System.out.println(arg.getType().getClass());
 				enviro.set(p.name, p.isByRef()? arg : arg.copy(args), p.type);	
 			}
 
@@ -132,62 +115,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 	@Override
 	public String toString() {
-		return lambdex ==null?  "NativeCode()"  : lambdex.signature.toString();
+		return type+"";
 	}
-
-//	@Override
-//	public Object toJava(Object... args) {
-//
-//		// cast first arg to a (functional) interface
-//		Class<?> anInterface = (Class<?>)args[0];
-//		
-//		// cast second arg to an Enviro
-//		Enviro enviro = (Enviro)args[1];
-//
-//		// return a dynamic proxy for the interface
-//		return makeProxy(anInterface, enviro);
-//	}
-
-//
-//	public Object makeProxy(Class<?> anInterface, Enviro enviro) {
-//
-//		// build a dynamic proxy 
-//		Object instance = Proxy.newProxyInstance(anInterface.getClassLoader(), new Class<?>[]{anInterface}, new InvocationHandler() {
-//
-//			@Override
-//			public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-//
-//				// ... the proxy implements the first method in the (functional) interface
-//				String methodName = anInterface.getMethods()[0].getName();
-//
-//				if(method.getName().equals(methodName)){
-//					//					System.out.println("action performed! "+args[0]);
-//
-//					// convert java args into cincia objects
-//					List<CinciaObject> cinciargs = Arrays.asList(args).stream().map(o->CinciaObject.wrap(o)).collect(Collectors.toList());
-//					
-////					System.out.println(cinciargs.get(0));
-//
-//					// run this function //TODO: fix enviro problem
-//					return run(cinciargs,  enviro);
-//
-//				}else {
-//					return null;
-//				}
-//
-//			}
-//		}); 
-//
-//		return instance;
-//
-//	}
-
-
-
-
-
-
-
-
 
 }
