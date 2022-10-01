@@ -164,27 +164,12 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 	@Override
 	public boolean matches(Type other) {
-
-		//		System.out.println(((CinciaCinciaClass)other).getEnviro().vars  );
-
-		//TODO: how about an equality check based on actual fields and methods? Like
-		//a more "institutionalized" form of duck-typing?
-
-		//		try {
-		//			return this == ((CinciaCinciaClass)other); // matches in RAM
-		//
-		//
-		//			//TODO: check mixins, method names, interfaces, idk what I'm doing, etc...
-		//
-		//
-		//		} catch (ClassCastException e) {
-		//
-		//		}
-		//
-		//		return false;
-
+		
+		if(!(other instanceof CinciaObject)) {
+			return false;
+		}
+		
 		return this.__eq__((CinciaObject)other).toJava();
-
 	}
 
 
