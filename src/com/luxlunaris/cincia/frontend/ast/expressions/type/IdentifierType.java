@@ -45,10 +45,8 @@ public class IdentifierType extends OneNameType{
 
 	
 
-	//TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	@Override
-	public Type resolve(Eval eval, Enviro enviro) {
-		//TODO!!!!!!!!!!!!!!
-		return this;
+	public Type resolve(Eval eval, Enviro enviro) {		
+		return (Type) enviro.get(value);
 	}
 }
