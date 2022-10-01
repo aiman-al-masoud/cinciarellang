@@ -1026,14 +1026,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
 		
-//		System.out.println(type.getClass());
 		
 		if(type instanceof PrimitiveType) {
 			return new TypeWrapper(type);
-//			return new CinciaPrimitiveType(  ((PrimitiveType)type).value );
 		}
 		
-		if(type == Type.Any) {
+		if(type == Type.Any || type == Type.Module) {
 			return new TypeWrapper(type);
 		}
 		
