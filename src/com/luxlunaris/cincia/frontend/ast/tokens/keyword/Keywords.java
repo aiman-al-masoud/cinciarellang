@@ -10,7 +10,6 @@ public enum Keywords {
 	TRY,
 	CATCH,
 	FINALLY,
-	CASE,
 	DEFAULT,
 	IMPORT,
 	FROM,

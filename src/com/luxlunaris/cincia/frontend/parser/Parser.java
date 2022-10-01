@@ -123,8 +123,6 @@ public class Parser {
 			res = parseContinueStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.BREAK )) {
 			res = parseBreakStatement();
-		}else if(tStream.peek().getValue().equals( Keywords.CASE )) {
-			res = parseCaseStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
@@ -1017,7 +1015,7 @@ public class Parser {
 		eat(Punctuations.CURLY_CLS);
 		return cE;
 	}
-	
+
 	private List<Identifier> parseIdList(){ //comma separated
 
 		ArrayList<Identifier> ids = new ArrayList<Identifier>();
