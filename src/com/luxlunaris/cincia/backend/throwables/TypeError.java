@@ -7,9 +7,11 @@ public class TypeError extends CinciaException {
 	public String lvalue;
 	public Type expected;
 	public Type got;
+	public String message;
 	
 	public TypeError(String msg) {
 		super(msg);
+		this.message = msg;
 	}
 	
 	public TypeError() {
@@ -19,6 +21,11 @@ public class TypeError extends CinciaException {
 	
 	@Override
 	public String toString() {
+		
+		if(message!=null) {
+			return message;
+		}
+		
 		return "left value: '"+lvalue+"', of expected type: '"+expected+"', got type: '"+got+"'";
 	}
 

@@ -129,9 +129,7 @@ public class Signature implements Type{
 		return retype1.matches(retype2);
 	}
 
-	//TODO: to type wrapper
-	//??? But now ast knows about backend? Only expose interfaces
-	// resolve eventual custom types within this Signature
+	@Override
 	public Signature resolve(Eval eval, Enviro enviro) {		
 
 		Signature signature = new Signature();

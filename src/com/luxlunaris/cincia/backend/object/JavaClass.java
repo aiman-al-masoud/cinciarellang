@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -67,6 +68,11 @@ public class JavaClass extends JavaObject implements CinciaClass{
 
 	@Override
 	public Type unwrap() {
+		return this;
+	}
+	
+	@Override
+	public Type resolve(Eval eval, Enviro enviro) {
 		return this;
 	}
 

@@ -1,6 +1,8 @@
 package com.luxlunaris.cincia.backend.types;
 
+import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -44,6 +46,11 @@ public class TypeWrapper extends AbstractCinciaObject implements Type {
 	@Override
 	public Type unwrap() {
 		return type;
+	}
+
+	@Override
+	public Type resolve(Eval eval, Enviro enviro) {
+		return this;
 	}
 
 }

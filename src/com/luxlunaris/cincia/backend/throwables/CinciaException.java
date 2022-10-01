@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.Magic;
@@ -288,6 +289,11 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public Type unwrap() {
 		return object.getType().unwrap();
+	}
+
+	@Override
+	public Type resolve(Eval eval, Enviro enviro) {
+		return object.getType().resolve(eval, enviro);
 	}	
 
 

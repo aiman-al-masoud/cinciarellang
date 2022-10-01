@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
@@ -262,6 +263,11 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 	@Override
 	public Type unwrap() {
+		return this;
+	}
+
+	@Override
+	public Type resolve(Eval eval, Enviro enviro) {
 		return this;
 	}
 

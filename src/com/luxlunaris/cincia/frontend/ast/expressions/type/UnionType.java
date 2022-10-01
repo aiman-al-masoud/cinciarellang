@@ -3,6 +3,8 @@ package com.luxlunaris.cincia.frontend.ast.expressions.type;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.luxlunaris.cincia.backend.interfaces.Eval;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
@@ -63,6 +65,15 @@ public class UnionType implements Type{
 	
 	@Override
 	public Type unwrap() {
+		return this;
+	}
+	
+	
+
+	//TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	@Override
+	public Type resolve(Eval eval, Enviro enviro) {
+		//TODO!!!!!!!!!!!!!!
 		return this;
 	}
 
