@@ -25,9 +25,7 @@ public class TypeWrapper extends AbstractCinciaObject implements Type {
 
 	@Override
 	public boolean matches(Type other) {
-		
 		other = other.unwrap();
-
 		return type.matches(other);
 	}
 
@@ -35,11 +33,6 @@ public class TypeWrapper extends AbstractCinciaObject implements Type {
 	public String toString() {
 		return type+"";
 	}
-
-//	@Override
-//	public Type getType() {
-//		return type;
-//	}
 
 	@Override
 	public Type unwrap() {
