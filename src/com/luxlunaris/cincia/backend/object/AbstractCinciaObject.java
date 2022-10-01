@@ -42,8 +42,8 @@ public class AbstractCinciaObject implements CinciaObject{
 		}
 
 		// TODO: fiiiiiiiiiiiiiiiix! and make this prop final
-		if(type instanceof CinciaClass) {
-			set("type", (CinciaClass)type); //TODO: extract name			
+		if(type instanceof CinciaObject) {
+			set("type", (CinciaObject)type); //TODO: extract name			
 		}
 
 

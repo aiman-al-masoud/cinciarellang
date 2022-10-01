@@ -20,10 +20,10 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		setImmutable();
 	}
 	
-	@Override
-	void setup() {	
-		set("type", (CinciaObject)type);
-	}
+//	@Override
+//	void setup() {	
+//		set("type", (CinciaObject)type);
+//	}
 
 
 	@Override
