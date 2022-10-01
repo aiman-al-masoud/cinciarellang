@@ -32,6 +32,7 @@ import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.backend.types.CinciaPrimitiveType;
+import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -1056,7 +1057,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		Signature resolvedSignature = 	signature.resolve(this::eval, enviro);
 //		System.out.println(resolvedSignature);		
 //		return resolvedSignature;
-		return null;
+		return new TypeWrapper(resolvedSignature) ;
 		
 	}
 	
