@@ -21,7 +21,7 @@ public interface Type extends Expression{
 	Type unwrap();
 	
 	/**
-	 * Resolve eventual custom types within this Signature
+	 * Resolve eventual nested user-defined Types within this Type.
 	 * 
 	 * @param eval
 	 * @param enviro
