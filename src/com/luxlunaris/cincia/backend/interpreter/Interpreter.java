@@ -311,17 +311,17 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		// from Cincia source file ...
-		
+
 		// ... create a new isolated env
 		Enviro envCopy = enviro.newChild();
-		
+
 		String source = "";		
-		
+
 		try {
 			//TODO: read relative-path import from source-file in a different directory than the cincia.jar correctly
 			//TODO: store import directory in enviro for nested imports to resolve relative path
 
-//			final String IMPORTER_DIR = "IMPORTER_DIR";
+			//			final String IMPORTER_DIR = "IMPORTER_DIR";
 			String workingDir="";
 
 			try {
@@ -382,7 +382,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		// ... create a new isolated env
-//		Enviro envCopy = enviro.newChild();
+		//		Enviro envCopy = enviro.newChild();
 
 		// ... evaluate the source-code in the new isolated env 
 		List<Ast> statements = new Compiler().compile(source);
@@ -578,19 +578,19 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro) {
-		
-		
+
+
 		Type type =  (Type) eval(fD.signature, enviro);
-		
+
 		enviro.set(fD.name.value, null, type, fD.modifiers); 
 		return null;
 	}
 
 	@Override
 	public CinciaObject evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
-		
+
 		Type type =  (Type) eval(vD.type, enviro);
-		
+
 		enviro.set(vD.name.value, null, type, vD.modifiers); 
 		return null;
 	}
@@ -815,13 +815,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		//TODO
 		lambdex.signature = lambdex.signature.resolve(this::eval, enviro);
-		
-		
+
+
 		try {
 			// Check if env belongs to class, in that case return a method.
 			CinciaCinciaClass b = (CinciaCinciaClass)enviro.get(CinciaCinciaClass.CLASS);
-			
-			
+
+
 			return new CinciaMethod(lambdex, this::eval);			
 		} catch (Exception e) {
 
@@ -1025,35 +1025,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
-		
-		
+
+
 		if(type == Type.Any || type == Type.Module) {
 			return new TypeWrapper(type);
 		}
-		
+
 		if(type instanceof IdentifierType) {
 			// fetch extant class from current scope
 			return enviro.get(((IdentifierType)type).value);
 		}
-		
-//		if(type instanceof PrimitiveType) {
-//			return new TypeWrapper(type.resolve(null, enviro));
-//		}
-		
-//		if(type instanceof Signature) {
-//			return evalFunctionSignature((Signature)type, enviro);	
-//			return new TypeWrapper(type.resolve(this::eval, enviro));
-//		}
-		
-//		if(type instanceof UnionType) {
-//			return evalUnionType( (UnionType)type, enviro);
-			return new TypeWrapper(type.resolve(this::eval, enviro));
-//		}
-		
-		//TODO: collection types
-		
-//		return null;
-		
+
+
+		//TODO: implement resolve in collection types		
+		return new TypeWrapper(type.resolve(this::eval, enviro));
+
 	}
 
 
