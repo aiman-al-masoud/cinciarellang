@@ -72,6 +72,9 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 			return eval.eval(lambdex.expression, enviro);
 		}
 
+		
+		//TODO:add check on return value type!
+		
 		throw new RuntimeException("Lambda without expression nor block!");
 	}
 
