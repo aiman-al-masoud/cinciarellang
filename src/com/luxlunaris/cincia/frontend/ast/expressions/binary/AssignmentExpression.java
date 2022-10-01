@@ -16,13 +16,13 @@ public class AssignmentExpression extends AbstractBinaryExpression{
 	 * A comment describing the assigned variable.
 	 */
 	public String comment;
-	
+
 	/**
 	 * Assignment specific modifiers.
 	 */
 	public List<Modifiers> modifiers;
-	
-	
+
+
 	public AssignmentExpression() {
 		modifiers = new ArrayList<>();
 	}
@@ -47,8 +47,16 @@ public class AssignmentExpression extends AbstractBinaryExpression{
 
 			}
 
+			// re-insert modifiers after simplifying
+			try {
+				((AssignmentExpression)exp).modifiers = this.modifiers;
+			} catch (ClassCastException e) {
+
+			}
+
 			return exp;
 		}else {
+
 
 			this.left = left.simplify();
 			this.right = right.simplify();
