@@ -1,0 +1,15 @@
+A = class{
+	f = \->'ciao mondo!';
+}
+
+B = class{
+	g = \x->2*x;
+}
+
+x:A;
+x = A();
+// x = B(); //TODO: catch and show exception
+true;
+
+
+
