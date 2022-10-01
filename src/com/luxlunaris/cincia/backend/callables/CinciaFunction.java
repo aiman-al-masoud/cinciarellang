@@ -19,8 +19,9 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
-	//TODO: make an interface and a better abstract class, add option to use 
-	// java.reflect.Method in place of lambdex or wrappedFunction.
+	
+	//TODO: all functions must declare a signature, no "NativeCode" type.
+	//TODO: in stdlib, in magic methods etc ...
 
 	protected LambdaExpression lambdex;
 	protected List<Parameter> params;
