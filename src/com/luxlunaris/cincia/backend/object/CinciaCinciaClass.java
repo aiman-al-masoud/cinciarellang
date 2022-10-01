@@ -69,7 +69,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 		//Check for declared but undefined methods on this class before creating a copy (instance/object).
 		boolean undefinedMethods = this.getEnviro().vars.entrySet().stream().anyMatch( e-> e.getValue()==null && (this.getEnviro().getType(e.getKey()) instanceof Signature)  );
 
-		if(undefinedMethods) {
+		if(undefinedMethods) { //TODO: add list of undefined attribs
 			throw new RuntimeException("Cannot instantiate class with undefined methods!");
 		}
 
@@ -80,14 +80,10 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 
 
 		//Check for declared but undefined attributes after calling the object's constructor.
-		boolean undefinedAnything = obj.getEnviro().vars.entrySet()
-				.stream()
-				.anyMatch( e-> e.getValue()==null);
+		boolean undefinedAnything = obj.getEnviro().vars.entrySet().stream().anyMatch( e-> e.getValue()==null);
 
-
-		if(undefinedAnything) {
-			TypeError error = new TypeError("Cannot instantiate class with undefined attributes!");
-			throw error;
+		if(undefinedAnything) { //TODO: add list of undefined attribs
+			throw new TypeError("Cannot instantiate class with undefined attributes!");
 		}
 
 		return obj;
