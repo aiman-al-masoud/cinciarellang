@@ -477,7 +477,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}else {
 			// wrap non-throwable in a throwable
 			CinciaException exception = new CinciaException();
-			exception.set("value", throwable);
+			exception.set("value", throwable); //TODO: extract name
 			throw exception;
 		}
 
