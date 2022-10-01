@@ -442,7 +442,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
 		
-		System.out.println(key+" "+val+" "+type+" "+modifiers);
+//		System.out.println(key+" "+val+" "+type+" "+modifiers);
 
 		
 		checkImmutable();
