@@ -126,7 +126,7 @@ public class Parser {
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
-//			System.out.println("is declaration ");
+			//			System.out.println("is declaration ");
 			res = parseDeclStatement();
 		}else {
 			res = parseExpressionStatement();
@@ -562,22 +562,28 @@ public class Parser {
 	}
 
 
+	private List<Modifiers> parseAssignmentModifiers(){
+		
+		try {
+
+			if(Modifiers.isAssignmentModifier(((Modifier)tStream.peek()).value)) {
+				List<Modifiers> modifiers = parseModifiers();
+				return modifiers;
+			}
+
+		} catch (ClassCastException e) {
+
+		}
+
+		return Arrays.asList();
+
+	}
+
+
 	private Expression parseAsgnExpression() { //right assoc
 		
 		
-		//TODO: check for "AssignmentModifier"s (val/final, static, )
-//		if(tStream.peek() instanceof Modifier) {
-//			System.out.println(tStream.peek());
-//			List<Modifiers> modifiers = parseModifiers();
-//			System.out.println(modifiers);
-//		}
-		
-		
-		
-		
-		
-		
-		
+		List<Modifiers> modifiers = parseAssignmentModifiers();
 
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
@@ -617,6 +623,7 @@ public class Parser {
 
 
 		asgn1.comment = tStream.getCurrentComment();
+		asgn1.modifiers = modifiers;
 		return asgn1;
 
 	}

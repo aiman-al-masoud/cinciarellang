@@ -679,6 +679,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		
+//	TODO	assex.modifiers
 		// set 
 		try {
 			container.set(key, rval); //TODO: also set modifiers
