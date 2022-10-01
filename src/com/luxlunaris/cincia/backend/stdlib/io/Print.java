@@ -17,14 +17,8 @@ public class Print extends CinciaFunction {
 
 	public Print() {
 
-		super(Print::printWrapper, null);
-		Signature signature = new Signature();		
-		VariableDeclaration vD = new VariableDeclaration();
-		vD.name = new Identifier("x");
-		vD.type = new PrimitiveType(PrimitiveType.STRING); 
-		signature.params =vD; //TODO: actually it's an unlimited number of args
-		signature.returnType = Type.Any; //TODO: actually it's void, or IO
-		this.type = signature;
+		super(Print::printWrapper, getSignature());
+		
 
 	}
 
@@ -33,6 +27,16 @@ public class Print extends CinciaFunction {
 		args.forEach(e->{System.out.print(   e instanceof CinciaString ? ((CinciaString)e).toJava()   :e ); System.out.print(" ");  });
 		System.out.println();
 		return null;
+	}
+	
+	protected static Signature getSignature() {
+		Signature signature = new Signature();		
+		VariableDeclaration vD = new VariableDeclaration();
+		vD.name = new Identifier("x");
+		vD.type = new PrimitiveType(PrimitiveType.STRING); 
+		signature.params =vD; //TODO: actually it's an unlimited number of args
+		signature.returnType = Type.Any; //TODO: actually it's void, or IO
+		return signature;
 	}
 
 }

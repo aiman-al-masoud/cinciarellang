@@ -1,0 +1,4 @@
+f = \x:int:int -> 2*x;
+g = \x:int:int -> 3*x;
+h = \x:int:float -> 3*x; //TODO: must cast output to float!
+f.type == g.type && g.type != h.type;

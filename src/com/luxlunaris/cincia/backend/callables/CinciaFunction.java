@@ -10,6 +10,7 @@ import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
@@ -28,7 +29,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 	public CinciaFunction(LambdaExpression lambdex, Eval eval) {
 
-		super(lambdex.signature);
+		super(new TypeWrapper(lambdex.signature));
 		this.eval = eval;
 		this.lambdex = lambdex;
 		params = initParams(lambdex);	
@@ -36,7 +37,7 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 	}
 
 	public CinciaFunction(WrappedFunction wrappedFunction, Signature signature) {
-		super(signature);
+		super(new TypeWrapper(signature));
 		this.wrappedFunction = wrappedFunction;
 	}
 
