@@ -21,7 +21,12 @@ public enum Modifiers {
 	public static boolean isModifier(String string) {
 		return fromString(string) !=null;
 	}
-	
+
+	/**
+	 * Modifier that is valid on the left side of an assignment expression.
+	 * @param modifier
+	 * @return
+	 */
 	public static boolean isAssignmentModifier(Modifiers modifier) {
 		return Arrays.asList( Modifiers.FINAL, Modifiers.STATIC, Modifiers.PRIVATE ).contains(modifier);
 	}
