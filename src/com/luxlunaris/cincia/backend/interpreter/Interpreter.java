@@ -816,6 +816,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		try {
 			// Check if env belongs to class, in that case return a method.
 			CinciaCinciaClass b = (CinciaCinciaClass)enviro.get(CinciaCinciaClass.CLASS);
+			
+//			lambdex.signature = lambdex.signature.resolve(this::eval, enviro);
+			
+			
 			return new CinciaMethod(lambdex, this::eval);			
 		} catch (Exception e) {
 
