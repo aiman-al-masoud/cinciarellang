@@ -1052,9 +1052,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalFunctionSignature(Signature signature, Enviro enviro) {
 		
 
-		System.out.println(signature);
+//		System.out.println(signature);
 		Signature resolvedSignature = 	signature.resolve(this::eval, enviro);
-		System.out.println(resolvedSignature);		
+//		System.out.println(resolvedSignature);		
+//		return resolvedSignature;
 		return null;
 		
 	}
