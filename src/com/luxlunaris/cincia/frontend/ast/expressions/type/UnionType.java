@@ -2,6 +2,7 @@ package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.object.Enviro;
@@ -13,10 +14,10 @@ import com.sun.source.tree.Tree;
 //TODO: add in EBNF
 public class UnionType implements Type{
 
-	public List<SingleType> types;
+	public List<Type> types;
 
 	public UnionType() {
-		types = new ArrayList<SingleType>();
+		types = new ArrayList<Type>();
 	}
 
 	public void addType(SingleType sT) {
@@ -40,11 +41,13 @@ public class UnionType implements Type{
 
 	@Override
 	public boolean matches(Type other) {
-
+		
+		var other2 = other.unwrap();
+		
 		// if other is another union
 		try {
 
-			UnionType otherUnion = (UnionType)other;
+			UnionType otherUnion = (UnionType)other2;
 
 			//TODO: make sure the 2 lists of simple types are sorted in the same order
 			for(int i=0; i < otherUnion.types.size(); i++) {
@@ -60,7 +63,7 @@ public class UnionType implements Type{
 
 
 		// if other is a simple type
-		return types.stream().anyMatch(t->t.matches(other));
+		return types.stream().anyMatch(t->t.matches(other2));
 	}
 	
 	@Override
@@ -70,11 +73,11 @@ public class UnionType implements Type{
 	
 	
 
-	//TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	@Override
 	public Type resolve(Eval eval, Enviro enviro) {
-		//TODO!!!!!!!!!!!!!!
-		return this;
+		UnionType u = new UnionType();
+		u.types =  this.types.stream().map(t-> (Type) eval.eval(t, enviro)).collect(Collectors.toList());
+		return u;
 	}
 
 }

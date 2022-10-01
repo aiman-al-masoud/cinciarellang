@@ -1070,11 +1070,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalUnionType( UnionType type, Enviro enviro ) {
 		
 		
-		List<Type> types = type.types.stream().map(t-> (Type) eval(t, enviro)).collect(Collectors.toList());
-		UnionType t = new UnionType();
+//		List<Type> types = type.types.stream().map(t-> (Type) eval(t, enviro)).collect(Collectors.toList());
+//		UnionType t = new UnionType();
 //		t.types = types;
 	
-		return null;
+		return new TypeWrapper(type.resolve(this::eval, enviro));
 //		return t;
 	}
 	
