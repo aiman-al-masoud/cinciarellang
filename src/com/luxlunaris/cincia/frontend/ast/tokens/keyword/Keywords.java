@@ -27,8 +27,6 @@ public enum Keywords {
 	PRIVATE,
 	STATIC,
 	FINAL,
-	GET,
-	SET,
 	IS,
 	IN,
 	INT,
