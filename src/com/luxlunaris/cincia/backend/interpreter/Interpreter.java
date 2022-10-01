@@ -678,6 +678,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
+		
 		// set 
 		try {
 			container.set(key, rval); //TODO: also set modifiers

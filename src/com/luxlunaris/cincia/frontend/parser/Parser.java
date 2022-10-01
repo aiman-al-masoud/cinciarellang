@@ -563,6 +563,20 @@ public class Parser {
 
 
 	private Expression parseAsgnExpression() { //right assoc
+		
+		
+//		if(tStream.peek() instanceof Modifier) {
+//			System.out.println(tStream.peek());
+//			List<Modifiers> modifiers = parseModifiers();
+//			System.out.println(modifiers);
+//		}
+		
+		
+		
+		
+		
+		
+		
 
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
