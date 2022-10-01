@@ -1057,30 +1057,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return null;
 		
 	}
-	
-//	public CinciaObject evalFunctionSignature(Signature signature, Enviro enviro) {
-//		
-//
-////		System.out.println(signature);
-//		Signature resolvedSignature = 	signature.resolve(this::eval, enviro);
-////		System.out.println(resolvedSignature);		
-////		return resolvedSignature;
-//		return new TypeWrapper(resolvedSignature) ;
-//		
-//	}
-//	
-//	public CinciaObject evalUnionType( UnionType type, Enviro enviro ) {
-//		
-//		
-////		List<Type> types = type.types.stream().map(t-> (Type) eval(t, enviro)).collect(Collectors.toList());
-////		UnionType t = new UnionType();
-////		t.types = types;
-//	
-//		return new TypeWrapper(type.resolve(this::eval, enviro));
-////		return t;
-//	}
-	
-	
 
 
 }
