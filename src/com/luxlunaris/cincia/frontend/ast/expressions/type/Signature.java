@@ -1,8 +1,14 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
+import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -29,7 +35,7 @@ public class Signature implements Type{
 	public Signature simplify() { //TODO: how does THIS work? Auto upcast?
 
 		if(params!=null) {
-			this.params = params.simplify();
+			this.params = params.simplify();			
 		}
 
 		if(returnType!=null) {
@@ -101,10 +107,34 @@ public class Signature implements Type{
 	}
 
 	//TODO: to type wrapper
-	//??? But now ast knows about backend? But only interfaces
-	//	public Object toCincia(Eval eval, Stateful enviro) {
-	//		
-	//	}
+	//??? But now ast knows about backend? Only expose interfaces
+	// resolve eventual custom types within this Signature
+	public Signature resolve(Eval eval, Enviro enviro) {		
+
+		Signature signature = new Signature();
+		
+		signature.returnType = (Type) eval.eval(this.returnType, enviro);
+		
+		
+		var oldParams =  this.params.toList();
+		
+		var newParams =	oldParams.stream().map(p->{ 
+			
+			var newType = (Type) eval.eval(p.getType(), enviro);
+			p.changeType(newType);
+			return p;
+		
+		}).collect(Collectors.toList());
+		
+		
+		MultiDeclaration mD = new MultiDeclaration();
+		mD.declarations = newParams;
+		
+		signature.params = mD.simplify();
+		
+	
+		return signature;
+	}
 
 
 

@@ -63,5 +63,16 @@ public class VariableDeclaration extends SingleDeclaration{
 	public List<SingleDeclaration> toList() {
 		return Arrays.asList(this);
 	}
+
+	@Override
+	public Declaration changeType(Type newType) {
+		
+		VariableDeclaration vD = new VariableDeclaration();
+		vD.modifiers = this.modifiers;
+		vD.name = this.name;
+		vD.type  = newType;
+		
+		return vD;
+	}
 	
 }

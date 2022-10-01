@@ -1045,21 +1045,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		
 	}
 	
-	public CinciaObject evalFunctionSignature(Signature type, Enviro enviro) {
-		
-		List<Type> paramTypes = type.params.toList()
-									.stream()
-									.map(d-> (Type) eval(d.getType(), enviro) )
-									.collect(Collectors.toList());
-		
-		Type returnType = (Type) eval(type.returnType, enviro);
-		
-//		System.out.println(paramTypes);
-		
-//		System.out.println(returnType);
+	public CinciaObject evalFunctionSignature(Signature signature, Enviro enviro) {
 		
 
-		
+		System.out.println(signature);
+		Signature resolvedSignature = 	signature.resolve(this::eval, enviro);
+		System.out.println(resolvedSignature);		
 		return null;
 		
 	}

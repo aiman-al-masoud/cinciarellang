@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 /**
  * Sequence of comma-separated simple expressions
@@ -30,6 +31,11 @@ public class MultiDeclaration implements Declaration{
 	@Override
 	public Declaration simplify() {
 		this.declarations  = declarations.stream().map(d-> (SingleDeclaration) d.simplify()).collect(Collectors.toList());
+		
+		if(this.declarations.size()==1) {
+			return this.declarations.get(0);
+		}
+		
 		return this;
 	}
 
@@ -37,5 +43,11 @@ public class MultiDeclaration implements Declaration{
 	public List<SingleDeclaration> toList() {
 		return declarations;
 	}
+
+	@Override
+	public Declaration changeType(Type newType) {
+//		declarations.stream().map(d->d.changeType(newType))'
+		throw new RuntimeException("Not implemented");
+ 	}
 
 }

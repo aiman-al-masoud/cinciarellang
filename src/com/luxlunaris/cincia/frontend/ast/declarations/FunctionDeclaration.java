@@ -55,5 +55,14 @@ public class FunctionDeclaration extends SingleDeclaration {
 	public List<SingleDeclaration> toList() {
 		return Arrays.asList(this);
 	}
+
+	@Override
+	public Declaration changeType(Type newType) {
+		FunctionDeclaration fD =  new FunctionDeclaration();
+		fD.modifiers = this.modifiers;
+		fD.name = this.name;
+		fD.signature = (Signature)newType; //TODO
+		return fD;
+	}
 	
 }
