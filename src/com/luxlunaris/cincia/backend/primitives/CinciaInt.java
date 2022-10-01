@@ -188,6 +188,8 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	@Override
 	public CinciaObject as(List<CinciaObject> args) {
 
+		
+		//TODO: cast to Type instead
 		CinciaObject type = args.get(0);
 
 		try {

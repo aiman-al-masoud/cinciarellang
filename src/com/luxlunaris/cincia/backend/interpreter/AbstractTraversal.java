@@ -1,7 +1,10 @@
 package com.luxlunaris.cincia.backend.interpreter;
 
+import java.util.Arrays;
+
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
+import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
@@ -279,7 +282,17 @@ public abstract class AbstractTraversal<T> {
 			return evalConstant((Constant)primex, enviro);
 
 		}else if(primex instanceof Keyword) {
-			return (T) new CinciaKeyword( ((Keyword)primex).value );
+			
+			Keywords kw = ((Keyword)primex).value;
+			
+			
+			if(Arrays.asList( PrimitiveType.ANY, PrimitiveType.INT, PrimitiveType.FLOAT, PrimitiveType.STRING, PrimitiveType.BOOL, PrimitiveType.MODULE  ).contains(kw)) {
+//			System.out.println("found this keyword: "+kw);
+				return   (T) new TypeWrapper(new PrimitiveType(kw)); 
+			}
+			
+			
+//			return (T) new CinciaKeyword( ((Keyword)primex).value );
 			//			return (T) new CinciaClass();
 		}
 
