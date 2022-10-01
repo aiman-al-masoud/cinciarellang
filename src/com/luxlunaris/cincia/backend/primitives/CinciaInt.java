@@ -3,7 +3,7 @@ package com.luxlunaris.cincia.backend.primitives;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
-import com.luxlunaris.cincia.backend.types.CinciaPrimitiveType;
+import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 //TODO: MAKE THIS ALSO A WRAPPER FOR LOOOOOOOONG
@@ -15,7 +15,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	private int value;
 
 	public CinciaInt(int value) {
-		super(new CinciaPrimitiveType(PrimitiveType.INT));
+		super(new TypeWrapper(new PrimitiveType(PrimitiveType.INT)));
 		this.value = value;	
 		setImmutable();
 	}

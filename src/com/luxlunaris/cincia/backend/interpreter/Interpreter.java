@@ -31,7 +31,6 @@ import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
-import com.luxlunaris.cincia.backend.types.CinciaPrimitiveType;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
@@ -814,11 +813,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 
+		//TODO
+		lambdex.signature = lambdex.signature.resolve(this::eval, enviro);
+		
+		
 		try {
 			// Check if env belongs to class, in that case return a method.
 			CinciaCinciaClass b = (CinciaCinciaClass)enviro.get(CinciaCinciaClass.CLASS);
-			
-//			lambdex.signature = lambdex.signature.resolve(this::eval, enviro);
 			
 			
 			return new CinciaMethod(lambdex, this::eval);			
@@ -1028,7 +1029,12 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 //		System.out.println(type.getClass());
 		
 		if(type instanceof PrimitiveType) {
-			return new CinciaPrimitiveType(  ((PrimitiveType)type).value );
+			return new TypeWrapper(type);
+//			return new CinciaPrimitiveType(  ((PrimitiveType)type).value );
+		}
+		
+		if(type == Type.Any) {
+			return new TypeWrapper(type);
 		}
 		
 		if(type instanceof IdentifierType) {

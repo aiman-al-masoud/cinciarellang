@@ -1,7 +1,7 @@
 package com.luxlunaris.cincia.backend.primitives;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
-import com.luxlunaris.cincia.backend.types.CinciaPrimitiveType;
+import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -11,7 +11,7 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 	private double value;
 
 	public CinciaFloat(double value) {
-		super(new CinciaPrimitiveType(PrimitiveType.FLOAT));
+		super(new TypeWrapper(new PrimitiveType(PrimitiveType.FLOAT)));
 		this.value = value;		
 	}
 

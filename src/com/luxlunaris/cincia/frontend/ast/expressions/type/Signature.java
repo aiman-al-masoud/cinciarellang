@@ -1,5 +1,7 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +49,9 @@ public class Signature implements Type{
 
 	@Override
 	public boolean matches(Type other) {
+		
+//		System.out.println("comparing signatures, this: "+this+", other: "+other);
+
 
 		try {
 
@@ -56,13 +61,30 @@ public class Signature implements Type{
 			if(otherSig == null ){//|| params == null ) {
 				return false;
 			}
-
+			
 			if(!matchParams(params, otherSig.params)) {
+//				System.out.println("params don't match!");
 				return false;
 			}
+			
+//			System.out.println("params match!");
 
 			// last but not least, check return type
-			return matchReturnType(returnType, otherSig.returnType);
+			
+			boolean returnTypeMatches =  matchReturnType(this.returnType, otherSig.returnType);
+			
+			
+			if(!returnTypeMatches) {
+				
+//				System.out.println("return type doesn't match!");
+//				System.out.println("this: "+this.returnType.getClass());
+//				System.out.println("other: "+otherSig.returnType.getClass());
+				
+				
+//				System.out.println();
+			}
+			
+			return returnTypeMatches ;
 
 		} catch (ClassCastException e) {
 
@@ -74,6 +96,7 @@ public class Signature implements Type{
 
 
 	protected boolean matchParams(Declaration params1, Declaration params2) {
+		
 
 		// both this and other don't take params?
 		if(params1 == null && params2 == null) {
@@ -116,7 +139,8 @@ public class Signature implements Type{
 		signature.returnType = (Type) eval.eval(this.returnType, enviro);
 		
 		
-		var oldParams =  this.params.toList();
+		
+		List<SingleDeclaration> oldParams = this.params==null? Arrays.asList() : this.params.toList();
 		
 		var newParams =	oldParams.stream().map(p->{ 
 			

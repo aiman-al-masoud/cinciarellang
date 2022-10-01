@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
-import com.luxlunaris.cincia.backend.types.CinciaPrimitiveType;
+import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 public class CinciaBool extends PrimitiveCinciaObject {
@@ -12,7 +12,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	private boolean value;
 
 	public CinciaBool(boolean value) {
-		super(new CinciaPrimitiveType(PrimitiveType.BOOL));
+		super(new TypeWrapper(new PrimitiveType(PrimitiveType.BOOL)));
 		this.value = value;
 	}
 
