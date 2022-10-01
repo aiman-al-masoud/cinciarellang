@@ -60,5 +60,10 @@ public class UnionType implements Type{
 		// if other is a simple type
 		return types.stream().anyMatch(t->t.matches(other));
 	}
+	
+	@Override
+	public Type unwrap() {
+		return this;
+	}
 
 }

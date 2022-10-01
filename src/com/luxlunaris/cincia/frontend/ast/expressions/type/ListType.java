@@ -36,5 +36,10 @@ public class ListType  extends CollectionType{
 
 		return false;
 	}
+	
+	@Override
+	public Type unwrap() {
+		return this;
+	}
 
 }

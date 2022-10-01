@@ -10,5 +10,7 @@ public interface Type extends Expression{
 	
 	boolean matches(Type other);
 	
+	Type unwrap();
+	
 	
 }

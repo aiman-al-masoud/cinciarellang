@@ -162,7 +162,10 @@ public class Signature implements Type{
 
 
 
-
+	@Override
+	public Type unwrap() {
+		return this;
+	}
 
 
 }

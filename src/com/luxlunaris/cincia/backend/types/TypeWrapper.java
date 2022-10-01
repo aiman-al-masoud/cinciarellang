@@ -40,5 +40,10 @@ public class TypeWrapper extends AbstractCinciaObject implements Type {
 	public Type getType() {
 		return type;
 	}
+	
+	@Override
+	public Type unwrap() {
+		return type;
+	}
 
 }

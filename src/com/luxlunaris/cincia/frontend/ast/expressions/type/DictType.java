@@ -37,4 +37,9 @@ public class DictType extends CollectionType{
 		return false;
 	}
 	
+	@Override
+	public Type unwrap() {
+		return this;
+	}
+	
 }

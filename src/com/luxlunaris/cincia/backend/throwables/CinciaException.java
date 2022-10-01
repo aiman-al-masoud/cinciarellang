@@ -283,6 +283,11 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public Object toJava(Object... args) {
 		return object.toJava(args);
+	}
+
+	@Override
+	public Type unwrap() {
+		return object.getType().unwrap();
 	}	
 
 

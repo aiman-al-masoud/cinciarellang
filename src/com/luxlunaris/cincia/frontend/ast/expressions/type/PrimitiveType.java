@@ -26,11 +26,7 @@ public class PrimitiveType extends OneNameType{
 	public boolean matches(Type other) {
 		
 		
-		// TODO: this is very ugly
-		if(other instanceof TypeWrapper) {
-			return this.matches((	(TypeWrapper)other).getType());
-		}
-
+		other =other.unwrap();
 		
 		try {
 			return value.equals(((PrimitiveType)other).value);
@@ -40,6 +36,11 @@ public class PrimitiveType extends OneNameType{
 		
 		return false;
 		
+	}
+	
+	@Override
+	public Type unwrap() {
+		return this;
 	}
 	
 }

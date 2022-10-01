@@ -65,7 +65,10 @@ public class JavaClass extends JavaObject implements CinciaClass{
 		return null;
 	}
 
-
+	@Override
+	public Type unwrap() {
+		return this;
+	}
 
 
 }

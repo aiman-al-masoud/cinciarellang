@@ -35,5 +35,10 @@ public class IdentifierType extends OneNameType{
 		
 		return false;
 	}
+	
+	@Override
+	public Type unwrap() {
+		return this;
+	}
 
 }

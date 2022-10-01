@@ -260,6 +260,11 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 		super.set(key, val);
 	}
 
+	@Override
+	public Type unwrap() {
+		return this;
+	}
+
 
 
 
