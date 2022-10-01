@@ -29,11 +29,8 @@ public class Compiler {
 		TokenStream tokenStream = new TokenStream(charStream);
 		Parser parser = new Parser(tokenStream);
 		List<Statement> statements = parser.parse();
-//		System.out.println("statements: "+statements);
 		List<Ast> simplifiedStatements = statements.stream().map(s->s.simplify()).collect(Collectors.toList());
 		
-//		System.out.println("simp statements: "+simplifiedStatements);
-
 		return simplifiedStatements;
 
 	}

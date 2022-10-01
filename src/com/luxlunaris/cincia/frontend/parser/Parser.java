@@ -126,6 +126,7 @@ public class Parser {
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
+//			System.out.println("is declaration ");
 			res = parseDeclStatement();
 		}else {
 			res = parseExpressionStatement();
