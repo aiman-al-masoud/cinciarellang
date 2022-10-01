@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
+import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
@@ -23,6 +24,12 @@ public class PrimitiveType extends OneNameType{
 
 	@Override
 	public boolean matches(Type other) {
+		
+		
+		// TODO: this is very ugly
+		if(other instanceof TypeWrapper) {
+			return this.matches((	(TypeWrapper)other).getType());
+		}
 
 		
 		try {

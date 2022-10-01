@@ -34,5 +34,10 @@ public class Parameter {
 	public Parameter byCopy() {
 		return new Parameter(name, type, modifiers.stream().filter(  m-> m!=Modifiers.REF  ).collect(Collectors.toList())  );
 	}
+	
+	@Override
+	public String toString() {
+		return "Parameter{ name="+name+", type="+type+", modifiers="+modifiers+" }";
+	}
 
 }

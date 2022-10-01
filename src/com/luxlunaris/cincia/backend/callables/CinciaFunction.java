@@ -60,6 +60,13 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 				Parameter p = params.get(i);
 				CinciaObject arg = args.get(i);
+//				System.out.println(p+" val="+arg);
+				
+//				System.out.println(p.type.matches(arg.getType()));
+
+				
+//				System.out.println(p.type.getClass());
+//				System.out.println(arg.getType().getClass());
 				enviro.set(p.name, p.isByRef()? arg : arg.copy(args), p.type);	
 			}
 
