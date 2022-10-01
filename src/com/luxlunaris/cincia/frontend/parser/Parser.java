@@ -565,6 +565,7 @@ public class Parser {
 	private Expression parseAsgnExpression() { //right assoc
 		
 		
+		//TODO: check for "AssignmentModifier"s (val/final, static, )
 //		if(tStream.peek() instanceof Modifier) {
 //			System.out.println(tStream.peek());
 //			List<Modifiers> modifiers = parseModifiers();
