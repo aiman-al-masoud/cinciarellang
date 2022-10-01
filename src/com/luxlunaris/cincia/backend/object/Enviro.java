@@ -76,11 +76,7 @@ public class Enviro implements Stateful{
 		return o;
 
 	}
-
-
-
-
-
+	
 	@Override
 	public Type getType(String key) {
 		return types.get(key);
