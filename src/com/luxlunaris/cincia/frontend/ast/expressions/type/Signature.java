@@ -1,5 +1,8 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
+import com.luxlunaris.cincia.backend.interfaces.Eval;
+import com.luxlunaris.cincia.backend.interfaces.Stateful;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -129,7 +132,12 @@ public class Signature implements Type{
 		return retype1.matches(retype2);
 		
 	}
-
+	
+	//TODO: to type wrapper
+	//??? But now ast knows about backend? But only interfaces
+//	public Object toCincia(Eval eval, Stateful enviro) {
+//		
+//	}
 
 
 
