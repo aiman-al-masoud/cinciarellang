@@ -1,4 +1,4 @@
-package com.luxlunaris.cincia.backend.primitives;
+package com.luxlunaris.cincia.backend.types;
 
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;

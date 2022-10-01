@@ -15,6 +15,7 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.IterMethods;
 import com.luxlunaris.cincia.backend.iterables.CinciaList;
+import com.luxlunaris.cincia.backend.types.CinciaPrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 //TODO: implement iterable methods

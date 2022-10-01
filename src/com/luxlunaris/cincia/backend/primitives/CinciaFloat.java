@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.backend.primitives;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.types.CinciaPrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 

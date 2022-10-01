@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.types.CinciaPrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 public class CinciaBool extends PrimitiveCinciaObject {
