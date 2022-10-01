@@ -36,6 +36,7 @@ public enum Keywords {
 	BOOL,
 	DEC,// decalaration	
 	TO,
+	BY,
 	STRING,
 	REF,
 	NONLOCAL,
