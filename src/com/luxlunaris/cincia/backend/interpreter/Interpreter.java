@@ -550,7 +550,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				.flatMap( e -> e instanceof DestructuredList? ((DestructuredList)e).getList().stream() : Stream.of(e) ) // flatten out values to be unpacked
 				.collect(Collectors.toList());
 
-		return new CinciaList(elems); //TODO: specify type
+		return new CinciaList(elems); 
 	}
 
 	@Override
