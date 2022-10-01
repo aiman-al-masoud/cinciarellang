@@ -16,6 +16,7 @@ import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class CinciaFunction extends AbstractCinciaObject implements Callable{
@@ -37,10 +38,16 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		setImmutable(); // functions are immutable
 	}
 
-	public CinciaFunction(WrappedFunction wrappedFunction) {
+	public CinciaFunction(WrappedFunction wrappedFunction, Signature signature) {
+		super(signature);
+		this.wrappedFunction = wrappedFunction;
+	}
+	
+	public CinciaFunction(WrappedFunction wrappedFunction) { //TODO: phase out this constructor without a signature
 		super(new IdentifierType("NativeCode")); //TODO: put an actual signature here
 		this.wrappedFunction = wrappedFunction;
 	}
+
 
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 		
