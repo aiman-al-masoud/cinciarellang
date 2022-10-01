@@ -22,7 +22,7 @@ import com.luxlunaris.cincia.backend.iterables.CinciaDict;
 import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.iterables.DestructuredList;
 import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
-import com.luxlunaris.cincia.backend.object.CinciaInterface;
+//import com.luxlunaris.cincia.backend.object.CinciaInterface;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
@@ -53,7 +53,6 @@ import com.luxlunaris.cincia.frontend.ast.expressions.forexp.Generator;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.objects.InterfaceExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListExpression;
@@ -62,10 +61,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.UnionType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -708,10 +704,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			eval(assign, c.getEnviro());
 		}
 
-		for(Identifier inter : classex.interfaces) {
-			c.addInterface((CinciaInterface)eval(inter, enviro)); //TODO: handle classcast exception
-		}
-
 		return c;
 	}
 
@@ -768,12 +760,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 		return result;
-	}
-
-	@Override
-	public CinciaObject evalInterfaceExpression(InterfaceExpression interex, Enviro enviro) {
-		//TODO: superinterfaces
-		return new CinciaInterface(interex);
 	}
 
 	@Override

@@ -12,7 +12,9 @@ public class AddSemicols {
 				// add null op as first stm of class, otherwise if first statement 
 				// was a declaration it wouldn't get recognized by AddDecKeyword.
 				//TODO: put this in Preprocessor
-				.replaceFirst("(.*("+Keywords.CLASS+"|"+Keywords.INTERFACE+").*)\\{", "$1{ 0;")
+//				.replaceFirst("(.*("+Keywords.CLASS+"|"+Keywords.INTERFACE+").*)\\{", "$1{ 0;")
+				.replaceFirst("(.*("+Keywords.CLASS+").*)\\{", "$1{ 0;")
+
 				
 				.replace("}\n", "};\n");
 	}

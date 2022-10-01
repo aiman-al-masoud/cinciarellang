@@ -41,23 +41,6 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 		set(name, value, value.type);
 	}	
 
-	//TODO: useless!
-	public void addInterface(CinciaInterface cincinterface) {
-
-		cincinterface.getDeclarations().forEach(d->{
-
-			try {
-
-				get(d.getName());
-
-			} catch (Exception e) {
-				throw new RuntimeException("Required field from interface missing!");
-			}
-
-		});
-
-	}
-
 	/**
 	 * Creates and returns a new object of the same type as this class.
 	 * @param args
@@ -222,10 +205,6 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 	public Type resolve(Eval eval, Enviro enviro) {
 		return this;
 	}
-
-
-
-
 
 
 }

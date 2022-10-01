@@ -27,7 +27,6 @@ import com.luxlunaris.cincia.frontend.ast.expressions.forexp.Generator;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.objects.InterfaceExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListExpression;
@@ -50,7 +49,6 @@ import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
-import com.luxlunaris.cincia.frontend.ast.interfaces.LeftValue;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
@@ -70,7 +68,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
@@ -79,7 +76,6 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
-import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuation;
 import com.luxlunaris.cincia.frontend.ast.tokens.punctuation.Punctuations;
 import com.luxlunaris.cincia.frontend.tokenstream.TokenStream;
 
@@ -213,20 +209,20 @@ public class Parser {
 			// not identifier nor comma
 			break;
 		}
-		
-		
+
+
 		// if curly open eat block 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {			
 			fS.block = parseCompStatement();
 		}
-		
+
 		// if arrow parse "yield" part for for expression
 		if(tStream.peek().getValue().equals(Operators.ARROW)) {
 			eat(Operators.ARROW);
 			fS.yield = parseSingleExpression();
 		}
-		
-		
+
+
 		return fS;
 	}
 
@@ -252,16 +248,16 @@ public class Parser {
 
 		eat(Keywords.IN); 	
 		g.iterable = parseSingleExpression();
-		
-		
+
+
 		// parse filter
 		if (tStream.peek().getValue().equals(Keywords.IF)) {
 			eat(Keywords.IF);
 			g.filter = parseSingleExpression();
-			
+
 		}
-		
-		
+
+
 		return g;
 	}
 
@@ -604,8 +600,8 @@ public class Parser {
 			}
 
 		}
-		
-		
+
+
 		asgn1.comment = tStream.getCurrentComment();
 		return asgn1;
 
@@ -620,7 +616,7 @@ public class Parser {
 		if( tStream.peek().getValue().equals(Keywords.MATCH)) {
 			return parseMatchExpression();
 		}
-		
+
 		if(tStream.peek().getValue().equals(Keywords.FOR)) {
 			return parseForExpression();
 		}
@@ -906,7 +902,9 @@ public class Parser {
 
 		// TODO: change EBNF, objects expressions are now primary expressions (does that make sense?)
 		// if it starts with modifer, or 'class' or 'interface' or '{' or '[' it's an object
-		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS)|| tStream.peek().getValue().equals(Keywords.INTERFACE) || tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
+		//		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS)|| tStream.peek().getValue().equals(Keywords.INTERFACE) || tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
+
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS) || tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
 
 			return parseObjectExpression();
 		}
@@ -965,10 +963,6 @@ public class Parser {
 			return parseClassExpression(modifiers);
 		}
 
-		if(tStream.peek().getValue().equals(Keywords.INTERFACE)) {
-			return parseInterfaceExpression(modifiers);
-		}
-
 		tStream.croak("Expected object-expression");
 		return null;
 	}
@@ -998,23 +992,6 @@ public class Parser {
 		cE.modifiersList = modifiers;
 		eat(Keywords.CLASS);
 
-		//listensto, implements, extends could come in any order
-		while( !tStream.isEnd() && !tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {  
-
-			if(tStream.peek().getValue().equals(Keywords.LISTENSTO)) {
-				eat(Keywords.LISTENSTO);
-				cE.observables = parseIdList();
-			}else if(tStream.peek().getValue().equals(Keywords.IMPLEMENTS)) {
-				eat(Keywords.IMPLEMENTS);
-				cE.interfaces = parseIdList();
-			}else if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {
-				eat(Keywords.EXTENDS);
-				cE.superclass = parseIdentifier();
-			}else {
-				break;
-			}
-		}
-
 		eat(Punctuations.CURLY_OPN);
 
 		while(!tStream.isEnd()) {
@@ -1040,40 +1017,7 @@ public class Parser {
 		eat(Punctuations.CURLY_CLS);
 		return cE;
 	}
-
-
-
-	private InterfaceExpression parseInterfaceExpression(List<Modifiers> modifiers) {
-
-		InterfaceExpression iE = new InterfaceExpression();
-		iE.modifiers = modifiers;
-		eat(Keywords.INTERFACE);
-
-		if(tStream.peek().getValue().equals(Keywords.EXTENDS)) {				
-			iE.superInterfaces = parseIdList();
-		}
-
-		eat(Punctuations.CURLY_OPN);
-
-		while (!tStream.isEnd()) {
-
-			if(tStream.peek().getValue().equals(Punctuations.CURLY_CLS)) {
-				break;
-			}
-
-			try {
-				Statement s  = parseStatement();
-				iE.addDeclaration(((DeclarationStatement)s).declaration);
-			}catch (ClassCastException e) {}
-
-		}
-
-		eat(Punctuations.CURLY_CLS);
-		return iE;
-
-	}
-
-
+	
 	private List<Identifier> parseIdList(){ //comma separated
 
 		ArrayList<Identifier> ids = new ArrayList<Identifier>();
@@ -1123,7 +1067,6 @@ public class Parser {
 		eat(Punctuations.COMMA);
 		MultiExpression mE = parseMultiExpression();
 		mE.expressions.add(0, exp);
-		//		ListExpression lE = new ListExpression();
 		lE.elements = mE;
 		eat(Punctuations.SQBR_CLS);
 		return lE;
