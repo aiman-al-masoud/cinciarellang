@@ -17,7 +17,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaClass{
 
-	public static String CLASS = "class";
+	public static String CLASS = "class"; //TODO: maybe useless, see comment down
 
 	public CinciaCinciaClass() {
 		super(new IdentifierType("Class"));
