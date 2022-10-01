@@ -443,23 +443,22 @@ public class AbstractCinciaObject implements CinciaObject{
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
 		
 //		System.out.println(key+" "+val+" "+type+" "+modifiers);
-
 		
 		checkImmutable();
 		enviro.set(key, val, type, modifiers);
 	}
 
+	public void set(String key, CinciaObject val) {
+		checkImmutable();
+		enviro.set(key, val, val ==null ? Type.Any: val.getType());//TODO::/!!!!
+	}
+	
+	
 	public void set(String key, CinciaObject val, Type type) {
 		checkImmutable();
 		enviro.set(key, val, type);
 	}
 
-	public void set(String key, CinciaObject val) {
-		
-
-		checkImmutable();
-		enviro.set(key, val, val ==null ? Type.Any: val.getType());//TODO::/!!!!
-	}
 
 	public void set(Magic key, CinciaObject val) {
 		checkImmutable();

@@ -681,7 +681,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// set 
 		try {
 
-//			//TODO: encapsulate
+//			//TODO: encapsulate TODO: weird bug, in one of Enviro's setters
 //			if(key instanceof CinciaString) {
 //				container.set(((CinciaString)key).toJava(), rval, rval.getType(), assex.modifiers);
 //				return rval;
