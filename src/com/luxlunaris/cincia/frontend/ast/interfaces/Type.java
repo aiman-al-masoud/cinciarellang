@@ -10,6 +10,12 @@ public interface Type extends Expression{
 	
 	boolean matches(Type other);
 	
+	
+	/**
+	 * TypeWrapper returns the wrapped type, everything elese
+	 * just returns this.
+	 * @return
+	 */
 	Type unwrap();
 	
 	
