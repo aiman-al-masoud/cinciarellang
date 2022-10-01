@@ -99,7 +99,6 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 		throw new RuntimeException("Cannot simplify() class!");
 	}
 
-
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
 
