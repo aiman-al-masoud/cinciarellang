@@ -1027,9 +1027,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
 		
 		
-		if(type instanceof PrimitiveType) {
-			return new TypeWrapper(type);
-		}
 		
 		if(type == Type.Any || type == Type.Module) {
 			return new TypeWrapper(type);
@@ -1038,6 +1035,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		if(type instanceof IdentifierType) {
 			// fetch extant class from current scope
 			return enviro.get(((IdentifierType)type).value);
+		}
+		
+		if(type instanceof PrimitiveType) {
+			return new TypeWrapper(type.resolve(null, enviro));
 		}
 		
 		if(type instanceof Signature) {
@@ -1049,7 +1050,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 //			return evalUnionType( (UnionType)type, enviro);
 			return new TypeWrapper(type.resolve(this::eval, enviro));
 		}
-		
 		
 		//TODO: collection types
 		return null;
