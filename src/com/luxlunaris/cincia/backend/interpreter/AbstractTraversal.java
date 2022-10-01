@@ -167,6 +167,9 @@ public abstract class AbstractTraversal<T> {
 		}else if (expression instanceof ForExpression) {
 			return evalForExpression((ForExpression)expression, enviro);
 			
+		}else if (expression instanceof Type) {
+//			System.out.println(expression);
+			return evalTypeExpression((Type)expression, enviro);
 		}
 
 		throw new RuntimeException("No such expression class!");
@@ -345,5 +348,6 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalMinusExpression(MinusExpression minex, Enviro enviro);
 	public abstract T evalNegationExpression(NegationExpression negex, Enviro enviro);
 	public abstract T evalPipeExpression(PipeExpression expression, Enviro enviro);
-
+	public abstract T evalTypeExpression(Type type, Enviro enviro);
+	
 }

@@ -14,7 +14,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	private int value;
 
 	public CinciaInt(int value) {
-		super(new PrimitiveType(PrimitiveType.INT));
+		super(new CinciaPrimitiveType(PrimitiveType.INT));
 		this.value = value;	
 		setImmutable();
 	}

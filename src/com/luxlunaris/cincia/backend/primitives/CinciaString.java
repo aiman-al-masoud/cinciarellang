@@ -23,7 +23,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	private String value;
 
 	public CinciaString(String value) {
-		super(new PrimitiveType(PrimitiveType.STRING));
+		super(new CinciaPrimitiveType(PrimitiveType.STRING));
 		this.value = value;
 	}
 	

@@ -10,7 +10,7 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 	private double value;
 
 	public CinciaFloat(double value) {
-		super(new PrimitiveType(PrimitiveType.FLOAT));
+		super(new CinciaPrimitiveType(PrimitiveType.FLOAT));
 		this.value = value;		
 	}
 

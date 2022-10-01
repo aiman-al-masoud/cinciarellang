@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 /**
@@ -34,6 +35,8 @@ public abstract class PrimitiveCinciaObject extends AbstractCinciaObject{
 	void setup() {
 		/*Nothing*/
 	}
+	
+	
 	
 
 }

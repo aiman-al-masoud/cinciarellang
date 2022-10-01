@@ -11,7 +11,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	private boolean value;
 
 	public CinciaBool(boolean value) {
-		super(new PrimitiveType(PrimitiveType.BOOL));
+		super(new CinciaPrimitiveType(PrimitiveType.BOOL));
 		this.value = value;
 	}
 

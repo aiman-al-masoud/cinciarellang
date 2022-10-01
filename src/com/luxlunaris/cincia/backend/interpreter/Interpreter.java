@@ -27,6 +27,7 @@ import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
+import com.luxlunaris.cincia.backend.primitives.CinciaPrimitiveType;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
@@ -61,7 +62,10 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.UnionType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -574,13 +578,20 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro) {
-		enviro.set(fD.name.value, null, fD.signature, fD.modifiers); 
+		
+		
+		Type type =  (Type) eval(fD.signature, enviro);
+		
+		enviro.set(fD.name.value, null, type, fD.modifiers); 
 		return null;
 	}
 
 	@Override
 	public CinciaObject evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
-		enviro.set(vD.name.value, null, vD.type, vD.modifiers); 
+		
+		Type type =  (Type) eval(vD.type, enviro);
+		
+		enviro.set(vD.name.value, null, type, vD.modifiers); 
 		return null;
 	}
 
@@ -1005,6 +1016,66 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		return arg;
 	}
+
+	@Override
+	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
+		
+//		System.out.println(type.getClass());
+		
+		if(type instanceof PrimitiveType) {
+			return new CinciaPrimitiveType(  ((PrimitiveType)type).value );
+		}
+		
+		if(type instanceof IdentifierType) {
+			// fetch extant class from current scope
+			return enviro.get(((IdentifierType)type).value);
+		}
+		
+		if(type instanceof Signature) {
+			return evalFunctionSignature((Signature)type, enviro);			
+		}
+		
+		if(type instanceof UnionType) {
+			return evalUnionType( (UnionType)type, enviro);
+		}
+		
+		
+		//TODO: collection types
+		return null;
+		
+	}
+	
+	public CinciaObject evalFunctionSignature(Signature type, Enviro enviro) {
+		
+		List<Type> paramTypes = type.params.toList()
+									.stream()
+									.map(d-> (Type) eval(d.getType(), enviro) )
+									.collect(Collectors.toList());
+		
+		Type returnType = (Type) eval(type.returnType, enviro);
+		
+//		System.out.println(paramTypes);
+		
+//		System.out.println(returnType);
+		
+
+		
+		return null;
+		
+	}
+	
+	public CinciaObject evalUnionType( UnionType type, Enviro enviro ) {
+		
+		
+		List<Type> types = type.types.stream().map(t-> (Type) eval(t, enviro)).collect(Collectors.toList());
+		UnionType t = new UnionType();
+//		t.types = types;
+	
+		return null;
+//		return t;
+	}
+	
+	
 
 
 }
