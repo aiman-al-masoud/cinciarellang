@@ -159,7 +159,7 @@ public class Enviro implements Stateful{
 			}
 
 			// error: reassignment of final variable
-			if(vars.get(key)!=null && this.modifiers.get(key).contains(Modifiers.FINAL)) {
+			if(vars.get(key)!=null &&  this.modifiers.get(key)!=null &&  this.modifiers.get(key).contains(Modifiers.FINAL)) {
 				throw new RuntimeException("Cannot reassign final variable!");
 			}
 

@@ -678,10 +678,15 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		
-//	TODO	assex.modifiers
 		// set 
 		try {
+
+////			//TODO: encapsulate
+//			if(key instanceof CinciaString) {
+//				container.set(((CinciaString)key).toJava(), rval, rval.getType(), assex.modifiers);
+//				return rval;
+//			}
+
 			container.set(key, rval); //TODO: also set modifiers
 		} catch (TypeError e) {
 			e.lvalue = key+" on "+containerName;

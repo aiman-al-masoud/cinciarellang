@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.binary;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
@@ -20,6 +21,11 @@ public class AssignmentExpression extends AbstractBinaryExpression{
 	 * Assignment specific modifiers.
 	 */
 	public List<Modifiers> modifiers;
+	
+	
+	public AssignmentExpression() {
+		modifiers = new ArrayList<>();
+	}
 
 	@Override
 	public String toString() {
