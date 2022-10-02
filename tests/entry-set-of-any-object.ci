@@ -6,12 +6,13 @@ keys = for i in entries -> i[0];
 values = for i in entries -> i[1];
 
 
-here = for k in keys,
-	j in 0 to keys.size {
+for k in keys, j in 0 to keys.size {
+		
 		if k == 'f'{
 			c = j;
 		}
-	} ;
+}
+
 	
 C.f == values[c];
 
