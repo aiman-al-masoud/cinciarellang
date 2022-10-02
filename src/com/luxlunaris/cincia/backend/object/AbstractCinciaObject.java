@@ -39,7 +39,6 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(Magic.is, new CinciaMethod(this::is, this));
 			set(Magic.help, new CinciaMethod(this::help, this));
 			set("entries", new CinciaMethod(this::entries, this));
-			//TODO: add entries() 
 		}
 
 		// TODO: fiiiiiiiiiiiiiiiix! and make this prop final
