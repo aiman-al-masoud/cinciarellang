@@ -22,7 +22,6 @@ import com.luxlunaris.cincia.backend.iterables.CinciaDict;
 import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.iterables.DestructuredList;
 import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
-//import com.luxlunaris.cincia.backend.object.CinciaInterface;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
