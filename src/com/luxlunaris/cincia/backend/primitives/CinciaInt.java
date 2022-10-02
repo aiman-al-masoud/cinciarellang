@@ -189,7 +189,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	@Override
 	public CinciaObject as(List<CinciaObject> args) {
 
-		Type type = (Type) args.get(0);		
+		Type type = (Type) args.get(0);	//TODO: classcast exception
 
 		if(type.matches(new PrimitiveType(PrimitiveType.INT))) {
 			return this;
