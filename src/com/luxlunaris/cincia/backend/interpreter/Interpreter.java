@@ -340,7 +340,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			if(folders.size()>0) {
 				var newSourceFileDir = workingDir+deeper;
-				envCopy.set(Enviro.WORKING_DIR, new CinciaString(newSourceFileDir ));
+				envCopy.set(Enviro.WORKING_DIR, CinciaObject.wrap(newSourceFileDir));
 			}
 
 		} catch (IOException e) {
@@ -652,7 +652,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		// if l-value is an identifier
 		if(assex.left instanceof Identifier) {
-			key = new CinciaString(((Identifier)assex.left).value);
+			key = CinciaObject.wrap(((Identifier)assex.left).value);
 			container = enviro;
 			containerName = "";
 		}
@@ -660,7 +660,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// if l-value is contained in a dot expression
 		try {
 			DotExpression dotex = (DotExpression)assex.left;
-			key = new CinciaString(dotex.right.value);
+			key = CinciaObject.wrap(dotex.right.value);
 			container = eval(dotex.left, enviro);
 			containerName = dotex.left.toString();
 		}catch (ClassCastException e) {
