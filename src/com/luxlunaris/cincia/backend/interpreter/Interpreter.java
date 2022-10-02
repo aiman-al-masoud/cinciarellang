@@ -529,7 +529,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		if(from instanceof CinciaInt && to instanceof CinciaInt) {
 
 			for(int i=(int)from.toJava(); i<=(int)to.toJava(); i++) {
-				cinciaList.add(new CinciaInt(i));
+				cinciaList.add(CinciaObject.wrap(i));
 			}
 
 		}

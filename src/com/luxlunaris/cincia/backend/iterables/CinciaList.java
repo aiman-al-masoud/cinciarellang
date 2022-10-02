@@ -16,8 +16,6 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.IterMethods;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
-import com.luxlunaris.cincia.backend.primitives.CinciaInt;
-import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -234,7 +232,7 @@ public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
 
 		// size attribute 
 		if(key.equals(IterMethods.size.toString()) ) {
-			return new CinciaInt((int)size()); //TODO: long to int may cause problems
+			return CinciaObject.wrap(size()); //TODO: long to int may cause problems
 		}
 
 		return super.get(key);

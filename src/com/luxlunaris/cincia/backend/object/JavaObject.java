@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.backend.callables.JavaMethod;
 import com.luxlunaris.cincia.backend.callables.JavaOverloadedMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
-import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 /**
@@ -122,7 +121,7 @@ public class JavaObject extends AbstractCinciaObject {
 
 		}
 
-		return Map.entry(field.getName(), new CinciaInt(-1));//TODO: fix!!!
+		return Map.entry(field.getName(), CinciaObject.wrap(-1));//TODO: fix!!!
 	}
 
 	@Override

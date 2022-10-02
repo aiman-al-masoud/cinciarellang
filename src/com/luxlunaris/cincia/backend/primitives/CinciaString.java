@@ -156,7 +156,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	public CinciaObject get(String key) {
 		
 		if(key.equals(IterMethods.size.toString())) {
-			return new CinciaInt((int)size()); //TODO: long to int
+			return CinciaObject.wrap(size()); //TODO: long to int
 		}
 		
 		return super.get(key);
