@@ -3,7 +3,6 @@ package com.luxlunaris.cincia.backend.primitives;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
-import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
