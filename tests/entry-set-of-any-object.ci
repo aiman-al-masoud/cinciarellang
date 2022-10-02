@@ -2,14 +2,14 @@ C = class{ x =1; y = 2; f = \x->2*x;  };
 
 entries = C.entries();
 
-keys = for i in entries -> i[0];
-values = for i in entries -> i[1];
+keys = for e in entries -> e[0];
+values = for e in entries -> e[1];
 
 
-for k in keys, j in 0 to keys.size  {
+for k in keys, i in 0 to keys.size  {
 		
 		if k == 'f'{
-			c = j;
+			c = i;
 		}
 }
 
