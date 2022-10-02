@@ -67,7 +67,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaInt otherInt = (CinciaInt)other;
-			return new CinciaInt(value-otherInt.toJava());
+			return CinciaObject.wrap(value-otherInt.toJava());
 		}catch (ClassCastException e) {
 
 		}
@@ -75,7 +75,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaFloat otherFloat = (CinciaFloat)other;
-			return new CinciaFloat(value-otherFloat.toJava()); 
+			return CinciaObject.wrap(value-otherFloat.toJava()); 
 		}catch (ClassCastException e) {
 
 		}
@@ -90,7 +90,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaInt otherInt = (CinciaInt)other;
-			return new CinciaInt(value*otherInt.toJava());
+			return CinciaObject.wrap(value*otherInt.toJava());
 		}catch (ClassCastException e) {
 
 		}
@@ -98,7 +98,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaFloat otherFloat = (CinciaFloat)other;
-			return new CinciaFloat(value*otherFloat.toJava());
+			return CinciaObject.wrap(value*otherFloat.toJava());
 		}catch (ClassCastException e) {
 
 		}
@@ -120,7 +120,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaInt otherInt = (CinciaInt)other;
-			return new CinciaInt(value/otherInt.toJava());
+			return CinciaObject.wrap(value/otherInt.toJava());
 		}catch (ClassCastException e) {
 
 		}
@@ -128,7 +128,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaFloat otherFloat = (CinciaFloat)other;
-			return new CinciaFloat(value/otherFloat.toJava());
+			return CinciaObject.wrap(value/otherFloat.toJava());
 		}catch (ClassCastException e) {
 
 		}
@@ -142,7 +142,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaInt otherInt = (CinciaInt)other;
-			return new CinciaInt(value%otherInt.toJava());
+			return CinciaObject.wrap(value%otherInt.toJava());
 		}catch (ClassCastException e) {
 
 		}
@@ -150,7 +150,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaFloat otherFloat = (CinciaFloat)other;
-			return new CinciaFloat(value%otherFloat.toJava());
+			return CinciaObject.wrap(value%otherFloat.toJava());
 		}catch (ClassCastException e) {
 
 		}
@@ -170,14 +170,14 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 		try {
 			CinciaInt otherInt = (CinciaInt)other;
-			return new CinciaBool(value < otherInt.toJava());
+			return CinciaObject.wrap(value < otherInt.toJava());
 		}catch (ClassCastException e) {
 
 		}
 
 		try {
 			CinciaFloat otherFloat = (CinciaFloat)other;
-			return new CinciaBool(value < otherFloat.toJava());
+			return CinciaObject.wrap(value < otherFloat.toJava());
 		}catch (ClassCastException e) {
 
 		}
@@ -199,9 +199,9 @@ public class CinciaInt extends PrimitiveCinciaObject {
 			case INT:
 				return this;
 			case FLOAT:
-				return new CinciaFloat(this.value);
+				return CinciaObject.wrap((float)this.value);
 			case STRING:
-				return new CinciaString(this.value+"");
+				return CinciaObject.wrap(this.value+"");
 			case BOOL:
 				return __bool__();
 			default:
