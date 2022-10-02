@@ -10,4 +10,6 @@ Capra2 =  class {
 
 }
 
-Capra().values().size ==  Capra2().values().size +1; 
+Capra().entries().size ==  Capra2().entries().size +1; 
+
+

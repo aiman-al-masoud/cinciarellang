@@ -38,7 +38,6 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(Magic.as, new CinciaMethod(this::as, this));
 			set(Magic.is, new CinciaMethod(this::is, this));
 			set(Magic.help, new CinciaMethod(this::help, this));
-			set("values", new CinciaMethod( this::values  , this)); //TODO: extract name
 			set("entries", new CinciaMethod(this::entries, this));
 			//TODO: add entries() 
 		}
@@ -50,18 +49,14 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	}
 
-	protected CinciaObject values(List<CinciaObject> args){
-		return new CinciaList(enviro.values());
-	}
-
 	protected CinciaObject entries(List<CinciaObject> args){
-		
+
 		List<CinciaObject> list =
-		enviro.vars.entrySet()
-			  .stream()
-			  .map(e-> new CinciaList( Arrays.asList(CinciaObject.wrap(e.getKey()), e.getValue() ) )  )
-			  .collect(Collectors.toList());
-		
+				enviro.vars.entrySet()
+				.stream()
+				.map(e-> new CinciaList( Arrays.asList(CinciaObject.wrap(e.getKey()), e.getValue() ) )  )
+				.collect(Collectors.toList());
+
 		return new CinciaList(list);
 	}
 
@@ -238,9 +233,9 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaObject __init__(List<CinciaObject> args) {
-		
+
 		// TODO this is really just a void method
-		
+
 		try {
 
 			CinciaMethod cm = (CinciaMethod)get(Magic.__init__);
@@ -287,10 +282,10 @@ public class AbstractCinciaObject implements CinciaObject{
 
 			}else if (childo == type && childo instanceof CinciaClass) { // if childco is a type 
 				childco = (CinciaClass)type; // type reference needs to point to the same type!
-				
+
 			}else if (childo == null) { //TODO?
 				childco = null;
-				
+
 			}else {	// otherwise, copy the child recursively
 				childco = childo.copy(args);
 
@@ -450,9 +445,9 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
-		
-//		System.out.println(key+" "+val+" "+type+" "+modifiers);
-		
+
+		//		System.out.println(key+" "+val+" "+type+" "+modifiers);
+
 		checkImmutable();
 		enviro.set(key, val, type, modifiers);
 	}
@@ -461,8 +456,8 @@ public class AbstractCinciaObject implements CinciaObject{
 		checkImmutable();
 		enviro.set(key, val, val ==null ? Type.Any: val.getType());//TODO::/!!!!
 	}
-	
-	
+
+
 	public void set(String key, CinciaObject val, Type type) {
 		checkImmutable();
 		enviro.set(key, val, type);
