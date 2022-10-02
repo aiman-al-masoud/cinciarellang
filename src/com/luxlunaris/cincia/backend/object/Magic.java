@@ -34,7 +34,8 @@ public enum Magic {
 	is,
 	help,
 	__docstr__,
-	entries;
+	entries,
+	type;
 	
 	@Override
 	public String toString() {
