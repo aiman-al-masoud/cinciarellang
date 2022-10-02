@@ -99,21 +99,14 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		return filter((PureCinciaFunction)args.get(0)); 
 	}
 
-
-
-
 	@Override
 	public CinciaIterable map(PureCinciaFunction f) {
 		return map(o -> f.run(Arrays.asList(o)));
 	}
 
-
-
 	public CinciaIterable map(List<CinciaObject> args) {
 		return map((PureCinciaFunction)args.get(0)); 
 	}
-
-
 
 	@Override
 	public long size() {
