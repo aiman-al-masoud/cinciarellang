@@ -195,7 +195,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		}
 
 		if(type.matches(new PrimitiveType(PrimitiveType.FLOAT))) {
-			return CinciaObject.wrap((float)this.value);
+			return CinciaObject.wrap((double)this.value);
 		}
 
 		if(type.matches(new PrimitiveType(PrimitiveType.STRING))) {
