@@ -38,17 +38,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
-		
-		try {
-			
-			CinciaBool otherBool = (CinciaBool)other;
-			return new CinciaBool(value==otherBool.value);
-			
-		} catch (ClassCastException e) {
-			
-		}
-		
-		throw new RuntimeException("");
+		return  (CinciaBool) CinciaObject.wrap( new Boolean(value).equals(other.toJava()) );
 	}
 
 	@Override
