@@ -38,14 +38,16 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	@Override
 	public CinciaString __add__(CinciaObject other) {
 
-		try {
-			CinciaString otherStr =  (CinciaString)other;
-			return new CinciaString(value+otherStr.value);
-		} catch (ClassCastException e) {
+//		try {
+//			CinciaString otherStr =  (CinciaString)other;
+//			return new CinciaString(value+otherStr.value);
+//		} catch (ClassCastException e) {
+//
+//		}
 
-		}
-
-		throw new RuntimeException("Operator + undefined ...");
+//		throw new RuntimeException("Operator + undefined ...");
+		
+		return new CinciaString(this.value+other.__str__().toJava());
 	}
 
 

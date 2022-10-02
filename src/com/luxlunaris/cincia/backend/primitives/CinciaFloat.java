@@ -151,6 +151,11 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 	public Double toJava() {
 		return value;
 	}
+	
+	@Override
+	public CinciaString __str__() {
+		return (CinciaString) CinciaObject.wrap(value+"");
+	}
 
 
 }

@@ -1,1 +1,2 @@
-(1+'ciao').type == string;
+(1+'ciao').type == string &&
+('ciao'+1).type == string;

@@ -274,6 +274,11 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 		throw new RuntimeException();
 	}
+	
+	@Override
+	public CinciaString __str__() {
+		return (CinciaString) CinciaObject.wrap(value+"");
+	}
 
 
 }
