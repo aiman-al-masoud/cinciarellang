@@ -57,7 +57,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	
 	@Override
 	public CinciaObject as(List<CinciaObject> args) {//TODO:!!!
-		return null;
+		throw new RuntimeException("CinciaBool.as() not implemented!");
 	}
 
 	@Override
