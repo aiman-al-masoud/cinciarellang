@@ -87,9 +87,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public Iterator<CinciaObject> iterator() {
-		// TODO Auto-generated method stub
 		return Arrays.asList(value.toCharArray()).stream().map(c-> (CinciaObject) new CinciaString(c+"") ).collect(Collectors.toList()).iterator();
-		//		return null;
 	}
 
 	@Override
