@@ -27,7 +27,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		super(new TypeWrapper(new PrimitiveType(PrimitiveType.STRING)));
 		this.value = value;
 	}
-	
+
 	@Override
 	void setup() {
 		set(IterMethods.filter.toString(), new CinciaMethod(this::filter, this));
@@ -37,16 +37,6 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public CinciaString __add__(CinciaObject other) {
-
-//		try {
-//			CinciaString otherStr =  (CinciaString)other;
-//			return new CinciaString(value+otherStr.value);
-//		} catch (ClassCastException e) {
-//
-//		}
-
-//		throw new RuntimeException("Operator + undefined ...");
-		
 		return new CinciaString(this.value+other.__str__().toJava());
 	}
 
@@ -99,45 +89,45 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	public Iterator<CinciaObject> iterator() {
 		// TODO Auto-generated method stub
 		return Arrays.asList(value.toCharArray()).stream().map(c-> (CinciaObject) new CinciaString(c+"") ).collect(Collectors.toList()).iterator();
-//		return null;
+		//		return null;
 	}
 
 	@Override
 	public CinciaIterable filter(PureCinciaFunction f) {
 		return filter(o -> f.run(Arrays.asList(o)).__bool__().toJava());
 	}
-	
+
 	@Override
 	public CinciaIterable filter(Predicate<CinciaObject> f) {
 
 		Optional<CinciaString> filtered = this.value.chars()
-											  .mapToObj( c-> new CinciaString(((char)c)+"")  )
-											  .filter( f::test )
-											  .reduce( ( c1,c2 )-> c1.__add__(c2));
-									
+				.mapToObj( c-> new CinciaString(((char)c)+"")  )
+				.filter( f::test )
+				.reduce( ( c1,c2 )-> c1.__add__(c2));
+
 		return filtered.orElse(this);// TODO: return copy instead?
-		
+
 	}
-	
+
 	public CinciaIterable filter(List<CinciaObject> args) {
 		return filter((PureCinciaFunction)args.get(0)); 
 	}
-	
 
-	
-	
+
+
+
 	@Override
 	public CinciaIterable map(PureCinciaFunction f) {
 		return map(o -> f.run(Arrays.asList(o)));
 	}
 
-	
-	
+
+
 	public CinciaIterable map(List<CinciaObject> args) {
 		return map((PureCinciaFunction)args.get(0)); 
 	}
 
-	
+
 
 	@Override
 	public long size() {
@@ -146,27 +136,27 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public CinciaIterable map(UnaryOperator<CinciaObject> f) {
-		
+
 		List<CinciaObject> l =  this.value.chars()
-										  .mapToObj(c-> f.apply( new CinciaString(((char)c)+"") ))
-										  .collect(Collectors.toList());       
-								
+				.mapToObj(c-> f.apply( new CinciaString(((char)c)+"") ))
+				.collect(Collectors.toList());       
+
 		return new CinciaList(l);
 	}
-	
+
 	@Override
 	public CinciaObject get(String key) {
-		
+
 		if(key.equals(IterMethods.size.toString())) {
 			return CinciaObject.wrap(size()); //TODO: long to int
 		}
-		
+
 		return super.get(key);
 	}
 
 	@Override
 	public CinciaObject reduce(BinaryOperator<CinciaObject> f) {
-		
+
 		Optional<CinciaObject> res = this.value.chars().mapToObj(c-> (CinciaObject)  new CinciaString(((char)c)+"")).reduce(f);
 
 		if(!res.isPresent()) {
@@ -175,8 +165,8 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 		return res.get(); //TODO: maybe make optional wrapper instead?!!!!!
 	}
-	
-//	@Override
+
+	//	@Override
 	public CinciaObject reduce(List<CinciaObject> args) {
 		PureCinciaFunction f = (PureCinciaFunction)args.get(0);
 		return reduce( (o1, o2)-> f.run(Arrays.asList(o1,o2)) );
