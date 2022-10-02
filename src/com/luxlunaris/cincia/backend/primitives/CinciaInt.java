@@ -35,7 +35,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaFloat otherFloat = (CinciaFloat)other;
-			return new CinciaFloat(value+otherFloat.toJava());
+			return CinciaObject.wrap(value+otherFloat.toJava());
 		}catch (ClassCastException e) {
 
 		}
@@ -43,7 +43,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaString otherStr = (CinciaString)other;
-			return new CinciaString(value+otherStr.toJava());
+			return CinciaObject.wrap(value+otherStr.toJava());			
 		}catch (ClassCastException e) {
 
 		}
@@ -75,7 +75,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaFloat otherFloat = (CinciaFloat)other;
-			return new CinciaFloat(value-otherFloat.toJava());
+			return new CinciaFloat(value-otherFloat.toJava()); 
 		}catch (ClassCastException e) {
 
 		}
