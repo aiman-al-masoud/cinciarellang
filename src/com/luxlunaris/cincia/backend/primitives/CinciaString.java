@@ -40,20 +40,10 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		return new CinciaString(this.value+other.__str__().toJava());
 	}
 
-
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
-
-		try {
-			CinciaString otherStr = (CinciaString)other;
-			return new CinciaBool(otherStr.value.equals(value));
-		} catch (Exception e) {
-
-		}
-
-		return new CinciaBool(false);
+		return  (CinciaBool) CinciaObject.wrap( value.equals(other.toJava()));
 	}
-
 
 	@Override
 	public String toString() {
