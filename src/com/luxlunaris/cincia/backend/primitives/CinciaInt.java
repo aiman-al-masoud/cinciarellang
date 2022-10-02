@@ -21,7 +21,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		setImmutable();
 	}
 
-	
+
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
 
@@ -189,52 +189,25 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	@Override
 	public CinciaObject as(List<CinciaObject> args) {
 
-		
-		//TODO: cast to Type instead
-		Type type = (Type) args.get(0);
-		
-		
+		Type type = (Type) args.get(0);		
+
 		if(type.matches(new PrimitiveType(PrimitiveType.INT))) {
 			return this;
 		}
-		
+
 		if(type.matches(new PrimitiveType(PrimitiveType.FLOAT))) {
 			return CinciaObject.wrap((float)this.value);
 		}
-		
+
 		if(type.matches(new PrimitiveType(PrimitiveType.STRING))) {
 			return CinciaObject.wrap(this.value+"");
 		}
-		
+
 		if(type.matches(new PrimitiveType(PrimitiveType.BOOL))) {
 			return __bool__();
 		}
-		
+
 		throw new RuntimeException("Type conversion"+this.getType()+" to "+type+" not supported!");
-
-
-//		try {
-////			CinciaKeyword kw = (CinciaKeyword)type;
-//
-////			switch (kw.keyword) {
-//			switch(type) {
-//			case INT:
-//				return this;
-//			case FLOAT:
-//				return CinciaObject.wrap((float)this.value);
-//			case STRING:
-//				return CinciaObject.wrap(this.value+"");
-//			case BOOL:
-//				return __bool__();
-//			default:
-//				throw new RuntimeException("Type conversion not supported!");
-//			}
-//
-//		}catch (ClassCastException e) {
-//
-//		}
-
-//		return this;
 	}
 
 
