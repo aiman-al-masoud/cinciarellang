@@ -4,6 +4,7 @@ package com.luxlunaris.cincia.backend.object;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
@@ -38,7 +39,7 @@ public class AbstractCinciaObject implements CinciaObject{
 			set(Magic.is, new CinciaMethod(this::is, this));
 			set(Magic.help, new CinciaMethod(this::help, this));
 			set("values", new CinciaMethod( this::values  , this)); //TODO: extract name
-			
+			set("entries", new CinciaMethod(this::entries, this));
 			//TODO: add entries() 
 		}
 
@@ -47,14 +48,22 @@ public class AbstractCinciaObject implements CinciaObject{
 			set("type", (CinciaObject)type); //TODO: extract name			
 		}
 
-
-
 	}
 
 	protected CinciaObject values(List<CinciaObject> args){
 		return new CinciaList(enviro.values());
 	}
 
+	protected CinciaObject entries(List<CinciaObject> args){
+		
+		List<CinciaObject> list =
+		enviro.vars.entrySet()
+			  .stream()
+			  .map(e-> new CinciaList( Arrays.asList(CinciaObject.wrap(e.getKey()), e.getValue() ) )  )
+			  .collect(Collectors.toList());
+		
+		return new CinciaList(list);
+	}
 
 
 	@Override
