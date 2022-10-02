@@ -5,6 +5,7 @@ import java.util.List;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 //TODO: MAKE THIS ALSO A WRAPPER FOR LOOOOOOOONG
 //TODO: implement comparison operators!!!!
@@ -190,29 +191,50 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 		
 		//TODO: cast to Type instead
-		CinciaObject type = args.get(0);
-
-		try {
-			CinciaKeyword kw = (CinciaKeyword)type;
-
-			switch (kw.keyword) {
-			case INT:
-				return this;
-			case FLOAT:
-				return CinciaObject.wrap((float)this.value);
-			case STRING:
-				return CinciaObject.wrap(this.value+"");
-			case BOOL:
-				return __bool__();
-			default:
-				throw new RuntimeException("Type conversion not supported!");
-			}
-
-		}catch (ClassCastException e) {
-
+		Type type = (Type) args.get(0);
+		
+		
+		if(type.matches(new PrimitiveType(PrimitiveType.INT))) {
+			return this;
 		}
+		
+		if(type.matches(new PrimitiveType(PrimitiveType.FLOAT))) {
+			return CinciaObject.wrap((float)this.value);
+		}
+		
+		if(type.matches(new PrimitiveType(PrimitiveType.STRING))) {
+			return CinciaObject.wrap(this.value+"");
+		}
+		
+		if(type.matches(new PrimitiveType(PrimitiveType.BOOL))) {
+			return __bool__();
+		}
+		
+		throw new RuntimeException("Type conversion"+this.getType()+" to "+type+" not supported!");
 
-		return this;
+
+//		try {
+////			CinciaKeyword kw = (CinciaKeyword)type;
+//
+////			switch (kw.keyword) {
+//			switch(type) {
+//			case INT:
+//				return this;
+//			case FLOAT:
+//				return CinciaObject.wrap((float)this.value);
+//			case STRING:
+//				return CinciaObject.wrap(this.value+"");
+//			case BOOL:
+//				return __bool__();
+//			default:
+//				throw new RuntimeException("Type conversion not supported!");
+//			}
+//
+//		}catch (ClassCastException e) {
+//
+//		}
+
+//		return this;
 	}
 
 
