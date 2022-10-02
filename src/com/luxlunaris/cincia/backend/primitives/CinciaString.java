@@ -67,9 +67,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 		for ( CinciaObject o :  key ) {
 			CinciaInt i  = (CinciaInt)o;
-			//			sb.append( get(i.getValue() ).getValue() );
 			sb.append( get(i.toJava() ).toJava() );
-
 		}
 
 		return new CinciaString(sb.toString());
