@@ -1,0 +1,3 @@
+x = if true then "capra" else "gatto";
+y = if false then "capra" else "gatto";
+x == "capra" && y == "gatto";

@@ -152,11 +152,26 @@ public class Parser {
 		eat(Keywords.IF);
 		IfExpression ifS = new IfExpression();
 		ifS.cond =  parseSingleExpression();
-		ifS.thenBlock =  parseCompStatement();
+		
+		
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+			ifS.thenBlock =  parseCompStatement();			
+		}
+		
+		if(tStream.peek().getValue().equals(Keywords.THEN)) {
+			eat(Keywords.THEN);
+			ifS.thenExpression  = parseExpression();
+		}
 
 		if(tStream.peek().getValue().equals(Keywords.ELSE)) {
 			eat(Keywords.ELSE);
-			ifS.elseBlock = parseCompStatement();
+			
+			if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+				ifS.elseBlock =  parseCompStatement();			
+			}else {				
+				ifS.elseExpression = parseExpression();
+			}
+			
 		}
 
 		return ifS;

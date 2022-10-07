@@ -134,9 +134,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalIfExpression(IfExpression ifStatement, Enviro enviro) {
 
 		if(eval(ifStatement.cond, enviro).__bool__().toJava()) {
-			return eval(ifStatement.thenBlock, enviro);
+//			return eval(ifStatement.thenBlock, enviro);
+			return eval(ifStatement.getThen(), enviro);
+
 		}else {
-			return eval(ifStatement.elseBlock, enviro);
+//			return eval(ifStatement.elseBlock, enviro);
+			return eval(ifStatement.getElse(), enviro);
+
 		}
 
 	}

@@ -39,7 +39,8 @@ public enum Keywords {
 	REF,
 	NONLOCAL,
 	ANY,
-	MODULE;
+	MODULE,
+	THEN;
 
 	public static Keywords fromString(String value){
 
