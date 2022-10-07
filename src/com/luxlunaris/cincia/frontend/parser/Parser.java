@@ -155,21 +155,21 @@ public class Parser {
 		
 		
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
-			ifS.thenBlock =  parseCompStatement();			
+			ifS.thenBranch =  parseCompStatement();			
 		}
 		
 		if(tStream.peek().getValue().equals(Keywords.THEN)) {
 			eat(Keywords.THEN);
-			ifS.thenExpression  = parseExpression();
+			ifS.thenBranch  = parseExpression();
 		}
 
 		if(tStream.peek().getValue().equals(Keywords.ELSE)) {
 			eat(Keywords.ELSE);
 			
 			if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
-				ifS.elseBlock =  parseCompStatement();			
+				ifS.elseBranch =  parseCompStatement();			
 			}else {				
-				ifS.elseExpression = parseExpression();
+				ifS.elseBranch = parseExpression();
 			}
 			
 		}
