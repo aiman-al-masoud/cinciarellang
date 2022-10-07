@@ -3,7 +3,6 @@ package com.luxlunaris.cincia.backend.interpreter;
 import java.util.Arrays;
 
 import com.luxlunaris.cincia.backend.object.Enviro;
-import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -29,11 +28,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.UnionType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -95,10 +90,7 @@ public abstract class AbstractTraversal<T> {
 
 		}else if(ast instanceof CompoundStatement) {
 			return evalCompoundStatement((CompoundStatement)ast, enviro);
-
-//		}else if(ast instanceof ForExpression) {
-//			return evalForExpression((ForExpression)ast, enviro);
-
+			
 		}else if(ast instanceof ImportStatement) {
 			return evalImportStatement((ImportStatement)ast, enviro);
 
@@ -338,7 +330,6 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalAssignmentExpression(AssignmentExpression assex, Enviro enviro);
 	public abstract T evalClassExpression(ClassExpression classex, Enviro enviro);
 	public abstract T evalDictExpression(DictExpression dictex, Enviro enviro);
-//	public abstract T evalInterfaceExpression(InterfaceExpression interex, Enviro enviro);
 	public abstract T evalLambdaExpression(LambdaExpression lambdex, Enviro enviro);
 	public abstract T evalListExpression(ListExpression listex, Enviro enviro);
 	public abstract T evalCalledExpression(CalledExpression callex, Enviro enviro);
