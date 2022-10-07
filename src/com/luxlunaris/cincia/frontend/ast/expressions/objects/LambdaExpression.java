@@ -14,14 +14,13 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
-//example: // public \ x:int:int -> 2*x
 public class LambdaExpression implements ObjectExpression{
 	
 	public List<Modifiers> modifiers;
 	public Signature signature;
 	
-	//either block or expression:
-	public CompoundStatement block;
+	//either block or expression: //TODO: just make it one single Ast
+	public CompoundStatement block; 
 	public Expression expression;
 	
 	
@@ -50,7 +49,7 @@ public class LambdaExpression implements ObjectExpression{
 	
 	@Override
 	public String toString() {
-		return signature+"->"+(block==null? expression :block);
+		return signature+"->"+(block==null? expression : block);
 	}
 	
 	/**
