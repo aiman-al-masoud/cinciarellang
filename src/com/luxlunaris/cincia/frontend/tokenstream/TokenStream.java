@@ -1,5 +1,7 @@
 package com.luxlunaris.cincia.frontend.tokenstream;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
@@ -23,12 +25,21 @@ public class TokenStream {
 	CharStream cStream;
 	Token currTok;
 	String currentComment;
+	List<Token> history;
 
 	public TokenStream(CharStream cStream) {
 		this.cStream = cStream;
+		this.history = new ArrayList<>();
 	}
 
 	public void next() {
+		
+		// cache previous token
+		if(currTok!=null) {
+			history.add(currTok);
+		}
+		
+		
 
 		// skip whitespace
 		readWhile( c -> { return c == ' ' || c == '\t' || c=='\n'; });
@@ -120,7 +131,10 @@ public class TokenStream {
 	public Token peek() {
 		return currTok;
 	}
-
+	
+	public int currentTokenNumber() { // if zero I still have to parse the first, if one I've parsed the first, if two I've parsed the first and the second ...
+		return history.size();
+	}
 
 	public void croak(String message) throws RuntimeException{
 		cStream.croak(message);
