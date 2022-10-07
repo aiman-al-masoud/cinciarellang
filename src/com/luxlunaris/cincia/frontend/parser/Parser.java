@@ -1048,6 +1048,7 @@ public class Parser {
 
 		lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
 		
+		System.out.println("parsed exp: "+lE.expression);
 		return lE;
 		
 	}
