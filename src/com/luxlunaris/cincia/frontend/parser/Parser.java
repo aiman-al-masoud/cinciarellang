@@ -25,10 +25,8 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.OrExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.forexp.ForExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.forexp.Generator;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
@@ -1073,10 +1071,6 @@ public class Parser {
 		// first element
 		Expression exp = parseSingleExpression();
 
-		// comprehension
-		if(tStream.peek().getValue().equals(Keywords.FOR)) {
-			return parseListComprehension(exp);
-		}
 
 		// one element list
 		if(tStream.peek().getValue().equals(Punctuations.SQBR_CLS)) {
@@ -1094,23 +1088,6 @@ public class Parser {
 
 	}
 
-	private ListComprehension parseListComprehension(Expression exp) {
-
-		ListComprehension lC = new ListComprehension();
-		lC.element = exp;
-		eat(Keywords.FOR);
-		lC.source = parseSingleExpression();
-		eat(Keywords.IN);
-		lC.iterable = parseSingleExpression();
-
-		if(tStream.peek().getValue().equals(Keywords.IF)) {
-			eat(Keywords.IF);
-			lC.where = parseSingleExpression();
-		}
-
-		eat(Punctuations.SQBR_CLS);
-		return lC;
-	}
 
 
 	private ObjectExpression parseDict() {
@@ -1156,10 +1133,6 @@ public class Parser {
 				continue;
 			}
 
-			if(tStream.peek().getValue().equals(Keywords.FOR)) {		
-				return parseDictComprehension(Map.entry(key, val));
-			}
-
 			key = parseSingleExpression();			
 
 		}
@@ -1167,26 +1140,6 @@ public class Parser {
 		return dE;
 	}
 
-
-	private DictComprehension parseDictComprehension(Entry<Expression, Expression> entry) {
-
-		DictComprehension dC = new DictComprehension();
-		dC.key = entry.getKey();
-		dC.val = entry.getValue();
-		eat(Keywords.FOR);
-		dC.source = parseSingleExpression();
-		eat(Keywords.IN);
-		dC.iterable = parseSingleExpression();
-
-		if(tStream.peek().getValue().equals(Keywords.IF)) {
-			eat(Keywords.IF);
-			dC.where = parseExpression();
-		}
-
-		eat(Punctuations.CURLY_CLS);
-		return dC;
-
-	}
 
 
 

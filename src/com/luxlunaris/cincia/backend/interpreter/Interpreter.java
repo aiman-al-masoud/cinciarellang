@@ -50,10 +50,8 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.OrExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.forexp.ForExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.forexp.Generator;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
@@ -739,36 +737,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalDictComprehension(DictComprehension dictcompex, Enviro enviro) {
-
-		CinciaIterable iterable = (CinciaIterable)eval(dictcompex.iterable, enviro);
-
-		PureCinciaFunction mapKey = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)dictcompex.source, dictcompex.key, Type.Any), enviro);
-		PureCinciaFunction mapValue = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)dictcompex.source, dictcompex.val, Type.Any), enviro);
-		PureCinciaFunction filter = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)dictcompex.source, dictcompex.where, new PrimitiveType(PrimitiveType.BOOL)), enviro);
-
-		CinciaIterable filtered = iterable.filter(filter);
-		CinciaIterable keys = filtered.map(mapKey);
-		CinciaIterable vals = filtered.map(mapValue);
-
-		CinciaDict result = new CinciaDict(Type.Any, Type.Any); //TODO: specify types
-
-		for(int i=0; i < keys.size(); i++) {
-
-			if(keys.get(i) instanceof CinciaString) {
-				result.set(((CinciaString)keys.get(i)).toJava(), vals.get(i));
-			}
-
-			if(keys.get(i) instanceof CinciaInt) {
-				result.set(((CinciaInt)keys.get(i)).toJava(), vals.get(i));
-			}
-
-		}
-
-		return result;
-	}
-
-	@Override
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 
 		//TODO
@@ -789,15 +757,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	}
 
-	@Override
-	public CinciaObject evalListComprehension(ListComprehension listcompex, Enviro enviro) {
-
-		PureCinciaFunction map = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)listcompex.source, listcompex.element, Type.Any), enviro);
-		PureCinciaFunction filter = (PureCinciaFunction) eval(LambdaExpression.fromExpression((Identifier)listcompex.source, listcompex.where, new PrimitiveType(PrimitiveType.BOOL)), enviro);
-		CinciaIterable iterable = (CinciaIterable)eval(listcompex.iterable, enviro);
-		return iterable.filter(filter).map(map);
-
-	}
 
 	@Override
 	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {

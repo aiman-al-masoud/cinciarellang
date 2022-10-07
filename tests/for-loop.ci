@@ -1,5 +1,6 @@
-l1 = [ [-x, x] for x in 1 to 3  ];
-l2 = [ 2*x for x in l1 ];
+l1 = for x in 1 to 3 -> [-x, x];
+l2 = 2*l1;
+
 dict = {};
 
 for i, j in l1, 

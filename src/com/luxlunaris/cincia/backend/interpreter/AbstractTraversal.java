@@ -21,11 +21,8 @@ import com.luxlunaris.cincia.frontend.ast.expressions.binary.MulExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.OrExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.forexp.ForExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ClassExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.DictExpression;
-//import com.luxlunaris.cincia.frontend.ast.expressions.objects.InterfaceExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListComprehension;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.ListExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.CalledExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
@@ -223,12 +220,6 @@ public abstract class AbstractTraversal<T> {
 			return evalListExpression((ListExpression)objex, enviro);
 		}else if (objex instanceof DictExpression) {
 			return evalDictExpression((DictExpression)objex, enviro);
-		}else if (objex instanceof ListComprehension) {
-			return evalListComprehension((ListComprehension)objex, enviro);
-		}else if (objex instanceof DictComprehension) {
-			return evalDictComprehension((DictComprehension)objex, enviro);
-//		}else if (objex instanceof InterfaceExpression) {
-//			return evalInterfaceExpression((InterfaceExpression)objex, enviro);
 		}else if (objex instanceof ClassExpression) {
 			return evalClassExpression((ClassExpression)objex, enviro);
 		}else if (objex instanceof LambdaExpression) {
@@ -347,10 +338,8 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalAssignmentExpression(AssignmentExpression assex, Enviro enviro);
 	public abstract T evalClassExpression(ClassExpression classex, Enviro enviro);
 	public abstract T evalDictExpression(DictExpression dictex, Enviro enviro);
-	public abstract T evalDictComprehension(DictComprehension dictcompex, Enviro enviro);
 //	public abstract T evalInterfaceExpression(InterfaceExpression interex, Enviro enviro);
 	public abstract T evalLambdaExpression(LambdaExpression lambdex, Enviro enviro);
-	public abstract T evalListComprehension(ListComprehension listcompex, Enviro enviro);
 	public abstract T evalListExpression(ListExpression listex, Enviro enviro);
 	public abstract T evalCalledExpression(CalledExpression callex, Enviro enviro);
 	public abstract T evalDotExpression(DotExpression dotex, Enviro enviro);

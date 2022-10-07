@@ -15,13 +15,10 @@ import com.luxlunaris.cincia.tests.parser.classes.AbstractTester;
 import com.luxlunaris.cincia.tests.parser.classes.BinExpTester;
 import com.luxlunaris.cincia.tests.parser.classes.ClassTester;
 import com.luxlunaris.cincia.tests.parser.classes.DeclarationTester;
-import com.luxlunaris.cincia.tests.parser.classes.DictTester;
 import com.luxlunaris.cincia.tests.parser.classes.ImportTester;
-//import com.luxlunaris.cincia.tests.parser.classes.InterfaceTester;
 import com.luxlunaris.cincia.tests.parser.classes.IterationTester;
 import com.luxlunaris.cincia.tests.parser.classes.JumpTester;
 import com.luxlunaris.cincia.tests.parser.classes.LambdaTester;
-import com.luxlunaris.cincia.tests.parser.classes.ListTester;
 import com.luxlunaris.cincia.tests.parser.classes.PostfixExpTester;
 import com.luxlunaris.cincia.tests.parser.classes.RangeExpTester;
 import com.luxlunaris.cincia.tests.parser.classes.SelectionTester;
@@ -61,8 +58,6 @@ public class Test {
 		
 		add(new BinExpTester());
 		add(new DeclarationTester());
-		add(new DictTester());
-		add(new ListTester());
 		add(new LambdaTester());
 		add(new PostfixExpTester());
 		add(new ClassTester());
