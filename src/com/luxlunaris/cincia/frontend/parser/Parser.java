@@ -125,8 +125,9 @@ public class Parser {
 		}else {
 			res = parseExpressionStatement();
 		}
-
-
+		
+		
+//		System.out.println("in parseStatement(): "+res.simplify());
 		
 		if(tStream.peek() != null) {
 			eat(Punctuations.STM_SEP);
@@ -1006,6 +1007,8 @@ public class Parser {
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
 		int memento = tStream.currentTokenNumber();
+		System.out.println("current token when taking memento: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
+
 
 		try {
 
@@ -1033,7 +1036,14 @@ public class Parser {
 		lE.signature = new Signature();
 		lE.modifiers = modifiers;
 		lE.explicitParams = false;
+		System.out.println("current token before eating backslash: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
 		eat(Punctuations.SLASH_BCK);		
+		
+//		System.out.println("after having eaten backslash");
+//		System.out.println("current token number: "+tStream.currentTokenNumber() );
+//		System.out.println("last parsed token number: "+tStream.lastParsedTokenNumber());
+//		System.out.println("current token: "+tStream.peek());
+//		System.out.println("token history: "+tStream.history);
 
 		lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
 		

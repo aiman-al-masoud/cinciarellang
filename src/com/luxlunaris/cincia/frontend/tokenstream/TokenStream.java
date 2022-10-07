@@ -39,7 +39,7 @@ public class TokenStream {
 		return tokenNumber;
 	}
 	
-	protected int lastParsedTokenNumber() { // id number of the latest parsed token
+	public int lastParsedTokenNumber() { // id number of the latest parsed token
 		return history.size()-1;
 	}
 	
@@ -65,6 +65,16 @@ public class TokenStream {
 			history.add(currTok);
 			tokenNumber = lastParsedTokenNumber();
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 
 		// skip whitespace

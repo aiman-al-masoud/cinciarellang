@@ -24,7 +24,7 @@ public class Compiler {
 	 */
 	public List<Ast> compile(String source) throws CinciaSyntaxException{
 
-		Preprocessor preprocessor = new Preprocessor(source);
+		Preprocessor preprocessor = new Preprocessor(source);		
 		CharStream charStream = new CharStream(preprocessor.process());
 		TokenStream tokenStream = new TokenStream(charStream);
 		Parser parser = new Parser(tokenStream);
