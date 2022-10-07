@@ -11,6 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.IfExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
@@ -66,7 +67,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
@@ -104,10 +104,8 @@ public class Parser {
 	public Statement parseStatement() {
 
 		Statement res = null;
-
-		if(tStream.peek().getValue().equals(Keywords.IF)) {
-			res = parseIfStatement();
-		}else if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+		
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			res = parseCompStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.WHILE )) {
 			res = parseWhileStatement();
@@ -124,7 +122,6 @@ public class Parser {
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
-			//			System.out.println("is declaration ");
 			res = parseDeclStatement();
 		}else {
 			res = parseExpressionStatement();
@@ -150,10 +147,10 @@ public class Parser {
 	}
 
 
-	private IfStatement parseIfStatement() {
+	private IfExpression parseIfStatement() {
 
 		eat(Keywords.IF);
-		IfStatement ifS = new IfStatement();
+		IfExpression ifS = new IfExpression();
 		ifS.cond =  parseSingleExpression();
 		ifS.thenBlock =  parseCompStatement();
 
@@ -629,7 +626,10 @@ public class Parser {
 
 
 	private Expression parseCondExpression() { //OrExpression or TernaryExpression
-
+		
+		if(tStream.peek().getValue().equals(Keywords.IF)) {
+			return parseIfStatement();
+		}
 
 
 		if( tStream.peek().getValue().equals(Keywords.MATCH)) {

@@ -1,0 +1,3 @@
+y = if 1 {return "true"; }else{return "false";}
+x = if 0 {return "true"; }else{return "false";}
+y == "true" && x == "false";

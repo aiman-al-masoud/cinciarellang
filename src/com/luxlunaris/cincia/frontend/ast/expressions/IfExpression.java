@@ -1,17 +1,17 @@
-package com.luxlunaris.cincia.frontend.ast.statements.selection;
+package com.luxlunaris.cincia.frontend.ast.expressions;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 
-public class IfStatement implements Statement{
+public class IfExpression implements Expression{
 	
 	public Expression cond;
 	public CompoundStatement thenBlock;
 	public CompoundStatement elseBlock;
 	
 	@Override
-	public Statement simplify() {
+	public Expression simplify() {
 		this.cond  = cond.simplify();
 		this.thenBlock = (CompoundStatement) thenBlock.simplify();
 		

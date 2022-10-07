@@ -36,6 +36,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.IfExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
@@ -79,7 +80,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.selection.IfStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
 import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
@@ -131,7 +131,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalIfStatement(IfStatement ifStatement, Enviro enviro) {
+	public CinciaObject evalIfExpression(IfExpression ifStatement, Enviro enviro) {
 
 		if(eval(ifStatement.cond, enviro).__bool__().toJava()) {
 			return eval(ifStatement.thenBlock, enviro);
