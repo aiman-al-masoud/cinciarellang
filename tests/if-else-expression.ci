@@ -1,7 +1,7 @@
 f = \x -> if x < 1 
-	         then "hallo" 
-	         else if x < 2 
-		           then "buruf"
-		           else "makessense";
+	       then "hallo" 
+	       else if x < 2 
+		         then "buruf"
+		         else "makessense";
 
 f(0)=="hallo" && f(1)=="buruf" && f(2)=="makessense";
