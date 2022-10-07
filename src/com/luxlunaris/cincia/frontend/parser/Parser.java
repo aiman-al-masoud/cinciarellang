@@ -602,6 +602,7 @@ public class Parser {
 		chain.add(parseCondExpression()); 
 		
 		if(tStream.peek()==null) {
+			System.out.println(tStream.peek());
 			return chain.get(0);
 		}
 		
