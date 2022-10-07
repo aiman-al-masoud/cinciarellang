@@ -11,6 +11,7 @@ import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
+import com.luxlunaris.cincia.backend.throwables.UndefinedError;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
@@ -70,7 +71,8 @@ public class Enviro implements Stateful{
 		}
 
 		if(o==null) {
-			throw new RuntimeException(key+" is undefined!");
+			throw new UndefinedError(key);
+//			throw new RuntimeException(key+" is undefined!");
 		}
 
 		return o;

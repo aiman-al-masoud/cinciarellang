@@ -10,6 +10,7 @@ import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
 import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.throwables.UndefinedError;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
@@ -71,14 +72,20 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 			}
 
 		}
-
-
-		if(lambdex == null && wrappedFunction != null) {
-			return wrappedFunction.run(args);
-		}else if(lambdex != null && lambdex.block != null) {
-			return eval.eval(lambdex.block, enviro);
-		}else if(lambdex != null && lambdex.expression != null) {
-			return eval.eval(lambdex.expression, enviro);
+		
+		
+		try {
+			if(lambdex == null && wrappedFunction != null) {
+				return wrappedFunction.run(args);
+			}else if(lambdex != null && lambdex.block != null) {
+				return eval.eval(lambdex.block, enviro);
+			}else if(lambdex != null && lambdex.expression != null) {
+				return eval.eval(lambdex.expression, enviro);
+			}
+		} catch (UndefinedError e) {
+//			System.out.println("gotcha! "+e.undefinedName);
+			params.add(new Parameter( e.undefinedName , Type.Any ,  Arrays.asList() ));
+			return run(args, enviro);
 		}
 
 		
