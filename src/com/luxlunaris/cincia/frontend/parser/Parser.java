@@ -996,6 +996,7 @@ public class Parser {
 		lE.signature = parseSignature();
 
 		eat(Operators.ARROW);
+		
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 
