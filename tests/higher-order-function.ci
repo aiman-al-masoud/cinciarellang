@@ -1,3 +1,7 @@
 hof = \f -> f(10);
-fib = \n -> if n <= 1 then 1 else this(n-1) + this(n-2);
+
+fib = \n -> if n <= 1 
+		 then 1 
+		 else this(n-1) + this(n-2);
+		 
 hof(fib ) == 89  &&  hof(\x -> 2*x) == 20;
