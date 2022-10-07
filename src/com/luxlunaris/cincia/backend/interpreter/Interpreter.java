@@ -41,7 +41,6 @@ import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.TernaryExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AndExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
@@ -119,16 +118,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return enviro.get(identex.value);
 	}
 
-	@Override
-	public CinciaObject evalTernaryExpression(TernaryExpression terex, Enviro enviro) {
-
-		if(eval(terex.cond, enviro).__bool__().toJava()) {
-			return eval(terex.thenExpression, enviro);
-		}else {
-			return eval(terex.elseExpression, enviro);
-		}
-
-	}
+	
 
 	@Override
 	public CinciaObject evalIfExpression(IfExpression ifStatement, Enviro enviro) {

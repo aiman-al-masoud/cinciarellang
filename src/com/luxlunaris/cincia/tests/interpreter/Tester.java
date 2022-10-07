@@ -29,7 +29,7 @@ import com.luxlunaris.cincia.tests.ReadFile;
  */
 public class Tester {
 
-	final static boolean ONLY_FIRST_BROKEN =true; // only show the first failing stacktrace and stop
+	final static boolean ONLY_FIRST_BROKEN =false; // only show the first failing stacktrace and stop
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);

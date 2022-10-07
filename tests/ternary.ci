@@ -1,2 +1,2 @@
-x = 1 < 2 ? "true" : "false";
+x = if 1 < 2 then "true" else "false";
 x=="true";

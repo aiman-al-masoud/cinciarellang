@@ -12,7 +12,6 @@ import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.TernaryExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AndExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
@@ -120,10 +119,7 @@ public abstract class AbstractTraversal<T> {
 
 		if(expression instanceof BinaryExpression) {
 			return evalBinaryExpression((BinaryExpression)expression, enviro);
-
-		}else if(expression instanceof TernaryExpression) {
-			return evalTernaryExpression((TernaryExpression)expression, enviro);
-
+			
 		}else if(expression instanceof MultiExpression) {
 			return evalMultiExpression((MultiExpression)expression, enviro);
 
@@ -301,7 +297,6 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalFloat(com.luxlunaris.cincia.frontend.ast.tokens.constant.Float floatex, Enviro enviro);
 	public abstract T evalStr(Str strex, Enviro enviro);
 	public abstract T evalBool(Bool boolex, Enviro enviro);	
-	public abstract T evalTernaryExpression(TernaryExpression terex, Enviro enviro);
 	public abstract T evalIfExpression(IfExpression ifStatement, Enviro enviro);
 	public abstract T evalMatchExpression(MatchExpression ifStatement, Enviro enviro);
 	public abstract T evalBreakStatement(BreakStatement breakStatement, Enviro enviro);
