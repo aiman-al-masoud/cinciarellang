@@ -603,7 +603,8 @@ public class Parser {
 		if(tStream.peek()==null) {
 			return chain.get(0);
 		}
-
+		
+		
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
 		}
@@ -1033,8 +1034,9 @@ public class Parser {
 		lE.modifiers = modifiers;
 		lE.explicitParams = false;
 		eat(Punctuations.SLASH_BCK);		
-	
+
 		lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
+		
 		return lE;
 		
 	}
