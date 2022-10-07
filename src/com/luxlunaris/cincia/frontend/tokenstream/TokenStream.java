@@ -26,19 +26,38 @@ public class TokenStream {
 	Token currTok;
 	String currentComment;
 	List<Token> history;
+	int tokenNumber;
 
 	public TokenStream(CharStream cStream) {
 		this.cStream = cStream;
 		this.history = new ArrayList<>();
+		this.tokenNumber = 0;
 	}
+	
+	
+	public int currentTokenNumber() { // if zero I still have to parse the first, if one I've parsed the first, if two I've parsed the first and the second ...
+		return tokenNumber;
+	}
+	
+	public void goBackTo(int tokenNum) {
+		this.tokenNumber = tokenNum;
+	}
+	
 
 	public void next() {
 		
-		// cache previous token
-		if(currTok!=null) {
-			history.add(currTok);
+		
+		// If true, I am accessing a token that was already parsed
+		if(tokenNumber < history.size()) {
+			currTok =  history.get(tokenNumber++);
+			return;
 		}
 		
+		// Else if going to parse new token, cache current
+		if(currTok != null && !history.contains(currTok)) {
+			history.add(currTok);
+			tokenNumber = history.size();
+		}
 		
 
 		// skip whitespace
@@ -132,10 +151,6 @@ public class TokenStream {
 		return currTok;
 	}
 	
-	public int currentTokenNumber() { // if zero I still have to parse the first, if one I've parsed the first, if two I've parsed the first and the second ...
-		return history.size();
-	}
-
 	public void croak(String message) throws RuntimeException{
 		cStream.croak(message);
 	}
@@ -144,7 +159,6 @@ public class TokenStream {
 	public boolean isEnd() {
 		return currTok == null;
 	}
-
 
 	private String skipComment(){
 
@@ -291,9 +305,6 @@ public class TokenStream {
 	public String getCurrentComment() {
 		return currentComment;
 	}
-
-
-
 
 
 
