@@ -260,6 +260,31 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		return null;
 	}
+	
+	@Override
+	public CinciaObject evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
+
+		for (Statement s : cS.statements) {
+
+			CinciaObject o = eval(s, enviro);
+
+			if (s instanceof ReturnStatement) {
+				return o;
+			}
+
+			if (o!=null && o.toJava().equals(Keywords.BREAK) ) {
+				return o;
+			}
+
+			if (o!=null && o.toJava().equals(Keywords.CONTINUE) ) {
+				return o;
+			}
+
+		}
+
+		return null;
+	}
+
 
 
 	@Override
@@ -376,30 +401,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	}
 
-	@Override
-	public CinciaObject evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
-
-		for (Statement s : cS.statements) {
-
-			CinciaObject o = eval(s, enviro);
-
-			if (s instanceof ReturnStatement) {
-				return o;
-			}
-
-			if (o!=null && o.toJava().equals(Keywords.BREAK) ) {
-				return o;
-			}
-
-			if (o!=null && o.toJava().equals(Keywords.CONTINUE) ) {
-				return o;
-			}
-
-		}
-
-		return null;
-	}
-
+	
 
 	@Override
 	public CinciaObject evalTryStatement(TryStatement tryStatement, Enviro enviro) {
