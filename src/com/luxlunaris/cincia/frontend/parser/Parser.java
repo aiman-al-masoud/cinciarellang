@@ -103,7 +103,7 @@ public class Parser {
 	public Statement parseStatement() {
 
 		Statement res = null;
-		
+
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			res = parseCompStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.WHILE )) {
@@ -151,12 +151,12 @@ public class Parser {
 		eat(Keywords.IF);
 		IfExpression ifS = new IfExpression();
 		ifS.cond =  parseSingleExpression();
-		
-		
+
+
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			ifS.thenBranch =  parseCompStatement();			
 		}
-		
+
 		if(tStream.peek().getValue().equals(Keywords.THEN)) {
 			eat(Keywords.THEN);
 			ifS.thenBranch  = parseExpression();
@@ -164,13 +164,13 @@ public class Parser {
 
 		if(tStream.peek().getValue().equals(Keywords.ELSE)) {
 			eat(Keywords.ELSE);
-			
+
 			if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 				ifS.elseBranch =  parseCompStatement();			
 			}else {				
 				ifS.elseBranch = parseExpression();
 			}
-			
+
 		}
 
 		return ifS;
@@ -572,7 +572,7 @@ public class Parser {
 
 
 	private List<Modifiers> parseAssignmentModifiers(){
-		
+
 		try {
 
 			if(Modifiers.isAssignmentModifier(((Modifier)tStream.peek()).value)) {
@@ -590,8 +590,8 @@ public class Parser {
 
 
 	private Expression parseAsgnExpression() { //right assoc
-		
-		
+
+
 		List<Modifiers> modifiers = parseAssignmentModifiers();
 
 		ArrayList<Expression> chain = new ArrayList<Expression>();
@@ -640,7 +640,7 @@ public class Parser {
 
 
 	private Expression parseCondExpression() { //OrExpression or TernaryExpression
-		
+
 		if(tStream.peek().getValue().equals(Keywords.IF)) {
 			return parseIfExpression();
 		}
@@ -655,7 +655,7 @@ public class Parser {
 
 
 		Expression oE = parseOrExpression();
-		
+
 
 		if(tStream.peek().getValue().equals(Keywords.TO)) {
 			RangeExpression rE = new RangeExpression();
@@ -920,7 +920,7 @@ public class Parser {
 	}
 
 	private PrimaryExpression parsePrimaryExpression() {
-		
+
 		// TODO: change EBNF, objects expressions are now primary expressions (does that make sense?)
 		// if it starts with modifer, or 'class' or 'interface' or '{' or '[' it's an object
 		//		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS)|| tStream.peek().getValue().equals(Keywords.INTERFACE) || tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
@@ -987,30 +987,48 @@ public class Parser {
 		tStream.croak("Expected object-expression");
 		return null;
 	}
-
+	
+	
 	private LambdaExpression parseLambdaExpression(List<Modifiers> modifiers) {
-
-
+				
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
-		lE.signature = parseSignature();
-		
-		
-		if(tStream.peek().getValue().equals(Operators.ARROW)) {
+		int memento = tStream.currentTokenNumber();
+
+		try {
+
+			lE.signature = parseSignature();
 			eat(Operators.ARROW);
-		}else {
-			lE.explicitParams = false;
-		}
-		
 
-		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+			if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+				lE.block = parseCompStatement();
+			}else {
+				lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
+			}
 
-			lE.block = parseCompStatement();
-		}else {
-			lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
+		} catch (Throwable e) {
+			tStream.goBackTo(memento);
+			return parseLambdaExpressionImplicitParams(modifiers); //try with implicit params instead
 		}
 
 		return lE;
+	}
+	
+	//TODO: fiiiiiiiiiiiiiix
+	private LambdaExpression parseLambdaExpressionImplicitParams(List<Modifiers> modifiers) {
+		
+		LambdaExpression lE = new LambdaExpression();
+		lE.modifiers = modifiers;
+		System.out.println(tStream.peek());
+		eat(Punctuations.SLASH_BCK);
+		eat(Punctuations.SLASH_BCK);
+
+		System.out.println("ate backslash");
+		System.out.println("after backslash: "+tStream.peek());
+		
+		lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
+		return lE;
+		
 	}
 
 	private ClassExpression parseClassExpression(List<Modifiers> modifiers) {

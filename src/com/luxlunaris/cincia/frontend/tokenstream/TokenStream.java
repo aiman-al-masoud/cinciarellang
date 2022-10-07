@@ -41,6 +41,7 @@ public class TokenStream {
 	
 	public void goBackTo(int tokenNum) {
 		this.tokenNumber = tokenNum;
+		this.currTok = history.get(tokenNum);
 	}
 	
 
