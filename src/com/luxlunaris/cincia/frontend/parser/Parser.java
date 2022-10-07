@@ -147,7 +147,7 @@ public class Parser {
 	}
 
 
-	private IfExpression parseIfStatement() {
+	private IfExpression parseIfExpression() {
 
 		eat(Keywords.IF);
 		IfExpression ifS = new IfExpression();
@@ -628,7 +628,7 @@ public class Parser {
 	private Expression parseCondExpression() { //OrExpression or TernaryExpression
 		
 		if(tStream.peek().getValue().equals(Keywords.IF)) {
-			return parseIfStatement();
+			return parseIfExpression();
 		}
 
 
