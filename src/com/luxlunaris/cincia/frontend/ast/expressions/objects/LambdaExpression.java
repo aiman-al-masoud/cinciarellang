@@ -24,8 +24,11 @@ public class LambdaExpression implements ObjectExpression{
 	public Expression expression;
 	
 	
+	public boolean explicitParams; // false if params not explicitly declared, no arrow, eg: \a+b 
+	
 	public LambdaExpression() {
 		modifiers = new ArrayList<Modifiers>();
+		explicitParams = true;
 	}
 
 
