@@ -25,7 +25,7 @@ public class TokenStream {
 	CharStream cStream;
 	Token currTok;
 	String currentComment;
-	List<Token> history;
+	public List<Token> history;
 	int tokenNumber;
 
 	public TokenStream(CharStream cStream) {
@@ -39,25 +39,31 @@ public class TokenStream {
 		return tokenNumber;
 	}
 	
+	protected int lastParsedTokenNumber() { // id number of the latest parsed token
+		return history.size()-1;
+	}
+	
 	public void goBackTo(int tokenNum) {
 		this.tokenNumber = tokenNum;
 		this.currTok = history.get(tokenNum);
 	}
+	
+	
 	
 
 	public void next() {
 		
 		
 		// If true, I am accessing a token that was already parsed
-		if(tokenNumber < history.size()) {
-			currTok =  history.get(tokenNumber++);
+		if(tokenNumber < lastParsedTokenNumber()) {
+			currTok = history.get(++tokenNumber);
 			return;
 		}
 		
 		// Else if going to parse new token, cache current
 		if(currTok != null && !history.contains(currTok)) {
 			history.add(currTok);
-			tokenNumber = history.size();
+			tokenNumber = lastParsedTokenNumber();
 		}
 		
 

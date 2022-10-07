@@ -127,7 +127,11 @@ public class Parser {
 		}
 
 
-		eat(Punctuations.STM_SEP);
+		
+		if(tStream.peek() != null) {
+			eat(Punctuations.STM_SEP);
+		}
+		
 		return res;
 	}
 
@@ -565,9 +569,8 @@ public class Parser {
 
 	private Expression parseSingleExpression() {
 
-
-
-		return parseAsgnExpression();		
+		Expression e =  parseAsgnExpression();	
+		return 	e;
 	}
 
 
@@ -596,6 +599,10 @@ public class Parser {
 
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
+		
+		if(tStream.peek()==null) {
+			return chain.get(0);
+		}
 
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
@@ -655,7 +662,11 @@ public class Parser {
 
 
 		Expression oE = parseOrExpression();
-
+		
+		if(tStream.peek() ==null) {
+			return oE;
+		}
+		
 
 		if(tStream.peek().getValue().equals(Keywords.TO)) {
 			RangeExpression rE = new RangeExpression();
@@ -1018,14 +1029,11 @@ public class Parser {
 	private LambdaExpression parseLambdaExpressionImplicitParams(List<Modifiers> modifiers) {
 		
 		LambdaExpression lE = new LambdaExpression();
+		lE.signature = new Signature();
 		lE.modifiers = modifiers;
-		eat(Punctuations.SLASH_BCK);
-		
-//		System.out.println(tStream.peek());
-//		eat(Punctuations.SLASH_BCK);
-//		System.out.println("ate backslash");
-//		System.out.println("after backslash: "+tStream.peek());
-		
+		lE.explicitParams = false;
+		eat(Punctuations.SLASH_BCK);		
+	
 		lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
 		return lE;
 		

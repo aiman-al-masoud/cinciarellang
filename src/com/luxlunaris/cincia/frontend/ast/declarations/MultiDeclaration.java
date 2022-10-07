@@ -25,7 +25,7 @@ public class MultiDeclaration implements Declaration{
 	
 	@Override
 	public String toString() {
-		return "["+declarations.stream().map(x->x+"").reduce((x1, x2)->x1+", "+x2).get()+"]";
+		return "["+declarations.stream().map(x->x+"").reduce((x1, x2)->x1+", "+x2).orElse("")+"]";
 	}
 
 	@Override

@@ -53,9 +53,11 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 		if(args != null && wrappedFunction == null) {
 
 			// TODO: check param/args number
+			
+			int bindNum = lambdex.explicitParams? params.size() : args.size();
 
 			// Bind args to environment
-			for(int i=0; i < params.size(); i++) {
+			for(int i=0; i < bindNum; i++) {
 
 				Parameter p = params.get(i);
 				CinciaObject arg = args.get(i);
