@@ -26,55 +26,47 @@ public class TokenStream {
 	Token currTok;
 	String currentComment;
 	public List<Token> history;
-	int tokenNumber;
 
 	public TokenStream(CharStream cStream) {
 		this.cStream = cStream;
 		this.history = new ArrayList<>();
-		this.tokenNumber = 0;
 	}
 	
 	
-	public int currentTokenNumber() { // if zero I still have to parse the first, if one I've parsed the first, if two I've parsed the first and the second ...
-		return tokenNumber;
+	// get a unique identifier for the current token
+	public int currentTokenNumber() { 
+		return currTok.hashCode();
 	}
 	
-	public int lastParsedTokenNumber() { // id number of the latest parsed token
-		return history.size()-1;
-	}
-	
+
 	public void goBackTo(int tokenNum) {
-		this.tokenNumber = tokenNum;
-		this.currTok = history.get(tokenNum);
+		this.currTok = history.stream().filter(t -> t.hashCode()==tokenNum ).findFirst().get();
 	}
-	
-	
 	
 
 	public void next() {
 		
 		
-		// If true, I am accessing a token that was already parsed
-		if(tokenNumber < lastParsedTokenNumber()) {
-			currTok = history.get(++tokenNumber);
-			return;
+		// don't parse new token if you're "back in time"
+		if(history.contains(currTok)) {
+			
+			// get index of what (maybe) comes after 
+			int i = history.indexOf(currTok) + 1;
+
+			// does anything actually come after?
+			if ( i < history.size() ) {
+				this.currTok = history.get(i); // set current token to what came after
+				return;
+			}
+			
 		}
 		
-		// Else if going to parse new token, cache current
-		if(currTok != null && !history.contains(currTok)) {
+		// add tok to history
+		if(currTok!=null && !history.contains(currTok)) {
 			history.add(currTok);
-			tokenNumber = lastParsedTokenNumber();
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		// parse new token:
 		
 
 		// skip whitespace

@@ -15,6 +15,7 @@ import com.luxlunaris.cincia.frontend.ast.declarations.SingleDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class CinciaFunction extends AbstractCinciaObject implements Callable{
@@ -58,10 +59,14 @@ public class CinciaFunction extends AbstractCinciaObject implements Callable{
 
 			// Bind args to environment
 			for(int i=0; i < bindNum; i++) {
-
-				Parameter p = params.get(i);
+				
+				Parameter p =  i<params.size()?  params.get(i) : null;
+				String pName =  p ==null?  "_" : p.name;
+				boolean byRef = p ==null? false : p.isByRef();
+				Type type = p==null? Type.Any : p.type;
+				
 				CinciaObject arg = args.get(i);
-				enviro.set(p.name, p.isByRef()? arg : arg.copy(args), p.type);	
+				enviro.set(pName, byRef? arg : arg.copy(args),  type);	
 			}
 
 		}
