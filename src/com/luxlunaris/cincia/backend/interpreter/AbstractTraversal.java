@@ -114,7 +114,6 @@ public abstract class AbstractTraversal<T> {
 			
 		}
 
-		//		System.out.println(ast.getClass());
 		throw new RuntimeException("No such AST class!");
 	}
 
