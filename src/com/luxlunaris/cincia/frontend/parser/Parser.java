@@ -1019,12 +1019,12 @@ public class Parser {
 		
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
-		System.out.println(tStream.peek());
 		eat(Punctuations.SLASH_BCK);
-		eat(Punctuations.SLASH_BCK);
-
-		System.out.println("ate backslash");
-		System.out.println("after backslash: "+tStream.peek());
+		
+//		System.out.println(tStream.peek());
+//		eat(Punctuations.SLASH_BCK);
+//		System.out.println("ate backslash");
+//		System.out.println("after backslash: "+tStream.peek());
 		
 		lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
 		return lE;
