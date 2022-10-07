@@ -63,7 +63,7 @@ public class TokenStream {
 			// does anything actually come after?
 			if ( i < history.size() ) {
 				this.currTok = history.get(i); // set current token to what came after
-				System.out.println("fetched from history "+history);
+//				System.out.println("fetched from history "+history);
 				return;
 			}
 			
@@ -140,7 +140,7 @@ public class TokenStream {
 			}
 
 			currTok = new Operator(op);
-			System.out.println("parsed new operator "+currTok);
+//			System.out.println("parsed new operator "+currTok);
 
 			return;
 		}
@@ -163,7 +163,7 @@ public class TokenStream {
 
 
 		//if everything fails, normally at the end of the char stream:
-		System.out.println("tokenstream effing done");
+//		System.out.println("tokenstream effing done");
 		currTok = null;
 	}
 

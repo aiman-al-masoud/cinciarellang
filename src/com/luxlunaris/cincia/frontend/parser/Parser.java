@@ -601,11 +601,11 @@ public class Parser {
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
 		
-		if(tStream.peek()==null) {
-			System.out.println(tStream.peek());
-			return chain.get(0);
-		}
-		
+//		if(tStream.peek()==null) {
+////			System.out.println(tStream.peek());
+//			return chain.get(0);
+//		}
+//		
 		
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
@@ -1008,7 +1008,7 @@ public class Parser {
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
 		int memento = tStream.currentTokenNumber();
-		System.out.println("current token when taking memento: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
+//		System.out.println("current token when taking memento: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
 
 
 		try {
@@ -1037,7 +1037,7 @@ public class Parser {
 		lE.signature = new Signature();
 		lE.modifiers = modifiers;
 		lE.explicitParams = false;
-		System.out.println("current token before eating backslash: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
+//		System.out.println("current token before eating backslash: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
 		eat(Punctuations.SLASH_BCK);		
 		
 //		System.out.println("after having eaten backslash");
@@ -1048,7 +1048,7 @@ public class Parser {
 
 		lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
 		
-		System.out.println("parsed exp: "+lE.expression);
+//		System.out.println("parsed exp: "+lE.expression);
 		return lE;
 		
 	}
