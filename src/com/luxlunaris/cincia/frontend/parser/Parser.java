@@ -144,8 +144,6 @@ public class Parser {
 	}
 
 	private DeclarationStatement parseDeclStatement() {
-
-//		eat(Keywords.DEC);
 		DeclarationStatement dS = new DeclarationStatement(parseDeclaration(true));
 		return dS;
 	}
