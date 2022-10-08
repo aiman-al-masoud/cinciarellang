@@ -28,10 +28,10 @@ public class Enviro implements Stateful{
 	public static final String WORKING_DIR = "WORKING_DIR";
 
 	protected Enviro parent;
+	protected boolean immutable;
 	protected Map<String, CinciaObject> vars;
 	protected Map<String, Type> types;
 	protected Map<String, List<Modifiers>> modifiers;
-	protected boolean immutable;
 
 
 	public static Enviro getTopLevelEnviro() {
