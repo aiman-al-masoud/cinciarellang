@@ -10,6 +10,7 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
+import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.backend.throwables.ReassignmentException;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.backend.throwables.UndefinedError;
@@ -30,6 +31,7 @@ public class Enviro implements Stateful{
 	protected Map<String, CinciaObject> vars;
 	protected Map<String, Type> types;
 	protected Map<String, List<Modifiers>> modifiers;
+	protected boolean immutable;
 
 
 	public static Enviro getTopLevelEnviro() {
@@ -39,6 +41,7 @@ public class Enviro implements Stateful{
 
 	public Enviro(Enviro parent) {
 
+		immutable = false;
 		this.parent = parent;
 
 		if(parent != null ) {
@@ -52,6 +55,41 @@ public class Enviro implements Stateful{
 		}
 
 	}
+	
+	/**
+	 * Recursively makes this object and all of its children immutable.
+	 */
+	public void setImmutable() {
+
+		immutable = true;
+
+		values().stream().
+		forEach(o->{
+
+			if(o!=null && o!=this) {
+				o.setImmutable();
+			}
+
+		});
+
+	}
+	
+	/**
+	 * Throws an exception if this object is immutable.
+	 */
+	protected void checkImmutable() {
+
+		if(immutable) {	
+			throw new CannotMutateException();
+		}
+
+	}
+	
+//	@Override
+	public boolean isImmutable() {
+		return immutable;
+	}
+
 
 	/**
 	 * Returns a new shallow copy of this env,
@@ -90,6 +128,8 @@ public class Enviro implements Stateful{
 
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
+		
+		checkImmutable();
 
 
 		// (case 0) if key doesn't exist and val is null, it's a declaration

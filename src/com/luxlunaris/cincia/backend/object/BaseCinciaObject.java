@@ -20,7 +20,6 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class BaseCinciaObject extends Enviro implements CinciaObject{
 
-	protected boolean immutable;	
 	protected Type type; // object's type/class
 	protected String docString;
 
@@ -79,40 +78,9 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 		this.docString  = this.docString==null ? docString : this.docString;
 	}
 
-
 	public Type getType() {
 		return type;
-	}
-
-
-	/**
-	 * Throws an exception if this object is immutable.
-	 */
-	protected void checkImmutable() {
-
-		if(immutable) {	
-			throw new CannotMutateException();
-		}
-
-	}
-
-	/**
-	 * Recursively makes this object and all of its children immutable.
-	 */
-	public void setImmutable() {
-
-		immutable = true;
-
-		values().stream().
-		forEach(o->{
-
-			if(o!=null && o!=this) {
-				o.setImmutable();
-			}
-
-		});
-
-	}
+	}	
 
 	public Enviro getEnviro() {
 		return this;
@@ -321,11 +289,6 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 	}
 
 	@Override
-	public boolean isImmutable() {
-		return immutable;
-	}
-
-	@Override
 	public CinciaBool is(List<CinciaObject> args) {
 		return new CinciaBool(this == args.get(0)); // this == other (in RAM)
 	}
@@ -341,80 +304,14 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 
 	}
 
-	//getters
-
-	@Override
-	public CinciaObject get(int key) {
-		return super.get(key);
-
-	}
-
-	public CinciaObject get(String key) {
-		return super.get(key);
-	}
-
-	public CinciaObject get(Magic key) {
-		return super.get(key);
-	}
-
-	public Type getType(String key) {
-		return super.getType(key);
-	}
-
+	
 	// setters
-
-	@Override
-	public void set(int key, CinciaObject val, Type type) {	
-		checkImmutable();
-		super.set(key, val, type);
-	}
-
-	@Override
-	public void set(int key, CinciaObject val) {
-		checkImmutable();
-		super.set(key, val);
-	}
-
-	@Override
-	public void set(CinciaObject key, CinciaObject val) {
-		checkImmutable();
-		super.set(key, val);
-	}
-
-	@Override
-	public void set(CinciaIterable key, CinciaObject val) {
-		checkImmutable();
-		// if val is not another list, assign all keys to same single value of val.
-		key.forEach(i -> set(i, val instanceof CinciaIterable ? val.get(i) : val ));
-	}
-
-	@Override
-	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
-		checkImmutable();
-		super.set(key, val, type, modifiers);
-	}
 
 	public void set(String key, CinciaObject val) {
 		checkImmutable();
 		super.set(key, val, val ==null ? Type.Any: val.getType());//TODO::/!!!!
 	}
-
-	public void set(String key, CinciaObject val, Type type) {
-		checkImmutable();
-		super.set(key, val, type);
-	}
-
-
-	public void set(Magic key, CinciaObject val) {
-		checkImmutable();
-		super.set(key, val);
-	}
-
-	public void remove(String key) {
-		checkImmutable();
-		super.remove(key);
-	}
-
+	
 	@Override
 	public Object toJava(Object... args) {
 		return toJava();
