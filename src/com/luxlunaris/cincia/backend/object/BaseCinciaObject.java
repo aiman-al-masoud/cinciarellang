@@ -285,7 +285,7 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 	}
 
 	@Override
-	public CinciaBool is(List<CinciaObject> args) {
+	public final CinciaBool is(List<CinciaObject> args) {
 		return new CinciaBool(this == args.get(0)); // this == other (in RAM)
 	}
 
