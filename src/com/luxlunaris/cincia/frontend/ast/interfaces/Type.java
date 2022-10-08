@@ -19,7 +19,7 @@ public interface Type extends Expression{
 
 
 	/**
-	 * TypeWrapper returns the wrapped type, everything elese
+	 * TypeWrapper returns the wrapped type, everything else
 	 * just returns this.
 	 * @return
 	 */
