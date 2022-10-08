@@ -68,9 +68,23 @@ public interface CinciaObject extends Stateful{
 	CinciaString __str__();
 	CinciaObject __neg__();
 	CinciaObject __init__(List<CinciaObject> args);
-	CinciaObject copy(List<CinciaObject> args); // returns a deep copy of the object
-	CinciaObject freeze(List<CinciaObject> args);// return an immutable copy of this object
-	CinciaObject as(List<CinciaObject> args); //cast/conversion to other class	
+	
+	/**
+	 * Returns a deep (recursive or bitwise) copy of the object
+	 * @param args
+	 * @return
+	 */
+	CinciaObject copy(List<CinciaObject> args); 
+	
+	/**
+	 * Like {@link #copy(List)}, but the copy is also immutable.
+	 * @param args
+	 * @return
+	 */
+	CinciaObject freeze(List<CinciaObject> args);
+	
+	
+	CinciaObject as(List<CinciaObject> args); 
 	CinciaBool is(List<CinciaObject> args); // in-memory identity for objects
 	CinciaString help(List<CinciaObject> args);
 	void setDocstring(String docstring); // changes object's docstring only if it was null
