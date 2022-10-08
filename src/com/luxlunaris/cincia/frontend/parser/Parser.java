@@ -131,7 +131,6 @@ public class Parser {
 
 
 	private ExpressionStatement parseExpressionStatement() {
-
 		ExpressionStatement eS = new ExpressionStatement(parseExpression());
 		return eS;
 	}
