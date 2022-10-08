@@ -17,12 +17,10 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
-	public static String CLASS = "class"; //TODO: maybe useless, see comment down
 
 	public CinciaCinciaClass() {
 		super(new IdentifierType("Class"));
-		type = this; // a class is its own type
-		set(CLASS, this); // mark the env as belonging to a class //TODO maybe not necessary anymore, use 'type'
+		type = this; // a class IS its own type
 	}
 
 	/**
@@ -79,7 +77,6 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 		boolean typesMatch = theseEntries.stream()
 				.filter( e-> ! e.getKey().equals(Magic.THIS.toString())    )
 				.filter( e-> ! e.getKey().equals("type")    )
-				.filter( e-> ! e.getKey().equals(CLASS)    )
 				.allMatch( e-> {
 
 					var thisType =	getType(e.getKey());
