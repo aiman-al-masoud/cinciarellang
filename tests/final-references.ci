@@ -1,0 +1,10 @@
+final x:int;
+x = 1;
+
+try{
+	x = 2;	
+} catch e:ReassignmentException {
+	caught = true;
+}
+
+caught && x == 1;

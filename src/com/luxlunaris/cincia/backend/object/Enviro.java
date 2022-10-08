@@ -10,6 +10,7 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
+import com.luxlunaris.cincia.backend.throwables.ReassignmentException;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.backend.throwables.UndefinedError;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -162,7 +163,7 @@ public class Enviro implements Stateful{
 
 			// error: reassignment of final variable
 			if(vars.get(key)!=null &&  this.modifiers.get(key)!=null &&  this.modifiers.get(key).contains(Modifiers.FINAL)) {
-				throw new RuntimeException("Cannot reassign final variable!");
+				throw new ReassignmentException(key);
 			}
 
 			// TODO error on new modifiers ...
