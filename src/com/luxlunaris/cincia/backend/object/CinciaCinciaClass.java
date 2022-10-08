@@ -105,9 +105,13 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 		return this.__eq__((CinciaObject)other).toJava();
 	}
-
-
-
+	
+	/**
+	 * Returns a new class, that has the sum of the properties of this and 
+	 * the other.
+	 * In case of a naming conflict, the surviving property will be inherited
+	 * from the OTHER class.
+	 */
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
 
