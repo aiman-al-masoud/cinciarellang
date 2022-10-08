@@ -7,18 +7,6 @@ public abstract class AbstractToken implements Token{
 	
 	@Override
 	public String toString() {
-				
-//		try {
-//			String value = this.getClass().getDeclaredField("value").get(this)+"";
-////			this.getClass().getSimpleName()
-//			return "<"+value+">";
-//			
-//		} catch (NoSuchFieldException |SecurityException  |IllegalArgumentException | IllegalAccessException e) {
-//			e.printStackTrace();
-//		} 
-//		
-//		return "";
-		
 		return getValue() +"";
 	}
 	
@@ -27,8 +15,6 @@ public abstract class AbstractToken implements Token{
 		
 		try {
 			 return this.getClass().getDeclaredField("value").get(this);
-//			this.getClass().getSimpleName()
-//			return value;
 			
 		} catch (NoSuchFieldException |SecurityException  |IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
@@ -40,5 +26,16 @@ public abstract class AbstractToken implements Token{
 	public Expression simplify() {
 		return this;
 	}
+	
+	/**
+	 * Tokens should NOT override equals(), as they should 
+	 * always be compared by identity for TokenStream's
+	 * backtracing functionality to work!
+	 */
+	@Override
+	public final boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+	
 	
 }
