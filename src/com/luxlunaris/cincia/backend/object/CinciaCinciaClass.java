@@ -172,7 +172,7 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 	@Override
 	public void set(String key, CinciaObject val) {
 
-		// if you're assigning a function to a class-field, turn it into a method 
+		// if you're assigning a function to a class-field, automatically turn it into a method !
 		if(val instanceof CinciaFunction && ! (val instanceof CinciaMethod)) {
 			val = CinciaMethod.fromFunction((CinciaFunction)val, this);
 		}
