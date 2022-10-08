@@ -73,7 +73,6 @@ public class Enviro implements Stateful{
 
 		if(o==null) {
 			throw new UndefinedError(key);
-//			throw new RuntimeException(key+" is undefined!");
 		}
 
 		return o;
