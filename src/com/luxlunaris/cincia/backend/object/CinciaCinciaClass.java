@@ -126,8 +126,8 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 				.filter( e-> !Arrays.asList(Magic.THIS.toString(), Magic.type.toString()).contains(e.getKey()) )
 				.collect(Collectors.toList());
 
-			thisProps.forEach(e->  newClass.set(e.getKey(), e.getValue(), this.getType(e.getKey())));
-			otherProps.forEach(e->  newClass.set(e.getKey(), e.getValue(), otherClass.getType(e.getKey())));
+			thisProps.forEach(e-> newClass.set(e.getKey(), e.getValue(), this.getType(e.getKey())));
+			otherProps.forEach(e-> newClass.set(e.getKey(), e.getValue(), otherClass.getType(e.getKey())));
 
 			return newClass;
 
