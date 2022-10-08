@@ -923,10 +923,8 @@ public class Parser {
 
 		// TODO: change EBNF, objects expressions are now primary expressions (does that make sense?)
 		// if it starts with modifer, or 'class' or 'interface' or '{' or '[' it's an object
-		//		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS)|| tStream.peek().getValue().equals(Keywords.INTERFACE) || tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN) || tStream.peek().getValue().equals(Punctuations.SQBR_OPN) || tStream.peek() instanceof Modifier || tStream.peek().getValue().equals(Keywords.CLASS) || tStream.peek().getValue().equals(Punctuations.SLASH_BCK)) {
-
 			return parseObjectExpression();
 		}
 
@@ -947,7 +945,7 @@ public class Parser {
 			return k;
 		}
 
-		// constant values
+		// else, constant values
 		return parseConstant();
 
 	}
