@@ -1005,7 +1005,7 @@ public class Parser {
 			}
 
 		} catch (Throwable e) {
-			tStream.goBackTo(memento); // backtrack to token before trying
+			tStream.goBackTo(memento); // backtrack to token at chekpoint 
 			return parseLambdaExpressionImplicitParams(modifiers); // if it fails, try with implicit params instead
 		}
 
