@@ -126,9 +126,9 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 					continue;
 				}
 
-				if(entry.getKey().equals( "class" )) {
-					continue;
-				}
+//				if(entry.getKey().equals( "class" )) {
+//					continue;
+//				}
 
 				if(entry.getKey().equals( "type" )) {
 					continue;
@@ -145,9 +145,9 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 					continue;
 				}
 
-				if(entry.getKey().equals( "class" )) {
-					continue;
-				}
+//				if(entry.getKey().equals( "class" )) {
+//					continue;
+//				}
 
 				if(entry.getKey().equals( "type" )) {
 					continue;
