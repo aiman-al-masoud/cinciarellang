@@ -124,20 +124,13 @@ public class Parser {
 			int memento = tStream.currentTokenNumber();
 			
 			try {
-				res = parseDeclStatement();
+				res = parseDeclStatement(); // try parsing as declaration
 			} catch (Throwable e) {
-				tStream.goBackTo(memento);
-				res = parseExpressionStatement();	
+				tStream.goBackTo(memento); // if not declaration, backrtrack ...
+				res = parseExpressionStatement(); // ... and parse as expression
 			}
 			
 		}
-		
-		
-//		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
-//			res = parseDeclStatement();
-//		}else {
-//			res = parseExpressionStatement();
-//		}
 		
 
 		eat(Punctuations.STM_SEP);
