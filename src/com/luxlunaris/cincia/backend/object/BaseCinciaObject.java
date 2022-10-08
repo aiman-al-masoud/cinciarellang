@@ -226,7 +226,7 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 	}
 
 	/**
-	 * Returns a recursive copy of this object.
+	 * Returns a recursive deep copy of the object.
 	 */
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
@@ -273,9 +273,6 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 		return copy;
 	}
 
-	/**
-	 * Returns an immutable recursive copy of this object.
-	 */
 	@Override
 	public CinciaObject freeze(List<CinciaObject> args) {
 		CinciaObject o = this.copy(args);
