@@ -25,7 +25,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
  * 
  * @author aiman
  */
-public class JavaObject extends AbstractCinciaObject {
+public class JavaObject extends BaseCinciaObject {
 
 	public Object object; // wrapped Java object
 

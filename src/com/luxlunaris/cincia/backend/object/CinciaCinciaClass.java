@@ -15,7 +15,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaClass{
+public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 	public static String CLASS = "class"; //TODO: maybe useless, see comment down
 
@@ -37,7 +37,7 @@ public class CinciaCinciaClass extends AbstractCinciaObject implements CinciaCla
 		set(name, method, method.type);
 	}	
 
-	public void addAttribute(String name, AbstractCinciaObject value) {
+	public void addAttribute(String name, BaseCinciaObject value) {
 		set(name, value, value.type);
 	}	
 

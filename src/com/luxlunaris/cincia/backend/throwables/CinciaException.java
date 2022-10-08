@@ -5,7 +5,7 @@ import java.util.List;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
-import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
@@ -19,16 +19,16 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class CinciaException extends RuntimeException implements CinciaObject, Type {
 
-	protected AbstractCinciaObject object;
+	protected BaseCinciaObject object;
 
 	
 	public CinciaException(String msg) {
 		super(msg);
-		object = new AbstractCinciaObject(null);
+		object = new BaseCinciaObject(null);
 	}
 
 	public CinciaException() {
-		object = new AbstractCinciaObject(null);
+		object = new BaseCinciaObject(null);
 	}
 
 	@Override

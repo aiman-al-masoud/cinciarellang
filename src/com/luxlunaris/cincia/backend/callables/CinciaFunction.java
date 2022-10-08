@@ -8,7 +8,7 @@ import com.luxlunaris.cincia.backend.interfaces.Callable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
-import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.throwables.UndefinedError;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
@@ -19,7 +19,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
-public class CinciaFunction extends AbstractCinciaObject implements Callable{
+public class CinciaFunction extends BaseCinciaObject implements Callable{
 
 	
 	//TODO: all functions must declare a signature, no "NativeCode" type.

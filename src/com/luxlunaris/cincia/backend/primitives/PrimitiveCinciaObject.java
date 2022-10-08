@@ -3,7 +3,7 @@ package com.luxlunaris.cincia.backend.primitives;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
-import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
@@ -11,7 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
  * Primitive objects are immutable (int, float, bool, string).
  *
  */
-public abstract class PrimitiveCinciaObject extends AbstractCinciaObject{
+public abstract class PrimitiveCinciaObject extends BaseCinciaObject{
 
 	public PrimitiveCinciaObject(Type type) {
 		super(type);

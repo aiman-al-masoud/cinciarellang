@@ -14,7 +14,7 @@ import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.IterMethods;
-import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
@@ -22,7 +22,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import java.util.function.UnaryOperator;
 
 
-public class CinciaList extends AbstractCinciaObject implements CinciaIterable {
+public class CinciaList extends BaseCinciaObject implements CinciaIterable {
 
 	protected List<CinciaObject> list;
 

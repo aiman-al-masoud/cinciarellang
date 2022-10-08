@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.backend.types;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
-import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
@@ -14,7 +14,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
  * into a CiciaObject envelope.
  *
  */
-public class TypeWrapper extends AbstractCinciaObject implements Type {
+public class TypeWrapper extends BaseCinciaObject implements Type {
 
 	public TypeWrapper(Type type) {
 		super(type);

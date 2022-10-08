@@ -18,13 +18,13 @@ import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
-public class AbstractCinciaObject extends Enviro implements CinciaObject{
+public class BaseCinciaObject extends Enviro implements CinciaObject{
 
 	protected boolean immutable;	
 	protected Type type; // object's type/class
 	protected String docString;
 
-	public AbstractCinciaObject(Type type) {
+	public BaseCinciaObject(Type type) {
 		super(null); //TODO: parent null?
 		this.type = type;
 		immutable = false;
@@ -254,7 +254,7 @@ public class AbstractCinciaObject extends Enviro implements CinciaObject{
 	 * Returns a blank new object of this's kind.
 	 */
 	protected CinciaObject getBlank() {
-		return new AbstractCinciaObject(this.type);
+		return new BaseCinciaObject(this.type);
 	}
 
 	/**

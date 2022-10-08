@@ -4,11 +4,11 @@ import java.util.Optional;
 
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
-import com.luxlunaris.cincia.backend.object.AbstractCinciaObject;
+import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.DictType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
-public class CinciaDict extends AbstractCinciaObject {
+public class CinciaDict extends BaseCinciaObject {
 
 	public CinciaDict(Type keyType, Type valType) {
 		super(new DictType(keyType, valType));
