@@ -1085,25 +1085,6 @@ public class Parser {
 		return cE;
 	}
 
-	private List<Identifier> parseIdList(){ //comma separated
-
-		ArrayList<Identifier> ids = new ArrayList<Identifier>();
-		ids.add(parseIdentifier());
-
-		while (!tStream.isEnd()) {
-
-			if(tStream.peek().getValue().equals(Punctuations.COMMA)) {
-				eat(Punctuations.COMMA);
-				ids.add(parseIdentifier());
-			}else {
-				break;
-			}
-
-		}
-
-		return ids;
-	}
-
 	private ObjectExpression parseList() {
 
 		eat(Punctuations.SQBR_OPN);
