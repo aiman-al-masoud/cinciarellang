@@ -592,13 +592,7 @@ public class Parser {
 
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
-
-		//		if(tStream.peek()==null) {
-		////			System.out.println(tStream.peek());
-		//			return chain.get(0);
-		//		}
-		//		
-
+		
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
 		}
