@@ -687,21 +687,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return rval;
 	}
 
-	@Override
-	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
-
-		CinciaCinciaClass c = new CinciaCinciaClass();
-
-		for(Declaration dec : classex.declarations) {	
-			eval(dec, c.getEnviro());
-		}
-
-		for(AssignmentExpression assign : classex.assignments) {
-			eval(assign, c.getEnviro());
-		}
-
-		return c;
-	}
 
 	@Override
 	public CinciaObject evalDictExpression(DictExpression dictex, Enviro enviro) {
@@ -726,6 +711,23 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		//TODO: destructuring 
 
 		return d;
+	}
+	
+
+	@Override
+	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
+
+		CinciaCinciaClass c = new CinciaCinciaClass();
+
+		for(Declaration dec : classex.declarations) {	
+			eval(dec, c.getEnviro());
+		}
+
+		for(AssignmentExpression assign : classex.assignments) {
+			eval(assign, c.getEnviro());
+		}
+
+		return c;
 	}
 
 	@Override
