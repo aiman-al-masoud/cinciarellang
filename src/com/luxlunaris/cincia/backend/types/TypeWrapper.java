@@ -18,7 +18,6 @@ public class TypeWrapper extends BaseCinciaObject implements Type {
 
 	public TypeWrapper(Type type) {
 		super(type);
-		//		System.out.println(type);
 	}
 
 	@Override
@@ -46,7 +45,6 @@ public class TypeWrapper extends BaseCinciaObject implements Type {
 	public Type resolve(Eval eval, Enviro enviro) {
 		return this;
 	}
-
 
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
