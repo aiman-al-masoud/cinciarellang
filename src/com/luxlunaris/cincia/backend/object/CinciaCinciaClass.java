@@ -114,8 +114,8 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 		try {
 
 			var dontCare =  (Type)other; 
-			var otherClass =  (CinciaObject)other;  // could be a class or an interface //TODO what about JavaClass?
-			var c = new CinciaCinciaClass(); //TODO always produce a class?
+			var otherClass =  (CinciaObject)other;  //TODO what about JavaClass?
+			var c = new CinciaCinciaClass(); 
 
 
 			for( Entry<String, CinciaObject> entry : this.getEnviro().vars.entrySet() ) {
