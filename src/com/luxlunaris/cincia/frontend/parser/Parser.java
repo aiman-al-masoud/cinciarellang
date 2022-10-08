@@ -119,11 +119,26 @@ public class Parser {
 			res = parseBreakStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
-		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
-			res = parseDeclStatement();
 		}else {
-			res = parseExpressionStatement();
+			
+			int memento = tStream.currentTokenNumber();
+			
+			try {
+				res = parseDeclStatement();
+			} catch (Throwable e) {
+				tStream.goBackTo(memento);
+				res = parseExpressionStatement();	
+			}
+			
 		}
+		
+		
+//		}else if(tStream.peek().getValue().equals( Keywords.DEC )) {
+//			res = parseDeclStatement();
+//		}else {
+//			res = parseExpressionStatement();
+//		}
+		
 
 		eat(Punctuations.STM_SEP);
 		return res;
@@ -137,7 +152,7 @@ public class Parser {
 
 	private DeclarationStatement parseDeclStatement() {
 
-		eat(Keywords.DEC);
+//		eat(Keywords.DEC);
 		DeclarationStatement dS = new DeclarationStatement(parseDeclaration(true));
 		return dS;
 	}
