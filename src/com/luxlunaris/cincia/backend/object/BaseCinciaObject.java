@@ -26,7 +26,6 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 	public BaseCinciaObject(Type type) {
 		super(null); //TODO: parent null?
 		this.type = type;
-		immutable = false;
 		set(Magic.THIS, this); 
 
 		if(! (this instanceof CinciaFunction) ) { //else inf recursion upon creating CinciaMethods
