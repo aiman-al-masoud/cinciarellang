@@ -13,23 +13,21 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
-import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
-public class AbstractCinciaObject implements CinciaObject{
+public class AbstractCinciaObject extends Enviro implements CinciaObject{
 
 	protected boolean immutable;	
-	public Enviro enviro; //object's internal environment 
 	protected Type type; // object's type/class
 	protected String docString;
 
 	public AbstractCinciaObject(Type type) {
+		super(null); //TODO: parent null?
 		this.type = type;
 		immutable = false;
-		enviro = new Enviro(null); //TODO: parent null?
 		set(Magic.THIS, this); 
 
 		if(! (this instanceof CinciaFunction) ) { //else inf recursion upon creating CinciaMethods
@@ -51,7 +49,7 @@ public class AbstractCinciaObject implements CinciaObject{
 	protected CinciaObject entries(List<CinciaObject> args){
 
 		List<CinciaObject> list =
-				enviro.vars.entrySet()
+				this.vars.entrySet()
 				.stream()
 				.map(e-> new CinciaList( Arrays.asList(CinciaObject.wrap(e.getKey()), e.getValue() ) )  )
 				.collect(Collectors.toList());
@@ -105,7 +103,8 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		immutable = true;
 
-		enviro.values().stream().forEach(o->{
+		values().stream().
+		forEach(o->{
 
 			if(o!=null && o!=this) {
 				o.setImmutable();
@@ -116,9 +115,8 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	public Enviro getEnviro() {
-		return enviro;
+		return this;
 	}
-
 
 	public CinciaBool __bool__(){
 		//TODO: handle keyerror exception, check if cm null
@@ -243,16 +241,14 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		}
 
-		return this;
+		return this; // default constructor is valid
 	}
 
-	// .as(ClassName) //TODO: cast/conversion to other class
 	@Override
 	public CinciaObject as(List<CinciaObject> args) {
 		CinciaMethod cm = (CinciaMethod)get(Magic.as);
 		return cm.run(args);
 	}
-
 
 	/**
 	 * Returns a blank new object of this's kind.
@@ -271,7 +267,7 @@ public class AbstractCinciaObject implements CinciaObject{
 
 		CinciaObject copy = getBlank(); // get a new (blank) object
 
-		for (Entry<String, CinciaObject> e : enviro.items()) {
+		for (Entry<String, CinciaObject> e : this.items()) {
 
 			CinciaObject childo = e.getValue(); // child object
 			CinciaObject childco; // copy of the child object
@@ -325,11 +321,6 @@ public class AbstractCinciaObject implements CinciaObject{
 	}
 
 	@Override
-	public Object toJava() {
-		return this;
-	}
-
-	@Override
 	public boolean isImmutable() {
 		return immutable;
 	}
@@ -345,7 +336,6 @@ public class AbstractCinciaObject implements CinciaObject{
 		try {
 			return __eq__((CinciaObject)obj).__bool__().toJava();
 		} catch (ClassCastException e) {
-			//			throw new RuntimeException("Tried comparing cincia object with non-cincia object");
 			return false;
 		}
 
@@ -355,43 +345,20 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public CinciaObject get(int key) {
-		return enviro.get(key);
-	}
+		return super.get(key);
 
-	@Override
-	public CinciaObject get(CinciaIterable key) {		
-		//		return enviro.get(key);
-		return key.map( k->get(k) );
-	}	
-
-	@Override
-	public CinciaObject get(CinciaObject key) {
-
-		if(key instanceof CinciaString) {
-			return get(((CinciaString)key).toJava());
-		}
-
-		if(key instanceof CinciaInt) {
-			return get(((CinciaInt)key).toJava());
-		}
-
-		if(key instanceof CinciaIterable) {
-			return get((CinciaIterable)key);
-		}
-
-		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
 	}
 
 	public CinciaObject get(String key) {
-		return enviro.get(key);
+		return super.get(key);
 	}
 
 	public CinciaObject get(Magic key) {
-		return enviro.get(key);
+		return super.get(key);
 	}
 
 	public Type getType(String key) {
-		return enviro.getType(key);
+		return super.getType(key);
 	}
 
 	// setters
@@ -399,44 +366,23 @@ public class AbstractCinciaObject implements CinciaObject{
 	@Override
 	public void set(int key, CinciaObject val, Type type) {	
 		checkImmutable();
-		enviro.set(key, val, type);
+		super.set(key, val, type);
 	}
 
 	@Override
 	public void set(int key, CinciaObject val) {
 		checkImmutable();
-		enviro.set(key, val);
+		super.set(key, val);
 	}
 
 	@Override
 	public void set(CinciaObject key, CinciaObject val) {
 		checkImmutable();
-
-		// if index is an int
-		if(key instanceof CinciaInt) {
-			set(((CinciaInt)key).toJava(), val);
-			return;
-		}
-
-		// if index is a string
-		if(key instanceof CinciaString) {
-			set(((CinciaString)key).toJava(), val);
-			return;
-		}
-
-		// if index is an iterable
-		if(key instanceof CinciaIterable) {
-			set((CinciaIterable)key, val);
-			return;
-		}
-
-		throw new RuntimeException("Unsupported index type: "+key.getClass()+"!");
-
+		super.set(key, val);
 	}
 
 	@Override
 	public void set(CinciaIterable key, CinciaObject val) {
-
 		checkImmutable();
 		// if val is not another list, assign all keys to same single value of val.
 		key.forEach(i -> set(i, val instanceof CinciaIterable ? val.get(i) : val ));
@@ -444,33 +390,29 @@ public class AbstractCinciaObject implements CinciaObject{
 
 	@Override
 	public void set(String key, CinciaObject val, Type type, List<Modifiers> modifiers) {
-
-		//		System.out.println(key+" "+val+" "+type+" "+modifiers);
-
 		checkImmutable();
-		enviro.set(key, val, type, modifiers);
+		super.set(key, val, type, modifiers);
 	}
 
 	public void set(String key, CinciaObject val) {
 		checkImmutable();
-		enviro.set(key, val, val ==null ? Type.Any: val.getType());//TODO::/!!!!
+		super.set(key, val, val ==null ? Type.Any: val.getType());//TODO::/!!!!
 	}
-
 
 	public void set(String key, CinciaObject val, Type type) {
 		checkImmutable();
-		enviro.set(key, val, type);
+		super.set(key, val, type);
 	}
 
 
 	public void set(Magic key, CinciaObject val) {
 		checkImmutable();
-		enviro.set(key, val);
+		super.set(key, val);
 	}
 
 	public void remove(String key) {
 		checkImmutable();
-		enviro.remove(key);
+		super.remove(key);
 	}
 
 	@Override
@@ -478,5 +420,9 @@ public class AbstractCinciaObject implements CinciaObject{
 		return toJava();
 	}
 
+	@Override
+	public Object toJava() {
+		return this;
+	}
 
 }

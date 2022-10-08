@@ -18,7 +18,7 @@ public class CinciaDict extends AbstractCinciaObject {
 	@Override
 	public String toString() {
 		
-		Optional<String> d =  enviro.items().stream()
+		Optional<String> d =  items().stream()
 											.filter(e->e.getValue()!=this)
 											.filter(e-> ! (e.getValue() instanceof CinciaMethod))
 				 	                        .map(e->e.getKey()+": "+e.getValue())
