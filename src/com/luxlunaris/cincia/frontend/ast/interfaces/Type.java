@@ -9,7 +9,13 @@ public interface Type extends Expression{
 
 	public static Type Any  = new PrimitiveType(PrimitiveType.ANY);
 	public static Type Module  = new PrimitiveType(PrimitiveType.MODULE);
-
+	
+	/**
+	 * True if this type matches the other type. It's not commutative, so it 
+	 * may not be true the other way around.
+	 * @param other
+	 * @return
+	 */
 	boolean matches(Type other);
 
 
