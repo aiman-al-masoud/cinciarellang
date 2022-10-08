@@ -733,20 +733,9 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
 
-		//TODO
+		// resolve any custom nested types in signature
 		lambdex.signature = lambdex.signature.resolve(this::eval, enviro);
-
-
-		try {
-			// Check if env belongs to class, in that case return a method.
-			CinciaCinciaClass b = (CinciaCinciaClass)enviro.get(CinciaCinciaClass.CLASS);
-
-			return new CinciaMethod(lambdex, this::eval);			
-		} catch (Exception e) {
-
-		}
-
-		// ... else make a function w/ factory method
+		// make a function w/ factory method
 		return CinciaFunction.make(lambdex, this::eval);
 
 	}
