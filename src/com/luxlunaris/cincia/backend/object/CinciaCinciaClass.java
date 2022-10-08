@@ -120,15 +120,9 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 			for( Entry<String, CinciaObject> entry : this.getEnviro().vars.entrySet() ) {
 
-				//				System.out.println(entry);
-
 				if(entry.getKey().equals( Magic.THIS.toString())) {
 					continue;
 				}
-
-//				if(entry.getKey().equals( "class" )) {
-//					continue;
-//				}
 
 				if(entry.getKey().equals( "type" )) {
 					continue;
@@ -139,15 +133,9 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 			for( Entry<String, CinciaObject> entry : otherClass.getEnviro().vars.entrySet() ) {
 
-				//				System.out.println(entry);
-
 				if(entry.getKey().equals( Magic.THIS.toString())) {
 					continue;
 				}
-
-//				if(entry.getKey().equals( "class" )) {
-//					continue;
-//				}
 
 				if(entry.getKey().equals( "type" )) {
 					continue;
