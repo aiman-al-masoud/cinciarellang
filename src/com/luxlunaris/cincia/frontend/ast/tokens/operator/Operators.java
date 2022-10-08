@@ -13,7 +13,6 @@ public enum Operators {
 	PLUSPLUS,
 	MINUSMINUS,
 	ASSIGN,
-//	QUESTION_MARK,
 	COMPARE,
 	LT,
 	GT,
@@ -56,8 +55,6 @@ public enum Operators {
 				return COMPARE;
 			case "!=":
 				return NE;
-//			case "?":
-//				return QUESTION_MARK;
 			case "<":
 				return LT;
 			case ">":
