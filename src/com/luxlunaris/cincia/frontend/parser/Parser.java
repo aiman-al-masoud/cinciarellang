@@ -884,7 +884,7 @@ public class Parser {
 
 		IndexedExpression iE = new IndexedExpression();
 		iE.indexable = left;  
-		iE.index = parseExpression(); //TODO: add slicing with ':'
+		iE.index = parseExpression(); 
 		eat(Punctuations.SQBR_CLS);
 		return iE;
 	}
