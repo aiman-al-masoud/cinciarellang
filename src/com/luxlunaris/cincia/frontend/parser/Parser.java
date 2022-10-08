@@ -991,11 +991,9 @@ public class Parser {
 
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
-		int memento = tStream.currentTokenNumber();
-		//		System.out.println("current token when taking memento: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
-
-
-		try {
+		int memento = tStream.currentTokenNumber(); // remember token you where at
+		
+		try { // try parsing as lambda with explicit parameters
 
 			lE.signature = parseSignature();
 			eat(Operators.ARROW);
@@ -1007,8 +1005,8 @@ public class Parser {
 			}
 
 		} catch (Throwable e) {
-			tStream.goBackTo(memento);
-			return parseLambdaExpressionImplicitParams(modifiers); //try with implicit params instead
+			tStream.goBackTo(memento); // back to token before trying
+			return parseLambdaExpressionImplicitParams(modifiers); // if it fails, try with implicit params instead
 		}
 
 		return lE;
