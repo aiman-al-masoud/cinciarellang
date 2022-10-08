@@ -235,8 +235,9 @@ public class Enviro implements Stateful{
 	}
 
 	@Override
-	public void set(String key, CinciaObject val) {
-		set(key, val, val.getType());
+	public void set(String key, CinciaObject val) {//TODO!!
+//		set(key, val, val.getType()); //TODO //TODO!!!
+		set(key, val, val ==null ? Type.Any: val.getType());//TODO::/!!!!
 	}
 
 	@Override

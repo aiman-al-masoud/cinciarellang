@@ -299,14 +299,6 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 		}
 
 	}
-
-	
-	// setters
-
-	public void set(String key, CinciaObject val) {
-		checkImmutable();
-		super.set(key, val, val ==null ? Type.Any: val.getType());//TODO::/!!!!
-	}
 	
 	@Override
 	public Object toJava(Object... args) {
