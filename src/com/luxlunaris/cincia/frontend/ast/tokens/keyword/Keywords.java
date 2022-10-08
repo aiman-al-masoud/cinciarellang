@@ -32,7 +32,6 @@ public enum Keywords {
 	INT,
 	FLOAT,
 	BOOL,
-	DEC,// decalaration	
 	TO,
 	BY,
 	STRING,
