@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.BoolToken;
 
 public class Generator{
 	public List<Identifier> loopVars;
@@ -18,7 +18,7 @@ public class Generator{
 
 	public Generator() {
 		loopVars  = new ArrayList<Identifier>();
-		filter = new Bool(true); // everything passes by default
+		filter = new BoolToken(true); // everything passes by default
 	}
 
 	public Generator simplify() {

@@ -8,7 +8,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.IntToken;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 public class PostfixExpTester extends AbstractTester{
@@ -19,7 +19,7 @@ public class PostfixExpTester extends AbstractTester{
 		CalledExpression caE = new CalledExpression();
 		caE.callable = new Identifier("f");
 		MultiExpression muE = new MultiExpression();
-		muE.expressions = Arrays.asList(new Identifier("a"), new Identifier("b"), new Int(1));
+		muE.expressions = Arrays.asList(new Identifier("a"), new Identifier("b"), new IntToken(1));
 		caE.args = muE;
 		add("f(a, b, 1);", caE.toString());
 
@@ -38,16 +38,16 @@ public class PostfixExpTester extends AbstractTester{
 		// indexed expression
 		IndexedExpression iE = new IndexedExpression();
 		iE.indexable = new Identifier("x");
-		iE.index = new Int(1);
+		iE.index = new IntToken(1);
 		IndexedExpression iE2 = new IndexedExpression();
 		iE2.indexable = iE;
-		iE2.index = new Int(2);
+		iE2.index = new IntToken(2);
 		add("x[1][2]", iE2.toString());
 
 		// reassignment expression
 		ReassignmentExpression rE = new ReassignmentExpression();
 		rE.left = new Identifier("x");
-		rE.right = new Int(1);
+		rE.right = new IntToken(1);
 		rE.op = Operators.PLUS_ASSIGN;
 		add("x+=1", rE.toString());
 		rE.op = Operators.DIV_ASSIGN;

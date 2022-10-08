@@ -11,7 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PrimaryExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.IntToken;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
@@ -41,7 +41,7 @@ public class ClassExpression implements ObjectExpression{
 	
 	public void addAssignment(AssignmentExpression assignment) {
 		
-		if(assignment.simplify() instanceof Int) { // remove nullop (see AddDecKeyword in preprocessor)
+		if(assignment.simplify() instanceof IntToken) { // remove nullop (see AddDecKeyword in preprocessor)
 			return;
 		}
 		

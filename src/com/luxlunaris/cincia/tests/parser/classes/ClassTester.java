@@ -10,7 +10,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.statements.DeclarationStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.IntToken;
 
 /**
  * Tests a class, complete with declarations, methods and assignments.
@@ -45,7 +45,7 @@ public class ClassTester extends AbstractTester {
 		AssignmentExpression ase = new AssignmentExpression();
 		ase.left = new Identifier("f");
 		LambdaExpression lE = new LambdaExpression();
-		lE.expression = new Int(1);
+		lE.expression = new IntToken(1);
 		Signature sg2 = new Signature();
 		VariableDeclaration vD2 = new VariableDeclaration();
 		vD2.name = new Identifier("x");
@@ -57,7 +57,7 @@ public class ClassTester extends AbstractTester {
 		// variable assignment
 		AssignmentExpression ase2 = new AssignmentExpression();
 		ase2.left = new Identifier("x");
-		ase2.right = new Int(1);
+		ase2.right = new IntToken(1);
 		cE.addAssignment(ase2);
 		
  		

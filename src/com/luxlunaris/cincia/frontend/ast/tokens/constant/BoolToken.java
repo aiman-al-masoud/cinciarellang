@@ -3,14 +3,14 @@ package com.luxlunaris.cincia.frontend.ast.tokens.constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
 
-public class Bool extends AbstractToken implements Constant{
+public class BoolToken extends AbstractToken implements Constant{
 
 	public final boolean value;
 	public static final String TRUE = "true";
 	public static final String  FALSE = "false";
 
 
-	public Bool(boolean value) {
+	public BoolToken(boolean value) {
 		this.value  =value;
 	}
 

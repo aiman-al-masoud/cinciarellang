@@ -55,9 +55,9 @@ import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.BoolToken;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.IntToken;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.StrToken;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
@@ -279,24 +279,24 @@ public abstract class AbstractTraversal<T> {
 
 	public T evalConstant(Constant constant, Enviro enviro) {
 
-		if(constant instanceof Int) {
-			return evalInt((Int)constant, enviro);
-		}else if(constant instanceof com.luxlunaris.cincia.frontend.ast.tokens.constant.Float) {
-			return evalFloat((com.luxlunaris.cincia.frontend.ast.tokens.constant.Float)constant, enviro);
-		}else if(constant instanceof Str) {
-			return evalStr((Str)constant, enviro);
-		}else if(constant instanceof Bool) {
-			return evalBool((Bool)constant, enviro);
+		if(constant instanceof IntToken) {
+			return evalInt((IntToken)constant, enviro);
+		}else if(constant instanceof com.luxlunaris.cincia.frontend.ast.tokens.constant.FloatToken) {
+			return evalFloat((com.luxlunaris.cincia.frontend.ast.tokens.constant.FloatToken)constant, enviro);
+		}else if(constant instanceof StrToken) {
+			return evalStr((StrToken)constant, enviro);
+		}else if(constant instanceof BoolToken) {
+			return evalBool((BoolToken)constant, enviro);
 		}
 
 		throw new RuntimeException("No such constant expression!");
 	}
 
 	public abstract T evalIdentifier(Identifier identex, Enviro enviro);
-	public abstract T evalInt(Int intex, Enviro enviro);
-	public abstract T evalFloat(com.luxlunaris.cincia.frontend.ast.tokens.constant.Float floatex, Enviro enviro);
-	public abstract T evalStr(Str strex, Enviro enviro);
-	public abstract T evalBool(Bool boolex, Enviro enviro);	
+	public abstract T evalInt(IntToken intex, Enviro enviro);
+	public abstract T evalFloat(com.luxlunaris.cincia.frontend.ast.tokens.constant.FloatToken floatex, Enviro enviro);
+	public abstract T evalStr(StrToken strex, Enviro enviro);
+	public abstract T evalBool(BoolToken boolex, Enviro enviro);	
 	public abstract T evalIfExpression(IfExpression ifStatement, Enviro enviro);
 	public abstract T evalMatchExpression(MatchExpression ifStatement, Enviro enviro);
 	public abstract T evalBreakStatement(BreakStatement breakStatement, Enviro enviro);

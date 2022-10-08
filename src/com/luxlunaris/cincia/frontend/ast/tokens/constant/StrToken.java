@@ -3,11 +3,16 @@ package com.luxlunaris.cincia.frontend.ast.tokens.constant;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Constant;
 import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
 
-public class Float extends AbstractToken implements Constant{
+public class StrToken extends AbstractToken implements Constant{
 	
-	public final double value;
+	public final String value;
 	
-	public Float(double value) {
+	public StrToken(String value) {
 		this.value = value;
+	}
+	
+	@Override
+	public String toString() {
+		return "'"+value+"'";
 	}
 }

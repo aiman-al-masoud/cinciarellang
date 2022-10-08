@@ -3,7 +3,7 @@ package com.luxlunaris.cincia.tests.parser.classes;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.IntToken;
 
 public class RangeExpTester extends AbstractTester {
 	
@@ -11,8 +11,8 @@ public class RangeExpTester extends AbstractTester {
 		
 		// simple range from 1 to 10
 		RangeExpression rE  = new RangeExpression();
-		rE.from = new Int(1);
-		rE.to = new Int(10);
+		rE.from = new IntToken(1);
+		rE.to = new IntToken(10);
 		add("1 to 10;", rE.toString());
 		
 		

@@ -67,7 +67,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.StrToken;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
@@ -414,7 +414,7 @@ public class Parser {
 		eat(Keywords.FROM);
 
 		try {
-			iS.fromPath = (Str)tStream.peek();
+			iS.fromPath = (StrToken)tStream.peek();
 			tStream.next();
 
 		}catch (ClassCastException e) {

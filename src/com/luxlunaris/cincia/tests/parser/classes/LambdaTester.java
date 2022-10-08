@@ -9,7 +9,7 @@ import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.IntToken;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
@@ -20,7 +20,7 @@ public class LambdaTester extends AbstractTester {
 
 		// lambda expression
 		LambdaExpression lex = new LambdaExpression();
-		lex.expression = new Int(1);
+		lex.expression = new IntToken(1);
 		Signature sg = new Signature();
 		VariableDeclaration vD = new VariableDeclaration();
 		vD.name = new Identifier("x");
@@ -36,10 +36,10 @@ public class LambdaTester extends AbstractTester {
 		AssignmentExpression two = new AssignmentExpression();
 		ReturnStatement three = new ReturnStatement();
 		one.left = new Identifier("x");
-		one.right = new Int(1);
+		one.right = new IntToken(1);
 		AddExpression aex = new AddExpression();
 		aex.left = new Identifier("x");
-		aex.right  = new Int(1);
+		aex.right  = new IntToken(1);
 		aex.op = Operators.PLUS;
 		two.left = new Identifier("y");
 		two.right = aex;

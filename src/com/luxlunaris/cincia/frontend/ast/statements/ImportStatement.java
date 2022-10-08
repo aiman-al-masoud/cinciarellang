@@ -9,7 +9,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.StrToken;
 
 /**
  * 
@@ -19,7 +19,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
 public class ImportStatement implements Statement{
 	
 	public List<Entry<PostfixExpression, Identifier>> imports;
-	public Str fromPath;
+	public StrToken fromPath;
 	
 	public ImportStatement() {
 		imports = new ArrayList<Map.Entry<PostfixExpression,Identifier>>();

@@ -6,10 +6,10 @@ import java.util.function.Predicate;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.BoolToken;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.FloatToken;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.IntToken;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.StrToken;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keyword;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
@@ -97,7 +97,7 @@ public class TokenStream {
 
 			String val = readWhile(Identifier::isId);
 			Keywords kw = Keywords.fromString(val);
-			Boolean b = Bool.stringToBool(val);
+			Boolean b = BoolToken.stringToBool(val);
 			Modifiers mod = Modifiers.fromString(val);
 
 			// second condition to allow for methods with same name as keywords.
@@ -107,7 +107,7 @@ public class TokenStream {
 			} 
 
 			if(b!=null) {
-				currTok = new Bool(b);
+				currTok = new BoolToken(b);
 				return;
 			}
 
@@ -258,10 +258,10 @@ public class TokenStream {
 		if(cStream.peek()=='.') {
 			eat('.');
 			num+="."+readWhile(c->Character.isDigit(c));
-			return new Float(Double.parseDouble(num));
+			return new FloatToken(Double.parseDouble(num));
 		}
 
-		return new Int(Integer.parseInt(num));
+		return new IntToken(Integer.parseInt(num));
 	}
 
 
@@ -318,7 +318,7 @@ public class TokenStream {
 
 		}
 
-		return new Str(str);
+		return new StrToken(str);
 	}
 
 

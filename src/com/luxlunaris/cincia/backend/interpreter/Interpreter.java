@@ -80,10 +80,10 @@ import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Bool;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Float;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Int;
-import com.luxlunaris.cincia.frontend.ast.tokens.constant.Str;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.BoolToken;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.FloatToken;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.IntToken;
+import com.luxlunaris.cincia.frontend.ast.tokens.constant.StrToken;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.backend.interfaces.Stateful;
@@ -94,22 +94,22 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 
 	@Override
-	public CinciaObject evalInt(Int intex, Enviro enviro) {
+	public CinciaObject evalInt(IntToken intex, Enviro enviro) {
 		return CinciaObject.wrap(intex.getValue());
 	}
 
 	@Override
-	public CinciaObject evalFloat(Float floatex, Enviro enviro) {
+	public CinciaObject evalFloat(FloatToken floatex, Enviro enviro) {
 		return CinciaObject.wrap(floatex.getValue());
 	}
 
 	@Override
-	public CinciaObject evalStr(Str strex, Enviro enviro) {
+	public CinciaObject evalStr(StrToken strex, Enviro enviro) {
 		return CinciaObject.wrap(strex.getValue());
 	}
 
 	@Override
-	public CinciaObject evalBool(Bool boolex, Enviro enviro) {
+	public CinciaObject evalBool(BoolToken boolex, Enviro enviro) {
 		return CinciaObject.wrap(boolex.getValue());
 	}
 
@@ -857,10 +857,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		switch(reassex.op) {
 		case PLUSPLUS:
-			assex.right = BinaryExpression.make(Operators.PLUS, assex.left, new Int(1));
+			assex.right = BinaryExpression.make(Operators.PLUS, assex.left, new IntToken(1));
 			break;
 		case MINUSMINUS:
-			assex.right = BinaryExpression.make(Operators.MINUS, assex.left, new Int(1));
+			assex.right = BinaryExpression.make(Operators.MINUS, assex.left, new IntToken(1));
 			break;
 		case PLUS_ASSIGN:
 			assex.right = BinaryExpression.make(Operators.PLUS, assex.left, reassex.right);
