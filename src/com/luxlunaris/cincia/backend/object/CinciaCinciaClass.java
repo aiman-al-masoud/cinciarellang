@@ -124,7 +124,7 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 					continue;
 				}
 
-				if(entry.getKey().equals( "type" )) {
+				if(entry.getKey().equals( Magic.type.toString() )) {
 					continue;
 				}
 
@@ -137,7 +137,7 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 					continue;
 				}
 
-				if(entry.getKey().equals( "type" )) {
+				if(entry.getKey().equals( Magic.type.toString() )) {
 					continue;
 				}
 
