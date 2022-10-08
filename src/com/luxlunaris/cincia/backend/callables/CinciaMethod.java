@@ -59,7 +59,7 @@ public class CinciaMethod extends CinciaFunction{
 		//TODO  PROBLEM 1: this overwrites also stuff in this given how this was implemented
 		//TODO: PROBLEM 2: recursive methods are broken, because all calls on the stack refer to the same environment!!
 		//TODO: Fixed PROBLEM 3 by shallow-cloning env, but now you can't set instance vars without using this.
-		return super.run(args, parent.getEnviro().newChild());
+		return super.run(args, parent.getEnviro().shallowCopy());
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class CinciaMethod extends CinciaFunction{
 
 			@Override
 			public CinciaObject run(List<CinciaObject> args) {
-				return f.run(args, parent.getEnviro().newChild());
+				return f.run(args, parent.getEnviro().shallowCopy());
 			}
 
 		};

@@ -321,7 +321,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// from Cincia source file ...
 
 		// ... create a new isolated env
-		Enviro envCopy = enviro.newChild();
+		Enviro envCopy = enviro.shallowCopy();
 
 		String source = "";		
 
@@ -819,7 +819,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// else it's a top level function that reads from ext scope, call on COPY of whatever environment was passed in		
 		try {
 			CinciaFunction l = (CinciaFunction)f;
-			return l.run(args, enviro.newChild());
+			return l.run(args, enviro.shallowCopy());
 		}catch (ClassCastException e) {
 
 		}
@@ -912,7 +912,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalPipeExpression(PipeExpression pipex, Enviro enviro) {
 
-		Enviro envCopy =  enviro.newChild();
+		Enviro envCopy =  enviro.shallowCopy();
 		CinciaObject arg = eval(pipex.expressions.get(0), envCopy);
 
 		//TODO: can this be parallelized like in bash?
