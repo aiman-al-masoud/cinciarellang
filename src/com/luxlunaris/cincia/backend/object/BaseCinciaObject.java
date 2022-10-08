@@ -20,7 +20,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class BaseCinciaObject extends Enviro implements CinciaObject{
 
-	protected Type type; // object's type/class
+	protected Type type; // this object's type/class
 	protected String docString;
 
 	public BaseCinciaObject(Type type) {
