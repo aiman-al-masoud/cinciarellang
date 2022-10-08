@@ -37,8 +37,8 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 		set(name, method, method.type);
 	}	
 
-	public void addAttribute(String name, BaseCinciaObject value) {
-		set(name, value, value.type);
+	public void addAttribute(String name, CinciaObject value) {
+		set(name, value, value.getType());
 	}	
 
 	/**
