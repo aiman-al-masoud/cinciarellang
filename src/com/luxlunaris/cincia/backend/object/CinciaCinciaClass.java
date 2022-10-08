@@ -25,22 +25,6 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 		set(CLASS, this); // mark the env as belonging to a class //TODO maybe not necessary anymore, use 'type'
 	}
 
-	public void declareAttribute(String name, Type type) {
-		set(name, null, type);
-	}	
-
-	public void declareMethod(String name, Signature type) {
-		set(name, null, type);
-	}	
-
-	public void addMethod(String name, CinciaMethod method) {
-		set(name, method, method.type);
-	}	
-
-	public void addAttribute(String name, CinciaObject value) {
-		set(name, value, value.getType());
-	}	
-
 	/**
 	 * Creates and returns a new object of the same type as this class.
 	 * @param args
