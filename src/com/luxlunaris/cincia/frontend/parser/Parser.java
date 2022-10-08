@@ -87,7 +87,6 @@ public class Parser {
 		this.tStream.next(); //get first token
 	}
 
-
 	public List<Statement> parse(){
 
 		ArrayList<Statement> res = new ArrayList<Statement>();
@@ -125,14 +124,8 @@ public class Parser {
 		}else {
 			res = parseExpressionStatement();
 		}
-		
-		
-//		System.out.println("in parseStatement(): "+res.simplify());
-		
-		if(tStream.peek() != null) {
-			eat(Punctuations.STM_SEP);
-		}
-		
+
+		eat(Punctuations.STM_SEP);
 		return res;
 	}
 
@@ -600,13 +593,13 @@ public class Parser {
 
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
-		
-//		if(tStream.peek()==null) {
-////			System.out.println(tStream.peek());
-//			return chain.get(0);
-//		}
-//		
-		
+
+		//		if(tStream.peek()==null) {
+		////			System.out.println(tStream.peek());
+		//			return chain.get(0);
+		//		}
+		//		
+
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
 		}
@@ -665,11 +658,11 @@ public class Parser {
 
 
 		Expression oE = parseOrExpression();
-		
+
 		if(tStream.peek() ==null) {
 			return oE;
 		}
-		
+
 
 		if(tStream.peek().getValue().equals(Keywords.TO)) {
 			RangeExpression rE = new RangeExpression();
@@ -1001,14 +994,14 @@ public class Parser {
 		tStream.croak("Expected object-expression");
 		return null;
 	}
-	
-	
+
+
 	private LambdaExpression parseLambdaExpression(List<Modifiers> modifiers) {
-				
+
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
 		int memento = tStream.currentTokenNumber();
-//		System.out.println("current token when taking memento: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
+		//		System.out.println("current token when taking memento: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
 
 
 		try {
@@ -1029,28 +1022,17 @@ public class Parser {
 
 		return lE;
 	}
-	
-	//TODO: fiiiiiiiiiiiiiix
+
 	private LambdaExpression parseLambdaExpressionImplicitParams(List<Modifiers> modifiers) {
-		
+
 		LambdaExpression lE = new LambdaExpression();
 		lE.signature = new Signature();
 		lE.modifiers = modifiers;
 		lE.explicitParams = false;
-//		System.out.println("current token before eating backslash: "+tStream.peek()+" with number: "+tStream.currentTokenNumber());
 		eat(Punctuations.SLASH_BCK);		
-		
-//		System.out.println("after having eaten backslash");
-//		System.out.println("current token number: "+tStream.currentTokenNumber() );
-//		System.out.println("last parsed token number: "+tStream.lastParsedTokenNumber());
-//		System.out.println("current token: "+tStream.peek());
-//		System.out.println("token history: "+tStream.history);
-
 		lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
-		
-//		System.out.println("parsed exp: "+lE.expression);
 		return lE;
-		
+
 	}
 
 	private ClassExpression parseClassExpression(List<Modifiers> modifiers) {
