@@ -2,7 +2,6 @@ package com.luxlunaris.cincia.frontend.ast.interfaces;
 
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.object.Enviro;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 
 public interface Type extends Expression{
