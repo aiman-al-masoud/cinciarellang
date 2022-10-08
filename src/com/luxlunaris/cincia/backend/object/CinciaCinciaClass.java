@@ -1,7 +1,10 @@
 package com.luxlunaris.cincia.backend.object;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
@@ -113,36 +116,66 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 		try {
 
-			var dontCare =  (Type)other; 
-			var otherClass =  (CinciaObject)other;  //TODO what about JavaClass?
+			var otherClass =  ((CinciaObject)(Type)other);  //TODO what about JavaClass?
 			var c = new CinciaCinciaClass(); 
+			
+			
+			var thisProps = this.getEnviro()
+				.vars.entrySet().stream()
+				.filter( e-> !Arrays.asList(Magic.THIS.toString(), Magic.type.toString()).contains(e.getKey()) )
+				.collect(Collectors.toList());
 
+			
+			var otherProps = otherClass.getEnviro()
+					.vars.entrySet().stream()
+					.filter( e-> !Arrays.asList(Magic.THIS.toString(), Magic.type.toString()).contains(e.getKey()) )
+					.collect(Collectors.toList());
 
-			for( Entry<String, CinciaObject> entry : this.getEnviro().vars.entrySet() ) {
+			thisProps.forEach(e->  c.set(e.getKey(), e.getValue(), this.getType(e.getKey())));
+			
+			otherProps.forEach(e->  c.set(e.getKey(), e.getValue(), otherClass.getType(e.getKey())));
 
-				if(entry.getKey().equals( Magic.THIS.toString())) {
-					continue;
-				}
-
-				if(entry.getKey().equals( Magic.type.toString() )) {
-					continue;
-				}
-
-				c.set(entry.getKey(), entry.getValue(), this.getEnviro().getType(entry.getKey()));
-			}
-
-			for( Entry<String, CinciaObject> entry : otherClass.getEnviro().vars.entrySet() ) {
-
-				if(entry.getKey().equals( Magic.THIS.toString())) {
-					continue;
-				}
-
-				if(entry.getKey().equals( Magic.type.toString() )) {
-					continue;
-				}
-
-				c.set(entry.getKey(), entry.getValue(), otherClass.getEnviro().getType(entry.getKey()));
-			}
+			
+//			
+//			List<Entry<String, CinciaObject>> entries = new ArrayList<>(this.getEnviro().vars.entrySet());
+//			
+//			
+//			entries.addAll(otherClass.getEnviro().vars.entrySet());
+//			
+//			
+//			entries = entries.stream().filter( e-> !Arrays.asList(
+//							Magic.THIS.toString(),
+//							Magic.type.toString() 
+//									).contains(e.getKey()  ) ).collect(Collectors.toList());
+//			
+//			entries.forEach(e-> c.set(e.getKey(), e.getValue()   ));
+//			
+//
+//			for( Entry<String, CinciaObject> entry : this.getEnviro().vars.entrySet() ) {
+//
+//				if(entry.getKey().equals( Magic.THIS.toString())) {
+//					continue;
+//				}
+//
+//				if(entry.getKey().equals( Magic.type.toString() )) {
+//					continue;
+//				}
+//
+//				c.set(entry.getKey(), entry.getValue(), this.getEnviro().getType(entry.getKey())  );
+//			}
+//
+//			for( Entry<String, CinciaObject> entry : otherClass.getEnviro().vars.entrySet() ) {
+//
+//				if(entry.getKey().equals( Magic.THIS.toString())) {
+//					continue;
+//				}
+//
+//				if(entry.getKey().equals( Magic.type.toString() )) {
+//					continue;
+//				}
+//
+//				c.set(entry.getKey(), entry.getValue(), otherClass.getEnviro().getType(entry.getKey()));
+//			}
 
 			return c;
 
