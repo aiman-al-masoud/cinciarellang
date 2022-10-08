@@ -20,5 +20,4 @@ public class Identifier extends AbstractToken implements LeftValue{
 	}
 	
 	
-	
 }
