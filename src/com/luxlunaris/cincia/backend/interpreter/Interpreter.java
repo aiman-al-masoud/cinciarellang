@@ -749,17 +749,13 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
-
-		// get args
-		List<CinciaObject> args;
-		CinciaObject o = eval(callex.args, enviro);	
-
-		if(callex.args instanceof MultiExpression) { // multiple args
-			args = ((CinciaList)o).getList();
-		}else { // one single arg
-			args = o==null? Arrays.asList() : Arrays.asList(o) ;
-		}
-
+				
+		// get args // TODO: eval destructured lists
+		var args = callex.args.toList()
+							  .stream()
+							  .map(e->eval(e, enviro))
+							  .collect(Collectors.toList());
+		
 		// get called expression
 		CinciaObject f = eval(callex.callable, enviro);
 

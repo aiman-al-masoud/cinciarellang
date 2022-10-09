@@ -80,7 +80,6 @@ public class CinciaList extends BaseCinciaObject implements CinciaIterable {
 		return new CinciaList(copy);
 	}
 
-
 	@Override
 	public CinciaIterable filter(Predicate<CinciaObject> f) {
 		List<CinciaObject> list = this.list.stream().filter( f::test ).collect(Collectors.toList());

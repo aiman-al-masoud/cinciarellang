@@ -1,9 +1,7 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.postfix;
 
-import java.util.concurrent.Callable;
-
+import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.SingleExpression;
-//import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.PostfixExpression;
 
@@ -12,15 +10,15 @@ public class CalledExpression extends SingleExpression implements PostfixExpress
 	public PostfixExpression callable;
 	public Expression args;
 	
+	public CalledExpression() {
+		args = new MultiExpression();
+	}
+	
 	@Override
 	public Expression simplify() {
 		CalledExpression cE = new CalledExpression();
 		cE.callable = (PostfixExpression) callable.simplify();
-		
-		if(args != null) {
-			cE.args = args.simplify();
-		}
-		
+		cE.args = args.simplify();
 		return cE;
 	}
 	
