@@ -761,7 +761,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 			// get callable expression ...
 			Callable callable = (Callable) eval(callex.callable, enviro);
 			return callable.run(args, enviro.shallowCopy()); // ... call it
-			
+
 		} catch (ClassCastException e) {
 			throw new TypeError("can't call non-callable object!");
 		}
