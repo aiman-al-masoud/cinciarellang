@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
@@ -513,18 +514,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject from = eval(rangex.from, enviro);
 		CinciaObject to = eval(rangex.to, enviro);
-
-		CinciaList cinciaList = new CinciaList(new PrimitiveType(PrimitiveType.INT));
-
+		
 		if(from instanceof CinciaInt && to instanceof CinciaInt) {
-
-			for(int i=(int)from.toJava(); i<=(int)to.toJava(); i++) {
-				cinciaList.add(CinciaObject.wrap(i));
-			}
-
+			
+			List<CinciaObject> list = IntStream.range((int)from.toJava(), (int)to.toJava() + 1)
+											   .mapToObj(e->CinciaObject.wrap(e))
+											   .collect(Collectors.toList());
+			return new CinciaList(list);
 		}
-
-		return cinciaList;
+		
+		throw new RuntimeException("Invalid range!");
 	}
 
 	@Override
