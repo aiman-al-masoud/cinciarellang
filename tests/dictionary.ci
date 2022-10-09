@@ -1,0 +1,9 @@
+d = {
+		"capra" : "beeh",
+		"mucca" : "muuh",
+		"gatto" : "miao"
+	}
+	
+d["capra"] == "beeh" && 
+d.capra == "beeh" && 
+d.gatto == "miao";	
