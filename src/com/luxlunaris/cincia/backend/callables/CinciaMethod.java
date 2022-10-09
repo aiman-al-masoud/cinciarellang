@@ -88,12 +88,9 @@ public class CinciaMethod extends CinciaFunction{
 				String methodName = anInterface.getMethods()[0].getName();
 
 				if(method.getName().equals(methodName)){
-					//					System.out.println("action performed! "+args[0]);
 
 					// convert java args into cincia objects
 					List<CinciaObject> cinciargs = Arrays.asList(args).stream().map(o->CinciaObject.wrap(o)).collect(Collectors.toList());
-
-					//					System.out.println(cinciargs.get(0));
 
 					// run this function //TODO: fix enviro problem
 					return run(cinciargs);
@@ -108,7 +105,7 @@ public class CinciaMethod extends CinciaFunction{
 		return instance;
 
 	}
-	
+
 	/**
 	 * Bind a function to an object, return a new method.
 	 * @param f
@@ -116,7 +113,7 @@ public class CinciaMethod extends CinciaFunction{
 	 * @return
 	 */
 	public static CinciaMethod fromFunction(CinciaFunction f, CinciaObject parent) {
-		
+
 		CinciaMethod cm = new CinciaMethod(f.lambdex, f.eval);
 		cm.parent = parent;
 		return cm;
