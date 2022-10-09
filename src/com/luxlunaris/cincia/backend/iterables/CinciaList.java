@@ -17,6 +17,7 @@ import com.luxlunaris.cincia.backend.interfaces.IterMethods;
 import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
+import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.ListType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import java.util.function.UnaryOperator;
@@ -35,7 +36,7 @@ public class CinciaList extends BaseCinciaObject implements CinciaIterable {
 	}
 
 	public CinciaList(Type type, List<CinciaObject> list) {
-		super(new ListType(type));
+		super(new TypeWrapper(new ListType(type)));
 		this.list = list;
 		set(IterMethods.map.toString(),  new CinciaMethod(this::map, this));
 		set(IterMethods.filter.toString(),  new CinciaMethod(this::filter, this));
@@ -210,7 +211,7 @@ public class CinciaList extends BaseCinciaObject implements CinciaIterable {
 
 	protected void checkType(Type type) {
 
-		if(!((ListType)this.type).value.matches(type)) {
+		if(!((ListType)this.type.unwrap()).value.matches(type)) {
 			TypeError  e = new TypeError();
 			e.expected = ((ListType)this.type).value;
 			e.got = type;
