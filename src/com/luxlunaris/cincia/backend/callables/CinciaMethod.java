@@ -111,22 +111,20 @@ public class CinciaMethod extends CinciaFunction{
 		return instance;
 
 	}
-
-
+	
+	/**
+	 * Bind a function to an object, return a new method.
+	 * @param f
+	 * @param parent
+	 * @return
+	 */
 	public static CinciaMethod fromFunction(CinciaFunction f, CinciaObject parent) {
-
-		return new CinciaMethod(f.lambdex, f.eval) {
-
-			@Override
-			public CinciaObject run(List<CinciaObject> args) {
-				return f.run(args, parent.getEnviro().shallowCopy());
-			}
-
-		};
+		
+		CinciaMethod cm = new CinciaMethod(f.lambdex, f.eval);
+		cm.parent = parent;
+		return cm;
 
 	}
-
-
 
 
 }
