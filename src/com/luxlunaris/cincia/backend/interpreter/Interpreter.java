@@ -118,7 +118,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return enviro.get(identex.value);
 	}
 
-	
+
 
 	@Override
 	public CinciaObject evalIfExpression(IfExpression ifStatement, Enviro enviro) {
@@ -250,7 +250,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		return null;
 	}
-	
+
 	@Override
 	public CinciaObject evalCompoundStatement(CompoundStatement cS, Enviro enviro) {
 
@@ -391,7 +391,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	}
 
-	
+
 
 	@Override
 	public CinciaObject evalTryStatement(TryStatement tryStatement, Enviro enviro) {
@@ -670,11 +670,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		// set 
 		try {
 
-//			//TODO: encapsulate TODO: weird bug, in one of Enviro's setters
-//			if(key instanceof CinciaString) {
-//				container.set(((CinciaString)key).toJava(), rval, rval.getType(), assex.modifiers);
-//				return rval;
-//			}
+			//			//TODO: encapsulate TODO: weird bug, in one of Enviro's setters
+			//			if(key instanceof CinciaString) {
+			//				container.set(((CinciaString)key).toJava(), rval, rval.getType(), assex.modifiers);
+			//				return rval;
+			//			}
 
 			container.set(key, rval); //TODO: also set modifiers
 		} catch (TypeError e) {
@@ -712,7 +712,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		return d;
 	}
-	
+
 
 	@Override
 	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
@@ -743,28 +743,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
+		
+		List<CinciaObject> list = listex.toList().stream().flatMap(e->{
 
-		// get object (or objects in the form of a CinciaList) to be placed in new list
-		CinciaObject o = eval(listex.elements, enviro);
+			CinciaObject object = eval(e, enviro);
 
-		// object is a list of size one
-		if(o instanceof CinciaList && ((CinciaList)o).size()==1) {
-			return new CinciaList(Arrays.asList(o));
-		}
+			if(object instanceof DestructuredList) {
+				return ((DestructuredList)object).getList().stream();
+			}else {
+				return Stream.of(object);
+			}
 
-		// multiple objects, just return the list already
-		if(o instanceof CinciaList) {
-			return o;
-		}
+		}).collect(Collectors.toList());
 
-		// object is a single destrutured element
-		if(o instanceof DestructuredList) {
-			return new CinciaList( ((DestructuredList)o).getList() );
-		}
-
-		// object is a single element
-		return new CinciaList(Arrays.asList(o));
-
+		return new CinciaList(list);
+		
 	}
 
 	@Override

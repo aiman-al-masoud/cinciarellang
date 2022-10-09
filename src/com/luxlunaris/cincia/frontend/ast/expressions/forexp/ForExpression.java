@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.frontend.ast.expressions.SingleExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 
-public class ForExpression implements Expression{
+public class ForExpression extends SingleExpression{
 
 	public List<Generator> generators;
 	public CompoundStatement block;

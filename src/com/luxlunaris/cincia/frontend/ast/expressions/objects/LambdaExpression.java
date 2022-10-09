@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
+import com.luxlunaris.cincia.frontend.ast.expressions.SingleExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
@@ -15,7 +16,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.Identifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
-public class LambdaExpression implements ObjectExpression{
+public class LambdaExpression extends SingleExpression implements ObjectExpression{
 
 	public List<Modifiers> modifiers;
 	public Signature signature;

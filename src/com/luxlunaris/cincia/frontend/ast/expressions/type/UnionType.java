@@ -6,13 +6,14 @@ import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.frontend.ast.expressions.SingleExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.AbstractToken;
 import com.sun.source.tree.Tree;
 
 //TODO: add in EBNF
-public class UnionType implements Type{
+public class UnionType extends SingleExpression implements Type{
 
 	public List<Type> types;
 

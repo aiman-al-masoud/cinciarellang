@@ -1,5 +1,8 @@
 package com.luxlunaris.cincia.backend.types;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
@@ -49,6 +52,11 @@ public class TypeWrapper extends BaseCinciaObject implements Type {
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
 		return new CinciaBool(this.matches((Type) other)); //TODO
+	}
+
+	@Override
+	public List<Expression> toList() {
+		return Arrays.asList(this);
 	}
 
 }

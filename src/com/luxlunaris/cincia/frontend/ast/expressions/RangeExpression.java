@@ -2,7 +2,7 @@ package com.luxlunaris.cincia.frontend.ast.expressions;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
-public class RangeExpression implements Expression {
+public class RangeExpression extends SingleExpression {
 	
 	public Expression from;
 	public Expression to;

@@ -16,28 +16,33 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
  *
  */
 public class MultiExpression implements Expression{
-	
+
 	public List<Expression> expressions;
-	
+
 	public MultiExpression() {
 		expressions = new ArrayList<Expression>();
 	}
-	
+
 	public void addExpression(Expression expression) {
 		expressions.add(expression);
 	}
-	
+
 	@Override
 	public Expression simplify() {
-		
+
 		MultiExpression mE = new MultiExpression();
 		mE.expressions = expressions.stream().map(e->e.simplify()).collect(Collectors.toList());
 		return mE.expressions.size()==1? mE.expressions.get(0) : mE;
 	}
-	
+
 	@Override
-		public String toString() {
-			return expressions.toString();
-		}
-	
+	public String toString() {
+		return expressions.toString();
+	}
+
+	@Override
+	public List<Expression> toList() {
+		return expressions;
+	}
+
 }

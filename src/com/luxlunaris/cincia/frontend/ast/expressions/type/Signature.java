@@ -17,7 +17,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
  * 
  * signature ::= '\' [multi_declaration] [':' type]  
  */
-public class Signature implements Type{
+public class Signature extends SingleType{
 
 	public Declaration params; // can be null if func takes no args
 	public Type returnType; 

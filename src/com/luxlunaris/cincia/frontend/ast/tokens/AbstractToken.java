@@ -1,5 +1,8 @@
 package com.luxlunaris.cincia.frontend.ast.tokens;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Token;
 
@@ -35,6 +38,11 @@ public abstract class AbstractToken implements Token{
 	@Override
 	public final boolean equals(Object obj) {
 		return super.equals(obj);
+	}
+	
+	@Override
+	public List<Expression> toList() {
+		return Arrays.asList(this);
 	}
 	
 	

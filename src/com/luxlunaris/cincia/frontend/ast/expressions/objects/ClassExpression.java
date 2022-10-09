@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.frontend.ast.expressions.SingleExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Declaration;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
@@ -15,7 +16,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.constant.IntToken;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
-public class ClassExpression implements ObjectExpression{
+public class ClassExpression extends SingleExpression implements ObjectExpression{
 
 	public List<Modifiers> modifiersList; // can be empty
 	public Identifier superclass;

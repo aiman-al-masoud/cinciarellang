@@ -153,5 +153,10 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 		return this;
 	}
 
+	@Override
+	public List<Expression> toList() {
+		return Arrays.asList(this);
+	}
+
 
 }

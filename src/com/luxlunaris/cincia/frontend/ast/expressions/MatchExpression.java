@@ -9,7 +9,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.CaseStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.labelled.DefaultStatement;
 
-public class MatchExpression implements Expression{
+public class MatchExpression extends SingleExpression{
 	
 	public Expression cond;
 	public List<CaseStatement> casesList;

@@ -5,7 +5,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 
-public class IfExpression implements Expression{
+public class IfExpression extends SingleExpression{
 
 	public Expression cond;
 	public Ast thenBranch;

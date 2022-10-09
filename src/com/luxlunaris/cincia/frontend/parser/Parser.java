@@ -1070,7 +1070,6 @@ public class Parser {
 		// empty list
 		if(tStream.peek().getValue().equals(Punctuations.SQBR_CLS)) {
 			eat(Punctuations.SQBR_CLS);
-			lE.elements = new MultiExpression();
 			return lE;
 		}
 
@@ -1081,14 +1080,14 @@ public class Parser {
 		// one element list
 		if(tStream.peek().getValue().equals(Punctuations.SQBR_CLS)) {
 			eat(Punctuations.SQBR_CLS);
-			lE.elements = exp;
+			lE.add(exp);
 			return lE;
 		}
 
 		eat(Punctuations.COMMA);
 		MultiExpression mE = parseMultiExpression();
 		mE.expressions.add(0, exp);
-		lE.elements = mE;
+		lE.addAll(mE.expressions);
 		eat(Punctuations.SQBR_CLS);
 		return lE;
 

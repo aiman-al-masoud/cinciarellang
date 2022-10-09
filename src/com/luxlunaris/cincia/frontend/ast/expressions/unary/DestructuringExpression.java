@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.unary;
 
+import com.luxlunaris.cincia.frontend.ast.expressions.SingleExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.UnaryExpression;
 
@@ -8,7 +9,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.UnaryExpression;
  * *arg
  * 
  */
-public class DestructuringExpression implements UnaryExpression{
+public class DestructuringExpression extends SingleExpression implements UnaryExpression{
 
 	public Expression arg;
 	

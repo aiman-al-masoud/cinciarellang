@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 
-public class PipeExpression implements Expression {
+public class PipeExpression extends SingleExpression {
 	
 	
 	public List<Expression> expressions;

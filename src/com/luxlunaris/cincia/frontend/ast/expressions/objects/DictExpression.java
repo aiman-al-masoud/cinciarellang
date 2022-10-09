@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.luxlunaris.cincia.frontend.ast.expressions.SingleExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
@@ -11,7 +12,7 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class DictExpression implements ObjectExpression{
+public class DictExpression extends SingleExpression implements ObjectExpression{
 	
 	//order doesn't matter
 	public List<Entry<Expression, Expression>> entries;

@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.backend.throwables;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
@@ -294,7 +295,12 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public Type resolve(Eval eval, Enviro enviro) {
 		return object.getType().resolve(eval, enviro);
-	}	
+	}
+
+	@Override
+	public List<Expression> toList() {
+		return Arrays.asList(this);
+	}
 
 
 

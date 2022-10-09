@@ -1,6 +1,7 @@
 package com.luxlunaris.cincia.backend.object;
 
 import java.lang.reflect.Constructor;
+import java.util.Arrays;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
@@ -73,6 +74,12 @@ public class JavaClass extends JavaObject implements CinciaClass{
 	public Type resolve(Eval eval, Enviro enviro) {
 		return this;
 	}
+	
+	@Override
+	public List<Expression> toList() {
+		return Arrays.asList(this);
+	}
+
 
 
 }
