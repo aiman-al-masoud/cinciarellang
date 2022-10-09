@@ -49,7 +49,6 @@ public class CinciaFunction extends BaseCinciaObject implements Callable{
 		this.wrappedFunction = wrappedFunction;
 	}
 
-
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 
 		if(args != null && wrappedFunction == null) {
