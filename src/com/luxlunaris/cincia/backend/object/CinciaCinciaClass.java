@@ -77,7 +77,7 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 		boolean typesMatch = theseEntries.stream()
 				.filter( e-> ! e.getKey().equals(Magic.THIS.toString())    )
-				.filter( e-> ! e.getKey().equals("type")    )
+				.filter( e-> ! e.getKey().equals(Magic.type.toString())    )
 				.allMatch( e-> {
 
 					var thisType =	getType(e.getKey());
