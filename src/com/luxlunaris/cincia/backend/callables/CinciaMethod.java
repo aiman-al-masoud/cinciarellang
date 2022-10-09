@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
-import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 
 
@@ -30,11 +29,7 @@ public class CinciaMethod extends CinciaFunction{
 		super(wrappedFunction);
 		this.parent = parent;
 	}
-
-	public void setParent(BaseCinciaObject parent) {
-		this.parent = parent;
-	}
-
+	
 	/**
 	 * Takes the new parent as the first element of the args list.
 	 */
