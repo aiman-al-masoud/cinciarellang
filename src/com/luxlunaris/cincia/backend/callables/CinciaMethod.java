@@ -45,6 +45,7 @@ public class CinciaMethod extends CinciaFunction{
 		}
 
 		return copy;
+		
 	}
 
 	/**
