@@ -6,6 +6,7 @@ import java.util.List;
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.frontend.ast.declarations.VariableDeclaration;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.ObjectExpression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
@@ -15,17 +16,12 @@ import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifier;
 import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class LambdaExpression implements ObjectExpression{
-	
+
 	public List<Modifiers> modifiers;
 	public Signature signature;
-	
-	//either block or expression: //TODO: just make it one single Ast
-	public CompoundStatement block; 
-	public Expression expression;
-	
-	
-	public boolean explicitParams; // false if params not explicitly declared, no arrow, eg: \a+b 
-	
+	public Ast runnable; //either block or expression
+	public boolean explicitParams; // explicit like: \a,b->a+b implicit like: \a+b
+
 	public LambdaExpression() {
 		modifiers = new ArrayList<Modifiers>();
 		explicitParams = true;
@@ -34,27 +30,23 @@ public class LambdaExpression implements ObjectExpression{
 
 	@Override
 	public Expression simplify() {
-		
-		if(expression != null) {
-			this.expression = expression.simplify();
+
+		if(runnable != null) {
+			this.runnable = runnable.simplify();
 		}
-		
-		if(block != null) {
-			this.block = (CompoundStatement) block.simplify();
-		}
-		
+
 		if(signature !=null) {
 			this.signature  = signature.simplify();
 		}
-		
+
 		return this;
 	}
-	
+
 	@Override
 	public String toString() {
-		return signature+"->"+(block==null? expression : block);
+		return signature.toString();
 	}
-	
+
 	/**
 	 * Factory method to convert an expression into a lambda 
 	 * expression (anonymous function).
@@ -65,9 +57,9 @@ public class LambdaExpression implements ObjectExpression{
 	 */
 	public static LambdaExpression fromExpression(Identifier input, Expression body, Type returnType) {
 		//TODO: multiple input params!
-		
+
 		LambdaExpression lambdex = new LambdaExpression();
-		lambdex.expression = body; // body
+		lambdex.runnable = body; // body
 		Signature s1 = new Signature();
 		VariableDeclaration i = new VariableDeclaration();
 		i.name = input; // input
@@ -77,7 +69,7 @@ public class LambdaExpression implements ObjectExpression{
 		
 		return lambdex;
 	}
-	
-	
-	
+
+
+
 }

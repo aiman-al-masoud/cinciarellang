@@ -71,11 +71,10 @@ public class CinciaFunction extends BaseCinciaObject implements Callable{
 		try {
 			if(lambdex == null && wrappedFunction != null) {
 				return wrappedFunction.run(args);
-			}else if(lambdex != null && lambdex.block != null) {
-				return eval.eval(lambdex.block, enviro);
-			}else if(lambdex != null && lambdex.expression != null) {
-				return eval.eval(lambdex.expression, enviro);
+			}else if(lambdex != null) {
+				return eval.eval(lambdex.runnable, enviro);
 			}
+			
 		} catch (UndefinedError e) {
 			//STUPID: run multiple times catching undefined var error and define next var with arg each time
 			params.add(new Parameter( e.undefinedName , Type.Any ,  Arrays.asList() ));
@@ -85,7 +84,7 @@ public class CinciaFunction extends BaseCinciaObject implements Callable{
 		
 		//TODO:add check on return value type!
 		
-		throw new RuntimeException("Lambda without expression nor block!");
+		throw new RuntimeException("Failed to run lambda!");
 	}
 
 	public static List<Parameter> initParams(LambdaExpression lambdex) {

@@ -20,7 +20,7 @@ public class LambdaTester extends AbstractTester {
 
 		// lambda expression
 		LambdaExpression lex = new LambdaExpression();
-		lex.expression = new IntToken(1);
+		lex.runnable = new IntToken(1);
 		Signature sg = new Signature();
 		VariableDeclaration vD = new VariableDeclaration();
 		vD.name = new Identifier("x");
@@ -30,7 +30,7 @@ public class LambdaTester extends AbstractTester {
 
 
 		// lambda expression with code block
-		lex.expression = null;
+		lex.runnable = null;
 		CompoundStatement co = new CompoundStatement();
 		AssignmentExpression one = new AssignmentExpression();
 		AssignmentExpression two = new AssignmentExpression();
@@ -47,7 +47,7 @@ public class LambdaTester extends AbstractTester {
 		co.add(new ExpressionStatement(one));
 		co.add(new ExpressionStatement(two));
 		co.add(three);
-		lex.block =co;
+		lex.runnable =co;
 //		lex.modifiers.add(Modifiers.PURE);
 		add("rdout \\x->{ x = 1;y=x+1;return y; };", lex.toString());
 

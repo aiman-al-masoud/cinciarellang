@@ -45,7 +45,7 @@ public class ClassTester extends AbstractTester {
 		AssignmentExpression ase = new AssignmentExpression();
 		ase.left = new Identifier("f");
 		LambdaExpression lE = new LambdaExpression();
-		lE.expression = new IntToken(1);
+		lE.runnable = new IntToken(1);
 		Signature sg2 = new Signature();
 		VariableDeclaration vD2 = new VariableDeclaration();
 		vD2.name = new Identifier("x");

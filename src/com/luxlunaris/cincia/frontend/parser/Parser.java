@@ -1005,9 +1005,9 @@ public class Parser {
 			eat(Operators.ARROW);
 
 			if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
-				lE.block = parseCompStatement();
+				lE.runnable = parseCompStatement();
 			}else {
-				lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
+				lE.runnable = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
 			}
 
 		} catch (Throwable e) {
@@ -1025,7 +1025,7 @@ public class Parser {
 		lE.modifiers = modifiers;
 		lE.explicitParams = false;
 		eat(Punctuations.SLASH_BCK);		
-		lE.expression = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
+		lE.runnable = parseSingleExpression(); // parse single only, or else multiple callbacks are read as one single argument
 		return lE;
 
 	}
