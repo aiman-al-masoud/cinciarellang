@@ -528,19 +528,14 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalFunctionDeclaration(FunctionDeclaration fD, Enviro enviro) {
-
-
 		Type type =  (Type) eval(fD.signature, enviro);
-
 		enviro.set(fD.name.value, null, type, fD.modifiers); 
 		return null;
 	}
 
 	@Override
 	public CinciaObject evalVariableDeclaration(VariableDeclaration vD, Enviro enviro) {
-
 		Type type =  (Type) eval(vD.type, enviro);
-
 		enviro.set(vD.name.value, null, type, vD.modifiers); 
 		return null;
 	}
