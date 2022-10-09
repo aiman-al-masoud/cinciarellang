@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaObject;
 
 public class JavaOverloadedMethod extends JavaMethod{
@@ -31,6 +32,11 @@ public class JavaOverloadedMethod extends JavaMethod{
 		}
 
 		return res;
+	}
+	
+	@Override
+	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
+		return run(args);
 	}
 
 	public void add(JavaMethod method) {

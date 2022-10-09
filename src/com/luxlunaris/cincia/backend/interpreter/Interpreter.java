@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
+import com.luxlunaris.cincia.backend.interfaces.Callable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
@@ -757,41 +758,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 							  .collect(Collectors.toList());
 		
 		// get called expression
-		CinciaObject f = eval(callex.callable, enviro);
-
-		// if class, call constructor and return reference to new object		
-		try {
-			CinciaClass c = (CinciaClass)f;
-			return c.newInstance(args);
-		}catch (ClassCastException e) {
-
-		}
-
-		// if method, call on parent object's ORIGINAL env
-		try {
-			CinciaMethod cm = (CinciaMethod)f;
-			return cm.run(args);
-		}catch (ClassCastException e) {
-
-		}
-
-		// if pure function, run with args as ONLY input, don't let it even read the global env.
-		try {
-			PureCinciaFunction cm = (PureCinciaFunction)f;
-			return cm.run(args);
-		}catch (ClassCastException e) {
-
-		}
-
-		// else it's a top level function that reads from ext scope, call on COPY of whatever environment was passed in		
-		try {
-			CinciaFunction l = (CinciaFunction)f;
-			return l.run(args, enviro.shallowCopy());
-		}catch (ClassCastException e) {
-
-		}
-
-		throw new RuntimeException("Unsupported callable type!");
+		Callable callable = (Callable) eval(callex.callable, enviro);
+		
+		// call it
+		return callable.run(args, enviro.shallowCopy());
 	}
 
 	@Override

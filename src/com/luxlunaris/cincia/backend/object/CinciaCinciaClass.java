@@ -157,6 +157,14 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 	public List<Expression> toList() {
 		return Arrays.asList(this);
 	}
+	
+	/**
+	 * Calling a class means creating a new instance.
+	 */
+	@Override
+	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
+		return newInstance(args);
+	}
 
 
 }

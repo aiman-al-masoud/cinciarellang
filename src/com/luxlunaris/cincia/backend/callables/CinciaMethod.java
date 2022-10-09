@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.interfaces.WrappedFunction;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 
 
@@ -54,6 +55,11 @@ public class CinciaMethod extends CinciaFunction{
 	 * @return
 	 */
 	public CinciaObject run(List<CinciaObject> args) {	
+		return super.run(args, parent.getEnviro().shallowCopy());
+	}
+	
+	@Override
+	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 		return super.run(args, parent.getEnviro().shallowCopy());
 	}
 

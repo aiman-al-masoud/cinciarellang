@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaObject;
 import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 
@@ -21,22 +22,18 @@ public class JavaMethod extends CinciaMethod{
 		this.method = method;
 		this.parent = parent;
 	}
+	
+	
+	@Override
+	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
+		return run(args);
+	}
 
 	@Override
 	public CinciaObject run(List<CinciaObject> args) {
-		
-		
 
 		try {
-
-			//			System.out.println(Arrays.asList(method.getParameterTypes()));
-
-			// convert cincia-args into java-args
-			//			List<Object> javargs= args.stream().map(a->a.toJava(        )).collect(Collectors.toList());
-
-
-
-
+			
 			// convert cincia args to java objects
 			List<Object> javargs = new ArrayList<>();
 
@@ -51,9 +48,6 @@ public class JavaMethod extends CinciaMethod{
 			}
 			
 			
-
-
-
 			// store a copy of the object before method call. Made this conditional to "if parent is immutable" to avoid unneccessary overhead
 			Object copy = null; //TODO: don't keep it like this!!!!! 
 			if(parent.isImmutable()) {
@@ -77,7 +71,7 @@ public class JavaMethod extends CinciaMethod{
 			return CinciaObject.wrap(res);
 
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassCastException e) {
-			//			e.printStackTrace();
+			
 		}
 
 		return null;
