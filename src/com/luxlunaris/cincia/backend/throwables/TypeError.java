@@ -25,7 +25,7 @@ public class TypeError extends CinciaException {
 			return message;
 		}
 
-		return "left value: '"+lvalue+"', of expected type: '"+expected+"', got type: '"+got+"'";
+		return "TypeError: '"+lvalue+"' expected type: '"+expected+"', but got: '"+got+"'";
 	}
 
 }
