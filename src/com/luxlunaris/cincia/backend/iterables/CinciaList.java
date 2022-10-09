@@ -210,10 +210,12 @@ public class CinciaList extends BaseCinciaObject implements CinciaIterable {
 	}
 
 	protected void checkType(Type type) {
+		
+		Type elemType  = ((ListType)this.type.unwrap()).value;
 
-		if(!((ListType)this.type.unwrap()).value.matches(type)) {
+		if(!elemType.matches(type)) {
 			TypeError  e = new TypeError();
-			e.expected = ((ListType)this.type).value;
+			e.expected = elemType;
 			e.got = type;
 			throw e;
 		}

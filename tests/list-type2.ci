@@ -1,0 +1,10 @@
+l = [1,2,3]; // int list
+
+
+try{
+	l[0] = "ciao";
+} catch e: TypeError{
+	caught = true;
+}
+
+caught && l[0] == 1;
