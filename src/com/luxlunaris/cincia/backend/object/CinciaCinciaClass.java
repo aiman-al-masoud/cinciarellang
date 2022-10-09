@@ -12,7 +12,6 @@ import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.Signature;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
