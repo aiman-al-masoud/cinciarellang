@@ -91,9 +91,7 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 import com.luxlunaris.cincia.backend.interfaces.Stateful;
 
 
-
 public class Interpreter extends AbstractTraversal<CinciaObject> {
-
 
 	@Override
 	public CinciaObject evalInt(IntToken intex, Enviro enviro) {
@@ -120,8 +118,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		return enviro.get(identex.value);
 	}
 
-
-
 	@Override
 	public CinciaObject evalIfExpression(IfExpression ifStatement, Enviro enviro) {
 
@@ -132,7 +128,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}
 
 	}
-
 
 	@Override
 	public CinciaObject evalBreakStatement(BreakStatement breakStatement, Enviro enviro) {
