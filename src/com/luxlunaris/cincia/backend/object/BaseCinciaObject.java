@@ -36,7 +36,7 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 
 		// TODO: fiiiiiiiiiiiiiiiix! and make this prop final
 		if(type instanceof CinciaObject) {
-			set(Magic.type, (CinciaObject)type); //TODO: extract name			
+			set(Magic.type, (CinciaObject)type); 		
 		}
 
 	}
