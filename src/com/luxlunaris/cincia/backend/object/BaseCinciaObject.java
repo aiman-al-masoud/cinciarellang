@@ -193,9 +193,7 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 	}
 
 	@Override
-	public CinciaObject __init__(List<CinciaObject> args) {
-
-		// TODO this is really just a void method
+	public CinciaObject __init__(List<CinciaObject> args) { 
 
 		try {
 
