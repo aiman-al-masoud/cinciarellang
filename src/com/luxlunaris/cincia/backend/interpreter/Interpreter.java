@@ -720,14 +720,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
-
-		// resolve any custom nested types in signature
-		lambdex.signature = lambdex.signature.resolve(this::eval, enviro);
-		// make a function w/ factory method
-		return CinciaFunction.make(lambdex, this::eval);
-
+		
+		lambdex.signature = lambdex.signature.resolve(this::eval, enviro); // resolve any custom nested types in signature
+		return CinciaFunction.make(lambdex, this::eval); // make a function w/ factory method
+		
 	}
-
 
 	@Override
 	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
@@ -781,7 +778,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	}
 
-
 	@Override
 	public CinciaObject evalIndexedExpression(IndexedExpression indexex, Enviro enviro) {
 		CinciaObject o = eval(indexex.indexable, enviro);
@@ -791,7 +787,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalReassignmentExpression(ReassignmentExpression reassex, Enviro enviro) {
-
 
 		AssignmentExpression assex = new AssignmentExpression();
 		assex.left = reassex.left;
@@ -848,7 +843,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalNegationExpression(NegationExpression negex, Enviro enviro) {
 		return eval(negex.arg, enviro).__not__();
 	}
-
 
 	@Override
 	public CinciaObject evalPipeExpression(PipeExpression pipex, Enviro enviro) {
