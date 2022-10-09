@@ -16,6 +16,9 @@ import com.luxlunaris.cincia.frontend.ast.expressions.objects.LambdaExpression;
 
 public class CinciaMethod extends CinciaFunction{
 
+	/**
+	 * Object to which this method is bound.
+	 */
 	public CinciaObject parent;
 
 	public CinciaMethod(LambdaExpression lambdex, Eval eval) {
@@ -51,16 +54,13 @@ public class CinciaMethod extends CinciaFunction{
 	}
 
 	/**
-	 * Can have side effects on the parent's env when using this
-	 * to access its vars.
+	 * Can have side effects on the parent's env, when using the "this"
+	 * binding to access parent object's vars.
 	 * @param args
 	 * @param eval
 	 * @return
 	 */
 	public CinciaObject run(List<CinciaObject> args) {	
-		//TODO  PROBLEM 1: this overwrites also stuff in this given how this was implemented
-		//TODO: PROBLEM 2: recursive methods are broken, because all calls on the stack refer to the same environment!!
-		//TODO: Fixed PROBLEM 3 by shallow-cloning env, but now you can't set instance vars without using this.
 		return super.run(args, parent.getEnviro().shallowCopy());
 	}
 
