@@ -515,15 +515,15 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		CinciaObject from = eval(rangex.from, enviro);
 		CinciaObject to = eval(rangex.to, enviro);
-		
+
 		if(from instanceof CinciaInt && to instanceof CinciaInt) {
-			
+
 			List<CinciaObject> list = IntStream.range((int)from.toJava(), (int)to.toJava() + 1)
-											   .mapToObj(e->CinciaObject.wrap(e))
-											   .collect(Collectors.toList());
+					.mapToObj(e->CinciaObject.wrap(e))
+					.collect(Collectors.toList());
 			return new CinciaList(list);
 		}
-		
+
 		throw new RuntimeException("Invalid range!");
 	}
 
@@ -662,7 +662,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		
+
 		try {
 			container.set(key, rval); //TODO: also set modifiers
 		} catch (TypeError e) {
@@ -731,7 +731,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalListExpression(ListExpression listex, Enviro enviro) {
-		
+
 		List<CinciaObject> list = listex.toList().stream().flatMap(e->{
 
 			CinciaObject object = eval(e, enviro);
@@ -745,23 +745,27 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		}).collect(Collectors.toList());
 
 		return new CinciaList(list);
-		
+
 	}
 
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
-				
+
 		// get args // TODO: eval destructured lists
 		var args = callex.args.toList()
-							  .stream()
-							  .map(e->eval(e, enviro))
-							  .collect(Collectors.toList());
-		
-		// get called expression
-		Callable callable = (Callable) eval(callex.callable, enviro);
-		
-		// call it
-		return callable.run(args, enviro.shallowCopy());
+				.stream()
+				.map(e->eval(e, enviro))
+				.collect(Collectors.toList());
+
+		try {
+			// get callable expression ...
+			Callable callable = (Callable) eval(callex.callable, enviro);
+			return callable.run(args, enviro.shallowCopy()); // ... call it
+			
+		} catch (ClassCastException e) {
+			throw new TypeError("can't call non-callable object!");
+		}
+
 	}
 
 	@Override

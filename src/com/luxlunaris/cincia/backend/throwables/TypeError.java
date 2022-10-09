@@ -22,7 +22,7 @@ public class TypeError extends CinciaException {
 	public String toString() {
 
 		if(message!=null) {
-			return message;
+			return  "TypeError: "+message;
 		}
 
 		return "TypeError: '"+lvalue+"' expected type: '"+expected+"', but got: '"+got+"'";
