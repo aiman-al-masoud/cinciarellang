@@ -46,7 +46,7 @@ public class CinciaFunction extends BaseCinciaObject implements Callable{
 
 	public CinciaFunction(WrappedFunction wrappedFunction) { //TODO: phase out this constructor without a signature
 		super(new IdentifierType("NativeCode")); //TODO: put an actual signature here
-		this.wrappedFunction = wrappedFunction;
+		this.wrappedFunction = wrappedFunction; //TODO any chance of auto-detecting signature of native wrapped function?
 	}
 
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
