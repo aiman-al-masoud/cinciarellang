@@ -5,5 +5,5 @@ d = {
 	}
 	
 d["capra"] == "beeh" && 
-d.capra == "beeh" && 
+d.mucca == "muuh" && 
 d.gatto == "miao";	
