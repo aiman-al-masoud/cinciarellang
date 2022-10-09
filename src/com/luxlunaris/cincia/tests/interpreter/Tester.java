@@ -12,7 +12,6 @@ import com.luxlunaris.cincia.backend.interpreter.Interpreter;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
-import com.luxlunaris.cincia.backend.stdlib.concurrency.Promise;
 import com.luxlunaris.cincia.frontend.Compiler;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Ast;
 import com.luxlunaris.cincia.tests.AnsiColors;
