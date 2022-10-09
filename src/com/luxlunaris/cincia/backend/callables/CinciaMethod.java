@@ -19,10 +19,11 @@ public class CinciaMethod extends CinciaFunction{
 	/**
 	 * Object to which this method is bound.
 	 */
-	public CinciaObject parent;
+	protected CinciaObject parent;
 
-	public CinciaMethod(LambdaExpression lambdex, Eval eval) {
+	private CinciaMethod(LambdaExpression lambdex, Eval eval, CinciaObject parent) {
 		super(lambdex, eval);
+		this.parent = parent;
 	}
 
 	public CinciaMethod(WrappedFunction wrappedFunction, CinciaObject parent) {
@@ -40,17 +41,14 @@ public class CinciaMethod extends CinciaFunction{
 	@Override
 	public CinciaMethod copy(List<CinciaObject> args) {
 
-		CinciaMethod copy;
 		CinciaObject newParent = args.size() > 0 ? args.get(0) : null;
 
 		if(isNativeCode()) { // "native" means that method is alreay on newParent created with getBlank()
 			return this; //TODO: wrong, must return method instance on "newParent"
 		}
 
-		copy = new CinciaMethod(lambdex, eval); //same code...
-		copy.parent = newParent; //... different parent
-
-		return copy;
+		return new CinciaMethod(lambdex, eval, newParent); //same code... different parent
+		
 	}
 
 	/**
@@ -74,7 +72,6 @@ public class CinciaMethod extends CinciaFunction{
 		return makeProxy(anInterface);
 
 	}
-
 
 	public Object makeProxy(Class<?> anInterface) {
 
@@ -113,11 +110,7 @@ public class CinciaMethod extends CinciaFunction{
 	 * @return
 	 */
 	public static CinciaMethod fromFunction(CinciaFunction f, CinciaObject parent) {
-
-		CinciaMethod cm = new CinciaMethod(f.lambdex, f.eval);
-		cm.parent = parent;
-		return cm;
-
+		return new CinciaMethod(f.lambdex, f.eval, parent);
 	}
 
 
