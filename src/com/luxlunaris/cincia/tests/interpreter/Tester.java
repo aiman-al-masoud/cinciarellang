@@ -33,7 +33,7 @@ public class Tester {
 	final static String ROOT = "./tests";
 	final static String ALL = "*"; 
 	final static List<String> tags = Arrays.asList(ALL);
-//			final static List<String> tags = Arrays.asList("method-assignment");
+//			final static List<String> tags = Arrays.asList("immutable-object");
 
 	public static void main(String[] args) throws IOException{
 

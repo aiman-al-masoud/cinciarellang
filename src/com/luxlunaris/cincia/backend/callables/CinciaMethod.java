@@ -33,19 +33,23 @@ public class CinciaMethod extends CinciaFunction{
 		this.parent = parent;
 	}
 
+	/**
+	 * Takes the new parent as the first element of the args list.
+	 */
 	@Override
 	public CinciaMethod copy(List<CinciaObject> args) {
 
 		CinciaMethod copy;
+		CinciaObject newParent = args.size() > 0 ? args.get(0) : null;
 
-		if( wrappedFunction!=null ) {
-			copy = new CinciaMethod(wrappedFunction, null);
-		}else {
-			copy = new CinciaMethod(lambdex, eval);
+		if(isNativeCode()) { // "native" means that method is alreay on newParent created with getBlank()
+			return this; //TODO: wrong, must return method instance on "newParent"
 		}
 
+		copy = new CinciaMethod(lambdex, eval); //same code...
+		copy.parent = newParent; //... different parent
+
 		return copy;
-		
 	}
 
 	/**

@@ -9,14 +9,11 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
-import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
-import com.luxlunaris.cincia.backend.throwables.CannotMutateException;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
-import com.luxlunaris.cincia.frontend.ast.tokens.modifier.Modifiers;
 
 public class BaseCinciaObject extends Enviro implements CinciaObject{
 
@@ -228,43 +225,32 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 	 * Returns a recursive deep copy of the object.
 	 */
 	@Override
-	public CinciaObject copy(List<CinciaObject> args) {
-
-		//TODO: circular references could cause problems
+	public CinciaObject copy(List<CinciaObject> args) { //TODO: circular references could cause problems
 
 		CinciaObject copy = getBlank(); // get a new (blank) object
 
-		for (Entry<String, CinciaObject> e : this.items()) {
+		for (Entry<String, CinciaObject> e : this.items()) { // for each item in (this) original object
+
+			// avoid re-copying item if key is already taken, avoid copying native-code methods
+			if( copy.getEnviro().vars.containsKey(e.getKey()) ) {
+				continue;
+			}
 
 			CinciaObject childo = e.getValue(); // child object
 			CinciaObject childco; // copy of the child object
 
 			if(childo == this) { // in case child is a self-reference
-				childco = copy; //childco is the copied object's this, ie the copy itself
+				childco = copy; //childco is the copied object's "this", ie: the copy itself
 
 			}else if (childo == type && childo instanceof CinciaClass) { // if childco is a type 
 				childco = (CinciaClass)type; // type reference needs to point to the same type!
 
-			}else if (childo == null) { //TODO?
+			}else if (childo == null) { // if child is undefined (declared but undefined)
 				childco = null;
 
-			}else {	// otherwise, copy the child recursively
-				childco = childo.copy(args);
-
+			}else {	// otherwise, copy the child recursively, passing it a copy of its parent
+				childco = childo.copy(Arrays.asList(copy));
 			}
-
-			// methods should keep the same code but change their environment to the new object's
-			if(childco instanceof CinciaMethod) {
-
-				CinciaMethod methco = (CinciaMethod)childco;
-
-				if(methco.isNativeCode()) { // skip if method is already on object blank copy
-					continue;
-				}
-
-				methco.parent = copy;
-			}
-
 
 			copy.set(e.getKey(), childco);			
 		}
@@ -299,7 +285,7 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 		}
 
 	}
-	
+
 	@Override
 	public Object toJava(Object... args) {
 		return toJava();
