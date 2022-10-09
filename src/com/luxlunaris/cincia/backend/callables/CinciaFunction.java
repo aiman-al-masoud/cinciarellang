@@ -60,15 +60,9 @@ public class CinciaFunction extends BaseCinciaObject implements Callable{
 
 			// Bind args to environment
 			for(int i=0; i < bindNum; i++) {
-				
-				Parameter p =  i<params.size()?  params.get(i) : null;
-				String pName =  p ==null?  "_" : p.name; //TODO????? one single name for all args?????
-				//TODO: STUPID SOL run multiple times catching undefined var error and define next var with arg each time
-				boolean byRef = p ==null? false : p.isByRef();
-				Type type = p==null? Type.Any : p.type;
-				
+				Parameter p =  i<params.size()?  params.get(i) : new Parameter("_", Type.Any, Arrays.asList());				
 				CinciaObject arg = args.get(i);
-				enviro.set(pName, byRef? arg : arg.copy(args),  type);	
+				enviro.set(p.name, p.isByRef()? arg : arg.copy(args),  p.type);	
 			}
 
 		}
@@ -83,7 +77,7 @@ public class CinciaFunction extends BaseCinciaObject implements Callable{
 				return eval.eval(lambdex.expression, enviro);
 			}
 		} catch (UndefinedError e) {
-//			System.out.println("gotcha! "+e.undefinedName);
+			//STUPID: run multiple times catching undefined var error and define next var with arg each time
 			params.add(new Parameter( e.undefinedName , Type.Any ,  Arrays.asList() ));
 			return run(args, enviro);
 		}
