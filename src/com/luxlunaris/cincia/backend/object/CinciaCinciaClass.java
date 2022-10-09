@@ -33,11 +33,11 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 	public CinciaObject newInstance(List<CinciaObject> args) {
 
 		//Check for declared but undefined methods on this class before creating a copy (instance/object).
-		boolean undefinedMethods = this.getEnviro().vars.entrySet().stream().anyMatch( e-> e.getValue()==null && (this.getEnviro().getType(e.getKey()) instanceof Signature)  );
-
-		if(undefinedMethods) { //TODO: add list of undefined attribs
-			throw new RuntimeException("Cannot instantiate class with undefined methods!");
-		}
+//		boolean undefinedMethods = this.getEnviro().vars.entrySet().stream().anyMatch( e-> e.getValue()==null && (this.getEnviro().getType(e.getKey()) instanceof Signature)  );
+//
+//		if(undefinedMethods) { //TODO: add list of undefined attribs
+//			throw new RuntimeException("Cannot instantiate class with undefined methods!");
+//		}
 
 		// Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
