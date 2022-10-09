@@ -46,7 +46,6 @@ public class MultiDeclaration implements Declaration{
 
 	@Override
 	public Declaration changeType(Type newType) {
-//		declarations.stream().map(d->d.changeType(newType))'
 		throw new RuntimeException("Not implemented");
  	}
 
