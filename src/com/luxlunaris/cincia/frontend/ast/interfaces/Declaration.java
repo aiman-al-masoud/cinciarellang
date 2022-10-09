@@ -9,6 +9,4 @@ public interface Declaration extends LeftValue, Ast{
 	Declaration simplify();
 	List<SingleDeclaration> toList();
 	
-	Declaration changeType(Type newType);
-	
 }

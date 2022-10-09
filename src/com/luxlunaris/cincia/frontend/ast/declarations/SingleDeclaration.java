@@ -11,5 +11,6 @@ public abstract class SingleDeclaration implements Declaration {
 	public abstract String getName();
 	public abstract Type getType();
 	public abstract List<Modifiers> getModifiers();
-	
+	public abstract Declaration changeType(Type newType);
+
 }

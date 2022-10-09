@@ -30,6 +30,7 @@ public class MultiDeclaration implements Declaration{
 
 	@Override
 	public Declaration simplify() {
+		
 		this.declarations  = declarations.stream().map(d-> (SingleDeclaration) d.simplify()).collect(Collectors.toList());
 		
 		if(this.declarations.size()==1) {
@@ -43,10 +44,5 @@ public class MultiDeclaration implements Declaration{
 	public List<SingleDeclaration> toList() {
 		return declarations;
 	}
-
-	@Override
-	public Declaration changeType(Type newType) {
-		throw new RuntimeException("Not implemented");
- 	}
 
 }
