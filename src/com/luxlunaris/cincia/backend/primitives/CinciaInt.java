@@ -6,6 +6,7 @@ import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 //TODO: MAKE THIS ALSO A WRAPPER FOR LOOOOOOOONG
 //TODO: implement comparison operators!!!!
@@ -63,24 +64,26 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 	@Override
 	public CinciaObject __sub__(CinciaObject other) {
-
-		try {
-
-			CinciaInt otherInt = (CinciaInt)other;
-			return CinciaObject.wrap(value-otherInt.toJava());
-		}catch (ClassCastException e) {
-
-		}
-
-		try {
-
-			CinciaFloat otherFloat = (CinciaFloat)other;
-			return CinciaObject.wrap(value-otherFloat.toJava()); 
-		}catch (ClassCastException e) {
-
-		}
-
-		throw new RuntimeException("Unsupported subtraction!");
+		
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.MINUS));
+//
+//		try {
+//
+//			CinciaInt otherInt = (CinciaInt)other;
+//			return CinciaObject.wrap(value-otherInt.toJava());
+//		}catch (ClassCastException e) {
+//
+//		}
+//
+//		try {
+//
+//			CinciaFloat otherFloat = (CinciaFloat)other;
+//			return CinciaObject.wrap(value-otherFloat.toJava()); 
+//		}catch (ClassCastException e) {
+//
+//		}
+//
+//		throw new RuntimeException("Unsupported subtraction!");
 	}
 
 

@@ -100,6 +100,10 @@ public enum Operators {
 		return op==ASTERISK || op==DIV || op==MOD; // all left assoc
 	}
 	
+	public static boolean isArithmetic(Object op) {
+		return isAddOperator(op) || isMulOperator(op);
+	}
+	
 	public static boolean isComparisonOperator(Object op) {
 		return Arrays.asList(COMPARE, NE, LT, GT, LTE, GTE).contains(op);
 	}
