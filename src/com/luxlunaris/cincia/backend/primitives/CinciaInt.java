@@ -69,7 +69,7 @@ public class CinciaInt extends CinciaNumber {
 		throw new RuntimeException("Unsupported multiplication!");
 	}
 
-	
+
 	@Override
 	public CinciaObject __mod__(CinciaObject other) {
 
@@ -90,20 +90,15 @@ public class CinciaInt extends CinciaNumber {
 	}
 
 	@Override
-	public CinciaBool __bool__() {
-		return new CinciaBool(value!=0);
-	}
-	
-	@Override
 	public Integer toJava() {
 		return value;
 	}
-	
+
 	@Override
 	public CinciaObject __neg__() {
 		return CinciaObject.wrap(-toJava());
 	}
-	
+
 	@Override
 	public CinciaObject as(List<CinciaObject> args) {
 
