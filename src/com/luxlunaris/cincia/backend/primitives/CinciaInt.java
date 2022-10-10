@@ -98,10 +98,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		throw new RuntimeException("Unsupported modulo!");
 	}
 
-	@Override
-	public CinciaObject __lt__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LT));
-	}
+
 
 	@Override
 	public CinciaBool __bool__() {
@@ -113,10 +110,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		return new CinciaBool(toJava().equals(other.toJava()));
 	}
 
-	@Override
-	public CinciaObject __lte__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LTE));
-	}
+
 
 	@Override
 	public Integer toJava() {
@@ -129,8 +123,18 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	}
 
 	@Override
+	public CinciaObject __lt__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LT));
+	}
+
+	@Override
 	public CinciaObject __gt__(CinciaObject other) {
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GT));
+	}
+
+	@Override
+	public CinciaObject __lte__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LTE));
 	}
 
 	@Override
