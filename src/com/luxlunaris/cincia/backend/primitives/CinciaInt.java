@@ -22,7 +22,6 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		setImmutable();
 	}
 
-
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
 
@@ -136,31 +135,6 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public CinciaObject as(List<CinciaObject> args) {
-
-		Type type = (Type) args.get(0);	//TODO: classcast exception
-
-		if(type.matches(new PrimitiveType(PrimitiveType.INT))) {
-			return this;
-		}
-
-		if(type.matches(new PrimitiveType(PrimitiveType.FLOAT))) {
-			return CinciaObject.wrap((double)this.value);
-		}
-
-		if(type.matches(new PrimitiveType(PrimitiveType.STRING))) {
-			return CinciaObject.wrap(this.value+"");
-		}
-
-		if(type.matches(new PrimitiveType(PrimitiveType.BOOL))) {
-			return __bool__();
-		}
-
-		throw new RuntimeException("Type conversion"+this.getType()+" to "+type+" not supported!");
-	}
-
-
-	@Override
 	public CinciaBool __bool__() {
 		return new CinciaBool(value!=0);
 	}
@@ -189,17 +163,39 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	public CinciaObject __gt__(CinciaObject other) {
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GT));
 	}
-	
-	
+
 	@Override
 	public CinciaObject __gte__(CinciaObject other) {
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GTE));
 	}
-	
+
 	@Override
 	public CinciaString __str__() {
 		return (CinciaString) CinciaObject.wrap(value+"");
 	}
 
+	@Override
+	public CinciaObject as(List<CinciaObject> args) {
+
+		Type type = (Type) args.get(0);	//TODO: classcast exception
+
+		if(type.matches(new PrimitiveType(PrimitiveType.INT))) {
+			return this;
+		}
+
+		if(type.matches(new PrimitiveType(PrimitiveType.FLOAT))) {
+			return CinciaObject.wrap((double)this.value);
+		}
+
+		if(type.matches(new PrimitiveType(PrimitiveType.STRING))) {
+			return CinciaObject.wrap(this.value+"");
+		}
+
+		if(type.matches(new PrimitiveType(PrimitiveType.BOOL))) {
+			return __bool__();
+		}
+
+		throw new RuntimeException("Type conversion"+this.getType()+" to "+type+" not supported!");
+	}
 
 }
