@@ -98,8 +98,6 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		throw new RuntimeException("Unsupported modulo!");
 	}
 
-
-
 	@Override
 	public CinciaBool __bool__() {
 		return new CinciaBool(value!=0);
