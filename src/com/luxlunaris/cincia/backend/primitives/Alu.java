@@ -20,7 +20,6 @@ public class Alu {
 
 		}
 
-
 		throw new RuntimeException("Unknown types for operation "+op);
 	}
 
