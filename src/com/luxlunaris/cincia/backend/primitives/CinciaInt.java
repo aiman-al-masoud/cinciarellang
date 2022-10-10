@@ -105,7 +105,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
-		return new CinciaBool(toJava().equals(other.toJava()));
+		return (CinciaBool) CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.COMPARE));
 	}
 
 	@Override
