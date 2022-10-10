@@ -26,18 +26,8 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	public CinciaObject __add__(CinciaObject other) {
 
 		try {
-
-			CinciaInt otherInt = (CinciaInt)other;
-			return CinciaObject.wrap(value+otherInt.toJava());
-		}catch (ClassCastException e) {
-
-		}
-
-		try {
-
-			CinciaFloat otherFloat = (CinciaFloat)other;
-			return CinciaObject.wrap(value+otherFloat.toJava());
-		}catch (ClassCastException e) {
+			return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.PLUS));
+		} catch (Exception e) {
 
 		}
 
@@ -69,21 +59,10 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	public CinciaObject __mul__(CinciaObject other) {
 
 		try {
-
-			CinciaInt otherInt = (CinciaInt)other;
-			return CinciaObject.wrap(value*otherInt.toJava());
-		}catch (ClassCastException e) {
+			return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.ASTERISK));
+		} catch (Exception e) {
 
 		}
-
-		try {
-
-			CinciaFloat otherFloat = (CinciaFloat)other;
-			return CinciaObject.wrap(value*otherFloat.toJava());
-		}catch (ClassCastException e) {
-
-		}
-
 
 		// try the inverse (multiplication is commutative)
 		try {
