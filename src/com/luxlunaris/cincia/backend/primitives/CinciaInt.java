@@ -61,31 +61,10 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 	}
 
-
 	@Override
 	public CinciaObject __sub__(CinciaObject other) {
-		
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.MINUS));
-//
-//		try {
-//
-//			CinciaInt otherInt = (CinciaInt)other;
-//			return CinciaObject.wrap(value-otherInt.toJava());
-//		}catch (ClassCastException e) {
-//
-//		}
-//
-//		try {
-//
-//			CinciaFloat otherFloat = (CinciaFloat)other;
-//			return CinciaObject.wrap(value-otherFloat.toJava()); 
-//		}catch (ClassCastException e) {
-//
-//		}
-//
-//		throw new RuntimeException("Unsupported subtraction!");
 	}
-
 
 	@Override
 	public CinciaObject __mul__(CinciaObject other) {
