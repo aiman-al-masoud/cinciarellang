@@ -110,8 +110,6 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		return new CinciaBool(toJava().equals(other.toJava()));
 	}
 
-
-
 	@Override
 	public Integer toJava() {
 		return value;
