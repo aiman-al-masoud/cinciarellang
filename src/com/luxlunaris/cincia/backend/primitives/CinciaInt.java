@@ -172,9 +172,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 	@Override
 	public CinciaObject __lte__(CinciaObject other) {
-
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LTE));
-
 	}
 
 	@Override
