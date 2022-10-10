@@ -5,6 +5,7 @@ import java.util.List;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 public class CinciaBool extends PrimitiveCinciaObject {
 
@@ -27,22 +28,22 @@ public class CinciaBool extends PrimitiveCinciaObject {
 
 	@Override
 	public CinciaObject __or__(CinciaObject other) {
-		return new CinciaBool(  value || other.__bool__().toJava()  );
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.OR));
 	}
 
 	@Override
 	public CinciaObject __and__(CinciaObject other) {
-		return new CinciaBool(value && other.__bool__().toJava());
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.AND));
 	}
 	
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
-		return  (CinciaBool) CinciaObject.wrap( new Boolean(value).equals(other.toJava()) );
+		return (CinciaBool) CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.COMPARE));
 	}
 
 	@Override
 	public CinciaBool __ne__(CinciaObject other) {
-		return new CinciaBool(!__eq__(other).toJava());
+		return (CinciaBool) CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.NE));
 	}
 
 	@Override
