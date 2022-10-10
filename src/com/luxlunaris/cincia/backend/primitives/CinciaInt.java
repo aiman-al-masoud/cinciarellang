@@ -83,18 +83,8 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	public CinciaObject __mod__(CinciaObject other) {
 
 		try {
-
-			CinciaInt otherInt = (CinciaInt)other;
-			return CinciaObject.wrap(value%otherInt.toJava());
-		}catch (ClassCastException e) {
-
-		}
-
-		try {
-
-			CinciaFloat otherFloat = (CinciaFloat)other;
-			return CinciaObject.wrap(value%otherFloat.toJava());
-		}catch (ClassCastException e) {
+			return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.MOD));
+		} catch (Exception e) {
 
 		}
 
