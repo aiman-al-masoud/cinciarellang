@@ -47,6 +47,26 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 	public CinciaBool __eq__(CinciaObject other) {
 		return (CinciaBool)CinciaObject.wrap(toJava().equals(other.toJava()));
 	}
+	
+	@Override
+	public CinciaObject __lt__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LT));
+	}
+
+	@Override
+	public CinciaObject __gt__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GT));
+	}
+
+	@Override
+	public CinciaObject __lte__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LTE));
+	}
+
+	@Override
+	public CinciaObject __gte__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GTE));
+	}
 
 	@Override
 	public Double toJava() {
@@ -57,6 +77,5 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 	public CinciaString __str__() {
 		return (CinciaString) CinciaObject.wrap(value+"");
 	}
-
-
+	
 }
