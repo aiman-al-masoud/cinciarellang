@@ -6,12 +6,11 @@ public class Alu {
 
 	public static Object perform(Object a, Object b, Operators op) {
 
-
 		if(a instanceof Integer && b instanceof Integer && Operators.isArithmetic(op)) {
 			return performArithmeticInt((int)a, (int)b, op);
 
 		}else if (a instanceof Number && b instanceof Number && Operators.isArithmetic(op)) {
-			return performArithmetic((double)a, (double)b, op);
+			return performArithmetic(new Double(a.toString()), new Double(b.toString()), op);
 
 		}else if (a instanceof Number && b instanceof Number && Operators.isComparisonOperator(op)) {
 			return performComparison( new Double(a.toString()) , new Double(b.toString()), op);
