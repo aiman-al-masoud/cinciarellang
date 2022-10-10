@@ -9,7 +9,6 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 //TODO: MAKE THIS ALSO A WRAPPER FOR LOOOOOOOONG
-//TODO: implement comparison operators!!!!
 //TODO: better error messages
 //TODO: consider making true division the default, ie: i=1;i/=2;i==0.5
 public class CinciaInt extends CinciaNumber {
