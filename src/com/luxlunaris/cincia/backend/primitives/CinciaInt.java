@@ -12,9 +12,9 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 //TODO: implement comparison operators!!!!
 //TODO: better error messages
 //TODO: consider making true division the default, ie: i=1;i/=2;i==0.5
-public class CinciaInt extends PrimitiveCinciaObject {
+public class CinciaInt extends CinciaNumber {
 
-	private int value;
+	protected int value;
 
 	public CinciaInt(int value) {
 		super(new TypeWrapper(new PrimitiveType(PrimitiveType.INT)));
@@ -51,11 +51,6 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public CinciaObject __sub__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.MINUS));
-	}
-
-	@Override
 	public CinciaObject __mul__(CinciaObject other) {
 
 		try {
@@ -74,11 +69,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		throw new RuntimeException("Unsupported multiplication!");
 	}
 
-	@Override
-	public CinciaObject __div__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.DIV));
-	}
-
+	
 	@Override
 	public CinciaObject __mod__(CinciaObject other) {
 
@@ -102,47 +93,17 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	public CinciaBool __bool__() {
 		return new CinciaBool(value!=0);
 	}
-
-	@Override
-	public CinciaBool __eq__(CinciaObject other) {
-		return (CinciaBool) CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.COMPARE));
-	}
-
+	
 	@Override
 	public Integer toJava() {
 		return value;
 	}
-
+	
 	@Override
 	public CinciaObject __neg__() {
-		return CinciaObject.wrap(-value);
+		return CinciaObject.wrap(-toJava());
 	}
-
-	@Override
-	public CinciaObject __lt__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LT));
-	}
-
-	@Override
-	public CinciaObject __gt__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GT));
-	}
-
-	@Override
-	public CinciaObject __lte__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LTE));
-	}
-
-	@Override
-	public CinciaObject __gte__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GTE));
-	}
-
-	@Override
-	public CinciaString __str__() {
-		return (CinciaString) CinciaObject.wrap(value+"");
-	}
-
+	
 	@Override
 	public CinciaObject as(List<CinciaObject> args) {
 

@@ -7,9 +7,9 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 //TODO: better error messages
-public class CinciaFloat extends PrimitiveCinciaObject {
+public class CinciaFloat extends CinciaNumber {
 
-	private double value;
+	protected double value;
 
 	public CinciaFloat(double value) {
 		super(new TypeWrapper(new PrimitiveType(PrimitiveType.FLOAT)));
@@ -22,19 +22,8 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 	}
 
 	@Override
-	public CinciaObject __sub__(CinciaObject other) {
-		return CinciaObject.wrap( Alu.perform(this.toJava(), other.toJava(), Operators.MINUS) );
-	}
-
-
-	@Override
 	public CinciaObject __mul__(CinciaObject other) {
 		return CinciaObject.wrap( Alu.perform(this.toJava(), other.toJava(), Operators.ASTERISK) );
-	}
-
-	@Override
-	public CinciaObject __div__(CinciaObject other) {		
-		return CinciaObject.wrap( Alu.perform(this.toJava(), other.toJava(), Operators.DIV) );
 	}
 
 	@Override
@@ -42,40 +31,11 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 		return CinciaObject.wrap( Alu.perform(this.toJava(), other.toJava(), Operators.MOD) );
 	}
 
-
-	@Override
-	public CinciaBool __eq__(CinciaObject other) {
-		return (CinciaBool)CinciaObject.wrap(toJava().equals(other.toJava()));
-	}
 	
-	@Override
-	public CinciaObject __lt__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LT));
-	}
-
-	@Override
-	public CinciaObject __gt__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GT));
-	}
-
-	@Override
-	public CinciaObject __lte__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LTE));
-	}
-
-	@Override
-	public CinciaObject __gte__(CinciaObject other) {
-		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GTE));
-	}
 
 	@Override
 	public Double toJava() {
 		return value;
 	}
 
-	@Override
-	public CinciaString __str__() {
-		return (CinciaString) CinciaObject.wrap(value+"");
-	}
-	
 }
