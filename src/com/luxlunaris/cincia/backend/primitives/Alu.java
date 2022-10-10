@@ -14,7 +14,7 @@ public class Alu {
 			return performArithmetic((double)a, (double)b, op);
 
 		}else if (a instanceof Number && b instanceof Number && Operators.isComparisonOperator(op)) {
-			return performComparison((double)a, (double)b, op);
+			return performComparison( new Double(a.toString()) , new Double(b.toString()), op);
 
 		}else if (a instanceof Boolean && b instanceof Boolean) {
 			return performLogical((boolean)a, (boolean)b, op);

@@ -132,22 +132,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 	@Override
 	public CinciaObject __lt__(CinciaObject other) {
-
-		try {
-			CinciaInt otherInt = (CinciaInt)other;
-			return CinciaObject.wrap(value < otherInt.toJava());
-		}catch (ClassCastException e) {
-
-		}
-
-		try {
-			CinciaFloat otherFloat = (CinciaFloat)other;
-			return CinciaObject.wrap(value < otherFloat.toJava());
-		}catch (ClassCastException e) {
-
-		}
-
-		throw new RuntimeException();
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LT));
 	}
 
 	@Override
