@@ -214,6 +214,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
+		// remove loop vars from external env
+		loopVars.forEach(l->l.forEach(v->{			
+			enviro.remove(v.value);
+		}));
+
 		return new CinciaList(yielded);
 	}
 
@@ -447,7 +452,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			try {
 				//TODO: type matching with declarations?
-				
+
 				// comparison expression: just check if it's true
 				if (c.cond instanceof BinaryExpression && eval(c.cond, enviro).__bool__().toJava()) {
 					return c.block!=null? eval(c.block, enviro) : eval(c.expression, enviro);
@@ -459,7 +464,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 				}
 
 			}catch (RuntimeException e) {
-				
+
 			}
 
 		}
@@ -710,10 +715,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalLambdaExpression(LambdaExpression lambdex, Enviro enviro) {
-		
+
 		lambdex.signature = lambdex.signature.resolve(this::eval, enviro); // resolve any custom nested types in signature
 		return CinciaFunction.make(lambdex, this::eval); // make a function w/ factory method
-		
+
 	}
 
 	@Override
