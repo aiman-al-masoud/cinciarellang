@@ -47,7 +47,14 @@ public interface CinciaObject extends Stateful{
 	Object toJava(Object... args);
 	
 	Type getType();
-	void setImmutable(); // recursively make the object immutable.
+	
+	/**
+	 * Recursively make this object, and all of its children objects, immutable.
+	 * Inaccessible from cincia, see {@link #freeze(List)} instead, which returns an
+	 * immutable copy.
+	 */
+	void setImmutable();
+	
 	boolean isImmutable();
 	Enviro getEnviro();
 	CinciaBool __bool__();
@@ -84,8 +91,16 @@ public interface CinciaObject extends Stateful{
 	CinciaObject freeze(List<CinciaObject> args);
 	
 	
-	CinciaObject as(List<CinciaObject> args); 
-	CinciaBool is(List<CinciaObject> args); // in-memory identity for objects
+	CinciaObject as(List<CinciaObject> args);
+	
+	/**
+	 * Checks if this object and the other are identical in memory, unoverridable.
+	 * For (logical) equality see  {@link #__eq__(List)}.
+	 * @param args
+	 * @return
+	 */
+	CinciaBool is(List<CinciaObject> args); 
+	
 	CinciaString help(List<CinciaObject> args);
 	void setDocstring(String docstring); // changes object's docstring only if it was null
 
