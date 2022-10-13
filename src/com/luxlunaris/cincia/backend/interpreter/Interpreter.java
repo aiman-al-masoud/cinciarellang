@@ -14,10 +14,8 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.luxlunaris.cincia.backend.callables.CinciaFunction;
-import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.Callable;
-import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.iterables.CinciaDict;
@@ -60,7 +58,6 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
-import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -703,11 +700,11 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		CinciaCinciaClass c = new CinciaCinciaClass();
 
 		for(Declaration dec : classex.declarations) {	
-			eval(dec, c.getEnviro());
+			eval(dec, c); //removed getEnviro() since class is an cinciaobject which is an enviro
 		}
 
 		for(AssignmentExpression assign : classex.assignments) {
-			eval(assign, c.getEnviro());
+			eval(assign, c);
 		}
 
 		return c;
