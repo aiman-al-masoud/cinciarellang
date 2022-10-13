@@ -44,6 +44,12 @@ public interface CinciaObject extends Stateful{
 	 */
 	Object toJava(); 
 	
+	/**
+	 * Like {@link #toJava()}, but it takes in extra arguments needed for 
+	 * the conversion of a CinciaObject to a proper Java equivalent.
+	 * For example, the arg may be a Java functional interface or class.
+	 * @return
+	 */
 	Object toJava(Object... args);
 	
 	Type getType();
