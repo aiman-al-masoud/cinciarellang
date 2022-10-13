@@ -63,8 +63,7 @@ public class Enviro implements Stateful{
 
 		immutable = true;
 
-		values().stream().
-		forEach(o->{
+		values().forEach(o->{
 
 			if(o!=null && o!=this) {
 				o.setImmutable();
