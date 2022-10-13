@@ -698,6 +698,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	public CinciaObject evalClassExpression(ClassExpression classex, Enviro enviro) {
 
 		CinciaCinciaClass c = new CinciaCinciaClass();
+		// TODO: c.setParent(enviro)
 
 		for(Declaration dec : classex.declarations) {	
 			eval(dec, c); //removed getEnviro() since class is an cinciaobject which is an enviro
