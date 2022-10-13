@@ -1,3 +1,10 @@
+
+/*
+* Match reads from the surrounding scope,
+* so it knows y, because it's in the function's
+* scope, despite y not being an argument 
+* to the match expression 
+*/
 f = \x,y -> match x { 
 	x < 10  &&  y < 10 -> "both less than 10!"; 
 	x > 10 			   -> "x greater than 10!"; 
