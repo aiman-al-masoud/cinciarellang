@@ -677,14 +677,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 			CinciaObject key = eval(e.getKey(), enviro);
 			CinciaObject val = eval(e.getValue(), enviro);
-
-			if(key instanceof CinciaString) {
-				d.set(((CinciaString)key).toJava(), val);
-			}
-
-			if(key instanceof CinciaInt) {
-				d.set(((CinciaInt)key).toJava(), val);
-			}
+			d.set(key, val);
 
 		});
 
