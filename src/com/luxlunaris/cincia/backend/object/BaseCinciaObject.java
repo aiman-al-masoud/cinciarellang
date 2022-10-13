@@ -10,6 +10,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
@@ -19,6 +20,7 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 
 	protected Type type; // this object's type/class
 	protected String docString;
+	Stateful parent;//TODO: could be null
 
 	public BaseCinciaObject(Type type) {
 		super(null); //TODO: parent null?
@@ -292,6 +294,11 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 	@Override
 	public Object toJava() {
 		return this;
+	}
+	
+	@Override
+	public void setParent(Stateful parent) {
+		this.parent = parent;
 	}
 
 }

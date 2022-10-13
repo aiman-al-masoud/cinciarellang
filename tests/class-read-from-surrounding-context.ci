@@ -1,0 +1,7 @@
+x = 1;
+
+C = class{
+	y = x;
+}
+
+C.y == x && C.y.is(x);

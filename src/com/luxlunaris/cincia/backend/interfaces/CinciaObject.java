@@ -109,5 +109,12 @@ public interface CinciaObject extends Stateful{
 	
 	CinciaString help(List<CinciaObject> args);
 	void setDocstring(String docstring); // changes object's docstring only if it was null
+	
+	/**
+	 * Set static (lexical) scope of this object.
+	 * @param parent
+	 */
+	void setParent(Stateful parent);
+	
 
 }

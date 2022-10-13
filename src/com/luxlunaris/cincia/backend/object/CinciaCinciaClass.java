@@ -9,6 +9,7 @@ import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
+import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.IdentifierType;
@@ -164,6 +165,20 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 	@Override
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 		return newInstance(args);
+	}
+
+	
+	@Override
+	public CinciaObject get(String key) {
+				
+		try {
+			return super.get(key);
+		} catch (Exception e) {
+			
+		}
+		
+		return parent.get(key);
+		
 	}
 
 

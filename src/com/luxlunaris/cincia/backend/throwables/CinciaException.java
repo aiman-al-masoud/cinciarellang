@@ -6,6 +6,7 @@ import java.util.List;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.Eval;
+import com.luxlunaris.cincia.backend.interfaces.Stateful;
 import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.Magic;
@@ -300,6 +301,11 @@ public class CinciaException extends RuntimeException implements CinciaObject, T
 	@Override
 	public List<Expression> toList() {
 		return Arrays.asList(this);
+	}
+
+	@Override
+	public void setParent(Stateful parent) {
+		this.object.setParent(parent);
 	}
 
 
