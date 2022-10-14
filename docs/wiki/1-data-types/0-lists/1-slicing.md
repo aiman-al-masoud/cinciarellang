@@ -9,7 +9,7 @@ x[0 to 2] == [1, 2, 3] //true
 ```
 
 
-<p style="text-align: center;">
+<p align="justify">
 
 [<- Indexing](./0-indexing.md) |
 [Comprehensions ->](./2-comprehensions.md)
