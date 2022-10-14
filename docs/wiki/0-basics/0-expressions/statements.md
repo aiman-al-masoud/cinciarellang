@@ -14,3 +14,12 @@ This is a statement, and **not** an expression, because:
 1. It cannot be combined with anything else.
 1. It can't be assigned to a variable (It causes the program to exit from the current block of code, before anything it may return, assuming it could, can be assigned!)
 
+## What else is a statement in Cinciarellang?
+
+1. Throw Statement (we said it).
+1. Try-Catch Block.
+1. Declarations.
+1. Imports.
+1. And maybe something more ...
+
+Really, everything else is an expression.
