@@ -17,5 +17,10 @@ y = x[[2,1]]
 y == [3, 2] //true
 ```
 
+<center>
 
+[<- Index](./README.md) |
+[Slicing ->](./1-slicing.md)
+
+</center>
 

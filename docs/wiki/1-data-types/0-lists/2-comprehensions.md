@@ -37,6 +37,12 @@ y == [["Alice", 90], ["Bob", 88], ["Charlie", 70]]; // true
 ```
 
 
+<center>
+
+[<- Slicing](./1-slicing.md) |
+[Broadcasting ->](./3-broadcasting.md)
+
+</center>
 
 
 
