@@ -2,7 +2,7 @@
 
 Most things in Cinciarellang are "expressions". The things that aren't, are called "statements". 
 
-What's an expression? Well, it's something that "returns a value", or "evaluates to something" or "yields a value" (all synonymous terms).
+What's an expression? Well, it's something that "returns a value", or "evaluates to a result" or "yields a value" (all synonymous terms).
 
 These are all examples of expressions in Cinciarellang:
 
