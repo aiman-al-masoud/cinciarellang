@@ -10,7 +10,7 @@ Cinciarellang🐦 is a brand-new multi-paradigm✨ scripting language🐱‍💻
 Its main features include:
 
 * Out-of-the-box support for deep and immutable copies of objects📋🧊
-* Pure and impure functions λ x -> x
+* Pure and impure functions λ x ➜ x
 * Terse and sugary high-level syntax 🍭🍬
 * Support for Java classes and objects ☕
 
@@ -19,3 +19,5 @@ Its main features include:
 ## Building 🚧
 To build it on your favorite *nix system, run the `./build.sh` script. You'll want to have the Java ≥11 SDK installed.
 
+## Wiki 📚 
+An informal description of the language is available on the wiki.
