@@ -8,10 +8,10 @@ x = [1,2,3,4,5]
 x[0 to 2] == [1, 2, 3] //true
 ```
 
-<center>
+
+<div style=' margin: auto; width: 50%;'>
 
 [<- Indexing](./0-indexing.md) |
 [Comprehensions ->](./2-comprehensions.md)
 
-</center>
-
+</div>

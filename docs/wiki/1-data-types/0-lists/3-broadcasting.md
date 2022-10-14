@@ -22,7 +22,7 @@ l = 1 to 5;
 x = [5*i for i in l];
 ```
 
-<center>
+<div style=' margin: auto; width: 50%;'>
 
 [<- Comprehensions](./2-comprehensions.md) 
-</center>
+</div>
