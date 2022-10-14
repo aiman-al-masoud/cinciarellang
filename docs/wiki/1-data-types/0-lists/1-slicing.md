@@ -9,9 +9,9 @@ x[0 to 2] == [1, 2, 3] //true
 ```
 
 
-<div style=' margin: auto; width: 50%;'>
+<p style="text-align: center;">
 
 [<- Indexing](./0-indexing.md) |
 [Comprehensions ->](./2-comprehensions.md)
 
-</div>
+</p>
