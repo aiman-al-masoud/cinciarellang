@@ -1,7 +1,0 @@
-import JFrame from "javax.swing.JFrame"; 
-import JLabel from "javax.swing.JLabel"; 
-f = JFrame();
-l = JLabel("ciao mondo!");
-f.add(l);
-f.setSize(500, 500);
-f.setVisible(true);
