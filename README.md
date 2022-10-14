@@ -21,4 +21,4 @@ Its main features include:
 To build it on your favorite *nix system, run the `./build.sh` script. You'll want to have the Java ≥11 SDK installed. You can then run the interpreter from the (newly generated) `dist/` directory.
 
 ## Wiki 📚 
-An informal description of the language is available on the wiki.
+An informal description of the language is available -˃ [on the wiki](./docs/wiki/README.md) ˂-.
