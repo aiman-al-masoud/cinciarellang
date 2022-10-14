@@ -10,7 +10,7 @@ This line of code will throw an exception. The exception will unwind the call st
 
 This is a statement, and **not** an expression, because:
 
-1. It doesn't return a value. 
+1. It doesn't return a value, it's "void". 
 1. It cannot be combined with anything else.
 1. It can't be assigned to a variable (It causes the program to exit from the current block of code, before anything it may return, assuming it could, can be assigned!)
 
