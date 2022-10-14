@@ -14,7 +14,8 @@ Its main features include:
 * Terse and sugary high-level syntax 🍭🍬
 * Support for Java classes and objects ☕
 
-⚠️ Please note that this project is just a proof of concept, currently (and probably never) ready for production!⚠️ 
+
+> ⚠️ Please note that this project is just a proof of concept, currently (and probably never) ready for production!⚠️
 
 ## Building 🚧
 To build it on your favorite *nix system, run the `./build.sh` script. You'll want to have the Java ≥11 SDK installed. You can then run the interpreter from the (newly generated) `dist/` directory.
