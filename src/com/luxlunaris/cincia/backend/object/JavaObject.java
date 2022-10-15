@@ -102,7 +102,7 @@ public class JavaObject extends BaseCinciaObject {
 	public static List<Field> getAccessibleAttributes(Class clazz) {
 
 		List<Field> allFields = Arrays.asList(clazz.getDeclaredFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList());
-		allFields.addAll(Arrays.asList(clazz.getFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList()));
+		allFields.addAll(Arrays.asList(clazz.getFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList()));		
 		return allFields;
 
 	}
