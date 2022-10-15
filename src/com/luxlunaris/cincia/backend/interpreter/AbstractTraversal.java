@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
+import com.luxlunaris.cincia.backend.primitives.CinciaFloat;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
@@ -275,6 +276,10 @@ public abstract class AbstractTraversal<T> {
 
 				if(kw.equals(PrimitiveType.INT)) {
 					return (T) CinciaInt.myClass;
+				}
+				
+				if(kw.equals(PrimitiveType.FLOAT)) {
+					return (T) CinciaFloat.myClass;
 				}
 				
 				return   (T) new TypeWrapper(new PrimitiveType(kw)); 

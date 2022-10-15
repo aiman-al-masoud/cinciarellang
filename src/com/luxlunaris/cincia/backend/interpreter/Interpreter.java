@@ -25,6 +25,7 @@ import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
+import com.luxlunaris.cincia.backend.primitives.CinciaFloat;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
@@ -862,6 +863,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.BOOL) {
 			return CinciaBool.myClass;
+		}
+		
+		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.FLOAT) {
+			return CinciaFloat.myClass;
 		}
 
 		//TODO: implement resolve in collection types		
