@@ -16,7 +16,7 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 	/**
 	 * An instance of PrimitiveCinciaObject can represent either 
 	 * a class or an instance of that class. In case it represents
-	 * a class, matches() will check if the other type is exactly the same
+	 * a class, matches() will check if the other type has exactly the same
 	 * Java class as this.
 	 */
 	@Override
