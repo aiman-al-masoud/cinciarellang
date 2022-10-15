@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
+// TODO: pull up here some code from the subclasses
 public class PrimitiveCinciaObject extends CinciaCinciaClass {
 	
 	protected boolean isInstance;
