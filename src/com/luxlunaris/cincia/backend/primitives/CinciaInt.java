@@ -34,7 +34,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 	
 	@Override
 	public String toString() {
-		return isInstance? value+"" : Keywords.INT.toString();		
+		return isInstance? toJava()+"" : Keywords.INT.toString();		
 	}
 	
 
@@ -59,7 +59,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		try {
 
 			CinciaString otherStr = (CinciaString)other;
-			return CinciaObject.wrap(value+otherStr.toJava());			
+			return CinciaObject.wrap(toJava()+otherStr.toJava());			
 		}catch (ClassCastException e) {
 
 		}
@@ -134,11 +134,11 @@ public class CinciaInt extends PrimitiveCinciaObject {
 //		}
 
 		if(type.matches(new PrimitiveType(PrimitiveType.FLOAT))) {
-			return CinciaObject.wrap((double)this.value);
+			return CinciaObject.wrap((double)this.toJava());
 		}
 
 		if(type.matches(new PrimitiveType(PrimitiveType.STRING))) {
-			return CinciaObject.wrap(this.value+"");
+			return CinciaObject.wrap(this.toJava()+"");
 		}
 
 		if(type.matches(CinciaBool.myClass)) {
