@@ -20,15 +20,13 @@ import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
-//TODO: implement iterable methods
 public class CinciaString extends PrimitiveCinciaObject implements CinciaIterable{
 
 	private String value;
 	public static final CinciaString myClass = new CinciaString();
-	
+
 
 	public CinciaString(String value) {
-//		super(new TypeWrapper(new PrimitiveType(PrimitiveType.STRING)));
 		this.value = value;
 		this.type = myClass;
 		isInstance = true;
@@ -38,26 +36,16 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		set(IterMethods.reduce.toString(), new CinciaMethod(this::reduce, this));
 		setImmutable();
 	}
-	
-	
+
+
 	public CinciaString() {
 		isInstance = false;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		//TODO: remove quotes when using print
 		return isInstance? "'"+value+"'" : Keywords.STRING.toString();		
 	}
-	
-
-//	@Override
-//	void setup() {
-//		set(IterMethods.filter.toString(), new CinciaMethod(this::filter, this));
-//		set(IterMethods.map.toString(), new CinciaMethod(this::map, this));
-//		set(IterMethods.reduce.toString(), new CinciaMethod(this::reduce, this));
-//	}
 
 	@Override
 	public CinciaString __add__(CinciaObject other) {
@@ -66,20 +54,14 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
-//		return  (CinciaBool) CinciaObject.wrap( value.equals(other.toJava()));
-		
+
 		if(isInstance) {
 			return new CinciaBool(value.equals(other.toJava()));
 		}else {
 			return new CinciaBool(this == other);
 		}
-		
-	}
 
-//	@Override
-//	public String toString() {
-//		return "\""+value+"\""; //TODO: remove "s when using print
-//	}
+	}
 
 	@Override
 	public String toJava() {
