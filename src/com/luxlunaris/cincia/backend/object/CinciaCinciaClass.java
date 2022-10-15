@@ -31,7 +31,7 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 	 */
 	@Override
 	public CinciaObject newInstance(List<CinciaObject> args) {
-		
+
 		// Prototypal Inheritance (like Javascript)
 		CinciaObject obj = this.copy(args);
 		// call the constructor on the newly created object
@@ -53,8 +53,7 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 	}
 
 	@Override
-	public Expression simplify() {// poor Liskov :-<
-//		throw new RuntimeException("Cannot simplify() class!");
+	public Expression simplify() {
 		return this;
 	}
 
@@ -96,7 +95,7 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 		return this.__eq__((CinciaObject)other).toJava();
 	}
-	
+
 	/**
 	 * Returns a new class, that has the sum of the properties of this and 
 	 * the other.
@@ -110,16 +109,16 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 			var otherClass =  ((CinciaObject)(Type)other);  //TODO what about JavaClass?
 			var newClass = new CinciaCinciaClass(); 
-			
+
 			var thisProps = this.getEnviro()
-				.vars.entrySet().stream()
-				.filter( e-> !Arrays.asList(Magic.THIS.toString(), Magic.type.toString()).contains(e.getKey()) )
-				.collect(Collectors.toList());
-			
+					.vars.entrySet().stream()
+					.filter( e-> !Arrays.asList(Magic.THIS.toString(), Magic.type.toString()).contains(e.getKey()) )
+					.collect(Collectors.toList());
+
 			var otherProps = otherClass.getEnviro()
-				.vars.entrySet().stream()
-				.filter( e-> !Arrays.asList(Magic.THIS.toString(), Magic.type.toString()).contains(e.getKey()) )
-				.collect(Collectors.toList());
+					.vars.entrySet().stream()
+					.filter( e-> !Arrays.asList(Magic.THIS.toString(), Magic.type.toString()).contains(e.getKey()) )
+					.collect(Collectors.toList());
 
 			thisProps.forEach(e-> newClass.set(e.getKey(), e.getValue(), this.getType(e.getKey())));
 			otherProps.forEach(e-> newClass.set(e.getKey(), e.getValue(), otherClass.getType(e.getKey())));
@@ -159,7 +158,7 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 	public List<Expression> toList() {
 		return Arrays.asList(this);
 	}
-	
+
 	/**
 	 * Calling a class means creating a new instance.
 	 */
@@ -168,18 +167,18 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 		return newInstance(args);
 	}
 
-	
+
 	@Override
 	public CinciaObject get(String key) {
-				
+
 		try {
 			return super.get(key);
 		} catch (Exception e) {
-			
+
 		}
-		
+
 		return parent.get(key);
-		
+
 	}
 
 
