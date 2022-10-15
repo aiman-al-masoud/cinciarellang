@@ -61,6 +61,18 @@ public class PrimitiveCinciaObjectNewVersion extends CinciaCinciaClass {
 	public CinciaObject __sub__(CinciaObject other) {
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.MINUS));
 	}
+	
+	@Override
+	public CinciaObject __add__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.PLUS));
+	}
+	
+	@Override
+	public CinciaObject __mul__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.ASTERISK));
+	}
+
+
 
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
