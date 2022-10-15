@@ -24,7 +24,7 @@ public class CinciaBool extends PrimitiveCinciaObjectNewVersion {
 		setImmutable();
 	}
 	
-	public CinciaBool() {
+	protected CinciaBool() {
 		isInstance = false;
 	}
 	

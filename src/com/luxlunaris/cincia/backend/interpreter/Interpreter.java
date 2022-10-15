@@ -868,6 +868,10 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.FLOAT) {
 			return CinciaFloat.myClass;
 		}
+		
+		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.STRING) {
+			return CinciaString.myClass;
+		}
 
 		//TODO: implement resolve in collection types		
 		return new TypeWrapper(type.resolve(this::eval, enviro));

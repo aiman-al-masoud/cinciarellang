@@ -6,6 +6,7 @@ import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaFloat;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
+import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -280,6 +281,10 @@ public abstract class AbstractTraversal<T> {
 				
 				if(kw.equals(PrimitiveType.FLOAT)) {
 					return (T) CinciaFloat.myClass;
+				}
+				
+				if(kw.equals(PrimitiveType.STRING)) {
+					return (T) CinciaString.myClass;
 				}
 				
 				return   (T) new TypeWrapper(new PrimitiveType(kw)); 
