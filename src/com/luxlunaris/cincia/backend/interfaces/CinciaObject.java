@@ -3,6 +3,7 @@ package com.luxlunaris.cincia.backend.interfaces;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.object.JavaObject;
 import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
@@ -22,7 +23,6 @@ public interface CinciaObject extends Stateful{
 
 		//TODO: problem with classes defining static members of the same class
 		//TODO: CinciaInt MUST ALSO SUPPORT LOOOOONG
-		
 
 		if(object instanceof Boolean) {
 			return new CinciaBool((boolean)object);
@@ -32,6 +32,8 @@ public interface CinciaObject extends Stateful{
 			return new CinciaFloat(Double.parseDouble(object+""));			
 		}else if(object instanceof Integer || object instanceof Long || object instanceof Short) {
 			return new CinciaInt(object instanceof Long ? Math.toIntExact((Long)object) : (int)object);
+		}else if(object instanceof Class) {
+			return new JavaClass((Class)object);
 		}else {
 			return new JavaObject(object);
 		}
