@@ -24,7 +24,7 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 	
 	@Override
 	public String toString() {
-		return isInstance? value+"" : Keywords.FLOAT.toString();		
+		return isInstance? toJava()+"" : Keywords.FLOAT.toString();		
 	}
 	
 	@Override

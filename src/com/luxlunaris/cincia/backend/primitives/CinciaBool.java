@@ -30,7 +30,7 @@ public class CinciaBool extends PrimitiveCinciaObject {
 	
 	@Override
 	public String toString() {
-		return isInstance? value+"" : Keywords.BOOL.toString();		
+		return isInstance? toJava()+"" : Keywords.BOOL.toString();		
 	}
 	
 
@@ -69,12 +69,12 @@ public class CinciaBool extends PrimitiveCinciaObject {
 
 	@Override
 	public CinciaBool __not__() {
-		return new CinciaBool(!value);
+		return new CinciaBool(!toJava());
 	}
 
 	@Override
 	public CinciaString __str__() {
-		return new CinciaString(value+"");
+		return new CinciaString(toJava()+"");
 	}
 	
 	@Override
