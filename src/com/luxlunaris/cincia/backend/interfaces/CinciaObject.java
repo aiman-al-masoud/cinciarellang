@@ -43,7 +43,7 @@ public interface CinciaObject extends Stateful{
 	 * @return
 	 */
 	Object toJava(); 
-	
+
 	/**
 	 * Like {@link #toJava()}, but it takes in extra arguments needed for 
 	 * the conversion of a CinciaObject to a proper Java equivalent.
@@ -51,16 +51,16 @@ public interface CinciaObject extends Stateful{
 	 * @return
 	 */
 	Object toJava(Object... args);
-	
+
 	Type getType();
-	
+
 	/**
 	 * Recursively make this object, and all of its children objects, immutable.
 	 * Inaccessible from cincia, see {@link #freeze(List)} instead, which returns an
 	 * immutable copy.
 	 */
 	void setImmutable();
-	
+
 	boolean isImmutable();
 	Enviro getEnviro();
 	CinciaBool __bool__();
@@ -81,24 +81,24 @@ public interface CinciaObject extends Stateful{
 	CinciaString __str__();
 	CinciaObject __neg__();
 	CinciaObject __init__(List<CinciaObject> args);
-	
+
 	/**
 	 * Returns a deep (recursive or bitwise) copy of the object
 	 * @param args
 	 * @return
 	 */
 	CinciaObject copy(List<CinciaObject> args); 
-	
+
 	/**
 	 * Like {@link #copy(List)}, but the copy is also immutable.
 	 * @param args
 	 * @return
 	 */
 	CinciaObject freeze(List<CinciaObject> args);
-	
-	
+
+
 	CinciaObject as(List<CinciaObject> args);
-	
+
 	/**
 	 * Checks if this object and the other are identical in memory, unoverridable.
 	 * For (logical) equality see  {@link #__eq__(List)}.
@@ -106,15 +106,15 @@ public interface CinciaObject extends Stateful{
 	 * @return
 	 */
 	CinciaBool is(List<CinciaObject> args); 
-	
+
 	CinciaString help(List<CinciaObject> args);
 	void setDocstring(String docstring); // changes object's docstring only if it was null
-	
+
 	/**
 	 * Set static (lexical) scope of this object.
 	 * @param parent
 	 */
 	void setParent(Stateful parent);
-	
+
 
 }
