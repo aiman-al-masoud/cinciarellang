@@ -18,7 +18,9 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.backend.callables.JavaMethod;
 import com.luxlunaris.cincia.backend.callables.JavaOverloadedMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.primitives.CinciaBool;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 /**
@@ -26,19 +28,22 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
  * 
  * @author aiman
  */
-public class JavaObject extends BaseCinciaObject {
+public class JavaObject extends BaseCinciaObject implements Type{
 
 	public Object object; // wrapped Java object
+	
 
-	public JavaObject(Object object){
+	public JavaObject(Object object) {
+		this(object, object instanceof Class? (Class) object : object.getClass()); // if wrapped object is already a class, don't get its class (Class)...
+	}
+
+	public JavaObject(Object object, Class clazz){
 
 		super(Type.Any);
-		this.type = !object.getClass().equals(Class.class.getClass())? new JavaClass(object.getClass()) : type; 
+		this.type = object.equals(clazz)? this : new JavaClass(clazz);
 		this.object = object;
-
-		// if wrapped object is already a class, don't get its class (Class)...
-		Class clazz = object instanceof Class? (Class) object : object.getClass();
-
+		
+		
 		getAccessibleMethods(clazz).stream()
 		.map(m -> new JavaMethod(m,  this))		
 		.forEach(m->{
@@ -77,7 +82,15 @@ public class JavaObject extends BaseCinciaObject {
 		.forEach(a->{
 
 			try {
-				set(a.getName(), CinciaObject.wrap(a.get(object)));
+
+				// if class has a field of same class.
+				if(object.equals( a.get(object).getClass())) {
+					set(a.getName(), new JavaObject(a.get(object), object.getClass()  ));
+				}else {
+					set(a.getName(), CinciaObject.wrap(a.get(object)));
+				}
+
+				
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				/* do nothing */
 			}
@@ -163,6 +176,32 @@ public class JavaObject extends BaseCinciaObject {
 		}
 
 		return new CinciaBool(false);
+	}
+
+	
+	@Override
+	public Expression simplify() {
+		return this;
+	}
+
+	@Override
+	public List<Expression> toList() {
+		return null;
+	}
+
+	@Override
+	public boolean matches(Type other) {
+		return false;
+	}
+
+	@Override
+	public Type unwrap() {
+		return this;
+	}
+
+	@Override
+	public Type resolve(Eval eval, Enviro enviro) {
+		return this;
 	}
 
 

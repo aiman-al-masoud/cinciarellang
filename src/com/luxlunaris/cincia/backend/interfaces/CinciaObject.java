@@ -22,6 +22,7 @@ public interface CinciaObject extends Stateful{
 
 		//TODO: problem with classes defining static members of the same class
 		//TODO: CinciaInt MUST ALSO SUPPORT LOOOOONG
+		
 
 		if(object instanceof Boolean) {
 			return new CinciaBool((boolean)object);

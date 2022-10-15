@@ -1,0 +1,5 @@
+import Color from 'java.awt.Color';
+
+Color.RED == Color.RED &&
+Color.GREEN == Color.GREEN &&
+Color.BLUE == Color.BLUE;
