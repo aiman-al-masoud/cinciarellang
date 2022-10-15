@@ -44,19 +44,19 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public String toString() {
-		return isInstance? "'"+value+"'" : Keywords.STRING.toString();		
+		return isInstance? "'"+toJava()+"'" : Keywords.STRING.toString();		
 	}
 
 	@Override
 	public CinciaString __add__(CinciaObject other) {
-		return new CinciaString(this.value+other.__str__().toJava());
+		return new CinciaString(toJava()+other.__str__().toJava());
 	}
 
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
 
 		if(isInstance) {
-			return new CinciaBool(value.equals(other.toJava()));
+			return new CinciaBool(toJava().equals(other.toJava()));
 		}else {
 			return new CinciaBool(this == other);
 		}
@@ -70,7 +70,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public CinciaString get(int key) {
-		return new CinciaString(value.charAt(key)+"");
+		return new CinciaString(toJava().charAt(key)+"");
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public Iterator<CinciaObject> iterator() {
-		return Arrays.asList(value.toCharArray()).stream().map(c-> (CinciaObject) new CinciaString(c+"") ).collect(Collectors.toList()).iterator();
+		return Arrays.asList(toJava().toCharArray()).stream().map(c-> (CinciaObject) new CinciaString(c+"") ).collect(Collectors.toList()).iterator();
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	@Override
 	public CinciaIterable filter(Predicate<CinciaObject> f) {
 
-		Optional<CinciaString> filtered = this.value.chars()
+		Optional<CinciaString> filtered = toJava().chars()
 				.mapToObj( c-> new CinciaString(((char)c)+"")  )
 				.filter( f::test )
 				.reduce( ( c1,c2 )-> c1.__add__(c2));
@@ -123,13 +123,13 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 
 	@Override
 	public long size() {
-		return value.length();
+		return toJava().length();
 	}	
 
 	@Override
 	public CinciaIterable map(UnaryOperator<CinciaObject> f) {
 
-		List<CinciaObject> l =  this.value.chars()
+		List<CinciaObject> l =  toJava().chars()
 				.mapToObj(c-> f.apply( new CinciaString(((char)c)+"") ))
 				.collect(Collectors.toList());       
 
@@ -149,7 +149,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	@Override
 	public CinciaObject reduce(BinaryOperator<CinciaObject> f) {
 
-		Optional<CinciaObject> res = this.value.chars().mapToObj(c-> (CinciaObject)  new CinciaString(((char)c)+"")).reduce(f);
+		Optional<CinciaObject> res = toJava().chars().mapToObj(c-> (CinciaObject)  new CinciaString(((char)c)+"")).reduce(f);
 
 		if(!res.isPresent()) {
 			throw new RuntimeException("Error in reducing list!");
