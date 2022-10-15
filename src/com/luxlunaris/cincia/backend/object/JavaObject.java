@@ -39,8 +39,7 @@ public class JavaObject extends BaseCinciaObject {
 		// if wrapped object is already a class, don't get its class (Class)...
 		Class clazz = object instanceof Class? (Class) object : object.getClass();
 
-		getAccessibleMethods(clazz)
-		.stream()
+		getAccessibleMethods(clazz).stream()
 		.map(m -> new JavaMethod(m,  this))		
 		.forEach(m->{
 
@@ -51,23 +50,23 @@ public class JavaObject extends BaseCinciaObject {
 				// if taken by a virtual method
 				if(oldMethod instanceof JavaOverloadedMethod) {
 
-					JavaOverloadedMethod oldVm = (JavaOverloadedMethod) oldMethod;
-					oldVm.add(m);
+					JavaOverloadedMethod oldOverloadedMethod = (JavaOverloadedMethod) oldMethod;
+					oldOverloadedMethod.add(m);
 
 				}else {
 
 					// if taken by a regular method
-					JavaOverloadedMethod vm = new JavaOverloadedMethod(this);
-					vm.add(oldMethod);
-					vm.add(m);
-					set(m.getName(), vm, Type.Any); 
+					JavaOverloadedMethod newOverloadedMethod = new JavaOverloadedMethod(this);
+					newOverloadedMethod.add(oldMethod);
+					newOverloadedMethod.add(m);
+					set(m.getName(), newOverloadedMethod, Type.Any); 
 
 				}
 
 
 			} catch (Exception e) {
 
-				// if name was never taken before, add non-virtual method
+				// if name was never taken before, add non-overloaded method
 				set(m.getName(), m, Type.Any); 
 
 			}
