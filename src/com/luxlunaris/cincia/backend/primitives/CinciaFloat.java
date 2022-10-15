@@ -4,7 +4,7 @@ import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 //TODO: better error messages
-public class CinciaFloat extends PrimitiveCinciaObjectNewVersion {
+public class CinciaFloat extends PrimitiveCinciaObject {
 
 	protected double value;
 	public static final CinciaFloat myClass = new CinciaFloat();

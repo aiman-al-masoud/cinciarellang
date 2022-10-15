@@ -7,7 +7,7 @@ import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
-public class PrimitiveCinciaObjectNewVersion extends CinciaCinciaClass {
+public class PrimitiveCinciaObject extends CinciaCinciaClass {
 	
 	protected boolean isInstance;
 	

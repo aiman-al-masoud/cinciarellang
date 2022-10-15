@@ -21,7 +21,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 //TODO: implement iterable methods
-public class CinciaString extends PrimitiveCinciaObjectNewVersion implements CinciaIterable{
+public class CinciaString extends PrimitiveCinciaObject implements CinciaIterable{
 
 	private String value;
 	public static final CinciaString myClass = new CinciaString();

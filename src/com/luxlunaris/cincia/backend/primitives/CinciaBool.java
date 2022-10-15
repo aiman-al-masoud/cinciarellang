@@ -11,7 +11,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
-public class CinciaBool extends PrimitiveCinciaObjectNewVersion {
+public class CinciaBool extends PrimitiveCinciaObject {
 
 	private boolean value;
 	public static final CinciaBool myClass = new CinciaBool();
