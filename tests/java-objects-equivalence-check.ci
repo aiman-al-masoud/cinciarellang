@@ -1,0 +1,7 @@
+import L from 'java.util.LinkedList';
+x = L();
+x.add(1);
+x.add(2);
+x.add(3);
+y = x.copy();
+! x.is(y) && x == y;

@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import com.luxlunaris.cincia.backend.callables.JavaMethod;
 import com.luxlunaris.cincia.backend.callables.JavaOverloadedMethod;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 /**
@@ -30,23 +31,23 @@ public class JavaObject extends BaseCinciaObject {
 	public Object object; // wrapped Java object
 
 	public JavaObject(Object object){
-		
+
 		super(Type.Any);
 		this.type = !object.getClass().equals(Class.class.getClass())? new JavaClass(object.getClass()) : type; 
 		this.object = object;
 
-//		System.out.println("JavaObject "+object);
-		
+		//		System.out.println("JavaObject "+object);
+
 		// if wrapped object is already a class, don't get its class (Class)...
 		Class clazz = object instanceof Class? (Class) object : object.getClass();
-		
+
 		getAccessibleMethods(clazz)
 		.stream()
 		.map(m -> new JavaMethod(m,  this))		
 
 		.forEach(m->{
-			
-//			System.out.println(m.getName());
+
+			//			System.out.println(m.getName());
 
 			try {
 				// if name was already taken
@@ -92,13 +93,13 @@ public class JavaObject extends BaseCinciaObject {
 		if (clazz == null) {
 			return Arrays.asList();
 		}
-		
-//		System.out.println(clazz);
+
+		//		System.out.println(clazz);
 
 		List<Method> ms = new ArrayList<>();
 		ms.addAll(Arrays.asList(clazz.getDeclaredMethods()));
-//		ms.addAll(Arrays.asList(clazz.getMethods()));
-        //TODO just getMethods() no recursion? Nope only public
+		//		ms.addAll(Arrays.asList(clazz.getMethods()));
+		//TODO just getMethods() no recursion? Nope only public
 		ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
 		return ms;
 
@@ -141,8 +142,8 @@ public class JavaObject extends BaseCinciaObject {
 	 * @return
 	 */
 	public static Object deepCopy(Object object) {
-		
-//		System.out.println("copying "+object);
+
+		//		System.out.println("copying "+object);
 
 		try {
 
@@ -155,8 +156,8 @@ public class JavaObject extends BaseCinciaObject {
 			byte[] byteData = bos.toByteArray();
 			ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
 			Object copy = new ObjectInputStream(bais).readObject();
-			
-//			System.out.println("copied: "+copy);
+
+			//			System.out.println("copied: "+copy);
 			//TODO: check if copy if perfect by comparing hash codes, there could be trainsient attribs 
 
 			return copy;
@@ -164,11 +165,25 @@ public class JavaObject extends BaseCinciaObject {
 		} catch (Exception e) {
 			//System.out.println("tried copying java object");
 		}
-		
+
 
 		throw new RuntimeException("Couldn't deep-copy java object!");
 
 
+	}
+
+	@Override
+	public CinciaBool __eq__(CinciaObject other) {
+
+
+		try {
+			JavaObject o = (JavaObject)other;
+			return new CinciaBool(object.equals(o.object));
+		} catch (ClassCastException e) {
+
+		}
+
+		return new CinciaBool(false);
 	}
 
 
