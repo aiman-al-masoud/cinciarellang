@@ -36,18 +36,13 @@ public class JavaObject extends BaseCinciaObject {
 		this.type = !object.getClass().equals(Class.class.getClass())? new JavaClass(object.getClass()) : type; 
 		this.object = object;
 
-		//		System.out.println("JavaObject "+object);
-
 		// if wrapped object is already a class, don't get its class (Class)...
 		Class clazz = object instanceof Class? (Class) object : object.getClass();
 
 		getAccessibleMethods(clazz)
 		.stream()
 		.map(m -> new JavaMethod(m,  this))		
-
 		.forEach(m->{
-
-			//			System.out.println(m.getName());
 
 			try {
 				// if name was already taken
@@ -94,12 +89,8 @@ public class JavaObject extends BaseCinciaObject {
 			return Arrays.asList();
 		}
 
-		//		System.out.println(clazz);
-
 		List<Method> ms = new ArrayList<>();
 		ms.addAll(Arrays.asList(clazz.getDeclaredMethods()));
-		//		ms.addAll(Arrays.asList(clazz.getMethods()));
-		//TODO just getMethods() no recursion? Nope only public
 		ms.addAll(getAccessibleMethods(clazz.getSuperclass()));
 		return ms;
 
@@ -157,7 +148,7 @@ public class JavaObject extends BaseCinciaObject {
 
 			//Check if copy is perfect by comparing hash codes, (there could be TRANSIENT attribs)
 			if(object.hashCode() != copy.hashCode()) {
-				throw new RuntimeException("Couldn't deep-copy java object!");
+				throw new RuntimeException("Couldn't deep-copy java object! Reason: imperfect copy!");
 			}
 
 			return copy;
@@ -166,7 +157,7 @@ public class JavaObject extends BaseCinciaObject {
 
 		}
 
-		throw new RuntimeException("Couldn't deep-copy java object!");
+		throw new RuntimeException("Couldn't deep-copy java object! Reason: probably unserializable!");
 	}
 
 	@Override
