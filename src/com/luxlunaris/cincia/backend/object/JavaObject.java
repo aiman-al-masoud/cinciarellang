@@ -74,10 +74,14 @@ public class JavaObject extends BaseCinciaObject {
 		});
 
 		getAccessibleAttributes(clazz)
-		.stream()
-		.map(a -> convertField(a, object))
-		.forEach(e->{
-			set(e.getKey(), e.getValue());
+		.forEach(a->{
+
+			try {
+				set(a.getName(), CinciaObject.wrap(a.get(object)));
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				/* do nothing */
+			}
+
 		});
 
 	}
@@ -101,18 +105,6 @@ public class JavaObject extends BaseCinciaObject {
 		//		allFields.addAll(Arrays.asList(clazz.getFields()).stream().filter( a-> !Modifier.isPrivate(a.getModifiers())  && !Modifier.isProtected(a.getModifiers())   ).collect(Collectors.toList()));
 		return allFields;
 
-	}
-
-
-	public static Entry<String, CinciaObject> convertField(Field field, Object object){
-
-		try {
-			return Map.entry(field.getName(), CinciaObject.wrap(field.get(object)));
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-
-		}
-
-		return Map.entry(field.getName(), CinciaObject.wrap(-1));//TODO: fix!!!
 	}
 
 	@Override
