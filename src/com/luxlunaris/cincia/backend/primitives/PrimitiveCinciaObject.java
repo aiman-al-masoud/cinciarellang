@@ -12,17 +12,26 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 	
 	protected boolean isInstance;
 	
+	
+	/**
+	 * An instance of PrimitiveCinciaObject can represent either 
+	 * a class or an instance of that class. In case it represents
+	 * a class, matches will check if the other type is exactly the same
+	 * Java class as this.
+	 */
 	@Override
 	public boolean matches(Type other) {
 		return getClass() == other.getClass();
 	}
 	
+	/**
+	 * Since a primitive object is immutable and cannot be tampered with, 
+	 * you don't need to create a copy of it.
+	 */
 	@Override
 	public CinciaObject copy(List<CinciaObject> args) {
 		return this;
 	}
-	
-	
 	
 	
 	
