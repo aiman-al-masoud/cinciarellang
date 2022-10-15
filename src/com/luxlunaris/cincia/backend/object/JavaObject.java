@@ -29,7 +29,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 public class JavaObject extends BaseCinciaObject implements Type{
 
 	public Object object; // wrapped Java object
-	
+
 
 	public JavaObject(Object object) {
 		this(object, object instanceof Class? (Class) object : object.getClass()); // if wrapped object is already a class, don't get its class (Class)...
@@ -40,8 +40,8 @@ public class JavaObject extends BaseCinciaObject implements Type{
 		super(Type.Any);
 		this.type = object.equals(clazz)? this : new JavaClass(clazz);
 		this.object = object;
-		
-		
+
+
 		getAccessibleMethods(clazz).stream()
 		.map(m -> new JavaMethod(m,  this))		
 		.forEach(m->{
@@ -88,7 +88,7 @@ public class JavaObject extends BaseCinciaObject implements Type{
 					set(a.getName(), CinciaObject.wrap(a.get(object)));
 				}
 
-				
+
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				/* do nothing */
 			}
@@ -176,7 +176,7 @@ public class JavaObject extends BaseCinciaObject implements Type{
 		return new CinciaBool(false);
 	}
 
-	
+
 	@Override
 	public Expression simplify() {
 		return this;

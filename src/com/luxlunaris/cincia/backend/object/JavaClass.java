@@ -1,13 +1,10 @@
 package com.luxlunaris.cincia.backend.object;
 
 import java.lang.reflect.Constructor;
-import java.util.Arrays;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaClass;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
-import com.luxlunaris.cincia.backend.interfaces.Eval;
-import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class JavaClass extends JavaObject implements CinciaClass{
@@ -59,27 +56,6 @@ public class JavaClass extends JavaObject implements CinciaClass{
 		return false;
 	}
 
-
-	@Override
-	public Expression simplify() {
-		return this;
-	}
-
-	@Override
-	public Type unwrap() {
-		return this;
-	}
-
-	@Override
-	public Type resolve(Eval eval, Enviro enviro) {
-		return this;
-	}
-
-	@Override
-	public List<Expression> toList() {
-		return Arrays.asList(this);
-	}
-
 	/**
 	 * Calling a class means creating a new instance.
 	 */
@@ -87,6 +63,5 @@ public class JavaClass extends JavaObject implements CinciaClass{
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 		return newInstance(args);
 	}
-
 
 }
