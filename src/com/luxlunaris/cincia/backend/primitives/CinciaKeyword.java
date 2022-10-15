@@ -1,9 +1,10 @@
 package com.luxlunaris.cincia.backend.primitives;
 
+import com.luxlunaris.cincia.backend.object.BaseCinciaObject;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
-public class CinciaKeyword extends PrimitiveCinciaObject{
+public class CinciaKeyword extends BaseCinciaObject{
 
 	public Keywords keyword;
 
