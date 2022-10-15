@@ -20,7 +20,7 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 
 	public CinciaCinciaClass() {
-		super(new IdentifierType("Class"));
+		super(new IdentifierType("TmpPlaceholder"));
 		type = this; // a class IS its own type
 	}
 
