@@ -1,0 +1,2 @@
+import JFrame from 'javax.swing.JFrame';
+JFrame.HIDE_ON_CLOSE == 1;

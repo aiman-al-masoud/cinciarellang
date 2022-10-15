@@ -28,7 +28,7 @@ public interface CinciaObject extends Stateful{
 		}else if(object instanceof String) {
 			return new CinciaString((String)object);
 		}else if(object instanceof Double || object instanceof Float) {
-			return new CinciaFloat((double)object);
+			return new CinciaFloat(Double.parseDouble(object+""));			
 		}else if(object instanceof Integer || object instanceof Long || object instanceof Short) {
 			return new CinciaInt(object instanceof Long ? Math.toIntExact((Long)object) : (int)object);
 		}else {
