@@ -155,8 +155,7 @@ public class JavaObject extends BaseCinciaObject {
 			ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
 			Object copy = new ObjectInputStream(bais).readObject();
 
-			//TODO: check if copy if perfect by comparing hash codes, there could be trainsient attribs 
-
+			//Check if copy is perfect by comparing hash codes, (there could be TRANSIENT attribs)
 			if(object.hashCode() != copy.hashCode()) {
 				throw new RuntimeException("Couldn't deep-copy java object!");
 			}
