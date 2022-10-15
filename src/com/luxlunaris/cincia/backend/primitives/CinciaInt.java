@@ -24,6 +24,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 		this.value = value;		
 		this.type = myClass;
 		set(Magic.type, myClass);
+//		set(Magic.type, new CinciaInt()); //TODO: looks like this works too, because comparison in matches is done with getClass()
 		isInstance = true;
 		setImmutable();		
 	}
