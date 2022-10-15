@@ -117,16 +117,32 @@ public class Signature extends SingleType{
 		
 		var newParams =	oldParams.stream().map(p->{ 
 			
+//			System.out.println("resolving old: "+p.getType().getClass());
+			
+			
 			var newType = (Type) eval.eval(p.getType(), enviro);
-			p.changeType(newType);
-			return p;
+			
+//			System.out.println("resolved to new: "+newType.getClass());
+
+//			p.changeType(newType);
+			
+			
+//			return p;
+			
+			return (SingleDeclaration) p.changeType(newType);
 		
 		}).collect(Collectors.toList());
 		
+//		System.out.println("new params just after collecting: "+newParams.get(0).getType().getClass());
+
 		
 		MultiDeclaration mD = new MultiDeclaration();
 		mD.declarations = newParams;
+		
+//		System.out.println("params in multi dec mD: "+mD.declarations.get(0).getType().getClass());
 		signature.params = mD.simplify();
+		
+//		System.out.println("resolved signature params: "+signature.params.toList().get(0).getType().getClass());
 	
 		return signature;
 	}

@@ -60,6 +60,7 @@ public class Tester {
 	}
 
 	public static SingleTestResult runTest(SingleTest test) {
+		
 
 		CinciaObject out = null;
 

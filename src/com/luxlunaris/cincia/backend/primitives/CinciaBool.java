@@ -3,27 +3,48 @@ package com.luxlunaris.cincia.backend.primitives;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
+import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
-public class CinciaBool extends PrimitiveCinciaObject {
+public class CinciaBool extends PrimitiveCinciaObjectNewVersion {
 
 	private boolean value;
-
+	public static final CinciaBool myClass = new CinciaBool();
+	
 	public CinciaBool(boolean value) {
-		super(new TypeWrapper(new PrimitiveType(PrimitiveType.BOOL)));
 		this.value = value;
+		this.type = myClass;
+		set(Magic.type, myClass);
+		isInstance = true;
+		setImmutable();
 	}
+	
+	public CinciaBool() {
+		isInstance = false;
+	}
+	
+	@Override
+	public String toString() {
+		return isInstance? value+"" : Keywords.BOOL.toString();		
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public CinciaBool __bool__() {
 		return this;
-	}
-
-	@Override
-	public CinciaBool __neg__() {
-		return new CinciaBool(!value);
 	}
 
 	@Override

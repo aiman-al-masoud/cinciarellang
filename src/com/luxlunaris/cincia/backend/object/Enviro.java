@@ -158,9 +158,12 @@ public class Enviro implements Stateful{
 		// (case 0.1) declaration + assignment
 		if(!types.containsKey(key) && val!=null && type!=null) {
 			
-//			System.out.println(key+" "+val);
 
 			if(!type.matches(val.getType())) {
+//				System.out.println(key+" "+val);
+//				System.out.println(val.getType().getClass());
+//				System.out.println(type.getClass());
+			
 				TypeError te = new TypeError("Invalid declaration: declared type incompatible with assigned type!");
 				te.expected = type;
 				te.got = val.getType();					

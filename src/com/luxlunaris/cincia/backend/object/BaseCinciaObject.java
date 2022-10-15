@@ -63,7 +63,7 @@ public class BaseCinciaObject extends Enviro implements CinciaObject{
 		// TODO: turn int, float etc ... (primitive types) into CinciaClasses
 		try {
 			CinciaClass myClass = (CinciaClass)type;  
-			aboutClass = myClass!=null? myClass.help(args).toJava() : "";
+//			aboutClass = myClass!=null? myClass.help(args).toJava() : "";
 		} catch (ClassCastException e) {
 
 		}

@@ -24,6 +24,7 @@ import com.luxlunaris.cincia.backend.iterables.DestructuredList;
 import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
 import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.JavaClass;
+import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
@@ -58,6 +59,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.postfix.DotExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.IndexedExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.postfix.ReassignmentExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.primary.BracketedExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.DestructuringExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.MinusExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.unary.NegationExpression;
@@ -851,6 +853,16 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
+		
+//		System.out.println("evalTypeExp(): "+type.getClass());
+		
+		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.INT) {
+			return CinciaInt.myClass;
+		}
+		
+		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.BOOL) {
+			return CinciaBool.myClass;
+		}
 
 		//TODO: implement resolve in collection types		
 		return new TypeWrapper(type.resolve(this::eval, enviro));

@@ -3,24 +3,50 @@ package com.luxlunaris.cincia.backend.primitives;
 import java.util.List;
 
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
+import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
+import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 //TODO: MAKE THIS ALSO A WRAPPER FOR LOOOOOOOONG
 //TODO: better error messages
 //TODO: consider making true division the default, ie: i=1;i/=2;i==0.5
-public class CinciaInt extends CinciaNumber {
+public class CinciaInt extends PrimitiveCinciaObjectNewVersion {
 
 	protected int value;
+	public static final CinciaInt myClass = new CinciaInt();
+	
 
 	public CinciaInt(int value) {
-		super(new TypeWrapper(new PrimitiveType(PrimitiveType.INT)));
-		this.value = value;	
-		setImmutable();
+		this.value = value;		
+		this.type = myClass;
+		set(Magic.type, myClass);
+		isInstance = true;
+		setImmutable();		
 	}
+	
+	public CinciaInt() {
+		isInstance = false;
+	}
+	
+	@Override
+	public String toString() {
+		return isInstance? value+"" : Keywords.INT.toString();		
+	}
+	
 
+	
+	
+	
+	
+	
+	
+
+	
+	
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
 
@@ -103,9 +129,9 @@ public class CinciaInt extends CinciaNumber {
 
 		Type type = (Type) args.get(0);	//TODO: classcast exception
 
-		if(type.matches(new PrimitiveType(PrimitiveType.INT))) {
-			return this;
-		}
+//		if(type.matches(new PrimitiveType(PrimitiveType.INT))) {
+//			return this;
+//		}
 
 		if(type.matches(new PrimitiveType(PrimitiveType.FLOAT))) {
 			return CinciaObject.wrap((double)this.value);
@@ -115,11 +141,75 @@ public class CinciaInt extends CinciaNumber {
 			return CinciaObject.wrap(this.value+"");
 		}
 
-		if(type.matches(new PrimitiveType(PrimitiveType.BOOL))) {
+		if(type.matches(CinciaBool.myClass)) {
 			return __bool__();
 		}
 
 		throw new RuntimeException("Type conversion"+this.getType()+" to "+type+" not supported!");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	@Override
+	public CinciaObject __lt__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LT));
+	}
+
+	@Override
+	public CinciaObject __gt__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GT));
+	}
+
+	@Override
+	public CinciaObject __lte__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LTE));
+	}
+
+	@Override
+	public CinciaObject __gte__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.GTE));
+	}
+
+	@Override
+	public CinciaObject __div__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.DIV));
+	}
+
+	@Override
+	public CinciaObject __sub__(CinciaObject other) {
+		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.MINUS));
+	}
+
+	@Override
+	public CinciaBool __eq__(CinciaObject other) {
+		return (CinciaBool)CinciaObject.wrap(toJava().equals(other.toJava()));
+	}
+
+	@Override
+	public CinciaString __str__() {
+		return (CinciaString) CinciaObject.wrap(toJava()+"");
+	}
+
+	@Override
+	public CinciaBool __bool__() {
+		return (CinciaBool) CinciaObject.wrap(Alu.perform( this.toJava() , 0, Operators.NE));
 	}
 
 }

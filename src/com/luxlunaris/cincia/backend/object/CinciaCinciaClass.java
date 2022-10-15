@@ -54,7 +54,8 @@ public class CinciaCinciaClass extends BaseCinciaObject implements CinciaClass{
 
 	@Override
 	public Expression simplify() {// poor Liskov :-<
-		throw new RuntimeException("Cannot simplify() class!");
+//		throw new RuntimeException("Cannot simplify() class!");
+		return this;
 	}
 
 	@Override

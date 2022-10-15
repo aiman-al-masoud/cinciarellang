@@ -3,6 +3,8 @@ package com.luxlunaris.cincia.backend.interpreter;
 import java.util.Arrays;
 
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.primitives.CinciaBool;
+import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -265,6 +267,16 @@ public abstract class AbstractTraversal<T> {
 			
 			if(Arrays.asList( PrimitiveType.ANY, PrimitiveType.INT, PrimitiveType.FLOAT, PrimitiveType.STRING, PrimitiveType.BOOL, PrimitiveType.MODULE  ).contains(kw)) {
 //			System.out.println("found this keyword: "+kw);
+				
+				if(kw.equals(PrimitiveType.BOOL)) {
+					return (T) CinciaBool.myClass;
+				}
+				
+
+				if(kw.equals(PrimitiveType.INT)) {
+					return (T) CinciaInt.myClass;
+				}
+				
 				return   (T) new TypeWrapper(new PrimitiveType(kw)); 
 			}
 			

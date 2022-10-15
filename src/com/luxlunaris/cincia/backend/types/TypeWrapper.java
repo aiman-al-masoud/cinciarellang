@@ -25,7 +25,8 @@ public class TypeWrapper extends BaseCinciaObject implements Type {
 
 	@Override
 	public Expression simplify() {
-		throw new RuntimeException("Not implemented");
+//		throw new RuntimeException("Not implemented");
+		return this;
 	}
 
 	@Override
