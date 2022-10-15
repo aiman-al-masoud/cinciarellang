@@ -12,7 +12,7 @@ import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 
 public class JavaClass extends JavaObject implements CinciaClass{
 
-    protected Class clazz;
+	protected Class clazz;
 
 	public JavaClass(Class clazz) {
 		super(clazz);
@@ -36,7 +36,7 @@ public class JavaClass extends JavaObject implements CinciaClass{
 		}
 
 		// ... if no cons matches the args
-		return null;
+		throw new RuntimeException("Cannot create Java class, no matching constructor for supplied args: "+args+"");
 	}
 
 	/**
@@ -62,24 +62,24 @@ public class JavaClass extends JavaObject implements CinciaClass{
 
 	@Override
 	public Expression simplify() {
-		return null;
+		return this;
 	}
 
 	@Override
 	public Type unwrap() {
 		return this;
 	}
-	
+
 	@Override
 	public Type resolve(Eval eval, Enviro enviro) {
 		return this;
 	}
-	
+
 	@Override
 	public List<Expression> toList() {
 		return Arrays.asList(this);
 	}
-	
+
 	/**
 	 * Calling a class means creating a new instance.
 	 */
@@ -87,7 +87,6 @@ public class JavaClass extends JavaObject implements CinciaClass{
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
 		return newInstance(args);
 	}
-
 
 
 }
