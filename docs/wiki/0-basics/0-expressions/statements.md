@@ -12,7 +12,7 @@ This is a statement, and **not** an expression, because:
 
 1. It **doesn't** return a value, it's 'void'. 
 1. It **cannot** be combined with anything else.
-1. It **can't** be assigned to a variable (it causes the program to exit from the current block of code, before any assignment operation can happen!)
+1. It **can't** be assigned to a variable (it causes the program to exit from the current block of code, before any assignment operation can take place!)
 
 ## What else is a statement in Cinciarellang?
 
