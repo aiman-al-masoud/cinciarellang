@@ -3,7 +3,7 @@
 An example of a statement in Cinciarellang is this:
 
 ```
-throw "on no!";
+throw 'on no!';
 ```
 
 This line of code will throw an exception. The exception will unwind the call stack till it's caught by a `try`-`catch` block, if there is one.
