@@ -35,7 +35,7 @@ y == [["Alice", 90], ["Bob", 88], ["Charlie", 70]]; // true
 You can also use the `for` expression with a block:
 
 ```
-y = for i in [1,2,3] {
+y = for i in 1 to 3{
         z = 2*i + 1;
     } -> z;
 
@@ -45,7 +45,7 @@ y == [2,4,6];
 In case you omit the `->`, the `for` loop will return an empty list. You can of course choose to ignore the return value of a `for` loop, and treat it like a statement:
 
 ```
-for i in [1,2,3]{
+for i in 1 to 3{
     print(i);
 }
 ```
