@@ -1,6 +1,6 @@
 # For
 
-The `for` expression is pretty neat, you can actually use it as a list comprehension:
+The `for` expression is pretty neat, you can actually use it as a **list comprehension**:
 
 ```
 doubles = for i in [1,2,3,4] -> 2*i;
