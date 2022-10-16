@@ -48,7 +48,7 @@ if foo < 3 {
 
 ```
 
-> Note that parentheses around the condition aren't compulsory.
+> Note that parentheses `()` around the condition aren't compulsory.
 
 
 
