@@ -54,7 +54,7 @@ public class CinciaMethod extends CinciaFunction{
 	 * @param eval
 	 * @return
 	 */
-	public CinciaObject run(List<CinciaObject> args) {	
+	public CinciaObject run(List<CinciaObject> args) {
 		return super.run(args, parent.getEnviro().shallowCopy());
 	}
 	

@@ -734,17 +734,20 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 
+		//		System.out.println(callex.args.toList());
+
 		// get args // TODO: eval destructured lists
-		var args = callex.args.toList()
+		//		var args = callex.args.toList()
+		var args = callex.args
 				.stream()
 				.map(e->eval(e, enviro))
 				.collect(Collectors.toList());
+
 
 		try {
 			// get callable expression ...
 			Callable callable = (Callable) eval(callex.callable, enviro);
 			return callable.run(args, enviro.shallowCopy()); // ... call it
-
 		} catch (ClassCastException e) {
 			throw new TypeError("can't call non-callable object!");
 		}
@@ -854,21 +857,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
-		
-//		System.out.println("evalTypeExp(): "+type.getClass());
-		
+
+		//		System.out.println("evalTypeExp(): "+type.getClass());
+
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.INT) {
 			return CinciaInt.myClass;
 		}
-		
+
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.BOOL) {
 			return CinciaBool.myClass;
 		}
-		
+
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.FLOAT) {
 			return CinciaFloat.myClass;
 		}
-		
+
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.STRING) {
 			return CinciaString.myClass;
 		}

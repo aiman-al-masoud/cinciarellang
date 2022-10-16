@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -873,7 +874,15 @@ public class Parser {
 		cE.callable = left;
 
 		if(!tStream.peek().getValue().equals(Punctuations.PAREN_CLS)) {
-			cE.args = parseMultiExpression();
+			
+			MultiExpression mE = parseMultiExpression();
+			
+//			cE.args = mE;
+			cE.args = mE.expressions.stream().map(e->e.simplify()).collect(Collectors.toList());
+//			System.out.println(cE.args);
+//			System.out.println(mE.expressions.stream().map(e->e.simplify()).collect(Collectors.toList())  );
+//			System.out.println("parsed args: "+cE.args);
+//			System.out.println(cE.args);
 		}
 
 		eat(Punctuations.PAREN_CLS);

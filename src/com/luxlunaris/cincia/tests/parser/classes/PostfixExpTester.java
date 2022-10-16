@@ -20,7 +20,7 @@ public class PostfixExpTester extends AbstractTester{
 		caE.callable = new Identifier("f");
 		MultiExpression muE = new MultiExpression();
 		muE.expressions = Arrays.asList(new Identifier("a"), new Identifier("b"), new IntToken(1));
-		caE.args = muE;
+//		caE.args = muE;
 		add("f(a, b, 1);", caE.toString());
 
 		// dot expression
