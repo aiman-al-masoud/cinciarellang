@@ -1,6 +1,6 @@
 # Match
 
-`match` is... you guessed it, an expression. You can use it in place of an `if` when you start having a set (more than two) possible conditions to check for, where each condition may be a little more invoved than a simple equality check:
+You can use a `match` in place of an `if` when you start having a set (more than two) possible conditions to check for, and where each condition may be a little more involved than a simple equality check:
 
 
 ```
@@ -35,25 +35,18 @@ z = \x,y -> match x {
 }
 ```
 
+Since `match` is... you guessed it: an expression, you can assign it directly to a function, and that will create a very practical lookup table:
 
+```
+f = \ x-> match x { 
+	x < 10 -> 'small'; 
+	x > 10 -> 'big'; 
+	10 -> 'just right';
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+f(9); // 'small'
+f(11); // 'big'
+f(10); // 'just right'
+```
 
 
