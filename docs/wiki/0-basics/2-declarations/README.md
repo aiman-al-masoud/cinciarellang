@@ -22,7 +22,7 @@ x = 1;
 
 ## Functions
 
-Function declaration has a special syntax of its own:
+Function declaration has a special syntax of its own, also known as "signature":
 
 ```
 f:\x:int,y:int:int
