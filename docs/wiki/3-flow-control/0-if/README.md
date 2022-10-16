@@ -1,6 +1,6 @@
 # If 
 
-As you already know, like most things in Cinciarellang, the if construct is an expression:
+As you already know, like most things in Cinciarellang, the `if` construct is an expression:
 
 ```
 foo = 2;
@@ -8,7 +8,7 @@ x = if foo < 3 then 'small' else 'big';
 x == 'small'; //true
 ```
 
-Because `if` is an expression, you can concatenate any number of `if-else-if` as you want (although you'll probably prefer using `match` if you reach that point):
+Because `if` is an expression, you can concatenate any number of `if-else-if`s as you want (although you'll probably prefer using `match` if you reach that point):
 
 ```
 foo = 2;
@@ -21,6 +21,33 @@ x = if foo < 3
 
 x == 'small'; //true
 ```
+
+You can also use `if` with code blocks, in that case you don't need to use the `then` keyword:
+
+```
+foo = 2;
+
+x = if foo < 3 {
+    return 'small';
+}else{
+    return 'large'
+}
+
+```
+
+And of course, you can even treat `if` as a statement (by ignoring its return value):
+
+```
+foo = 2;
+
+if foo < 3 {
+    print('small');
+}else{
+    print('large')
+}
+
+```
+
 
 
 
