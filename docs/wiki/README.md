@@ -17,7 +17,7 @@ Welcome to the wiki! This is an index of the main parts:
 1. [Bools](./1-data-types/3-bools/README.md)
 1. [Dictionaries](./1-data-types/4-dictionaries/README.md)
 
-# 2) Flow Control
+## 2) Flow Control
 1. [if](./3-flow-control/0-if/README.md)
 1. [match](./3-flow-control/1-match/README.md)
 1. [for](./3-flow-control/2-for/README.md)
