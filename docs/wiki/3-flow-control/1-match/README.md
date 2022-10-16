@@ -11,7 +11,7 @@ y = match x {
 }
 ```
 
-Or equivalently:
+Or, equivalently:
 
 ```
 y = match x { 
