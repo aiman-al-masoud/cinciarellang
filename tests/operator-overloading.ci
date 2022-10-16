@@ -4,9 +4,7 @@ Vector = class{
 		this.list = list;
 	}
 
-	__add__ = \ other -> {
-		return for i in other.list, j in list -> i+j;
-	}
+	__add__ = \ other -> for i in other.list, j in list -> i+j;
 
 }
 
