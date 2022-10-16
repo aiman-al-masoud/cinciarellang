@@ -7,6 +7,18 @@ Declarations are another kind of statement. A declaration is like a promise that
 ```
 x:int;
 ```
+... this declares a variable called "x" of type int.
+
+```
+x = 'hello world!'; 
+```
+... this erroneous assignment will throw an exception.
+
+
+```
+x = 1;
+```
+... this assignment is accepted.
 
 ## Functions
 
