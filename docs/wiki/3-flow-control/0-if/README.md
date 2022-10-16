@@ -22,7 +22,7 @@ x = if foo < 3
 x == 'small'; //true
 ```
 
-You can also use `if` with code blocks, in that case you don't need to use the `then` keyword:
+You can also use `if` with code blocks, in that case you don't need to use the `then` keyword, but you need to `return` the result:
 
 ```
 foo = 2;
