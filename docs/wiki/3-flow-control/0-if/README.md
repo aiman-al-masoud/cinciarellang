@@ -8,7 +8,8 @@ x = if foo < 3 then 'small' else 'big';
 x == 'small'; //true
 ```
 
-Because `if` is an expression, you can concatenate any number of `if-else-if`s as you want (although you'll probably prefer using `match` if you reach that point):
+Because `if` is an expression, you can concatenate any number of `if-else-if`s as you want (although you'll probably prefer using 
+[`match`](../1-match/README.md) if you reach that point):
 
 ```
 foo = 2;
