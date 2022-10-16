@@ -1,11 +1,11 @@
 Vector = class{
 
 	__init__ = \ list ->{
-		this.l = list;
+		this.list = list;
 	}
 
-	__add__ = \ u -> {
-		return for i in u.l, j in l -> i+j;
+	__add__ = \ other -> {
+		return for i in other.list, j in list -> i+j;
 	}
 
 }
