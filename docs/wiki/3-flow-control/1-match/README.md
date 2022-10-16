@@ -37,7 +37,7 @@ z = match x {
 > Even in this case, **only one** variable has to appear right after the match keyword.
 
 
-Since `match` is... you guessed it: an expression, you can assign it directly to a function, and that will create a very practical lookup table:
+Since `match` is... you guessed it: an expression, you can make it reusable by assigning it directly to a function, and that will create a very practical lookup table:
 
 ```
 f = \ x-> match x { 
