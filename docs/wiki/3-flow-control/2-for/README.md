@@ -50,8 +50,12 @@ for i in 1 to 3{
 }
 ```
 
+The `for` loop automatically unpacks 
 
-
+```
+studentsGrades = [["Alice", 90], ["Bob", 88], ["Charlie", 70]];
+for name, grade in studentsGrades -> name+' got '+grade+' out of 100';
+```
 
 
 
