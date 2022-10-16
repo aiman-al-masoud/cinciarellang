@@ -23,7 +23,6 @@ y = match x {
 
 You can reference more than one variable in the conditions, provided that the variables are in scope:
 
-
 ```
 x = 1;
 y = 2;
@@ -34,6 +33,9 @@ z = match x {
 	y > 10 && x < 10   -> "y greater and x less than 10!";
 }
 ```
+
+> Even in this case, **only one** variable has to appear right after the match keyword.
+
 
 Since `match` is... you guessed it: an expression, you can assign it directly to a function, and that will create a very practical lookup table:
 
