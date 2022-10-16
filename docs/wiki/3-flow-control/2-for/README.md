@@ -32,5 +32,12 @@ y = for s in students,
 y == [["Alice", 90], ["Bob", 88], ["Charlie", 70]]; // true
 ```
 
+You can also use the `for` expression with a block:
+
+```
+
+
+```
+
 
 
