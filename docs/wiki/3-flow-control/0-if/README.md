@@ -16,7 +16,7 @@ foo = 2;
 x = if foo < 3 
         then 'small' 
         else if foo > 3 
-                then 'large'
+                then 'big'
                 else 'equal';
 
 x == 'small'; //true
@@ -30,7 +30,7 @@ foo = 2;
 x = if foo < 3 {
     return 'small';
 }else{
-    return 'large'
+    return 'big'
 }
 
 ```
@@ -43,7 +43,7 @@ foo = 2;
 if foo < 3 {
     print('small');
 }else{
-    print('large')
+    print('big')
 }
 
 ```
