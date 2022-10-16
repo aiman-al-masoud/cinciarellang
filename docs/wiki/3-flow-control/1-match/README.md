@@ -21,7 +21,7 @@ y = match x {
 }
 ```
 
-You can reference more than one variable in the conditions, provided that the variables are in the scope:
+You can reference more than one variable in the conditions, provided that the variables are in scope:
 
 
 ```
