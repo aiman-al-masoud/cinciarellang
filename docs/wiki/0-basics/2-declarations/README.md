@@ -25,11 +25,9 @@ x = 1;
 Function declaration has a special syntax of its own:
 
 ```
-f:\x:int:int
+f:\x:int,y:int:int
 ```
-
-
-
+... this declares a function that takes two ints (x and y) and returns another int.
 
 
 
