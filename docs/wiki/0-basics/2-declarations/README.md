@@ -7,7 +7,7 @@ Declarations are another kind of statement. A declaration is like a promise that
 ```
 x:int;
 ```
-... this declares a variable called "x" of type int.
+... this declares a variable called "x" of type `int`.
 
 ```
 x = 'hello world!'; 
