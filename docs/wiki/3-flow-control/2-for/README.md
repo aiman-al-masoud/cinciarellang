@@ -54,7 +54,8 @@ The `for` loop automatically unpacks
 
 ```
 studentsGrades = [["Alice", 90], ["Bob", 88], ["Charlie", 70]];
-for name, grade in studentsGrades -> name+' got '+grade+' out of 100';
+for name, grade in studentsGrades -> name+' got '+grade+' out of 100'; 
+// ['Alice got 90 out of 100', 'Bob got 88 out of 100', 'Charlie got 70 out of 100']
 ```
 
 
