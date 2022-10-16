@@ -54,10 +54,14 @@ If an iterable is made up of iterable elements, the `for` loop can automatically
 
 ```
 studentsGrades = [["Alice", 90], ["Bob", 88], ["Charlie", 70]];
-for name, 
-    grade in studentsGrades -> name+' got '+grade+' out of 100'; 
+messages = for name, 
+               grade in studentsGrades -> name+' got '+grade+' out of 100'; 
+```
 
-// ['Alice got 90 out of 100', 'Bob got 88 out of 100', 'Charlie got 70 out of 100']
+Evaluates to:
+
+```
+['Alice got 90 out of 100', 'Bob got 88 out of 100', 'Charlie got 70 out of 100']
 ```
 
 
