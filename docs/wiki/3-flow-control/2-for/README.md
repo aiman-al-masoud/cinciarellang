@@ -20,7 +20,7 @@ doubles2 == [6,8]; // true
 doubles2 = [1,2,3,4].filter(\i > 2).map(\2 * i);
 ```
 
-You can also zip together two or more lists using a comprehension:
+You can also zip together, or combine, two or more lists using a comprehension:
 
 ```
 students = ['Alice', 'Bob', 'Charlie'];
