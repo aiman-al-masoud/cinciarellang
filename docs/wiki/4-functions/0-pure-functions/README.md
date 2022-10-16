@@ -5,7 +5,7 @@ All Cinciarellang functions are *pure*, unless explicitly 'contaminated'.
 A *pure function* doesn't produce any side effects, and its output (return value) depends entirely on its input (parameters), this means that it **cannot** under any circumstance:
 
 * Read from (or write to) the outer scope.
-* Modify its input paramters.
+* Modify its input parameters.
 
 ## The following are all examples of pure functions:
 
