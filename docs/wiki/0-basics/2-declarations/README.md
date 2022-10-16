@@ -22,6 +22,15 @@ x = 1;
 
 ## Functions
 
+Function declaration has a special syntax of its own:
+
+```
+f:\x:int:int
+```
+
+
+
+
 
 
 
