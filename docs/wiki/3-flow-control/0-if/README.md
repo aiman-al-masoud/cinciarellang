@@ -49,7 +49,7 @@ if foo < 3 {
 
 ```
 
-> Note that parentheses `()` around the condition aren't compulsory. This style is consistent across the language, and it helps you avoid typing out unnecessary keys
+> Note that the parentheses `()` around the condition aren't compulsory. This style is consistent across the language, and it helps you avoid typing out unnecessary keys
 
 
 
