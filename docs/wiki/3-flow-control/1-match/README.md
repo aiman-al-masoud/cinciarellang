@@ -28,7 +28,7 @@ You can reference more than one variable in the conditions, provided that the va
 x = 1;
 y = 2;
 
-z = \x,y -> match x { 
+z = match x { 
 	x < 10  &&  y < 10 -> "both less than 10!"; 
 	x > 10 			   -> "x greater than 10!"; 
 	y > 10 && x < 10   -> "y greater and x less than 10!";
