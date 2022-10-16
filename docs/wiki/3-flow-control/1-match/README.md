@@ -1,4 +1,4 @@
-# match
+# Match
 
 You can use a `match` in place of an `if` when you start having a set (more than two) possible conditions to check for, and where each condition may be a little more involved than a simple equality check:
 
