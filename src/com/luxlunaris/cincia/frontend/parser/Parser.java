@@ -121,18 +121,18 @@ public class Parser {
 		}else if(tStream.peek().getValue().equals( Keywords.IMPORT )) {
 			res = parseImportStatement();
 		}else {
-			
+
 			int memento = tStream.currentTokenNumber();
-			
+
 			try {
 				res = parseDeclStatement(); // try parsing as declaration
 			} catch (Throwable e) {
 				tStream.goBackTo(memento); // if not declaration, backrtrack ...
 				res = parseExpressionStatement(); // ... and parse as expression
 			}
-			
+
 		}
-		
+
 
 		eat(Punctuations.STM_SEP);
 		return res;
@@ -599,7 +599,7 @@ public class Parser {
 
 		ArrayList<Expression> chain = new ArrayList<Expression>();
 		chain.add(parseCondExpression()); 
-		
+
 		if(!tStream.peek().getValue().equals(Operators.ASSIGN)) {
 			return chain.get(0);
 		}
@@ -874,15 +874,8 @@ public class Parser {
 		cE.callable = left;
 
 		if(!tStream.peek().getValue().equals(Punctuations.PAREN_CLS)) {
-			
-			MultiExpression mE = parseMultiExpression();
-			
-//			cE.args = mE;
+			MultiExpression mE = parseMultiExpression();			
 			cE.args = mE.expressions.stream().map(e->e.simplify()).collect(Collectors.toList());
-//			System.out.println(cE.args);
-//			System.out.println(mE.expressions.stream().map(e->e.simplify()).collect(Collectors.toList())  );
-//			System.out.println("parsed args: "+cE.args);
-//			System.out.println(cE.args);
 		}
 
 		eat(Punctuations.PAREN_CLS);
@@ -1007,7 +1000,7 @@ public class Parser {
 		LambdaExpression lE = new LambdaExpression();
 		lE.modifiers = modifiers;
 		int memento = tStream.currentTokenNumber(); // remember token you where at
-		
+
 		try { // try parsing as lambda with explicit parameters
 
 			lE.signature = parseSignature();
