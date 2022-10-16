@@ -1,5 +1,7 @@
 # For
 
+## List Comprehensions
+
 The `for` expression is pretty neat, you can actually use it as a **list comprehension**:
 
 ```
@@ -20,6 +22,8 @@ doubles2 == [6,8]; // true
 doubles2 = [1,2,3,4].filter(\i > 2).map(\2 * i);
 ```
 
+## Combining Iterables
+
 You can also zip together, or combine, two or more lists using a comprehension:
 
 ```
@@ -32,6 +36,8 @@ y = for s in students,
 y == [["Alice", 90], ["Bob", 88], ["Charlie", 70]]; // true
 ```
 
+## With a Block
+
 You can also use the `for` expression with a block:
 
 ```
@@ -42,6 +48,8 @@ y = for i in 1 to 3{
 y == [2,4,6];
 ```
 
+## As a Statement
+
 In case you omit the `->`, the `for` loop will return an empty list. You can of course choose to ignore the return value of a `for` loop, and treat it like a statement:
 
 ```
@@ -49,6 +57,8 @@ for i in 1 to 3{
     print(i);
 }
 ```
+
+## With Unpacking
 
 If an iterable is made up of iterable elements, the `for` loop can automatically unpack each element:
 
