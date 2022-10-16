@@ -17,11 +17,11 @@ Its main features include:
 
 > ⚠️ Please note that this project is just a proof of concept, currently (and probably never) ready for production!⚠️
 
-## Building 🚧
-To build it on your favorite *nix system, run the `./build.sh` script. You'll want to have the Java ≥11 SDK installed. You can then run the interpreter from the (newly generated) `dist/` directory.
-
 ## Wiki 📚 
 An informal description of the language is available **-˃ [on the wiki](./docs/wiki/README.md) ˂-**.
+
+## Building 🚧
+To build it on your favorite *nix system, run the `./build.sh` script. You'll want to have the Java ≥11 SDK installed. You can then run the interpreter from the (newly generated) `dist/` directory.
 
 ## Contributing 🤝
 If you find a bug and want to fix it, or if you have an idea for a new feature and you implement it, please feel free to open a pull-request. I don't guarantee that it will be immediately merged into main, but I will definitely read it.
