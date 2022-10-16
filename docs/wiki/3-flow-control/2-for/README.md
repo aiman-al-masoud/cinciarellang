@@ -50,7 +50,7 @@ for i in 1 to 3{
 }
 ```
 
-If an iterable is made up of iterable elements, the `for` loop can automatically unpack the elements:
+If an iterable is made up of iterable elements, the `for` loop can automatically unpack each element:
 
 ```
 studentsGrades = [["Alice", 90], ["Bob", 88], ["Charlie", 70]];
