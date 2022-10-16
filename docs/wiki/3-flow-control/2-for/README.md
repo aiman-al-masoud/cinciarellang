@@ -14,10 +14,7 @@ doubles2 = for i in [1,2,3,4] if i > 2 -> 2*i;
 doubles2 == [6,8]; // true
 ```
 
-... which gets applied before the mapping part happens.
-
-
-The comprehension above is equivalent to:
+... which gets applied before the mapping part happens, ie: the comprehension above is equivalent to:
 
 ```
 doubles2 = [1,2,3,4].filter(\i > 2).map(\2 * i);
