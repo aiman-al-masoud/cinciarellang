@@ -1,4 +1,4 @@
-# If 
+# if 
 
 As you already know, like most things in Cinciarellang, the `if` construct is an expression. An `if` is great if you have to pick a value based on a binary choice:
 
