@@ -1,6 +1,6 @@
 # If 
 
-As you already know, like most things in Cinciarellang, the `if` construct is an expression:
+As you already know, like most things in Cinciarellang, the `if` construct is an expression. An `if` statement is great if you have to pick a value based on a binary choice:
 
 ```
 foo = 2;
