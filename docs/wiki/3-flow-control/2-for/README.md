@@ -50,11 +50,13 @@ for i in 1 to 3{
 }
 ```
 
-The `for` loop automatically unpacks 
+If an iterable is made up of iterable elements, the `for` loop can automatically unpack the elements:
 
 ```
 studentsGrades = [["Alice", 90], ["Bob", 88], ["Charlie", 70]];
-for name, grade in studentsGrades -> name+' got '+grade+' out of 100'; 
+for name, 
+    grade in studentsGrades -> name+' got '+grade+' out of 100'; 
+
 // ['Alice got 90 out of 100', 'Bob got 88 out of 100', 'Charlie got 70 out of 100']
 ```
 
