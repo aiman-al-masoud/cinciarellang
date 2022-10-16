@@ -30,6 +30,16 @@ f:\x:int,y:int:int
 ... this declares a function that takes two ints (x and y) and returns another int.
 
 
+## Lists
+
+You can declare a list of any given type like so:
+
+```
+x:int[];
+// x = 1; // wrong!
+x = [1,2,3] //ok!
+```
+
 
 
 
