@@ -77,7 +77,13 @@ Greeter == duck.type; // true
 
 ## Interfaces
 
-There is no  ~~interface~~ keyword. To  
+There is no  ~~interface~~ keyword. To achieve the same functionality, you simply create a class that only contains declarations:
+
+```
+
+
+```
+
 
 
 
