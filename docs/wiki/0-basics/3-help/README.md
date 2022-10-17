@@ -15,7 +15,8 @@ name.type; // string
 ```
 
 ```
-
+vals = [1,2,3];
+vals.type; // int[]
 ```
 
 ```
