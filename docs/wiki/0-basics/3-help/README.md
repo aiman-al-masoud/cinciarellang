@@ -2,7 +2,7 @@
 
 ## Type
 
-You can get the type of any variable by accessing its "type" property:
+You can get the type of any object by accessing its "type" property (by the way, everything is an object):
 
 ```
 x = 1;
