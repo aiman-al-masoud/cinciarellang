@@ -1,5 +1,6 @@
 package com.luxlunaris.cincia.backend.primitives;
 
+import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
@@ -7,13 +8,12 @@ import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 public class CinciaFloat extends PrimitiveCinciaObject {
 
 	protected double value;
-	public static final CinciaFloat myClass = new CinciaFloat();
 	
 
 	public CinciaFloat(double value) {
 		this.value = value;		
-		this.type = myClass;
-		set(Magic.type, myClass);
+		this.type = new CinciaFloat();
+		set(Magic.type, (CinciaObject) this.type);
 		isInstance = true;
 		setImmutable();		
 	}
@@ -30,6 +30,11 @@ public class CinciaFloat extends PrimitiveCinciaObject {
 	@Override
 	public Double toJava() {
 		return value;
+	}
+	
+	@Override
+	public CinciaObject __neg__() {
+		return CinciaObject.wrap(-toJava());
 	}
 
 }

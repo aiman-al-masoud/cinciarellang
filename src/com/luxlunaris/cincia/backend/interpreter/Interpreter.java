@@ -27,6 +27,7 @@ import com.luxlunaris.cincia.backend.object.JavaClass;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
+import com.luxlunaris.cincia.backend.primitives.PrimitiveCinciaObject;
 import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
@@ -863,8 +864,14 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
-		//TODO: implement resolve in collection types		
-		return new TypeWrapper(type.resolve(this::eval, enviro));
+				
+		Type t = type.resolve(this::eval, enviro); //TODO: implement resolve in collection types
+		
+//		if(t instanceof PrimitiveCinciaObject) {
+//			return (CinciaObject) t;
+//		}
+		
+		return new TypeWrapper(t);
 	}
 
 

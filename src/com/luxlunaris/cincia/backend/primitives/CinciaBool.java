@@ -14,12 +14,12 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 public class CinciaBool extends PrimitiveCinciaObject {
 
 	private boolean value;
-	public static final CinciaBool myClass = new CinciaBool();
+	
 	
 	public CinciaBool(boolean value) {
 		this.value = value;
-		this.type = myClass;
-		set(Magic.type, myClass);
+		this.type = new CinciaBool();
+		set(Magic.type, (CinciaObject)this.type);
 		isInstance = true;
 		setImmutable();
 	}

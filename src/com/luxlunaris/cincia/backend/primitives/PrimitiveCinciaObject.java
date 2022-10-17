@@ -39,17 +39,14 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 
 		switch (kw) {
 		case INT:
-			return CinciaInt.myClass;
+			return new CinciaInt();
 		case BOOL:
-			//			return new CinciaBool();
-			return CinciaBool.myClass;
+			return new CinciaBool();
 		case STRING:
-			//			return new CinciaString();
 			return CinciaString.myClass;
+//			return new CinciaString();
 		case FLOAT:
-			//			return new CinciaFloat();
-			return CinciaFloat.myClass;
-
+			return new CinciaFloat();
 		default:
 			throw new RuntimeException("No such primitive type: "+kw);
 		}
@@ -114,6 +111,8 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 	public CinciaBool __bool__() {
 		return (CinciaBool) CinciaObject.wrap(Alu.perform( this.toJava() , 0, Operators.NE));
 	}
+	
+	
 
 
 }

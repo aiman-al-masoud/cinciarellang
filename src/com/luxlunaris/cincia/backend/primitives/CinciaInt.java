@@ -16,38 +16,35 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 //TODO: consider making true division the default, ie: i=1;i/=2;i==0.5
 public class CinciaInt extends PrimitiveCinciaObject {
 
-	protected int value;
-	public static final CinciaInt myClass = new CinciaInt();
-	
+	protected int value;	
 
 	public CinciaInt(int value) {
 		this.value = value;		
-		this.type = myClass;
-		set(Magic.type, myClass);
-//		set(Magic.type, new CinciaInt()); //TODO: looks like this works too, because comparison in matches is done with getClass()
+		this.type = new CinciaInt();
+		set(Magic.type, (CinciaObject)this.type); //TODO: looks like this works too, because comparison in matches is done with getClass()
 		isInstance = true;
 		setImmutable();		
 	}
-	
+
 	public CinciaInt() {
 		isInstance = false;
 	}
-	
+
 	@Override
 	public String toString() {
 		return isInstance? toJava()+"" : Keywords.INT.toString();		
 	}
-	
 
-	
-	
-	
-	
-	
-	
 
-	
-	
+
+
+
+
+
+
+
+
+
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
 
@@ -130,42 +127,24 @@ public class CinciaInt extends PrimitiveCinciaObject {
 
 		Type type = (Type) args.get(0);	//TODO: classcast exception
 
-//		if(type.matches(new PrimitiveType(PrimitiveType.INT))) {
-//			return this;
-//		}
-
-		if(type.matches(new PrimitiveType(PrimitiveType.FLOAT))) {
-			return CinciaObject.wrap((double)this.toJava());
-		}
-
-		if(type.matches(new PrimitiveType(PrimitiveType.STRING))) {
-			return CinciaObject.wrap(this.toJava()+"");
-		}
-
-		if(type.matches(CinciaBool.myClass)) {
+		if(type.matches(new CinciaBool())) {
 			return __bool__();
+		}
+
+		if(type.matches(new CinciaInt())) {
+			return this;
+		}
+
+		if(type.matches(new CinciaFloat())) {
+			return new CinciaFloat(toJava());
+		}
+
+		if(type.matches(CinciaString.myClass)) {
+			return new CinciaString(toJava()+"");
 		}
 
 		throw new RuntimeException("Type conversion"+this.getType()+" to "+type+" not supported!");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 }
