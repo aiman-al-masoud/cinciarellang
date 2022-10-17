@@ -18,19 +18,18 @@ import com.luxlunaris.cincia.backend.iterables.CinciaList;
 import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
+import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 
 public class CinciaString extends PrimitiveCinciaObject implements CinciaIterable{
 
 	private String value;
-	public static final CinciaString myClass = new CinciaString();
-
 
 	public CinciaString(String value) {
 		this.value = value;
-		this.type = myClass;
+		this.type = new CinciaString();
 		isInstance = true;
-		set(Magic.type, myClass);
+		set(Magic.type, (CinciaObject)this.type);
 		set(IterMethods.filter.toString(), new CinciaMethod(this::filter, this));
 		set(IterMethods.map.toString(), new CinciaMethod(this::map, this));
 		set(IterMethods.reduce.toString(), new CinciaMethod(this::reduce, this));
@@ -58,7 +57,7 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 		if(isInstance) {
 			return new CinciaBool(toJava().equals(other.toJava()));
 		}else {
-			return new CinciaBool(this == other);
+			return new CinciaBool(this.matches((Type)other));
 		}
 
 	}

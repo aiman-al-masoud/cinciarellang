@@ -139,7 +139,7 @@ public class CinciaInt extends PrimitiveCinciaObject {
 			return new CinciaFloat(toJava());
 		}
 
-		if(type.matches(CinciaString.myClass)) {
+		if(type.matches(new CinciaString())) {
 			return new CinciaString(toJava()+"");
 		}
 

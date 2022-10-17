@@ -43,8 +43,7 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 		case BOOL:
 			return new CinciaBool();
 		case STRING:
-			return CinciaString.myClass;
-//			return new CinciaString();
+			return new CinciaString();
 		case FLOAT:
 			return new CinciaFloat();
 		default:
