@@ -46,7 +46,7 @@ p.isAdult(); // true
 
 ## Inheritance
 
-There are no ~~extends~~ or ~~implements~~ keywords. Class objects are composable expressions that can be combined together with the `+` operator to yield 
+There are no ~~extends~~ or ~~implements~~ keywords. Class objects are composable expressions that can be combined together with the `+` operator to yield a brand new class object, with no relation to its "parents".
 
 
 
