@@ -46,10 +46,30 @@ p.isAdult(); // true
 
 ## Inheritance
 
-There are no ~~extends~~ or ~~implements~~ keywords. Class objects are composable expressions that can be combined together with the `+` operator to yield a brand new class object, with no relation to its "parents".
+There are no ~~extends~~ or ~~implements~~ keywords. Class objects are composable expressions, that can be combined together with the `+` operator, to yield a brand new class object, with no relationship to its "parents".
+
+```
+Duck = class {
+
+    __init__ = \name->{
+        this.name = name;
+   }
+
+   quack = \ -> 'quack!';
+}
+
+Greeter = class {
+	greet = \-> 'Hi, my name is '+name;
+}
 
 
+GreetingDuck = Duck + Greeter;
+duck = GreetingDuck('Double Duck');
+duck.quack(); // 'quack!'
+duck.greet(); // 'Hi, my name is Double Duck'
+```
 
 
+## Interfaces
 
 
