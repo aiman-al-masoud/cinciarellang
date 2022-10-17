@@ -19,19 +19,19 @@ This example is a little more elaborate:
 ```
 Person = class{
 
-            name:string;
-            age:int;
+        name:string;
+        age:int;
 
-            __init__ = \name:string, age:int ->{
-                this.name = name;
-                this.age = age;
-            }
+        __init__ = \name:string, age:int ->{
+            this.name = name;
+            this.age = age;
+        }
 
-            isAdult = \-> age >= 18;
+        isAdult = \-> age >= 18;
 
-            birthday = \->{
-                this.age++;
-            }
+        birthday = \->{
+            this.age++;
+        }
 
 }
 ```
