@@ -36,7 +36,13 @@ Person = class{
 }
 ```
 
-
+You can then try it out by instantiating an object: 
+```
+p = Person('Bob', 17);
+p.isAdult(); // false
+p.birthday();
+p.isAdult(); // true
+```
 
 
 
