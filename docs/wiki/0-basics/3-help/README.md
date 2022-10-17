@@ -21,6 +21,7 @@ vals.type; // int[]
 
 ```
 f = \x:int:int -> 2*x
+f.type; // \( x:int) -> int
 ```
 
 
