@@ -14,7 +14,27 @@ This class is basically an empty blueprint. You can nonetheless use this bluepri
 x = C();
 ```
 
+This example is a little more elaborate:
 
+```
+Person = class{
+
+	name:string;
+	age:int;
+
+    __init__ = \name:string, age:int ->{
+        this.name = name;
+        this.age = age;
+    }
+
+    isAdult = \-> age >= 18;
+
+    birthday = \->{
+        this.age++;
+    }
+
+}
+```
 
 
 
