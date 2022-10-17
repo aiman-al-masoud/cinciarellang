@@ -97,9 +97,6 @@ public abstract class AbstractTraversal<T> {
 		}else if(ast instanceof ThrowStatement) {
 			return evalThrowStatement((ThrowStatement)ast, enviro);
 
-		}else if (ast == null) { //TODO: really?
-			return null;
-
 		}else if (ast instanceof ReturnStatement) {
 			return evalReturnStatement((ReturnStatement)ast, enviro);
 
@@ -108,6 +105,9 @@ public abstract class AbstractTraversal<T> {
 
 		}else if ( ast instanceof ContinueStatement ) {
 			return evalContinueStatement((ContinueStatement)ast, enviro);
+
+		}else if (ast == null) { //TODO: really?
+			return null;
 
 		}
 
