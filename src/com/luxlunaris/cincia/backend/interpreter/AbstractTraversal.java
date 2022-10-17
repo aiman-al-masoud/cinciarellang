@@ -16,6 +16,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.WhileExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AndExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
@@ -52,7 +53,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.ExpressionStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.iteration.WhileStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
@@ -94,8 +94,8 @@ public abstract class AbstractTraversal<T> {
 		}else if(ast instanceof ImportStatement) {
 			return evalImportStatement((ImportStatement)ast, enviro);
 
-		}else if(ast instanceof WhileStatement) {
-			return evalWhileStatement((WhileStatement)ast, enviro);
+		}else if(ast instanceof WhileExpression) {
+			return evalWhileExpression((WhileExpression)ast, enviro);
 
 		}else if(ast instanceof ThrowStatement) {
 			return evalThrowStatement((ThrowStatement)ast, enviro);
@@ -154,6 +154,9 @@ public abstract class AbstractTraversal<T> {
 			
 		}else if (expression instanceof ForExpression) {
 			return evalForExpression((ForExpression)expression, enviro);
+			
+		}else if (expression instanceof WhileExpression) {
+			return evalWhileExpression((WhileExpression)expression, enviro);
 			
 		}else if (expression instanceof Type) {
 //			System.out.println(expression);
@@ -324,7 +327,7 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalBreakStatement(BreakStatement breakStatement, Enviro enviro);
 	public abstract T evalContinueStatement(ContinueStatement continueStatement, Enviro enviro);
 	public abstract T evalForExpression(ForExpression forStatement, Enviro enviro);
-	public abstract T evalWhileStatement(WhileStatement whileStatement, Enviro enviro);
+	public abstract T evalWhileExpression(WhileExpression whileStatement, Enviro enviro);
 	public abstract T evalImportStatement(ImportStatement importStatement, Enviro enviro);
 	public abstract T evalCompoundStatement(CompoundStatement compoundStatement, Enviro enviro);
 	public abstract T evalTryStatement(TryStatement tryStatement, Enviro enviro);

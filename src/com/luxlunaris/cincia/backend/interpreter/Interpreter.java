@@ -43,6 +43,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.WhileExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AndExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
@@ -75,7 +76,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.CatchClause;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.iteration.WhileStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
@@ -223,12 +223,22 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	}
 
 	@Override
-	public CinciaObject evalWhileStatement(WhileStatement whileStatement, Enviro enviro) {
+	public CinciaObject evalWhileExpression(WhileExpression whileExpression, Enviro enviro) {
+		
+		
+		List<CinciaObject> results = new ArrayList<>();
+		
 
-		while(eval(whileStatement.cond, enviro).__bool__().toJava()) {
+		while(eval(whileExpression.cond, enviro).__bool__().toJava()) {
 
 			// run one iteration
-			CinciaObject o = eval(whileStatement.block, enviro); 
+			CinciaObject o = eval(whileExpression.block, enviro); 
+			
+			
+			if(whileExpression.yield!=null) {				
+				results.add(eval(whileExpression.yield, enviro));
+			}
+			
 
 			//check iteration exit value to determine what to do next
 			if(o == null) {
@@ -250,7 +260,7 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 		}
 
-		return null;
+		return new CinciaList(results);
 	}
 
 	@Override
@@ -734,7 +744,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalCalledExpression(CalledExpression callex, Enviro enviro) {
 
-		//		System.out.println(callex.args.toList());
 
 		// get args // TODO: eval destructured lists
 		//		var args = callex.args.toList()
@@ -858,7 +867,6 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 	@Override
 	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
 
-		//		System.out.println("evalTypeExp(): "+type.getClass());
 
 		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.INT) {
 			return CinciaInt.myClass;

@@ -17,6 +17,7 @@ import com.luxlunaris.cincia.frontend.ast.expressions.MatchExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.MultiExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.PipeExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.RangeExpression;
+import com.luxlunaris.cincia.frontend.ast.expressions.WhileExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AddExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AndExpression;
 import com.luxlunaris.cincia.frontend.ast.expressions.binary.AssignmentExpression;
@@ -62,7 +63,6 @@ import com.luxlunaris.cincia.frontend.ast.statements.ImportStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.CatchClause;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.ThrowStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.exception.TryStatement;
-import com.luxlunaris.cincia.frontend.ast.statements.iteration.WhileStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.BreakStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ContinueStatement;
 import com.luxlunaris.cincia.frontend.ast.statements.jump.ReturnStatement;
@@ -106,8 +106,8 @@ public class Parser {
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			res = parseCompStatement();
-		}else if(tStream.peek().getValue().equals( Keywords.WHILE )) {
-			res = parseWhileStatement();
+//		}else if(tStream.peek().getValue().equals( Keywords.WHILE )) {
+//			res = parseWhileStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.TRY )) {
 			res = parseTryStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.THROW )) {
@@ -274,12 +274,21 @@ public class Parser {
 	}
 
 
-	private WhileStatement parseWhileStatement() {
+	private WhileExpression parseWhileExpression() {
 
 		eat(Keywords.WHILE);
-		WhileStatement wS = new WhileStatement();
+		WhileExpression wS = new WhileExpression();
 		wS.cond = parseSingleExpression();
-		wS.block = parseCompStatement();
+		
+		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
+			wS.block = parseCompStatement();			
+		}
+		
+		if(tStream.peek().getValue().equals(Operators.ARROW)) {
+			eat(Operators.ARROW);
+			wS.yield = parseSingleExpression();
+		}
+		
 		return wS;
 	}
 
@@ -654,6 +663,11 @@ public class Parser {
 
 		if(tStream.peek().getValue().equals(Keywords.FOR)) {
 			return parseForExpression();
+		}
+		
+		
+		if(tStream.peek().getValue().equals(Keywords.WHILE)) {
+			return parseWhileExpression();
 		}
 
 

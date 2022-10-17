@@ -1,0 +1,8 @@
+x = 0 ;  
+
+list = while x < 10 {  
+		x++; 
+	} -> x;
+	
+// problem: to binds weaker than == 
+list == (1 to 10); 
