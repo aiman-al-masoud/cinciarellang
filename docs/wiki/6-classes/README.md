@@ -77,7 +77,7 @@ Greeter == duck.type; // true
 
 ## Interfaces
 
-
+There is no  ~~interface~~ keyword. To  
 
 
 
