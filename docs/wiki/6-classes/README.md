@@ -80,7 +80,15 @@ Greeter == duck.type; // true
 There is no  ~~interface~~ keyword. To achieve the same functionality, you simply create a class that only contains declarations:
 
 ```
+CoordInterface = class {
+    x:int; //must contain an integer x
+    y:int; //must contain an integer y
+}
 
+Coord = CoordInterface + class {
+    
+
+}
 
 ```
 
