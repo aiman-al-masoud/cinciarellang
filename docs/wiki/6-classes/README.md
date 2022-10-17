@@ -86,7 +86,7 @@ CoordInterface = class {
 }
 ```
 
-This implementation works:
+This implementation works, you can create objects out of it:
 
 ```
 Coord = CoordInterface + class {
@@ -100,6 +100,22 @@ Coord = CoordInterface + class {
 c = Coord(1,2);
 c.x == 1 && c.y == 2; // true
 ```
+
+
+This other implementation can't be instantiated, it's incomplete:
+
+```
+WrongCoord = CoordInterface + class{
+
+}
+
+w = WrongCoord(); // TypeError Cannot instantiate class with undefined attributes!
+```
+
+
+
+
+
 
 
 
