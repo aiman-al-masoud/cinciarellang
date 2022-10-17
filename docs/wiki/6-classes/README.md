@@ -78,3 +78,10 @@ Greeter == duck.type; // true
 ## Interfaces
 
 
+
+
+
+
+
+
+
