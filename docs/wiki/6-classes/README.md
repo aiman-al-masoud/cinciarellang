@@ -70,6 +70,11 @@ duck.greet(); // 'Hi, my name is Double Duck'
 ```
 
 
+```
+duck.type == Greeter; // false 
+Greeter == duck.type; // true
+```
+
 ## Interfaces
 
 
