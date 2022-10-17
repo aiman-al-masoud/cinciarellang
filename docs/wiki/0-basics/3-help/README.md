@@ -27,5 +27,23 @@ f.type; // \( x:int) -> int
 
 ## Entries
 
+You can get a list of entries (name, value) that are present in any object (except for functions, at the moment):
+
+```
+C = class { 
+    A = 1; 
+    B = 2;   
+}
+
+C.entries();
+```
+
+This outputs:
+
+```
+[['help', NativeCode], ['A', 1], ['as', NativeCode], ['entries', NativeCode], ['B', 2], ['freeze', NativeCode], ['this', class{}], ['is', NativeCode], ['copy', NativeCode]]
+```
+As you can see, there's a bit of builtin methods besides the variables A and B declared in that class.
+
 
 ## Comments
