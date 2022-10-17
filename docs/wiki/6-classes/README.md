@@ -75,6 +75,8 @@ duck.type == Greeter; // false
 Greeter == duck.type; // true
 ```
 
+If two classes define the same method, the method resulting in their combination is taken from the last class in the addition chain.
+
 ## Interfaces
 
 There is no  ~~interface~~ keyword. To achieve the same functionality, you simply create a class that only contains declarations:
