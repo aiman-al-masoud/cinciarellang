@@ -43,6 +43,7 @@ This outputs:
 ```
 [['help', NativeCode], ['A', 1], ['as', NativeCode], ['entries', NativeCode], ['B', 2], ['freeze', NativeCode], ['this', class{}], ['is', NativeCode], ['copy', NativeCode]]
 ```
+
 As you can see, there's a bit of builtin methods besides the variables A and B declared in that class.
 
 
