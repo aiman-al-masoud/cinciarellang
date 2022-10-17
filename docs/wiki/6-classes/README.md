@@ -44,7 +44,9 @@ p.birthday();
 p.isAdult(); // true
 ```
 
+## Inheritance
 
+There are no ~~extends~~ or ~~implements~~ keywords. Class objects are composable expressions that can be combined together with the `+` operator to yield 
 
 
 
