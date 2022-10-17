@@ -106,8 +106,6 @@ public class Parser {
 
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			res = parseCompStatement();
-//		}else if(tStream.peek().getValue().equals( Keywords.WHILE )) {
-//			res = parseWhileStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.TRY )) {
 			res = parseTryStatement();
 		}else if(tStream.peek().getValue().equals( Keywords.THROW )) {
@@ -279,16 +277,16 @@ public class Parser {
 		eat(Keywords.WHILE);
 		WhileExpression wS = new WhileExpression();
 		wS.cond = parseSingleExpression();
-		
+
 		if(tStream.peek().getValue().equals(Punctuations.CURLY_OPN)) {
 			wS.block = parseCompStatement();			
 		}
-		
+
 		if(tStream.peek().getValue().equals(Operators.ARROW)) {
 			eat(Operators.ARROW);
 			wS.yield = parseSingleExpression();
 		}
-		
+
 		return wS;
 	}
 
@@ -630,8 +628,6 @@ public class Parser {
 		for(int i = 1; i < chain.size(); i++) {
 
 			try {
-				//TODO: fix this
-				//				asgn1.left = (LeftValue) chain.get(i);
 				asgn1.left = chain.get(i);
 				AssignmentExpression asgn2 = new AssignmentExpression();
 				asgn2.right = asgn1;
@@ -664,8 +660,8 @@ public class Parser {
 		if(tStream.peek().getValue().equals(Keywords.FOR)) {
 			return parseForExpression();
 		}
-		
-		
+
+
 		if(tStream.peek().getValue().equals(Keywords.WHILE)) {
 			return parseWhileExpression();
 		}
