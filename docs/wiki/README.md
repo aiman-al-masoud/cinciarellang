@@ -24,4 +24,11 @@ Welcome to the wiki! This is an index of the main parts:
 1. [while](./3-flow-control/3-while/README.md)
 1. [break-continue](./3-flow-control/4-break-continue/README.md)
 
+## 3) Functions
 
+
+## 4) Exceptions
+
+
+## 5) Classes
+1. [Classes](./6-classes/README.md)
