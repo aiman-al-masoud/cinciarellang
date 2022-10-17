@@ -82,8 +82,6 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.ASTERISK));
 	}
 
-
-
 	@Override
 	public CinciaBool __eq__(CinciaObject other) {
 		return (CinciaBool)CinciaObject.wrap(toJava().equals(other.toJava()));
