@@ -86,12 +86,24 @@ CoordInterface = class {
 }
 ```
 
+This implementation works:
+
 ```
 Coord = CoordInterface + class {
-    
 
+    __init__ = \x,y ->{
+        this.x = x;
+        this.y = y;
+    }
 }
+
+c = Coord(1,2);
+c.x == 1 && c.y == 2; // true
 ```
+
+
+
+
 
 
 
