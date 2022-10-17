@@ -90,7 +90,7 @@ public abstract class AbstractTraversal<T> {
 
 		}else if(ast instanceof CompoundStatement) {
 			return evalCompoundStatement((CompoundStatement)ast, enviro);
-			
+
 		}else if(ast instanceof ImportStatement) {
 			return evalImportStatement((ImportStatement)ast, enviro);
 
@@ -99,19 +99,19 @@ public abstract class AbstractTraversal<T> {
 
 		}else if(ast instanceof ThrowStatement) {
 			return evalThrowStatement((ThrowStatement)ast, enviro);
-			
+
 		}else if (ast == null) { //TODO: really?
 			return null;
-			
+
 		}else if (ast instanceof ReturnStatement) {
 			return evalReturnStatement((ReturnStatement)ast, enviro);
-			
+
 		}else if ( ast instanceof BreakStatement ) {
 			return evalBreakStatement((BreakStatement)ast, enviro);
-			
+
 		}else if ( ast instanceof ContinueStatement ) {
 			return evalContinueStatement((ContinueStatement)ast, enviro);
-			
+
 		}
 
 		throw new RuntimeException("No such AST class!");
@@ -120,10 +120,9 @@ public abstract class AbstractTraversal<T> {
 
 	public T evalExpression(Expression expression, Enviro enviro) {
 
-
 		if(expression instanceof BinaryExpression) {
 			return evalBinaryExpression((BinaryExpression)expression, enviro);
-			
+
 		}else if(expression instanceof MultiExpression) {
 			return evalMultiExpression((MultiExpression)expression, enviro);
 
@@ -151,18 +150,19 @@ public abstract class AbstractTraversal<T> {
 
 		}else if (expression instanceof MatchExpression) {
 			return evalMatchExpression( (MatchExpression)expression, enviro);
-			
+
 		}else if (expression instanceof ForExpression) {
 			return evalForExpression((ForExpression)expression, enviro);
-			
+
 		}else if (expression instanceof WhileExpression) {
 			return evalWhileExpression((WhileExpression)expression, enviro);
-			
+
 		}else if (expression instanceof Type) {
-//			System.out.println(expression);
 			return evalTypeExpression((Type)expression, enviro);
+
 		}else if(expression instanceof IfExpression) {
 			return evalIfExpression((IfExpression)expression, enviro);
+
 		}
 
 		throw new RuntimeException("No such expression class!");
@@ -266,36 +266,32 @@ public abstract class AbstractTraversal<T> {
 			return evalConstant((Constant)primex, enviro);
 
 		}else if(primex instanceof Keyword) {
-			
+
 			Keywords kw = ((Keyword)primex).value;
-			
-			
+
+
 			if(Arrays.asList( PrimitiveType.ANY, PrimitiveType.INT, PrimitiveType.FLOAT, PrimitiveType.STRING, PrimitiveType.BOOL, PrimitiveType.MODULE  ).contains(kw)) {
-//			System.out.println("found this keyword: "+kw);
-				
+
 				if(kw.equals(PrimitiveType.BOOL)) {
 					return (T) CinciaBool.myClass;
 				}
-				
+
 
 				if(kw.equals(PrimitiveType.INT)) {
 					return (T) CinciaInt.myClass;
 				}
-				
+
 				if(kw.equals(PrimitiveType.FLOAT)) {
 					return (T) CinciaFloat.myClass;
 				}
-				
+
 				if(kw.equals(PrimitiveType.STRING)) {
 					return (T) CinciaString.myClass;
 				}
-				
+
 				return   (T) new TypeWrapper(new PrimitiveType(kw)); 
 			}
 			
-			
-//			return (T) new CinciaKeyword( ((Keyword)primex).value );
-			//			return (T) new CinciaClass();
 		}
 
 		throw new RuntimeException("No such primary expression!");
@@ -360,5 +356,5 @@ public abstract class AbstractTraversal<T> {
 	public abstract T evalNegationExpression(NegationExpression negex, Enviro enviro);
 	public abstract T evalPipeExpression(PipeExpression expression, Enviro enviro);
 	public abstract T evalTypeExpression(Type type, Enviro enviro);
-	
+
 }

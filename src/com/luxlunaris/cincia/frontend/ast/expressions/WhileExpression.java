@@ -1,9 +1,6 @@
 package com.luxlunaris.cincia.frontend.ast.expressions;
 
-import java.util.List;
-
 import com.luxlunaris.cincia.frontend.ast.interfaces.Expression;
-import com.luxlunaris.cincia.frontend.ast.interfaces.Statement;
 import com.luxlunaris.cincia.frontend.ast.statements.CompoundStatement;
 
 public class WhileExpression extends SingleExpression {
