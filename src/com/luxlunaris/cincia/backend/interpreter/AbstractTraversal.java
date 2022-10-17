@@ -3,10 +3,6 @@ package com.luxlunaris.cincia.backend.interpreter;
 import java.util.Arrays;
 
 import com.luxlunaris.cincia.backend.object.Enviro;
-import com.luxlunaris.cincia.backend.primitives.CinciaBool;
-import com.luxlunaris.cincia.backend.primitives.CinciaFloat;
-import com.luxlunaris.cincia.backend.primitives.CinciaInt;
-import com.luxlunaris.cincia.backend.primitives.CinciaString;
 import com.luxlunaris.cincia.backend.primitives.PrimitiveCinciaObject;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
