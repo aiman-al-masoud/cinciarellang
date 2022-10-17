@@ -10,21 +10,22 @@ import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 // TODO: pull up here some code from the subclasses
 public class PrimitiveCinciaObject extends CinciaCinciaClass {
-	
-	protected boolean isInstance;
-	
-	
+
 	/**
 	 * An instance of PrimitiveCinciaObject can represent either 
-	 * a class or an instance of that class. In case it represents
-	 * a class, matches() will check if the other type has exactly the same
-	 * Java class as this.
+	 * a class or an instance of that class. 
+	 */
+	protected boolean isInstance;
+
+	/**
+	 * In case this object represents a class, matches() will check if the 
+	 * other type has exactly the same Java class as this.
 	 */
 	@Override
 	public boolean matches(Type other) {
 		return getClass() == other.getClass();
 	}
-	
+
 	/**
 	 * Since a primitive object is immutable and cannot be tampered with, 
 	 * you don't need to create a copy of it.
@@ -33,32 +34,32 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 	public CinciaObject copy(List<CinciaObject> args) {
 		return this;
 	}
-	
+
 	public static Type keywordToType(Keywords kw) {
-		
+
 		switch (kw) {
 		case INT:
 			return CinciaInt.myClass;
 		case BOOL:
-//			return new CinciaBool();
+			//			return new CinciaBool();
 			return CinciaBool.myClass;
 		case STRING:
-//			return new CinciaString();
+			//			return new CinciaString();
 			return CinciaString.myClass;
 		case FLOAT:
-//			return new CinciaFloat();
+			//			return new CinciaFloat();
 			return CinciaFloat.myClass;
 
 		default:
 			throw new RuntimeException("No such primitive type: "+kw);
 		}
-		
+
 	}
-	
 
 
-	
-	
+
+
+
 	@Override
 	public CinciaObject __lt__(CinciaObject other) {
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.LT));
@@ -88,12 +89,12 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 	public CinciaObject __sub__(CinciaObject other) {
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.MINUS));
 	}
-	
+
 	@Override
 	public CinciaObject __add__(CinciaObject other) {
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.PLUS));
 	}
-	
+
 	@Override
 	public CinciaObject __mul__(CinciaObject other) {
 		return CinciaObject.wrap(Alu.perform(this.toJava(), other.toJava(), Operators.ASTERISK));
