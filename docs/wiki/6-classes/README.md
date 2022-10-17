@@ -84,14 +84,14 @@ CoordInterface = class {
     x:int; //must contain an integer x
     y:int; //must contain an integer y
 }
+```
 
+```
 Coord = CoordInterface + class {
     
 
 }
-
 ```
-
 
 
 
