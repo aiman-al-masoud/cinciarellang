@@ -7,6 +7,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaBool;
 import com.luxlunaris.cincia.backend.primitives.CinciaFloat;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
+import com.luxlunaris.cincia.backend.primitives.PrimitiveCinciaObject;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.declarations.FunctionDeclaration;
 import com.luxlunaris.cincia.frontend.ast.declarations.MultiDeclaration;
@@ -269,29 +270,13 @@ public abstract class AbstractTraversal<T> {
 
 			Keywords kw = ((Keyword)primex).value;
 
-
 			if(Arrays.asList( PrimitiveType.ANY, PrimitiveType.INT, PrimitiveType.FLOAT, PrimitiveType.STRING, PrimitiveType.BOOL, PrimitiveType.MODULE  ).contains(kw)) {
+				return (T) PrimitiveCinciaObject.keywordToType(kw);
 
-				if(kw.equals(PrimitiveType.BOOL)) {
-					return (T) CinciaBool.myClass;
-				}
-
-
-				if(kw.equals(PrimitiveType.INT)) {
-					return (T) CinciaInt.myClass;
-				}
-
-				if(kw.equals(PrimitiveType.FLOAT)) {
-					return (T) CinciaFloat.myClass;
-				}
-
-				if(kw.equals(PrimitiveType.STRING)) {
-					return (T) CinciaString.myClass;
-				}
-
-				return   (T) new TypeWrapper(new PrimitiveType(kw)); 
 			}
-			
+
+			return (T) new TypeWrapper(new PrimitiveType(kw)); 
+
 		}
 
 		throw new RuntimeException("No such primary expression!");

@@ -38,23 +38,24 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 		
 		switch (kw) {
 		case INT:
-			return new CinciaInt();
+			return CinciaInt.myClass;
 		case BOOL:
-			return new CinciaBool();
+//			return new CinciaBool();
+			return CinciaBool.myClass;
 		case STRING:
-			return new CinciaString();
+//			return new CinciaString();
+			return CinciaString.myClass;
 		case FLOAT:
-			return new CinciaFloat();
+//			return new CinciaFloat();
+			return CinciaFloat.myClass;
+
 		default:
 			throw new RuntimeException("No such primitive type: "+kw);
 		}
 		
 	}
 	
-	
-	
-	
-	
+
 
 	
 	
