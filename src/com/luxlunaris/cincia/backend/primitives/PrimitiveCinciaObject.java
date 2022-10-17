@@ -5,6 +5,7 @@ import java.util.List;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.object.CinciaCinciaClass;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
+import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
 import com.luxlunaris.cincia.frontend.ast.tokens.operator.Operators;
 
 // TODO: pull up here some code from the subclasses
@@ -33,7 +34,22 @@ public class PrimitiveCinciaObject extends CinciaCinciaClass {
 		return this;
 	}
 	
-	
+	public static Type keywordToType(Keywords kw) {
+		
+		switch (kw) {
+		case INT:
+			return new CinciaInt();
+		case BOOL:
+			return new CinciaBool();
+		case STRING:
+			return new CinciaString();
+		case FLOAT:
+			return new CinciaFloat();
+		default:
+			throw new RuntimeException("No such primitive type: "+kw);
+		}
+		
+	}
 	
 	
 	

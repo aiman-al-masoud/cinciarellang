@@ -29,6 +29,7 @@ import com.luxlunaris.cincia.backend.primitives.CinciaFloat;
 import com.luxlunaris.cincia.backend.primitives.CinciaInt;
 import com.luxlunaris.cincia.backend.primitives.CinciaKeyword;
 import com.luxlunaris.cincia.backend.primitives.CinciaString;
+import com.luxlunaris.cincia.backend.primitives.PrimitiveCinciaObject;
 import com.luxlunaris.cincia.backend.stdlib.Stdlib;
 import com.luxlunaris.cincia.backend.throwables.CinciaException;
 import com.luxlunaris.cincia.backend.throwables.TypeError;
@@ -224,21 +225,21 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalWhileExpression(WhileExpression whileExpression, Enviro enviro) {
-		
-		
+
+
 		List<CinciaObject> results = new ArrayList<>();
-		
+
 
 		while(eval(whileExpression.cond, enviro).__bool__().toJava()) {
 
 			// run one iteration
 			CinciaObject o = eval(whileExpression.block, enviro); 
-			
-			
+
+
 			if(whileExpression.yield!=null) {				
 				results.add(eval(whileExpression.yield, enviro));
 			}
-			
+
 
 			//check iteration exit value to determine what to do next
 			if(o == null) {
@@ -866,27 +867,8 @@ public class Interpreter extends AbstractTraversal<CinciaObject> {
 
 	@Override
 	public CinciaObject evalTypeExpression(Type type, Enviro enviro) {
-
-
-		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.INT) {
-			return CinciaInt.myClass;
-		}
-
-		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.BOOL) {
-			return CinciaBool.myClass;
-		}
-
-		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.FLOAT) {
-			return CinciaFloat.myClass;
-		}
-
-		if(type instanceof PrimitiveType && ((PrimitiveType)type).value == Keywords.STRING) {
-			return CinciaString.myClass;
-		}
-
 		//TODO: implement resolve in collection types		
 		return new TypeWrapper(type.resolve(this::eval, enviro));
-
 	}
 
 

@@ -1,7 +1,10 @@
 package com.luxlunaris.cincia.frontend.ast.expressions.type;
 
+import java.util.Arrays;
+
 import com.luxlunaris.cincia.backend.interfaces.Eval;
 import com.luxlunaris.cincia.backend.object.Enviro;
+import com.luxlunaris.cincia.backend.primitives.PrimitiveCinciaObject;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.interfaces.Type;
 import com.luxlunaris.cincia.frontend.ast.tokens.keyword.Keywords;
@@ -52,7 +55,13 @@ public class PrimitiveType extends OneNameType{
 
 	@Override
 	public Type resolve(Eval eval, Enviro enviro) {
-		return this;
+
+		if(Arrays.asList(Keywords.ANY, Keywords.MODULE).contains(value)) {
+			return this;
+		}else {
+			return PrimitiveCinciaObject.keywordToType(value);
+		}
+
 	}
 
 
