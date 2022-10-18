@@ -337,6 +337,17 @@ public class Enviro implements Stateful{
 		}
 
 	}
+	
+	/**
+	 * Return a new enviro that is a shallow copy of this AND the other
+	 * @param enviro
+	 * @return
+	 */
+	public Enviro mergeWith(Enviro other) {
+		var copy = other.shallowCopy();
+		vars.entrySet().forEach(e->copy.set(e.getKey(), e.getValue()));
+		return copy;
+	}
 
 
 

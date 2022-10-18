@@ -60,7 +60,8 @@ public class CinciaMethod extends CinciaFunction{
 	
 	@Override
 	public CinciaObject run(List<CinciaObject> args, Enviro enviro) {
-		return super.run(args, parent.getEnviro().shallowCopy());
+		var env = parent.getEnviro().mergeWith(enviro);
+		return super.run(args, env);
 	}
 
 	@Override
