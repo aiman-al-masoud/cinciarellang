@@ -1,6 +1,6 @@
 # While
 
-The `while` loop is the ugliest of them all, too bad it's also the most versatile*. In Cinciarellang, it's an expression:
+The `while` loop is the ugliest of them all, too bad it's also the most versatile[1](#1). In Cinciarellang, it's an expression:
 
 ```
 x = 0;
@@ -21,3 +21,5 @@ while x < 10{
 } -> x;
 ```
 
+### 1 
+Because the JVM's call-stack is not unlimited, and I haven't implemented any clever mechanism to bypass that limitation and allow for unlimited recursion.
