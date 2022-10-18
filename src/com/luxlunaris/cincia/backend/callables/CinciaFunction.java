@@ -56,6 +56,10 @@ public class CinciaFunction extends BaseCinciaObject implements Callable{
 			// TODO: check param/args number
 			
 			int bindNum = lambdex.explicitParams? params.size() : args.size();
+			
+//			System.out.println("args: "+args);
+//			System.out.println("params: "+params);
+//			System.out.println("bind num: "+bindNum);
 
 			// Bind args to environment
 			for(int i=0; i < bindNum; i++) {
@@ -76,6 +80,8 @@ public class CinciaFunction extends BaseCinciaObject implements Callable{
 			
 		} catch (UndefinedError e) {
 			//STUPID: run multiple times catching undefined var error and define next var with arg each time
+			//TODO: STUPID, can lead to Stackoverflow exception!
+			
 			params.add(new Parameter( e.undefinedName , Type.Any ,  Arrays.asList() ));
 			return run(args, enviro);
 		}

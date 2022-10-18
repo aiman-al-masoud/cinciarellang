@@ -9,12 +9,14 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
+import com.luxlunaris.cincia.backend.callables.CinciaFunction;
 import com.luxlunaris.cincia.backend.callables.CinciaMethod;
 import com.luxlunaris.cincia.backend.callables.PureCinciaFunction;
 import com.luxlunaris.cincia.backend.interfaces.CinciaIterable;
 import com.luxlunaris.cincia.backend.interfaces.CinciaObject;
 import com.luxlunaris.cincia.backend.interfaces.IterMethods;
 import com.luxlunaris.cincia.backend.iterables.CinciaList;
+import com.luxlunaris.cincia.backend.object.Enviro;
 import com.luxlunaris.cincia.backend.object.Magic;
 import com.luxlunaris.cincia.backend.types.TypeWrapper;
 import com.luxlunaris.cincia.frontend.ast.expressions.type.PrimitiveType;
@@ -91,8 +93,8 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	}
 
 	@Override
-	public CinciaIterable filter(PureCinciaFunction f) {
-		return filter(o -> f.run(Arrays.asList(o)).__bool__().toJava());
+	public CinciaIterable filter(CinciaFunction f) {
+		return filter(o -> f.run(Arrays.asList(o), new Enviro(null)).__bool__().toJava());
 	}
 
 	@Override
@@ -112,8 +114,8 @@ public class CinciaString extends PrimitiveCinciaObject implements CinciaIterabl
 	}
 
 	@Override
-	public CinciaIterable map(PureCinciaFunction f) {
-		return map(o -> f.run(Arrays.asList(o)));
+	public CinciaIterable map(CinciaFunction f) {
+		return map(o -> f.run(Arrays.asList(o), new Enviro(null)));
 	}
 
 	public CinciaIterable map(List<CinciaObject> args) {
