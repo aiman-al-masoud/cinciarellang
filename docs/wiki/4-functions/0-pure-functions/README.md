@@ -38,19 +38,7 @@ j = \ -> 100;
 j(); // 100
 ```
 
-### 5) Using the `match` expression to implement a "lookup table":
-
-```
-k = \x -> match x {
-    "two" -> 2;
-    "one" -> 1;
-    "three" -> 3;
-}
-
-k("one"); //1
-```
-
-### 6) Trying to read anything from the outer scope will result in an error when running the function **(undefined variable)**:
+### 5) Trying to read anything from the outer scope will result in an error when running the function **(undefined variable)**:
 
 ```
 x = 100;
@@ -58,7 +46,7 @@ wrong =\ -> x;
 wrong(); // x is undefined
 ```
 
-### 7) All parameters are passed by value, **even objects, for real**:
+### 6) All parameters are passed by value, **even objects, for real**:
 
 ```
 dict = {"c" : 0};
