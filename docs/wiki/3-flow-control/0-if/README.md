@@ -1,5 +1,7 @@
 # If 
 
+### As a ternary operator
+
 As you already know, like most things in Cinciarellang, the `if` construct is an expression. An `if` is great if you have to pick a value based on a binary choice:
 
 ```
@@ -23,6 +25,8 @@ x = if foo < 3
 x == 'small'; //true
 ```
 
+### With code blocks
+
 You can also use `if` with code blocks, in that case you don't need to use the `then` keyword, but you need to `return` the result:
 
 ```
@@ -35,6 +39,8 @@ x = if foo < 3 {
 }
 
 ```
+
+### As a statement
 
 And of course, you can even treat `if` as a statement (by ignoring its return value):
 
