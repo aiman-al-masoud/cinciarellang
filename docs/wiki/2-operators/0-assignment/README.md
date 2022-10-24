@@ -6,7 +6,7 @@ The single equal sign `=` is the only assignment operator in Cinciarellang.  It 
 x = 1;  // assignment 
 x == 1; // true
 ```
-An assignment is an expression, like in most other C-like languages, it is evaluated from right to left:
+An assignment is an expression (it evaluates to the rightmost rval), like in most other C-like languages, it is evaluated from right to left:
 
 ```
 x = y = z = 33;
