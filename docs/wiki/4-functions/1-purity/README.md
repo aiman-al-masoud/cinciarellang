@@ -34,4 +34,4 @@ wrong(myDict);
 myDict['c'] == 0; //true
 ```
 
-You can opt out of the default behaviour (purity) by using the keywords [`ref`](./ref.md) and [`nonlocal`](./nonlocal.md).
+You can opt out of the default behaviour of functions (purity) by using the keywords [`ref`](./ref.md) and [`nonlocal`](./nonlocal.md).
