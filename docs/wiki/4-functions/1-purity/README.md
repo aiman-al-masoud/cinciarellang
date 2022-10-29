@@ -23,19 +23,15 @@ wrong(); // x is undefined
 All parameters are passed by value, **even objects, for real**:
 
 ```
-dict = {'c' : 0};
+myDict = {'c' : 0};
 
-p = \ x -> {
+wrong = \ x -> {
     x['c'] = x['c'] + 1;
-    return x;
+    x['c'] == 1; //true
 }
 
-y = p(dict);
-y['c'] == 1; //true
-dict['c'] == 0; //true
+wrong(myDict);
+myDict['c'] == 0; //true
 ```
 
 
-
-ref 
-nonlocal
