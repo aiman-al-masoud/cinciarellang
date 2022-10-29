@@ -37,4 +37,4 @@ Welcome to the wiki! This is an index of the main parts:
 1. [Classes](./6-classes/README.md)
 
 
-For a more thorough (but a little less readable) documentation of the language, please refer to the set of tests.
+For a more thorough (but a little less readable) documentation of the language, please refer to the set of tests. [tests](../../tests/)
