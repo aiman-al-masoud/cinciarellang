@@ -25,10 +25,13 @@ Welcome to the wiki! This is an index of the main parts:
 1. [break-continue](./3-flow-control/4-break-continue/README.md)
 
 ## 3) Functions
-
+1. [Syntax](./4-functions/0-syntax/README.md)
+1. [Purity](./4-functions/1-purity/README.md)
+1. [Recursion](./4-functions/2-recursion/README.md)
+1. [Pipes](./4-functions/3-pipes/README.md)
 
 ## 4) Exceptions
-
+1. [Exceptions](./5-exceptions/README.md)
 
 ## 5) Classes
 1. [Classes](./6-classes/README.md)
