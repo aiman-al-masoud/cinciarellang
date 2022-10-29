@@ -10,7 +10,7 @@ r.nextInt() == -1157793070; // true
 ```
 
 
-Please refer to the tests for more info.
+Please refer to the [tests directory](../../tests/) for more info.
 
 
 

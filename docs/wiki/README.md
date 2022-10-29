@@ -40,4 +40,4 @@ Welcome to the wiki! This is an index of the main parts:
 1. [File Imports](./8-import/README.md)
 1. [Java](./9-java/README.md)
 
-For a more thorough (but a little less readable) documentation of the language, please refer to the set of tests. [tests](../../tests/)
+For a more thorough (but a little less readable) documentation of the language, please refer to the [tests directory](../../tests/).
