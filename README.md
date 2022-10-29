@@ -15,7 +15,7 @@ Its main features include:
 * Support for Java classes and objects ☕
 
 
-> ⚠️ Please note that this project is just a proof of concept, currently (and probably never) ready for production!⚠️
+> ⚠️ Please note that this project is just a proof of concept, currently (and probably **never**) ready for production!⚠️
 
 ## Wiki 📚 
 An informal description of the language is available **-˃ [on the wiki](./docs/wiki/README.md) ˂-**.
