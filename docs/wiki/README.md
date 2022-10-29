@@ -36,5 +36,8 @@ Welcome to the wiki! This is an index of the main parts:
 ## 5) Classes
 1. [Classes](./6-classes/README.md)
 
+## 6) Imports
+1. [File Imports](./8-import/README.md)
+1. [Java](./9-java/README.md)
 
 For a more thorough (but a little less readable) documentation of the language, please refer to the set of tests. [tests](../../tests/)
